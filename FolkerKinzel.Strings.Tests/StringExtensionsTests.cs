@@ -12,8 +12,8 @@ namespace FolkerKinzel.Strings.Tests
         [TestMethod()]
         public void GetStableHashCodeTest1()
         {
-            int hash1 = string.Empty.GetStableHashCode();
-            int hash2 = "".GetStableHashCode();
+            int hash1 = string.Empty.GetStableHashCode(HashType.Ordinal);
+            int hash2 = "".GetStableHashCode(HashType.Ordinal);
 
             Assert.AreEqual(hash1, hash2);
         }
@@ -24,15 +24,15 @@ namespace FolkerKinzel.Strings.Tests
         {
             string? s = null;
 
-            s!.GetStableHashCode();
+            s!.GetStableHashCode(HashType.Ordinal);
         }
 
 
         [TestMethod()]
         public void GetStableHashCodeTest3()
         {
-            int hash1 = "Hallo".GetStableHashCode(true);
-            int hash2 = "hallo".GetStableHashCode(true);
+            int hash1 = "Hallo".GetStableHashCode(HashType.OrdinalIgnoreCase);
+            int hash2 = "hallo".GetStableHashCode(HashType.OrdinalIgnoreCase);
 
             Assert.AreEqual(hash1, hash2);
         }
@@ -41,10 +41,20 @@ namespace FolkerKinzel.Strings.Tests
         [TestMethod()]
         public void GetStableHashCodeTest4()
         {
-            int hash1 = "Hallo".GetStableHashCode();
-            int hash2 = "hallo".GetStableHashCode();
+            int hash1 = "Hallo".GetStableHashCode(HashType.Ordinal);
+            int hash2 = "hallo".GetStableHashCode(HashType.Ordinal);
 
             Assert.AreNotEqual(hash1, hash2);
+        }
+
+
+        [TestMethod()]
+        public void GetStableHashCodeTest5()
+        {
+            int hash1 = "Hallo, dies ist Text.".GetStableHashCode(HashType.AlphaNumericNoCase);
+            int hash2 = "hallodiesisttext".GetStableHashCode(HashType.OrdinalIgnoreCase);
+
+            Assert.AreEqual(hash1, hash2);
         }
     }
 }

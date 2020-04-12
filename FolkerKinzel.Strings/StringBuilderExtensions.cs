@@ -1,34 +1,32 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using System.Text;
 
 namespace FolkerKinzel.Strings
 {
-
-    /// <summary>
-    /// Erweiterungsmethoden für die <see cref="string"/>-Klasse.
-    /// </summary>
-    public static class StringExtensions
+    public static class StringBuilderExtensions
     {
         /// <summary>
-        /// Gibt bei jedem Aufruf denselben Hashcode für einen identischen <see cref="string"/> zurück.
+        /// Gibt bei jedem Aufruf denselben Hashcode für einen identischen <see cref="StringBuilder"/> zurück. 
+        /// Erzeugt den identischen Hash wie <see cref="StringExtensions.GetStableHashCode(string, HashType)"/>.
         /// </summary>
-        /// <param name="s">Der zu hashende <see cref="string"/>.</param>
+        /// <param name="sb">Der zu hashende <see cref="StringBuilder"/>.</param>
         /// <param name="hashType">Die Art des zu erzeugenden Hashcodes.</param>
-        /// <returns>Der Hashcode für <paramref name="s"/>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <returns>Der Hashcode für <paramref name="sb"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="sb"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein definierter Wert der <see cref="HashType"/>-Enum.</exception>
-        public static int GetStableHashCode(this string s, HashType hashType)
+        public static int GetStableHashCode(this StringBuilder sb, HashType hashType)
         {
-            if(s is null)
+            if (sb is null)
             {
-                throw new ArgumentNullException(nameof(s));
+                throw new ArgumentNullException(nameof(sb));
             }
 
             return hashType switch
             {
-                HashType.Ordinal => GetHashCodeOrdinal(s),
-                HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(s),
-                HashType.AlphaNumericNoCase => GetHashCodeAlphaNumericNoCase(s),
+                HashType.Ordinal => GetHashCodeOrdinal(sb),
+                HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(sb),
+                HashType.AlphaNumericNoCase => GetHashCodeAlphaNumericNoCase(sb),
                 _ => throw new ArgumentOutOfRangeException(nameof(hashType))
             };
         }
@@ -39,7 +37,7 @@ namespace FolkerKinzel.Strings
         /// </summary>
         /// <param name="str">Der zu hashende <see cref="string"/>.</param>
         /// <returns>Der Hashcode.</returns>
-        private static int GetHashCodeOrdinal(string str)
+        private static int GetHashCodeOrdinal(StringBuilder str)
         {
             unchecked
             {
@@ -65,7 +63,7 @@ namespace FolkerKinzel.Strings
         /// </summary>
         /// <param name="str">Der zu hashende <see cref="string"/>.</param>
         /// <returns>Der Hashcode.</returns>
-        private static int GetHashCodeOrdinalIgnoreCase(string str)
+        private static int GetHashCodeOrdinalIgnoreCase(StringBuilder str)
         {
             unchecked
             {
@@ -87,7 +85,7 @@ namespace FolkerKinzel.Strings
         }
 
 
-        private static int GetHashCodeAlphaNumericNoCase(string str)
+        private static int GetHashCodeAlphaNumericNoCase(StringBuilder str)
         {
             unchecked
             {
@@ -100,7 +98,7 @@ namespace FolkerKinzel.Strings
                     {
                         char current = str[i];
 
-                        if(char.IsLetterOrDigit(current))
+                        if (char.IsLetterOrDigit(current))
                         {
                             hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ Char.ToUpperInvariant(current);
                             i++;
@@ -120,7 +118,7 @@ namespace FolkerKinzel.Strings
 
                             break;
                         }
-                    } 
+                    }
                 }
 
                 return hash1 + (hash2 * 1566083941);

@@ -3,7 +3,7 @@
     <TargetFrameworks>netstandard2.1;net40</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <FileVersion>1.0.2.0</FileVersion>
+    <FileVersion>1.0.5.0</FileVersion>
   </PropertyGroup>
   <!-- 👇 disable the nullable warnings when compiling for .NET 4.0 -->
   <PropertyGroup Condition="'$(TargetFramework)' == 'net40'">
