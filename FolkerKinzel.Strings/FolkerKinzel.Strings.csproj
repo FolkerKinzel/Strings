@@ -3,7 +3,24 @@
     <TargetFrameworks>netstandard2.1;net40</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <FileVersion>1.0.7.0</FileVersion>
+    <NeutralLanguage>en</NeutralLanguage>
+    <!-- nuget-Package: -->
+    <PackageId>FolkerKinzel.WebTools</PackageId>
+    <Product>FolkerKinzel.WebTools</Product>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.10.0</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <PackageReleaseNotes>No Comment.</PackageReleaseNotes>
+    <PackageTags>string hash</PackageTags>
+    <Description>.NETSTANDARD 2.1 library, containing extension methods for strings.</Description>
+    <Authors>Folker Kinzel</Authors>
+    <Copyright>Copyright © 2020 Folker Kinzel</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageIcon>Logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/FolkerKinzel/Strings.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/FolkerKinzel/Strings</PackageProjectUrl>
   </PropertyGroup>
   <!-- 👇 disable the nullable warnings when compiling for .NET 4.0 -->
   <PropertyGroup Condition="'$(TargetFramework)' == 'net40'">
@@ -30,6 +47,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Nuget-Logo\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="if $(ConfigurationName) == Release if '$(TargetFramework)' == 'netstandard2.1' dotnet $(SolutionDir)IncVersion\IncVersion.dll $(ProjectDir)$(ProjectFileName)" />

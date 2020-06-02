@@ -4,6 +4,9 @@ using System.Text;
 
 namespace FolkerKinzel.Strings
 {
+    /// <summary>
+    /// Erweiterungsmethoden für die <see cref="StringBuilder"/>-Klasse.
+    /// </summary>
     public static class StringBuilderExtensions
     {
         /// <summary>

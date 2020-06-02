@@ -1,2 +1,2 @@
 # Strings
-.NET-Library with extension methods for strings
+.NETSTANDARD 2.1 library, containing extension methods for strings.
