@@ -12,7 +12,7 @@
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>No Comment.</PackageReleaseNotes>
     <PackageTags>string hash</PackageTags>
-    <Description>.NETSTANDARD 2.1 library, containing extension methods for strings.</Description>
+    <Description>.NET library, containing extension methods for strings.</Description>
     <Authors>Folker Kinzel</Authors>
     <Copyright>Copyright © 2020 Folker Kinzel</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
