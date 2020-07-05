@@ -7,12 +7,12 @@
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>1.0.0</Version>
-    <FileVersion>1.0.12.0</FileVersion>
+    <Version>1.1.0</Version>
+    <FileVersion>1.1.1.0</FileVersion>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <PackageReleaseNotes>No Comment.</PackageReleaseNotes>
+    <PackageReleaseNotes>Nuget Release.</PackageReleaseNotes>
     <PackageTags>string hash</PackageTags>
-    <Description>.NET library, containing extension methods for strings.</Description>
+    <Description>.NET library, containing extension methods for System.String and System.Text.StringBuilder.</Description>
     <Authors>Folker Kinzel</Authors>
     <Copyright>Copyright © 2020 Folker Kinzel</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -29,6 +29,14 @@
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="bin\Release\**" />
+    <Compile Remove="Translations\**" />
+    <EmbeddedResource Remove="bin\Release\**" />
+    <EmbeddedResource Remove="Translations\**" />
+    <None Remove="bin\Release\**" />
+    <None Remove="Translations\**" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Remove="BitOperations.cs" />
     <Compile Remove="Interop.cs" />
@@ -54,7 +62,10 @@
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+  </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if $(ConfigurationName) == Release if '$(TargetFramework)' == 'netstandard2.1' dotnet $(SolutionDir)IncVersion\IncVersion.dll $(ProjectDir)$(ProjectFileName)" />
+    <Exec Command="if $(ConfigurationName) == Release copy /v /b /y &quot;$(OutDir)$(ProjectName).xml&quot; &quot;$(OutDir)de/$(ProjectName).xml&quot;&#xD;&#xA;if $(ConfigurationName) == Release if '$(TargetFramework)' == 'netstandard2.1' dotnet $(SolutionDir)IncVersion\IncVersion.dll $(ProjectDir)$(ProjectFileName)" />
   </Target>
 </Project>

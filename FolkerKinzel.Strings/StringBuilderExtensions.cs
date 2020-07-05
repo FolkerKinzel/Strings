@@ -10,12 +10,15 @@ namespace FolkerKinzel.Strings
     public static class StringBuilderExtensions
     {
         /// <summary>
-        /// Gibt bei jedem Aufruf denselben Hashcode für einen identischen <see cref="StringBuilder"/> zurück. 
-        /// Erzeugt den identischen Hash wie <see cref="StringExtensions.GetStableHashCode(string, HashType)"/>.
+        /// Gibt bei jedem Aufruf denselben Hashcode für einen identischen <see cref="StringBuilder"/> zurück.
         /// </summary>
         /// <param name="sb">Der zu hashende <see cref="StringBuilder"/>.</param>
         /// <param name="hashType">Die Art des zu erzeugenden Hashcodes.</param>
         /// <returns>Der Hashcode für <paramref name="sb"/>.</returns>
+        /// <remarks>Die Methode erzeugt den identischen Hash wie <see cref="StringExtensions.GetStableHashCode(string, HashType)"/> aber dieser Hashcode ist 
+        /// nicht identisch mit dem Hashcode von .NET-Framework 4.0, denn 
+        /// er verwendet Roundshifting, um mehr Information zu bewahren. Verwenden Sie keine konstanten Hashcodes in 
+        /// sicherheitskritischen Anwendungen!</remarks>
         /// <exception cref="ArgumentNullException"><paramref name="sb"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein definierter Wert der <see cref="HashType"/>-Enum.</exception>
         public static int GetStableHashCode(this StringBuilder sb, HashType hashType)

@@ -6,7 +6,7 @@
     public enum HashType
     {
         /// <summary>
-        /// Ordinalvergleich der Zeichen
+        /// Ordinalvergleich der Zeichen.
         /// </summary>
         Ordinal,
 

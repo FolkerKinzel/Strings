@@ -15,6 +15,10 @@ namespace FolkerKinzel.Strings
         /// <param name="s">Der zu hashende <see cref="string"/>.</param>
         /// <param name="hashType">Die Art des zu erzeugenden Hashcodes.</param>
         /// <returns>Der Hashcode für <paramref name="s"/>.</returns>
+        /// <remarks>Die Methode erzeugt den identischen Hash wie <see cref="StringBuilderExtensions.GetStableHashCode(System.Text.StringBuilder, HashType)"/>,
+        /// aber dieser Hashcode ist nicht identisch mit dem Hashcode von .NET-Framework 4.0, denn 
+        /// er verwendet Roundshifting, um mehr Information zu bewahren. Verwenden Sie keine konstanten Hashcodes in 
+        /// sicherheitskritischen Anwendungen!</remarks>
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein definierter Wert der <see cref="HashType"/>-Enum.</exception>
         public static int GetStableHashCode(this string s, HashType hashType)
