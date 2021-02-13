@@ -38,23 +38,23 @@ namespace FolkerKinzel.Strings
         /// <summary>
         /// Erzeugt einen Hashcode mit exaktem Zeichenvergleich.
         /// </summary>
-        /// <param name="str">Der zu hashende <see cref="string"/>.</param>
+        /// <param name="sb">Die zu hashende Zeichenfolge.</param>
         /// <returns>Der Hashcode.</returns>
-        private static int GetHashCodeOrdinal(StringBuilder str)
+        private static int GetHashCodeOrdinal(StringBuilder sb)
         {
             unchecked
             {
                 int hash1 = (5381 << 16) + 5381;
                 int hash2 = hash1;
 
-                for (int i = 0; i < str.Length; i += 2)
+                for (int i = 0; i < sb.Length; i += 2)
                 {
-                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ str[i];
-                    if (i == str.Length - 1)
+                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ sb[i];
+                    if (i == sb.Length - 1)
                     {
                         break;
                     }
-                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ str[i + 1];
+                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ sb[i + 1];
                 }
 
                 return hash1 + (hash2 * 1566083941);
@@ -64,23 +64,23 @@ namespace FolkerKinzel.Strings
         /// <summary>
         /// Erzeugt einen Hashcode, der die Groß- und Kleinschreibung unberücksichtigt lässt.
         /// </summary>
-        /// <param name="str">Der zu hashende <see cref="string"/>.</param>
+        /// <param name="sb">Die zu hashende Zeichenfolge.</param>
         /// <returns>Der Hashcode.</returns>
-        private static int GetHashCodeOrdinalIgnoreCase(StringBuilder str)
+        private static int GetHashCodeOrdinalIgnoreCase(StringBuilder sb)
         {
             unchecked
             {
                 int hash1 = (5381 << 16) + 5381;
                 int hash2 = hash1;
 
-                for (int i = 0; i < str.Length; i += 2)
+                for (int i = 0; i < sb.Length; i += 2)
                 {
-                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(str[i]);
-                    if (i == str.Length - 1)
+                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(sb[i]);
+                    if (i == sb.Length - 1)
                     {
                         break;
                     }
-                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(str[i + 1]);
+                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(sb[i + 1]);
                 }
 
                 return hash1 + (hash2 * 1566083941);
@@ -88,18 +88,18 @@ namespace FolkerKinzel.Strings
         }
 
 
-        private static int GetHashCodeAlphaNumericIgnoreCase(StringBuilder str)
+        private static int GetHashCodeAlphaNumericIgnoreCase(StringBuilder sb)
         {
             unchecked
             {
                 int hash1 = (5381 << 16) + 5381;
                 int hash2 = hash1;
 
-                for (int i = 0; i < str.Length;)
+                for (int i = 0; i < sb.Length;)
                 {
-                    for (; i < str.Length; i++)
+                    for (; i < sb.Length; i++)
                     {
-                        char current = str[i];
+                        char current = sb[i];
 
                         if (char.IsLetterOrDigit(current))
                         {
@@ -107,9 +107,9 @@ namespace FolkerKinzel.Strings
                             i++;
 
                             // Hashe nächstes Zeichen:
-                            for (; i < str.Length; i++)
+                            for (; i < sb.Length; i++)
                             {
-                                char next = str[i];
+                                char next = sb[i];
 
                                 if (char.IsLetterOrDigit(next))
                                 {
