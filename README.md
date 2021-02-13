@@ -26,9 +26,9 @@ Paket CLI:
 > paket add FolkerKinzel.Strings --version 1.1.0
 ```
 
-* [Download Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/FolkerKinzel.Strings.Reference.en/Help/FolkerKinzel.Strings.Reference.en.chm)
+* [Download Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/1.1.0/FolkerKinzel.Strings.Reference.en.chm)
 
-* [Projektdokumentation (Deutsch) herunterladen](https://github.com/FolkerKinzel/Strings/blob/master/FolkerKinzel.Strings.Doku.de/Help/FolkerKinzel.Strings.Doku.de.chm)
+* [Projektdokumentation (Deutsch) herunterladen](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/1.1.0/FolkerKinzel.Strings.Doku.de.chm)
 
 > IMPORTANT: On some systems, the content of the CHM file is blocked. Before opening the file
 >  right click on it, select Properties, and check the "Allow" checkbox - if it 
