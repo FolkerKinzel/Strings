@@ -14,11 +14,20 @@ namespace FolkerKinzel.Strings
         /// </summary>
         /// <param name="s">Die zu hashende Zeichenfolge.</param>
         /// <param name="hashType">Die Art des zu erzeugenden Hashcodes.</param>
-        /// <returns>Der Hashcode für <paramref name="s"/>.</returns>
-        /// <remarks>Der von dieser Methode erzeugte Hashcode ist nicht identisch mit dem Hashcode, der von .NET-Framework 4.0
+        /// <returns>Der Hashcode.</returns>
+        /// <remarks>
+        /// <para>
+        /// Der von dieser Methode erzeugte Hashcode ist nicht identisch mit dem Hashcode, der von .NET-Framework 4.0
         /// erzeugt wird, denn 
-        /// er verwendet Roundshifting, um mehr Information zu bewahren. Verwenden Sie keine konstanten Hashcodes in 
-        /// sicherheitskritischen Anwendungen!</remarks>
+        /// er verwendet Roundshifting, um mehr Information zu bewahren. 
+        /// </para>
+        /// <para>Die mit unterschiedlichen Werten für <paramref name="hashType"/> erzeugten Hashcodes können
+        /// für eine identische Zeichenfolge verschiedene Hashcodes liefern und dürfen deshalb nicht vermischt werden.</para>
+        /// <para>
+        /// Verwenden Sie die von der Methode erzeugten Hashcodes nicht in 
+        /// sicherheitskritischen Anwendungen (wie z.B. dem Hashen von Passwörtern)!
+        /// </para>
+        /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein definierter Wert der <see cref="HashType"/>-Enum.</exception>
         public static int GetStableHashCode(this string s, HashType hashType)
@@ -35,11 +44,7 @@ namespace FolkerKinzel.Strings
         }
 
 
-        /// <summary>
-        /// Erzeugt einen Hashcode mit exaktem Zeichenvergleich.
-        /// </summary>
-        /// <param name="str">Der zu hashende <see cref="string"/>.</param>
-        /// <returns>Der Hashcode.</returns>
+        
         private static int GetHashCodeOrdinal(string str)
         {
             unchecked
@@ -61,11 +66,7 @@ namespace FolkerKinzel.Strings
             }
         }
 
-        /// <summary>
-        /// Erzeugt einen Hashcode, der die Groß- und Kleinschreibung unberücksichtigt lässt.
-        /// </summary>
-        /// <param name="str">Der zu hashende <see cref="string"/>.</param>
-        /// <returns>Der Hashcode.</returns>
+        
         private static int GetHashCodeOrdinalIgnoreCase(string str)
         {
             unchecked

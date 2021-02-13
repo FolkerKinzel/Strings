@@ -13,7 +13,7 @@
     <RootNamespace>FolkerKinzel.Strings.Reference.en</RootNamespace>
     <Name>FolkerKinzel.Strings.Reference.en</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>.NET Framework 4.7.2</FrameworkVersion>
+    <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
     <OutputPath>.\Help\</OutputPath>
     <HtmlHelpName>FolkerKinzel.Strings.Reference.en</HtmlHelpName>
     <Language>en-US</Language>
@@ -27,8 +27,7 @@
       <Argument Key="maxVersionParts" Value="" xmlns="" />
     </TransformComponentArguments>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\FolkerKinzel.Strings\bin\Release\net40\FolkerKinzel.Strings.xml" xmlns="" />
-      <DocumentationSource sourceFile="..\FolkerKinzel.Strings\bin\Release\net40\FolkerKinzel.Strings.dll" xmlns="" />
+      <DocumentationSource sourceFile="..\FolkerKinzel.Strings\FolkerKinzel.Strings.csproj" />
     </DocumentationSources>
     <HelpTitle>FolkerKinzel.Strings</HelpTitle>
     <HelpFileVersion>1.0.0.0</HelpFileVersion>
@@ -43,6 +42,15 @@
       <NamespaceSummaryItem name="FolkerKinzel.Strings" isDocumented="True" xmlns="">Contains classes, that support System.String and System.Text.StringBuilder.</NamespaceSummaryItem>
     </NamespaceSummaries>
     <CopyrightText>Copyright &amp;#169%3b 2020 Folker Kinzel</CopyrightText>
+    <HelpFileFormat>HtmlHelp1</HelpFileFormat>
+    <SyntaxFilters>Standard</SyntaxFilters>
+    <PresentationStyle>VS2013</PresentationStyle>
+    <CleanIntermediates>True</CleanIntermediates>
+    <KeepLogFile>True</KeepLogFile>
+    <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
+    <IndentHtml>False</IndentHtml>
+    <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
+    <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->

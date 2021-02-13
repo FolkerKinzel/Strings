@@ -1,16 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net40;net45</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <NeutralLanguage>en</NeutralLanguage>
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>1.1.0</Version>
-    <FileVersion>1.1.0.9</FileVersion>
+    <Version>1.2.0</Version>
+    <FileVersion>1.1.0.22</FileVersion>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <PackageReleaseNotes>Nuget Release.</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      Adds support for Netstandard 2.0 and .NET-Framework 4.5.
+      
+      The extension method GetStableHashCode works now also on ReadOnlySpan&lt;char&gt; on all supported platforms except .NET Framework 4.0.
+
+      The enum value is HashType.AlphaNumericNoCase is now marked as obsolete and has a replacement in HashType.AlphaNumericIgnoreCase.
+    </PackageReleaseNotes>
     <PackageTags>.net string hash stringbuilder c#</PackageTags>
     <Description>.NET library, containing extension methods for System.String and System.Text.StringBuilder.</Description>
     <Authors>Folker Kinzel</Authors>
@@ -58,8 +64,15 @@
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Memory">
+      <Version>4.5.4</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <PackageReference Include="System.Memory">
+      <Version>4.5.4</Version>
+    </PackageReference>
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="if $(ConfigurationName) == Release copy /v /b /y &quot;$(OutDir)$(ProjectName).xml&quot; &quot;$(OutDir)de/$(ProjectName).xml&quot;&#xD;&#xA;if $(ConfigurationName) == Release if '$(TargetFramework)' == 'netstandard2.1' dotnet $(SolutionDir)IncVersion\IncVersion.dll $(ProjectDir)$(ProjectFileName) --revision" />

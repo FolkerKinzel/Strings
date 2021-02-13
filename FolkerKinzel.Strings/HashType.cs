@@ -19,16 +19,16 @@ namespace FolkerKinzel.Strings
         OrdinalIgnoreCase,
 
         /// <summary>
-        /// Nur Buchstaben und Ziffern werden gehasht. Die Groß- und Kleinschreibung wird nicht berücksichtigt.
+        /// Nur Buchstaben und Dezimalziffern werden gehasht. Die Groß- und Kleinschreibung wird nicht berücksichtigt.
         /// </summary>
         AlphaNumericIgnoreCase,
 
-        /// <summary>
-        /// Nur Buchstaben und Ziffern werden gehasht. Die Groß- und Kleinschreibung wird nicht berücksichtigt.
-        /// </summary>
+        
         [Obsolete("Use AlphanumericIgnoreCase instead!")]
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
+#pragma warning disable CS1591 // Fehlender XML-Kommentar für öffentlich sichtbaren Typ oder Element
         AlphaNumericNoCase = AlphaNumericIgnoreCase
+#pragma warning restore CS1591 // Fehlender XML-Kommentar für öffentlich sichtbaren Typ oder Element
     }
 }
