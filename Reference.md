@@ -43,7 +43,7 @@ namespace Examples
                 $"{new StringBuilder().Append("&: !heL##Lof OLker *").GetStableHashCode(HashType.AlphaNumericIgnoreCase),10:X08}");
 
             // Different HashTypes may produce different hashcodes on the same Char sequence
-            // an must therefore not be mixed:
+            // and must therefore not be mixed:
             Console.WriteLine("Same String - different HashTypes:");
             Console.WriteLine(
                 $"{s1.GetStableHashCode(HashType.Ordinal),10:X08}");
