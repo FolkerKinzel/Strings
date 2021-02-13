@@ -39,7 +39,7 @@
     <Preliminary>False</Preliminary>
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="FolkerKinzel.Strings" isDocumented="True" xmlns="">Enthält Klassen, die die Arbeit mit System.String und System.Text.StringBuilder unterstützen.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="FolkerKinzel.Strings" isDocumented="True">Enthält Klassen, die die Arbeit mit System.String, System.Text.StringBuilder und System.ReadOnlySpan&amp;lt;Char&amp;gt; unterstützen.</NamespaceSummaryItem>
     </NamespaceSummaries>
     <CopyrightText>Copyright &amp;#169%3b 2020 Folker Kinzel</CopyrightText>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>

@@ -30,7 +30,11 @@ namespace FolkerKinzel.Strings
         /// </para>
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="sb"/> ist <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein definierter Wert der <see cref="HashType"/>-Enum.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein 
+        /// definierter Wert der <see cref="HashType"/>-Enum.</exception>
+        /// <example>
+        /// <code language="cs" source="..\Examples\Example.cs"/>
+        /// </example>
         public static int GetStableHashCode(this StringBuilder sb, HashType hashType)
         {
             return sb is null

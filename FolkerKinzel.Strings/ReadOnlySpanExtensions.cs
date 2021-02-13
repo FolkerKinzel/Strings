@@ -35,7 +35,11 @@ namespace FolkerKinzel.Strings
         /// sicherheitskritischen Anwendungen (wie z.B. dem Hashen von Passwörtern)!
         /// </para>
         /// </remarks>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein definierter Wert der <see cref="HashType"/>-Enum.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein 
+        /// definierter Wert der <see cref="HashType"/>-Enum.</exception>
+        /// <example>
+        /// <code language="cs" source="..\Examples\Example.cs"/>
+        /// </example>
         public static int GetStableHashCode(this ReadOnlySpan<char> span, HashType hashType)
         {
             return hashType switch

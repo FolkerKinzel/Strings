@@ -2,10 +2,11 @@
 [![NuGet](https://img.shields.io/nuget/v/FolkerKinzel.Strings)](https://www.nuget.org/packages/FolkerKinzel.Strings/)
 
 
-.NET library, containing extension methods for System.String, System.Text.StringBuilder and ReadOnlySpan&lt;char&gt;.
+.NET library, containing extension methods for String, 
+StringBuilder and ReadOnlySpan&lt;Char&gt;.
 
 ##### Content:
-* Extension methods, that produce identical (and therefore 
+* Extension methods that produce identical (and therefore 
  persistable) Int32 hashcodes for identical Char sequences 
  everytime they are called - even on String, StringBuilder or 
  ReadOnlySpan&lt;Char&gt;. The hashcodes can be specified to 
@@ -84,6 +85,16 @@ namespace Examples
                 $"{ind}{nameof(s2)}: {new StringBuilder().Append(s2).GetStableHashCode(HashType.AlphaNumericIgnoreCase):X8}");
             Console.WriteLine(
                 $"{ind}{nameof(s3)}: {s3.GetStableHashCode(HashType.AlphaNumericIgnoreCase):X8}");
+
+            // Different HashTypes may produce different hashcodes on the same Char sequence
+            // an must therefore not be mixed:
+            Console.WriteLine("Same String - different HashTypes:");
+            Console.WriteLine(
+                $"{s1.GetStableHashCode(HashType.Ordinal),10:X08}");
+            Console.WriteLine(
+                $"{s1.GetStableHashCode(HashType.OrdinalIgnoreCase),10:X08}");
+            Console.WriteLine(
+                $"{s1.GetStableHashCode(HashType.AlphaNumericIgnoreCase),10:X08}");
         }
     }
 }
@@ -107,5 +118,9 @@ AlphanumericIgnoreCase:
   s1: C672C38C
   s2: C672C38C
   s3: C672C38C
+Same String - different HashTypes:
+  A31FA6EC
+  1BBFB34C
+  C672C38C
 */
 ```
