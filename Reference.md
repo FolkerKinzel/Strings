@@ -1,7 +1,7 @@
-# Strings
+# FolkerKinzel.Strings
 .NET library, containing extension methods for String, StringBuilder and ReadOnlySpan&lt;Char&gt;.
 
-##### Content:
+### Content:
 * Extension methods that produce identical (and therefore persistable) Int32 hashcodes for identical Char sequences everytime they are called - even on String, StringBuilder or ReadOnlySpan&lt;Char&gt;. The hashcodes can be specified to hash the sequence ordinal, ordinal case insensitive or alphanumeric case insensitive. The hashcodes produced by this library are not equivalent to the hashcodes produced by .NET-Framework 4.0, because they use roundshifting to keep more information. Don't use these hashcodes for security critical purposes (such as hashing passwords)!
 
 
@@ -11,7 +11,7 @@
 
 > IMPORTANT: On some systems, the content of the CHM file is blocked. Before opening the file, right click on it, select Properties, and check the "Allow" checkbox - if it is present - in the lower right corner of the General tab in the Properties dialog.
 
-#### Example:
+## Example:
 ```C#
 using System;
 using System.Text;

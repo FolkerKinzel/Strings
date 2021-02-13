@@ -1,4 +1,4 @@
-# Strings
+# FolkerKinzel.Strings
 [![NuGet](https://img.shields.io/nuget/v/FolkerKinzel.Strings)](https://www.nuget.org/packages/FolkerKinzel.Strings/)
 
 
@@ -30,6 +30,9 @@ PackageReference (Visual Studio Project File):
 
 Paket CLI:
 > paket add FolkerKinzel.Strings --version 1.2.0
+
+F# Interactive:
+> #r "nuget: FolkerKinzel.Strings, 1.2.0"
 ```
 
 * [Download Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/1.2.0/FolkerKinzel.Strings.Reference.en.chm)

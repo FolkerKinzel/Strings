@@ -13,12 +13,12 @@
     <PackageReleaseNotes>
       Adds support for Netstandard 2.0 and .NET-Framework 4.5.
       
-      The extension method GetStableHashCode works now also on ReadOnlySpan&lt;char&gt; on all supported platforms except .NET Framework 4.0.
+      The extension method GetStableHashCode is now available also on ReadOnlySpan&lt;char&gt; on all supported platforms except .NET Framework 4.0.
 
-      The enum value is HashType.AlphaNumericNoCase is now marked as obsolete and has a replacement in HashType.AlphaNumericIgnoreCase.
+      The enum value HashType.AlphaNumericNoCase is now marked as obsolete and has a replacement in HashType.AlphaNumericIgnoreCase.
     </PackageReleaseNotes>
-    <PackageTags>.net string hash stringbuilder c#</PackageTags>
-    <Description>.NET library, containing extension methods for System.String and System.Text.StringBuilder.</Description>
+    <PackageTags>.net string hashcode stringbuilder c#</PackageTags>
+    <Description>.NET library, containing extension methods for System.String, System.Text.StringBuilder and System.ReadOnlySpan&lt;Char&gt;.</Description>
     <Authors>Folker Kinzel</Authors>
     <Copyright>Copyright © 2020 Folker Kinzel</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
