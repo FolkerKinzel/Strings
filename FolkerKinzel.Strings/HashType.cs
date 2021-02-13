@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace FolkerKinzel.Strings
 {
     /// <summary>
-    /// Benannte Konstanten, um die Art eines String-Hashcodes festzulegen.
+    /// Benannte Konstanten, um die Art eines Hashcodes für Zeichenfolgen festzulegen.
     /// </summary>
     public enum HashType
     {

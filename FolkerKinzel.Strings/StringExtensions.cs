@@ -3,10 +3,10 @@ using System.Runtime.CompilerServices;
 
 namespace FolkerKinzel.Strings
 {
-
     /// <summary>
     /// Erweiterungsmethoden für die <see cref="string"/>-Klasse.
     /// </summary>
+    /// <threadsafety static="true" instance="false"/>
     public static class StringExtensions
     {
         /// <summary>

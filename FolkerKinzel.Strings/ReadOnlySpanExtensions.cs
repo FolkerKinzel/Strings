@@ -5,12 +5,19 @@ using System.Runtime.CompilerServices;
 namespace FolkerKinzel.Strings
 {
     /// <summary>
-    /// Erweiterungsmethoden für die <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;char&gt;</see>-Klasse.
+    /// Erweiterungsmethoden für die <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;char&gt;</see>-Struktur.
+    /// <note type="note">
+    /// Die Klasse ist für .NET-Framework 4.0 nicht verfügbar.
+    /// </note>
     /// </summary>
+    /// <threadsafety static="true" instance="false"/>
     public static class ReadOnlySpanExtensions
     {
         /// <summary>
         /// Gibt bei jedem Aufruf denselben Hashcode für eine identische Zeichenfolge zurück.
+        /// <note type="note">
+        /// Die Methode ist für .NET-Framework 4.0 nicht verfügbar.
+        /// </note>
         /// </summary>
         /// <param name="span">Die zu hashende Zeichenfolge.</param>
         /// <param name="hashType">Die Art des zu erzeugenden Hashcodes.</param>
@@ -41,7 +48,7 @@ namespace FolkerKinzel.Strings
         }
 
 
-        
+
         private static int GetHashCodeOrdinal(ReadOnlySpan<char> span)
         {
             unchecked
@@ -63,7 +70,7 @@ namespace FolkerKinzel.Strings
             }
         }
 
-        
+
         private static int GetHashCodeOrdinalIgnoreCase(ReadOnlySpan<char> span)
         {
             unchecked
@@ -99,7 +106,7 @@ namespace FolkerKinzel.Strings
                     {
                         char current = span[i];
 
-                        if(char.IsLetterOrDigit(current))
+                        if (char.IsLetterOrDigit(current))
                         {
                             hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(current);
                             i++;
@@ -119,7 +126,7 @@ namespace FolkerKinzel.Strings
 
                             break;
                         }
-                    } 
+                    }
                 }
 
                 return hash1 + (hash2 * 1566083941);

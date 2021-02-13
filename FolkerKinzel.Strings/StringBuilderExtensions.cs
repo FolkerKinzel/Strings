@@ -7,6 +7,7 @@ namespace FolkerKinzel.Strings
     /// <summary>
     /// Erweiterungsmethoden für die <see cref="StringBuilder"/>-Klasse.
     /// </summary>
+    /// <threadsafety static="true" instance="false"/>
     public static class StringBuilderExtensions
     {
         /// <summary>

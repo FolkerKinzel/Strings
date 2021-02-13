@@ -5,30 +5,35 @@
 .NET library, containing extension methods for System.String, System.Text.StringBuilder and ReadOnlySpan&lt;char&gt;.
 
 ##### Content:
-* Extension methods, that produce identical Int32 hash codes for identical char sequences everytime they are called - 
-even on String, StringBuilder or ReadOnlySpan&lt;char&gt;. 
-The hash codes can be specified to hash the sequence ordinal, ordinal case insensitive or alphanumeric case insensitive.
-The hash codes produced by this library are not equivalent to the hash codes produced by .NET-Framework 4.0, because they 
-use roundshifting to keep more
-information. Don't use these hash codes for security critical purposes like, e.g., passwords!
+* Extension methods, that produce identical (and therefore 
+ persistable) Int32 hashcodes for identical Char sequences 
+ everytime they are called - even on String, StringBuilder or 
+ ReadOnlySpan&lt;Char&gt;. The hashcodes can be specified to 
+ hash the sequence ordinal, ordinal case insensitive or 
+ alphanumeric case insensitive. The hashcodes produced by this 
+ library are not equivalent to the hashcodes produced by 
+ .NET-Framework 4.0, because they use roundshifting to keep 
+ more information. Don't use these hashcodes for security 
+ critical purposes (such as hashing passwords)!
+
 
 ```
 nuget Package Manager:
-PM> Install-Package FolkerKinzel.Strings -Version 1.1.0
+PM> Install-Package FolkerKinzel.Strings -Version 1.2.0
 
 .NET CLI:
-> dotnet add package FolkerKinzel.Strings --version 1.1.0
+> dotnet add package FolkerKinzel.Strings --version 1.2.0
 
 PackageReference (Visual Studio Project File):
-<PackageReference Include="FolkerKinzel.Strings" Version="1.1.0" />
+<PackageReference Include="FolkerKinzel.Strings" Version="1.2.0" />
 
 Paket CLI:
-> paket add FolkerKinzel.Strings --version 1.1.0
+> paket add FolkerKinzel.Strings --version 1.2.0
 ```
 
-* [Download Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/1.1.0/FolkerKinzel.Strings.Reference.en.chm)
+* [Download Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/1.2.0/FolkerKinzel.Strings.Reference.en.chm)
 
-* [Projektdokumentation (Deutsch) herunterladen](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/1.1.0/FolkerKinzel.Strings.Doku.de.chm)
+* [Projektdokumentation (Deutsch) herunterladen](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/1.2.0/FolkerKinzel.Strings.Doku.de.chm)
 
 > IMPORTANT: On some systems, the content of the CHM file is blocked. Before opening the file
 >  right click on it, select Properties, and check the "Allow" checkbox - if it 
