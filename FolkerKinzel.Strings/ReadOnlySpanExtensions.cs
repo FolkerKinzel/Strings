@@ -1,60 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿#if !NET40
+using System;
+using System.Runtime.CompilerServices;
 
 namespace FolkerKinzel.Strings
 {
     /// <summary>
-    /// Erweiterungsmethoden für die <see cref="StringBuilder"/>-Klasse.
+    /// Erweiterungsmethoden für die <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;char&gt;</see>-Klasse.
     /// </summary>
-    public static class StringBuilderExtensions
+    public static class ReadOnlySpanExtensions
     {
         /// <summary>
         /// Gibt bei jedem Aufruf denselben Hashcode für eine identische Zeichenfolge zurück.
         /// </summary>
-        /// <param name="sb">Die zu hashende Zeichenfolge.</param>
+        /// <param name="span">Die zu hashende Zeichenfolge.</param>
         /// <param name="hashType">Die Art des zu erzeugenden Hashcodes.</param>
-        /// <returns>Der Hashcode für <paramref name="sb"/>.</returns>
+        /// <returns>Der Hashcode für <paramref name="span"/>.</returns>
         /// <remarks>Der von dieser Methode erzeugte Hashcode ist nicht identisch mit dem Hashcode, der von .NET-Framework 4.0
         /// erzeugt wird, denn 
         /// er verwendet Roundshifting, um mehr Information zu bewahren. Verwenden Sie keine konstanten Hashcodes in 
         /// sicherheitskritischen Anwendungen!</remarks>
-        /// <exception cref="ArgumentNullException"><paramref name="sb"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein definierter Wert der <see cref="HashType"/>-Enum.</exception>
-        public static int GetStableHashCode(this StringBuilder sb, HashType hashType)
+        public static int GetStableHashCode(this ReadOnlySpan<char> span, HashType hashType)
         {
-            return sb is null
-                ? throw new ArgumentNullException(nameof(sb))
-                : (hashType switch
+            return hashType switch
             {
-                HashType.Ordinal => GetHashCodeOrdinal(sb),
-                HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(sb),
-                HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericIgnoreCase(sb),
+                HashType.Ordinal => GetHashCodeOrdinal(span),
+                HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(span),
+                HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericNoCase(span),
                 _ => throw new ArgumentOutOfRangeException(nameof(hashType))
-            });
+            };
         }
 
 
         /// <summary>
         /// Erzeugt einen Hashcode mit exaktem Zeichenvergleich.
         /// </summary>
-        /// <param name="str">Der zu hashende <see cref="string"/>.</param>
+        /// <param name="span">Die zu hashende Zeichenfolge.</param>
         /// <returns>Der Hashcode.</returns>
-        private static int GetHashCodeOrdinal(StringBuilder str)
+        private static int GetHashCodeOrdinal(ReadOnlySpan<char> span)
         {
             unchecked
             {
                 int hash1 = (5381 << 16) + 5381;
                 int hash2 = hash1;
 
-                for (int i = 0; i < str.Length; i += 2)
+                for (int i = 0; i < span.Length; i += 2)
                 {
-                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ str[i];
-                    if (i == str.Length - 1)
+                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ span[i];
+                    if (i == span.Length - 1)
                     {
                         break;
                     }
-                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ str[i + 1];
+                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ span[i + 1];
                 }
 
                 return hash1 + (hash2 * 1566083941);
@@ -64,23 +61,23 @@ namespace FolkerKinzel.Strings
         /// <summary>
         /// Erzeugt einen Hashcode, der die Groß- und Kleinschreibung unberücksichtigt lässt.
         /// </summary>
-        /// <param name="str">Der zu hashende <see cref="string"/>.</param>
+        /// <param name="span">Die zu hashende Zeichenfolge.</param>
         /// <returns>Der Hashcode.</returns>
-        private static int GetHashCodeOrdinalIgnoreCase(StringBuilder str)
+        private static int GetHashCodeOrdinalIgnoreCase(ReadOnlySpan<char> span)
         {
             unchecked
             {
                 int hash1 = (5381 << 16) + 5381;
                 int hash2 = hash1;
 
-                for (int i = 0; i < str.Length; i += 2)
+                for (int i = 0; i < span.Length; i += 2)
                 {
-                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(str[i]);
-                    if (i == str.Length - 1)
+                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(span[i]);
+                    if (i == span.Length - 1)
                     {
                         break;
                     }
-                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(str[i + 1]);
+                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(span[i + 1]);
                 }
 
                 return hash1 + (hash2 * 1566083941);
@@ -88,28 +85,28 @@ namespace FolkerKinzel.Strings
         }
 
 
-        private static int GetHashCodeAlphaNumericIgnoreCase(StringBuilder str)
+        private static int GetHashCodeAlphaNumericNoCase(ReadOnlySpan<char> span)
         {
             unchecked
             {
                 int hash1 = (5381 << 16) + 5381;
                 int hash2 = hash1;
 
-                for (int i = 0; i < str.Length;)
+                for (int i = 0; i < span.Length;)
                 {
-                    for (; i < str.Length; i++)
+                    for (; i < span.Length; i++)
                     {
-                        char current = str[i];
+                        char current = span[i];
 
-                        if (char.IsLetterOrDigit(current))
+                        if(char.IsLetterOrDigit(current))
                         {
                             hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(current);
                             i++;
 
                             // Hashe nächstes Zeichen:
-                            for (; i < str.Length; i++)
+                            for (; i < span.Length; i++)
                             {
-                                char next = str[i];
+                                char next = span[i];
 
                                 if (char.IsLetterOrDigit(next))
                                 {
@@ -121,7 +118,7 @@ namespace FolkerKinzel.Strings
 
                             break;
                         }
-                    }
+                    } 
                 }
 
                 return hash1 + (hash2 * 1566083941);
@@ -129,3 +126,4 @@ namespace FolkerKinzel.Strings
         }
     }
 }
+#endif

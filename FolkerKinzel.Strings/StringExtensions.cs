@@ -10,31 +10,28 @@ namespace FolkerKinzel.Strings
     public static class StringExtensions
     {
         /// <summary>
-        /// Gibt bei jedem Aufruf denselben Hashcode für einen identischen <see cref="string"/> zurück.
+        /// Gibt bei jedem Aufruf denselben Hashcode für eine identische Zeichenfolge zurück.
         /// </summary>
-        /// <param name="s">Der zu hashende <see cref="string"/>.</param>
+        /// <param name="s">Die zu hashende Zeichenfolge.</param>
         /// <param name="hashType">Die Art des zu erzeugenden Hashcodes.</param>
         /// <returns>Der Hashcode für <paramref name="s"/>.</returns>
-        /// <remarks>Die Methode erzeugt den identischen Hash wie <see cref="StringBuilderExtensions.GetStableHashCode(System.Text.StringBuilder, HashType)"/>,
-        /// aber dieser Hashcode ist nicht identisch mit dem Hashcode von .NET-Framework 4.0, denn 
+        /// <remarks>Der von dieser Methode erzeugte Hashcode ist nicht identisch mit dem Hashcode, der von .NET-Framework 4.0
+        /// erzeugt wird, denn 
         /// er verwendet Roundshifting, um mehr Information zu bewahren. Verwenden Sie keine konstanten Hashcodes in 
         /// sicherheitskritischen Anwendungen!</remarks>
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein definierter Wert der <see cref="HashType"/>-Enum.</exception>
         public static int GetStableHashCode(this string s, HashType hashType)
         {
-            if(s is null)
-            {
-                throw new ArgumentNullException(nameof(s));
-            }
-
-            return hashType switch
+            return s is null
+                ? throw new ArgumentNullException(nameof(s))
+                : (hashType switch
             {
                 HashType.Ordinal => GetHashCodeOrdinal(s),
                 HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(s),
-                HashType.AlphaNumericNoCase => GetHashCodeAlphaNumericNoCase(s),
+                HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericNoCase(s),
                 _ => throw new ArgumentOutOfRangeException(nameof(hashType))
-            };
+            });
         }
 
 
@@ -78,12 +75,12 @@ namespace FolkerKinzel.Strings
 
                 for (int i = 0; i < str.Length; i += 2)
                 {
-                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ Char.ToUpperInvariant(str[i]);
+                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(str[i]);
                     if (i == str.Length - 1)
                     {
                         break;
                     }
-                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ Char.ToUpperInvariant(str[i + 1]);
+                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(str[i + 1]);
                 }
 
                 return hash1 + (hash2 * 1566083941);
@@ -106,7 +103,7 @@ namespace FolkerKinzel.Strings
 
                         if(char.IsLetterOrDigit(current))
                         {
-                            hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ Char.ToUpperInvariant(current);
+                            hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(current);
                             i++;
 
                             // Hashe nächstes Zeichen:
@@ -116,7 +113,7 @@ namespace FolkerKinzel.Strings
 
                                 if (char.IsLetterOrDigit(next))
                                 {
-                                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ Char.ToUpperInvariant(next);
+                                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(next);
                                     i++;
                                     break;
                                 }

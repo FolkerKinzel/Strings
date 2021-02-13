@@ -1,4 +1,7 @@
-﻿namespace FolkerKinzel.Strings
+﻿using System;
+using System.ComponentModel;
+
+namespace FolkerKinzel.Strings
 {
     /// <summary>
     /// Benannte Konstanten, um die Art eines String-Hashcodes festzulegen.
@@ -18,6 +21,14 @@
         /// <summary>
         /// Nur Buchstaben und Ziffern werden gehasht. Die Groß- und Kleinschreibung wird nicht berücksichtigt.
         /// </summary>
-        AlphaNumericNoCase
+        AlphaNumericIgnoreCase,
+
+        /// <summary>
+        /// Nur Buchstaben und Ziffern werden gehasht. Die Groß- und Kleinschreibung wird nicht berücksichtigt.
+        /// </summary>
+        [Obsolete("Use AlphanumericIgnoreCase instead!")]
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        AlphaNumericNoCase = AlphaNumericIgnoreCase
     }
 }
