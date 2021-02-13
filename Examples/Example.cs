@@ -20,7 +20,7 @@ namespace Examples
             Console.WriteLine();
 
             // The extension method GetStableHashCode() produces identical Int32 hash codes for identical
-            // char sequences everytime it is called - even if on String, StringBuilder or ReadOnlySpan<char>:
+            // char sequences everytime it is called - even on String, StringBuilder or ReadOnlySpan<char>:
             Console.WriteLine("String-Hashcodes Ordinal:");
             Console.WriteLine($"{indent}{nameof(s1)}: {s1.GetStableHashCode(HashType.Ordinal):X8}");
             Console.WriteLine($"{indent}{nameof(s2)}: {s2.GetStableHashCode(HashType.Ordinal):X8}");
