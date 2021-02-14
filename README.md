@@ -6,14 +6,14 @@
 StringBuilder and ReadOnlySpan&lt;Char&gt;.
 
 ##### Content:
-* Extension methods that produce identical (and therefore 
- persistable) Int32 hashcodes for identical Char sequences 
+* Extension methods that return an equal (and therefore 
+ persistable) Int32 hashcode for an identical Char sequence 
  everytime they are called - even on String, StringBuilder or 
  ReadOnlySpan&lt;Char&gt;. The hashcodes can be specified to 
  hash the sequence ordinal, ordinal case insensitive or 
  alphanumeric case insensitive. The hashcodes produced by this 
  library are not equivalent to the hashcodes produced by 
- .NET-Framework 4.0, because they use roundshifting to keep 
+ the .NET-Framework 4.0 System.String class, because they use roundshifting to keep 
  more information. Don't use these hashcodes for security 
  critical purposes (such as hashing passwords)!
 
