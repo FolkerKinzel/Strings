@@ -6,7 +6,7 @@
 StringBuilder and ReadOnlySpan&lt;Char&gt;.
 
 ##### Content:
-* Extension methods that return an equal (and therefore 
+* Extension methods which return an equal (and therefore 
  persistable) Int32 hashcode for an identical Char sequence 
  everytime they are called - even on String, StringBuilder or 
  ReadOnlySpan&lt;Char&gt;. The hashcodes can be specified to 
