@@ -40,7 +40,7 @@ F# Interactive:
 * [Projektdokumentation (Deutsch) herunterladen](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/1.2.0/FolkerKinzel.Strings.Doku.de.chm)
 
 > IMPORTANT: On some systems, the content of the CHM file is blocked. Before opening the file
->  right click on it, select Properties, and check the "Allow" checkbox - if it 
+>  right click on the file icon, select Properties, and check the "Allow" checkbox - if it 
 > is present - in the lower right corner of the General tab in the Properties dialog.
 
 #### Example:

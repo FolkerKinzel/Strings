@@ -29,7 +29,7 @@
     <DocumentationSources>
       <DocumentationSource sourceFile="..\FolkerKinzel.Strings\FolkerKinzel.Strings.csproj" />
     </DocumentationSources>
-    <HelpTitle>FolkerKinzel.Strings.dll</HelpTitle>
+    <HelpTitle>FolkerKinzel.Strings</HelpTitle>
     <HelpFileVersion>1.0.0.0</HelpFileVersion>
     <NamingMethod>Guid</NamingMethod>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
