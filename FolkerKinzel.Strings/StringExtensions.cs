@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings
 {
@@ -9,6 +11,12 @@ namespace FolkerKinzel.Strings
     /// <threadsafety static="true" instance="false"/>
     public static class StringExtensions
     {
+        [Obsolete("Use GetPersistentHashCode instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Browsable(false)]
+        public static int GetStableHashCode(this string s, HashType hashType)
+            => GetPersistentHashCode(s, hashType);
+
         /// <summary>
         /// Gibt bei jedem Aufruf denselben Hashcode für eine identische Zeichenfolge zurück.
         /// </summary>
@@ -29,108 +37,109 @@ namespace FolkerKinzel.Strings
         /// </para>
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein 
+        /// <exception cref="ArgumentException"><paramref name="hashType"/> ist kein 
         /// definierter Wert der <see cref="HashType"/>-Enum.</exception>
         /// <example>
         /// <code language="cs" source="..\Examples\Example.cs"/>
         /// </example>
-        public static int GetStableHashCode(this string s, HashType hashType)
-        {
-            return s is null
-                ? throw new ArgumentNullException(nameof(s))
-                : (hashType switch
-            {
-                HashType.Ordinal => GetHashCodeOrdinal(s),
-                HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(s),
-                HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericNoCase(s),
-                _ => throw new ArgumentOutOfRangeException(nameof(hashType))
-            });
-        }
+        public static int GetPersistentHashCode(this string s, HashType hashType)
+            => s is null ? throw new ArgumentNullException(nameof(s)) : s.AsSpan().GetPersistentHashCode(hashType);
+        //{
+        //    return s is null
+        //        ? throw new ArgumentNullException(nameof(s))
+        //        : (hashType switch
+        //    {
+        //        HashType.Ordinal => GetHashCodeOrdinal(s),
+        //        HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(s),
+        //        HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericNoCase(s),
+        //        _ => throw new ArgumentException(Res.UndefinedEnumValue, nameof(hashType))
+        //    });
+        //}
 
 
         
-        private static int GetHashCodeOrdinal(string str)
-        {
-            unchecked
-            {
-                int hash1 = (5381 << 16) + 5381;
-                int hash2 = hash1;
+        //private static int GetHashCodeOrdinal(string str)
+        //{
+        //    unchecked
+        //    {
+        //        int hash1 = (5381 << 16) + 5381;
+        //        int hash2 = hash1;
 
-                for (int i = 0; i < str.Length; i += 2)
-                {
-                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ str[i];
-                    if (i == str.Length - 1)
-                    {
-                        break;
-                    }
-                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ str[i + 1];
-                }
+        //        for (int i = 0; i < str.Length; i += 2)
+        //        {
+        //            hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ str[i];
+        //            if (i == str.Length - 1)
+        //            {
+        //                break;
+        //            }
+        //            hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ str[i + 1];
+        //        }
 
-                return hash1 + (hash2 * 1566083941);
-            }
-        }
+        //        return hash1 + (hash2 * 1566083941);
+        //    }
+        //}
 
         
-        private static int GetHashCodeOrdinalIgnoreCase(string str)
-        {
-            unchecked
-            {
-                int hash1 = (5381 << 16) + 5381;
-                int hash2 = hash1;
+        //private static int GetHashCodeOrdinalIgnoreCase(string str)
+        //{
+        //    unchecked
+        //    {
+        //        int hash1 = (5381 << 16) + 5381;
+        //        int hash2 = hash1;
 
-                for (int i = 0; i < str.Length; i += 2)
-                {
-                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(str[i]);
-                    if (i == str.Length - 1)
-                    {
-                        break;
-                    }
-                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(str[i + 1]);
-                }
+        //        for (int i = 0; i < str.Length; i += 2)
+        //        {
+        //            hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(str[i]);
+        //            if (i == str.Length - 1)
+        //            {
+        //                break;
+        //            }
+        //            hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(str[i + 1]);
+        //        }
 
-                return hash1 + (hash2 * 1566083941);
-            }
-        }
+        //        return hash1 + (hash2 * 1566083941);
+        //    }
+        //}
 
 
-        private static int GetHashCodeAlphaNumericNoCase(string str)
-        {
-            unchecked
-            {
-                int hash1 = (5381 << 16) + 5381;
-                int hash2 = hash1;
+        //private static int GetHashCodeAlphaNumericNoCase(string str)
+        //{
+        //    unchecked
+        //    {
+        //        int hash1 = (5381 << 16) + 5381;
+        //        int hash2 = hash1;
 
-                for (int i = 0; i < str.Length;)
-                {
-                    for (; i < str.Length; i++)
-                    {
-                        char current = str[i];
+        //        for (int i = 0; i < str.Length;)
+        //        {
+        //            for (; i < str.Length; i++)
+        //            {
+        //                char current = str[i];
 
-                        if(char.IsLetterOrDigit(current))
-                        {
-                            hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(current);
-                            i++;
+        //                if(char.IsLetterOrDigit(current))
+        //                {
+        //                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(current);
+        //                    i++;
 
-                            // Hashe nächstes Zeichen:
-                            for (; i < str.Length; i++)
-                            {
-                                char next = str[i];
+        //                    // Hashe nächstes Zeichen:
+        //                    for (; i < str.Length; i++)
+        //                    {
+        //                        char next = str[i];
 
-                                if (char.IsLetterOrDigit(next))
-                                {
-                                    hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(next);
-                                    i++;
-                                    break;
-                                }
-                            }
+        //                        if (char.IsLetterOrDigit(next))
+        //                        {
+        //                            hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(next);
+        //                            i++;
+        //                            break;
+        //                        }
+        //                    }
 
-                            break;
-                        }
-                    } 
-                }
+        //                    break;
+        //                }
+        //            } 
+        //        }
 
-                return hash1 + (hash2 * 1566083941);
-            }
-        }
+        //        return hash1 + (hash2 * 1566083941);
+        //    }
+        //}
     }
 }

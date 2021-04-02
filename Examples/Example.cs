@@ -22,35 +22,35 @@ namespace Examples
             // The extension method GetStableHashCode() produces identical Int32 hash codes for identical
             // Char sequences everytime it is called - even on String, StringBuilder or ReadOnlySpan<char>:
             Console.WriteLine("Ordinal:");
-            Console.WriteLine($"{ind}{nameof(s1)}: {s1.GetStableHashCode(HashType.Ordinal):X8}");
-            Console.WriteLine($"{ind}{nameof(s2)}: {s2.GetStableHashCode(HashType.Ordinal):X8}");
-            Console.WriteLine($"{ind}{nameof(s3)}: {s3.GetStableHashCode(HashType.Ordinal):X8}");
+            Console.WriteLine($"{ind}{nameof(s1)}: {s1.GetPersistentHashCode(HashType.Ordinal):X8}");
+            Console.WriteLine($"{ind}{nameof(s2)}: {s2.GetPersistentHashCode(HashType.Ordinal):X8}");
+            Console.WriteLine($"{ind}{nameof(s3)}: {s3.GetPersistentHashCode(HashType.Ordinal):X8}");
 
             Console.WriteLine("OrdinalIgnoreCase:");
             Console.WriteLine(
-                $"{ind}{nameof(s1)}: {s1.AsSpan().GetStableHashCode(HashType.OrdinalIgnoreCase):X8}");
+                $"{ind}{nameof(s1)}: {s1.AsSpan().GetPersistentHashCode(HashType.OrdinalIgnoreCase):X8}");
             Console.WriteLine(
-                $"{ind}{nameof(s2)}: {s2.GetStableHashCode(HashType.OrdinalIgnoreCase):X8}");
+                $"{ind}{nameof(s2)}: {s2.GetPersistentHashCode(HashType.OrdinalIgnoreCase):X8}");
             Console.WriteLine(
-                $"{ind}{nameof(s3)}: {s3.GetStableHashCode(HashType.OrdinalIgnoreCase):X8}");
+                $"{ind}{nameof(s3)}: {s3.GetPersistentHashCode(HashType.OrdinalIgnoreCase):X8}");
 
             Console.WriteLine("AlphanumericIgnoreCase:");
             Console.WriteLine(
-                $"{ind}{nameof(s1)}: {s1.AsSpan().GetStableHashCode(HashType.AlphaNumericIgnoreCase):X8}");
+                $"{ind}{nameof(s1)}: {s1.AsSpan().GetPersistentHashCode(HashType.AlphaNumericIgnoreCase):X8}");
             Console.WriteLine(
-                $"{ind}{nameof(s2)}: {new StringBuilder().Append(s2).GetStableHashCode(HashType.AlphaNumericIgnoreCase):X8}");
+                $"{ind}{nameof(s2)}: {new StringBuilder().Append(s2).GetPersistentHashCode(HashType.AlphaNumericIgnoreCase):X8}");
             Console.WriteLine(
-                $"{ind}{nameof(s3)}: {s3.GetStableHashCode(HashType.AlphaNumericIgnoreCase):X8}");
+                $"{ind}{nameof(s3)}: {s3.GetPersistentHashCode(HashType.AlphaNumericIgnoreCase):X8}");
 
             // Different HashTypes may produce different hashcodes on the same Char sequence
             // an must therefore not be mixed:
             Console.WriteLine("Same String - different HashTypes:");
             Console.WriteLine(
-                $"{s1.GetStableHashCode(HashType.Ordinal),10:X08}");
+                $"{s1.GetPersistentHashCode(HashType.Ordinal),10:X08}");
             Console.WriteLine(
-                $"{s1.GetStableHashCode(HashType.OrdinalIgnoreCase),10:X08}");
+                $"{s1.GetPersistentHashCode(HashType.OrdinalIgnoreCase),10:X08}");
             Console.WriteLine(
-                $"{s1.GetStableHashCode(HashType.AlphaNumericIgnoreCase),10:X08}");
+                $"{s1.GetPersistentHashCode(HashType.AlphaNumericIgnoreCase),10:X08}");
         }
     }
 }

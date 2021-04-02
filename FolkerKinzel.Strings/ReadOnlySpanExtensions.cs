@@ -1,6 +1,8 @@
 ﻿#if !NET40
 using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings
 {
@@ -13,11 +15,14 @@ namespace FolkerKinzel.Strings
     /// <threadsafety static="true" instance="false"/>
     public static class ReadOnlySpanExtensions
     {
+        [Obsolete("Use GetPersistentHashCode instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Browsable(false)]
+        public static int GetStableHashCode(this ReadOnlySpan<char> span, HashType hashType)
+            => GetPersistentHashCode(span, hashType);
+
         /// <summary>
         /// Gibt bei jedem Aufruf denselben Hashcode für eine identische Zeichenfolge zurück.
-        /// <note type="note">
-        /// Die Methode ist für .NET-Framework 4.0 nicht verfügbar.
-        /// </note>
         /// </summary>
         /// <param name="span">Die zu hashende Zeichenfolge.</param>
         /// <param name="hashType">Die Art des zu erzeugenden Hashcodes.</param>
@@ -35,19 +40,19 @@ namespace FolkerKinzel.Strings
         /// sicherheitskritischen Anwendungen (wie z.B. dem Hashen von Passwörtern)!
         /// </para>
         /// </remarks>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein 
+        /// <exception cref="ArgumentException"><paramref name="hashType"/> ist kein 
         /// definierter Wert der <see cref="HashType"/>-Enum.</exception>
         /// <example>
         /// <code language="cs" source="..\Examples\Example.cs"/>
         /// </example>
-        public static int GetStableHashCode(this ReadOnlySpan<char> span, HashType hashType)
+        public static int GetPersistentHashCode(this ReadOnlySpan<char> span, HashType hashType)
         {
             return hashType switch
             {
                 HashType.Ordinal => GetHashCodeOrdinal(span),
                 HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(span),
                 HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericNoCase(span),
-                _ => throw new ArgumentOutOfRangeException(nameof(hashType))
+                _ => throw new ArgumentException(Res.UndefinedEnumValue, nameof(hashType))
             };
         }
 

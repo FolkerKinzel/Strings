@@ -1,22 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net40;net45</TargetFrameworks>
-    <LangVersion>8.0</LangVersion>
+    <TargetFrameworks>net5.0;netstandard2.0;netstandard2.1;net45</TargetFrameworks>
+    <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <NeutralLanguage>en</NeutralLanguage>
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>1.2.0</Version>
-    <FileVersion>1.2.0.2</FileVersion>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <PackageReleaseNotes>
-      Adds support for Netstandard 2.0 and .NET-Framework 4.5.
-      
-      The extension method GetStableHashCode is now available also on ReadOnlySpan&lt;char&gt; on all supported platforms except .NET Framework 4.0.
+    <Version>2.0.0</Version>
+    <FileVersion>2.0.0.0</FileVersion>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <PackageReleaseNotes>Adds support for .NET 5.0.
+    
+.NET Framework 4.0 is no longer supported.
 
-      The enum value HashType.AlphaNumericNoCase is now marked as obsolete and has a replacement in HashType.AlphaNumericIgnoreCase.
-    </PackageReleaseNotes>
+The GetStableHashCode extension methods are replaced with GetPersistentHashCode extension methods.
+
+</PackageReleaseNotes>
     <PackageTags>.net string hashcode stringbuilder c#</PackageTags>
     <Description>.NET library, containing extension methods for System.String, System.Text.StringBuilder and System.ReadOnlySpan&lt;Char&gt;.</Description>
     <Authors>Folker Kinzel</Authors>
@@ -73,6 +74,19 @@
     <PackageReference Include="System.Memory">
       <Version>4.5.4</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Res.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Res.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Res.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Res.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="if $(ConfigurationName) == Release copy /v /b /y &quot;$(OutDir)$(ProjectName).xml&quot; &quot;$(OutDir)de/$(ProjectName).xml&quot;&#xD;&#xA;if $(ConfigurationName) == Release if '$(TargetFramework)' == 'netstandard2.1' dotnet $(SolutionDir)IncVersion\IncVersion.dll $(ProjectDir)$(ProjectFileName) --revision" />

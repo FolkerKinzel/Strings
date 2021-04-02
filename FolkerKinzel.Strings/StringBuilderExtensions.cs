@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings
 {
@@ -10,6 +12,12 @@ namespace FolkerKinzel.Strings
     /// <threadsafety static="true" instance="false"/>
     public static class StringBuilderExtensions
     {
+        [Obsolete("Use GetPersistentHashCode instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Browsable(false)]
+        public static int GetStableHashCode(this StringBuilder sb, HashType hashType)
+            => GetPersistentHashCode(sb, hashType);
+
         /// <summary>
         /// Gibt bei jedem Aufruf denselben Hashcode für eine identische Zeichenfolge zurück.
         /// </summary>
@@ -30,12 +38,12 @@ namespace FolkerKinzel.Strings
         /// </para>
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="sb"/> ist <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="hashType"/> ist kein 
+        /// <exception cref="ArgumentException"><paramref name="hashType"/> ist kein 
         /// definierter Wert der <see cref="HashType"/>-Enum.</exception>
         /// <example>
         /// <code language="cs" source="..\Examples\Example.cs"/>
         /// </example>
-        public static int GetStableHashCode(this StringBuilder sb, HashType hashType)
+        public static int GetPersistentHashCode(this StringBuilder sb, HashType hashType)
         {
             return sb is null
                 ? throw new ArgumentNullException(nameof(sb))
@@ -44,7 +52,7 @@ namespace FolkerKinzel.Strings
                 HashType.Ordinal => GetHashCodeOrdinal(sb),
                 HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(sb),
                 HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericIgnoreCase(sb),
-                _ => throw new ArgumentOutOfRangeException(nameof(hashType))
+                _ => throw new ArgumentException(Res.UndefinedEnumValue, nameof(hashType))
             });
         }
 
