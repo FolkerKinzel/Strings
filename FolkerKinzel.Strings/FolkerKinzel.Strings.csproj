@@ -17,6 +17,12 @@
 
 The GetStableHashCode extension methods are replaced with GetPersistentHashCode extension methods.
 
+The StringBuilderExtensions class has been renamed to StringBuilderExtension.
+
+The ReadOnlySpanExtensions class has been renamed to ReadOnlySpanExtension.
+
+The StringExtensions class has been renamed to StringExtension.
+
 </PackageReleaseNotes>
     <PackageTags>.net string hashcode stringbuilder c#</PackageTags>
     <Description>.NET library, containing extension methods for System.String, System.Text.StringBuilder and System.ReadOnlySpan&lt;Char&gt;.</Description>

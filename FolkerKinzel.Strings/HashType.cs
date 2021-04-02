@@ -24,11 +24,9 @@ namespace FolkerKinzel.Strings
         AlphaNumericIgnoreCase,
 
         
-        [Obsolete("Use AlphanumericIgnoreCase instead!")]
+        [Obsolete("Use AlphanumericIgnoreCase instead!", true)]
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-#pragma warning disable CS1591 // Fehlender XML-Kommentar für öffentlich sichtbaren Typ oder Element
         AlphaNumericNoCase = AlphaNumericIgnoreCase
-#pragma warning restore CS1591 // Fehlender XML-Kommentar für öffentlich sichtbaren Typ oder Element
     }
 }
