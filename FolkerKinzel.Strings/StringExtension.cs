@@ -9,7 +9,7 @@ namespace FolkerKinzel.Strings
     /// Erweiterungsmethoden für die <see cref="string"/>-Klasse.
     /// </summary>
     /// <threadsafety static="true" instance="false"/>
-    public static class StringExtension
+    public static partial class StringExtension
     {
         [Obsolete("Use GetPersistentHashCode instead.", true)]
         [EditorBrowsable(EditorBrowsableState.Never)]
