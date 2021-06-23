@@ -11,6 +11,8 @@ namespace FolkerKinzel.Strings
         public static int IndexOf(this string s, char value, StringComparison comparisonType)
             => s?.AsSpan().IndexOf(stackalloc[] { value }, comparisonType) ?? throw new NullReferenceException();
 
+
+
         public static string[] Split(this string s, char separator, StringSplitOptions options = StringSplitOptions.None)
             => s?.Split(new char[] { separator }, options) ?? throw new NullReferenceException();
 

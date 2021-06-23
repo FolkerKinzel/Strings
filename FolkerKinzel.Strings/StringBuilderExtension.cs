@@ -48,16 +48,75 @@ namespace FolkerKinzel.Strings
             return sb is null
                 ? throw new ArgumentNullException(nameof(sb))
                 : (hashType switch
-            {
-                HashType.Ordinal => GetHashCodeOrdinal(sb),
-                HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(sb),
-                HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericIgnoreCase(sb),
-                _ => throw new ArgumentException(Res.UndefinedEnumValue, nameof(hashType))
-            });
+                {
+                    HashType.Ordinal => GetHashCodeOrdinal(sb),
+                    HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(sb),
+                    HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericIgnoreCase(sb),
+                    _ => throw new ArgumentException(Res.UndefinedEnumValue, nameof(hashType))
+                });
         }
 
+        #region TrimEnd
 
-        
+        public static StringBuilder TrimEnd(this StringBuilder stringBuilder)
+            => stringBuilder is null ? throw new ArgumentNullException(nameof(stringBuilder)) : stringBuilder.DoTrimEnd();
+
+
+        public static StringBuilder TrimEnd(this StringBuilder stringBuilder, char trimChar)
+            => stringBuilder is null ? throw new ArgumentNullException(nameof(stringBuilder)) : stringBuilder.DoTrimEnd(trimChar);
+
+
+        public static StringBuilder TrimEnd(this StringBuilder stringBuilder, params char[]? trimChars)
+        {
+            return stringBuilder is null
+                ? throw new ArgumentNullException(nameof(stringBuilder))
+                : trimChars is null || trimChars.Length == 0
+                    ? stringBuilder.DoTrimEnd()
+                    : stringBuilder.DoTrimEnd(trimChars);
+        }
+
+        #endregion
+
+        #region TrimStart
+
+        public static StringBuilder TrimStart(this StringBuilder stringBuilder)
+            => stringBuilder is null ? throw new ArgumentNullException(nameof(stringBuilder)) : stringBuilder.DoTrimStart();
+
+        public static StringBuilder TrimStart(this StringBuilder stringBuilder, char trimChar)
+           => stringBuilder is null ? throw new ArgumentNullException(nameof(stringBuilder)) : stringBuilder.DoTrimStart(trimChar);
+
+        public static StringBuilder TrimStart(this StringBuilder stringBuilder, params char[]? trimChars)
+           => stringBuilder is null
+                ? throw new ArgumentNullException(nameof(stringBuilder))
+                : trimChars is null || trimChars.Length == 0
+                    ? stringBuilder.DoTrimEnd()
+                    : stringBuilder.DoTrimEnd(trimChars);
+
+        #endregion
+
+        #region Trim
+
+        public static StringBuilder Trim(this StringBuilder stringBuilder)
+            => stringBuilder is null ? throw new ArgumentNullException(nameof(stringBuilder)) : stringBuilder.DoTrimEnd().DoTrimStart();
+
+
+        public static StringBuilder Trim(this StringBuilder stringBuilder, char trimChar)
+            => stringBuilder is null ? throw new ArgumentNullException(nameof(stringBuilder)) : stringBuilder.DoTrimEnd(trimChar).DoTrimStart(trimChar);
+
+
+        public static StringBuilder Trim(this StringBuilder stringBuilder, params char[]? trimChars)
+           => stringBuilder is null
+               ? throw new ArgumentNullException(nameof(stringBuilder))
+               : trimChars is null || trimChars.Length == 0
+                   ? stringBuilder.DoTrimEnd().DoTrimStart()
+                   : stringBuilder.DoTrimEnd(trimChars).DoTrimStart(trimChars);
+
+        #endregion
+
+        #region private Methods
+
+        #region GetHashCode
+
         private static int GetHashCodeOrdinal(StringBuilder sb)
         {
             unchecked
@@ -79,7 +138,7 @@ namespace FolkerKinzel.Strings
             }
         }
 
-        
+
         private static int GetHashCodeOrdinalIgnoreCase(StringBuilder sb)
         {
             unchecked
@@ -141,5 +200,142 @@ namespace FolkerKinzel.Strings
                 return hash1 + (hash2 * 1566083941);
             }
         }
+
+        #endregion
+
+        #region DoTrimEnd
+
+        private static StringBuilder DoTrimEnd(this StringBuilder stringBuilder)
+        {
+            int length = stringBuilder.Length;
+
+            for (int i = length - 1; i >= 0; i--)
+            {
+                if (char.IsWhiteSpace(stringBuilder[i]))
+                {
+                    --length;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            stringBuilder.Length = length;
+            return stringBuilder;
+        }
+
+
+        private static StringBuilder DoTrimEnd(this StringBuilder stringBuilder, char trimChar)
+        {
+            int length = stringBuilder.Length;
+
+            for (int i = length - 1; i >= 0; i--)
+            {
+                if (trimChar.Equals(stringBuilder[i]))
+                {
+                    --length;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            stringBuilder.Length = length;
+            return stringBuilder;
+        }
+
+
+        private static StringBuilder DoTrimEnd(this StringBuilder stringBuilder, ReadOnlySpan<char> trimChars)
+        {
+            int length = stringBuilder.Length;
+
+            for (int i = length - 1; i >= 0; i--)
+            {
+                if (trimChars.Contains(stringBuilder[i]))
+                {
+                    --length;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            stringBuilder.Length = length;
+            return stringBuilder;
+        }
+
+        #endregion
+
+        #region DoTrimStart
+
+        private static StringBuilder DoTrimStart(this StringBuilder stringBuilder)
+        {
+            int length = stringBuilder.Length;
+
+            for (int j = 0; j < length; j++)
+            {
+                if (char.IsWhiteSpace(stringBuilder[j]))
+                {
+                    continue;
+                }
+                else
+                {
+                    return stringBuilder.Remove(0, j);
+                }
+            }
+
+            return stringBuilder.Clear();
+        }
+
+
+
+
+        private static StringBuilder DoTrimStart(this StringBuilder stringBuilder, char trimChar)
+        {
+            int length = stringBuilder.Length;
+
+            for (int j = 0; j < length; j++)
+            {
+                if (trimChar.Equals(stringBuilder[j]))
+                {
+                    continue;
+                }
+                else
+                {
+                    return stringBuilder.Remove(0, j);
+                }
+            }
+
+            return stringBuilder.Clear();
+        }
+
+
+
+        private static StringBuilder DoTrimStart(this StringBuilder stringBuilder, ReadOnlySpan<char> trimChars)
+        {
+            int length = stringBuilder.Length;
+
+            for (int j = 0; j < length; j++)
+            {
+                if (trimChars.Contains(stringBuilder[j]))
+                {
+                    continue;
+                }
+                else
+                {
+                    return stringBuilder.Remove(0, j);
+                }
+            }
+
+            return stringBuilder.Clear();
+        }
+
+        #endregion
+
+        #endregion
+
     }
 }

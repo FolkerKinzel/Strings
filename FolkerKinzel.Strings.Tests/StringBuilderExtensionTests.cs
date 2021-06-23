@@ -59,5 +59,19 @@ namespace FolkerKinzel.Strings.Tests
             Assert.AreEqual(hash1, hash2);
             Assert.AreEqual(hash1, hash3);
         }
+
+
+        [TestMethod()]
+        public void TrimTest1()
+        {
+            const string test = "Test";
+
+            string value = $"    {test}    ";
+
+            var sb = new StringBuilder(value);
+
+            Assert.AreEqual(test, sb.Trim().ToString());
+        }
+
     }
 }

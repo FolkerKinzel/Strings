@@ -42,10 +42,18 @@ namespace FolkerKinzel.Strings.StringExtension.Tests
 
 
         [DataTestMethod()]
-        [DataRow("Test", 'e', 'a', "Tast")]
-        public void ReplaceTest1(string value, char c1, char c2,  string expected)
+        [DataRow("Test", 'e')]
+        public void ReplaceTest1(string value, char c1)
         {
             Assert.AreEqual(2, value.IndexOf(c1));
+        }
+
+
+        [DataTestMethod()]
+        [DataRow("xxTestxxx", 'x', "Test")]
+        public void TrimTest1(string value, char c1, string expected)
+        {
+            Assert.AreEqual(expected, value.TrimEnd(c1));
         }
     }
 }
