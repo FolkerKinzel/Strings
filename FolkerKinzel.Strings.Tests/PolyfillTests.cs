@@ -55,5 +55,19 @@ namespace FolkerKinzel.Strings.StringExtension.Tests
         {
             Assert.AreEqual(expected, value.TrimEnd(c1));
         }
+
+        [DataTestMethod()]
+        [DataRow("Test", 'T', true)]
+        public void StartsWithTest1(string value, char c, bool expected)
+        {
+            Assert.AreEqual(expected, value.StartsWith(c));
+        }
+
+        [DataTestMethod()]
+        [DataRow("Test", 't', true)]
+        public void EndsWithTest1(string value, char c, bool expected)
+        {
+            Assert.AreEqual(expected, value.EndsWith(c));
+        }
     }
 }

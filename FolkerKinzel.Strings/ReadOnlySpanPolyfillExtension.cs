@@ -23,5 +23,8 @@ namespace FolkerKinzel.Strings
             return false;
         }
 #endif
+
+        //public static bool StartsWith<T>(this ReadOnlySpan<T> span, T value) where T : IEquatable<T>
+        //    => !span.IsEmpty && span[0].Equals(value);
     }
 }

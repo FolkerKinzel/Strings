@@ -21,7 +21,12 @@ namespace FolkerKinzel.Strings
 
 
 
+        public static bool StartsWith(this string s, char value)
+            => s?.AsSpan().StartsWith(stackalloc[] { value }) ?? throw new NullReferenceException();
 
+
+        public static bool EndsWith(this string s, char value)
+            => s?.AsSpan().EndsWith(stackalloc[] { value }) ?? throw new NullReferenceException();
         
     }
 #endif

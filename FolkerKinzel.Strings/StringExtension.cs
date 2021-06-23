@@ -11,6 +11,12 @@ namespace FolkerKinzel.Strings
     /// <threadsafety static="true" instance="false"/>
     public static partial class StringExtension
     {
+        /// <summary>
+        /// Obsolete.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="hashType"></param>
+        /// <returns></returns>
         [Obsolete("Use GetPersistentHashCode instead.", true)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Browsable(false)]
