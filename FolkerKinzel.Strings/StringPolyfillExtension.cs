@@ -1,5 +1,4 @@
 ﻿using System;
-//using System.Linq;
 
 namespace FolkerKinzel.Strings
 {
@@ -17,6 +16,11 @@ namespace FolkerKinzel.Strings
 
         public static string[] Split(this string s, char separator, int count, StringSplitOptions options = StringSplitOptions.None)
             => s?.Split(new char[] { separator }, count, options) ?? throw new NullReferenceException();
+
+
+
+
+        
     }
 #endif
 }
