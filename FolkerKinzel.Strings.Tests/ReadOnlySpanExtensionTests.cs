@@ -6,13 +6,13 @@ namespace FolkerKinzel.Strings.Tests
     [TestClass]
     public class ReadOnlySpanExtensionTests
     {
-
-
-        //[DataTestMethod()]
-        //[DataRow("xxTestxxx", 'x', "Test")]
-        //public void TrimTest1(string value, char c1, string expected)
+        //[DataTestMethod]
+        //[DataRow("Test", 'e', 1)]
+        //public void IndexOfTest1(string value, char c, int expected)
         //{
-        //    Assert.AreEqual(expected, value.AsSpan().Trim(c1).ToString());
+        //    Assert.AreEqual(expected, value.AsSpan().IndexOf(c));
         //}
+
+        
     }
 }

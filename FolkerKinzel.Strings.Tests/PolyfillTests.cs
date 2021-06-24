@@ -17,6 +17,13 @@ namespace FolkerKinzel.Strings.StringExtension.Tests
             Assert.AreEqual(expected, value.Contains(c, comparison));
         }
 
+        [DataTestMethod()]
+        [DataRow("Test", 'e', true)]
+        public void ContainsTest2(string value, char c, bool expected)
+        {
+            Assert.AreEqual(expected, value.Contains(c));
+        }
+
 
         [DataTestMethod()]
         [DataRow("Test", 'e', StringComparison.Ordinal, 1)]

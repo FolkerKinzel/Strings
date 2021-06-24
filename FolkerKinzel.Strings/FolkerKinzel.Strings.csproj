@@ -8,8 +8,8 @@
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>2.0.0-alpha2</Version>
-    <FileVersion>2.0.0.4</FileVersion>
+    <Version>2.0.0-alpha3</Version>
+    <FileVersion>2.0.0.7</FileVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>Adds support for .NET 5.0.
     
