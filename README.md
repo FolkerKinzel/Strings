@@ -1,6 +1,6 @@
 # FolkerKinzel.Strings
 [![NuGet](https://img.shields.io/nuget/v/FolkerKinzel.Strings)](https://www.nuget.org/packages/FolkerKinzel.Strings/)
-
+![GitHub](https://img.shields.io/github/license/FolkerKinzel/Strings)
 
 .NET library, containing extension methods for String, 
 StringBuilder and ReadOnlySpan&lt;Char&gt;.
