@@ -17,24 +17,6 @@ StringBuilder and ReadOnlySpan&lt;Char&gt;.
  more information. Don't use these hashcodes for security 
  critical purposes (such as hashing passwords)!
 
-
-```
-nuget Package Manager:
-PM> Install-Package FolkerKinzel.Strings -Version 1.2.0
-
-.NET CLI:
-> dotnet add package FolkerKinzel.Strings --version 1.2.0
-
-PackageReference (Visual Studio Project File):
-<PackageReference Include="FolkerKinzel.Strings" Version="1.2.0" />
-
-Paket CLI:
-> paket add FolkerKinzel.Strings --version 1.2.0
-
-F# Interactive:
-> #r "nuget: FolkerKinzel.Strings, 1.2.0"
-```
-
 * [Download Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/1.2.0/FolkerKinzel.Strings.Reference.en.chm)
 
 * [Projektdokumentation (Deutsch) herunterladen](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/1.2.0/FolkerKinzel.Strings.Doku.de.chm)
