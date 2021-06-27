@@ -15,19 +15,19 @@ namespace FolkerKinzel.Strings
         /// <summary>
         /// Obsolete
         /// </summary>
-        /// <param name="sb"></param>
+        /// <param name="builder"></param>
         /// <param name="hashType"></param>
         /// <returns></returns>
         [Obsolete("Use GetPersistentHashCode instead.", true)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Browsable(false)]
-        public static int GetStableHashCode(this StringBuilder sb, HashType hashType)
-            => GetPersistentHashCode(sb, hashType);
+        public static int GetStableHashCode(this StringBuilder builder, HashType hashType)
+            => GetPersistentHashCode(builder, hashType);
 
         /// <summary>
         /// Gibt bei jedem Aufruf denselben Hashcode für eine identische Zeichenfolge zurück.
         /// </summary>
-        /// <param name="sb">Die zu hashende Zeichenfolge.</param>
+        /// <param name="builder">Die zu hashende Zeichenfolge.</param>
         /// <param name="hashType">Die Art des zu erzeugenden Hashcodes.</param>
         /// <returns>Der Hashcode.</returns>
         /// <remarks>
@@ -43,21 +43,21 @@ namespace FolkerKinzel.Strings
         /// sicherheitskritischen Anwendungen (wie z.B. dem Hashen von Passwörtern)!
         /// </para>
         /// </remarks>
-        /// <exception cref="ArgumentNullException"><paramref name="sb"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentException"><paramref name="hashType"/> ist kein 
         /// definierter Wert der <see cref="HashType"/>-Enum.</exception>
         /// <example>
         /// <code language="cs" source="..\Examples\Example.cs"/>
         /// </example>
-        public static int GetPersistentHashCode(this StringBuilder sb, HashType hashType)
+        public static int GetPersistentHashCode(this StringBuilder builder, HashType hashType)
         {
-            return sb is null
-                ? throw new ArgumentNullException(nameof(sb))
+            return builder is null
+                ? throw new ArgumentNullException(nameof(builder))
                 : (hashType switch
                 {
-                    HashType.Ordinal => GetHashCodeOrdinal(sb),
-                    HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(sb),
-                    HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericIgnoreCase(sb),
+                    HashType.Ordinal => GetHashCodeOrdinal(builder),
+                    HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(builder),
+                    HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericIgnoreCase(builder),
                     _ => throw new ArgumentException(Res.UndefinedEnumValue, nameof(hashType))
                 });
         }
@@ -110,37 +110,37 @@ namespace FolkerKinzel.Strings
         /// <summary>
         /// Entfernt alle führenden Leerraumzeichen aus dem <see cref="StringBuilder"/>.
         /// </summary>
-        /// <param name="stringBuilder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
-        /// <returns>Ein Verweis auf <paramref name="stringBuilder"/>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="stringBuilder"/> ist <c>null</c>.</exception>
-        public static StringBuilder TrimStart(this StringBuilder stringBuilder)
-            => stringBuilder is null ? throw new ArgumentNullException(nameof(stringBuilder)) : stringBuilder.DoTrimStart();
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder TrimStart(this StringBuilder builder)
+            => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.DoTrimStart();
 
         /// <summary>
         /// Entfernt alle führenden Instanzen eines Zeichens aus dem <see cref="StringBuilder"/>.
         /// </summary>
-        /// <param name="stringBuilder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
         /// <param name="trimChar">Ein zu entfernendes Unicode-Zeichen.</param>
-        /// <returns>Ein Verweis auf <paramref name="stringBuilder"/>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="stringBuilder"/> ist <c>null</c>.</exception>
-        public static StringBuilder TrimStart(this StringBuilder stringBuilder, char trimChar)
-           => stringBuilder is null ? throw new ArgumentNullException(nameof(stringBuilder)) : stringBuilder.DoTrimStart(trimChar);
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder TrimStart(this StringBuilder builder, char trimChar)
+           => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.DoTrimStart(trimChar);
 
         /// <summary>
         /// Entfernt alle führenden Vorkommen der Zeichen im angegebenen Array aus dem <see cref="StringBuilder"/>.
         /// </summary>
-        /// <param name="stringBuilder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
         /// <param name="trimChars">Ein Array mit den zu entfernenden Unicode-Zeichen oder <c>null</c>. Wenn 
         /// <paramref name="trimChars"/>&#160;<c>null</c>
         /// oder ein leeres Array ist, werden stattdessen Leerzeichen entfernt.</param>
-        /// <returns>Ein Verweis auf <paramref name="stringBuilder"/>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="stringBuilder"/> ist <c>null</c>.</exception>
-        public static StringBuilder TrimStart(this StringBuilder stringBuilder, params char[]? trimChars)
-           => stringBuilder is null
-                ? throw new ArgumentNullException(nameof(stringBuilder))
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder TrimStart(this StringBuilder builder, params char[]? trimChars)
+           => builder is null
+                ? throw new ArgumentNullException(nameof(builder))
                 : trimChars is null || trimChars.Length == 0
-                    ? stringBuilder.DoTrimEnd()
-                    : stringBuilder.DoTrimEnd(trimChars);
+                    ? builder.DoTrimEnd()
+                    : builder.DoTrimEnd(trimChars);
 
         #endregion
 
@@ -149,38 +149,38 @@ namespace FolkerKinzel.Strings
         /// <summary>
         /// Entfernt alle führenden und nachgestellten Leerraumzeichen aus dem <see cref="StringBuilder"/>.
         /// </summary>
-        /// <param name="stringBuilder"></param>
-        /// <returns>Ein Verweis auf <paramref name="stringBuilder"/>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="stringBuilder"/> ist <c>null</c>.</exception>
-        public static StringBuilder Trim(this StringBuilder stringBuilder)
-            => stringBuilder is null ? throw new ArgumentNullException(nameof(stringBuilder)) : stringBuilder.DoTrimEnd().DoTrimStart();
+        /// <param name="builder"></param>
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder Trim(this StringBuilder builder)
+            => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.DoTrimEnd().DoTrimStart();
 
 
         /// <summary>
         /// Entfernt alle führenden und nachgestellten Instanzen eines Zeichens aus dem <see cref="StringBuilder"/>.
         /// </summary>
-        /// <param name="stringBuilder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
         /// <param name="trimChar">Ein zu entfernendes Unicode-Zeichen.</param>
-        /// <returns>Ein Verweis auf <paramref name="stringBuilder"/>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="stringBuilder"/> ist <c>null</c>.</exception>
-        public static StringBuilder Trim(this StringBuilder stringBuilder, char trimChar)
-            => stringBuilder is null ? throw new ArgumentNullException(nameof(stringBuilder)) : stringBuilder.DoTrimEnd(trimChar).DoTrimStart(trimChar);
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder Trim(this StringBuilder builder, char trimChar)
+            => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.DoTrimEnd(trimChar).DoTrimStart(trimChar);
 
 
         /// <summary>
         /// Entfernt alle führenden und nachgestellten Vorkommen der Zeichen im angegebenen Array aus dem <see cref="StringBuilder"/>.
         /// </summary>
-        /// <param name="stringBuilder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
         /// <param name="trimChars">Ein Array mit den zu entfernenden Unicode-Zeichen oder <c>null</c>. Wenn <paramref name="trimChars"/>&#160;<c>null</c>
         /// oder ein leeres Array ist, werden stattdessen Leerzeichen entfernt.</param>
-        /// <returns>Ein Verweis auf <paramref name="stringBuilder"/>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="stringBuilder"/> ist <c>null</c>.</exception>
-        public static StringBuilder Trim(this StringBuilder stringBuilder, params char[]? trimChars)
-           => stringBuilder is null
-               ? throw new ArgumentNullException(nameof(stringBuilder))
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder Trim(this StringBuilder builder, params char[]? trimChars)
+           => builder is null
+               ? throw new ArgumentNullException(nameof(builder))
                : trimChars is null || trimChars.Length == 0
-                   ? stringBuilder.DoTrimEnd().DoTrimStart()
-                   : stringBuilder.DoTrimEnd(trimChars).DoTrimStart(trimChars);
+                   ? builder.DoTrimEnd().DoTrimStart()
+                   : builder.DoTrimEnd(trimChars).DoTrimStart(trimChars);
 
         #endregion
 

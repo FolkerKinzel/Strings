@@ -4,7 +4,7 @@ namespace FolkerKinzel.Strings
 {
 #if NETSTANDARD2_0 || NET45
     /// <summary>
-    /// Erweiterungsmethoden für die <see cref="string"/>-Klasse, die in älteren .NET-Versionen als
+    /// Erweiterungsmethoden für die <see cref="string"/>-Klasse, die in .NET Framework 4.5 und .NET Standard 2.0 als
     /// Polyfills für Methoden aus aktuellen .NET-Versionen dienen.
     /// </summary>
     public static partial class StringPolyfillExtension

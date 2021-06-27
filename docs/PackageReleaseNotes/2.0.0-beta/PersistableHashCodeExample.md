@@ -1,4 +1,8 @@
-﻿using System;
+# FolkerKinzel.Strings
+
+## c#-Example that demonstrates persistable hashcodes
+```csharp
+using System;
 using System.Text;
 using FolkerKinzel.Strings;
 
@@ -78,5 +82,5 @@ Same String - different HashTypes:
   A31FA6EC
   1BBFB34C
   C672C38C
-.
 */
+```

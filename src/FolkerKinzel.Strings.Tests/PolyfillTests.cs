@@ -76,5 +76,13 @@ namespace FolkerKinzel.Strings.StringExtension.Tests
         {
             Assert.AreEqual(expected, value.EndsWith(c));
         }
+
+        //[DataTestMethod()]
+        //[DataRow("Test", "Other", ',', "Test,Other")]
+        //public void JoinTest1(string value1, string value2, char c, string expected)
+        //{
+        //    Assert.AreEqual(expected, string.Join();
+        //}
+
     }
 }
