@@ -14,7 +14,7 @@ public static StringBuilder TrimStart(this StringBuilder builder, params char[]?
 
 
 // TrimEnd:
-public static StringBuilder TrimEnd(this StringBuilder stringBuilder);
-public static StringBuilder TrimEnd(this StringBuilder stringBuilder, char trimChar);
-public static StringBuilder TrimEnd(this StringBuilder stringBuilder, params char[]? trimChars);
+public static StringBuilder TrimEnd(this StringBuilder builder);
+public static StringBuilder TrimEnd(this StringBuilder builder, char trimChar);
+public static StringBuilder TrimEnd(this StringBuilder builder, params char[]? trimChars);
 ```

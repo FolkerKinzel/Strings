@@ -17,6 +17,8 @@ namespace FolkerKinzel.Strings
         /// <param name="comparisonType">Einer der Enumerationswerte, der die für den Vergleich zu verwendenden Regeln angibt.</param>
         /// <returns><c>true</c>, wenn der <paramref name="value"/>-Parameter innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
+        /// <remarks>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</remarks>
         public static bool Contains(this string s, char value, StringComparison comparisonType)
             => s is null ? throw new ArgumentNullException(nameof(s))
                          : s.AsSpan().Contains(stackalloc[] { value }, comparisonType);
@@ -30,6 +32,8 @@ namespace FolkerKinzel.Strings
         /// <param name="comparisonType">Ein Enumerationswert, der die Regeln für die Suche festlegt.</param>
         /// <returns>Der nullbasierte Index von <paramref name="value"/>, wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
+        /// <remarks>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</remarks>
         public static int IndexOf(this string s, char value, StringComparison comparisonType)
             => s is null ? throw new ArgumentNullException(nameof(s))
                          : s.AsSpan().IndexOf(stackalloc[] { value }, comparisonType);
@@ -38,12 +42,13 @@ namespace FolkerKinzel.Strings
         /// Hier wird eine Zeichenfolge anhand eines angegebenen Trennzeichens und optional von Optionen in Teilzeichenfolgen unterteilt.
         /// </summary>
         /// <param name="s">Der zu teilende <see cref="string"/>.</param>
-        /// <param name="separator">Ein Zeichen, das die Teilzeichenfolgen in dieser Zeichenfolge trennt.</param>
+        /// <param name="separator">Ein Zeichen, das die Teilzeichenfolgen in <paramref name="s"/> trennt.</param>
         /// <param name="options">Dies ist ein Enumerationswert, der angibt, ob leere Teilzeichenfolgen 
         /// eingeschlossen werden sollen.</param>
         /// <returns>Ein Array, dessen Elemente die Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
         /// <paramref name="separator"/> getrennt sind.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <remarks>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</remarks>
         public static string[] Split(this string s, char separator, StringSplitOptions options = StringSplitOptions.None)
             => s is null ? throw new ArgumentNullException(nameof(s))
                          : s.Split(new char[] { separator }, options);
@@ -53,13 +58,14 @@ namespace FolkerKinzel.Strings
         /// des angegebenen Ersatztrennzeichens unterteilt, wobei optional leere Teilzeichenfolgen aus dem Ergebnis ausgelassen werden.
         /// </summary>
         /// <param name="s">Der zu teilende <see cref="string"/>.</param>
-        /// <param name="separator">Ein Zeichen, das die Teilzeichenfolgen in dieser Zeichenfolge trennt.</param>
+        /// <param name="separator">Ein Zeichen, das die Teilzeichenfolgen in <paramref name="s"/> trennt.</param>
         /// <param name="count">Die maximale Anzahl der im Array erwarteten Elemente.</param>
         /// <param name="options">Dies ist ein Enumerationswert, der angibt, ob leere Teilzeichenfolgen 
         /// eingeschlossen werden sollen.</param>
         /// <returns>Ein Array, das maximal <paramref name="count"/> Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
         /// <paramref name="separator"/> getrennt sind.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <remarks>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</remarks>
         public static string[] Split(this string s, char separator, int count, StringSplitOptions options = StringSplitOptions.None)
             => s is null ? throw new ArgumentNullException(nameof(s))
                          : s.Split(new char[] { separator }, count, options);
@@ -69,11 +75,12 @@ namespace FolkerKinzel.Strings
         /// </summary>
         /// <param name="s">Der zu untersuchende <see cref="string"/>.</param>
         /// <param name="value">Das zu vergleichende Zeichen.</param>
-        /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Anfang dieser Zeichenfolge übereinstimmt, andernfalls <c>false</c>.</returns>
+        /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Anfang von <paramref name="s"/> übereinstimmt, andernfalls <c>false</c>.</returns>
         /// <remarks>
         /// Diese Methode führt einen Vergleich mit der aktuellen Kultur durch (Unterscheidung nach Groß-/Kleinschreibung und Kultur sensitiv).
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <remarks>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</remarks>
         public static bool StartsWith(this string s, char value)
             => s is null ? throw new ArgumentNullException(nameof(s))
                          : s.AsSpan().StartsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
@@ -84,11 +91,12 @@ namespace FolkerKinzel.Strings
         /// </summary>
         /// <param name="s">Der zu untersuchende <see cref="string"/>.</param>
         /// <param name="value">Das zu vergleichende Zeichen.</param>
-        /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Ende dieser Zeichenfolge übereinstimmt, andernfalls <c>false</c>.</returns>
+        /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Ende von <paramref name="s"/> übereinstimmt, andernfalls <c>false</c>.</returns>
         /// <remarks>
         /// Diese Methode führt einen Vergleich mit der aktuellen Kultur durch (Unterscheidung nach Groß-/Kleinschreibung und Kultur sensitiv).
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <remarks>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</remarks>
         public static bool EndsWith(this string s, char value)
             => s is null ? throw new ArgumentNullException(nameof(s))
                          : s.AsSpan().EndsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);

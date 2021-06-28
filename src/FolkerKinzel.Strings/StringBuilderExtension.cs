@@ -67,40 +67,40 @@ namespace FolkerKinzel.Strings
         /// <summary>
         /// Entfernt alle nachgestellten Leerraumzeichen aus dem <see cref="StringBuilder"/>.
         /// </summary>
-        /// <param name="stringBuilder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
-        /// <returns>Ein Verweis auf <paramref name="stringBuilder"/>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="stringBuilder"/> ist <c>null</c>.</exception>
-        public static StringBuilder TrimEnd(this StringBuilder stringBuilder)
-            => stringBuilder is null ? throw new ArgumentNullException(nameof(stringBuilder)) : stringBuilder.DoTrimEnd();
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder TrimEnd(this StringBuilder builder)
+            => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.DoTrimEnd();
 
 
         /// <summary>
         /// Entfernt alle nachgestellten Instanzen eines Zeichens aus dem <see cref="StringBuilder"/>.
         /// </summary>
-        /// <param name="stringBuilder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
         /// <param name="trimChar">Ein zu entfernendes Unicode-Zeichen.</param>
-        /// <returns>Ein Verweis auf <paramref name="stringBuilder"/>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="stringBuilder"/> ist <c>null</c>.</exception>
-        public static StringBuilder TrimEnd(this StringBuilder stringBuilder, char trimChar)
-            => stringBuilder is null ? throw new ArgumentNullException(nameof(stringBuilder)) : stringBuilder.DoTrimEnd(trimChar);
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder TrimEnd(this StringBuilder builder, char trimChar)
+            => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.DoTrimEnd(trimChar);
 
 
         /// <summary>
         /// Entfernt alle nachgestellten Vorkommen der Zeichen im angegebenen Array aus dem <see cref="StringBuilder"/>.
         /// </summary>
-        /// <param name="stringBuilder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
         /// <param name="trimChars">Ein Array mit den zu entfernenden Unicode-Zeichen oder <c>null</c>. Wenn 
         /// <paramref name="trimChars"/>&#160;<c>null</c>
         /// oder ein leeres Array ist, werden stattdessen Leerzeichen entfernt.</param>
-        /// <returns>Ein Verweis auf <paramref name="stringBuilder"/>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="stringBuilder"/> ist <c>null</c>.</exception>
-        public static StringBuilder TrimEnd(this StringBuilder stringBuilder, params char[]? trimChars)
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder TrimEnd(this StringBuilder builder, params char[]? trimChars)
         {
-            return stringBuilder is null
-                ? throw new ArgumentNullException(nameof(stringBuilder))
+            return builder is null
+                ? throw new ArgumentNullException(nameof(builder))
                 : trimChars is null || trimChars.Length == 0
-                    ? stringBuilder.DoTrimEnd()
-                    : stringBuilder.DoTrimEnd(trimChars);
+                    ? builder.DoTrimEnd()
+                    : builder.DoTrimEnd(trimChars);
         }
 
         #endregion
@@ -149,7 +149,7 @@ namespace FolkerKinzel.Strings
         /// <summary>
         /// Entfernt alle führenden und nachgestellten Leerraumzeichen aus dem <see cref="StringBuilder"/>.
         /// </summary>
-        /// <param name="builder"></param>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
         /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         public static StringBuilder Trim(this StringBuilder builder)

@@ -13,7 +13,7 @@
     <RootNamespace>FolkerKinzel.Strings.Reference.en</RootNamespace>
     <Name>FolkerKinzel.Strings.Reference.en</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
+    <FrameworkVersion>.NET Core/.NET Standard/.NET 5.0+</FrameworkVersion>
     <OutputPath>.\Help\</OutputPath>
     <HtmlHelpName>FolkerKinzel.Strings.Reference.en</HtmlHelpName>
     <Language>en-US</Language>

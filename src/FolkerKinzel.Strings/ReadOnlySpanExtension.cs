@@ -7,10 +7,7 @@ using FolkerKinzel.Strings.Properties;
 namespace FolkerKinzel.Strings
 {
     /// <summary>
-    /// Erweiterungsmethoden für die <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;char&gt;</see>-Struktur.
-    /// <note type="note">
-    /// Die Klasse ist für .NET-Framework 4.0 nicht verfügbar.
-    /// </note>
+    /// Erweiterungsmethoden für die <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>-Struktur.
     /// </summary>
     /// <threadsafety static="true" instance="false"/>
     public static class ReadOnlySpanExtension

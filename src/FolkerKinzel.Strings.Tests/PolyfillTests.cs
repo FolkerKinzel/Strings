@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FolkerKinzel.Strings.StringExtension.Tests
+namespace FolkerKinzel.Strings.Tests
 {
     [TestClass()]
     public class PolyfillTests
@@ -24,12 +24,25 @@ namespace FolkerKinzel.Strings.StringExtension.Tests
             Assert.AreEqual(expected, value.Contains(c));
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ContainsTest3()
+        {
+            _ = "Test".Contains('e', (StringComparison)4711);
+        }
 
         [DataTestMethod()]
         [DataRow("Test", 'e', StringComparison.Ordinal, 1)]
         public void IndexOfTest1(string value, char c, StringComparison comparison,  int expected)
         {
             Assert.AreEqual(expected, value.IndexOf(c, comparison));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IndexOfTest2()
+        {
+            _ = "Test".IndexOf('e', (StringComparison)4711);
         }
 
 

@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netstandard2.0;netstandard2.1;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net5.0;netstandard2.1;net45</TargetFrameworks>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
@@ -8,8 +8,8 @@
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>2.0.0-alpha3</Version>
-    <FileVersion>2.0.0.8</FileVersion>
+    <Version>2.0.0-alpha4</Version>
+    <FileVersion>2.0.0.19</FileVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>Adds support for .NET 5.0.
     

@@ -22,6 +22,7 @@ namespace FolkerKinzel.Strings
         /// <param name="span">Die zu durchsuchende Spanne.</param>
         /// <param name="value">Der zu suchende Wert.</param>
         /// <returns><c>true</c>, wenn <paramref name="value"/> gefunden wurde, andernfalls <c>false</c>.</returns>
+        /// <remarks>Verfügbar für .NET Framework 4.5, .NET Standard 2.0 und .NET Standard 2.1.</remarks>
         public static bool Contains<T>(this ReadOnlySpan<T> span, T value) where T : IEquatable<T>
         {
             for (int i = 0; i < span.Length; i++)

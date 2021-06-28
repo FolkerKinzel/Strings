@@ -13,7 +13,7 @@
     <RootNamespace>FolkerKinzel.Strings.Documentation</RootNamespace>
     <Name>FolkerKinzel.Strings.Doku.de</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
+    <FrameworkVersion>.NET Core/.NET Standard/.NET 5.0+</FrameworkVersion>
     <OutputPath>.\Help\</OutputPath>
     <HtmlHelpName>FolkerKinzel.Strings.Doku.de</HtmlHelpName>
     <Language>de-DE</Language>
@@ -28,6 +28,7 @@
     </TransformComponentArguments>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\FolkerKinzel.Strings\FolkerKinzel.Strings.csproj" />
+      <DocumentationSource sourceFile="..\FolkerKinzel.Strings\bin\Release\netstandard2.0\de\FolkerKinzel.Strings.xml" />
     </DocumentationSources>
     <HelpTitle>FolkerKinzel.Strings</HelpTitle>
     <HelpFileVersion>1.0.0.0</HelpFileVersion>
