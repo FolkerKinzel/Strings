@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings
@@ -24,12 +25,23 @@ namespace FolkerKinzel.Strings
             => GetPersistentHashCode(s, hashType);
 
         /// <summary>
-        /// Gibt bei jedem Aufruf denselben Hashcode für eine identische Zeichenfolge zurück.
+        /// Erzeugt bei jedem Programmlauf denselben <see cref="int"/>-Hashcode für eine identische Zeichenfolge.
         /// </summary>
         /// <param name="s">Die zu hashende Zeichenfolge.</param>
         /// <param name="hashType">Die Art des zu erzeugenden Hashcodes.</param>
         /// <returns>Der Hashcode.</returns>
         /// <remarks>
+        /// <para>
+        /// Die Methode <see cref="string.GetHashCode">String.GetHashCode()</see> gibt aus Sicherheitsgründen bei jedem Programmlauf 
+        /// einen unterschiedlichen
+        /// Hashcode für eine identische Zeichenfolge zurück. Abgesehen davon, dass auch der Hash-Algorithmus von 
+        /// <see cref="string.GetHashCode">String.GetHashCode()</see> in unterschiedlichen Frameworkversionen unterschiedlich sein könnte, 
+        /// macht es schon deshalb keinen
+        /// Sinn, den Rückgabewert von <see cref="string.GetHashCode"/> für die Wiederverwendung zu speichern. Die Alternativen, z.B.
+        /// <see cref="MD5"/> oder <see cref="SHA256"/>, verbrauchen mehr Speicherplatz und sind langsamer. So bietet diese Methode eine
+        /// schlanke Alternative, die sich zum Hashen sehr kurzer Zeichenfolgen eignet, die nicht in einem sicherheitskritischen Zusammenhang 
+        /// verwendet werden.
+        /// </para>
         /// <para>
         /// Der von dieser Methode erzeugte Hashcode ist nicht identisch mit dem Hashcode, der von .NET-Framework 4.0
         /// erzeugt wird, denn 
@@ -50,102 +62,6 @@ namespace FolkerKinzel.Strings
         /// </example>
         public static int GetPersistentHashCode(this string s, HashType hashType)
             => s is null ? throw new ArgumentNullException(nameof(s)) : s.AsSpan().GetPersistentHashCode(hashType);
-        //{
-        //    return s is null
-        //        ? throw new ArgumentNullException(nameof(s))
-        //        : (hashType switch
-        //    {
-        //        HashType.Ordinal => GetHashCodeOrdinal(s),
-        //        HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(s),
-        //        HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericNoCase(s),
-        //        _ => throw new ArgumentException(Res.UndefinedEnumValue, nameof(hashType))
-        //    });
-        //}
-
-
         
-        //private static int GetHashCodeOrdinal(string str)
-        //{
-        //    unchecked
-        //    {
-        //        int hash1 = (5381 << 16) + 5381;
-        //        int hash2 = hash1;
-
-        //        for (int i = 0; i < str.Length; i += 2)
-        //        {
-        //            hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ str[i];
-        //            if (i == str.Length - 1)
-        //            {
-        //                break;
-        //            }
-        //            hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ str[i + 1];
-        //        }
-
-        //        return hash1 + (hash2 * 1566083941);
-        //    }
-        //}
-
-        
-        //private static int GetHashCodeOrdinalIgnoreCase(string str)
-        //{
-        //    unchecked
-        //    {
-        //        int hash1 = (5381 << 16) + 5381;
-        //        int hash2 = hash1;
-
-        //        for (int i = 0; i < str.Length; i += 2)
-        //        {
-        //            hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(str[i]);
-        //            if (i == str.Length - 1)
-        //            {
-        //                break;
-        //            }
-        //            hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(str[i + 1]);
-        //        }
-
-        //        return hash1 + (hash2 * 1566083941);
-        //    }
-        //}
-
-
-        //private static int GetHashCodeAlphaNumericNoCase(string str)
-        //{
-        //    unchecked
-        //    {
-        //        int hash1 = (5381 << 16) + 5381;
-        //        int hash2 = hash1;
-
-        //        for (int i = 0; i < str.Length;)
-        //        {
-        //            for (; i < str.Length; i++)
-        //            {
-        //                char current = str[i];
-
-        //                if(char.IsLetterOrDigit(current))
-        //                {
-        //                    hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(current);
-        //                    i++;
-
-        //                    // Hashe nächstes Zeichen:
-        //                    for (; i < str.Length; i++)
-        //                    {
-        //                        char next = str[i];
-
-        //                        if (char.IsLetterOrDigit(next))
-        //                        {
-        //                            hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(next);
-        //                            i++;
-        //                            break;
-        //                        }
-        //                    }
-
-        //                    break;
-        //                }
-        //            } 
-        //        }
-
-        //        return hash1 + (hash2 * 1566083941);
-        //    }
-        //}
     }
 }

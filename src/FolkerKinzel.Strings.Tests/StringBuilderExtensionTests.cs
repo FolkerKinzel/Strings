@@ -61,17 +61,260 @@ namespace FolkerKinzel.Strings.Tests
         }
 
 
-        [TestMethod()]
-        public void TrimTest1()
+        [DataTestMethod()]
+        [DataRow("    Test    ")]
+        public void TrimTest1(string input)
         {
-            const string test = "Test";
-
-            string value = $"    {test}    ";
-
-            var sb = new StringBuilder(value);
-
-            Assert.AreEqual(test, sb.Trim().ToString());
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.Trim(), sb.Trim().ToString());
         }
 
+        [DataTestMethod()]
+        [DataRow("    Test    ", ' ')]
+        public void TrimTest2(string input, char trimChar)
+        {
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.Trim(trimChar), sb.Trim(trimChar).ToString());
+        }
+
+
+        [TestMethod()]
+        public void TrimTest3()
+        {
+            char[] trimChars = new char[] { '\"', '\'' };
+            string input = "\'\"Test\'\"";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.Trim(trimChars), sb.Trim(trimChars).ToString());
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TrimTest4()
+        {
+            char[] trimChars = new char[] { '\"', '\'' };
+
+            StringBuilder? sb = null;
+            _ = sb!.Trim(trimChars);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TrimTest5()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.Trim(' ');
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TrimTest6()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.Trim();
+        }
+
+        [TestMethod()]
+        public void TrimTest7()
+        {
+            string input = "  Test   ";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.Trim(null), sb.Trim(null).ToString());
+        }
+
+        [TestMethod()]
+        public void TrimTest8()
+        {
+#if NET45
+            char[] trimChars = new char[0];
+#else
+            char[] trimChars = Array.Empty<char>();
+#endif
+            string input = "   Test   ";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.Trim(trimChars), sb.Trim(trimChars).ToString());
+        }
+
+
+        [DataTestMethod()]
+        [DataRow("    Test    ")]
+        public void TrimStartTest1(string input)
+        {
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimStart(), sb.TrimStart().ToString());
+        }
+
+        [DataTestMethod()]
+        [DataRow("    Test    ", ' ')]
+        public void TrimStartTest2(string input, char trimChar)
+        {
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimStart(trimChar), sb.TrimStart(trimChar).ToString());
+        }
+
+
+        [TestMethod()]
+        public void TrimStartTest3()
+        {
+            char[] trimChars = new char[] { '\"', '\'' };
+            string input = "\'\"Test\'\"";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimStart(trimChars), sb.TrimStart(trimChars).ToString());
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TrimStartTest4()
+        {
+            char[] trimChars = new char[] { '\"', '\'' };
+
+            StringBuilder? sb = null;
+            _ = sb!.TrimStart(trimChars);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TrimStartTest5()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.TrimStart(' ');
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TrimStartTest6()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.TrimStart();
+        }
+
+        [TestMethod()]
+        public void TrimStartTest7()
+        {
+            string test = "    ";
+            var sb = new StringBuilder(test);
+            Assert.AreEqual(test.TrimStart(), sb.TrimStart().ToString());
+        }
+
+        [TestMethod()]
+        public void TrimStartTest8()
+        {
+            string test = "xxxxx";
+            var sb = new StringBuilder(test);
+            Assert.AreEqual(test.TrimStart('x'), sb.TrimStart('x').ToString());
+        }
+
+        [TestMethod()]
+        public void TrimStartTest9()
+        {
+            string test = "xyyx";
+            var sb = new StringBuilder(test);
+            Assert.AreEqual(test.TrimStart('x', 'y'), sb.TrimStart('x', 'y').ToString());
+        }
+
+
+        [TestMethod()]
+        public void TrimStartTest10()
+        {
+            string input = "  Test   ";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimStart(null), sb.TrimStart(null).ToString());
+        }
+
+        [TestMethod()]
+        public void TrimStartTest11()
+        {
+#if NET45
+            char[] trimChars = new char[0];
+#else
+            char[] trimChars = Array.Empty<char>();
+#endif
+            string input = "   Test   ";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimStart(trimChars), sb.TrimStart(trimChars).ToString());
+        }
+
+
+
+        [DataTestMethod()]
+        [DataRow("    Test    ")]
+        public void TrimEndTest1(string input)
+        {
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimEnd(), sb.TrimEnd().ToString());
+        }
+
+        [DataTestMethod()]
+        [DataRow("    Test    ", ' ')]
+        public void TrimEndTest2(string input, char trimChar)
+        {
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimEnd(trimChar), sb.TrimEnd(trimChar).ToString());
+        }
+
+
+        [TestMethod()]
+        public void TrimEndTest3()
+        {
+            char[] trimChars = new char[] { '\"', '\'' };
+            string input = "\'\"Test\'\"";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimEnd(trimChars), sb.TrimEnd(trimChars).ToString());
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TrimEndTest4()
+        {
+            char[] trimChars = new char[] { '\"', '\'' };
+
+            StringBuilder? sb = null;
+            _ = sb!.TrimEnd(trimChars);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TrimEndTest5()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.TrimEnd(' ');
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TrimEndTest6()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.TrimEnd();
+        }
+
+        [TestMethod()]
+        public void TrimEndTest7()
+        {
+            string input = "  Test   ";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimEnd(null), sb.TrimEnd(null).ToString());
+        }
+
+        [TestMethod()]
+        public void TrimEndTest8()
+        {
+#if NET45
+            char[] trimChars = new char[0];
+#else
+            char[] trimChars = Array.Empty<char>();
+#endif
+            string input = "   Test   ";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimEnd(trimChars), sb.TrimEnd(trimChars).ToString());
+        }
     }
 }

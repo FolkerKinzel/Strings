@@ -45,10 +45,13 @@ The StringExtensions class has been renamed to StringExtension.
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="bin\Release\**" />
+    <Compile Remove="Intls\**" />
     <Compile Remove="Translations\**" />
     <EmbeddedResource Remove="bin\Release\**" />
+    <EmbeddedResource Remove="Intls\**" />
     <EmbeddedResource Remove="Translations\**" />
     <None Remove="bin\Release\**" />
+    <None Remove="Intls\**" />
     <None Remove="Translations\**" />
   </ItemGroup>
   <ItemGroup>

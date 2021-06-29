@@ -1,93 +1,118 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FolkerKinzel.Strings.Tests
 {
     [TestClass()]
-    public class PolyfillTests
+    public class PolyfillTests : IDisposable
     {
+        private readonly CultureInfo _culture;
+
+        public PolyfillTests()
+        {
+            _culture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
+        }
+
         [DataTestMethod()]
         [DataRow("Test", 'e', StringComparison.Ordinal, true)]
-        public void ContainsTest1(string value, char c, StringComparison comparison,  bool expected)
-        {
-            Assert.AreEqual(expected, value.Contains(c, comparison));
-        }
+        public void ContainsTest1(string value, char c, StringComparison comparison, bool expected)
+            => Assert.AreEqual(expected, value.Contains(c, comparison));
 
         [DataTestMethod()]
         [DataRow("Test", 'e', true)]
-        public void ContainsTest2(string value, char c, bool expected)
-        {
-            Assert.AreEqual(expected, value.Contains(c));
-        }
+        public void ContainsTest2(string value, char c, bool expected) => Assert.AreEqual(expected, value.Contains(c));
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void ContainsTest3()
+        public void ContainsTest3() => _ = "Test".Contains('e', (StringComparison)4711);
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void ContainsTest4()
         {
-            _ = "Test".Contains('e', (StringComparison)4711);
+            string? test = null;
+            _ =  test!.Contains('e', StringComparison.Ordinal);
         }
 
         [DataTestMethod()]
         [DataRow("Test", 'e', StringComparison.Ordinal, 1)]
-        public void IndexOfTest1(string value, char c, StringComparison comparison,  int expected)
-        {
-            Assert.AreEqual(expected, value.IndexOf(c, comparison));
-        }
+        public void IndexOfTest1(string value, char c, StringComparison comparison, int expected) => Assert.AreEqual(expected, value.IndexOf(c, comparison));
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void IndexOfTest2()
+        public void IndexOfTest2() => _ = "Test".IndexOf('e', (StringComparison)4711);
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void IndexOfTest3()
         {
-            _ = "Test".IndexOf('e', (StringComparison)4711);
+            string? test = null;
+            _ =  test!.IndexOf('e', StringComparison.Ordinal);
         }
 
 
         [DataTestMethod()]
         [DataRow("Test", 'e', StringSplitOptions.RemoveEmptyEntries, 2)]
-        public void SplitTest1(string value, char c, StringSplitOptions options,  int expected)
+        public void SplitTest1(string value, char c, StringSplitOptions options, int expected) 
+            => Assert.AreEqual(expected, value.Split(c, options).Length);
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void SplitTest2()
         {
-            Assert.AreEqual(expected, value.Split(c, options));
+            string? test = null;
+            _ =  test!.Split(',', StringSplitOptions.RemoveEmptyEntries);
         }
 
         [DataTestMethod()]
         [DataRow("Test", 'e', StringSplitOptions.RemoveEmptyEntries, 2)]
-        public void SplitTest2(string value, char c, StringSplitOptions options,  int expected)
+        public void SplitTest3(string value, char c, StringSplitOptions options, int expected) => Assert.AreEqual(expected, value.Split(c, 2, options).Length);
+
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void SplitTest4()
         {
-            Assert.AreEqual(expected, value.Split(c, 2, options));
-        }
-
-
-        [DataTestMethod()]
-        [DataRow("Test", 'e')]
-        public void ReplaceTest1(string value, char c1)
-        {
-            Assert.AreEqual(2, value.IndexOf(c1));
-        }
-
-
-        [DataTestMethod()]
-        [DataRow("xxTestxxx", 'x', "Test")]
-        public void TrimTest1(string value, char c1, string expected)
-        {
-            Assert.AreEqual(expected, value.TrimEnd(c1));
+            string? test = null;
+            _ =  test!.Split(',', 2, StringSplitOptions.RemoveEmptyEntries);
         }
 
         [DataTestMethod()]
         [DataRow("Test", 'T', true)]
-        public void StartsWithTest1(string value, char c, bool expected)
+        //[DataRow("aeTest", 'ä', true)]
+        public void StartsWithTest1(string value, char c, bool expected) => Assert.AreEqual(expected, value.StartsWith(c));
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void StartsWithTest2()
         {
-            Assert.AreEqual(expected, value.StartsWith(c));
+            string? test = null;
+            _ =  test!.StartsWith(',');
         }
 
         [DataTestMethod()]
         [DataRow("Test", 't', true)]
-        public void EndsWithTest1(string value, char c, bool expected)
+        public void EndsWithTest1(string value, char c, bool expected) => Assert.AreEqual(expected, value.EndsWith(c));
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void EndsWithTest2()
         {
-            Assert.AreEqual(expected, value.EndsWith(c));
+            string? test = null;
+            _ =  test!.EndsWith(',');
+        }
+
+        public void Dispose()
+        {
+            Thread.CurrentThread.CurrentCulture = _culture;
+            GC.SuppressFinalize(this);
         }
 
         //[DataTestMethod()]
