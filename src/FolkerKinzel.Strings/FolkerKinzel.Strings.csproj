@@ -8,22 +8,10 @@
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>2.0.0-alpha4</Version>
-    <FileVersion>2.0.0.19</FileVersion>
+    <Version>2.0.0</Version>
+    <FileVersion>2.0.0.21</FileVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <PackageReleaseNotes>Adds support for .NET 5.0.
-    
-.NET Framework 4.0 is no longer supported.
-
-The GetStableHashCode extension methods are replaced with GetPersistentHashCode extension methods.
-
-The StringBuilderExtensions class has been renamed to StringBuilderExtension.
-
-The ReadOnlySpanExtensions class has been renamed to ReadOnlySpanExtension.
-
-The StringExtensions class has been renamed to StringExtension.
-
-</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <PackageTags>.net string polyfill hashcode stringbuilder c#</PackageTags>
     <Description>.NET library, containing extension methods for System.String, System.Text.StringBuilder and System.ReadOnlySpan&lt;Char&gt;.</Description>
     <Authors>Folker Kinzel</Authors>
@@ -35,10 +23,6 @@ The StringExtensions class has been renamed to StringExtension.
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/FolkerKinzel/Strings</PackageProjectUrl>
     <PackageIconUrl />
-  </PropertyGroup>
-  <!-- 👇 disable the nullable warnings when compiling for .NET 4.0 -->
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net40'">
-    <NoWarn>$(NoWarn);8600;8601;8602;8603;8604</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

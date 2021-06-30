@@ -6,7 +6,7 @@ namespace Examples
 {
     public static class Example
     {
-        public static void CreateConstantStringHashes()
+        public static void CreatePersistentStringHashes()
         {
             const string s1 = "Hello Folker!";
             const string s2 = "HELLO FOLKER!";

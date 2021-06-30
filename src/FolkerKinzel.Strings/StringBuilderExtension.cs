@@ -33,12 +33,12 @@ namespace FolkerKinzel.Strings
         /// <returns>Der Hashcode.</returns>
         /// <remarks>
         /// <para>
-        /// Die Methode <see cref="string.GetHashCode">String.GetHashCode()</see> gibt aus Sicherheitsgründen bei jedem Programmlauf 
+        /// Die Methode <see cref="string.GetHashCode()">String.GetHashCode()</see> gibt aus Sicherheitsgründen bei jedem Programmlauf 
         /// einen unterschiedlichen
         /// Hashcode für eine identische Zeichenfolge zurück. Abgesehen davon, dass auch der Hash-Algorithmus von 
-        /// <see cref="string.GetHashCode">String.GetHashCode()</see> in unterschiedlichen Frameworkversionen unterschiedlich sein könnte, 
+        /// <see cref="string.GetHashCode()">String.GetHashCode()</see> in unterschiedlichen Frameworkversionen unterschiedlich sein könnte, 
         /// macht es schon deshalb keinen
-        /// Sinn, den Rückgabewert von <see cref="string.GetHashCode"/> für die Wiederverwendung zu speichern. Die Alternativen, z.B.
+        /// Sinn, den Rückgabewert von <see cref="string.GetHashCode()"/> für die Wiederverwendung zu speichern. Die Alternativen, z.B.
         /// <see cref="MD5"/> oder <see cref="SHA256"/>, verbrauchen mehr Speicherplatz und sind langsamer. So bietet diese Methode eine
         /// schlanke Alternative, die sich zum Hashen sehr kurzer Zeichenfolgen eignet, die nicht in einem sicherheitskritischen Zusammenhang 
         /// verwendet werden.

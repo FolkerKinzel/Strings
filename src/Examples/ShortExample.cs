@@ -6,7 +6,7 @@ namespace Examples
 {
     public static class ShortExample
     {
-        public static void CreateConstantStringHashes()
+        public static void CreatePersistentStringHashes()
         {
             Console.WriteLine("Ordinal:");
             const string s1 = "Hello Folker!";

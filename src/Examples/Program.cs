@@ -4,7 +4,7 @@ namespace Examples
 {
     internal class Program
     {
-        private static void Main() => Example.CreateConstantStringHashes();
+        private static void Main() => Example.CreatePersistentStringHashes();
         
     }
 }
