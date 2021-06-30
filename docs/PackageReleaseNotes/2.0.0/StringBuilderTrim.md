@@ -1,6 +1,6 @@
 # FolkerKinzel.Strings
 
-## Extension methods that simulate String.Trim() on the StringBuilder class
+## Extension Methods, which Simulate String.Trim() on the StringBuilder Class
 ```csharp
 // Trim:
 public static StringBuilder Trim(this StringBuilder builder);
