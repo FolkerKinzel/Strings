@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FolkerKinzel.Strings" Version="2.0.0-alpha4" />
+    <PackageReference Include="FolkerKinzel.Strings" Version="2.0.0" />
   </ItemGroup>
 
 </Project>
