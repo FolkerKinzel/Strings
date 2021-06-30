@@ -1,7 +1,7 @@
 # FolkerKinzel.Strings 2.0.0
 ## Package Release Notes
 
-- The .NET Framework 4.0 has been removed.
+- The .NET Framework 4.0 support has been removed.
 - .NET 5.0 support has been added.
 - The `GetStableHashCode` extension methods have been renamed to `GetPersistentHashCode`
 to make their intention more clear.
