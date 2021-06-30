@@ -20,7 +20,7 @@
 - [x] Let GetPersistentHashCode throw an ArgumentException instead of an ArgumentOutOfRangeException 
 when an undefined enum value is passed as argument.
 
-- [ ] Add a Trim extension method for StringBuilder.
+- [x] Add a Trim extension method for StringBuilder.
 
 ### 2.0.1
 - [ ] Cleanup: Remove obsolete symbols.
