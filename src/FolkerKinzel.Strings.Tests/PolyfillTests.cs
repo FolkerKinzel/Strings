@@ -109,6 +109,31 @@ namespace FolkerKinzel.Strings.Tests
             _ =  test!.EndsWith(',');
         }
 
+
+        //[TestMethod]
+        //[ExpectedException(typeof(NullReferenceException))]
+        //public void ReplaceTest1()
+        //{
+        //    string? s = null;
+        //    _ = s!.Replace(" ", "", StringComparison.Ordinal);
+        //}
+
+        //[TestMethod]
+        //[ExpectedException(typeof(ArgumentNullException))]
+        //public void ReplaceTest2()
+        //{
+        //    string s = "Test";
+        //    _ = s.Replace(null!, "", StringComparison.Ordinal);
+        //}
+
+        //[TestMethod]
+        //[ExpectedException(typeof(ArgumentException))]
+        //public void ReplaceTest3()
+        //{
+        //    string s = "Test";
+        //    _ = s.Replace("", "", StringComparison.Ordinal);
+        //}
+
         public void Dispose()
         {
             Thread.CurrentThread.CurrentCulture = _culture;

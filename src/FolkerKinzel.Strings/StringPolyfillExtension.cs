@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Text;
+using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings
 {
@@ -107,6 +111,119 @@ namespace FolkerKinzel.Strings
         public static bool EndsWith(this string s, char value)
             => s is null ? throw new NullReferenceException()
                          : s.AsSpan().EndsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
+
+
+        //public static string Replace(this string s, string oldValue, string? newValue, StringComparison comparisonType)
+        //{
+        //    if(s is null)
+        //    {
+        //        throw new NullReferenceException();
+        //    }
+
+        //    if(oldValue is null)
+        //    {
+        //        throw new ArgumentNullException(nameof(oldValue));
+        //    }
+
+        //    if(oldValue.Length == 0)
+        //    {
+        //        throw new ArgumentException(Res.NoEmptyStringAllowed, nameof(oldValue));
+        //    }
+
+
+        //    switch (comparisonType)
+        //    {
+        //        case StringComparison.CurrentCulture:
+        //        case StringComparison.CurrentCultureIgnoreCase:
+        //            return ReplaceCore(s, oldValue, newValue, CultureInfo.CurrentCulture.CompareInfo, GetCaseCompareOfComparisonCulture(comparisonType));
+ 
+        //        case StringComparison.InvariantCulture:
+        //        case StringComparison.InvariantCultureIgnoreCase:
+        //            return ReplaceCore(s, oldValue, newValue, CultureInfo.InvariantCulture.CompareInfo, GetCaseCompareOfComparisonCulture(comparisonType));
+ 
+        //        case StringComparison.Ordinal:
+        //            return s.Replace(oldValue, newValue);
+ 
+        //        case StringComparison.OrdinalIgnoreCase:
+        //            return ReplaceCore(s, oldValue, newValue, CultureInfo.InvariantCulture.CompareInfo, CompareOptions.OrdinalIgnoreCase);
+ 
+        //        default:
+        //            throw new ArgumentException(Res.UndefinedEnumValue, nameof(comparisonType));
+        //    }
+
+
+        //    throw new NotImplementedException();
+        //}
+
+        //private static CompareOptions GetCaseCompareOfComparisonCulture(StringComparison comparisonType)
+        //{
+        //    Debug.Assert((uint)comparisonType <= (uint)StringComparison.OrdinalIgnoreCase);
+ 
+        //    // Culture enums can be & with CompareOptions.IgnoreCase 0x01 to extract if IgnoreCase or CompareOptions.None 0x00
+        //    //
+        //    // CompareOptions.None                          0x00
+        //    // CompareOptions.IgnoreCase                    0x01
+        //    //
+        //    // StringComparison.CurrentCulture:             0x00
+        //    // StringComparison.InvariantCulture:           0x02
+        //    // StringComparison.Ordinal                     0x04
+        //    //
+        //    // StringComparison.CurrentCultureIgnoreCase:   0x01
+        //    // StringComparison.InvariantCultureIgnoreCase: 0x03
+        //    // StringComparison.OrdinalIgnoreCase           0x05
+ 
+        //    return (CompareOptions)((int)comparisonType & (int)CompareOptions.IgnoreCase);
+        //}
+
+
+        //private static string ReplaceCore(string searchSpace, string oldValue, string? newValue, CompareInfo ci, CompareOptions options)
+        //{
+        //    Debug.Assert(oldValue.Length != 0);
+
+        //    var result = new StringBuilder(searchSpace.Length);
+ 
+        //    bool hasDoneAnyReplacements = false;
+ 
+        //    while (true)
+        //    {
+        //        int index = ci.IndexOf(searchSpace, oldValue, options, out int matchLength);
+ 
+        //        // There's the possibility that 'oldValue' has zero collation weight (empty string equivalent).
+        //        // If this is the case, we behave as if there are no more substitutions to be made.
+ 
+        //        if (index < 0 || matchLength == 0)
+        //        {
+        //            break;
+        //        }
+ 
+        //        // append the unmodified portion of search space
+        //        result.Append(searchSpace.Slice(0, index));
+ 
+        //        // append the replacement
+        //        result.Append(newValue);
+ 
+        //        searchSpace = searchSpace.Slice(index + matchLength);
+        //        hasDoneAnyReplacements = true;
+        //    }
+ 
+        //    // Didn't find 'oldValue' in the remaining search space, or the match
+        //    // consisted only of zero collation weight characters. As an optimization,
+        //    // if we have not yet performed any replacements, we'll save the
+        //    // allocation.
+ 
+        //    if (!hasDoneAnyReplacements)
+        //    {
+        //        result.Dispose();
+        //        return null;
+        //    }
+ 
+        //    // Append what remains of the search space, then allocate the new string.
+ 
+        //    result.Append(searchSpace);
+        //    return result.ToString();
+        //}
+
+
         
     }
 #endif

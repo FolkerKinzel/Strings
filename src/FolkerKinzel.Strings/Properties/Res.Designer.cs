@@ -61,7 +61,16 @@ namespace FolkerKinzel.Strings.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die &quot;The value is not defined.&quot; ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die String cannot be of zero length. ähnelt.
+        /// </summary>
+        internal static string NoEmptyStringAllowed {
+            get {
+                return ResourceManager.GetString("NoEmptyStringAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The value is not defined. ähnelt.
         /// </summary>
         internal static string UndefinedEnumValue {
             get {

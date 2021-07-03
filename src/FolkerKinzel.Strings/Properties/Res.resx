@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NoEmptyStringAllowed" xml:space="preserve">
+    <value>String cannot be of zero length.</value>
+  </data>
   <data name="UndefinedEnumValue" xml:space="preserve">
-    <value>"The value is not defined."</value>
+    <value>The value is not defined.</value>
   </data>
 </root>
