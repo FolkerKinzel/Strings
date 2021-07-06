@@ -115,6 +115,24 @@ namespace FolkerKinzel.Strings
                     : builder.DoTrimEnd(trimChars);
         }
 
+
+        /// <summary>
+        /// Entfernt alle nachgestellten Vorkommen der Zeichen in der angegebenen Spanne aus dem <see cref="StringBuilder"/>.
+        /// </summary>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
+        /// <param name="trimChars">Eine Spanne mit den zu entfernenden Unicode-Zeichen. Wenn 
+        /// <paramref name="trimChars"/> eine leere Spanne ist, werden stattdessen Leerzeichen entfernt.</param>
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder TrimEnd(this StringBuilder builder, ReadOnlySpan<char> trimChars)
+        {
+            return builder is null
+                ? throw new ArgumentNullException(nameof(builder))
+                : trimChars.Length == 0
+                    ? builder.DoTrimEnd()
+                    : builder.DoTrimEnd(trimChars);
+        }
+
         #endregion
 
         #region TrimStart
@@ -154,6 +172,22 @@ namespace FolkerKinzel.Strings
                     ? builder.DoTrimStart()
                     : builder.DoTrimStart(trimChars);
 
+        /// <summary>
+        /// Entfernt alle führenden Vorkommen der Zeichen in der angegebenen Spanne aus dem <see cref="StringBuilder"/>.
+        /// </summary>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
+        /// <param name="trimChars">Eine Spanne mit den zu entfernenden Unicode-Zeichen oder <c>null</c>. Wenn 
+        /// <paramref name="trimChars"/> eine leere Spanne ist, werden stattdessen Leerzeichen entfernt.</param>
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder TrimStart(this StringBuilder builder, ReadOnlySpan<char> trimChars)
+           => builder is null
+                ? throw new ArgumentNullException(nameof(builder))
+                : trimChars.Length == 0
+                    ? builder.DoTrimStart()
+                    : builder.DoTrimStart(trimChars);
+
+
         #endregion
 
         #region Trim
@@ -191,6 +225,22 @@ namespace FolkerKinzel.Strings
            => builder is null
                ? throw new ArgumentNullException(nameof(builder))
                : trimChars is null || trimChars.Length == 0
+                   ? builder.DoTrimEnd().DoTrimStart()
+                   : builder.DoTrimEnd(trimChars).DoTrimStart(trimChars);
+
+
+        /// <summary>
+        /// Entfernt alle führenden und nachgestellten Vorkommen der Zeichen in der angegebenen Spanne aus dem <see cref="StringBuilder"/>.
+        /// </summary>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
+        /// <param name="trimChars">Eine Spanne mit den zu entfernenden Unicode-Zeichen. Wenn <paramref name="trimChars"/> eine leere Spanne ist,
+        /// werden stattdessen Leerzeichen entfernt.</param>
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder Trim(this StringBuilder builder, ReadOnlySpan<char> trimChars)
+           => builder is null
+               ? throw new ArgumentNullException(nameof(builder))
+               : trimChars.Length == 0
                    ? builder.DoTrimEnd().DoTrimStart()
                    : builder.DoTrimEnd(trimChars).DoTrimStart(trimChars);
 

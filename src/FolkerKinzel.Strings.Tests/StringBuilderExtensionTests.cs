@@ -138,6 +138,41 @@ namespace FolkerKinzel.Strings.Tests
         }
 
 
+        [TestMethod()]
+        public void TrimTest9()
+        {
+            char[] trimChars = new char[] { '\"', '\'' };
+            string input = "\'\"Test\'\"";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.Trim(trimChars), sb.Trim(trimChars.AsSpan()).ToString());
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TrimTest10()
+        {
+            char[] trimChars = new char[] { '\"', '\'' };
+
+            StringBuilder? sb = null;
+            _ = sb!.Trim(trimChars.AsSpan());
+        }
+
+        [TestMethod()]
+        public void TrimTest11()
+        {
+#if NET45
+            char[] trimChars = new char[0];
+#else
+            char[] trimChars = Array.Empty<char>();
+#endif
+            string input = "   Test   ";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.Trim(trimChars), sb.Trim(trimChars.AsSpan()).ToString());
+        }
+
+
         [DataTestMethod()]
         [DataRow("    Test    ")]
         public void TrimStartTest1(string input)
@@ -239,6 +274,39 @@ namespace FolkerKinzel.Strings.Tests
             Assert.AreEqual(input.TrimStart(trimChars), sb.TrimStart(trimChars).ToString());
         }
 
+        [TestMethod()]
+        public void TrimStartTest12()
+        {
+            char[] trimChars = new char[] { '\"', '\'' };
+            string input = "\'\"Test\'\"";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimStart(trimChars), sb.TrimStart(trimChars.AsSpan()).ToString());
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TrimStartTest13()
+        {
+            char[] trimChars = new char[] { '\"', '\'' };
+
+            StringBuilder? sb = null;
+            _ = sb!.TrimStart(trimChars.AsSpan());
+        }
+
+        [TestMethod()]
+        public void TrimStartTest14()
+        {
+#if NET45
+            char[] trimChars = new char[0];
+#else
+            char[] trimChars = Array.Empty<char>();
+#endif
+            string input = "   Test   ";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimStart(trimChars), sb.TrimStart(trimChars.AsSpan()).ToString());
+        }
 
 
         [DataTestMethod()]
@@ -316,5 +384,40 @@ namespace FolkerKinzel.Strings.Tests
             var sb = new StringBuilder(input);
             Assert.AreEqual(input.TrimEnd(trimChars), sb.TrimEnd(trimChars).ToString());
         }
+
+        [TestMethod()]
+        public void TrimEndTest9()
+        {
+            char[] trimChars = new char[] { '\"', '\'' };
+            string input = "\'\"Test\'\"";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimEnd(trimChars), sb.TrimEnd(trimChars.AsSpan()).ToString());
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TrimEndTest10()
+        {
+            char[] trimChars = new char[] { '\"', '\'' };
+
+            StringBuilder? sb = null;
+            _ = sb!.TrimEnd(trimChars.AsSpan());
+        }
+
+        [TestMethod()]
+        public void TrimEndTest11()
+        {
+#if NET45
+            char[] trimChars = new char[0];
+#else
+            char[] trimChars = Array.Empty<char>();
+#endif
+            string input = "   Test   ";
+
+            var sb = new StringBuilder(input);
+            Assert.AreEqual(input.TrimEnd(trimChars), sb.TrimEnd(trimChars.AsSpan()).ToString());
+        }
+
     }
 }

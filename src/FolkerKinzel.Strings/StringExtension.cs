@@ -62,6 +62,133 @@ namespace FolkerKinzel.Strings
         /// </example>
         public static int GetPersistentHashCode(this string s, HashType hashType)
             => s is null ? throw new ArgumentNullException(nameof(s)) : s.AsSpan().GetPersistentHashCode(hashType);
+
+
+        /// <summary>
+        /// Erzeugt einen <see cref="string"/>, aus dem alle führenden und nachgestellten Vorkommen der Zeichen in der angegebenen Spanne entfernt sind.
+        /// </summary>
+        /// <param name="s">Die zu untersuchende Zeichenfolge.</param>
+        /// <param name="trimChars">Eine Spanne mit den zu entfernenden Unicode-Zeichen. Wenn <paramref name="trimChars"/> eine leere Spanne ist,
+        /// werden stattdessen Leerzeichen entfernt.</param>
+        /// <returns>Die resultierende Zeichenfolge, nachdem alle im <paramref name="trimChars"/>-Parameter übergebenen Zeichen am Anfang und Ende der 
+        /// Zeichenfolge entfernt wurden. </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+        public static string Trim(this string s, ReadOnlySpan<char> trimChars)
+        {
+            if (s is null)
+            {
+                throw new ArgumentNullException(nameof(s));
+            }
+            if (trimChars.Length == 0)
+            {
+                return s.Trim();
+            }
+
+            ReadOnlySpan<char> span = s.AsSpan().DoTrimEnd(trimChars).DoTrimStart(trimChars);
+
+            return span.Length == s.Length
+                ? s
+                : span.Length == 0
+                    ? string.Empty
+                    : span.ToString();
+        }
+
+        /// <summary>
+        /// Erzeugt einen <see cref="string"/>, aus dem alle führenden Vorkommen der Zeichen in der angegebenen Spanne entfernt sind.
+        /// </summary>
+        /// <param name="s">Die zu untersuchende Zeichenfolge.</param>
+        /// <param name="trimChars">Eine Spanne mit den zu entfernenden Unicode-Zeichen. Wenn <paramref name="trimChars"/> eine leere Spanne ist,
+        /// werden stattdessen Leerzeichen entfernt.</param>
+        /// <returns>Die resultierende Zeichenfolge, nachdem alle im <paramref name="trimChars"/>-Parameter übergebenen Zeichen am Anfang der 
+        /// Zeichenfolge entfernt wurden. </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+        public static string TrimStart(this string s, ReadOnlySpan<char> trimChars)
+        {
+            if (s is null)
+            {
+                throw new ArgumentNullException(nameof(s));
+            }
+
+            if (trimChars.Length == 0)
+            {
+                return s.TrimStart();
+            }
+
+            ReadOnlySpan<char> span = s.AsSpan().DoTrimStart(trimChars);
+
+            return span.Length == s.Length
+                ? s
+                : span.Length == 0
+                    ? string.Empty
+                    : span.ToString();
+        }
+
+        /// <summary>
+        /// Erzeugt einen <see cref="string"/>, aus dem alle nachgestellten Vorkommen der Zeichen in der angegebenen Spanne entfernt sind.
+        /// </summary>
+        /// <param name="s">Die zu untersuchende Zeichenfolge.</param>
+        /// <param name="trimChars">Eine Spanne mit den zu entfernenden Unicode-Zeichen. Wenn <paramref name="trimChars"/> eine leere Spanne ist,
+        /// werden stattdessen Leerzeichen entfernt.</param>
+        /// <returns>Die resultierende Zeichenfolge, nachdem alle im <paramref name="trimChars"/>-Parameter übergebenen Zeichen am Ende der 
+        /// Zeichenfolge entfernt wurden. </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+        public static string TrimEnd(this string s, ReadOnlySpan<char> trimChars)
+        {
+            if (s is null)
+            {
+                throw new ArgumentNullException(nameof(s));
+            }
+            if (trimChars.Length == 0)
+            {
+                return s.TrimEnd();
+            }
+
+            ReadOnlySpan<char> span = s.AsSpan().DoTrimEnd(trimChars);
+
+            return span.Length == s.Length
+                ? s
+                : span.Length == 0
+                    ? string.Empty
+                    : span.ToString();
+        }
+
+        private static ReadOnlySpan<char> DoTrimEnd(this ReadOnlySpan<char> span, ReadOnlySpan<char> trimChars)
+        {
+            int length = span.Length;
+
+            for (int i = length - 1; i >= 0; i--)
+            {
+                if (trimChars.Contains(span[i]))
+                {
+                    --length;  
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return span.Slice(0, length);
+        }
         
+
+        private static ReadOnlySpan<char> DoTrimStart(this ReadOnlySpan<char> span, ReadOnlySpan<char> trimChars)
+        {
+            int length = span.Length;
+
+            for (int j = 0; j < length; j++)
+            {
+                if (trimChars.Contains(span[j]))
+                {
+                    continue;
+                }
+                else
+                {
+                    return span.Slice(j);
+                }
+            }
+
+            return ReadOnlySpan<char>.Empty;
+        }
     }
 }
