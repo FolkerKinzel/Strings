@@ -41,6 +41,21 @@ namespace FolkerKinzel.Strings.Tests
             _ =  test!.Contains('e', StringComparison.Ordinal);
         }
 
+        [DataTestMethod]
+        [DataRow("Test", 'e', true)]
+        public void ContainsTest5(string input, char c, bool expected)
+        {
+            Assert.AreEqual(expected, input.Contains(c));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void ContainsTest6()
+        {
+            string? test = null;
+            _ =  test!.Contains('e');
+        }
+
         [DataTestMethod()]
         [DataRow("Test", 'e', StringComparison.Ordinal, 1)]
         public void IndexOfTest1(string value, char c, StringComparison comparison, int expected) => Assert.AreEqual(expected, value.IndexOf(c, comparison));

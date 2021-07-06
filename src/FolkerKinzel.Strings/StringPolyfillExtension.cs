@@ -35,6 +35,21 @@ namespace FolkerKinzel.Strings
                          : s.AsSpan().Contains(stackalloc[] { value }, comparisonType);
 
         /// <summary>
+        /// Gibt einen Wert zurück, der angibt, ob ein angegebenes Zeichen in der Zeichenfolge vorkommt.
+        /// </summary>
+        /// <param name="s">Der zu untersuchende <see cref="string"/>.</param>
+        /// <param name="value">Das zu suchende Zeichen.</param>
+        /// <returns><c>true</c>, wenn der <paramref name="value"/>-Parameter innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
+        /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <remarks>
+        /// <para>Die Methode führt einen Ordinalzeichenvergleich aus.</para>
+        /// <para>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</para>
+        /// </remarks>
+        public static bool Contains(this string s, char value)
+            => s is null ? throw new NullReferenceException()
+                         : s.AsSpan().Contains(value);
+
+        /// <summary>
         /// Gibt den NULL-basierten Index des ersten Vorkommens des angegebenen Unicode-Zeichens in dieser Zeichenfolge an. 
         /// Ein Parameter gibt den Typ der Suche für das angegebene Zeichen an.
         /// </summary>
