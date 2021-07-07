@@ -43,10 +43,7 @@ namespace FolkerKinzel.Strings.Tests
 
         [DataTestMethod]
         [DataRow("Test", 'e', true)]
-        public void ContainsTest5(string input, char c, bool expected)
-        {
-            Assert.AreEqual(expected, input.Contains(c));
-        }
+        public void ContainsTest5(string input, char c, bool expected) => Assert.AreEqual(expected, input.Contains(c));
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]

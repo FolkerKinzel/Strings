@@ -14,8 +14,8 @@ public static bool EndsWith(this string s, char value);
 ```
 .
 
-### Polyfills for the ReadOnlySpan&lt;T&gt; Struct (.NET Framework 4.5, .NET Standard 2.0, .NET Standard 2.1)
+### Polyfills for the ReadOnlySpan&lt;Char&gt; Struct (.NET Framework 4.5, .NET Standard 2.0, .NET Standard 2.1)
 
 ```csharp
-public static bool Contains<T>(this ReadOnlySpan<T> span, T value) where T : IEquatable<T>
+public static bool Contains(this ReadOnlySpan<char> span, char value);
 ```

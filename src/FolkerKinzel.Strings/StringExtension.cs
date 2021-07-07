@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using FolkerKinzel.Strings.Properties;
 
+
 namespace FolkerKinzel.Strings
 {
     /// <summary>

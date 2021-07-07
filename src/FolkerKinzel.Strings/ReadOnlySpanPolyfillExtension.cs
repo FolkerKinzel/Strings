@@ -15,15 +15,14 @@ namespace FolkerKinzel.Strings
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
 
         /// <summary>
-        /// Gibt an, ob ein angegebener Wert in einem <see cref="ReadOnlySpan{T}"/> gefunden wird. 
-        /// Werte werden mit „IEquatable{T}.Equals(T)“ verglichen.
+        /// Gibt an, ob ein angegebenes Unicodezeichen in einer Spanne gefunden wird. 
+        /// Werte werden mit <see cref="char.Equals(char)"/> verglichen.
         /// </summary>
-        /// <typeparam name="T">Der Typ der Spanne.</typeparam>
         /// <param name="span">Die zu durchsuchende Spanne.</param>
-        /// <param name="value">Der zu suchende Wert.</param>
+        /// <param name="value">Das zu suchende Unicodezeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="value"/> gefunden wurde, andernfalls <c>false</c>.</returns>
         /// <remarks>Verfügbar für .NET Framework 4.5, .NET Standard 2.0 und .NET Standard 2.1.</remarks>
-        public static bool Contains<T>(this ReadOnlySpan<T> span, T value) where T : IEquatable<T>
+        public static bool Contains(this ReadOnlySpan<char> span, char value)
         {
             for (int i = 0; i < span.Length; i++)
             {
@@ -37,5 +36,6 @@ namespace FolkerKinzel.Strings
         }
 #endif
 
+        
     }
 }
