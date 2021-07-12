@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Security.Cryptography;
 using System.Text;
 using FolkerKinzel.Strings.Properties;
+using FolkerKinzel.Strings.Polyfills;
 
 namespace FolkerKinzel.Strings
 {

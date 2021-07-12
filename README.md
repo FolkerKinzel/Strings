@@ -3,19 +3,19 @@
 [![GitHub](https://img.shields.io/github/license/FolkerKinzel/Strings)](https://github.com/FolkerKinzel/Strings/blob/master/LICENSE)
 
 .NET library, containing extension methods for String, 
-StringBuilder and ReadOnlySpan&lt;Char&gt;.
+StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.
 
 ## Content:
+* Extension methods, which act as Polyfills for .NET Framework 4.5,
+.NET Standard 2.0 and .NET Standard 2.1 in order to make it easier to support
+such older Framework versions in Multi Targeting Projects. [(See the complete list.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/Polyfills.md)
+* Extension methods, which simulate the several overloads of the String.Trim() 
+method for the `StringBuilder` class. [(See the list of overloads.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/StringBuilderTrim.md)
 * Extension methods, which return identical `Int32` hashcodes for 
 identical `Char` sequences each time the program runs. These hashcodes
 are a slim alternative to larger hash algorithms
 that is suitable for hashing very short strings 
 that are not used in a security-critical context. [(Read more.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/PersistableHashCodeExample.md)
-* Extension methods, which simulate the several overloads of the String.Trim() 
-method for the `StringBuilder` class. [(See the list of overloads.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/StringBuilderTrim.md)
-* Extension methods, which act as Polyfills for .NET Framework 4.5,
-.NET Standard 2.0 and .NET Standard 2.1 in order to make it easier to support
-such older Framework versions in Multi Targeting Projects. [(See the complete list.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/Polyfills.md)
 
 ## Project Reference:
 A detailed project reference is available in English and German:

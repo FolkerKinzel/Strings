@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using FolkerKinzel.Strings.Properties;
-
+using FolkerKinzel.Strings.Polyfills;
 
 namespace FolkerKinzel.Strings
 {

@@ -1,29 +1,37 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FolkerKinzel.Strings.Polyfills;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Globalization;
+using System.Threading;
 
-namespace FolkerKinzel.Strings.Tests
+namespace FolkerKinzel.Strings.Polyfills.Tests
 {
     [TestClass()]
-    public class PolyfillTests : IDisposable
+    public class StringPolyfillExtensionTests : IDisposable
     {
         private readonly CultureInfo _culture;
 
-        public PolyfillTests()
+        public StringPolyfillExtensionTests()
         {
             _culture = Thread.CurrentThread.CurrentCulture;
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
         }
 
+        public void Dispose()
+        {
+            Thread.CurrentThread.CurrentCulture = _culture;
+            GC.SuppressFinalize(this);
+        }
+
+
         [DataTestMethod()]
         [DataRow("Test", 'e', StringComparison.Ordinal, true)]
         public void ContainsTest1(string value, char c, StringComparison comparison, bool expected)
-            => Assert.AreEqual(expected, value.Contains(c, comparison));
+         => Assert.AreEqual(expected, value.Contains(c, comparison));
 
         [DataTestMethod()]
         [DataRow("Test", 'e', true)]
@@ -38,7 +46,7 @@ namespace FolkerKinzel.Strings.Tests
         public void ContainsTest4()
         {
             string? test = null;
-            _ =  test!.Contains('e', StringComparison.Ordinal);
+            _ = test!.Contains('e', StringComparison.Ordinal);
         }
 
         [DataTestMethod]
@@ -50,7 +58,7 @@ namespace FolkerKinzel.Strings.Tests
         public void ContainsTest6()
         {
             string? test = null;
-            _ =  test!.Contains('e');
+            _ = test!.Contains('e');
         }
 
         [DataTestMethod()]
@@ -66,13 +74,13 @@ namespace FolkerKinzel.Strings.Tests
         public void IndexOfTest3()
         {
             string? test = null;
-            _ =  test!.IndexOf('e', StringComparison.Ordinal);
+            _ = test!.IndexOf('e', StringComparison.Ordinal);
         }
 
 
         [DataTestMethod()]
         [DataRow("Test", 'e', StringSplitOptions.RemoveEmptyEntries, 2)]
-        public void SplitTest1(string value, char c, StringSplitOptions options, int expected) 
+        public void SplitTest1(string value, char c, StringSplitOptions options, int expected)
             => Assert.AreEqual(expected, value.Split(c, options).Length);
 
         [TestMethod]
@@ -80,7 +88,7 @@ namespace FolkerKinzel.Strings.Tests
         public void SplitTest2()
         {
             string? test = null;
-            _ =  test!.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            _ = test!.Split(',', StringSplitOptions.RemoveEmptyEntries);
         }
 
         [DataTestMethod()]
@@ -93,7 +101,7 @@ namespace FolkerKinzel.Strings.Tests
         public void SplitTest4()
         {
             string? test = null;
-            _ =  test!.Split(',', 2, StringSplitOptions.RemoveEmptyEntries);
+            _ = test!.Split(',', 2, StringSplitOptions.RemoveEmptyEntries);
         }
 
         [DataTestMethod()]
@@ -106,7 +114,7 @@ namespace FolkerKinzel.Strings.Tests
         public void StartsWithTest2()
         {
             string? test = null;
-            _ =  test!.StartsWith(',');
+            _ = test!.StartsWith(',');
         }
 
         [DataTestMethod()]
@@ -118,46 +126,7 @@ namespace FolkerKinzel.Strings.Tests
         public void EndsWithTest2()
         {
             string? test = null;
-            _ =  test!.EndsWith(',');
+            _ = test!.EndsWith(',');
         }
-
-
-        //[TestMethod]
-        //[ExpectedException(typeof(NullReferenceException))]
-        //public void ReplaceTest1()
-        //{
-        //    string? s = null;
-        //    _ = s!.Replace(" ", "", StringComparison.Ordinal);
-        //}
-
-        //[TestMethod]
-        //[ExpectedException(typeof(ArgumentNullException))]
-        //public void ReplaceTest2()
-        //{
-        //    string s = "Test";
-        //    _ = s.Replace(null!, "", StringComparison.Ordinal);
-        //}
-
-        //[TestMethod]
-        //[ExpectedException(typeof(ArgumentException))]
-        //public void ReplaceTest3()
-        //{
-        //    string s = "Test";
-        //    _ = s.Replace("", "", StringComparison.Ordinal);
-        //}
-
-        public void Dispose()
-        {
-            Thread.CurrentThread.CurrentCulture = _culture;
-            GC.SuppressFinalize(this);
-        }
-
-        //[DataTestMethod()]
-        //[DataRow("Test", "Other", ',', "Test,Other")]
-        //public void JoinTest1(string value1, string value2, char c, string expected)
-        //{
-        //    Assert.AreEqual(expected, string.Join();
-        //}
-
     }
 }

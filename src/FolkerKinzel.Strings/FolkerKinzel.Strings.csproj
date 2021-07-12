@@ -8,9 +8,9 @@
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>2.0.0</Version>
-    <FileVersion>2.0.0.28</FileVersion>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <Version>3.0.0-alpha1</Version>
+    <FileVersion>3.0.0.2</FileVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/ReleaseNotes.md</PackageReleaseNotes>
     <PackageTags>.net string polyfill hashcode stringbuilder c#</PackageTags>
     <Description>.NET library, containing extension methods for System.String, System.Text.StringBuilder and System.ReadOnlySpan&lt;Char&gt;.</Description>
@@ -29,13 +29,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="bin\Release\**" />
-    <Compile Remove="Intls\**" />
     <Compile Remove="Translations\**" />
     <EmbeddedResource Remove="bin\Release\**" />
-    <EmbeddedResource Remove="Intls\**" />
     <EmbeddedResource Remove="Translations\**" />
     <None Remove="bin\Release\**" />
-    <None Remove="Intls\**" />
     <None Remove="Translations\**" />
   </ItemGroup>
   <ItemGroup>

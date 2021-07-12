@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FolkerKinzel.Strings
+namespace FolkerKinzel.Strings.Polyfills
 {
     /// <summary>
     /// Erweiterungsmethoden für die <see cref="ReadOnlySpan{T}"/>-Struktur, die in älteren .NET-Versionen als
@@ -12,10 +12,9 @@ namespace FolkerKinzel.Strings
     /// </summary>
     public static class ReadOnlySpanPolyfillExtension
     {
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
-
+         #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
         /// <summary>
-        /// Gibt an, ob ein angegebenes Unicodezeichen in einer Spanne gefunden wird. 
+        /// Gibt an, ob ein angegebenes Unicodezeichen in der Spanne gefunden wird. 
         /// Werte werden mit <see cref="char.Equals(char)"/> verglichen.
         /// </summary>
         /// <param name="span">Die zu durchsuchende Spanne.</param>
@@ -34,8 +33,6 @@ namespace FolkerKinzel.Strings
 
             return false;
         }
-#endif
-
-        
+    #endif
     }
 }

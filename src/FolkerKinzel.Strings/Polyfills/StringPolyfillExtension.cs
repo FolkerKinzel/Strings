@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 using FolkerKinzel.Strings.Properties;
 
-namespace FolkerKinzel.Strings
+namespace FolkerKinzel.Strings.Polyfills
 {
-#if NETSTANDARD2_0 || NET45
     /// <summary>
     /// Erweiterungsmethoden für die <see cref="string"/>-Klasse, die in .NET Framework 4.5 und .NET Standard 2.0 als
     /// Polyfills für Methoden aus aktuellen .NET-Versionen dienen.
@@ -18,8 +18,13 @@ namespace FolkerKinzel.Strings
     /// Originalmethoden zu entsprechen, werfen diese Erweiterungsmethoden eine <see cref="NullReferenceException"/>, wenn sie auf 
     /// einem Null-String aufgerufen werden.
     /// </remarks>
+#if NETSTANDARD2_0
+        [ExcludeFromCodeCoverage]
+#endif
     public static partial class StringPolyfillExtension
     {
+        #if NET45 || NETSTANDARD2_0
+
         /// <summary>
         /// Gibt mithilfe der festgelegten Vergleichsregeln einen Wert zurück, der angibt, ob ein angegebenes Zeichen innerhalb der Zeichenfolge auftritt.
         /// </summary>
@@ -127,8 +132,7 @@ namespace FolkerKinzel.Strings
             => s is null ? throw new NullReferenceException()
                          : s.AsSpan().EndsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
 
-
-    }
 #endif
+    }
 }
 

@@ -1,5 +1,5 @@
 # FolkerKinzel.Strings
-.NET library, containing extension methods for String, StringBuilder and ReadOnlySpan&lt;Char&gt;.
+.NET library, containing extension methods for String, StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.
 
 ## Content:
 * Extension methods, which act as Polyfills for .NET Framework 4.5, .NET Standard 2.0 and .NET Standard 2.1 in order to make it easier to support such older Framework versions in Multi Targeting Projects.

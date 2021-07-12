@@ -1,6 +1,10 @@
 ﻿using System;
 using FolkerKinzel.Strings;
 
+#if !NETCOREAPP3_1
+using FolkerKinzel.Strings.Polyfills;
+#endif
+
 namespace ConsoleTester
 {
     class Program
@@ -32,8 +36,15 @@ namespace ConsoleTester
 
             _ = test.Split('e', 2);
 
+//#if !NETCOREAPP3_1
+            _ = test.AsMemory().Trim();
 
+            _ = test.AsMemory().TrimStart();
 
+            _ = test.AsMemory().TrimEnd();
+//#endif
+
+            //MemoryExtensions.Trim(test.AsMemory());
         }
     }
 }
