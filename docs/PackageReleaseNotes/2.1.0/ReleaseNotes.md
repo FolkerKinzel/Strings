@@ -15,6 +15,7 @@ public static bool Contains(this string s, char value);
 public static ReadOnlyMemory<char> Trim(this ReadOnlyMemory<char> memory);
 public static ReadOnlyMemory<char> TrimStart(this ReadOnlyMemory<char> memory);
 public static ReadOnlyMemory<char> TrimEnd(this ReadOnlyMemory<char> memory);
+public static StringBuilder Append(this StringBuilder builder, ReadOnlySpan<char> value);
 ```
 .
 - Additional overloads of the StringBuilder.Trim extension methods:
