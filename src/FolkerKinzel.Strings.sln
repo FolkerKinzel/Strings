@@ -25,7 +25,9 @@ Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "FolkerKinzel.Strings.Doku.d
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples", "Examples\Examples.csproj", "{CB1EC481-CE42-4CA5-96F5-AADC7E203DC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTester", "ConsoleTester\ConsoleTester.csproj", "{E1A70D09-FBF9-4574-9294-D1AC57973D77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTester", "ConsoleTester\ConsoleTester.csproj", "{E1A70D09-FBF9-4574-9294-D1AC57973D77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryTester", "LibraryTester\LibraryTester.csproj", "{28C714E1-ED2E-48CC-A4C3-ABA5977E74FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{E1A70D09-FBF9-4574-9294-D1AC57973D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1A70D09-FBF9-4574-9294-D1AC57973D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1A70D09-FBF9-4574-9294-D1AC57973D77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28C714E1-ED2E-48CC-A4C3-ABA5977E74FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28C714E1-ED2E-48CC-A4C3-ABA5977E74FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28C714E1-ED2E-48CC-A4C3-ABA5977E74FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28C714E1-ED2E-48CC-A4C3-ABA5977E74FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,15 +2,15 @@
 using System.Text;
 using FolkerKinzel.Strings;
 
-#if !NETCOREAPP3_1
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
 using FolkerKinzel.Strings.Polyfills;
 #endif
 
 namespace LibraryTesters
 {
-    class Program
+    public static class Test
     {
-        static void Main()
+        public static void Method()
         {
             string test = "Test";
 

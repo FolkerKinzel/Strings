@@ -8,7 +8,13 @@ namespace FolkerKinzel.Strings.Polyfills
     {
 # if NET45 || NETSTANDARD2_0
         public static StringBuilder Append(this StringBuilder builder, ReadOnlySpan<char> value)
-            => builder.Append(value.ToString());
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                _ = builder.Append(value[i]);
+            }
+            return builder;
+        }
 #endif
     }
 }

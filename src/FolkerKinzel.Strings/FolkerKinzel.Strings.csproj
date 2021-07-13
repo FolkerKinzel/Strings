@@ -9,7 +9,7 @@
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
     <Version>3.0.0-alpha2</Version>
-    <FileVersion>3.0.0.5</FileVersion>
+    <FileVersion>3.0.0.7</FileVersion>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/ReleaseNotes.md</PackageReleaseNotes>
     <PackageTags>.net string polyfill hashcode stringbuilder c#</PackageTags>
@@ -56,12 +56,7 @@
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="System.Memory">
-      <Version>4.5.4</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net45'">
     <PackageReference Include="System.Memory">
       <Version>4.5.4</Version>
     </PackageReference>
