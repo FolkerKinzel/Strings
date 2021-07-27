@@ -12,11 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		..\.github\ISSUE_TEMPLATE\bug_report.md = ..\.github\ISSUE_TEMPLATE\bug_report.md
 		..\.github\ISSUE_TEMPLATE\feature_request.md = ..\.github\ISSUE_TEMPLATE\feature_request.md
-		..\docs\PackageReleaseNotes\2.1.0\Polyfills.md = ..\docs\PackageReleaseNotes\2.1.0\Polyfills.md
 		..\README.md = ..\README.md
 		Reference.md = Reference.md
-		..\docs\PackageReleaseNotes\2.1.0\ReleaseNotes.md = ..\docs\PackageReleaseNotes\2.1.0\ReleaseNotes.md
-		..\docs\PackageReleaseNotes\2.1.0\StringBuilderTrim.md = ..\docs\PackageReleaseNotes\2.1.0\StringBuilderTrim.md
 	EndProjectSection
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "FolkerKinzel.Strings.Reference.en", "FolkerKinzel.Strings.Reference.en\FolkerKinzel.Strings.Reference.en.shfbproj", "{7A4F9D87-3555-4705-861A-61CE8AFBE9FC}"
@@ -27,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples", "Examples\Exampl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTester", "ConsoleTester\ConsoleTester.csproj", "{E1A70D09-FBF9-4574-9294-D1AC57973D77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryTester", "LibraryTester\LibraryTester.csproj", "{28C714E1-ED2E-48CC-A4C3-ABA5977E74FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryTester", "LibraryTester\LibraryTester.csproj", "{28C714E1-ED2E-48CC-A4C3-ABA5977E74FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

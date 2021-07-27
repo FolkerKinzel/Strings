@@ -1,4 +1,4 @@
-# FolkerKinzel.Strings 2.1.0
+# FolkerKinzel.Strings 3.0.0-beta
 ## Package Release Notes
 - The polyfill extension methods have moved to the namespace `FolkerKinzel.Strings.Polyfills`.
 The namespace was needed, because some of the polyfill extension methods cause conflicts with
@@ -9,12 +9,17 @@ published in existing code to make use of the polyfills.
 
 .
 
-- New Polyfills for .NET Framework 4.5 and .NET Standard 2.0:
+- New Polyfills for .NET Framework 4.5, .NET Standard 2.0 and .NET Standard 2.1:
 ```csharp
-public static bool Contains(this string s, char value);
 public static ReadOnlyMemory<char> Trim(this ReadOnlyMemory<char> memory);
 public static ReadOnlyMemory<char> TrimStart(this ReadOnlyMemory<char> memory);
 public static ReadOnlyMemory<char> TrimEnd(this ReadOnlyMemory<char> memory);
+```
+.
+
+- New Polyfills for .NET Framework 4.5, .NET Standard 2.0:
+```csharp
+public static bool Contains(this string s, char value);
 public static StringBuilder Append(this StringBuilder builder, ReadOnlySpan<char> value);
 ```
 .

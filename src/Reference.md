@@ -10,9 +10,9 @@
 ## Project Reference:
 A detailed project reference is available in English and German:
 
-* [Project Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/2.0.0/FolkerKinzel.Strings.Reference.en.chm)
+* [Project Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/3.0.0-beta/FolkerKinzel.Strings.Reference.en.chm)
 
-* [Projektdokumentation (Deutsch)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/2.0.0/FolkerKinzel.Strings.Doku.de.chm)
+* [Projektdokumentation (Deutsch)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/3.0.0-beta/FolkerKinzel.Strings.Doku.de.chm)
 
 > IMPORTANT: On some systems, the content of the CHM file is blocked. Before opening the file
 >  right click on the file icon, select Properties, and check the "Allow" checkbox - if it 

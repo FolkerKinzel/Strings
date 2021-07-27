@@ -19,9 +19,10 @@ namespace FolkerKinzel.Strings.Polyfills
         # if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1  
 
         /// <summary>
-        /// Entfernt alle führenden und nachgestellten Leerraumzeichen aus dem <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see>.
+        /// Entfernt alle führenden und nachfolgenden Leerzeichen aus einem schreibgeschützten Zeichenspeicherbereich.
         /// </summary>
-        /// <param name="memory">Der <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see> aus dem die Zeichen entfernt werden.</param>
+        /// <param name="memory">Der Quellspeicher, aus dem die Zeichen entfernt werden.</param>
+        /// <returns>Der zugeschnittene Zeichenspeicherbereich.</returns>
         public static ReadOnlyMemory<char> Trim(this ReadOnlyMemory<char> memory)
         {
             ReadOnlySpan<char> span = memory.Span;
@@ -31,16 +32,18 @@ namespace FolkerKinzel.Strings.Polyfills
         }
  
         /// <summary>
-        /// Entfernt alle führenden Leerraumzeichen aus dem <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see>.
+        /// Entfernt alle führenden Leerzeichen aus einem schreibgeschützten Speicherbereich.
         /// </summary>
-        /// <param name="memory">Der <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see> aus dem die Zeichen entfernt werden.</param>
+        /// <param name="memory">Der Quellspeicher, aus dem die Zeichen entfernt werden.</param>
+        /// <returns>Der zugeschnittene Zeichenspeicherbereich.</returns>
         public static ReadOnlyMemory<char> TrimStart(this ReadOnlyMemory<char> memory)
             => memory.Slice(memory.Span.ClampStart());
  
         /// <summary>
-        /// Entfernt alle nachgestellten Leerraumzeichen aus dem <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see>.
+        /// Entfernt alle nachfolgenden Leerzeichen aus einem schreibgeschützten Zeichenspeicherbereich.
         /// </summary>
-        /// <param name="memory">Der <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see> aus dem die Zeichen entfernt werden.</param>
+        /// <param name="memory">Der Quellspeicher, aus dem die Zeichen entfernt werden.</param>
+        /// <returns>Der zugeschnittene Zeichenspeicherbereich.</returns>
         public static ReadOnlyMemory<char> TrimEnd(this ReadOnlyMemory<char> memory)
             => memory.Slice(0, memory.Span.ClampEnd(0));
 
