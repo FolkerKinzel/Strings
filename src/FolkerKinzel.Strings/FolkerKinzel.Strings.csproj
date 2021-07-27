@@ -9,11 +9,11 @@
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
     <Version>3.0.0-beta</Version>
-    <FileVersion>3.0.0.12</FileVersion>
+    <FileVersion>3.0.0.14</FileVersion>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
-    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/ReleaseNotes.md</PackageReleaseNotes>
-    <PackageTags>.net string polyfill hashcode stringbuilder c#</PackageTags>
-    <Description>.NET library, containing extension methods for System.String, System.Text.StringBuilder and System.ReadOnlySpan&lt;Char&gt;.</Description>
+    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/3.0.0-beta/ReleaseNotes.md</PackageReleaseNotes>
+    <PackageTags>.net String Polyfill Hashcode StringBuilder ReadOnlySpan ReadOnlyMemory c#</PackageTags>
+    <Description>.NET library, containing extension methods for String, StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.</Description>
     <Authors>Folker Kinzel</Authors>
     <Copyright>Copyright © 2020 Folker Kinzel</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
