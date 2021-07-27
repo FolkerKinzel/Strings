@@ -24,5 +24,13 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
 
             Assert.AreEqual(test, sb.ToString());
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void AppendTest2()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.Append(ReadOnlySpan<char>.Empty);
+        }
     }
 }

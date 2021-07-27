@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace FolkerKinzel.Strings.Polyfills
@@ -16,13 +17,16 @@ namespace FolkerKinzel.Strings.Polyfills
     /// </remarks>
     public static class StringBuilderPolyfillExtension
     {
-# if NET45 || NETSTANDARD2_0
+#if NET45 || NETSTANDARD2_0
         /// <summary>
         /// Fügt die Zeichenfolgendarstellung eines festgelegten schreibgeschützten Zeichenspeicherbereichs an einen <see cref="StringBuilder"/> an.
         /// </summary>
         /// <param name="builder">Der <see cref="StringBuilder"/>, an den die Zeichen angefügt werden.</param>
         /// <param name="value">Der anzufügende schreibgeschützte Zeichenspeicherbereich.</param>
         /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+#if NETSTANDARD2_0
+        [ExcludeFromCodeCoverage]
+#endif
         public static StringBuilder Append(this StringBuilder builder, ReadOnlySpan<char> value)
         {
             if(builder is null)
