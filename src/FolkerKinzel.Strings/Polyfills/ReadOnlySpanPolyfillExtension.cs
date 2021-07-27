@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace FolkerKinzel.Strings.Polyfills
 {
-    /// <summary>
-    /// Erweiterungsmethoden für die <see cref="ReadOnlySpan{T}"/>-Struktur, die in älteren .NET-Versionen als
+   /// <summary>
+    /// Erweiterungsmethoden für die <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>-Struktur, die in .NET Framework 4.5, .NET Standard 2.0 
+    /// und .NET Standard 2.1 als
     /// Polyfills für Methoden aus aktuellen .NET-Versionen dienen.
     /// </summary>
+    /// <remarks>
+    /// Die Methoden dieser Klasse sollten ausschließlich in der Erweiterungsmethodensyntax verwendet zu werden, um die 
+    /// in moderneren Frameworks vorhandenen Originalmethoden der<see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>-Struktur zu simulieren.
+    /// </remarks>
     public static class ReadOnlySpanPolyfillExtension
     {
          #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1

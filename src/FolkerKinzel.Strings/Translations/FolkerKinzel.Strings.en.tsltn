@@ -223,4 +223,85 @@ The method performs an ordinal character comparison.
 &lt;para&gt;
 Available for .NET Standard 2.0 and .NET Framework 4.5.
 &lt;/para&gt;</T>
+  <T ID="66CDA8F308E70C24"></T>
+  <T ID="F622AA37EEDCEE5F"></T>
+  <T ID="F8D86D3FEEDCEE5F"></T>
+  <T ID="B71BCAEA2D216BB2"></T>
+  <T ID="88C461926368FF3B"></T>
+  <T ID="5574B60B0AF7B8C1">Extension methods for the &lt;see cref="T:System.ReadOnlyMemory`1"&gt;ReadOnlyMemory&amp;lt;Char&amp;gt;&lt;/see&gt; structure, which are used in .NET Framework 4.5, .NET Standard 2.0 and  .NET Standard 2.1 as polyfills for methods from current .NET versions.</T>
+  <T ID="8D8056A8A454632A">The methods of this class should only be used in the extension method syntax to simulate the methods of the &lt;see cref="T:System.ReadOnlyMemory`1"&gt;ReadOnlyMemory&amp;lt;Char&amp;gt;&lt;/see&gt; structure, which exist in more modern frameworks.</T>
+  <T ID="81DD9BF91B520504">Removes all leading and trailing white-space characters from the memory.</T>
+  <T ID="21649B152F1FE25F">The source memory from which the characters are removed.</T>
+  <T ID="7EB677AB5D16D74">Removes all leading white-space characters from the memory.</T>
+  <T ID="59B4F4DB2F1FE25F">The source memory from which the characters are removed.</T>
+  <T ID="F2A25B704F5D26D3">Removes all trailing white-space characters from the memory.</T>
+  <T ID="E7EA3B7E2F1FE25F">The source memory from which the characters are removed.</T>
+  <T ID="FA6179F76FE6F9E4">Extension methods for the &lt;see cref="T:System.ReadOnlySpan`1"&gt;ReadOnlySpan&amp;lt;Char&amp;gt;&lt;/see&gt; structure, which are used in .NET Framework 4.5, .NET Standard 2.0 and  .NET Standard 2.1 as polyfills for methods from current .NET versions.</T>
+  <T ID="AE6D841A662971F3">The methods of this class should only be used in the extension method syntax to simulate the methods of the &lt;see cref="T:System.ReadOnlySpan`1"&gt;ReadOnlySpan&amp;lt;Char&amp;gt;&lt;/see&gt; structure, which exist in more modern frameworks.</T>
+  <T ID="BAB0884BD39A9759">Indicates whether a specified Unicode character is found in a read-only span.</T>
+  <T ID="5724914FC6DCBCB1">The span to search.</T>
+  <T ID="460EC51CD05DB862">The Unicode character to search for.</T>
+  <T ID="9E06C7CE0AB9F496">&lt;c&gt;true&lt;/c&gt; if found, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="63EBBC6CF57B4768">Available for .NET Framework 4.5, .NET Standard 2.0 and .NET Standard 2.1.</T>
+  <T ID="3D17DB82051501E3">Extension methods for the &lt;see cref="T:System.Text.StringBuilder"/&gt; class, which are used in .NET Framework 4.5 and .NET Standard 2.0 as polyfills for methods from current .NET versions.</T>
+  <T ID="65262C850AF980DB">The methods of this class should only be used in the extension method syntax to simulate the original methods of the &lt;see cref ="T:System.String"/&gt; class, which exist in more modern frameworks. To match the behavior of the original methods, these extension methods throw a &lt;see cref ="T:System.NullReferenceException"/&gt; when called on &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="436CA61750520FA">Appends the string representation of a specified read-only character span to a &lt;see cref="T:System.Text.StringBuilder"/&gt;.</T>
+  <T ID="92F8BC115DBE6F9F">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; to which the characters are appended.</T>
+  <T ID="477AF3C760E68253">The read-only character span to append.</T>
+  <T ID="9A37AD4E72DE8164">A reference to &lt;paramref name="builder"/&gt; after the append operation is completed.</T>
+  <T ID="5C53678426F8EFE0">Extension methods for the &lt;see cref ="T:System.String"/&gt; class, which are used in .NET Framework 4.5 and .NET Standard 2.0 as polyfills for methods from current .NET versions.</T>
+  <T ID="E4E3B0759A2D3774">To match the behavior of the original methods, these extension methods throw a &lt;see cref ="T:System.NullReferenceException"/&gt; when called on a &lt;c&gt;null&lt;/c&gt; string.</T>
+  <T ID="A568FFF6F7A24265">Returns a value indicating whether a specified character occurs within this string, using the specified comparison rules.</T>
+  <T ID="3B8DA89316154BD0">The &lt;see cref="T:System.String"/&gt; to search.</T>
+  <T ID="1B5BACF21802B031">The Unicode character to search for.</T>
+  <T ID="BD3512D7C31686F0">One of the enumeration values that specifies the rules to use in the comparison.</T>
+  <T ID="D99D375573CA557">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; has been found, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="82EFC2EBE78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="957C11C02140445F">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enum.</T>
+  <T ID="41800B7551BE8701">Available for .NET Framework 4.5 and .NET Standard 2.0.</T>
+  <T ID="510D3F37F468118F">Returns a value indicating whether a specified character appears in the string.</T>
+  <T ID="DFA197D016154BD0">The &lt;see cref="T:System.String"/&gt; to search.</T>
+  <T ID="A9A0B2711802B031">The Unicode character to search for.</T>
+  <T ID="BA054F50573CA557">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; has been found, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="F9C42ADDE78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="CC9600AC44ECA3B">&lt;para&gt;
+The method performs an ordinal character comparison.
+&lt;/para&gt;
+&lt;para&gt;
+Available for .NET Standard 2.0 and .NET Framework 4.5.
+&lt;/para&gt;</T>
+  <T ID="CBE2D2A8011B8422">Reports the zero-based index of the first occurrence of the specified Unicode character in this &lt;see cref="T:System.String"/&gt;. A parameter specifies the type of search to use for the specified character.</T>
+  <T ID="ACF4039116154BD0">The &lt;see cref="T:System.String"/&gt; to search.</T>
+  <T ID="5F8074931802B031">The Unicode character to search for.</T>
+  <T ID="1849E63F42F9B8ED">An enumeration value that specifies the rules for the search.</T>
+  <T ID="C2ABC273EAEAC904">The zero-based index of &lt;paramref name="value"/&gt; if that character is found, or -1 if it is not.</T>
+  <T ID="8702947AE78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="344842782140445F">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enum.</T>
+  <T ID="52E91E0B51BE8701">Available for .NET Framework 4.5 and .NET Standard 2.0.</T>
+  <T ID="CC9600AAC9E6C1C">The method performs an ordinal character comparison.</T>
+  <T ID="2C6AE194C11343A3">Splits a &lt;see cref="T:System.String"/&gt; into substrings based on a specified delimiting character and, optionally, options.</T>
+  <T ID="6194812F452EF894">The &lt;see cref="T:System.String"/&gt; to split.</T>
+  <T ID="8D8B61D1A7A536B">A character that delimits the substrings in &lt;paramref name="s"/&gt;.</T>
+  <T ID="B9B3A6156C70A1C5">An enumeration value that specifies whether to include empty substrings.</T>
+  <T ID="41A2A02588432DFE">An array whose elements contain the substrings from &lt;paramref name="s"/&gt; that are delimited by &lt;paramref name="separator"/&gt;.</T>
+  <T ID="83D6FB81E78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="F8DB8E235F754AB7">Splits a string into a maximum number of substrings based on the provided character separator, optionally omitting empty substrings from the result.</T>
+  <T ID="75C162E8452EF894">The &lt;see cref="T:System.String"/&gt; to split.</T>
+  <T ID="9C86D85E1A7A536B">A character that delimits the substrings in &lt;paramref name="s"/&gt;.</T>
+  <T ID="A7CB4C5442C71C1">The maximum number of elements expected in the array.</T>
+  <T ID="6F7769C96C70A1C5">An enumeration value that specifies whether to include empty substrings.</T>
+  <T ID="3AFEC716F98AC788">An array that contains at most &lt;paramref name="count"/&gt; substrings from &lt;paramref name="s"/&gt; that are delimited by &lt;paramref name="separator"/&gt;.</T>
+  <T ID="5069852EE78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="EC6B04FA39BDAA36">Determines whether &lt;paramref name="s"/&gt; starts with the specified character.</T>
+  <T ID="8E1BF60316154BD0">The &lt;see cref="T:System.String"/&gt; to search.</T>
+  <T ID="EF812EA909826F79">The Unicode character to compare.</T>
+  <T ID="5F28F797631F1A74">&lt;c&gt;true&lt;/c&gt; if value matches the beginning of &lt;paramref name="s"/&gt;; otherwise, &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="5488A99BC76D072E">This method performs a word (case-sensitive and culture-sensitive) comparison using the current culture.</T>
+  <T ID="612C8712E78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="B1ECEA32C7CADE05">Determines whether the end of &lt;paramref name="s"/&gt; matches the specified character.</T>
+  <T ID="84792E6516154BD0">The &lt;see cref="T:System.String"/&gt; to search.</T>
+  <T ID="33C00F7D09826F79">The Unicode character to compare.</T>
+  <T ID="62A7A18FDA265821">&lt;c&gt;true&lt;/c&gt; if value matches the end of &lt;paramref name="s"/&gt;; otherwise, &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="BF61AE8FC76D072E">This method performs a word (case-sensitive and culture-sensitive) comparison using the current culture.</T>
+  <T ID="B8E1B02DE78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
 </Tsltn>

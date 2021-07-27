@@ -34,7 +34,6 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <returns><c>true</c>, wenn der <paramref name="value"/>-Parameter innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
-        /// <remarks>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</remarks>
         public static bool Contains(this string s, char value, StringComparison comparisonType)
             => s is null ? throw new NullReferenceException()
                          : s.AsSpan().Contains(stackalloc[] { value }, comparisonType);
@@ -47,8 +46,7 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <returns><c>true</c>, wenn der <paramref name="value"/>-Parameter innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
         /// <remarks>
-        /// <para>Die Methode führt einen Ordinalzeichenvergleich aus.</para>
-        /// <para>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</para>
+        /// Die Methode führt einen Ordinalzeichenvergleich aus.
         /// </remarks>
         public static bool Contains(this string s, char value)
             => s is null ? throw new NullReferenceException()
@@ -64,7 +62,6 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <returns>Der nullbasierte Index von <paramref name="value"/>, wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
-        /// <remarks>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</remarks>
         public static int IndexOf(this string s, char value, StringComparison comparisonType)
             => s is null ? throw new NullReferenceException()
                          : s.AsSpan().IndexOf(stackalloc[] { value }, comparisonType);
@@ -79,7 +76,6 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <returns>Ein Array, dessen Elemente die Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
         /// <paramref name="separator"/> getrennt sind.</returns>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
-        /// <remarks>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string[] Split(this string s, char separator, StringSplitOptions options = StringSplitOptions.None)
             => s.Split(new char[] { separator }, options);
@@ -96,7 +92,6 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <returns>Ein Array, das maximal <paramref name="count"/> Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
         /// <paramref name="separator"/> getrennt sind.</returns>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
-        /// <remarks>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string[] Split(this string s, char separator, int count, StringSplitOptions options = StringSplitOptions.None)
             => s.Split(new char[] { separator }, count, options);
@@ -111,7 +106,6 @@ namespace FolkerKinzel.Strings.Polyfills
         /// Diese Methode führt einen Vergleich mit der aktuellen Kultur durch (Unterscheidung nach Groß-/Kleinschreibung und Kultur sensitiv).
         /// </remarks>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
-        /// <remarks>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</remarks>
         public static bool StartsWith(this string s, char value)
             => s is null ? throw new NullReferenceException()
                          : s.AsSpan().StartsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
@@ -127,7 +121,6 @@ namespace FolkerKinzel.Strings.Polyfills
         /// Diese Methode führt einen Vergleich mit der aktuellen Kultur durch (Unterscheidung nach Groß-/Kleinschreibung und Kultur sensitiv).
         /// </remarks>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
-        /// <remarks>Verfügbar für .NET Standard 2.0 und .NET Framework 4.5.</remarks>
         public static bool EndsWith(this string s, char value)
             => s is null ? throw new NullReferenceException()
                          : s.AsSpan().EndsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
