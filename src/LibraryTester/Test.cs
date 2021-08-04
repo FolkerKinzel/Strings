@@ -50,6 +50,16 @@ namespace LibraryTesters
             _ = sb.Append("Test".AsSpan());
 
             //MemoryExtensions.Trim(test.AsMemory());
+
+            _ = TextEncodingConverter.GetEncoding("iso-8859-1");
+
+            _ = "c".IsAscii();
+
+            _ = "test".IsAscii();
+
+            _ = "test".AsSpan().IsAscii();
+
+            _ = sb.ContainsNonAscii();
         }
     }
 }

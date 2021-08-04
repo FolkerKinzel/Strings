@@ -9,6 +9,13 @@ namespace FolkerKinzel.Strings.Tests
     [TestClass()]
     public class StringExtensionTests
     {
+        [DataTestMethod]
+        [DataRow("", true)]
+        [DataRow(null, true)]
+        [DataRow("Test", true)]
+        [DataRow("Märchen", false)]
+        public void IsAsciiTest(string? input, bool expected) => Assert.AreEqual(expected, input.IsAscii());
+
         [TestMethod()]
         public void GetPersistentHashCodeTest1()
         {

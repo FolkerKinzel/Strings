@@ -15,6 +15,32 @@ namespace FolkerKinzel.Strings
     public static class StringBuilderExtension
     {
         /// <summary>
+        /// Untersucht, ob der <see cref="StringBuilder"/> Unicode-Zeichen enthält,
+        /// die nicht zum ASCII-Zeichensatz gehören.
+        /// </summary>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt untersucht wird.</param>
+        /// <returns><c>true</c>, wenn <paramref name="builder"/> ein Unicode-Zeichen enthält, das nicht zum 
+        /// ASCII-Zeichensatz gehört, anderenfalls <c>false</c>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static bool ContainsNonAscii(this StringBuilder builder)
+        {
+            if (builder is null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
+            for (int i = 0; i < builder.Length; ++i)
+            {
+                if (!builder[i].IsAscii())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        /// <summary>
         /// Obsolete
         /// </summary>
         /// <param name="builder"></param>
@@ -246,6 +272,8 @@ namespace FolkerKinzel.Strings
                    : builder.DoTrimEnd(trimChars).DoTrimStart(trimChars);
 
         #endregion
+
+
 
         #region private Methods
 

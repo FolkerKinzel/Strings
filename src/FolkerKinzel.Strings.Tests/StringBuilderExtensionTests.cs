@@ -7,6 +7,21 @@ namespace FolkerKinzel.Strings.Tests
     [TestClass]
     public class StringBuilderExtensionTests
     {
+        [DataTestMethod]
+        [DataRow("", false)]
+        [DataRow(null, false)]
+        [DataRow("Test", false)]
+        [DataRow("Märchen", true)]
+        public void ContainsNonAsciiTest1(string? input, bool expected) => Assert.AreEqual(expected, new StringBuilder(input).ContainsNonAscii());
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsNonAsciiTest2()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ContainsNonAscii();
+        }
+
         [TestMethod()]
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetPersistentHashCodeTest1()
