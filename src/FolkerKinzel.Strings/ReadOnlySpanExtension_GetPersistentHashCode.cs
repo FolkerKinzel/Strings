@@ -14,38 +14,6 @@ namespace FolkerKinzel.Strings
     public static partial class ReadOnlySpanExtension
     {
         /// <summary>
-        /// Untersucht, ob die schreibgeschützte Zeichenspanne Unicode-Zeichen enthält,
-        /// die nicht zum ASCII-Zeichensatz gehören.
-        /// </summary>
-        /// <param name="span">Eine schreibgeschützte Spanne von Unicode-Zeichen.</param>
-        /// <returns><c>false</c>, wenn <paramref name="span"/> ein Unicode-Zeichen enthält, das nicht zum 
-        /// ASCII-Zeichensatz gehört, anderenfalls <c>true</c>.</returns>
-        public static bool IsAscii(this ReadOnlySpan<char> span)
-        {
-            for (int i = 0; i < span.Length; ++i)
-            {
-                if (!span[i].IsAscii())
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-
-        /// <summary>
-        /// Obsolete.
-        /// </summary>
-        /// <param name="span"></param>
-        /// <param name="hashType"></param>
-        /// <returns></returns>
-        [Obsolete("Use GetPersistentHashCode instead.", true)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [Browsable(false)]
-        public static int GetStableHashCode(this ReadOnlySpan<char> span, HashType hashType)
-            => GetPersistentHashCode(span, hashType);
-
-        /// <summary>
         /// Erzeugt bei jedem Programmlauf denselben <see cref="int"/>-Hashcode für eine identische Zeichenfolge.
         /// </summary>
         /// <param name="span">Die zu hashende Zeichenfolge.</param>
