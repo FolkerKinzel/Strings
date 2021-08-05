@@ -8,10 +8,6 @@ using FolkerKinzel.Strings.Polyfills;
 
 namespace FolkerKinzel.Strings
 {
-    /// <summary>
-    /// Erweiterungsmethoden für die <see cref="StringBuilder"/>-Klasse.
-    /// </summary>
-    /// <threadsafety static="true" instance="false"/>
     public static partial class StringBuilderExtension
     {
         /// <summary>
@@ -44,28 +40,28 @@ namespace FolkerKinzel.Strings
 
         /// <summary>
         /// Wandelt den Inhalt eines Abschnitts in <see cref="StringBuilder"/>, der bei <paramref name="startIndex"/>
-        /// beginnt und <paramref name="count"/> Zeichen umfasst, in Großbuchstaben um und verwendet
+        /// beginnt und <paramref name="length"/> Zeichen umfasst, in Großbuchstaben um und verwendet
         /// dabei die Regeln der invarianten Kultur.
         /// </summary>
         /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt bearbeitet wird.</param>
         /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem die Umwandlung
         /// beginnt.</param>
-        /// <param name="count">Die Anzahl der zu bearbeitenden Zeichen.</param>
+        /// <param name="length">Die Anzahl der zu bearbeitenden Zeichen.</param>
         /// <returns>Eine Referenz auf <paramref name="builder"/>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
-        /// <paramref name="startIndex"/> oder <paramref name="count"/> ist kleiner als 0 oder
+        /// <paramref name="startIndex"/> oder <paramref name="length"/> sind kleiner als 0 oder
         /// größer als die Anzahl der Zeichen in <paramref name="builder"/>.
         /// </para>
         /// <para>
         /// - oder -
         /// </para>
         /// <para>
-        /// <paramref name="startIndex"/> + <paramref name="count"/> ist größer als die Anzahl der Zeichen in
+        /// <paramref name="startIndex"/> + <paramref name="length"/> ist größer als die Anzahl der Zeichen in
         /// <paramref name="builder"/>.
         /// </para></exception>
-        public static StringBuilder ToUpperInvariant(this StringBuilder builder, int startIndex, int count)
+        public static StringBuilder ToUpperInvariant(this StringBuilder builder, int startIndex, int length)
         {
             if (builder is null)
             {
@@ -77,12 +73,12 @@ namespace FolkerKinzel.Strings
                 throw new ArgumentOutOfRangeException(nameof(startIndex));
             }
 
-            if (count < 0 || (count += startIndex) > builder.Length)
+            if (length < 0 || (length += startIndex) > builder.Length)
             {
-                throw new ArgumentOutOfRangeException(nameof(count));
+                throw new ArgumentOutOfRangeException(nameof(length));
             }
 
-            for (int i = startIndex; i < count; i++)
+            for (int i = startIndex; i < length; i++)
             {
                 char current = builder[i];
                 builder[i] = char.ToUpperInvariant(current);

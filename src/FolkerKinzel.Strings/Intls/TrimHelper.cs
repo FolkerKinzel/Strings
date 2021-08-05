@@ -66,10 +66,10 @@ namespace FolkerKinzel.Strings.Intls
         }
  
         /// <summary>
-        /// Delimits all trailing occurrences of whitespace charecters from the span.
+        /// Delimits all trailing occurrences of whitespace characters from the span.
         /// </summary>
         /// <param name="span">The source span from which the characters are removed.</param>
-        /// <param name="start">The start index from which to being searching.</param>
+        /// <param name="start">The start index from which to search.</param>
         internal static int ClampEnd(this ReadOnlySpan<char> span, int start)
         {
             // The code comes from https://source.dot.net/#System.Private.CoreLib/MemoryExtensions.Trim.cs,4ea9336c8966e7cb .

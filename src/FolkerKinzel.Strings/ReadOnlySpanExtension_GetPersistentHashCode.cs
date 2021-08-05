@@ -59,8 +59,7 @@ namespace FolkerKinzel.Strings
             };
         }
 
-
-
+        #region private
         private static int GetHashCodeOrdinal(ReadOnlySpan<char> span)
         {
             unchecked
@@ -82,7 +81,6 @@ namespace FolkerKinzel.Strings
             }
         }
 
-
         private static int GetHashCodeOrdinalIgnoreCase(ReadOnlySpan<char> span)
         {
             unchecked
@@ -103,7 +101,6 @@ namespace FolkerKinzel.Strings
                 return hash1 + (hash2 * 1566083941);
             }
         }
-
 
         private static int GetHashCodeAlphaNumericNoCase(ReadOnlySpan<char> span)
         {
@@ -144,5 +141,6 @@ namespace FolkerKinzel.Strings
                 return hash1 + (hash2 * 1566083941);
             }
         }
+        #endregion
     }
 }

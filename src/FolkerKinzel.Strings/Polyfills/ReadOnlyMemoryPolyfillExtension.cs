@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings.Polyfills
 {
@@ -26,8 +25,8 @@ namespace FolkerKinzel.Strings.Polyfills
         public static ReadOnlyMemory<char> Trim(this ReadOnlyMemory<char> memory)
         {
             ReadOnlySpan<char> span = memory.Span;
-            int start = span.ClampStart();
-            int length = span.ClampEnd(start);
+            int start = span.GetTrimmedStart();
+            int length = span.Slice(start).GetTrimmedLength();
             return memory.Slice(start, length);
         }
  
@@ -37,7 +36,7 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <param name="memory">Der Quellspeicher, aus dem die Zeichen entfernt werden.</param>
         /// <returns>Der zugeschnittene Zeichenspeicherbereich.</returns>
         public static ReadOnlyMemory<char> TrimStart(this ReadOnlyMemory<char> memory)
-            => memory.Slice(memory.Span.ClampStart());
+            => memory.Slice(memory.Span.GetTrimmedStart());
  
         /// <summary>
         /// Entfernt alle nachfolgenden Leerzeichen aus einem schreibgeschützten Zeichenspeicherbereich.
@@ -45,7 +44,7 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <param name="memory">Der Quellspeicher, aus dem die Zeichen entfernt werden.</param>
         /// <returns>Der zugeschnittene Zeichenspeicherbereich.</returns>
         public static ReadOnlyMemory<char> TrimEnd(this ReadOnlyMemory<char> memory)
-            => memory.Slice(0, memory.Span.ClampEnd(0));
+            => memory.Slice(0, memory.Span.GetTrimmedLength());
 
         #endif
     }

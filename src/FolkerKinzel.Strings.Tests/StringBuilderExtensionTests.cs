@@ -7,6 +7,185 @@ namespace FolkerKinzel.Strings.Tests
     [TestClass]
     public class StringBuilderExtensionTests
     {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ToLowerInvariantTest1()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ToLowerInvariant();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ToLowerInvariantTest2()
+        {
+            var sb = new StringBuilder();
+            _ = sb.ToLowerInvariant(-15);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ToLowerInvariantTest3()
+        {
+            var sb = new StringBuilder();
+            _ = sb.ToLowerInvariant(0, 4711);
+        }
+
+        [TestMethod]
+        public void ToLowerInvariantTest4()
+        {
+            var sb = new StringBuilder("TEST");
+            Assert.AreEqual("test", sb.ToLowerInvariant().ToString());
+        }
+
+        [TestMethod]
+        public void ToLowerInvariantTest12()
+        {
+            var sb = new StringBuilder("TEST");
+            Assert.AreEqual("Test", sb.ToLowerInvariant(1).ToString());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ToLowerInvariantTest5()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ToLowerInvariant(17);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ToLowerInvariantTest6()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ToLowerInvariant(17, 4);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ToLowerInvariantTest7()
+        {
+            var sb = new StringBuilder();
+            _ = sb.ToLowerInvariant(0, -4711);
+        }
+
+        [TestMethod]
+        public void ToLowerInvariantTest8()
+        {
+            var sb = new StringBuilder();
+            _ = sb.ToLowerInvariant(0, 0);
+        }
+
+        [TestMethod]
+        public void ToLowerInvariantTest9()
+        {
+            var sb = new StringBuilder();
+            _ = sb.ToLowerInvariant(0);
+        }
+
+        [TestMethod]
+        public void ToLowerInvariantTest10()
+        {
+            var sb = new StringBuilder();
+            _ = sb.ToLowerInvariant();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ToUpperInvariantTest1()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ToUpperInvariant();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ToUpperInvariantTest2()
+        {
+            var sb = new StringBuilder();
+            _ = sb.ToUpperInvariant(-15);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ToUpperInvariantTest3()
+        {
+            var sb = new StringBuilder();
+            _ = sb.ToUpperInvariant(0, 4711);
+        }
+
+        [TestMethod]
+        public void ToUpperInvariantTest4()
+        {
+            var sb = new StringBuilder("test");
+            Assert.AreEqual("TEST", sb.ToUpperInvariant().ToString());
+        }
+
+        [TestMethod]
+        public void ToUpperInvariantTest12()
+        {
+            var sb = new StringBuilder("test");
+            Assert.AreEqual("tEST", sb.ToUpperInvariant(1).ToString());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ToUpperInvariantTest5()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ToUpperInvariant(17);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ToUpperInvariantTest6()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ToUpperInvariant(17, 4);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ToUpperInvariantTest7()
+        {
+            var sb = new StringBuilder();
+            _ = sb.ToUpperInvariant(0, -4711);
+        }
+
+        [TestMethod]
+        public void ToUpperInvariantTest8()
+        {
+            var sb = new StringBuilder();
+            _ = sb.ToUpperInvariant(0, 0);
+        }
+
+        [TestMethod]
+        public void ToUpperInvariantTest9()
+        {
+            var sb = new StringBuilder();
+            _ = sb.ToUpperInvariant(0);
+        }
+
+        [TestMethod]
+        public void ToUpperInvariantTest10()
+        {
+            var sb = new StringBuilder();
+            _ = sb.ToUpperInvariant();
+        }
+
+        [DataTestMethod]
+        [DataRow("   ")]
+        [DataRow("")]
+        public void GetTrimmedStartTest1(string s) => Assert.AreEqual(s.Length, s.AsSpan().GetTrimmedStart());
+
+        [DataTestMethod]
+        [DataRow("ab@c%", true)]
+        [DataRow("%", true)]
+        [DataRow("test", false)]
+        [DataRow("", false)]
+        public void ContainsAnyTest1(string s, bool expected) => Assert.AreEqual(expected, s.AsSpan().ContainsAny(stackalloc char[] { '%', '@' }));
+
+
         [DataTestMethod]
         [DataRow("", false)]
         [DataRow(null, false)]
@@ -21,6 +200,59 @@ namespace FolkerKinzel.Strings.Tests
             StringBuilder? sb = null;
             _ = sb!.ContainsNonAscii();
         }
+
+        [DataTestMethod]
+        [DataRow("", false)]
+        [DataRow(null, false)]
+        [DataRow("Test", false)]
+        [DataRow("Märchen", true)]
+        public void ContainsNonAsciiTest3(string? input, bool expected)
+            => Assert.AreEqual(expected, new StringBuilder(input).ContainsNonAscii(0));
+
+
+        [DataTestMethod]
+        [DataRow("", false)]
+        [DataRow("Test", false)]
+        [DataRow("Märchen", true)]
+        public void ContainsNonAsciiTest4(string input, bool expected)
+            => Assert.AreEqual(expected, new StringBuilder(input).ContainsNonAscii(0, input.Length));
+
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsNonAsciiTest5()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ContainsNonAscii(0);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsNonAsciiTest6()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ContainsNonAscii(0, 0);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ContainsNonAsciiTest7() => _ = new StringBuilder().ContainsNonAscii(-1);
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ContainsNonAsciiTest8() => _ = new StringBuilder().ContainsNonAscii(-1, -1);
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ContainsNonAsciiTest11() => _ = new StringBuilder().ContainsNonAscii(0, -1);
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ContainsNonAsciiTest9() => _ = new StringBuilder().ContainsNonAscii(4711);
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ContainsNonAsciiTest10() => _ = new StringBuilder().ContainsNonAscii(0, 4711);
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentNullException))]

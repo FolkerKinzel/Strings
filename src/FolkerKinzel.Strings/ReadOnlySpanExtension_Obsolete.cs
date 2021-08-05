@@ -7,10 +7,6 @@ using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings
 {
-    /// <summary>
-    /// Erweiterungsmethoden für die <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>-Struktur.
-    /// </summary>
-    /// <threadsafety static="true" instance="false"/>
     public static partial class ReadOnlySpanExtension
     {
         /// <summary>
