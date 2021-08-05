@@ -11,7 +11,7 @@ namespace FolkerKinzel.Strings
     /// Erweiterungsmethoden für die <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>-Struktur.
     /// </summary>
     /// <threadsafety static="true" instance="false"/>
-    public static class ReadOnlySpanExtension
+    public static partial class ReadOnlySpanExtension
     {
         /// <summary>
         /// Untersucht, ob die schreibgeschützte Zeichenspanne Unicode-Zeichen enthält,
