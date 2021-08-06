@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using FolkerKinzel.Strings;
+using System.Linq;
 
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
 using FolkerKinzel.Strings.Polyfills;
@@ -60,6 +61,25 @@ namespace LibraryTesters
             _ = "test".AsSpan().IsAscii();
 
             _ = sb.ContainsNonAscii();
+
+            _ = sb.ContainsNonAscii(0);
+
+            _ = sb.ContainsNonAscii(0, 0);
+
+            _ = sb.ToUpperInvariant();
+            _ = sb.ToUpperInvariant(0);
+            _ = sb.ToUpperInvariant(0, 0);
+
+            _ = sb.ToLowerInvariant();
+            _ = sb.ToLowerInvariant(0);
+            _ = sb.ToLowerInvariant(0, 0);
+
+            _ = test.AsSpan().ContainsAny(ReadOnlySpan<char>.Empty);
+
+            _ = test.AsSpan().GetTrimmedLength();
+
+            _ = test.AsSpan().GetTrimmedStart();
+
         }
     }
 }

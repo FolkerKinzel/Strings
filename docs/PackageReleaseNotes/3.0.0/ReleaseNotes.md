@@ -1,4 +1,4 @@
-# FolkerKinzel.Strings 3.0.0-beta.2
+# FolkerKinzel.Strings 3.0.0
 ## Package Release Notes
 - The polyfill extension methods have moved to the namespace `FolkerKinzel.Strings.Polyfills`.
 The namespace was needed, because some of the polyfill extension methods cause conflicts with
@@ -16,6 +16,9 @@ public static bool IsAscii(this char c);
 - Additional extension method for the ReadOnlySpan&lt;Char&gt; structure:
 ```csharp
 public static bool IsAscii(this ReadOnlySpan<char> span);
+public static bool ContainsAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> chars);
+public static int GetTrimmedStart(this ReadOnlySpan<char> span);
+public static int GetTrimmedLength(this ReadOnlySpan<char> span);
 ```
 .
 
@@ -44,6 +47,14 @@ public static StringBuilder Trim(this StringBuilder builder, ReadOnlySpan<char> 
 public static StringBuilder TrimStart(this StringBuilder builder, ReadOnlySpan<char> trimChars);
 public static StringBuilder TrimEnd(this StringBuilder builder, ReadOnlySpan<char> trimChars);
 public static bool ContainsNonAscii(this StringBuilder builder);
+public static bool ContainsNonAscii(this StringBuilder builder, int startIndex);
+public static bool ContainsNonAscii(this StringBuilder builder, int startIndex, int length);
+public static StringBuilder ToLowerInvariant(this StringBuilder builder);
+public static StringBuilder ToLowerInvariant(this StringBuilder builder, int startIndex);
+public static StringBuilder ToLowerInvariant(this StringBuilder builder, int startIndex, int length);
+public static StringBuilder ToUpperInvariant(this StringBuilder builder);
+public static StringBuilder ToUpperInvariant(this StringBuilder builder, int startIndex);
+public static StringBuilder ToUpperInvariant(this StringBuilder builder, int startIndex, int length);
 ```
 .
 
