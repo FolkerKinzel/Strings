@@ -24,7 +24,7 @@ public static int GetTrimmedLength(this ReadOnlySpan<char> span);
 .
 
 - New static class `TextEncodingConverter`, which helps to overcome the the weaknesses of
-.NET Standard and .NET 5.0 in parsing ANSI charset names.
+.NET Standard and .NET 5.0 in parsing ANSI character set names.
 
 
 
