@@ -2,7 +2,7 @@
 [![NuGet](https://img.shields.io/nuget/v/FolkerKinzel.Strings)](https://www.nuget.org/packages/FolkerKinzel.Strings/)
 [![GitHub](https://img.shields.io/github/license/FolkerKinzel/Strings)](https://github.com/FolkerKinzel/Strings/blob/master/LICENSE)
 
-.NET library, containing extension methods for String, 
+.NET library, containing extension methods for String, Char,
 StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.
 
 ## Content:
@@ -29,3 +29,7 @@ A detailed project reference is available in English and German:
 > IMPORTANT: On some systems, the content of the CHM file is blocked. Before opening the file
 >  right click on the file icon, select Properties, and check the "Allow" checkbox - if it 
 > is present - in the lower right corner of the General tab in the Properties dialog.
+
+
+- [Version History](https://github.com/FolkerKinzel/Strings/releases)
+
