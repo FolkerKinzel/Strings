@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace FolkerKinzel.Strings
@@ -15,6 +16,7 @@ namespace FolkerKinzel.Strings
         /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
         /// <returns><c>true</c> wenn <paramref name="c"/> ein Zeichen des ASCII-Zeichensatzes ist,
         /// anderenfalls <c>false</c>.</returns>
-        public static bool IsAscii(this char c) => 128 > c; //=> ((int)c) < 128;
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsAscii(this char c) => 128 > c;
     }
 }

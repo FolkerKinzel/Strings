@@ -27,3 +27,11 @@ when an undefined enum value is passed as argument.
 
 ### 2.1.0
 - [ ] Add IndexOf- and Contains-Polyfills. 
+
+### 3.0.0
+- [x] Move the Polyfills to the namespace FolkerKinzel.Strings.Polyfills.
+- [x] Add new extension methods and polyfills.
+- [x] Make the extension method classes partial.
+
+### 3.1.0
+-[ ] Remove obsolete stuff.

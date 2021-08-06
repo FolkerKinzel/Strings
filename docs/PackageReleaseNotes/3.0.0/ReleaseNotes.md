@@ -7,11 +7,12 @@ new namespace will help to resolve such conflicts.
 This is a breaking change that requires a new Major version, because the new namespace has to be
 published in existing code to make use of the polyfills.
 
-.
+
 - New extension method for the Char structure:
 ```csharp
 public static bool IsAscii(this char c);
 ```
+
 .
 - Additional extension method for the ReadOnlySpan&lt;Char&gt; structure:
 ```csharp
@@ -25,7 +26,7 @@ public static int GetTrimmedLength(this ReadOnlySpan<char> span);
 - New static class `TextEncodingConverter`, which helps to overcome the the weaknesses of
 .NET Standard and .NET 5.0 in parsing ANSI charset names.
 
-.
+
 
 - New Polyfills for .NET Framework 4.5, .NET Standard 2.0 and .NET Standard 2.1:
 ```csharp
@@ -76,6 +77,10 @@ public static bool Contains(this ReadOnlySpan<char> span, char value);
 .
 
 - The CLSCompliantAttribute has been added.
+
+
+
+- The extension method classes have been made partial.
 
 .
 - [Version History](https://github.com/FolkerKinzel/Strings/releases)
