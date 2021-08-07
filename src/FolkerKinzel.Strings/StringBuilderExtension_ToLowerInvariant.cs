@@ -39,28 +39,28 @@ namespace FolkerKinzel.Strings
 
         /// <summary>
         /// Wandelt den Inhalt eines Abschnitts in <see cref="StringBuilder"/>, der bei <paramref name="startIndex"/>
-        /// beginnt und <paramref name="length"/> Zeichen umfasst, in Kleinbuchstaben um und verwendet
+        /// beginnt und <paramref name="count"/> Zeichen umfasst, in Kleinbuchstaben um und verwendet
         /// dabei die Regeln der invarianten Kultur.
         /// </summary>
         /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt bearbeitet wird.</param>
         /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem die Umwandlung
         /// beginnt.</param>
-        /// <param name="length">Die Anzahl der zu bearbeitenden Zeichen.</param>
+        /// <param name="count">Die Anzahl der zu bearbeitenden Zeichen.</param>
         /// <returns>Eine Referenz auf <paramref name="builder"/>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
-        /// <paramref name="startIndex"/> oder <paramref name="length"/> sind kleiner als 0 oder
+        /// <paramref name="startIndex"/> oder <paramref name="count"/> sind kleiner als 0 oder
         /// größer als die Anzahl der Zeichen in <paramref name="builder"/>.
         /// </para>
         /// <para>
         /// - oder -
         /// </para>
         /// <para>
-        /// <paramref name="startIndex"/> + <paramref name="length"/> ist größer als die Anzahl der Zeichen in
+        /// <paramref name="startIndex"/> + <paramref name="count"/> ist größer als die Anzahl der Zeichen in
         /// <paramref name="builder"/>.
         /// </para></exception>
-        public static StringBuilder ToLowerInvariant(this StringBuilder builder, int startIndex, int length)
+        public static StringBuilder ToLowerInvariant(this StringBuilder builder, int startIndex, int count)
         {
             if (builder is null)
             {
@@ -72,12 +72,12 @@ namespace FolkerKinzel.Strings
                 throw new ArgumentOutOfRangeException(nameof(startIndex));
             }
 
-            if (length < 0 || (length += startIndex) > builder.Length)
+            if (count < 0 || (count += startIndex) > builder.Length)
             {
-                throw new ArgumentOutOfRangeException(nameof(length));
+                throw new ArgumentOutOfRangeException(nameof(count));
             }
 
-            for (int i = startIndex; i < length; i++)
+            for (int i = startIndex; i < count; i++)
             {
                 char current = builder[i];
                 builder[i] = char.ToLowerInvariant(current);

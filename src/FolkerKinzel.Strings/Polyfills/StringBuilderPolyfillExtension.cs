@@ -18,23 +18,34 @@ namespace FolkerKinzel.Strings.Polyfills
     public static class StringBuilderPolyfillExtension
     {
 #if NET45 || NETSTANDARD2_0
-
-        //public static StringBuilder Append(this StringBuilder builder, StringBuilder? value)
-        //    => builder is null
-        //            ? throw new NullReferenceException()
-        //            : value is null
-        //                    ? builder 
-        //                    : builder.Append(value, 0, value.Length);
-
-
         /// <summary>
-        /// Fügt eine Kopie einer Teilzeichenfolge im festgelegten <see cref="StringBuilder"/> an diese Instanz an.
+        /// Fügt eine Kopie einer Teilzeichenfolge, die aus einem als Argument übergebenen <see cref="StringBuilder"/> stammt, an 
+        /// den vorhandenen Inhalt von <paramref name="builder"/> an.
         /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="value"></param>
-        /// <param name="startIndex"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt geändert wird.</param>
+        /// <param name="value">Der <see cref="StringBuilder"/>, von dessen Inhalt ein Teil kopiert wird.</param>
+        /// <param name="startIndex">Der NULL-basierte Index in <paramref name="value"/>, an dem der zu kopierende
+        /// Abschnitt beginnt.</param>
+        /// <param name="count">Die Anzahl der zu kopierenden Zeichen.</param>
+        /// <returns>Eine Referenz auf <paramref name="builder"/>.</returns>
+        /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// <para>
+        /// <paramref name="startIndex"/> oder <paramref name="count"/>
+        /// sind kleiner als 0
+        /// </para>
+        /// <para>
+        /// - oder -
+        /// </para>
+        /// <para>
+        /// die Summe <paramref name="startIndex"/> + <paramref name="count"/> ist größer als die Anzahl
+        /// der Zeichen in <paramref name="value"/>.
+        /// </para>
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="value"/> ist <c>null</c> und <paramref name="startIndex"/> oder <paramref name="count"/>
+        /// haben einen Wert, der größer als 0 ist.
+        /// </exception>
 #if NETSTANDARD2_0
         [ExcludeFromCodeCoverage]
 #endif
@@ -80,7 +91,6 @@ namespace FolkerKinzel.Strings.Polyfills
             }
 
             return builder;
-
         }
 
 

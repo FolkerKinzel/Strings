@@ -51,7 +51,7 @@ namespace FolkerKinzel.Strings
         /// <param name="builder">Der zu durchsuchende <see cref="StringBuilder"/>.</param>
         /// <param name="value">Das zu suchende Unicode-Zeichen.</param>
         /// <param name="startIndex">Die Anfangsposition der Suche.</param>
-        /// <param name="length">Die Anzahl der zu überprüfenden Zeichenpositionen.</param>
+        /// <param name="count">Die Anzahl der zu überprüfenden Zeichenpositionen.</param>
         /// <returns>Die nullbasierte Indexposition von value ab dem Anfang des <see cref="StringBuilder"/>s,
         /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <remarks>
@@ -60,17 +60,17 @@ namespace FolkerKinzel.Strings
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
-        /// <paramref name="startIndex"/> oder <paramref name="length"/> sind kleiner als 0 oder
+        /// <paramref name="startIndex"/> oder <paramref name="count"/> sind kleiner als 0 oder
         /// größer als die Anzahl der Zeichen in <paramref name="builder"/>.
         /// </para>
         /// <para>
         /// - oder -
         /// </para>
         /// <para>
-        /// <paramref name="startIndex"/> + <paramref name="length"/> ist größer als die Anzahl der Zeichen in
+        /// <paramref name="startIndex"/> + <paramref name="count"/> ist größer als die Anzahl der Zeichen in
         /// <paramref name="builder"/>.
         /// </para></exception>
-        public static int IndexOf(this StringBuilder builder, char value, int startIndex, int length)
+        public static int IndexOf(this StringBuilder builder, char value, int startIndex, int count)
         {
             if (builder is null)
             {
@@ -82,12 +82,12 @@ namespace FolkerKinzel.Strings
                 throw new ArgumentOutOfRangeException(nameof(startIndex));
             }
 
-            if (length < 0 || (length += startIndex) > builder.Length)
+            if (count < 0 || (count += startIndex) > builder.Length)
             {
-                throw new ArgumentOutOfRangeException(nameof(length));
+                throw new ArgumentOutOfRangeException(nameof(count));
             }
 
-            for (int i = startIndex; i < length; ++i)
+            for (int i = startIndex; i < count; ++i)
             {
                 if (value.Equals(builder[i]))
                 {

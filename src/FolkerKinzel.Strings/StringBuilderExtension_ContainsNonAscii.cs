@@ -45,29 +45,29 @@ namespace FolkerKinzel.Strings
 
         /// <summary>
         /// Untersucht einen Abschnitt des <see cref="StringBuilder"/>s, der bei <paramref name="startIndex"/> beginnt und
-        /// <paramref name="length"/> Zeichen umfasst, daraufhin, ob dieser Abschnitt Unicode-Zeichen enthält,
+        /// <paramref name="count"/> Zeichen umfasst, daraufhin, ob dieser Abschnitt Unicode-Zeichen enthält,
         /// die nicht zum ASCII-Zeichensatz gehören.
         /// </summary>
         /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt untersucht wird.</param>
         /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem die Untersuchung
         /// beginnt.</param>
-        /// <param name="length">Die Länge des zu untersuchenden Abschnitts.</param>
+        /// <param name="count">Die Länge des zu untersuchenden Abschnitts.</param>
         /// <returns><c>true</c>, wenn der Abschnitt in <paramref name="builder"/> ein Unicode-Zeichen enthält, das nicht zum 
         /// ASCII-Zeichensatz gehört, anderenfalls <c>false</c>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
-        /// <paramref name="startIndex"/> oder <paramref name="length"/> sind kleiner als 0 oder
+        /// <paramref name="startIndex"/> oder <paramref name="count"/> sind kleiner als 0 oder
         /// größer als die Anzahl der Zeichen in <paramref name="builder"/>.
         /// </para>
         /// <para>
         /// - oder -
         /// </para>
         /// <para>
-        /// <paramref name="startIndex"/> + <paramref name="length"/> ist größer als die Anzahl der Zeichen in
+        /// <paramref name="startIndex"/> + <paramref name="count"/> ist größer als die Anzahl der Zeichen in
         /// <paramref name="builder"/>.
         /// </para></exception>
-        public static bool ContainsNonAscii(this StringBuilder builder, int startIndex, int length)
+        public static bool ContainsNonAscii(this StringBuilder builder, int startIndex, int count)
         {
             if (builder is null)
             {
@@ -79,12 +79,12 @@ namespace FolkerKinzel.Strings
                 throw new ArgumentOutOfRangeException(nameof(startIndex));
             }
 
-            if (length < 0 || (length += startIndex) > builder.Length)
+            if (count < 0 || (count += startIndex) > builder.Length)
             {
-                throw new ArgumentOutOfRangeException(nameof(length));
+                throw new ArgumentOutOfRangeException(nameof(count));
             }
 
-            for (int i = startIndex; i < length; ++i)
+            for (int i = startIndex; i < count; ++i)
             {
                 if (!builder[i].IsAscii())
                 {
