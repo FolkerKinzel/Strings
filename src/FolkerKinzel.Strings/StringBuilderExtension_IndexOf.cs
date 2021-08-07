@@ -13,6 +13,9 @@ namespace FolkerKinzel.Strings
         /// <param name="value">Das zu suchende Unicode-Zeichen.</param>
         /// <returns>Die nullbasierte Indexposition von value ab dem Anfang des <see cref="StringBuilder"/>s,
         /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
+        /// <remarks>
+        /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
+        /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         public static int IndexOf(this StringBuilder builder, char value)
             => builder is null
@@ -28,6 +31,9 @@ namespace FolkerKinzel.Strings
         /// <param name="startIndex">Die Anfangsposition der Suche.</param>
         /// <returns>Die nullbasierte Indexposition von value ab dem Anfang des <see cref="StringBuilder"/>s,
         /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
+        /// <remarks>
+        /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
+        /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/> ist kleiner als 0 oder
         /// größer als die Anzahl der Zeichen in <paramref name="builder"/>.</exception>
@@ -48,6 +54,9 @@ namespace FolkerKinzel.Strings
         /// <param name="length">Die Anzahl der zu überprüfenden Zeichenpositionen.</param>
         /// <returns>Die nullbasierte Indexposition von value ab dem Anfang des <see cref="StringBuilder"/>s,
         /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
+        /// <remarks>
+        /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
+        /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
