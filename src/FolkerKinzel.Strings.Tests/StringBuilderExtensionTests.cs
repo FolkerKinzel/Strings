@@ -8,6 +8,82 @@ namespace FolkerKinzel.Strings.Tests
     public class StringBuilderExtensionTests
     {
         [TestMethod]
+        public void IndexOfTest1() => Assert.AreEqual(1, new StringBuilder("testen").IndexOf('e'));
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IndexOfTest2()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.IndexOf('e');
+        }
+
+        [TestMethod]
+        public void IndexOfTest3()
+            => Assert.AreEqual(1, new StringBuilder("testen").IndexOf('e', 0));
+
+
+        [TestMethod]
+        public void IndexOfTest4()
+        {
+            const string input = "testen";
+            Assert.AreEqual(1, new StringBuilder(input).IndexOf('e', 0, input.Length));
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IndexOfTest5()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.IndexOf('e', 0);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IndexOfTest6()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.IndexOf('e', 0, 0);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexOfTest7() => _ = new StringBuilder().IndexOf('e', -1);
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexOfTest8() => _ = new StringBuilder().IndexOf('e', -1, -1);
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexOfTest11() => _ = new StringBuilder().IndexOf('e', 0, -1);
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexOfTest9() => _ = new StringBuilder().IndexOf('e', 4711);
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexOfTest10() => _ = new StringBuilder().IndexOf('e', 0, 4711);
+
+        [TestMethod]
+        public void ContainsTest1()
+        {
+            var sb = new StringBuilder("test");
+
+            Assert.IsTrue(sb.Contains('e'));
+            Assert.IsFalse(sb.Contains('E'));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsTest2()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.Contains('e');
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ToLowerInvariantTest1()
         {
