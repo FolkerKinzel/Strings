@@ -10,6 +10,15 @@ namespace FolkerKinzel.Strings.Tests
     public class StringExtensionTests
     {
         [DataTestMethod]
+        [DataRow("", false)]
+        [DataRow(null, false)]
+        [DataRow("Test", false)]
+        [DataRow(" Test", true)]
+        [DataRow("Test ", true)]
+        [DataRow("Te st", true)]
+        public void ContainsWhiteSpaceTest(string? input, bool expected) => Assert.AreEqual(expected, input.ContainsWhiteSpace());
+
+        [DataTestMethod]
         [DataRow("", true)]
         [DataRow(null, true)]
         [DataRow("Test", true)]
