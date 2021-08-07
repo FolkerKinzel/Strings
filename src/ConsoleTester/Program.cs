@@ -16,6 +16,11 @@ namespace LibraryTesters
         {
             string test = "Test";
 
+            var sb1 = new StringBuilder();
+            var sb2 = new StringBuilder(test);
+
+            _ = sb1.Append(sb2, -17, sb2.Length);
+
             _ = test.Trim(stackalloc char[] { ',', ';' });
             _ = test.TrimStart(stackalloc char[] { ',', ';' });
             _ = test.TrimEnd(stackalloc char[] { ',', ';' });
