@@ -77,10 +77,8 @@ public static bool Contains(this ReadOnlySpan<char> span, char value);
 .
 
 - The CLSCompliantAttribute has been added.
-
-
-
 - The extension method classes have been made partial.
+- Unused dependencies have been removed.
 
 .
 - [Version History](https://github.com/FolkerKinzel/Strings/releases)

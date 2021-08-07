@@ -2,7 +2,7 @@
 [![NuGet](https://img.shields.io/nuget/v/FolkerKinzel.Strings)](https://www.nuget.org/packages/FolkerKinzel.Strings/)
 [![GitHub](https://img.shields.io/github/license/FolkerKinzel/Strings)](https://github.com/FolkerKinzel/Strings/blob/master/LICENSE)
 
-.NET library, containing extension methods and helper classes for String, Char,
+.NET library that contains extension methods and helper classes for String, Char,
 StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.
 
 ## Content:

@@ -10,14 +10,6 @@ namespace FolkerKinzel.Strings
 {
     public static partial class StringBuilderExtension
     {
-        ///// <summary>
-        ///// Converts the whole content of a <see cref="StringBuilder"/> to lower case using the rules
-        ///// of the invariant culture.
-        ///// </summary>
-        ///// <param name="builder">The <see cref="StringBuilder"/> whose content is modified.</param>
-        ///// <returns>A reference to <paramref name="builder"/>.</returns>
-        ///// <exception cref="ArgumentNullException"><paramref name="builder"/> is <c>null</c>.</exception>
-        
         /// <summary>
         /// Wandelt den gesamten Inhalt eines <see cref="StringBuilder"/>s in Kleinbuchstaben um und verwendet
         /// dabei die Regeln der invarianten Kultur.
@@ -29,16 +21,6 @@ namespace FolkerKinzel.Strings
             => builder is null ? throw new ArgumentNullException(nameof(builder))
                                : builder.ToLowerInvariant(0, builder.Length);
 
-        ///// <summary>
-        ///// Converts the content of a <see cref="StringBuilder"/> beginning at <paramref name="startIndex"/>
-        ///// to lower case using the rules of the invariant culture.
-        ///// </summary>
-        ///// <param name="builder">The <see cref="StringBuilder"/> whose content is modified.</param>
-        ///// <param name="startIndex">The zero-based index in <paramref name="builder"/> where the conversion
-        ///// starts.</param>
-        ///// <returns>A reference to <paramref name="builder"/>.</returns>
-        ///// <exception cref="ArgumentNullException"><paramref name="builder"/> is <c>null</c>.</exception>
-        
         /// <summary>
         /// Wandelt den Inhalt eines <see cref="StringBuilder"/>s beginnend bei <paramref name="startIndex"/>
         /// in Kleinbuchstaben um und verwendet
@@ -55,17 +37,6 @@ namespace FolkerKinzel.Strings
             => builder is null ? throw new ArgumentNullException(nameof(builder))
                                : builder.ToLowerInvariant(startIndex, builder.Length - startIndex);
 
-        ///// <summary>
-        ///// Converts a range of chars in a <see cref="StringBuilder"/>, which begins at <paramref name="startIndex"/>
-        ///// and has the length of <paramref name="count"/> characters, to lower case using the rules of the invariant culture.
-        ///// </summary>
-        ///// <param name="builder">The <see cref="StringBuilder"/> whose content is modified.</param>
-        ///// <param name="startIndex">The zero-based index in <paramref name="builder"/> where the conversion
-        ///// starts.</param>
-        ///// <param name="count">The number of <see cref="char"/>s to convert.</param>
-        ///// <returns>A reference to <paramref name="builder"/>.</returns>
-        ///// <exception cref="ArgumentNullException"><paramref name="builder"/> is <c>null</c>.</exception>
-        
         /// <summary>
         /// Wandelt den Inhalt eines Abschnitts in <see cref="StringBuilder"/>, der bei <paramref name="startIndex"/>
         /// beginnt und <paramref name="length"/> Zeichen umfasst, in Kleinbuchstaben um und verwendet

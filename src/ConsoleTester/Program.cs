@@ -2,6 +2,7 @@
 using System.Text;
 using FolkerKinzel.Strings;
 using System.Linq;
+using Baz;
 
 #if !NETCOREAPP3_1
 using FolkerKinzel.Strings.Polyfills;
@@ -80,6 +81,7 @@ namespace LibraryTesters
 
             _ = test.AsSpan().GetTrimmedStart();
 
+            test.Foo();
         }
     }
 }

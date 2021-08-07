@@ -1,5 +1,7 @@
 # FolkerKinzel.Strings
-.NET library, containing extension methods for String, StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.
+[![GitHub](https://img.shields.io/github/license/FolkerKinzel/Strings)](https://github.com/FolkerKinzel/Strings/blob/master/LICENSE)
+
+.NET library that contains extension methods and helper classes for String, Char, StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.
 
 ## Content:
 * Extension methods for String, StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;, which act as Polyfills for .NET Framework 4.5, .NET Standard 2.0 and .NET Standard 2.1 in order to make it easier to support such older Framework versions in Multi Targeting Projects.
@@ -17,5 +19,8 @@ A detailed project reference is available in English and German:
 > IMPORTANT: On some systems, the content of the CHM file is blocked. Before opening the file
 >  right click on the file icon, select Properties, and check the "Allow" checkbox - if it 
 > is present - in the lower right corner of the General tab in the Properties dialog.
+.
+- [Version History](https://github.com/FolkerKinzel/Strings/releases)
+
 
 
