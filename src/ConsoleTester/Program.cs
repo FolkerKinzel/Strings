@@ -12,13 +12,14 @@ namespace LibraryTesters
 {
     class Program
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1825:Arrayzuordnungen mit einer Länge von null vermeiden", Justification = "<Ausstehend>")]
         static void Main()
         {
             string test = "Test";
 
             var sb1 = new StringBuilder();
             var sb2 = new StringBuilder(test);
-
+            ReadOnlySpan<char> span = test.AsSpan();
             _ = sb1.Append(sb2, -17, sb2.Length);
 
             _ = test.Trim(stackalloc char[] { ',', ';' });
@@ -44,7 +45,7 @@ namespace LibraryTesters
 
             _ = test.Split('e', 2);
 
-//#if !NETCOREAPP3_1
+            //#if !NETCOREAPP3_1
             _ = test.AsMemory().Trim();
 
             _ = test.AsMemory().TrimStart();
@@ -70,7 +71,7 @@ namespace LibraryTesters
 
             _ = sb.ContainsNonAscii(0);
 
-            _ = sb.ContainsNonAscii(0,0);
+            _ = sb.ContainsNonAscii(0, 0);
 
             _ = sb.ToUpperInvariant();
             _ = sb.ToUpperInvariant(0);
@@ -80,13 +81,43 @@ namespace LibraryTesters
             _ = sb.ToLowerInvariant(0);
             _ = sb.ToLowerInvariant(0, 0);
 
-            _ = test.AsSpan().ContainsAny(ReadOnlySpan<char>.Empty);
+            _ = span.ContainsAny(ReadOnlySpan<char>.Empty);
 
-             _ = test.AsSpan().GetTrimmedLength();
+            _ = span.GetTrimmedLength();
 
-            _ = test.AsSpan().GetTrimmedStart();
+            _ = span.GetTrimmedStart();
 
             test.Foo();
+
+            _ = test.ContainsWhiteSpace();
+
+            _ = test.ContainsAny(new char[0]);
+            _ = test.ContainsAny(test.AsSpan());
+            _ = test.ContainsAny('t', 's');
+            _ = test.ContainsAny('t', 'e', 's');
+            _ = test.IndexOfAny(test.AsSpan(), 0, 0);
+            _ = test.LastIndexOfAny(test.AsSpan(), 0, 0);
+
+            _ = sb.Contains('e');
+            _ = sb.IndexOf('e');
+            _ = sb.IndexOf('e', 0);
+            _ = sb.IndexOf('e', 0, 0);
+            _ = sb.LastIndexOf('e');
+            _ = sb.LastIndexOf('e', 0);
+            _ = sb.LastIndexOf('e', 0, 0);
+
+            _ = sb.Append(sb2, 0, 0);
+
+            _ = span.ContainsAny(span);
+            _ = span.ContainsAny('e', 'f');
+            _ = span.ContainsAny('e', 'f', 'g');
+            _ = span.IndexOfAny(span);
+            _ = span.LastIndexOfAny(span);
+            _ = span.ContainsWhiteSpace();
+
+
+
+
         }
     }
 }

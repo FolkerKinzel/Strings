@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using FolkerKinzel.Strings.Polyfills;
 
@@ -12,24 +13,51 @@ namespace FolkerKinzel.Strings
         /// die der Methode in einer anderen schreibgeschützten Zeichenspanne übergeben werden.
         /// </summary>
         /// <param name="span">Die zu untersuchende Spanne.</param>
-        /// <param name="chars">Eine schreibgeschützte Zeichenspanne, die die zu suchenden Zeichen enthält.</param>
-        /// <returns><c>true</c>, wenn in <paramref name="span"/> eines der in <paramref name="chars"/> enthaltenen
-        /// Zeichen vorkommt. Wenn <paramref name="span"/> oder <paramref name="chars"/> leere Spannen sind,
+        /// <param name="values">Eine schreibgeschützte Zeichenspanne, die die zu suchenden Zeichen enthält.</param>
+        /// <returns><c>true</c>, wenn in <paramref name="span"/> eines der in <paramref name="values"/> enthaltenen
+        /// Zeichen vorkommt. Wenn <paramref name="span"/> oder <paramref name="values"/> leere Spannen sind,
         /// wird <c>false</c> zurückgegeben.</returns>
         /// <remarks>
-        /// Die Methode verwendet für den Vergleich <see cref="char.Equals(char)"/>.
+        /// Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
+        /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})"/>. Ist die Länge von <paramref name="values"/>
+        /// größer, wird - um Performanceprobleme zu vermeiden - <see cref="string.IndexOfAny(char[])"/> verwendet.
         /// </remarks>
-        public static bool ContainsAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> chars)
-        {
-            for (int i = 0; i < chars.Length; i++)
-            {
-                if (span.Contains(chars[i]))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ContainsAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
+            => span.IndexOfAny(values) != -1;
+
+
+        /// <summary>
+        /// Gibt an, ob in einer schreibgeschüzten Zeichenspanne eines der beiden Zeichen vorkommt,
+        /// die der Methode als Argumente übergeben werden.
+        /// </summary>
+        /// <param name="span"></param>
+        /// <param name="value0"></param>
+        /// <param name="value1"></param>
+        /// <returns><c>true</c>, wenn eines der zu suchenden Zeichen in der Spanne gefunden wird, andernfalls <c>false</c>.</returns>
+        /// <remarks>
+        /// Für den Vergleich wird <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, T, T)"/> verwendet.
+        /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1)
+            => span.IndexOfAny(value0, value1) != -1;
+
+        /// <summary>
+        /// Gibt an, ob in einer schreibgeschüzten Zeichenspanne eines der drei Zeichen vorkommt,
+        /// die der Methode als Argumente übergeben werden.
+        /// </summary>
+        /// <param name="span"></param>
+        /// <param name="value0">Das erste zu suchende Zeichen.</param>
+        /// <param name="value1">Das zweite zu suchende Zeichen.</param>
+        /// <param name="value2">Das dritte zu suchende Zeichen.</param>
+        /// <returns><c>true</c>, wenn eines der zu suchenden Zeichen in der Spanne gefunden wird, andernfalls <c>false</c>.</returns>
+        /// <remarks>
+        /// Für den Vergleich wird <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, T, T, T)"/> verwendet.
+        /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1, char value2)
+            => span.IndexOfAny(value0, value1, value2) != -1;
+        
 
     }
 }

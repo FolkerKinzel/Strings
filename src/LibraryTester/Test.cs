@@ -11,9 +11,11 @@ namespace LibraryTesters
 {
     public static class Test
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1825:Arrayzuordnungen mit einer Länge von null vermeiden", Justification = "<Ausstehend>")]
         public static void Method()
         {
             string test = "Test";
+            var span = test.AsSpan();
 
             _ = test.Trim(stackalloc char[] { ',', ';' });
             _ = test.TrimStart(stackalloc char[] { ',', ';' });
@@ -79,6 +81,32 @@ namespace LibraryTesters
             _ = test.AsSpan().GetTrimmedLength();
 
             _ = test.AsSpan().GetTrimmedStart();
+
+            _ = test.ContainsWhiteSpace();
+
+            _ = test.ContainsAny(new char[0]);
+            _ = test.ContainsAny(test.AsSpan());
+            _ = test.ContainsAny('t', 's');
+            _ = test.ContainsAny('t', 'e', 's');
+            _ = test.IndexOfAny(test.AsSpan(), 0, 0);
+            _ = test.LastIndexOfAny(test.AsSpan(), 0, 0);
+
+            _ = sb.Contains('e');
+            _ = sb.IndexOf('e');
+            _ = sb.IndexOf('e', 0);
+            _ = sb.IndexOf('e', 0, 0);
+            _ = sb.LastIndexOf('e');
+            _ = sb.LastIndexOf('e', 0);
+            _ = sb.LastIndexOf('e', 0, 0);
+
+            _ = sb.Append(sb, 0, 0);
+
+            _ = span.ContainsAny(span);
+            _ = span.ContainsAny('e', 'f');
+            _ = span.ContainsAny('e', 'f', 'g');
+            _ = span.IndexOfAny(span);
+            _ = span.LastIndexOfAny(span);
+            _ = span.ContainsWhiteSpace();
 
         }
     }

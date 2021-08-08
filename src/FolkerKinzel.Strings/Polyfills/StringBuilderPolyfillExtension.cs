@@ -100,6 +100,7 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <param name="builder">Der <see cref="StringBuilder"/>, an den die Zeichen angefügt werden.</param>
         /// <param name="value">Der anzufügende schreibgeschützte Zeichenspeicherbereich.</param>
         /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+        /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
 #if NETSTANDARD2_0
         [ExcludeFromCodeCoverage]
 #endif
