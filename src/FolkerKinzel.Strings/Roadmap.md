@@ -35,6 +35,7 @@ when an undefined enum value is passed as argument.
 
 ### 3.1.0
 - [x] New overloads for TextEncodingConverter.GetEncoding
+- [x] Additional extension methods and polyfills.
 
 ### 3.2.0
 -[ ] Remove obsolete stuff.

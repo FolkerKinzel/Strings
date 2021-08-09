@@ -31,9 +31,9 @@ namespace FolkerKinzel.Strings
         /// Gibt an, ob in einer schreibgeschüzten Zeichenspanne eines der beiden Zeichen vorkommt,
         /// die der Methode als Argumente übergeben werden.
         /// </summary>
-        /// <param name="span"></param>
-        /// <param name="value0"></param>
-        /// <param name="value1"></param>
+        /// <param name="span">Die zu untersuchende Spanne.</param>
+        /// <param name="value0">Das erste zu suchende Zeichen.</param>
+        /// <param name="value1">Das zweite zu suchende Zeichen.</param>
         /// <returns><c>true</c>, wenn eines der zu suchenden Zeichen in der Spanne gefunden wird, andernfalls <c>false</c>.</returns>
         /// <remarks>
         /// Für den Vergleich wird <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, T, T)"/> verwendet.
@@ -46,7 +46,7 @@ namespace FolkerKinzel.Strings
         /// Gibt an, ob in einer schreibgeschüzten Zeichenspanne eines der drei Zeichen vorkommt,
         /// die der Methode als Argumente übergeben werden.
         /// </summary>
-        /// <param name="span"></param>
+        /// <param name="span">Die zu untersuchende Spanne.</param>
         /// <param name="value0">Das erste zu suchende Zeichen.</param>
         /// <param name="value1">Das zweite zu suchende Zeichen.</param>
         /// <param name="value2">Das dritte zu suchende Zeichen.</param>

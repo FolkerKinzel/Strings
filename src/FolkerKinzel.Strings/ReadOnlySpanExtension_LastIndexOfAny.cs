@@ -15,7 +15,7 @@ namespace FolkerKinzel.Strings
         /// in <paramref name="span"/> oder -1, wenn keines der Zeichen gefunden wurde.</returns>
         /// <remarks>
         /// <para>
-        /// Diese Spezialisierung der Erweiterungsmethode <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})"/>
+        /// Diese Spezialisierung der Erweiterungsmethode <see cref="MemoryExtensions.LastIndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})"/>
         /// für den Datentyp <see cref="char"/> wird benötigt, um Performanceprobleme zu vermeiden.
         /// </para>
         /// <para>
