@@ -1,4 +1,4 @@
-# FolkerKinzel.Strings 3.1.0
+# FolkerKinzel.Strings 3.1.0-beta.1
 ## Package Release Notes
 
 - Additional overloads for TextEncodingConverter.GetEncoding:
