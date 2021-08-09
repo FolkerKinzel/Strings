@@ -53,7 +53,7 @@ namespace FolkerKinzel.Strings
         /// entspricht oder ein <see cref="Encoding"/>-Objekt für den UTF-8 Zeichensatz, falls keine Entsprechung
         /// gefunden wurde.</returns>
         /// <param name="encoderFallback">Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
-        /// falls ein Zeichen mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
+        /// falls ein Zeichen mit dem <see cref="Encoding"/>-Objekt nicht enkodiert werden kann.</param>
         /// <param name="decoderFallback">
         /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
         /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
@@ -124,7 +124,7 @@ namespace FolkerKinzel.Strings
         /// entspricht oder ein <see cref="Encoding"/>-Objekt für den UTF-8 Zeichensatz, falls keine Entsprechung
         /// gefunden wurde.</returns>
         /// <param name="encoderFallback">Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
-        /// falls ein Zeichen mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
+        /// falls ein Zeichen mit dem <see cref="Encoding"/>-Objekt nicht enkodiert werden kann.</param>
         /// <param name="decoderFallback">
         /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
         /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>

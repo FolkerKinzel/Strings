@@ -52,7 +52,7 @@ namespace FolkerKinzel.Strings
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
         /// <paramref name="startIndex"/> oder <paramref name="count"/> sind kleiner als 0 oder
-        /// größer als die Anzahl der Zeichen in <paramref name="builder"/>.
+        /// größer als die Anzahl der Zeichen in <paramref name="builder"/>
         /// </para>
         /// <para>
         /// - oder -

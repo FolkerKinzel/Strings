@@ -57,7 +57,7 @@ namespace FolkerKinzel.Strings
         /// von <paramref name="builder"/>.</param>
         /// <param name="count">Die Anzahl der zu überprüfenden Zeichenpositionen.</param>
         /// <returns>Die nullbasierte Indexposition des letzten Vorkommens von <paramref name="value"/>,
-        /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
+        /// innerhalb des zu durchsuchenden Abschnitts wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <remarks>
         /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
         /// </remarks>
@@ -65,7 +65,7 @@ namespace FolkerKinzel.Strings
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
         /// <paramref name="builder"/> ist nicht leer und <paramref name="startIndex"/> ist kleiner als 0 oder größer 
-        /// oder gleich der Länge von <paramref name="builder"/>.
+        /// oder gleich der Länge von <paramref name="builder"/>
         /// </para>
         /// <para>
         /// - oder -

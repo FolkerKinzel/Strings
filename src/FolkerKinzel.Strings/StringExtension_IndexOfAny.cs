@@ -24,13 +24,13 @@ namespace FolkerKinzel.Strings
         /// in <paramref name="s"/> oder -1, wenn keines dieser Zeichen gefunden wurde.</returns>
         /// <remarks>
         /// Wenn die Länge von <paramref name="anyOf"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-        /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})"/>. Ist die Länge von <paramref name="anyOf"/>
+        /// MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). Ist die Länge von <paramref name="anyOf"/>
         /// größer, wird <see cref="string.IndexOfAny(char[])"/> verwendet.
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
-        /// <paramref name="startIndex"/> oder <paramref name="count"/> sind kleiner als 0.
+        /// <paramref name="startIndex"/> oder <paramref name="count"/> sind kleiner als 0
         /// </para>
         /// <para>
         /// - oder -

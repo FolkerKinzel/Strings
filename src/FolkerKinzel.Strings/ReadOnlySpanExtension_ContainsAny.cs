@@ -19,7 +19,8 @@ namespace FolkerKinzel.Strings
         /// wird <c>false</c> zurückgegeben.</returns>
         /// <remarks>
         /// Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-        /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})"/>. Ist die Länge von <paramref name="values"/>
+        /// MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). 
+        /// Ist die Länge von <paramref name="values"/>
         /// größer, wird - um Performanceprobleme zu vermeiden - <see cref="string.IndexOfAny(char[])"/> verwendet.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -36,7 +37,7 @@ namespace FolkerKinzel.Strings
         /// <param name="value1">Das zweite zu suchende Zeichen.</param>
         /// <returns><c>true</c>, wenn eines der zu suchenden Zeichen in der Spanne gefunden wird, andernfalls <c>false</c>.</returns>
         /// <remarks>
-        /// Für den Vergleich wird <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, T, T)"/> verwendet.
+        /// Für den Vergleich wird MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T) verwendet.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1)
@@ -52,7 +53,7 @@ namespace FolkerKinzel.Strings
         /// <param name="value2">Das dritte zu suchende Zeichen.</param>
         /// <returns><c>true</c>, wenn eines der zu suchenden Zeichen in der Spanne gefunden wird, andernfalls <c>false</c>.</returns>
         /// <remarks>
-        /// Für den Vergleich wird <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, T, T, T)"/> verwendet.
+        /// Für den Vergleich wird MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T) verwendet.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1, char value2)

@@ -15,12 +15,12 @@ namespace FolkerKinzel.Strings
         /// in <paramref name="span"/> oder -1, wenn keines der Zeichen gefunden wurde.</returns>
         /// <remarks>
         /// <para>
-        /// Diese Spezialisierung der Erweiterungsmethode <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})"/>
+        /// Diese Spezialisierung der Erweiterungsmethode MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)
         /// für den Datentyp <see cref="char"/> wird benötigt, um Performanceprobleme zu vermeiden.
         /// </para>
         /// <para>
         /// Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-        /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})"/>. Ist die Länge von <paramref name="values"/>
+        /// MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). Ist die Länge von <paramref name="values"/>
         /// größer, wird <see cref="string.IndexOfAny(char[])"/> verwendet.
         /// </para>
         /// </remarks>

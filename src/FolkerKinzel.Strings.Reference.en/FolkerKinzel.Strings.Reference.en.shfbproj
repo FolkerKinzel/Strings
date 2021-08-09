@@ -40,8 +40,9 @@
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="FolkerKinzel.Strings" isDocumented="True">Contains classes that provide extension methods for String, StringBuilder and ReadOnlySpan&amp;lt;Char&amp;gt;.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="FolkerKinzel.Strings.Polyfills" isDocumented="True">Contains classes that provide extension methods, which are polyfills that simulate original methods from current frameworks for older frameworks.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="FolkerKinzel.Strings (Group)" isGroup="True" isDocumented="True">Contains classes that support String, StringBuilder, ReadOnlySpan&amp;lt;Char&amp;gt; and ReadOnlyMemory&amp;lt;Char&amp;gt;.</NamespaceSummaryItem></NamespaceSummaries>
+      <NamespaceSummaryItem name="FolkerKinzel.Strings.Polyfills" isDocumented="True">Contains classes that provide extension methods, which are polyfills that simulate original methods from current frameworks for older frameworks.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="FolkerKinzel.Strings (Group)" isGroup="True" isDocumented="True">Contains classes that support String, StringBuilder, ReadOnlySpan&amp;lt;Char&amp;gt; and ReadOnlyMemory&amp;lt;Char&amp;gt;.</NamespaceSummaryItem>
+    </NamespaceSummaries>
     <CopyrightText>Copyright &amp;#169%3b 2020 Folker Kinzel</CopyrightText>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>
     <SyntaxFilters>Standard</SyntaxFilters>

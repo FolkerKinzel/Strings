@@ -27,7 +27,7 @@ namespace FolkerKinzel.Strings
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
         /// <paramref name="s"/> ist nicht <see cref="string.Empty"/> und <paramref name="startIndex"/> ist kleiner als 0 oder größer 
-        /// oder gleich der Länge von <paramref name="s"/>.
+        /// oder gleich der Länge von <paramref name="s"/>
         /// </para>
         /// <para>
         /// - oder -

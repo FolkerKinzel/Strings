@@ -11,7 +11,7 @@ namespace FolkerKinzel.Strings
         /// </summary>
         /// <param name="builder">Der zu durchsuchende <see cref="StringBuilder"/>.</param>
         /// <param name="value">Das zu suchende Unicode-Zeichen.</param>
-        /// <returns>Die nullbasierte Indexposition von value ab dem Anfang des <see cref="StringBuilder"/>s,
+        /// <returns>Die nullbasierte Indexposition von <paramref name="value"/> ab dem Anfang des <see cref="StringBuilder"/>s,
         /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <remarks>
         /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
@@ -29,7 +29,7 @@ namespace FolkerKinzel.Strings
         /// <param name="builder">Der zu durchsuchende <see cref="StringBuilder"/>.</param>
         /// <param name="value">Das zu suchende Unicode-Zeichen.</param>
         /// <param name="startIndex">Die Anfangsposition der Suche.</param>
-        /// <returns>Die nullbasierte Indexposition von value ab dem Anfang des <see cref="StringBuilder"/>s,
+        /// <returns>Die nullbasierte Indexposition von <paramref name="value"/> ab dem Anfang des <see cref="StringBuilder"/>s,
         /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <remarks>
         /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
@@ -52,7 +52,7 @@ namespace FolkerKinzel.Strings
         /// <param name="value">Das zu suchende Unicode-Zeichen.</param>
         /// <param name="startIndex">Die Anfangsposition der Suche.</param>
         /// <param name="count">Die Anzahl der zu überprüfenden Zeichenpositionen.</param>
-        /// <returns>Die nullbasierte Indexposition von value ab dem Anfang des <see cref="StringBuilder"/>s,
+        /// <returns>Die nullbasierte Indexposition von <paramref name="value"/> ab dem Anfang des <see cref="StringBuilder"/>s,
         /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <remarks>
         /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
@@ -61,7 +61,7 @@ namespace FolkerKinzel.Strings
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
         /// <paramref name="startIndex"/> oder <paramref name="count"/> sind kleiner als 0 oder
-        /// größer als die Anzahl der Zeichen in <paramref name="builder"/>.
+        /// größer als die Anzahl der Zeichen in <paramref name="builder"/>
         /// </para>
         /// <para>
         /// - oder -
