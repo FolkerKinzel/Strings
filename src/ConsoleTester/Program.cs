@@ -115,9 +115,6 @@ namespace LibraryTesters
             _ = span.LastIndexOfAny(span);
             _ = span.ContainsWhiteSpace();
 
-
-
-
         }
     }
 }
