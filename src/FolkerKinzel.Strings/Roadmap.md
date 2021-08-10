@@ -38,4 +38,8 @@ when an undefined enum value is passed as argument.
 - [x] Additional extension methods and polyfills.
 
 ### 3.2.0
--[ ] Remove obsolete stuff.
+- [ ] Remove obsolete stuff.
+- [ ] Wrap Uri.IsHexDigit(char), Uri.IsHexUpperChar(char), Uri.IsHexLowerChar(char) and the Char.IsXxx(char) methods with extension methods.
+- [ ] Implement `ReadOnlySpan<char>.StartsWith(char)` and `ReadOnlySpan<char>.EndsWith(char)`.
+- [ ] Implement `StringBuilder.StartsWith(char)` and `StringBuilder.EndsWith(char)`.
+- [ ] Polyfills `string.StartsWith(char)` and `string.EndsWith(char)`.
