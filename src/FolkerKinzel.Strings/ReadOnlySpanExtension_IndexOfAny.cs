@@ -12,7 +12,8 @@ namespace FolkerKinzel.Strings
         /// <param name="span">Die zu untersuchende Spanne.</param>
         /// <param name="values">Eine schreibgeschützte Zeichenspanne, die die zu suchenden Zeichen enthält.</param>
         /// <returns>Der NULL-basierte Index des ersten Vorkommens eines beliebigen Zeichens aus <paramref name="values"/>
-        /// in <paramref name="span"/> oder -1, wenn keines der Zeichen gefunden wurde.</returns>
+        /// in <paramref name="span"/> oder -1, wenn keines der Zeichen gefunden wurde. Wenn <paramref name="values"/> eine 
+        /// leere Spanne ist, gibt die Methode 0 zurück.</returns>
         /// <remarks>
         /// <para>
         /// Diese Spezialisierung der Erweiterungsmethode MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)

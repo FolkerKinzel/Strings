@@ -10,6 +10,8 @@ namespace FolkerKinzel.Strings.Tests
     [TestClass]
     public class ReadOnlySpanExtensionTests
     {
+        
+
         [DataTestMethod]
         [DataRow("test", 0)]
         [DataRow("", 0)]

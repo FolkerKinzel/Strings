@@ -10,6 +10,118 @@ namespace FolkerKinzel.Strings.Tests
     public class StringExtensionTests
     {
         [DataTestMethod]
+        [DataRow('e', 's', 't', true)]
+        [DataRow('e', 'y', 't', true)]
+        [DataRow('y', 's', 't', true)]
+        [DataRow('e', 's', 'y', true)]
+        [DataRow('e', 'y', 'y', true)]
+        [DataRow('y', 'y', 't', true)]
+        [DataRow('y', 's', 'y', true)]
+        [DataRow('y', 'y', 'y', false)]
+        public void ContainsAnyTest1(char val0, char val1, char val2, bool expected)
+        {
+            const string test = "test";
+            Assert.AreEqual(expected, test.ContainsAny(val0, val1, val2));
+        }
+
+        [DataTestMethod]
+        [DataRow('e', 's', true)]
+        [DataRow('e', 'y', true)]
+        [DataRow('y', 's', true)]
+        [DataRow('y', 'y', false)]
+        public void ContainsAnyTest2(char val0, char val1, bool expected)
+        {
+            const string test = "test";
+            Assert.AreEqual(expected, test.ContainsAny(val0, val1));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsAnyTest3()
+        {
+            string? s = null;
+            _ = s!.ContainsAny('a', 'b', 'c');
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsAnyTest4()
+        {
+            string? s = null;
+            _ = s!.ContainsAny('a', 'b');
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsAnyTest5()
+        {
+            string? s = null;
+            _ = s!.ContainsAny(ReadOnlySpan<char>.Empty);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsAnyTest6()
+        {
+            string? s = null;
+            _ = s!.ContainsAny(new char[]{ 'a', 'b'});
+        }
+
+
+        [DataTestMethod]
+        [DataRow("ts", true)]
+        [DataRow("0123456789ts", true)]
+        [DataRow("", false)]
+        [DataRow("xy", false)]
+        [DataRow("qwxyza0123456789", false)]
+        public void ContainsAnyTest7(string needles, bool expected)
+        {
+            const string test = "test";
+
+            //int i = MemoryExtensions.IndexOfAny(test.AsSpan(), ReadOnlySpan<char>.Empty);
+
+            Assert.AreEqual(expected, test.ContainsAny(needles.AsSpan()));
+        }
+
+        [DataTestMethod]
+        [DataRow("ts", true)]
+        [DataRow("0123456789ts", true)]
+        [DataRow("", false)]
+        [DataRow("xy", false)]
+        [DataRow("qwxyza0123456789", false)]
+        public void ContainsAnyTest8(string needles, bool expected)
+        {
+            const string test = "test";
+            Assert.AreEqual(expected, test.ContainsAny(needles.ToCharArray()));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsAnyTest10()
+        {
+            const string test = "test";
+            char[]? arr = null;
+            _ = test.ContainsAny(arr!);
+        }
+
+        [DataTestMethod]
+        [DataRow("ts", 2)]
+        [DataRow("0123456789ts", 2)]
+        [DataRow("", 0)]
+        [DataRow("xy", -1)]
+        [DataRow("qwxyza0123456789", -1)]
+        public void IndexOfAnyTest7(string needles, int expected)
+        {
+            const string test = "test";
+
+            //int i = "".LastIndexOfAny(new char[0]);
+            //i = MemoryExtensions.LastIndexOfAny(test.AsSpan(), ReadOnlySpan<char>.Empty);
+
+            Assert.AreEqual(expected, test.IndexOfAny(needles.AsSpan(), 1, test.Length - 1));
+        }
+
+
+        [DataTestMethod]
         [DataRow("", false)]
         [DataRow(null, false)]
         [DataRow("Test", false)]

@@ -25,7 +25,7 @@ namespace FolkerKinzel.Strings
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool ContainsAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
-            => span.IndexOfAny(values) != -1;
+            => !values.IsEmpty && span.IndexOfAny(values) != -1;
 
 
         /// <summary>

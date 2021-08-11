@@ -23,7 +23,7 @@ namespace FolkerKinzel.Strings
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
         public static bool ContainsAny(this string s, char value0, char value1)
             => s is null ? throw new ArgumentNullException(nameof(s))
-                         : s.AsSpan().IndexOfAny(value0, value1) != -1;
+                         : s.AsSpan().ContainsAny(value0, value1);
 
         /// <summary>
         /// Gibt an, ob in einem <see cref="string"/> eines der drei Zeichen vorkommt,
@@ -41,7 +41,7 @@ namespace FolkerKinzel.Strings
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
         public static bool ContainsAny(this string s, char value0, char value1, char value2)
             => s is null ? throw new ArgumentNullException(nameof(s))
-                         : s.AsSpan().IndexOfAny(value0, value1, value2) != -1;
+                         : s.AsSpan().ContainsAny(value0, value1, value2);
 
         /// <summary>
         /// Gibt an, ob in einem <see cref="string"/> eines der Zeichen vorkommt,
@@ -60,7 +60,7 @@ namespace FolkerKinzel.Strings
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
         public static bool ContainsAny(this string s, ReadOnlySpan<char> anyOf)
             => s is null ? throw new ArgumentNullException(nameof(s))
-                         : s.IndexOfAny(anyOf, 0, s.Length) != -1;
+                         : !anyOf.IsEmpty && s.IndexOfAny(anyOf, 0, s.Length) != -1;
 
         /// <summary>
         /// Gibt an, ob in einem <see cref="string"/> eines der Zeichen vorkommt,
@@ -72,10 +72,10 @@ namespace FolkerKinzel.Strings
         /// andernfalls <c>false</c>. Wenn <paramref name="s"/> oder <paramref name="anyOf"/> die Länge 0 haben,
         /// wird <c>false</c> zurückgegeben.</returns>
         /// <remarks>Für den Vergleich wird <see cref="string.IndexOfAny(char[])"/> verwendet.</remarks>
-        /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="s"/> oder <paramref name="anyOf"/> ist <c>null</c>.</exception>
         public static bool ContainsAny(this string s, char[] anyOf)
             => s is null ? throw new ArgumentNullException(nameof(s))
-                         : s.IndexOfAny(anyOf) != -1;
+                         : s.IndexOfAny(anyOf) != -1 && anyOf.Length != 0;
 
     }
 }

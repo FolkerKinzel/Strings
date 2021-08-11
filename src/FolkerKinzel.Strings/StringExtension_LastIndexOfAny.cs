@@ -48,7 +48,7 @@ namespace FolkerKinzel.Strings
                 : count == 0
                     ? -1
                     : anyOf.Length <= 5
-                        ? s.AsSpan(startIndex - count + 1, count).LastIndexOfAny(anyOf)
+                        ? MemoryExtensions.LastIndexOfAny(s.AsSpan(startIndex - count + 1, count), anyOf)
                         : s.LastIndexOfAny(anyOf.ToArray(), startIndex, count);
 
     }

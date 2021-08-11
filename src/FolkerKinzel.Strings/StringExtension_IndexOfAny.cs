@@ -21,13 +21,14 @@ namespace FolkerKinzel.Strings
         /// <param name="startIndex">Der NULL-basierte Index in <paramref name="s"/>, an dem die Suche beginnt.</param>
         /// <param name="count">Die Anzahl der in <paramref name="s"/> zu überprüfenden Zeichen.</param>
         /// <returns>Der NULL-basierte Index des ersten Vorkommens eines beliebigen Zeichens aus <paramref name="anyOf"/>
-        /// in <paramref name="s"/> oder -1, wenn keines dieser Zeichen gefunden wurde.</returns>
+        /// in <paramref name="s"/> oder -1, wenn keines dieser Zeichen gefunden wurde. Wenn <paramref name="anyOf"/> eine
+        /// leere Spanne ist, wird -1 zurückgegeben.</returns>
         /// <remarks>
         /// Wenn die Länge von <paramref name="anyOf"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
         /// MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). Ist die Länge von <paramref name="anyOf"/>
         /// größer, wird <see cref="string.IndexOfAny(char[])"/> verwendet.
         /// </remarks>
-        /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="s"/> oder <paramref name="anyOf"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
         /// <paramref name="startIndex"/> oder <paramref name="count"/> sind kleiner als 0
@@ -41,13 +42,31 @@ namespace FolkerKinzel.Strings
         /// </para>
         /// </exception>
         public static int IndexOfAny(this string s, ReadOnlySpan<char> anyOf, int startIndex, int count)
-            => s is null
-                ? throw new ArgumentNullException(nameof(s))
-                : count == 0
-                    ? -1
-                    : anyOf.Length <= 5
-                        ? s.AsSpan(startIndex, count).IndexOfAny(anyOf)
-                        : s.IndexOfAny(anyOf.ToArray(), startIndex, count);
+        {
+            if (s is null)
+            {
+                throw new ArgumentNullException(nameof(s));
+            }
 
+            if (count == 0)
+            {
+                return -1;
+            }
+
+            if (anyOf.Length <= 5)
+            {
+                // string.IndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
+                // MemoryExtensions.IndexOfAny returns 0 if the span with the characters to search for is empty.
+                // This makes it consistent:
+                if(anyOf.IsEmpty)
+                {
+                    return -1;
+                }
+                int matchIndex = MemoryExtensions.IndexOfAny(s.AsSpan(startIndex, count), anyOf);
+                return matchIndex == -1 ? -1 : matchIndex + startIndex;
+            }
+
+            return s.IndexOfAny(anyOf.ToArray(), startIndex, count);
+        }
     }
 }
