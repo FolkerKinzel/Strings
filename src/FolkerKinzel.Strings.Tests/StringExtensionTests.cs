@@ -107,7 +107,7 @@ namespace FolkerKinzel.Strings.Tests
         [DataTestMethod]
         [DataRow("ts", 2)]
         [DataRow("0123456789ts", 2)]
-        [DataRow("", 0)]
+        [DataRow("", -1)]
         [DataRow("xy", -1)]
         [DataRow("qwxyza0123456789", -1)]
         public void IndexOfAnyTest7(string needles, int expected)
