@@ -120,6 +120,20 @@ namespace FolkerKinzel.Strings.Tests
             Assert.AreEqual(expected, test.IndexOfAny(needles.AsSpan(), 1, test.Length - 1));
         }
 
+        [TestMethod]
+        public void IndexOfAnyTest8()
+        {
+            const string test = "test";
+            Assert.AreEqual(-1, "".IndexOfAny(test.AsSpan(), 0, 0));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IndexOfAnyTest9()
+        {
+            const string? test = null;
+            _ = test!.IndexOfAny(ReadOnlySpan<char>.Empty, 0, 0);
+        }
 
         [DataTestMethod]
         [DataRow("", false)]
