@@ -136,6 +136,89 @@ namespace FolkerKinzel.Strings.Tests
         }
 
         [DataTestMethod]
+        [DataRow("ef", 4)]
+        [DataRow("0123456789ef", 4)]
+        [DataRow("", -1)]
+        [DataRow("xy", -1)]
+        [DataRow("qwxyza0123456789", -1)]
+        public void LastIndexOfAnyTest7(string needles, int expected)
+        {
+            const string test = "testen";
+
+            //int i = "".LastIndexOfAny(new char[0]);
+            //i = MemoryExtensions.LastIndexOfAny(test.AsSpan(), ReadOnlySpan<char>.Empty);
+
+            Assert.AreEqual(expected, test.LastIndexOfAny(needles.AsSpan(), test.Length - 2, 3));
+        }
+
+        [TestMethod]
+        public void LastIndexOfAnyTest8()
+        {
+            const string test = "test";
+            Assert.AreEqual(-1, "".LastIndexOfAny(test.AsSpan(), 0, 0));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LastIndexOfAnyTest9()
+        {
+            const string? test = null;
+            _ = test!.LastIndexOfAny(ReadOnlySpan<char>.Empty, 0, 0);
+        }
+
+        [DataTestMethod]
+        [DataRow(-1, 0)]
+        [DataRow(0, -1)]
+        [DataRow(0, 2)]
+        [DataRow(-2, 2)]
+        [DataRow(2, -2)]
+        public void LastIndexOfAnyTest10(int index, int count)
+        {
+            var needles = "testganzlang".AsSpan();
+
+            _ = "".LastIndexOfAny(needles, index, count);
+        }
+
+        [DataTestMethod]
+        [DataRow(-1, 0)]
+        [DataRow(0, -1)]
+        [DataRow(0, 2)]
+        [DataRow(-2, 2)]
+        [DataRow(2, -2)]
+        public void LastIndexOfAnyTest11(int index, int count)
+        {
+            var needles = "t".AsSpan();
+
+            _ = "".LastIndexOfAny(needles, index, count);
+        }
+
+        [DataTestMethod]
+        //[DataRow(-1, 0)]
+        [DataRow(0, -1)]
+        [DataRow(0, 2)]
+        [DataRow(-2, 2)]
+        [DataRow(2, -2)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void LastIndexOfAnyTest16(int index, int count)
+        {
+            ReadOnlySpan<char> needles = "testganzlang".AsSpan();
+            _ = "t".LastIndexOfAny(needles, index, count);
+        }
+
+        [DataTestMethod]
+        //[DataRow(-1, 0)]
+        [DataRow(0, -1)]
+        [DataRow(0, 2)]
+        [DataRow(-2, 2)]
+        [DataRow(2, -2)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void LastIndexOfAnyTest17(int index, int count)
+        {
+            ReadOnlySpan<char> needles = "t".AsSpan();
+            _ = "t".LastIndexOfAny(needles, index, count);
+        }
+
+        [DataTestMethod]
         [DataRow("", false)]
         [DataRow(null, false)]
         [DataRow("Test", false)]

@@ -7,6 +7,102 @@ namespace FolkerKinzel.Strings.Tests
     [TestClass]
     public class StringBuilderExtensionTests
     {
+        [DataTestMethod]
+        [DataRow("abcabc", 'b', 4)]
+        [DataRow("abcabc", 'y', -1)]
+        [DataRow("xbcabc", 'x', 0)]
+        [DataRow("abcabq", 'q', 5)]
+        [DataRow("", 'a', -1)]
+        public void LastIndexOfTest1(string testStr, char needle, int expectedIndex)
+        {
+            var sb = new StringBuilder(testStr);
+            Assert.AreEqual(expectedIndex, sb.LastIndexOf(needle));
+        }
+
+        [DataTestMethod]
+        [DataRow("abcabc", 'b', 4, 4)]
+        [DataRow("abcabc", 'b', 3, 1)]
+        [DataRow("abcabc", 'y', 5, -1)]
+        [DataRow("xbcabc", 'x', 3, 0)]
+        [DataRow("abcabq", 'q', 5, 5)]
+        [DataRow("abcabq", 'q', 4, -1)]
+        [DataRow("", 'a', 0, -1)]
+        public void LastIndexOfTest5(string testStr, char needle, int startIndex, int expectedIndex)
+        {
+            var sb = new StringBuilder(testStr);
+            Assert.AreEqual(expectedIndex, sb.LastIndexOf(needle, startIndex));
+        }
+
+        [DataTestMethod]
+        [DataRow("abcabc", 'b', 4, 2, 4)]
+        [DataRow("abcabc", 'b', 3, 3, 1)]
+        [DataRow("abcabc", 'b', 3, 2, -1)]
+        [DataRow("abcabc", 'y', 5, 6, -1)]
+        [DataRow("xbcabc", 'x', 3, 4, 0)]
+        [DataRow("xbcabc", 'x', 3, 3, -1)]
+        [DataRow("abcabq", 'q', 5, 1, 5)]
+        [DataRow("abcabq", 'q', 4, 5, -1)]
+        [DataRow("", 'a', 0, 0, -1)]
+        public void LastIndexOfTest5(string testStr, char needle, int startIndex, int count, int expectedIndex)
+        {
+            var sb = new StringBuilder(testStr);
+            Assert.AreEqual(expectedIndex, sb.LastIndexOf(needle, startIndex, count));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LastIndexOfTest2()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.LastIndexOf('a');
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LastIndexOfTest3()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.LastIndexOf('a', 0);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LastIndexOfTest4()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.LastIndexOf('a', 0, 0);
+        }
+
+        [DataTestMethod]
+        [DataRow(0,1)]
+        [DataRow(1,0)]
+        [DataRow(1,1)]
+        [DataRow(-1,0)]
+        [DataRow(0,-1)]
+        [DataRow(-1,1)]
+        [DataRow(1,-1)]
+        public void LastIndexOfTest8(int startIndex, int count)
+        {
+            var sb = new StringBuilder();
+            _ = sb.LastIndexOf('a', startIndex, count);
+            _ = "".LastIndexOf('a', startIndex, count);
+        }
+
+        [DataTestMethod]
+        [DataRow(0,2)]
+        //[DataRow(2,0)]
+        [DataRow(2,2)]
+        //[DataRow(-1,0)]
+        [DataRow(0,-1)]
+        [DataRow(-1,1)]
+        [DataRow(1,-1)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void LastIndexOfTest9(int startIndex, int count)
+        {
+            var sb = new StringBuilder("t");
+            _ = sb.LastIndexOf('a', startIndex, count);
+        }
+
         [TestMethod]
         public void IndexOfTest1() => Assert.AreEqual(1, new StringBuilder("testen").IndexOf('e'));
 

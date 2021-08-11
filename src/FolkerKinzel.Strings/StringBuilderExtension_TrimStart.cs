@@ -97,7 +97,7 @@ namespace FolkerKinzel.Strings
 
             for (int j = 0; j < length; j++)
             {
-                if (trimChar.Equals(stringBuilder[j]))
+                if (trimChar == stringBuilder[j])
                 {
                     continue;
                 }

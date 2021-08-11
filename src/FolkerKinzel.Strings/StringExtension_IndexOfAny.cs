@@ -48,20 +48,16 @@ namespace FolkerKinzel.Strings
                 throw new ArgumentNullException(nameof(s));
             }
 
-            if (count == 0)
+            // string.IndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
+            // MemoryExtensions.IndexOfAny returns 0 if the span with the characters to search for is empty.
+            // This makes it consistent:
+            if (count == 0 || anyOf.IsEmpty)
             {
                 return -1;
             }
 
             if (anyOf.Length <= 5)
             {
-                // string.IndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
-                // MemoryExtensions.IndexOfAny returns 0 if the span with the characters to search for is empty.
-                // This makes it consistent:
-                if(anyOf.IsEmpty)
-                {
-                    return -1;
-                }
                 int matchIndex = MemoryExtensions.IndexOfAny(s.AsSpan(startIndex, count), anyOf);
                 return matchIndex == -1 ? -1 : matchIndex + startIndex;
             }

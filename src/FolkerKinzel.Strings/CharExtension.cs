@@ -17,6 +17,6 @@ namespace FolkerKinzel.Strings
         /// <returns><c>true</c> wenn <paramref name="c"/> ein Zeichen des ASCII-Zeichensatzes ist,
         /// anderenfalls <c>false</c>.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsAscii(this char c) => 128 > c;
+        public static bool IsAscii(this char c) => 128u > c;
     }
 }

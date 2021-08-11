@@ -9,8 +9,6 @@ namespace FolkerKinzel.Strings
 {
     public static partial class StringExtension
     {
-        // Avoid overloads which pass the span around: This is for performance!
-
         /// <summary>
         /// Gibt die NULL-basierte Indexposition des letzten Vorkommens eines der angegebenen Zeichen 
         /// in <paramref name="s"/> an. Die Suche beginnt an einer angegebenen Zeichenposition 
@@ -43,13 +41,33 @@ namespace FolkerKinzel.Strings
         /// größer, wird <see cref="string.LastIndexOfAny(char[])"/> verwendet.
         /// </remarks>
         public static int LastIndexOfAny(this string s, ReadOnlySpan<char> anyOf, int startIndex, int count)
-            => s is null
-                ? throw new ArgumentNullException(nameof(s))
-                : count == 0
-                    ? -1
-                    : anyOf.Length <= 5
-                        ? MemoryExtensions.LastIndexOfAny(s.AsSpan(startIndex - count + 1, count), anyOf)
-                        : s.LastIndexOfAny(anyOf.ToArray(), startIndex, count);
+        {
+            if (s is null)
+            {
+                throw new ArgumentNullException(nameof(s));
+            }
 
+            // string.LastIndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
+            // MemoryExtensions.LastIndexOfAny returns 0 if the span with the characters to search for is empty.
+            // This makes it consistent:
+            if (count == 0 || anyOf.IsEmpty)
+            {
+                return -1;
+            }
+
+            if (anyOf.Length <= 5)
+            {
+                // MemoryExtensions.LastIndexOfAny throws ArgumentOutOfRangeExceptions even if s is ""
+                // string.LastIndexOfAny does not.
+                if(s.Length == 0)
+                {
+                    return -1;
+                }
+                int matchIndex = MemoryExtensions.LastIndexOfAny(s.AsSpan(startIndex - count + 1, count), anyOf);
+                return matchIndex == -1 ? -1 : matchIndex + startIndex - count + 1;
+            }
+
+            return s.LastIndexOfAny(anyOf.ToArray(), startIndex, count);
+        }
     }
 }

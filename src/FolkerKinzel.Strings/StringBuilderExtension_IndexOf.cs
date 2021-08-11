@@ -14,7 +14,7 @@ namespace FolkerKinzel.Strings
         /// <returns>Die nullbasierte Indexposition von <paramref name="value"/> ab dem Anfang des <see cref="StringBuilder"/>s,
         /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <remarks>
-        /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
+        /// Die Methode führt einen Ordinalzeichenvergleich durch.
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         public static int IndexOf(this StringBuilder builder, char value)
@@ -32,7 +32,7 @@ namespace FolkerKinzel.Strings
         /// <returns>Die nullbasierte Indexposition von <paramref name="value"/> ab dem Anfang des <see cref="StringBuilder"/>s,
         /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <remarks>
-        /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
+        /// Die Methode führt einen Ordinalzeichenvergleich durch.
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/> ist kleiner als 0 oder
@@ -55,7 +55,7 @@ namespace FolkerKinzel.Strings
         /// <returns>Die nullbasierte Indexposition von <paramref name="value"/> ab dem Anfang des <see cref="StringBuilder"/>s,
         /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <remarks>
-        /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
+        /// Die Methode führt einen Ordinalzeichenvergleich durch.
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -89,7 +89,7 @@ namespace FolkerKinzel.Strings
 
             for (int i = startIndex; i < count; ++i)
             {
-                if (value.Equals(builder[i]))
+                if (value == builder[i])
                 {
                     return i;
                 }

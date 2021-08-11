@@ -14,7 +14,7 @@ namespace FolkerKinzel.Strings
         /// <returns>Die nullbasierte Indexposition des letzten Vorkommens von <paramref name="value"/>,
         /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <remarks>
-        /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
+        /// Die Methode führt einen Ordinalzeichenvergleich durch.
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         public static int LastIndexOf(this StringBuilder builder, char value)
@@ -34,7 +34,7 @@ namespace FolkerKinzel.Strings
         /// <returns>Die nullbasierte Indexposition des letzten Vorkommens von <paramref name="value"/>,
         /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <remarks>
-        /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
+        /// Die Methode führt einen Ordinalzeichenvergleich durch.
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="builder"/> ist nicht leer und 
@@ -59,7 +59,7 @@ namespace FolkerKinzel.Strings
         /// <returns>Die nullbasierte Indexposition des letzten Vorkommens von <paramref name="value"/>,
         /// innerhalb des zu durchsuchenden Abschnitts wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
         /// <remarks>
-        /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
+        /// Die Methode führt einen Ordinalzeichenvergleich durch.
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -81,7 +81,7 @@ namespace FolkerKinzel.Strings
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            if (builder.Length == 0)
+            if (builder.Length == 0 || count == 0)
             {
                 return -1;
             }
@@ -91,14 +91,15 @@ namespace FolkerKinzel.Strings
                 throw new ArgumentOutOfRangeException(nameof(startIndex));
             }
 
-            if (count < 0 || (count -= startIndex + 1) < 0)
+            int lastSearchIndex = startIndex - count + 1;
+            if (count < 0 || lastSearchIndex < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(count));
             }
 
-            for (int i = startIndex; i >= count; i--)
+            for (int i = startIndex; i >= lastSearchIndex; i--)
             {
-                if (value.Equals(builder[i]))
+                if (value == builder[i])
                 {
                     return i;
                 }

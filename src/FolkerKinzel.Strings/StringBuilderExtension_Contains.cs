@@ -14,7 +14,7 @@ namespace FolkerKinzel.Strings
         /// <returns><c>true</c>, wenn <paramref name="value"/> in <paramref name="builder"/>
         /// gefunden wird, anderenfalls <c>false</c>.</returns>
         /// <remarks>
-        /// Die Methode verwendet <see cref="char.Equals(char)"/> für den Vergleich.
+        /// Die Methode führt einen Ordinalzeichenvergleich durch.
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         public static bool Contains(this StringBuilder builder, char value)
