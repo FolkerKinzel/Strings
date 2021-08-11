@@ -40,6 +40,9 @@ when an undefined enum value is passed as argument.
 ### 3.2.0
 - [ ] Remove obsolete stuff.
 - [ ] Wrap Uri.IsHexDigit(char), Uri.IsHexUpperChar(char), Uri.IsHexLowerChar(char) and the Char.IsXxx(char) methods with extension methods.
+- [ ] Implement char.IsDecimalDigit()
+- [ ] Implement `ReadOnlySpan<Char>.LastIndexOfAny(ReadOnlySpan<Char>, int, int)` to avoid error 
+prone calculating with the result when slicing the span before.
 - [ ] Implement `ReadOnlySpan<char>.StartsWith(char)` and `ReadOnlySpan<char>.EndsWith(char)`.
 - [ ] Implement `StringBuilder.StartsWith(char)` and `StringBuilder.EndsWith(char)`.
 - [ ] Polyfills `string.StartsWith(char)` and `string.EndsWith(char)`.
