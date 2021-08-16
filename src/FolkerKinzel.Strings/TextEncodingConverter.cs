@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace FolkerKinzel.Strings
 {
@@ -96,7 +97,7 @@ namespace FolkerKinzel.Strings
         /// </remarks>
         public static Encoding GetEncoding(int codepage)
         {
-            if(codepage is < 0 or > CODEPAGE_MAX)
+            if (codepage is < 0 or > CODEPAGE_MAX)
             {
                 return Encoding.UTF8;
             }
@@ -134,7 +135,7 @@ namespace FolkerKinzel.Strings
         /// </remarks>
         public static Encoding GetEncoding(int codepage, EncoderFallback encoderFallback, DecoderFallback decoderFallback)
         {
-            if(codepage is < 0 or > CODEPAGE_MAX)
+            if (codepage is < 0 or > CODEPAGE_MAX)
             {
                 return Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
             }
@@ -150,6 +151,100 @@ namespace FolkerKinzel.Strings
             {
                 return Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
             }
+        }
+
+
+        /// <summary>
+        /// Untersucht eine schreibgeschützte <see cref="byte"/>-Spanne daraufhin, ob
+        /// sie mit einem Byte Order Mark (BOM) beginnt und gibt eine geeignete Codepage
+        /// zurück. (Das Fallback-Value ist 65001 für UTF-8.)
+        /// </summary>
+        /// <param name="data">Die zu untersuchende Spanne.</param>
+        /// <returns>Eine geeignete Codepage für <paramref name="data"/> oder die Codepage
+        /// für UTF-8 (65001), falls die Codepage nicht aus <paramref name="data"/> ermittelt
+        /// werden konnte.</returns>
+        /// <remarks>
+        /// Die Methode erkennt die Byte Order Marks für die folgenden Zeichensätze:
+        /// <list type="bullet">
+        /// <item>UTF-8</item>
+        /// <item>UTF-16LE</item>
+        /// <item>UTF-16BE</item>
+        /// <item>UTF-32LE</item>
+        /// <item>UTF-32BE</item>
+        /// <item>UTF-7</item>
+        /// <item>GB18030</item>
+        /// </list>
+        /// <para>
+        /// UTF-16LE, UTF-16BE, UTF-32LE und UTF-32BE können von der Methode u.U. auch dann aus den
+        /// Daten erkannt werden, wenn kein Byte Order Mark vorliegt.
+        /// </para>
+        /// </remarks>
+        public static int ParseBom(ReadOnlySpan<byte> data)
+        {
+            const int UTF16LE = 1200;
+            const int UTF16BE = 1201;
+            const int UTF32LE = 12000;
+            const int UTF32BE = 12001;
+            const int GB18030 = 54936;
+            const int UTF7 = 65000;
+
+            if (data.Length >= 3 && data[0] == 0xEF && data[1] == 0xBB && data[2] == 0xBF)
+            {
+                return UTF_8;
+            }
+            
+            if (data.Length >= 2)
+            {
+                if (data[0] == 0xFF && data[1] == 0xFE)
+                {
+                    return data.Length >= 4 && data[2] == 0x00 && data[3] == 0x00 ? UTF32LE : UTF16LE;
+                }
+
+                if (data[0] == 0xFE && data[1] == 0xFF)
+                {
+                    return UTF16BE;
+                }
+
+                if (data[0] != 0x00 && data[1] == 0x00)
+                {
+                    return UTF16LE;
+                }
+
+                if (data[0] == 0x00 && data[1] != 0x00)
+                {
+                    return UTF16BE;
+                }
+            }
+            
+            if (data.Length >= 4)
+            {
+                if (data[0] == 0x00 && data[1] == 0x00 && data[2] == 0xFE && data[3] == 0xFF)
+                {
+                    return UTF32BE;
+                }
+
+                if (data[0] == 0x84 && data[1] == 0x31 && data[2] == 0x95 && data[3] == 0x33)
+                {
+                    return GB18030;
+                }
+
+                if (data[0] == 0x2B && data[1] == 0x2F && data[2] == 0x76 && (data[3] == 0x38 || data[3] == 0x39  || data[3] == 0x2B || data[3] == 0x2F))
+                {
+                    return UTF7;
+                }
+
+                if ((data[0] != 0x00 || data[1] != 0x00) && data[2] == 0x00 && data[3] == 0x00)
+                {
+                    return UTF32LE;
+                }
+
+                if (data[0] == 0x00 && data[1] == 0x00 && (data[2] != 0x00 || data[3] != 0x00))
+                {
+                    return UTF32BE;
+                }
+            }
+
+            return UTF_8;
         }
 
     }
