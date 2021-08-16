@@ -8,7 +8,7 @@
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>3.2.0-alpha.1</Version>
+    <Version>3.2.0-alpha.2</Version>
     <FileVersion>3.2.0.1</FileVersion>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/3.1.0/ReleaseNotes.md</PackageReleaseNotes>

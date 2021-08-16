@@ -160,6 +160,8 @@ namespace FolkerKinzel.Strings
         /// zurück. (Das Fallback-Value ist 65001 für UTF-8.)
         /// </summary>
         /// <param name="data">Die zu untersuchende Spanne.</param>
+        /// <param name="bomLength">Die Länge des gefundenen BOM oder 0, wenn kein BOM
+        /// gefunden wurde.</param>
         /// <returns>Eine geeignete Codepage für <paramref name="data"/> oder die Codepage
         /// für UTF-8 (65001), falls die Codepage nicht aus <paramref name="data"/> ermittelt
         /// werden konnte.</returns>
@@ -179,7 +181,7 @@ namespace FolkerKinzel.Strings
         /// Daten erkannt werden, wenn kein Byte Order Mark vorliegt.
         /// </para>
         /// </remarks>
-        public static int ParseBom(ReadOnlySpan<byte> data)
+        public static int ParseBom(ReadOnlySpan<byte> data, out int bomLength)
         {
             const int UTF16LE = 1200;
             const int UTF16BE = 1201;
@@ -190,6 +192,7 @@ namespace FolkerKinzel.Strings
 
             if (data.Length >= 3 && data[0] == 0xEF && data[1] == 0xBB && data[2] == 0xBF)
             {
+                bomLength = 3;
                 return UTF_8;
             }
             
@@ -197,21 +200,25 @@ namespace FolkerKinzel.Strings
             {
                 if (data[0] == 0xFF && data[1] == 0xFE)
                 {
+                    bomLength = 2;
                     return data.Length >= 4 && data[2] == 0x00 && data[3] == 0x00 ? UTF32LE : UTF16LE;
                 }
 
                 if (data[0] == 0xFE && data[1] == 0xFF)
                 {
+                    bomLength = 2;
                     return UTF16BE;
                 }
 
                 if (data[0] != 0x00 && data[1] == 0x00)
                 {
+                    bomLength = 0;
                     return UTF16LE;
                 }
 
                 if (data[0] == 0x00 && data[1] != 0x00)
                 {
+                    bomLength = 0;
                     return UTF16BE;
                 }
             }
@@ -220,30 +227,36 @@ namespace FolkerKinzel.Strings
             {
                 if (data[0] == 0x00 && data[1] == 0x00 && data[2] == 0xFE && data[3] == 0xFF)
                 {
+                    bomLength = 4;
                     return UTF32BE;
                 }
 
                 if (data[0] == 0x84 && data[1] == 0x31 && data[2] == 0x95 && data[3] == 0x33)
                 {
+                    bomLength = 4;
                     return GB18030;
                 }
 
                 if (data[0] == 0x2B && data[1] == 0x2F && data[2] == 0x76 && (data[3] == 0x38 || data[3] == 0x39  || data[3] == 0x2B || data[3] == 0x2F))
                 {
+                    bomLength = 4;
                     return UTF7;
                 }
 
                 if ((data[0] != 0x00 || data[1] != 0x00) && data[2] == 0x00 && data[3] == 0x00)
                 {
+                    bomLength = 0;
                     return UTF32LE;
                 }
 
                 if (data[0] == 0x00 && data[1] == 0x00 && (data[2] != 0x00 || data[3] != 0x00))
                 {
+                    bomLength = 0;
                     return UTF32BE;
                 }
             }
 
+            bomLength = 0;
             return UTF_8;
         }
 
