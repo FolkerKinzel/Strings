@@ -155,7 +155,8 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Untersucht eine schreibgeschützte <see cref="byte"/>-Spanne daraufhin, ob
+        /// Untersucht eine schreibgeschützte <see cref="byte"/>-Spanne, die den Inhalt
+        /// einer Textdatei darstellt, daraufhin, ob
         /// sie mit einem Byte Order Mark (BOM) beginnt und gibt eine geeignete Codepage
         /// zurück. (Das Fallback-Value ist 65001 für UTF-8.)
         /// </summary>
@@ -181,7 +182,7 @@ namespace FolkerKinzel.Strings
         /// Daten erkannt werden, wenn kein Byte Order Mark vorliegt.
         /// </para>
         /// </remarks>
-        public static int ParseBom(ReadOnlySpan<byte> data, out int bomLength)
+        public static int GetCodePage(ReadOnlySpan<byte> data, out int bomLength)
         {
             const int UTF16LE = 1200;
             const int UTF16BE = 1201;

@@ -108,6 +108,26 @@ namespace LibraryTesters
             _ = span.LastIndexOfAny(span);
             _ = span.ContainsWhiteSpace();
 
+            _ = span.StartsWith("test", StringComparison.OrdinalIgnoreCase);
+            _ = span.StartsWith("test");
+
+            _ = span.EndsWith("test", StringComparison.OrdinalIgnoreCase);
+            _ = span.EndsWith("test");
+
+            _ = span.StartsWith('t');
+            _ = span.EndsWith('t');
+
+            _ = "c".StartsWith('t');
+            _ = "c".EndsWith('t');
+
+            _ = sb.StartsWith('t');
+            _ = sb.EndsWith('t');
+
+            _ = test.Split("es", 2, StringSplitOptions.RemoveEmptyEntries);
+            _ = test.Split("es", StringSplitOptions.RemoveEmptyEntries);
+            _ = test.Contains("es", StringComparison.OrdinalIgnoreCase);
+            _ = test.Replace("es", "AN", StringComparison.OrdinalIgnoreCase);
+
         }
     }
 }

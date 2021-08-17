@@ -21,6 +21,68 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
         }
 
+        [DataTestMethod]
+        [DataRow("test", "TE", true)]
+        [DataRow("test", "te", true)]
+        [DataRow("test", "bla", false)]
+        [DataRow("test", null, true)]
+        [DataRow("test", "", true)]
+        [DataRow("", "", true)]
+        [DataRow("", "TE", false)]
+        public void StartsWithTest1(string input, string? test, bool expected)
+            => Assert.AreEqual(expected, input.AsSpan().StartsWith(test, StringComparison.OrdinalIgnoreCase));
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void StartsWithTest2()
+        {
+            _ = "test".AsSpan().StartsWith("test", (StringComparison)4711);
+        }
+
+        [DataTestMethod]
+        [DataRow("test", "TE", false)]
+        [DataRow("test", "te", true)]
+        [DataRow("test", "bla", false)]
+        [DataRow("test", null, true)]
+        [DataRow("test", "", true)]
+        [DataRow("", "", true)]
+        [DataRow("", "TE", false)]
+        public void StartsWithTest3(string input, string? test, bool expected)
+            => Assert.AreEqual(expected, input.AsSpan().StartsWith(test));
+
+
+         [DataTestMethod]
+        [DataRow("test", "ST", true)]
+        [DataRow("test", "st", true)]
+        [DataRow("test", "bla", false)]
+        [DataRow("test", null, true)]
+        [DataRow("test", "", true)]
+        [DataRow("", "", true)]
+        [DataRow("", "st", false)]
+        public void EndsWithTest1(string input, string? test, bool expected)
+            => Assert.AreEqual(expected, input.AsSpan().EndsWith(test, StringComparison.OrdinalIgnoreCase));
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void EndsWithTest2()
+        {
+            _ = "test".AsSpan().EndsWith("test", (StringComparison)4711);
+        }
+
+        [DataTestMethod]
+        [DataRow("test", "ST", false)]
+        [DataRow("test", "st", true)]
+        [DataRow("test", "bla", false)]
+        [DataRow("test", null, true)]
+        [DataRow("test", "", true)]
+        [DataRow("", "", true)]
+        [DataRow("", "st", false)]
+        public void EndsWithTest3(string input, string? test, bool expected)
+            => Assert.AreEqual(expected, input.AsSpan().EndsWith(test));
+
+
         public void Dispose()
         {
             Thread.CurrentThread.CurrentCulture = _culture;

@@ -30,5 +30,14 @@ namespace FolkerKinzel.Strings
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0078:Musterabgleich verwenden", Justification = "<Ausstehend>")]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsDecimalDigit(this char c) => 47u < c && 58u > c;
+
+        /// <summary>
+        /// Gibt an, ob das Unicode-Zeichen eine Binärziffer (0 oder 1) darstellt.
+        /// </summary>
+        /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+        /// <returns><c>true</c>, wenn <paramref name="c"/> eine Binärziffer
+        /// darstellt, anderenfalls <c>false</c>.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsBinaryDigit(this char c) => c is '0' or '1';
     }
 }

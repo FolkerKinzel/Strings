@@ -19,19 +19,19 @@ namespace FolkerKinzel.Strings.Polyfills
     /// einem Null-String aufgerufen werden.
     /// </remarks>
 #if NETSTANDARD2_0
-        [ExcludeFromCodeCoverage]
+    [ExcludeFromCodeCoverage]
 #endif
     public static partial class StringPolyfillExtension
     {
-        #if NET45 || NETSTANDARD2_0
+#if NET45 || NETSTANDARD2_0
 
         /// <summary>
         /// Gibt mithilfe der festgelegten Vergleichsregeln einen Wert zurück, der angibt, ob ein angegebenes Zeichen innerhalb der Zeichenfolge auftritt.
         /// </summary>
         /// <param name="s">Der zu untersuchende <see cref="string"/>.</param>
         /// <param name="value">Das zu suchende Zeichen.</param>
-        /// <param name="comparisonType">Einer der Enumerationswerte, der die für den Vergleich zu verwendenden Regeln angibt.</param>
-        /// <returns><c>true</c>, wenn der <paramref name="value"/>-Parameter innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
+        /// <param name="comparisonType">Ein Enumerationswert, der die für den Vergleich zu verwendende Regel angibt.</param>
+        /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
         public static bool Contains(this string s, char value, StringComparison comparisonType)
@@ -43,7 +43,7 @@ namespace FolkerKinzel.Strings.Polyfills
         /// </summary>
         /// <param name="s">Der zu untersuchende <see cref="string"/>.</param>
         /// <param name="value">Das zu suchende Zeichen.</param>
-        /// <returns><c>true</c>, wenn der <paramref name="value"/>-Parameter innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
+        /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
         /// <remarks>
         /// Die Methode führt einen Ordinalzeichenvergleich aus.
@@ -124,6 +124,114 @@ namespace FolkerKinzel.Strings.Polyfills
         public static bool EndsWith(this string s, char value)
             => s is null ? throw new NullReferenceException()
                          : s.AsSpan().EndsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
+
+
+        /// <summary>
+        /// Teilt eine Zeichenfolge anhand einer angegebenen Trennzeichenfolge und optional von Optionen in die angegebene maximale Anzahl von Teilzeichenfolgen.
+        /// </summary>
+        /// <param name="s">Der zu splittende <see cref="string"/>.</param>
+        /// <param name="separator">Eine Zeichenfolge, die die Teilzeichenfolgen in <paramref name="s"/> trennt.</param>
+        /// <param name="count">Die maximale Anzahl der im Array erwarteten Elemente.</param>
+        /// <param name="options">Dies ist ein Enumerationswert, der angibt, ob leere Teilzeichenfolgen 
+        /// eingeschlossen werden sollen.</param>
+        /// <returns>Ein Array, das maximal <paramref name="count"/> Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
+        /// <paramref name="separator"/> getrennt sind.</returns>
+        /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string[] Split(this string s, string? separator, int count, StringSplitOptions options = System.StringSplitOptions.None)
+            => s.Split(separator is null ? null : new string[] { separator }, count, options);
+
+        /// <summary>
+        /// Teilt eine Zeichenfolge anhand einer angegebenen Trennzeichenfolge und optional von Optionen in Teilzeichenfolgen.
+        /// </summary>
+        /// <param name="s">Der zu splittende <see cref="string"/>.</param>
+        /// <param name="separator">Eine Zeichenfolge, die die Teilzeichenfolgen in <paramref name="s"/> trennt.</param>
+        /// <param name="options">Dies ist ein Enumerationswert, der angibt, ob leere Teilzeichenfolgen 
+        /// eingeschlossen werden sollen.</param>
+        /// <returns>Ein Array, dessen Elemente die Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
+        /// <paramref name="separator"/> getrennt sind.</returns>
+        /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string[] Split(this string s, string? separator, StringSplitOptions options = System.StringSplitOptions.None)
+            => s.Split(separator is null ? null : new string[] { separator }, options);
+
+        /// <summary>
+        /// Gibt mithilfe der festgelegten Vergleichsregeln einen Wert zurück, der angibt, ob eine angegebene Zeichenfolge innerhalb von <paramref name="s"/>
+        /// auftritt.
+        /// </summary>
+        /// <param name="s">>Der zu untersuchende <see cref="string"/>.</param>
+        /// <param name="value">Die zu suchende Zeichenfolge.</param>
+        /// <param name="comparisonType">Ein Enumerationswert, der die für den Vergleich zu verwendende Regel angibt.</param>
+        /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
+        /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool Contains(this string s, string value, StringComparison comparisonType)
+            => s.IndexOf(value, comparisonType) != -1;
+
+
+        /// <summary>
+        /// Gibt mithilfe des bereitgestellten Vergleichstyps eine neue Zeichenfolge zurück, in der alle Vorkommen einer 
+        /// angegebenen Zeichenfolge in der aktuellen Instanz durch eine andere angegebene Zeichenfolge ersetzt wurden.
+        /// </summary>
+        /// <param name="s">>Der zu bearbeitende <see cref="string"/>.</param>
+        /// <param name="oldValue">Die zu ersetzende Zeichenfolge.</param>
+        /// <param name="newValue">Die Zeichenfolge, die jedes Vorkommen von <paramref name="oldValue"/> ersetzen soll.</param>
+        /// <param name="comparisonType">Ein Enumerationswert, der die für den Vergleich zu verwendende Regel angibt.</param>
+        /// <returns>Eine Zeichenfolge, die der aktuellen Zeichenfolge entspricht, außer dass alle Instanzen von <paramref name="oldValue"/>
+        /// durch <paramref name="newValue"/> ersetzt wurden. Wenn <paramref name="oldValue"/> nicht in der aktuellen Instanz gefunden wird, 
+        /// gibt die Methode die aktuelle Instanz unverändert zurück.</returns>
+        /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <ArgumentNullException><paramref name="oldValue"/> ist <c>null</c>.</ArgumentNullException>
+        /// <exception cref="ArgumentException">
+        /// <para><paramref name="oldValue"/> ist <see cref="string.Empty"/></para>
+        /// <para>- oder -</para>
+        /// <para><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</para>
+        public static string Replace(this string s, string oldValue, string? newValue, StringComparison comparisonType)
+        {
+            if (comparisonType == StringComparison.Ordinal)
+            {
+                return s.Replace(oldValue, newValue);
+            }
+
+            if (s is null)
+            {
+                throw new NullReferenceException();
+            }
+
+            if (oldValue is null)
+            {
+                throw new ArgumentNullException(nameof(oldValue));
+            }
+
+            if (oldValue.Length == 0)
+            {
+                throw new ArgumentException(string.Format("{0} is an empty String.", nameof(oldValue)), nameof(oldValue));
+            }
+
+            if (s.Length < oldValue.Length)
+            {
+                return s;
+            }
+
+            if (newValue is null)
+            {
+                newValue = string.Empty;
+            }
+
+            var builder = new StringBuilder(newValue.Length > oldValue.Length ? s.Length + s.Length / 2 : s.Length);
+            _ = builder.Append(s);
+
+            int idx = s.Length - 1;
+            while (idx > -1)
+            {
+                idx = s.LastIndexOf(oldValue, idx - 1, comparisonType);
+                _ = builder.Remove(idx, oldValue.Length).Insert(idx, newValue);
+                --idx;
+            }
+
+            return builder.ToString();
+        }
+
 
 #endif
     }

@@ -30,6 +30,105 @@ namespace FolkerKinzel.Strings.Polyfills
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Contains(this ReadOnlySpan<char> span, char value)
             => span.IndexOf(value) != -1;
-    #endif
+#endif
+
+#if NET45 || NETSTANDARD2_0
+
+        /// <summary>
+        /// Bestimmt, ob eine schreibgeschützte Zeichenspanne mit einem angegebenen <see cref="string"/> beginnt.
+        /// </summary>
+        /// <param name="span">Die Quellspanne.</param>
+        /// <param name="value">Der <see cref="string"/>, der mit dem Anfang der Quellspanne verglichen werden soll.</param>
+        /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Anfang von <paramref name="span"/> übereinstimmt,
+        /// andernfalls <c>false</c>.</returns>
+        /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein definierter <see cref="StringComparison"/>-Wert.</exception>
+        /// <remarks>
+        /// <para>
+        /// Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
+        /// wird <c>true</c> zurückgegeben.
+        /// </para>
+        /// <para>
+        /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
+        /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
+        /// </para></remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool StartsWith(this ReadOnlySpan<char> span, string? value)
+            => span.StartsWith(value.AsSpan());
+
+        /// <summary>
+        /// Bestimmt, ob eine schreibgeschützte Zeichenspanne mit einem angegebenen <see cref="string"/> beginnt,
+        /// wenn sie mit einem angegebenen <see cref="StringComparison"/> verglichen wird.
+        /// </summary>
+        /// <param name="span">Die Quellspanne.</param>
+        /// <param name="value">Der <see cref="string"/>, der mit dem Anfang der Quellspanne verglichen werden soll.</param>
+        /// <param name="comparisonType">Ein Enumerationswert, der bestimmt, wie <paramref name="span"/> und 
+        /// <paramref name="value"/> verglichen werden.</param>
+        /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Anfang von <paramref name="span"/> übereinstimmt,
+        /// andernfalls <c>false</c>.</returns>
+        /// <remarks>
+        /// <para>
+        /// Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
+        /// wird <c>true</c> zurückgegeben.
+        /// </para>
+        /// <para>
+        /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
+        /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
+        /// </para>
+        /// </remarks>
+        /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein definierter <see cref="StringComparison"/>-Wert.</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool StartsWith(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
+            => span.StartsWith(value.AsSpan(), comparisonType);
+
+
+        /// <summary>
+        /// Bestimmt, ob eine schreibgeschützte Zeichenspanne mit einem angegebenen <see cref="string"/> endet.
+        /// </summary>
+        /// <param name="span">Die Quellspanne.</param>
+        /// <param name="value">Der <see cref="string"/>, der mit dem Ende der Quellspanne verglichen werden soll.</param>
+        /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Ende von <paramref name="span"/> übereinstimmt,
+        /// andernfalls <c>false</c>.</returns>
+        /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein definierter <see cref="StringComparison"/>-Wert.</exception>
+        /// <remarks>
+        /// <para>
+        /// Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
+        /// wird <c>true</c> zurückgegeben.
+        /// </para>
+        /// <para>
+        /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
+        /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
+        /// </para></remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool EndsWith(this ReadOnlySpan<char> span, string? value)
+            => span.EndsWith(value.AsSpan());
+
+        /// <summary>
+        /// Bestimmt, ob eine schreibgeschützte Zeichenspanne mit einem angegebenen <see cref="string"/> endet,
+        /// wenn sie mit einem angegebenen <see cref="StringComparison"/> verglichen wird.
+        /// </summary>
+        /// <param name="span">Die Quellspanne.</param>
+        /// <param name="value">Der <see cref="string"/>, der mit dem Ende der Quellspanne verglichen werden soll.</param>
+        /// <param name="comparisonType">Ein Enumerationswert, der bestimmt, wie <paramref name="span"/> und 
+        /// <paramref name="value"/> verglichen werden.</param>
+        /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Ende von <paramref name="span"/> übereinstimmt,
+        /// andernfalls <c>false</c>.</returns>
+        /// <remarks>
+        /// <para>
+        /// Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
+        /// wird <c>true</c> zurückgegeben.
+        /// </para>
+        /// <para>
+        /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
+        /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
+        /// </para>
+        /// </remarks>
+        /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein definierter <see cref="StringComparison"/>-Wert.</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool EndsWith(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
+            => span.EndsWith(value.AsSpan(), comparisonType);
+
+
+#endif
+
     }
 }
