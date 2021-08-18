@@ -48,3 +48,7 @@ when an undefined enum value is passed as argument.
 prone calculating with the result when slicing the span before.
 - [x] Implement `ReadOnlySpan<char>.StartsWith(char)` and `ReadOnlySpan<char>.EndsWith(char)`.
 - [x] Implement `StringBuilder.StartsWith(char)` and `StringBuilder.EndsWith(char)`.
+
+### 3.3.0
+- Implement `ReadOnlySpan<Char>.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
+- Implement `String.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.

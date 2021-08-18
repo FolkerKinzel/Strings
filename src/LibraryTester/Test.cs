@@ -11,11 +11,11 @@ namespace LibraryTesters
 {
     public static class Test
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1825:Arrayzuordnungen mit einer Länge von null vermeiden", Justification = "<Ausstehend>")]
         public static void Method()
         {
             string test = "Test";
             var span = test.AsSpan();
+            char c = 'e';
 
             _ = test.Trim(stackalloc char[] { ',', ';' });
             _ = test.TrimStart(stackalloc char[] { ',', ';' });
@@ -128,6 +128,30 @@ namespace LibraryTesters
             _ = test.Contains("es", StringComparison.OrdinalIgnoreCase);
             _ = test.Replace("es", "AN", StringComparison.OrdinalIgnoreCase);
 
+            _ = span.LastIndexOfAny(span, span.Length - 1, span.Length);
+
+            _ = c.IsAscii();
+            _ = c.IsBinaryDigit();
+            _ = c.IsDecimalDigit();
+            _ = c.IsHexDigit();
+            _ = c.ParseDecimalDigit();
+            _ = c.ParseHexDigit();
+            _ = c.IsControl();
+            _ = c.IsDigit();
+            _ = c.IsSurrogate();
+            _ = c.IsHighSurrogate();
+            _ = c.IsLowSurrogate();
+            _ = c.IsLetter();
+            _ = c.IsLetterOrDigit();
+            _ = c.IsLower();
+            _ = c.IsUpper();
+            _ = c.IsNumber();
+            _ = c.IsPunctuation();
+            _ = c.IsSeparator();
+            _ = c.IsSymbol();
+            _ = c.IsWhiteSpace();
+            _ = c.ToLowerInvariant();
+            _ = c.ToUpperInvariant();
         }
     }
 }

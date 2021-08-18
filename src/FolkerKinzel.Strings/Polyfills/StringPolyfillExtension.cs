@@ -181,11 +181,11 @@ namespace FolkerKinzel.Strings.Polyfills
         /// durch <paramref name="newValue"/> ersetzt wurden. Wenn <paramref name="oldValue"/> nicht in der aktuellen Instanz gefunden wird, 
         /// gibt die Methode die aktuelle Instanz unverändert zurück.</returns>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
-        /// <ArgumentNullException><paramref name="oldValue"/> ist <c>null</c>.</ArgumentNullException>
+        /// <exception cref="ArgumentNullException"><paramref name="oldValue"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentException">
         /// <para><paramref name="oldValue"/> ist <see cref="string.Empty"/></para>
         /// <para>- oder -</para>
-        /// <para><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</para>
+        /// <para><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</para></exception>
         public static string Replace(this string s, string oldValue, string? newValue, StringComparison comparisonType)
         {
             if (comparisonType == StringComparison.Ordinal)

@@ -61,6 +61,15 @@ namespace FolkerKinzel.Strings.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} is not a decimal digit. ähnelt.
+        /// </summary>
+        internal static string NoDecimalDigit {
+            get {
+                return ResourceManager.GetString("NoDecimalDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die String cannot be of zero length. ähnelt.
         /// </summary>
         internal static string NoEmptyStringAllowed {

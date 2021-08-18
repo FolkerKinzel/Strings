@@ -12,10 +12,12 @@ namespace LibraryTesters
 {
     class Program
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1825:Arrayzuordnungen mit einer Länge von null vermeiden", Justification = "<Ausstehend>")]
         static void Main()
         {
+            //Console.WriteLine(Uri.HexEscape('e'));
+
             string test = "Test";
+            char c = 'e';
 
             var sb1 = new StringBuilder();
             var sb2 = new StringBuilder(test);
@@ -132,6 +134,33 @@ namespace LibraryTesters
             _ = test.Split("es", StringSplitOptions.RemoveEmptyEntries);
             _ = test.Contains("es", StringComparison.OrdinalIgnoreCase);
             _ = test.Replace("es", "AN", StringComparison.OrdinalIgnoreCase);
+
+            _ = span.LastIndexOfAny(span, span.Length - 1, span.Length);
+
+
+            _ = c.IsAscii();
+            _ = c.IsBinaryDigit();
+            _ = c.IsDecimalDigit();
+            _ = c.IsHexDigit();
+            _ = c.ParseDecimalDigit();
+            _ = c.ParseHexDigit();
+            _ = c.IsControl();
+            _ = c.IsDigit();
+            _ = c.IsSurrogate();
+            _ = c.IsHighSurrogate();
+            _ = c.IsLowSurrogate();
+            _ = c.IsLetter();
+            _ = c.IsLetterOrDigit();
+            _ = c.IsLower();
+            _ = c.IsUpper();
+            _ = c.IsNumber();
+            _ = c.IsPunctuation();
+            _ = c.IsSeparator();
+            _ = c.IsSymbol();
+            _ = c.IsWhiteSpace();
+            _ = c.ToLowerInvariant();
+            _ = c.ToUpperInvariant();
+
 
 
 

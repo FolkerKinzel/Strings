@@ -36,9 +36,7 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void StartsWithTest2()
-        {
-            _ = "test".AsSpan().StartsWith("test", (StringComparison)4711);
-        }
+            => _ = "test".AsSpan().StartsWith("test", (StringComparison)4711);
 
         [DataTestMethod]
         [DataRow("test", "TE", false)]
@@ -67,9 +65,7 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void EndsWithTest2()
-        {
-            _ = "test".AsSpan().EndsWith("test", (StringComparison)4711);
-        }
+            => _ = "test".AsSpan().EndsWith("test", (StringComparison)4711);
 
         [DataTestMethod]
         [DataRow("test", "ST", false)]

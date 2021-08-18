@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NoDecimalDigit" xml:space="preserve">
+    <value>{0} ist keine Dezimalziffer.</value>
+  </data>
   <data name="NoEmptyStringAllowed" xml:space="preserve">
     <value>Der String darf nicht leer sein.</value>
   </data>

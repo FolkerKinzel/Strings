@@ -174,7 +174,7 @@ namespace FolkerKinzel.Strings.Tests
         [DataRow(2, -2)]
         public void LastIndexOfAnyTest10(int index, int count)
         {
-            var needles = "testganzlang".AsSpan();
+            ReadOnlySpan<char> needles = "testganzlang".AsSpan();
 
             _ = "".LastIndexOfAny(needles, index, count);
         }
@@ -187,7 +187,7 @@ namespace FolkerKinzel.Strings.Tests
         [DataRow(2, -2)]
         public void LastIndexOfAnyTest11(int index, int count)
         {
-            var needles = "t".AsSpan();
+            ReadOnlySpan<char> needles = "t".AsSpan();
 
             _ = "".LastIndexOfAny(needles, index, count);
         }
