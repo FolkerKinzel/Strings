@@ -40,7 +40,7 @@ namespace LibraryTesters
 
             _ = test.Split('e', 2);
 
-//#if !NETCOREAPP3_1
+            //#if !NETCOREAPP3_1
             _ = test.AsMemory().Trim();
 
             _ = test.AsMemory().TrimStart();
@@ -152,6 +152,11 @@ namespace LibraryTesters
             _ = c.IsWhiteSpace();
             _ = c.ToLowerInvariant();
             _ = c.ToUpperInvariant();
+
+            _ = c.ParseBinaryDigit();
+            _ = c.TryParseHexDigit(out int? _);
+            _ = c.TryParseDecimalDigit(out int? _);
+            _ = c.TryParseBinaryDigit(out int? _);
         }
     }
 }

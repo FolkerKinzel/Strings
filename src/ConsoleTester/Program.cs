@@ -161,7 +161,10 @@ namespace LibraryTesters
             _ = c.ToLowerInvariant();
             _ = c.ToUpperInvariant();
 
-
+            _ = c.ParseBinaryDigit();
+            _ = c.TryParseHexDigit(out int? _);
+            _ = c.TryParseDecimalDigit(out int? _);
+            _ = c.TryParseBinaryDigit(out int? _);
 
 
 

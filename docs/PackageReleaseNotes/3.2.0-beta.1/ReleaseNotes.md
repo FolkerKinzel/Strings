@@ -23,6 +23,10 @@ public static string Replace(this string, string, string?, StringComparison);
 ```csharp
 public static int ParseHexDigit(this char);
 public static int ParseDecimalDigit(this char);
+public static int ParseBinaryDigit(this char digit);
+public static bool TryParseHexDigit(this char, [NotNullWhen(true)] out int?);
+public static bool TryParseDecimalDigit(this char, [NotNullWhen(true)] out int?);
+public static bool TryParseBinaryDigit(this char, [NotNullWhen(true)] out int?);
 public static bool IsDecimalDigit(this char);
 public static bool IsHexDigit(this char);
 public static bool IsBinaryDigit(this char);
@@ -31,7 +35,6 @@ public static bool IsDigit(this char c);
 public static bool IsHighSurrogate(this char c);
 public static bool IsLowSurrogate(this char c);
 public static bool IsSurrogate(this char c);
-
 public static bool IsLetter(this char);
 public static bool IsLetterOrDigit(this char);
 public static bool IsLower(this char);

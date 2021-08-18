@@ -61,6 +61,15 @@ namespace FolkerKinzel.Strings.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} is not a binary digit. ähnelt.
+        /// </summary>
+        internal static string NoBinaryDigit {
+            get {
+                return ResourceManager.GetString("NoBinaryDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die {0} is not a decimal digit. ähnelt.
         /// </summary>
         internal static string NoDecimalDigit {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
 using FolkerKinzel.Strings.Properties;
@@ -24,6 +25,87 @@ namespace FolkerKinzel.Strings
         public static int ParseHexDigit(this char digit)
             => Uri.FromHex(digit);
 
+        /// <summary>
+        /// Versucht, ein Zeichen als Hexadezimalziffer zu interpretieren und den Wert, den 
+        /// diese Hexadezimalziffer darstellt, zurückzugeben.
+        /// </summary>
+        /// <param name="digit">Das zu analysierende Zeichen.</param>
+        /// <param name="value">Enthält nach der erfolgreichen Beendigung der Methode den Wert,
+        /// den <paramref name="digit"/> als Hexadezimalziffer
+        /// darstellt, andernfalls <c>null</c>. Der Parameter wird uninitialisiert übergeben.</param>
+        /// <returns><c>true</c>, wenn <paramref name="digit"/> eine Hexadezimalziffer darstellt,
+        /// andernfalls <c>false</c>.</returns>
+        public static bool TryParseHexDigit(this char digit, [NotNullWhen(true)] out int? value)
+        {
+            if(digit.IsHexDigit())
+            {
+                value = Uri.FromHex(digit);
+                return true;
+            }
+
+            value = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Versucht, ein Zeichen als Dezimalziffer (0-9) zu interpretieren und den Wert, den 
+        /// diese Dezimalziffer darstellt, zurückzugeben.
+        /// </summary>
+        /// <param name="digit">Das zu analysierende Zeichen.</param>
+        /// <param name="value">Enthält nach der erfolgreichen Beendigung der Methode den Wert,
+        /// den <paramref name="digit"/> als Dezimalziffer
+        /// darstellt, andernfalls <c>null</c>. Der Parameter wird uninitialisiert übergeben.</param>
+        /// <returns><c>true</c>, wenn <paramref name="digit"/> eine Dezimalziffer darstellt,
+        /// andernfalls <c>false</c>.</returns>
+        public static bool TryParseDecimalDigit(this char digit, [NotNullWhen(true)] out int? value)
+        {
+            if(digit.IsDecimalDigit())
+            {
+                value = (int)digit - 48;
+                return true;
+            }
+
+            value = null;
+            return false;
+        }
+
+
+        /// <summary>
+        /// Versucht, ein Zeichen als Binärziffer (0 oder 1) zu interpretieren und den Wert, den 
+        /// diese Dezimalziffer darstellt, zurückzugeben.
+        /// </summary>
+        /// <param name="digit">Das zu analysierende Zeichen.</param>
+        /// <param name="value">Enthält nach der erfolgreichen Beendigung der Methode den Wert,
+        /// den <paramref name="digit"/> als Binärziffer
+        /// darstellt, andernfalls <c>null</c>. Der Parameter wird uninitialisiert übergeben.</param>
+        /// <returns><c>true</c>, wenn <paramref name="digit"/> eine Binärziffer darstellt,
+        /// andernfalls <c>false</c>.</returns>
+        public static bool TryParseBinaryDigit(this char digit, [NotNullWhen(true)] out int? value)
+        {
+            if(digit.IsBinaryDigit())
+            {
+                value = digit == '1' ? 1 : 0;
+                return true;
+            }
+
+            value = null;
+            return false;
+        }
+        
+        /// <summary>
+        /// Ruft den Wert einer Dezimalziffer ab.
+        /// </summary>
+        /// <param name="digit">Die zu konvertierende Hexadezimalziffer (0-9, a-f, A-F).</param>
+        /// <returns>Eine Zahl von 0 bis 9, die der angegebenen Dezimalziffer entspricht.</returns>
+        /// <exception cref="ArgumentException">
+        /// <paramref name="digit"/> ist keine gültige Dezimalziffer (0-9).
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int ParseBinaryDigit(this char digit)
+            => TryParseBinaryDigit(digit, out int? value) 
+                ? value.Value
+                : throw new ArgumentException(string.Format(Res.NoBinaryDigit, nameof(digit)), nameof(digit));
+
 
         /// <summary>
         /// Ruft den Wert einer Dezimalziffer ab.
@@ -35,8 +117,8 @@ namespace FolkerKinzel.Strings
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ParseDecimalDigit(this char digit)
-            => digit.IsDecimalDigit()
-                ? Uri.FromHex(digit)
+            => TryParseDecimalDigit(digit, out int? value) 
+                ? value.Value
                 : throw new ArgumentException(string.Format(Res.NoDecimalDigit, nameof(digit)), nameof(digit));
 
 
