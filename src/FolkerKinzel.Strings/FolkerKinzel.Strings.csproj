@@ -33,6 +33,11 @@
     <None Remove="Translations\**" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="ReadOnlySpanExtension_Obsolete.cs" />
+    <Compile Remove="StringBuilderExtension_Obsolete.cs" />
+    <Compile Remove="StringExtension_Obsolete.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Nullable" Version="1.3.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

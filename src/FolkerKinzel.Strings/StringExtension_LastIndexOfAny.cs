@@ -10,7 +10,7 @@ namespace FolkerKinzel.Strings
     public static partial class StringExtension
     {
         /// <summary>
-        /// Gibt die NULL-basierte Indexposition des letzten Vorkommens eines der angegebenen Zeichen 
+        /// Gibt die nullbasierte Indexposition des letzten Vorkommens eines der angegebenen Zeichen 
         /// in <paramref name="s"/> an. Die Suche beginnt an einer angegebenen Zeichenposition 
         /// und verläuft für eine angegebene Anzahl von Zeichenpositionen rückwärts zum Anfang der Zeichenfolge.
         /// </summary>
@@ -19,7 +19,7 @@ namespace FolkerKinzel.Strings
         /// <param name="startIndex">Die Anfangsposition der Suche. Die Suche erfolgt rückwärts zum Anfang 
         /// von <paramref name="s"/>.</param>
         /// <param name="count">Die Anzahl der zu überprüfenden Zeichenpositionen.</param>
-        /// <returns>Der NULL-basierte Index des letzten Vorkommens eines beliebigen Zeichens aus <paramref name="anyOf"/>
+        /// <returns>Der nullbasierte Index des letzten Vorkommens eines beliebigen Zeichens aus <paramref name="anyOf"/>
         /// in <paramref name="s"/> oder -1, wenn keines dieser Zeichen gefunden wurde.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">

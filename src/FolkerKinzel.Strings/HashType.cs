@@ -23,12 +23,12 @@ namespace FolkerKinzel.Strings
         /// </summary>
         AlphaNumericIgnoreCase,
 
-        /// <summary>
-        /// Obsolete.
-        /// </summary>
-        [Obsolete("Use AlphanumericIgnoreCase instead!", true)]
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        AlphaNumericNoCase = AlphaNumericIgnoreCase
+        ///// <summary>
+        ///// Obsolete.
+        ///// </summary>
+        //[Obsolete("Use AlphanumericIgnoreCase instead!", true)]
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //AlphaNumericNoCase = AlphaNumericIgnoreCase
     }
 }

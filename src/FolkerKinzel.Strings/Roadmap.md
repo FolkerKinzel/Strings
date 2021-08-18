@@ -38,12 +38,13 @@ when an undefined enum value is passed as argument.
 - [x] Additional extension methods and polyfills.
 
 ### 3.2.0
-- [ ] Remove obsolete stuff.
-- [ ] Wrap Uri.IsHexDigit(char), Uri.IsHexUpperChar(char), Uri.IsHexLowerChar(char) and the Char.IsXxx(char) methods with extension methods.
+- [x] Remove obsolete stuff.
+- [ ] Wrap Uri.IsHexDigit(char), Uri.IsHexUpperChar(char), Uri.IsHexLowerChar(char) and the
+ Char.IsXxx(char) methods with extension methods.
 - [x] Implement char.IsDecimalDigit()
 - [x] Implement char.IsBinaryDigit()
 - [x] Implement `TextEncodingConverter.GetCodePage(ReadOnlySpan<byte>, out int)`
-- [ ] Implement `ReadOnlySpan<Char>.LastIndexOfAny(ReadOnlySpan<Char>, int, int)` to avoid error 
+- [x] Implement `ReadOnlySpan<Char>.LastIndexOfAny(ReadOnlySpan<Char>, int, int)` to avoid error 
 prone calculating with the result when slicing the span before.
 - [x] Implement `ReadOnlySpan<char>.StartsWith(char)` and `ReadOnlySpan<char>.EndsWith(char)`.
 - [x] Implement `StringBuilder.StartsWith(char)` and `StringBuilder.EndsWith(char)`.
