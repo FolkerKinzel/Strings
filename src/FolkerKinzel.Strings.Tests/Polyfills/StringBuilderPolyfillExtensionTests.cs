@@ -11,16 +11,53 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
     [TestClass()]
     public class StringBuilderPolyfillExtensionTests
     {
-        //[TestMethod]
-        //public void AppendStringBuilderTest1()
-        //{
-        //    const string test = "test";
-        //    var sb1 = new StringBuilder();
-        //    var sb2 = new StringBuilder(test);
+        [TestMethod]
+        public void InsertTest1()
+        {
+            const string test = "test";
+            var sb1 = new StringBuilder();
+            var sb2 = new StringBuilder();
 
-        //    Assert.AreEqual(sb1, sb1.Append(sb2));
-        //    Assert.AreEqual(test, sb1.ToString());
-        //}
+            _ = sb1.Insert(0, test.AsSpan());
+            _ = sb2.Insert(0, test);
+
+            Assert.AreEqual(sb1.ToString(), sb2.ToString());
+
+            _ = sb1.Insert(2, test.AsSpan());
+            _ = sb2.Insert(2, test);
+
+            Assert.AreEqual(sb1.ToString(), sb2.ToString());
+
+            _ = sb1.Insert(sb1.Length, test.AsSpan());
+            _ = sb2.Insert(sb2.Length, test);
+
+            Assert.AreEqual(sb1.ToString(), sb2.ToString());
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void InsertTest2()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.Insert(0, ReadOnlySpan<char>.Empty);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void InsertTest3()
+        {
+            var sb = new StringBuilder();
+            _ = sb.Insert(-1, ReadOnlySpan<char>.Empty);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void InsertTest4()
+        {
+            var sb = new StringBuilder();
+            _ = sb.Insert(1, ReadOnlySpan<char>.Empty);
+        }
 
         [TestMethod]
         public void AppendStringBuilderTest2()

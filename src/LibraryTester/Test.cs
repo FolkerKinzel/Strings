@@ -157,6 +157,11 @@ namespace LibraryTesters
             _ = c.TryParseHexDigit(out int? _);
             _ = c.TryParseDecimalDigit(out int? _);
             _ = c.TryParseBinaryDigit(out int? _);
+
+            _ = c.IsNewLine();
+
+
+            _ = sb.Insert(0, span);
         }
     }
 }

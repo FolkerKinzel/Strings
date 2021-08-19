@@ -166,6 +166,7 @@ namespace LibraryTesters
             _ = c.TryParseDecimalDigit(out int? _);
             _ = c.TryParseBinaryDigit(out int? _);
 
+            _ = c.IsNewLine();
 
 
         }

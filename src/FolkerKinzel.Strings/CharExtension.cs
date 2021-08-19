@@ -37,7 +37,7 @@ namespace FolkerKinzel.Strings
         /// andernfalls <c>false</c>.</returns>
         public static bool TryParseHexDigit(this char digit, [NotNullWhen(true)] out int? value)
         {
-            if(digit.IsHexDigit())
+            if (digit.IsHexDigit())
             {
                 value = Uri.FromHex(digit);
                 return true;
@@ -59,7 +59,7 @@ namespace FolkerKinzel.Strings
         /// andernfalls <c>false</c>.</returns>
         public static bool TryParseDecimalDigit(this char digit, [NotNullWhen(true)] out int? value)
         {
-            if(digit.IsDecimalDigit())
+            if (digit.IsDecimalDigit())
             {
                 value = (int)digit - 48;
                 return true;
@@ -82,7 +82,7 @@ namespace FolkerKinzel.Strings
         /// andernfalls <c>false</c>.</returns>
         public static bool TryParseBinaryDigit(this char digit, [NotNullWhen(true)] out int? value)
         {
-            if(digit.IsBinaryDigit())
+            if (digit.IsBinaryDigit())
             {
                 value = digit == '1' ? 1 : 0;
                 return true;
@@ -91,7 +91,7 @@ namespace FolkerKinzel.Strings
             value = null;
             return false;
         }
-        
+
         /// <summary>
         /// Ruft den Wert einer Dezimalziffer ab.
         /// </summary>
@@ -102,7 +102,7 @@ namespace FolkerKinzel.Strings
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ParseBinaryDigit(this char digit)
-            => TryParseBinaryDigit(digit, out int? value) 
+            => TryParseBinaryDigit(digit, out int? value)
                 ? value.Value
                 : throw new ArgumentException(string.Format(Res.NoBinaryDigit, nameof(digit)), nameof(digit));
 
@@ -117,7 +117,7 @@ namespace FolkerKinzel.Strings
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ParseDecimalDigit(this char digit)
-            => TryParseDecimalDigit(digit, out int? value) 
+            => TryParseDecimalDigit(digit, out int? value)
                 ? value.Value
                 : throw new ArgumentException(string.Format(Res.NoDecimalDigit, nameof(digit)), nameof(digit));
 
@@ -380,6 +380,45 @@ namespace FolkerKinzel.Strings
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static char ToUpperInvariant(this char c) => char.ToUpperInvariant(c);
+
+
+        /// <summary>
+        /// Gibt an, ob das Unicode-Zeichen als Zeilenwechselzeichen kategorisiert wird.
+        /// </summary>
+        /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
+        /// <returns><c>true</c>, wenn <paramref name="c"/> als Zeilenwechselzeichen
+        /// kategorisiert wird, andernfalls <c>false</c>.</returns>
+        /// <remarks>
+        /// <para>
+        /// Als Zeilenwechselzeichen werden die folgenden Zeichen erkannt:
+        /// </para>
+        /// <list type="bullet">
+        /// <item>CR: Carriage Return (U+000D)</item>
+        /// <item>LF: Line Feed      (U+000A)</item>
+        /// <item>VT: Vertical Tab        (U+000B)</item>
+        /// <item>FF: Form Feed           (U+000C)</item>
+        /// <item>NEL: Next Line          (U+0085)</item>
+        /// <item>LS: Line Separator      (U+2028)</item>
+        /// <item>PS: Paragraph Separator (U+2029)</item>
+        /// </list>
+        /// </remarks>
+        [SuppressMessage("Style", "IDE0066:Switch-Anweisung in Ausdruck konvertieren", Justification = "<Ausstehend>")]
+        public static bool IsNewLine(this char c)
+        {
+            switch (c)
+            {
+                case '\r': // CR: Carriage Return
+                case '\n': // LF: Line Feed
+                case '\u000B': // VT: Vertical Tab
+                case '\u000C': // FF: Form Feed
+                case '\u0085': // NEL: Next Line
+                case '\u2028': // LS: Line Separator
+                case '\u2029': // PS: Paragraph Separator
+                    return true;
+                default:
+                    return false;
+            }
+        }
 
     }
 }

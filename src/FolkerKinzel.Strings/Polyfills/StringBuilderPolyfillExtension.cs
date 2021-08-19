@@ -119,6 +119,39 @@ namespace FolkerKinzel.Strings.Polyfills
             }
             return builder;
         }
+
+        /// <summary>
+        /// Fügt den Inhalt einer schreibgeschützten Zeichenspanne an der angegebenen Zeichenposition in diese Instanz ein.
+        /// </summary>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, in den Zeichen eingefügt werden.</param>
+        /// <param name="index">Der nulbasierte Index in <paramref name="builder"/>, an dem die Einfügung beginnt.</param>
+        /// <param name="value">Die einzufügende Zeichenspanne.</param>
+        /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Einfügevorgang abgeschlossen wurde.</returns>
+        /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/> ist kleiner als 0 oder größer
+        /// als die Länge von <paramref name="builder"/>.</exception>
+        public static StringBuilder Insert(this StringBuilder builder, int index, ReadOnlySpan<char> value)
+        {
+            if (builder is null)
+            {
+                throw new NullReferenceException();
+            }
+
+            if (index < 0 || index > builder.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+
+            _ = builder.EnsureCapacity(builder.Length + value.Length);
+
+            for (int i = value.Length - 1; i >= 0; i--)
+            {
+                _ = builder.Insert(index, value[i]);
+            }
+
+            return builder;
+        }
+
 #endif
     }
 }

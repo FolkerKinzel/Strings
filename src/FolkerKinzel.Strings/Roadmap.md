@@ -39,16 +39,28 @@ when an undefined enum value is passed as argument.
 
 ### 3.2.0
 - [x] Remove obsolete stuff.
-- [ ] Wrap Uri.IsHexDigit(char), Uri.IsHexUpperChar(char), Uri.IsHexLowerChar(char) and the
+- [x] Wrap Uri.IsHexDigit(char), Uri.IsHexUpperChar(char), Uri.IsHexLowerChar(char) and the
  Char.IsXxx(char) methods with extension methods.
 - [x] Implement char.IsDecimalDigit()
 - [x] Implement char.IsBinaryDigit()
+- [x] Implement char.IsNewLine()
 - [x] Implement `TextEncodingConverter.GetCodePage(ReadOnlySpan<byte>, out int)`
 - [x] Implement `ReadOnlySpan<Char>.LastIndexOfAny(ReadOnlySpan<Char>, int, int)` to avoid error 
 prone calculating with the result when slicing the span before.
 - [x] Implement `ReadOnlySpan<char>.StartsWith(char)` and `ReadOnlySpan<char>.EndsWith(char)`.
 - [x] Implement `StringBuilder.StartsWith(char)` and `StringBuilder.EndsWith(char)`.
+- [ ] Implement `StringBuilder.ReplaceWhiteSpaceWith(ReadOnlySpan<Char>)`.
+- [ ] Implement `StringBuilder.ReplaceWhiteSpaceWith(ReadOnlySpan<Char>, int)`.
+- [ ] Implement `StringBuilder.ReplaceWhiteSpaceWith(ReadOnlySpan<Char>, int, int)`.
 
 ### 3.3.0
 - Implement `ReadOnlySpan<Char>.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
 - Implement `String.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
+- Implement `String.ContainsLineBreak()`.
+- Implement `ReadOnlySpan<Char>.ContainsLineBreak()`.
+- Implement `StringBuilder.ContainsLineBreak(int startIndex = 0)`.
+- Implement `String.NormalizeLineBreaksWith(string?)`.
+- Implement `StringBuilder.NormalizeLineBreaksWith(string?)`.
+- 
+- 
+- 

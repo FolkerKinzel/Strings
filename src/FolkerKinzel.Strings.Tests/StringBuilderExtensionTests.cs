@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using FolkerKinzel.Strings.Polyfills;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests
@@ -7,6 +8,19 @@ namespace FolkerKinzel.Strings.Tests
     [TestClass]
     public class StringBuilderExtensionTests
     {
+        [TestMethod]
+        public void ReplaceWhiteSpaceWithTest1()
+        {
+            const string original = "    This  Is Text   ";
+            const string result = "ThisIsText";
+
+            var sb = new StringBuilder(original);
+
+            Assert.AreEqual(sb, sb.ReplaceWhiteSpaceWith(""));
+            Assert.AreEqual(result, sb.ToString());
+        }
+
+
         [DataTestMethod]
         [DataRow("abcabc", 'b', 4)]
         [DataRow("abcabc", 'y', -1)]
