@@ -21,6 +21,9 @@ static string ReplaceWhiteSpaceWith(this string, string?, bool);
 static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, bool);
 static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, bool);
 static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, int, bool);
+static string NormalizeNewLinesTo(this string, string?);
+static StringBuilder NormalizeNewLinesTo(this StringBuilder, string?);
+
 
 
 ```
@@ -53,7 +56,6 @@ static bool IsSymbol(this char);
 static bool IsWhiteSpace(this char);
 static char ToLowerInvariant(this char);
 static char ToUpperInvariant(this char);
-
 ```
 .
 
@@ -62,8 +64,7 @@ static char ToUpperInvariant(this char);
 static bool StartsWith(this ReadOnlySpan<char>, char);
 static bool EndsWith(this ReadOnlySpan<char>, char);
 static int LastIndexOfAny(this ReadOnlySpan<char>, ReadOnlySpan<char>, int, int);
-static bool ContainsWhiteSpace(this ReadOnlySpan<char>);
-
+static bool ContainsNewLine(this ReadOnlySpan<char> span)
 ```
 .
 
@@ -77,14 +78,18 @@ static bool ContainsWhiteSpace(this StringBuilder, int, int);
 static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, ReadOnlySpan<char>, bool);
 static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, ReadOnlySpan<char>, int, bool);
 static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, ReadOnlySpan<char>, int, int, bool);
-
-
+static bool ContainsNewLine(this StringBuilder);
+static bool ContainsNewLine(this StringBuilder, int);
+static bool ContainsNewLine(this StringBuilder, int, int);
+static StringBuilder NormalizeNewLinesTo(this StringBuilder, ReadOnlySpan<char>);
 ```
 
 .
 
 - New extension methods for the `String` class:
 ```csharp
+static bool ContainsNewLine(this string? s);
+public static string NormalizeNewLinesTo(this string, ReadOnlySpan<char>);
 static string ReplaceWhiteSpaceWith(this string, ReadOnlySpan<char>, bool);
 ```
 

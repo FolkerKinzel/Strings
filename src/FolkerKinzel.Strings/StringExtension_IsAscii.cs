@@ -13,7 +13,7 @@ namespace FolkerKinzel.Strings
         /// Untersucht, ob der <see cref="string"/> Unicode-Zeichen enthält,
         /// die nicht zum ASCII-Zeichensatz gehören.
         /// </summary>
-        /// <param name="s">Ein <see cref="string"/> oder <c>null</c>.</param>
+        /// <param name="s">Der zu durchsuchende <see cref="string"/> oder <c>null</c>.</param>
         /// <returns><c>false</c>, wenn <paramref name="s"/> ein Unicode-Zeichen enthält, das nicht zum 
         /// ASCII-Zeichensatz gehört, anderenfalls <c>true</c>.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

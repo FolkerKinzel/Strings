@@ -49,18 +49,16 @@ when an undefined enum value is passed as argument.
 prone calculating with the result when slicing the span before.
 - [x] Implement `ReadOnlySpan<char>.StartsWith(char)` and `ReadOnlySpan<char>.EndsWith(char)`.
 - [x] Implement `StringBuilder.StartsWith(char)` and `StringBuilder.EndsWith(char)`.
-- [ ] Implement `StringBuilder.ReplaceWhiteSpaceWith(ReadOnlySpan<Char>)`.
-- [ ] Implement `StringBuilder.ReplaceWhiteSpaceWith(ReadOnlySpan<Char>, int)`.
-- [ ] Implement `StringBuilder.ReplaceWhiteSpaceWith(ReadOnlySpan<Char>, int, int)`.
+- [x] Implement `StringBuilder.ReplaceWhiteSpaceWith(ReadOnlySpan<Char>)`.
+- [x] Implement `StringBuilder.ReplaceWhiteSpaceWith(ReadOnlySpan<Char>, int)`.
+- [x] Implement `StringBuilder.ReplaceWhiteSpaceWith(ReadOnlySpan<Char>, int, int)`.
+- [x] Implement `String.ContainsNewLine()`.
+- [x] Implement `ReadOnlySpan<Char>.ContainsNewLine()`.
+- [x] Implement `StringBuilder.ContainsNewLine()`.
+- [x] Implement `String.NormalizeNewLinesWith(ReadOnlySpan<Char>)`.
+- [x] Implement `StringBuilder.NormalizeNewLinesWith(ReadOnlySpan<Char>)`.
 
 ### 3.3.0
-- Implement `ReadOnlySpan<Char>.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
-- Implement `String.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
-- Implement `String.ContainsLineBreak()`.
-- Implement `ReadOnlySpan<Char>.ContainsLineBreak()`.
-- Implement `StringBuilder.ContainsLineBreak(int startIndex = 0)`.
-- Implement `String.NormalizeLineBreaksWith(string?)`.
-- Implement `StringBuilder.NormalizeLineBreaksWith(string?)`.
-- 
-- 
-- 
+- [ ] Implement `ReadOnlySpan<Char>.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
+- [ ] Implement `String.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
+

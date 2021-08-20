@@ -3,12 +3,23 @@ using FolkerKinzel.Strings;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using FolkerKinzel.Strings.Polyfills;
 
 namespace FolkerKinzel.Strings.Tests
 {
     [TestClass()]
     public class StringExtensionTests
     {
+        [TestMethod]
+        public void NormalizeNewLinesToTest1()
+        {
+            const string input = "1\r\n\n\r2\r3\n\n4\r\n";
+            const string expected = "1**2*3**4*";
+
+            string output = input.NormalizeNewLinesTo("*");
+            Assert.AreEqual(expected, output);
+        }
+
         [DataTestMethod]
         [DataRow('e', 's', 't', true)]
         [DataRow('e', 'y', 't', true)]

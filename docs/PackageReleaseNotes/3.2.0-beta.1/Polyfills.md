@@ -16,7 +16,7 @@ public static string Replace(this string, string, string?, StringComparison);
 public static bool StartsWith(this string, char);
 public static bool EndsWith(this string, char);
 public static string ReplaceWhiteSpaceWith(this string, string?, bool);
-
+public static string NormalizeNewLinesTo(this string, string?);
 ```
 .
 
@@ -52,4 +52,5 @@ public static StringBuilder Insert(this StringBuilder, int, ReadOnlySpan<char>);
 public static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, bool);
 public static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, bool);
 public static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, int, bool);
+public static StringBuilder NormalizeNewLinesTo(this StringBuilder, string?);
 ```

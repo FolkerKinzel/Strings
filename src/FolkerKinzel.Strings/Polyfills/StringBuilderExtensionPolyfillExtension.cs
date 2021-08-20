@@ -28,13 +28,14 @@ namespace FolkerKinzel.Strings.Polyfills
         /// damit gründlicher als 
         /// <see cref="Regex.Replace(string, string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
         /// </para>
+        /// <para>Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
+        /// verwendet.
+        /// </para>
         /// <para>
         /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
         /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
         /// </para>
-        /// <para>(Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
-        /// verwendet.)
-        /// </para>
+        /// 
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         public static StringBuilder ReplaceWhiteSpaceWith(
@@ -62,13 +63,14 @@ namespace FolkerKinzel.Strings.Polyfills
         /// damit gründlicher als 
         /// <see cref="Regex.Replace(string, string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
         /// </para>
+        /// <para>Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
+        /// verwendet.
+        /// </para>
         /// <para>
         /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
         /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
         /// </para>
-        /// <para>(Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
-        /// verwendet.)
-        /// </para>
+        /// 
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -101,13 +103,14 @@ namespace FolkerKinzel.Strings.Polyfills
         /// damit gründlicher als 
         /// <see cref="Regex.Replace(string, string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
         /// </para>
+        /// <para>Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
+        /// verwendet.
+        /// </para>
         /// <para>
         /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
         /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
         /// </para>
-        /// <para>(Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
-        /// verwendet.)
-        /// </para>
+        /// 
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -128,6 +131,28 @@ namespace FolkerKinzel.Strings.Polyfills
             int count,
             bool skipNewLines = false)
         => builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), startIndex, count, skipNewLines);
+
+
+        /// <summary>
+        /// Ersetzt alle Zeilenumbrüche in <paramref name="builder"/> durch <paramref name="newLine"/>.
+        /// </summary>
+        /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
+        /// <param name="newLine">Ein <see cref="string"/>, durch den jeder Zeilenumbruch
+        /// ersetzt wird, oder <c>null</c>, um alle Zeilenumbrüche zu entfernen.</param>
+        /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+        /// <remarks>
+        /// <para>
+        /// Für die Identifizierung von Zeilenwechselzeichen wird <see cref="CharExtension.IsNewLine(char)"/> 
+        /// verwendet. Die Sequenzen CRLF und LFCR werden als ein Zeilenumbruch behandelt.
+        /// </para>
+        /// <para>
+        /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
+        /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
+        /// </para>
+        /// </remarks>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        public static StringBuilder NormalizeNewLinesTo(this StringBuilder builder, string? newLine)
+            => builder.NormalizeNewLinesTo(newLine.AsSpan());
 
 #endif
     }
