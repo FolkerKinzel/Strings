@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -18,6 +19,8 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt bearbeitet wird.</param>
         /// <param name="replacement">Ein <see cref="string"/>, durch den die Leerzeichen-Sequenzen
         /// ersetzt werden, oder <c>null</c>, um alle Leerraumzeichen zu entfernen.</param>
+        /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
+        /// Ersetzung auszunehmen. Der Standardwert ist <c>false</c>.</param>
         /// <returns>Eine Referenz auf <paramref name="builder"/></returns>
         /// <remarks>
         /// <para>
@@ -29,13 +32,17 @@ namespace FolkerKinzel.Strings.Polyfills
         /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
         /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
         /// </para>
+        /// <para>(Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
+        /// verwendet.)
+        /// </para>
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         public static StringBuilder ReplaceWhiteSpaceWith(
             this StringBuilder builder,
-            string? replacement)
+            string? replacement,
+            bool skipNewLines = false)
         => builder is null ? throw new ArgumentNullException(nameof(builder))
-                           : builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), 0, builder.Length);
+                           : builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), 0, builder.Length, skipNewLines);
 
         /// <summary>
         /// Ersetzt in einem Abschnitt von <paramref name="builder"/>, der bei <paramref name="startIndex"/> beginnt
@@ -44,6 +51,8 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt bearbeitet wird.</param>
         /// <param name="replacement">Ein <see cref="string"/>, durch den die Leerzeichen-Sequenzen
         /// ersetzt werden, oder <c>null</c>, um alle Leerraumzeichen zu entfernen.</param>
+        /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
+        /// Ersetzung auszunehmen. Der Standardwert ist <c>false</c>.</param>
         /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem der Abschnitt beginnt,
         /// in dem die Ersetzungen vorgenommen werden.</param>
         /// <returns>Eine Referenz auf <paramref name="builder"/></returns>
@@ -57,6 +66,9 @@ namespace FolkerKinzel.Strings.Polyfills
         /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
         /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
         /// </para>
+        /// <para>(Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
+        /// verwendet.)
+        /// </para>
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -65,9 +77,10 @@ namespace FolkerKinzel.Strings.Polyfills
         public static StringBuilder ReplaceWhiteSpaceWith(
             this StringBuilder builder,
             string? replacement,
-            int startIndex)
+            int startIndex,
+            bool skipNewLines = false)
         => builder is null ? throw new ArgumentNullException(nameof(builder))
-                           : builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), startIndex, builder.Length - startIndex);
+                           : builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), startIndex, builder.Length - startIndex, skipNewLines);
 
         /// <summary>
         /// Ersetzt in einem Abschnitt von <paramref name="builder"/>, der bei <paramref name="startIndex"/> beginnt
@@ -79,6 +92,8 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem der Abschnitt beginnt,
         /// in dem die Ersetzungen vorgenommen werden.</param>
         /// <param name="count">Die Länge des Abschnitts, in dem Ersetzungen vorgenommen werden.</param>
+        /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
+        /// Ersetzung auszunehmen. Der Standardwert ist <c>false</c>.</param>
         /// <returns>Eine Referenz auf <paramref name="builder"/></returns>
         /// <remarks>
         /// <para>
@@ -89,6 +104,9 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <para>
         /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
         /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
+        /// </para>
+        /// <para>(Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
+        /// verwendet.)
         /// </para>
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
@@ -102,12 +120,14 @@ namespace FolkerKinzel.Strings.Polyfills
         /// ist größer als die Anzahl der Zeichen in <paramref name="builder"/>.
         /// </para>
         /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static StringBuilder ReplaceWhiteSpaceWith(
             this StringBuilder builder,
             string? replacement,
             int startIndex,
-            int count)
-        => builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), startIndex, count);
+            int count,
+            bool skipNewLines = false)
+        => builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), startIndex, count, skipNewLines);
 
 #endif
     }

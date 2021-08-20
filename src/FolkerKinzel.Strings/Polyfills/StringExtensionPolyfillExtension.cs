@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -19,6 +20,8 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <param name="builder">Der Quell-<see cref="string"/>.</param>
         /// <param name="replacement">Ein <see cref="string"/>, durch den Inhalt die Leerraumzeichen-Sequenzen
         /// ersetzt werden, oder <c>null</c>, um alle Leerzeichen zu entfernen.</param>
+        /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
+        /// Ersetzung auszunehmen. Der Standardwert ist <c>false</c>.</param>
         /// <returns>Ein neuer <see cref="string"/>, in in dem alle Sequenzen von Leerzeichen in <paramref name="s"/> durch 
         /// <paramref name="replacement"/> ersetzt sind. Wenn <paramref name="s"/> kein Leerzeichen enthält, wird <paramref name="s"/>
         /// zurückgegeben.</returns>
@@ -32,12 +35,17 @@ namespace FolkerKinzel.Strings.Polyfills
         /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
         /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
         /// </para>
+        /// <para>(Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
+        /// verwendet.)
+        /// </para>
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string ReplaceWhiteSpaceWith(
             this string s,
-            string? replacement)
-            => s.ReplaceWhiteSpaceWith(replacement.AsSpan());
+            string? replacement,
+            bool skipNewLines = false)
+            => s.ReplaceWhiteSpaceWith(replacement.AsSpan(), skipNewLines);
 #endif
     }
 }

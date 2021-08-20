@@ -53,6 +53,20 @@ namespace FolkerKinzel.Strings.Polyfills
                          : s.AsSpan().Contains(value);
 
         /// <summary>
+        /// Gibt mithilfe der festgelegten Vergleichsregeln einen Wert zurück, der angibt, ob eine angegebene Zeichenfolge innerhalb von <paramref name="s"/>
+        /// auftritt.
+        /// </summary>
+        /// <param name="s">>Der zu untersuchende <see cref="string"/>.</param>
+        /// <param name="value">Die zu suchende Zeichenfolge.</param>
+        /// <param name="comparisonType">Ein Enumerationswert, der die für den Vergleich zu verwendende Regel angibt.</param>
+        /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
+        /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool Contains(this string s, string value, StringComparison comparisonType)
+            => s.IndexOf(value, comparisonType) != -1;
+
+
+        /// <summary>
         /// Gibt den NULL-basierten Index des ersten Vorkommens des angegebenen Unicode-Zeichens in dieser Zeichenfolge an. 
         /// Ein Parameter gibt den Typ der Suche für das angegebene Zeichen an.
         /// </summary>
@@ -96,35 +110,6 @@ namespace FolkerKinzel.Strings.Polyfills
         public static string[] Split(this string s, char separator, int count, StringSplitOptions options = StringSplitOptions.None)
             => s.Split(new char[] { separator }, count, options);
 
-        /// <summary>
-        /// Bestimmt, ob <paramref name="s"/> mit dem angegebenen Zeichen beginnt.
-        /// </summary>
-        /// <param name="s">Der zu untersuchende <see cref="string"/>.</param>
-        /// <param name="value">Das zu vergleichende Zeichen.</param>
-        /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Anfang von <paramref name="s"/> übereinstimmt, andernfalls <c>false</c>.</returns>
-        /// <remarks>
-        /// Diese Methode führt einen Vergleich mit der aktuellen Kultur durch (Unterscheidung nach Groß-/Kleinschreibung und Kultur sensitiv).
-        /// </remarks>
-        /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
-        public static bool StartsWith(this string s, char value)
-            => s is null ? throw new NullReferenceException()
-                         : s.AsSpan().StartsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
-
-
-        /// <summary>
-        /// Bestimmt, ob <paramref name="s"/> mit dem angegebenen Zeichen endet.
-        /// </summary>
-        /// <param name="s">Der zu untersuchende <see cref="string"/>.</param>
-        /// <param name="value">Das zu vergleichende Zeichen.</param>
-        /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Ende von <paramref name="s"/> übereinstimmt, andernfalls <c>false</c>.</returns>
-        /// <remarks>
-        /// Diese Methode führt einen Vergleich mit der aktuellen Kultur durch (Unterscheidung nach Groß-/Kleinschreibung und Kultur sensitiv).
-        /// </remarks>
-        /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
-        public static bool EndsWith(this string s, char value)
-            => s is null ? throw new NullReferenceException()
-                         : s.AsSpan().EndsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
-
 
         /// <summary>
         /// Teilt eine Zeichenfolge anhand einer angegebenen Trennzeichenfolge und optional von Optionen in die angegebene maximale Anzahl von Teilzeichenfolgen.
@@ -156,17 +141,33 @@ namespace FolkerKinzel.Strings.Polyfills
             => s.Split(separator is null ? null : new string[] { separator }, options);
 
         /// <summary>
-        /// Gibt mithilfe der festgelegten Vergleichsregeln einen Wert zurück, der angibt, ob eine angegebene Zeichenfolge innerhalb von <paramref name="s"/>
-        /// auftritt.
+        /// Bestimmt, ob <paramref name="s"/> mit dem angegebenen Zeichen beginnt.
         /// </summary>
-        /// <param name="s">>Der zu untersuchende <see cref="string"/>.</param>
-        /// <param name="value">Die zu suchende Zeichenfolge.</param>
-        /// <param name="comparisonType">Ein Enumerationswert, der die für den Vergleich zu verwendende Regel angibt.</param>
-        /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
+        /// <param name="s">Der zu untersuchende <see cref="string"/>.</param>
+        /// <param name="value">Das zu vergleichende Zeichen.</param>
+        /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Anfang von <paramref name="s"/> übereinstimmt, andernfalls <c>false</c>.</returns>
+        /// <remarks>
+        /// Diese Methode führt einen Vergleich mit der aktuellen Kultur durch (Unterscheidung nach Groß-/Kleinschreibung und Kultur sensitiv).
+        /// </remarks>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Contains(this string s, string value, StringComparison comparisonType)
-            => s.IndexOf(value, comparisonType) != -1;
+        public static bool StartsWith(this string s, char value)
+            => s is null ? throw new NullReferenceException()
+                         : s.AsSpan().StartsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
+
+
+        /// <summary>
+        /// Bestimmt, ob <paramref name="s"/> mit dem angegebenen Zeichen endet.
+        /// </summary>
+        /// <param name="s">Der zu untersuchende <see cref="string"/>.</param>
+        /// <param name="value">Das zu vergleichende Zeichen.</param>
+        /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Ende von <paramref name="s"/> übereinstimmt, andernfalls <c>false</c>.</returns>
+        /// <remarks>
+        /// Diese Methode führt einen Vergleich mit der aktuellen Kultur durch (Unterscheidung nach Groß-/Kleinschreibung und Kultur sensitiv).
+        /// </remarks>
+        /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
+        public static bool EndsWith(this string s, char value)
+            => s is null ? throw new NullReferenceException()
+                         : s.AsSpan().EndsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
 
 
         /// <summary>

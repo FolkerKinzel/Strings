@@ -15,6 +15,8 @@ public static string[] Split(this string, string?, StringSplitOptions options);
 public static string Replace(this string, string, string?, StringComparison);
 public static bool StartsWith(this string, char);
 public static bool EndsWith(this string, char);
+public static string ReplaceWhiteSpaceWith(this string, string?, bool);
+
 ```
 .
 
@@ -46,4 +48,8 @@ public static ReadOnlyMemory<char> TrimEnd(this ReadOnlyMemory<char>);
 ```csharp
 public static StringBuilder Append(this StringBuilder, ReadOnlySpan<char>);
 public static StringBuilder Append(this StringBuilder, StringBuilder?, int, int);
+public static StringBuilder Insert(this StringBuilder, int, ReadOnlySpan<char>);
+public static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, bool);
+public static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, bool);
+public static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, int, bool);
 ```

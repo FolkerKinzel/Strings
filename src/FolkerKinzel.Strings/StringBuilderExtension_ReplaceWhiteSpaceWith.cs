@@ -14,18 +14,26 @@ namespace FolkerKinzel.Strings
         /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt bearbeitet wird.</param>
         /// <param name="replacement">Eine schreibgeschützte Zeichenspanne, durch deren Inhalt die Leerzeichen-Sequenzen
         /// ersetzt werden.</param>
+        /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
+        /// Ersetzung auszunehmen. Der Standardwert ist <c>false</c>.</param>
         /// <returns>Eine Referenz auf <paramref name="builder"/></returns>
         /// <remarks>
+        /// <para>
         /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)"/> zur Identifizierung von Leerraumzeichen und arbeitet
         /// damit gründlicher als 
         /// <see cref="Regex.Replace(string, string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+        /// </para>
+        /// <para>(Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
+        /// verwendet.)
+        /// </para>
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         public static StringBuilder ReplaceWhiteSpaceWith(
             this StringBuilder builder,
-            ReadOnlySpan<char> replacement)
+            ReadOnlySpan<char> replacement,
+            bool skipNewLines = false)
         => builder is null ? throw new ArgumentNullException(nameof(builder))
-                           : builder.ReplaceWhiteSpaceWith(replacement, 0, builder.Length);
+                           : builder.ReplaceWhiteSpaceWith(replacement, 0, builder.Length, skipNewLines);
 
         /// <summary>
         /// Ersetzt in einem Abschnitt von <paramref name="builder"/>, der bei <paramref name="startIndex"/> beginnt
@@ -36,11 +44,18 @@ namespace FolkerKinzel.Strings
         /// ersetzt werden.</param>
         /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem der Abschnitt beginnt,
         /// in dem die Ersetzungen vorgenommen werden.</param>
+        /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
+        /// Ersetzung auszunehmen. Der Standardwert ist <c>false</c>.</param>
         /// <returns>Eine Referenz auf <paramref name="builder"/></returns>
         /// <remarks>
+        /// <para>
         /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)"/> zur Identifizierung von Leerraumzeichen und arbeitet
         /// damit gründlicher als 
         /// <see cref="Regex.Replace(string, string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+        /// </para>
+        /// <para>(Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
+        /// verwendet.)
+        /// </para>
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -49,9 +64,10 @@ namespace FolkerKinzel.Strings
         public static StringBuilder ReplaceWhiteSpaceWith(
             this StringBuilder builder,
             ReadOnlySpan<char> replacement,
-            int startIndex)
+            int startIndex,
+            bool skipNewLines = false)
         => builder is null ? throw new ArgumentNullException(nameof(builder))
-                           : builder.ReplaceWhiteSpaceWith(replacement, startIndex, builder.Length - startIndex);
+                           : builder.ReplaceWhiteSpaceWith(replacement, startIndex, builder.Length - startIndex, skipNewLines);
 
         /// <summary>
         /// Ersetzt in einem Abschnitt von <paramref name="builder"/>, der bei <paramref name="startIndex"/> beginnt
@@ -63,11 +79,18 @@ namespace FolkerKinzel.Strings
         /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem der Abschnitt beginnt,
         /// in dem die Ersetzungen vorgenommen werden.</param>
         /// <param name="count">Die Länge des Abschnitts, in dem Ersetzungen vorgenommen werden.</param>
+        /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
+        /// Ersetzung auszunehmen. Der Standardwert ist <c>false</c>.</param>
         /// <returns>Eine Referenz auf <paramref name="builder"/></returns>
         /// <remarks>
+        /// <para>
         /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)"/> zur Identifizierung von Leerraumzeichen und arbeitet
         /// damit gründlicher als 
         /// <see cref="Regex.Replace(string, string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+        /// </para>
+        /// <para>(Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
+        /// verwendet.)
+        /// </para>
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -84,7 +107,8 @@ namespace FolkerKinzel.Strings
             this StringBuilder builder,
             ReadOnlySpan<char> replacement,
             int startIndex,
-            int count)
+            int count,
+            bool skipNewLines = false)
         {
             if (builder is null)
             {
@@ -107,7 +131,7 @@ namespace FolkerKinzel.Strings
             {
                 char current = builder[i];
 
-                if (char.IsWhiteSpace(current))
+                if (char.IsWhiteSpace(current) && (!skipNewLines || !current.IsNewLine()))
                 {
                     wsLength++;
                 }
