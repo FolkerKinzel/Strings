@@ -12,7 +12,7 @@ namespace FolkerKinzel.Strings
         /// Erzeugt einen neuen <see cref="string"/>, in dem alle Sequenzen von Leerzeichen in <paramref name="s"/> durch 
         /// <paramref name="replacement"/> ersetzt sind.
         /// </summary>
-        /// <param name="builder">Der Quell-<see cref="string"/>.</param>
+        /// <param name="s">Der Quell-<see cref="string"/>.</param>
         /// <param name="replacement">Eine schreibgeschützte Zeichenspanne, durch deren Inhalt die Leerzeichen-Sequenzen
         /// ersetzt werden.</param>
         /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
@@ -30,7 +30,7 @@ namespace FolkerKinzel.Strings
         /// verwendet.)
         /// </para>
         /// </remarks>
-        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
         public static string ReplaceWhiteSpaceWith(
             this string s,
             ReadOnlySpan<char> replacement,

@@ -17,7 +17,7 @@ namespace FolkerKinzel.Strings.Polyfills
         /// Erzeugt einen neuen <see cref="string"/>, in dem alle Sequenzen von Leerzeichen in <paramref name="s"/> durch 
         /// <paramref name="replacement"/> ersetzt sind.
         /// </summary>
-        /// <param name="builder">Der Quell-<see cref="string"/>.</param>
+        /// <param name="s">Der Quell-<see cref="string"/>.</param>
         /// <param name="replacement">Ein <see cref="string"/>, durch den die Leerraumzeichen-Sequenzen
         /// ersetzt werden, oder <c>null</c>, um alle Leerzeichen zu entfernen.</param>
         /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
@@ -40,7 +40,7 @@ namespace FolkerKinzel.Strings.Polyfills
         /// </para>
         /// 
         /// </remarks>
-        /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string ReplaceWhiteSpaceWith(
             this string s,
