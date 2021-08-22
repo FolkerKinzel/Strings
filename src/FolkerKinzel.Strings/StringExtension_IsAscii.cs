@@ -15,7 +15,7 @@ namespace FolkerKinzel.Strings
         /// </summary>
         /// <param name="s">Der zu durchsuchende <see cref="string"/> oder <c>null</c>.</param>
         /// <returns><c>false</c>, wenn <paramref name="s"/> ein Unicode-Zeichen enthält, das nicht zum 
-        /// ASCII-Zeichensatz gehört, anderenfalls <c>true</c>.</returns>
+        /// ASCII-Zeichensatz gehört, andernfalls <c>true</c>.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsAscii(this string? s) => s.AsSpan().IsAscii();
 

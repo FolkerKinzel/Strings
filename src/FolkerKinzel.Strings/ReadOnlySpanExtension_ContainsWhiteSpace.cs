@@ -10,7 +10,7 @@ namespace FolkerKinzel.Strings
         /// Gibt an, ob die schreibgeschütze Zeichenspanne ein Leerraumzeichen enthält.
         /// </summary>
         /// <param name="span">Die zu durchsuchende Spanne.</param>
-        /// <returns><c>true</c>, wenn <paramref name="span"/> ein Leerraumzeichen enthält, anderenfalls <c>false</c>.</returns>
+        /// <returns><c>true</c>, wenn <paramref name="span"/> ein Leerraumzeichen enthält, andernfalls <c>false</c>.</returns>
         /// <remarks>Für den Vergleich wird <see cref="char.IsWhiteSpace(char)"/> verwendet.</remarks>
         public static bool ContainsWhiteSpace(this ReadOnlySpan<char> span)
         {

@@ -12,7 +12,7 @@ namespace FolkerKinzel.Strings
         /// <param name="builder">Der zu durchsuchende <see cref="StringBuilder"/>.</param>
         /// <param name="value">Das zu suchende Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="value"/> in <paramref name="builder"/>
-        /// gefunden wird, anderenfalls <c>false</c>.</returns>
+        /// gefunden wird, andernfalls <c>false</c>.</returns>
         /// <remarks>
         /// Die Methode führt einen Ordinalzeichenvergleich durch.
         /// </remarks>

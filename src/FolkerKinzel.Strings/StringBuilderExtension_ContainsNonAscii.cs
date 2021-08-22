@@ -16,7 +16,7 @@ namespace FolkerKinzel.Strings
         /// </summary>
         /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt untersucht wird.</param>
         /// <returns><c>true</c>, wenn <paramref name="builder"/> ein Unicode-Zeichen enthält, das nicht zum 
-        /// ASCII-Zeichensatz gehört, anderenfalls <c>false</c>.</returns>
+        /// ASCII-Zeichensatz gehört, andernfalls <c>false</c>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         public static bool ContainsNonAscii(this StringBuilder builder)
             => builder is null
@@ -33,7 +33,7 @@ namespace FolkerKinzel.Strings
         /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem die Untersuchung
         /// beginnt.</param>
         /// <returns><c>true</c>, wenn der Abschnitt in <paramref name="builder"/> ein Unicode-Zeichen enthält, das nicht zum 
-        /// ASCII-Zeichensatz gehört, anderenfalls <c>false</c>.</returns>
+        /// ASCII-Zeichensatz gehört, andernfalls <c>false</c>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/> ist kleiner als 0 oder
         /// größer als die Anzahl der Zeichen in <paramref name="builder"/>.</exception>
@@ -53,7 +53,7 @@ namespace FolkerKinzel.Strings
         /// beginnt.</param>
         /// <param name="count">Die Länge des zu untersuchenden Abschnitts.</param>
         /// <returns><c>true</c>, wenn der Abschnitt in <paramref name="builder"/> ein Unicode-Zeichen enthält, das nicht zum 
-        /// ASCII-Zeichensatz gehört, anderenfalls <c>false</c>.</returns>
+        /// ASCII-Zeichensatz gehört, andernfalls <c>false</c>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
