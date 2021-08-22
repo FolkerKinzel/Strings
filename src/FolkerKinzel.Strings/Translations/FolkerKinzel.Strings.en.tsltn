@@ -529,4 +529,42 @@ If the length of &lt;paramref name ="values"/&gt; is less than 5, the method use
   <T ID="D310B6D6A486D341">&lt;paramref name="s"/&gt; or &lt;paramref name="anyOf"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
   <T ID="49B3F6E55065EF89">The zero-based index of the first occurrence of one of the specified Unicode characters in &lt;paramref name="s"/&gt; or -1 if none of these characters have been found. If &lt;paramref name="anyOf"/&gt; is an empty span, the method returns -1.</T>
   <T ID="6EA193E8A486D341">&lt;paramref name="s"/&gt; or &lt;paramref name="anyOf"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="79C2EDB38E1A0F50">Gets the value of a hexadecimal digit.</T>
+  <T ID="9EE822F0B52975D7">The hexadecimal digit to convert (0-9, a-f, A-F).</T>
+  <T ID="C2AA08A6982563E5">A number from 0 to 15 that corresponds to the specified hexadecimal digit.</T>
+  <T ID="E11AC81C9E3E9296">Calls &lt;see cref ="M:System.Uri.FromHex(System.Char)"/&gt;.</T>
+  <T ID="8959647CF3288D32">&lt;paramref name ="digit"/&gt; is not a valid hexadecimal digit (0-9, a-f, A-F).</T>
+  <T ID="82D4BC70D8ECA086">Tries to interpret a character as a hexadecimal digit and to return the value that this hexadecimal digit represents.</T>
+  <T ID="DBE29AA59212166E">The Unicode character to analyze.</T>
+  <T ID="9494B2C3DC08C655">After the method has been successfully completed, it contains the value that &lt;paramref name ="digit"/&gt; represents as a hexadecimal digit, otherwise &lt;c&gt;null&lt;/c&gt;. The parameter is passed uninitialized.</T>
+  <T ID="F469CB6328DE1567">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name ="digit"/&gt; represents a hexadecimal digit, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="993A68943C2095C4">Tries to interpret a character as a decimal digit (0-9) and to return the value that this decimal digit represents.</T>
+  <T ID="24EF8CE89212166E">The Unicode character to analyze.</T>
+  <T ID="41C6317441129D4F">After the method has been successfully completed, it contains the value that &lt;paramref name ="digit"/&gt; represents as a decimal digit, otherwise &lt;c&gt;null&lt;/c&gt;. The parameter is passed uninitialized.</T>
+  <T ID="24047D8BD176A42E">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name ="digit"/&gt; represents a decimal digit, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="95537E3BCD5C2C8A">Tries to interpret a character as a binary digit (0 or 1) and to return the value that this binary digit represents.</T>
+  <T ID="A1F785B29212166E">The Unicode character to analyze.</T>
+  <T ID="81E70A0FFF27064">After the method has been successfully completed, it contains the value that &lt;paramref name ="digit"/&gt; represents as a binary digit, otherwise &lt;c&gt;null&lt;/c&gt;. The parameter is passed uninitialized.</T>
+  <T ID="3E0A33122B7177D9">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name ="digit"/&gt; represents a binary digit, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="2B3613016AFE7489">Gets the value of a binary digit.</T>
+  <T ID="2B361301C55FA7C4">Gets the value of a binary digit.</T>
+  <T ID="4BFCC594B768302">The binary digit to convert (0 or 1).</T>
+  <T ID="F28DF6FA26BB31A1">A number that corresponds to the specified binary digit.</T>
+  <T ID="29DC734164FFD107">&lt;paramref name ="digit"/&gt; is not a valid binary digit (0 or 1).</T>
+  <T ID="CB8AD1AC6AFE7489">Gets the value of a decimal digit (0-9).</T>
+  <T ID="A2E49A9117275AFB">The decimal digit to convert (0-9).</T>
+  <T ID="8BD4D39723AEB4A6">A number from 0 to 9 that corresponds to the specified decimal digit.</T>
+  <T ID="BAB869B73FE37BCE">&lt;paramref name ="digit"/&gt; is not a valid decimal digit (0-9).</T>
+  <T ID="A0B36B3E02C0BC2">Examines whether the Unicode character belongs to the ASCII character set.</T>
+  <T ID="407B5B4D496DDFB">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is part of the ASCII character set, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="AB7DF404A6C6B1DC">Examines whether the Unicode character is a decimal digit (0-9).</T>
+  <T ID="F490ED3BF644E52B">The Unicode character to examine.</T>
+  <T ID="28A1E44F9063358B">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name ="digit"/&gt; represents a decimal digit, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="9A82AD0428CDC813">Examines whether the Unicode character is a hexadecimal digit (0-9, a-f, A-F).</T>
+  <T ID="463566ABF644E52B">The Unicode character to examine.</T>
+  <T ID="2CBDBEFDCEA3BA46">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name ="character"/&gt; represents a hexadecimal digit, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="85872D17202592EC">Calls &lt;see cref="M:System.Uri.IsHexDigit(System.Char)"/&gt;.</T>
+  <T ID="C1F5374A8532D69">Examines whether the Unicode character is a binary digit (0 or 1).</T>
+  <T ID="796238C5F644E52B">The Unicode character to examine.</T>
+  <T ID="A7F68E2FE23C105E">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name ="digit"/&gt; represents a binary digit, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
 </Tsltn>

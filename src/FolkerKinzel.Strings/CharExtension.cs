@@ -93,12 +93,12 @@ namespace FolkerKinzel.Strings
         }
 
         /// <summary>
-        /// Ruft den Wert einer Dezimalziffer ab.
+        /// Ruft den Wert einer Binärziffer ab.
         /// </summary>
-        /// <param name="digit">Die zu konvertierende Hexadezimalziffer (0-9, a-f, A-F).</param>
-        /// <returns>Eine Zahl von 0 bis 9, die der angegebenen Dezimalziffer entspricht.</returns>
+        /// <param name="digit">Die zu konvertierende Binärziffer (0 oder 1).</param>
+        /// <returns>Eine Zahl, die der angegebenen Binärziffer entspricht.</returns>
         /// <exception cref="ArgumentException">
-        /// <paramref name="digit"/> ist keine gültige Dezimalziffer (0-9).
+        /// <paramref name="digit"/> ist keine gültige Binärziffer (0 oder 1).
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ParseBinaryDigit(this char digit)
@@ -110,7 +110,7 @@ namespace FolkerKinzel.Strings
         /// <summary>
         /// Ruft den Wert einer Dezimalziffer ab.
         /// </summary>
-        /// <param name="digit">Die zu konvertierende Hexadezimalziffer (0-9, a-f, A-F).</param>
+        /// <param name="digit">Die zu konvertierende Dezimalziffer (0-9).</param>
         /// <returns>Eine Zahl von 0 bis 9, die der angegebenen Dezimalziffer entspricht.</returns>
         /// <exception cref="ArgumentException">
         /// <paramref name="digit"/> ist keine gültige Dezimalziffer (0-9).
@@ -123,7 +123,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen zum ASCII-Zeichensatz gehört.
+        /// Untersucht, ob das Unicode-Zeichen zum ASCII-Zeichensatz gehört.
         /// </summary>
         /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
         /// <returns><c>true</c> wenn <paramref name="c"/> ein Zeichen des ASCII-Zeichensatzes ist,
@@ -134,7 +134,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen eine Dezimalziffer (0-9) darstellt.
+        /// Untersucht, ob das Unicode-Zeichen eine Dezimalziffer (0-9) darstellt.
         /// </summary>
         /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> eine Dezimalziffer
@@ -145,7 +145,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen eine eine gültige Hexadezimalziffer (0-9, a-f, A-F) ist.
+        /// Untersucht, ob das Unicode-Zeichen eine eine gültige Hexadezimalziffer (0-9, a-f, A-F) ist.
         /// </summary>
         /// <param name="character">Das zu überprüfende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="character"/> eine Hexadezimalziffer
@@ -156,7 +156,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen eine Binärziffer (0 oder 1) darstellt.
+        /// Untersucht, ob das Unicode-Zeichen eine Binärziffer (0 oder 1) darstellt.
         /// </summary>
         /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> eine Binärziffer
@@ -165,7 +165,7 @@ namespace FolkerKinzel.Strings
         public static bool IsBinaryDigit(this char c) => c is '0' or '1';
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen als Steuerzeichen kategorisiert wird.
+        /// Untersucht, ob das Unicode-Zeichen als Steuerzeichen kategorisiert wird.
         /// </summary>
         /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> als Steuerzeichen
@@ -178,7 +178,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen als Mitglied der Unicode-Kategorie
+        /// Untersucht, ob das Unicode-Zeichen als Mitglied der Unicode-Kategorie
         /// "Decimal Digit Number" kategorisiert wird.
         /// </summary>
         /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
@@ -200,7 +200,7 @@ namespace FolkerKinzel.Strings
         public static bool IsDigit(this char c) => char.IsDigit(c);
 
         /// <summary>
-        /// Gibt an, ob <paramref name="c"/> ein hohes Ersatzzeichen ist.
+        /// Untersucht, ob <paramref name="c"/> ein hohes Ersatzzeichen ist.
         /// </summary>
         /// <param name="c">Die auszuwertende <see cref="char"/>-Instanz.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> ein hohes 
@@ -213,7 +213,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob <paramref name="c"/> ein niedriges Ersatzzeichen ist.
+        /// Untersucht, ob <paramref name="c"/> ein niedriges Ersatzzeichen ist.
         /// </summary>
         /// <param name="c">Die auszuwertende <see cref="char"/>-Instanz.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> ein niedriges 
@@ -226,7 +226,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob <paramref name="c"/> über eine Ersatzzeichencodeeinheit verfügt.
+        /// Untersucht, ob <paramref name="c"/> über eine Ersatzzeichencodeeinheit verfügt.
         /// </summary>
         /// <param name="c">Die auszuwertende <see cref="char"/>-Instanz.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> über eine Ersatzzeichencodeeinheit 
@@ -239,7 +239,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen als Unicode-Buchstabe kategorisiert wird.
+        /// Untersucht, ob das Unicode-Zeichen als Unicode-Buchstabe kategorisiert wird.
         /// </summary>
         /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> als Unicode-Buchstabe
@@ -252,7 +252,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen als Buchstabe oder Dezimalzahl kategorisiert wird.
+        /// Untersucht, ob das Unicode-Zeichen als Buchstabe oder Dezimalzahl kategorisiert wird.
         /// </summary>
         /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> als Buchstabe oder Dezimalzahl
@@ -265,7 +265,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen als Kleinbuchstabe kategorisiert wird.
+        /// Untersucht, ob das Unicode-Zeichen als Kleinbuchstabe kategorisiert wird.
         /// </summary>
         /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> als Kleinbuchstabe
@@ -278,7 +278,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen als Großbuchstabe kategorisiert wird.
+        /// Untersucht, ob das Unicode-Zeichen als Großbuchstabe kategorisiert wird.
         /// </summary>
         /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> als Großbuchstabe
@@ -291,7 +291,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen als Zahl kategorisiert wird.
+        /// Untersucht, ob das Unicode-Zeichen als Zahl kategorisiert wird.
         /// </summary>
         /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> als Zahl
@@ -303,7 +303,7 @@ namespace FolkerKinzel.Strings
         public static bool IsNumber(this char c) => char.IsNumber(c);
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen als Satzzeichen kategorisiert wird.
+        /// Untersucht, ob das Unicode-Zeichen als Satzzeichen kategorisiert wird.
         /// </summary>
         /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> als Satzzeichen 
@@ -316,7 +316,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen als Trennzeichen kategorisiert wird.
+        /// Untersucht, ob das Unicode-Zeichen als Trennzeichen kategorisiert wird.
         /// </summary>
         /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> als Trennzeichen 
@@ -328,7 +328,7 @@ namespace FolkerKinzel.Strings
         public static bool IsSeparator(this char c) => char.IsSeparator(c);
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen als Symbolzeichen kategorisiert wird.
+        /// Untersucht, ob das Unicode-Zeichen als Symbolzeichen kategorisiert wird.
         /// </summary>
         /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> als Symbolzeichen 
@@ -341,7 +341,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen als Leerzeichen kategorisiert wird.
+        /// Untersucht, ob das Unicode-Zeichen als Leerzeichen kategorisiert wird.
         /// </summary>
         /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> als Leerzeichen 
@@ -383,7 +383,7 @@ namespace FolkerKinzel.Strings
 
 
         /// <summary>
-        /// Gibt an, ob das Unicode-Zeichen als Zeilenwechselzeichen kategorisiert wird.
+        /// Untersucht, ob das Unicode-Zeichen als Zeilenwechselzeichen kategorisiert wird.
         /// </summary>
         /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
         /// <returns><c>true</c>, wenn <paramref name="c"/> als Zeilenwechselzeichen
