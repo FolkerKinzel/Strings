@@ -780,4 +780,76 @@ PS: Paragraph Separator (U+2029)
 &lt;/item&gt;
 &lt;/list&gt;</T>
   <T ID="A14E2B59592FCC7A">Inserts the content of a read-only character span at the specified index position into &lt;paramref name="builder"/&gt;.</T>
+  <T ID="C96F081D31BAA75B">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; into which the characters are inserted.</T>
+  <T ID="E72C82AB79D970B4">The zero-based index in &lt;paramref name ="builder"/&gt; at which the characters are inserted.</T>
+  <T ID="A0AD5392BDD93808">The character span to insert.</T>
+  <T ID="52673F7A164AF661">A reference to &lt;paramref name="builder"/&gt; after the insert operation is completed.</T>
+  <T ID="2652A1366D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="F72EE60C3446A7C3">&lt;paramref name ="index"/&gt; is less than 0 or greater than the number of characters in &lt;paramref name ="builder"/&gt;.</T>
+  <T ID="956E8B5D34A36095">Extension methods, which act as Polyfills for the extension methods of the class &lt;see cref="T:FolkerKinzel.Strings.StringExtension"/&gt;.</T>
+  <T ID="3143250DC955B46E">Generates a &lt;see cref ="T:System.String"/&gt; in which all sequences of white space are replaced by &lt;paramref name="replacement"/&gt;.</T>
+  <T ID="67D528875A68DC9">The source &lt;see cref="T:System.String"/&gt;.</T>
+  <T ID="CBA5738D32A79726">A &lt;see cref="T:System.String"/&gt;, which replaces the white space or &lt;c&gt;null&lt;/c&gt; to remove all white space.</T>
+  <T ID="818D45C685C8117C">Pass &lt;c&gt;true&lt;/c&gt; to exclude Newline characters from the replacement. The default value is &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="D323FCA85B7084A5">A new &lt;see cref ="T:System.String"/&gt; in which all sequences of white space are replaced by &lt;paramref name="replacement"/&gt;. If &lt;paramref name="s"/&gt; doesn't contain a white space character, &lt;paramref name="s"/&gt; is returned.</T>
+  <T ID="65CA41B44BA102C0">&lt;para&gt;
+The method uses &lt;see cref ="M:System.Char.IsWhiteSpace(System.Char)"/&gt; to identify white space characters and works more thoroughly with it than &lt;see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)"&gt;Regex.Replace(string input, @"\s+", string replacement)&lt;/see&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify line break characters.
+&lt;/para&gt;
+&lt;para&gt;
+This overload is useful because the support for the implicit conversion from &lt;see cref ="T:System.String"/&gt; to &lt;see cref="T:System.ReadOnlySpan`1"&gt;ReadOnlySpan&amp;lt;Char&amp;gt;&lt;/see&gt; only starts with .NET Standard 2.1.
+&lt;/para&gt;</T>
+  <T ID="24E60C7DE78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="8B2250E40E931C0D">Generates a &lt;see cref ="T:System.String"/&gt; in which all newlines are replaced by &lt;paramref name="newLine"/&gt;.</T>
+  <T ID="1AC7666DB86216C5">The source &lt;see cref="T:System.String"/&gt;.</T>
+  <T ID="FD4A3C32D99E810D">A &lt;see cref="T:System.String"/&gt; that is the replacement for all newlines or &lt;c&gt;null&lt;/c&gt; to completely remove all newline characters.</T>
+  <T ID="80603C9BCF1F5506">A new &lt;see cref ="T:System.String"/&gt; in which all newlines are replaced by &lt;paramref name="replacement"/&gt;. If &lt;paramref name="s"/&gt; doesn't contain a newline character, &lt;paramref name="s"/&gt; is returned.</T>
+  <T ID="B10626F580EB34CF">&lt;para&gt;
+&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify line break characters. The sequences CRLF and LFCR are treated as one line break.
+&lt;/para&gt;
+&lt;para&gt;
+This overload is useful because the support for the implicit conversion from &lt;see cref ="T:System.String"/&gt; to &lt;see cref="T:System.ReadOnlySpan`1"&gt;ReadOnlySpan&amp;lt;Char&amp;gt;&lt;/see&gt; only starts with .NET Standard 2.1.
+&lt;/para&gt;</T>
+  <T ID="EE39A5D9E78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="BD3512D75306A013">An enumeration value that specifies the rules for the comparison.</T>
+  <T ID="D99D3751183DE16">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; has been found, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="BA054F501183DE16">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; has been found, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="682CE8FBF35F62F">Returns a value indicating whether a specified string occurs within &lt;paramref name="s"/&gt;, using the specified comparison rules.</T>
+  <T ID="D6A6B5A816154BD0">The &lt;see cref="T:System.String"/&gt; to search.</T>
+  <T ID="335FBA62DD6392AE">The &lt;see cref="T:System.String"/&gt; to search for.</T>
+  <T ID="C739F8875306A013">An enumeration value that specifies the rules for the comparison.</T>
+  <T ID="3AC2E8321183DE16">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; has been found, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="B666F8CE78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="CEA470E71E90ECD">Splits a string into a maximum number of substrings based on the provided separator, optionally omitting empty substrings from the result.</T>
+  <T ID="F75AF076C81A83D">The &lt;see cref="T:System.String"/&gt; to split.</T>
+  <T ID="2E031FB9780E37AB">A string that delimits the substrings in &lt;paramref name="s"/&gt;.</T>
+  <T ID="4F18FC41442C71C1">The maximum number of elements expected in the array.</T>
+  <T ID="154E94B66C70A1C5">An enumeration value that specifies whether to include empty substrings.</T>
+  <T ID="F7998D39F98AC788">An array that contains at most &lt;paramref name="count"/&gt; substrings from &lt;paramref name="s"/&gt; that are delimited by &lt;paramref name="separator"/&gt;.</T>
+  <T ID="C3F76E46E78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="372ADD9A2FCFD86F">Splits a string into substrings based on the provided separator, optionally omitting empty substrings from the result.</T>
+  <T ID="52BE06A76C81A83D">The &lt;see cref="T:System.String"/&gt; to split.</T>
+  <T ID="1944D070780E37AB">A string that delimits the substrings in &lt;paramref name="s"/&gt;.</T>
+  <T ID="635F79E56C70A1C5">An enumeration value that specifies whether to include empty substrings.</T>
+  <T ID="7A7E0D5F88432DFE">An array whose elements contain the substrings from &lt;paramref name="s"/&gt; that are delimited by &lt;paramref name="separator"/&gt;.</T>
+  <T ID="990FB0C8E78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="2A8E1F360994FBEC">Returns a new &lt;see cref="T:System.String"/&gt; in which all occurrences of a specified &lt;see cref="T:System.String"/&gt; in the current &lt;see cref="T:System.String"/&gt; are replaced with another specified &lt;see cref="T:System.String"/&gt;, using the provided comparison type.</T>
+  <T ID="257C9B1B5BD97688">The source &lt;see cref="T:System.String"/&gt;.</T>
+  <T ID="2C358BC1A9D8FD4E">The &lt;see cref="T:System.String"/&gt; to be replaced.</T>
+  <T ID="798703241E856361">The &lt;see cref="T:System.String"/&gt; to replace all occurrences of &lt;paramref name="oldValue"/&gt;.</T>
+  <T ID="D93ED6105306A013">An enumeration value that specifies the rules for the comparison.</T>
+  <T ID="58A939FBCBBFEC78">A &lt;see cref="T:System.String"/&gt; that is equivalent to &lt;paramref name="s"/&gt; except that all instances of &lt;paramref name="oldValue"/&gt; are replaced with &lt;paramref name="newValue"/&gt;. If &lt;paramref name="oldValue"/&gt; is not found in &lt;paramref name="s"/&gt;, the method returns &lt;paramref name="s"/&gt; unchanged.</T>
+  <T ID="F700E86FE78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="740BCB133D046509">&lt;paramref name="oldValue"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="FEEB1410313A0533">&lt;para&gt;
+&lt;paramref name="oldValue"/&gt; is &lt;see cref="F:System.String.Empty"/&gt;
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enumeration.
+&lt;/para&gt;</T>
 </Tsltn>

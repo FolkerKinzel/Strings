@@ -56,7 +56,7 @@ namespace FolkerKinzel.Strings.Polyfills
         /// Gibt mithilfe der festgelegten Vergleichsregeln einen Wert zurück, der angibt, ob eine angegebene Zeichenfolge innerhalb von <paramref name="s"/>
         /// auftritt.
         /// </summary>
-        /// <param name="s">>Der zu untersuchende <see cref="string"/>.</param>
+        /// <param name="s">Der zu untersuchende <see cref="string"/>.</param>
         /// <param name="value">Die zu suchende Zeichenfolge.</param>
         /// <param name="comparisonType">Ein Enumerationswert, der die für den Vergleich zu verwendende Regel angibt.</param>
         /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
@@ -174,7 +174,7 @@ namespace FolkerKinzel.Strings.Polyfills
         /// Gibt mithilfe des bereitgestellten Vergleichstyps eine neue Zeichenfolge zurück, in der alle Vorkommen einer 
         /// angegebenen Zeichenfolge in der aktuellen Instanz durch eine andere angegebene Zeichenfolge ersetzt wurden.
         /// </summary>
-        /// <param name="s">>Der zu bearbeitende <see cref="string"/>.</param>
+        /// <param name="s">Der zu bearbeitende <see cref="string"/>.</param>
         /// <param name="oldValue">Die zu ersetzende Zeichenfolge.</param>
         /// <param name="newValue">Die Zeichenfolge, die jedes Vorkommen von <paramref name="oldValue"/> ersetzen soll.</param>
         /// <param name="comparisonType">Ein Enumerationswert, der die für den Vergleich zu verwendende Regel angibt.</param>
