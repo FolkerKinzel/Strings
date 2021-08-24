@@ -45,12 +45,17 @@ namespace FolkerKinzel.Strings
         /// und verläuft für eine angegebene Anzahl von Zeichenpositionen rückwärts zum Anfang der Zeichenfolge.
         /// </summary>
         /// <param name="span">Die zu durchsuchende schreibgeschützte Zeichenspanne.</param>
-        /// <param name="anyOf">Eine schreibgeschützte Zeichenspanne, die die zu suchenden Zeichen enthält.</param>
+        /// <param name="values">Eine schreibgeschützte Zeichenspanne, die die zu suchenden Zeichen enthält.</param>
         /// <param name="startIndex">Die Anfangsposition der Suche. Die Suche erfolgt rückwärts zum Anfang 
         /// von <paramref name="span"/>.</param>
         /// <param name="count">Die Anzahl der zu überprüfenden Zeichenpositionen in <paramref name="span"/>.</param>
-        /// <returns>Der nullbasierte Index des letzten Vorkommens eines beliebigen Zeichens aus <paramref name="anyOf"/>
+        /// <returns>Der nullbasierte Index des letzten Vorkommens eines beliebigen Zeichens aus <paramref name="values"/>
         /// in <paramref name="span"/> oder -1, wenn keines dieser Zeichen gefunden wurde.</returns>
+        /// <remarks>
+        /// Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
+        /// <see cref="MemoryExtensions.LastIndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})"/>. Ist die Länge von <paramref name="values"/>
+        /// größer, wird <see cref="string.LastIndexOfAny(char[])"/> verwendet.
+        /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <para>
         /// <paramref name="span"/> ist nicht <see cref="ReadOnlySpan{T}.Empty"/> und <paramref name="startIndex"/> ist 
@@ -64,22 +69,18 @@ namespace FolkerKinzel.Strings
         /// ist kleiner als 0.
         /// </para>
         /// </exception>
-        /// <remarks>
-        /// Wenn die Länge von <paramref name="anyOf"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-        /// <see cref="MemoryExtensions.LastIndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})"/>. Ist die Länge von <paramref name="anyOf"/>
-        /// größer, wird <see cref="string.LastIndexOfAny(char[])"/> verwendet.
-        /// </remarks>
-        public static int LastIndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> anyOf, int startIndex, int count)
+        /// 
+        public static int LastIndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values, int startIndex, int count)
         {
             // string.LastIndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
             // MemoryExtensions.LastIndexOfAny returns 0 if the span with the characters to search for is empty.
             // This makes it consistent:
-            if (count == 0 || anyOf.IsEmpty)
+            if (count == 0 || values.IsEmpty)
             {
                 return -1;
             }
 
-            if (anyOf.Length <= 5)
+            if (values.Length <= 5)
             {
                 // MemoryExtensions.LastIndexOfAny throws ArgumentOutOfRangeExceptions even if s is ""
                 // string.LastIndexOfAny does not.
@@ -87,11 +88,11 @@ namespace FolkerKinzel.Strings
                 {
                     return -1;
                 }
-                int matchIndex = MemoryExtensions.LastIndexOfAny(span.Slice(startIndex - count + 1, count), anyOf);
+                int matchIndex = MemoryExtensions.LastIndexOfAny(span.Slice(startIndex - count + 1, count), values);
                 return matchIndex == -1 ? -1 : matchIndex + startIndex - count + 1;
             }
 
-            return span.ToString().LastIndexOfAny(anyOf.ToArray(), startIndex, count);
+            return span.ToString().LastIndexOfAny(values.ToArray(), startIndex, count);
         }
         
 

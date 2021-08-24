@@ -852,4 +852,110 @@ This overload is useful because the support for the implicit conversion from &lt
 &lt;para&gt;
 &lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enumeration.
 &lt;/para&gt;</T>
+  <T ID="C40DF95BC6688FB8"></T>
+  <T ID="5EB53FA6F0954782"></T>
+  <T ID="8C3740C8138EF769">Indicates whether a read-only character span contains a newline character.</T>
+  <T ID="EC5CDBE8C6DCBCB1">The span to search.</T>
+  <T ID="8EF9672BEB82C8E5">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="span"/&gt; contains a newline character, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="45DD557960457753">&lt;see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used for the comparison.</T>
+  <T ID="40E00A51428BBF3">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="span"/&gt; contains white space, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="B7DA26F913BAD2FC">Determines whether a read-only character span ends with a specified Unicode character.</T>
+  <T ID="B3F3042BC26D7E7">The span to search.</T>
+  <T ID="1CE612D4B7371F16">The Unicode character to search for.</T>
+  <T ID="BDDD8A9E40D010EC">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; matches the end of &lt;paramref name="span"/&gt;, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="B8450214E1E70044">The method performs an ordinal character comparison.</T>
+  <T ID="C718E59CB1343B95">&lt;c&gt;false&lt;/c&gt; if &lt;paramref name="span"/&gt; contains a Unicode character, which doesn't belong to the ASCII character set, otherwise &lt;c&gt;true&lt;/c&gt;.</T>
+  <T ID="F3D73D33361C7957">Returns the zero-based index position of the last occurrence of one of the specified characters in &lt;paramref name ="span"/&gt;. The search begins at a specified index and runs for a specified number of character positions backwards to the beginning of the span.</T>
+  <T ID="88227507523F4210">The span to search.</T>
+  <T ID="3E136D11F13A4FB1">A read-only character span that contains the characters to search for.</T>
+  <T ID="BDEC3C3D6EBA283">The start index of the search. The search is done backwards to the beginning of &lt;paramref name="span"/&gt;.</T>
+  <T ID="C9A38DB754950E41">The number of characters positions to examine in &lt;paramref name="span"/&gt;.</T>
+  <T ID="F2EE777BF13A4FB1">A read-only character span that contains the characters to search for.</T>
+  <T ID="998BC860095F2955">The zero-based index of the last occurrence of one of the specified Unicode characters in the specified part of &lt;paramref name="span"/&gt; or -1 if none of these characters have been found in this area.</T>
+  <T ID="BE35F1BA78B05FF1">If the length of &lt;paramref name="values"/&gt; is less than 5, the method uses MemoryExtensions.IndexOfAny&amp;lt;T&amp;gt;(ReadOnlySpan&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the comparison. If the length of &lt;paramref name ="values"/&gt; is greater, &lt;see cref ="M:System.String.IndexOfAny(System.Char[])"/&gt; is used to avoid performance issues.</T>
+  <T ID="8B4108ABD1341667">&lt;para&gt;
+&lt;paramref name="span"/&gt; is not &lt;see cref="P:System.ReadOnlySpan`1.Empty"/&gt; and &lt;paramref name ="startIndex"/&gt; is less than 0 or greater than or equal to the length of &lt;paramref name="span"/&gt;
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref="P:System.ReadOnlySpan`1.Empty"/&gt; and &lt;paramref name ="startIndex"/&gt; - &lt;paramref name ="count"/&gt; + 1 is less than 0.
+&lt;/para&gt;</T>
+  <T ID="18CBBCFACE62C622">Determines whether a read-only character span begins with the specified Unicode character.</T>
+  <T ID="A9F37805BC26D7E7">The span to search.</T>
+  <T ID="63433E75B7371F16">The Unicode character to search for.</T>
+  <T ID="E84EC0D7CE18386A">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; matches the beginning of &lt;paramref name="span"/&gt;, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="B09C0E6BE1E70044">The method performs an ordinal character comparison.</T>
+  <T ID="86B95CEED2D0C957">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; has been found, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="9854134A237F854B">Examines whether the &lt;see cref="T:System.Text.StringBuilder"/&gt; contains a newline character.</T>
+  <T ID="EA92EBB9965635FC">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; to search.</T>
+  <T ID="3D8AEB512D6CD25C">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="builder"/&gt; contains a newline character, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="C65ABA39EF84B501">&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify line break characters.</T>
+  <T ID="BDB1D14B6D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="EC0103D62DEF7FEA">Examines a section of the &lt;see cref ="T:System.Text.StringBuilder"/&gt; that begins at &lt;paramref name ="startIndex"/&gt; to see whether it contains a newline character.</T>
+  <T ID="B747ACB2965635FC">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; to search.</T>
+  <T ID="FDA9B042481F4334">The zero-based index in &lt;paramref name ="builder"/&gt; at which the examination begins.</T>
+  <T ID="E22D10A7E2B84EEF">&lt;c&gt;true&lt;/c&gt; if the specified section in &lt;paramref name="builder"/&gt; contains a newline character, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="3CB4083DEF84B501">&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify line break characters.</T>
+  <T ID="E72891816D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="A9F085B109F1669F">&lt;paramref name ="startIndex"/&gt; is less than 0 or greater than the number of characters in &lt;paramref name ="builder"/&gt;.</T>
+  <T ID="9C20C8B4965635FC">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; to search.</T>
+  <T ID="4387B1A8481F4334">The zero-based index in &lt;paramref name ="builder"/&gt; at which the examination begins.</T>
+  <T ID="850BB41397929986">The number of character positions to examine.</T>
+  <T ID="EF9D1DEAE2B84EEF">&lt;c&gt;true&lt;/c&gt; if the specified section in &lt;paramref name="builder"/&gt; contains a newline character, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="F7911FEEF84B501">&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify line break characters.</T>
+  <T ID="D6CA2BA16D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="220906456BCC0FF0">&lt;para&gt;
+&lt;paramref name ="startIndex"/&gt; or &lt;paramref name ="count"/&gt; are smaller than 0 or larger than the number of characters in &lt;paramref name ="builder"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="startIndex"/&gt; + &lt;paramref name ="count"/&gt; is larger than the number of characters in &lt;paramref name ="builder"/&gt;.
+&lt;/para&gt;</T>
+  <T ID="F75F361A7148F8CB">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="builder"/&gt; contains a Unicode character, which doesn't belong to the ASCII character set; otherwise, &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="5FF3C6946D5264E0">&lt;c&gt;true&lt;/c&gt; if the specified section in &lt;paramref name="builder"/&gt; contains a Unicode character, which doesn't belong to the ASCII character set; otherwise, &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="197E22A96D5264E0">&lt;c&gt;true&lt;/c&gt; if the specified section in &lt;paramref name="builder"/&gt; contains a Unicode character, which doesn't belong to the ASCII character set; otherwise, &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="78DB74E50900624F">Examines whether the &lt;see cref="T:System.Text.StringBuilder"/&gt; contains white space.</T>
+  <T ID="FDD06FED965635FC">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; to search.</T>
+  <T ID="BFFD7B9CA490A9B7">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="builder"/&gt; contains white space, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="3F67674A748ACBD4">&lt;see cref="M:System.Char.IsWhiteSpace(System.Char)"/&gt; is used to identify white space.</T>
+  <T ID="33CDECF6D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="4BF22360749BE7A4">Examines a section of the &lt;see cref ="T:System.Text.StringBuilder"/&gt; that begins at &lt;paramref name ="startIndex"/&gt; to see whether it contains white space.</T>
+  <T ID="74E41721965635FC">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; to search.</T>
+  <T ID="5E53A9EA481F4334">The zero-based index in &lt;paramref name ="builder"/&gt; at which the examination begins.</T>
+  <T ID="E7FA781BD69B049E">&lt;c&gt;true&lt;/c&gt; if the specified section in &lt;paramref name="builder"/&gt; contains white space, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="BBB24601748ACBD4">&lt;see cref="M:System.Char.IsWhiteSpace(System.Char)"/&gt; is used to identify white space.</T>
+  <T ID="EC164B8E6D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="203A35A809F1669F">&lt;paramref name ="startIndex"/&gt; is less than 0 or greater than the number of characters in &lt;paramref name ="builder"/&gt;.</T>
+  <T ID="54BBFC2B20974C80">Examines a section of the &lt;see cref ="T:System.Text.StringBuilder"/&gt; that begins at &lt;paramref name ="startIndex"/&gt; and includes &lt;paramref name ="count"/&gt; characters to determine whether this section contains white space.</T>
+  <T ID="CB0105A9965635FC">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; to search.</T>
+  <T ID="F259C9CA481F4334">The zero-based index in &lt;paramref name ="builder"/&gt; at which the examination begins.</T>
+  <T ID="491110BE97929986">The number of character positions to examine.</T>
+  <T ID="C0534EAAD69B049E">&lt;c&gt;true&lt;/c&gt; if the specified section in &lt;paramref name="builder"/&gt; contains white space, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="7D075D74748ACBD4">&lt;see cref="M:System.Char.IsWhiteSpace(System.Char)"/&gt; is used to identify white space.</T>
+  <T ID="369462476D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="5ED41DAC6BCC0FF0">&lt;para&gt;
+&lt;paramref name ="startIndex"/&gt; or &lt;paramref name ="count"/&gt; are smaller than 0 or larger than the number of characters in &lt;paramref name ="builder"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="startIndex"/&gt; + &lt;paramref name ="count"/&gt; is larger than the number of characters in &lt;paramref name ="builder"/&gt;.
+&lt;/para&gt;</T>
+  <T ID="4B51530AF168B704">Indicates whether the content of a &lt;see cref="T:System.Text.StringBuilder"/&gt; ends with the specified Unicode character.</T>
+  <T ID="A1CBEF5E1076575F">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; to search.</T>
+  <T ID="C7E34A88B7371F16">The Unicode character to search for.</T>
+  <T ID="5A89F6F3582462D3">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; matches the end of &lt;paramref name="builder"/&gt;; otherwise, &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="F2C4D6F3E1E70044">The method performs an ordinal character comparison.</T>
+  <T ID="41944D86D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="EA6DF9377083DC46">Replaces all Newlines in &lt;paramref name="builder"/&gt; with &lt;paramref name="newLine"/&gt;.</T>
+  <T ID="D7EA6E71A046D2F0">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; whose content is changed.</T>
+  <T ID="2266D3A2792AEBDC">A read-only character span that is the replacement for all newlines. If an empty span is passed to the parameter, all newline characters will be completely removed.</T>
+  <T ID="A188003A0A4E719D">A reference to &lt;paramref name ="builder"/&gt;.</T>
+  <T ID="C86629FA78B6C437">&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify line break characters. The sequences CRLF and LFCR are treated as one line break.</T>
+  <T ID="D342FF746D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
 </Tsltn>
