@@ -567,4 +567,217 @@ If the length of &lt;paramref name ="values"/&gt; is less than 5, the method use
   <T ID="C1F5374A8532D69">Examines whether the Unicode character is a binary digit (0 or 1).</T>
   <T ID="796238C5F644E52B">The Unicode character to examine.</T>
   <T ID="A7F68E2FE23C105E">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name ="digit"/&gt; represents a binary digit, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="E730FECC368ED765">Examines whether the Unicode character is categorized as a control character.</T>
+  <T ID="7964F81D72EA4D1">The Unicode character to examine.</T>
+  <T ID="19165BEDF0C20E1B">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is categorized as a control character, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="3FF4E38B9C9C5BF8">Calls &lt;see cref="M:System.Char.IsControl(System.Char)"/&gt;.</T>
+  <T ID="8415302756130C9D">Examines whether the Unicode character is categorized as a member of the Unicode category "Decimal Digit Number".</T>
+  <T ID="8361E038D72EA4D1">The Unicode character to examine.</T>
+  <T ID="9E90CF132944FA47">The Unicode character to examine.</T>
+  <T ID="71A498CC2944FA47">The Unicode character to examine.</T>
+  <T ID="710E94BAD72EA4D1">The Unicode character to examine.</T>
+  <T ID="5F1DA9E4D72EA4D1">The Unicode character to examine.</T>
+  <T ID="BEEEA8B4D72EA4D1">The Unicode character to examine.</T>
+  <T ID="30C52419D72EA4D1">The Unicode character to examine.</T>
+  <T ID="4088155ED72EA4D1">The Unicode character to examine.</T>
+  <T ID="F14474A0D72EA4D1">The Unicode character to examine.</T>
+  <T ID="A492B76CD72EA4D1">The Unicode character to examine.</T>
+  <T ID="7285ADBAD72EA4D1">The Unicode character to examine.</T>
+  <T ID="7F9121E4D72EA4D1">The Unicode character to examine.</T>
+  <T ID="A1B3B412D72EA4D1">The Unicode character to examine.</T>
+  <T ID="A88978B6F7886F20">&lt;c&gt;true&lt;/c&gt;, if &lt;paramref name="c"/&gt; is categorized as a member of the Unicode category "Decimal Digit Number", otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="C6FA72F8A4E1A408">&lt;para&gt;
+Calls the &lt;see cref ="M:System.Char.IsDigit(System.Char)"/&gt; method.
+&lt;/para&gt;
+&lt;note type ="important"&gt;
+The Unicode category "Decimal Digit Number" includes many more characters than the digits 0-9. Use the &lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsDecimalDigit(System.Char)"/&gt; method if you want to check for the characters 0-9.
+&lt;/note&gt;</T>
+  <T ID="50441D594717190E">Examines whether the Unicode character is a high surrogate.</T>
+  <T ID="D99E6A1C2944FA47">The Unicode character to examine.</T>
+  <T ID="C413CA866CC2CE5F">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is a high surrogate, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="41154BD850E987EF">Calls &lt;see cref="M:System.Char.IsHighSurrogate(System.Char)"/&gt;.</T>
+  <T ID="59C7E87CCDAE9637">Examines whether the Unicode character is a low surrogate.</T>
+  <T ID="7689CA792529CA7A">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is a low surrogate, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="45E3DC3F5188177F">Calls &lt;see cref="M:System.Char.IsLowSurrogate(System.Char)"/&gt;.</T>
+  <T ID="6C8D47159CE6A4A8">Examines whether the Unicode character has a surrogate code unit.</T>
+  <T ID="9701CDEC054754D0">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt;  has a surrogate code unit, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="DA4E026E004BAD7C">Calls &lt;see cref="M:System.Char.IsSurrogate(System.Char)"/&gt;.</T>
+  <T ID="2CA4EFD131F5C7F5">Examines whether the Unicode character is categorized as a Unicode letter.</T>
+  <T ID="1A10EC14115F4F42">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is categorized as a Unicode letter, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="6F99380262BB6E62">Calls &lt;see cref="M:System.Char.IsLetter(System.Char)"/&gt;.</T>
+  <T ID="570A5BDBBADAF33E">Examines whether the Unicode character is categorized as a Unicode letter or decimal digit.</T>
+  <T ID="663EC44CED9AB459">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is categorized as a Unicode letter or decimal digit, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="2E8C9118DC20F073">Calls &lt;see cref="M:System.Char.IsLetterOrDigit(System.Char)"/&gt; auf.</T>
+  <T ID="2027775374D6FEF7">Examines whether the Unicode character is categorized as a lowercase letter.</T>
+  <T ID="FBB3015E311195CC">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is categorized as a lowercase letter, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="A3952F96259EB365">Calls &lt;see cref="M:System.Char.IsLower(System.Char)"/&gt;.</T>
+  <T ID="4C571CDE872F28C3">Examines whether the Unicode character is categorized as a uppercase letter.</T>
+  <T ID="B416CAAFA927301A">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is categorized as a uppercase letter, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="C94E0455B9978F8E">Calls &lt;see cref="M:System.Char.IsUpper(System.Char)"/&gt;.</T>
+  <T ID="81C995DD536C5EA7">Examines whether the Unicode character is categorized as a number.</T>
+  <T ID="37E25C82E0C9AB80">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is categorized as a number, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="8AA6691CDBE6A4F3">Calls &lt;see cref="M:System.Char.IsNumber(System.Char)"/&gt; auf.</T>
+  <T ID="ED2F1767B628B36B">Examines whether the Unicode character is categorized as a punctuation mark.</T>
+  <T ID="75C8071400F30AE1">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is categorized as a punctuation mark, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="F65E5A8E43C42523">Calls &lt;see cref="M:System.Char.IsPunctuation(System.Char)"/&gt; auf.</T>
+  <T ID="1942CD4B94A5CE18">Examines whether the Unicode character is categorized as a separator character.</T>
+  <T ID="49BD8EF447E6FF48">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is categorized as a separator character, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="816F8230BA602605">Calls &lt;see cref="M:System.Char.IsSeparator(System.Char)"/&gt; auf.</T>
+  <T ID="835D3C9D2ED03026">Examines whether the Unicode character is categorized as a symbol character.</T>
+  <T ID="762E9C16092BB2B6">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is categorized as a symbol character, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="2BE057CAC9039321">Calls &lt;see cref="M:System.Char.IsSymbol(System.Char)"/&gt;.</T>
+  <T ID="F87083F117A325CD">Examines whether the Unicode character is categorized as white space.</T>
+  <T ID="BD4EED2E10863E9C">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is categorized as white space, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="140969C61FE3968C">Calls &lt;see cref="M:System.Char.IsWhiteSpace(System.Char)"/&gt;.</T>
+  <T ID="A3AB1B3E77A126BB">Converts the value of a Unicode character to its lowercase equivalent using the casing rules of the invariant culture.</T>
+  <T ID="821AE9FDDA17CC5">The Unicode character to convert.</T>
+  <T ID="B3794A81F3BA49D6">The lowercase equivalent of the &lt;paramref name="c"/&gt; parameter, or the unchanged value of &lt;paramref name="c"/&gt;, if &lt;paramref name="c"/&gt; is already lowercase or not alphabetic.</T>
+  <T ID="2D155229B725D8EA">Determines whether a read-only span of characters starts with the specified &lt;see cref="T:System.String"/&gt;.</T>
+  <T ID="CD744D0DA6A03F7B">The source span.</T>
+  <T ID="81894EF5A35FE867">Der &lt;see cref="T:System.String"/&gt; to compare with the start of the source span.</T>
+  <T ID="DE2C710E57940B7A">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; matches the start of &lt;paramref name="span"/&gt;, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="1DE34C2CC5866F7F">&lt;para&gt;
+The method performs an ordinal character comparison. If &lt;paramref name ="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref ="F:System.String.Empty"/&gt;, &lt;c&gt;true&lt;/c&gt; is returned.
+&lt;/para&gt;
+&lt;para&gt;
+This overload is useful because the support for the implicit conversion from &lt;see cref ="T:System.String"/&gt; to &lt;see cref="T:System.ReadOnlySpan`1"&gt;ReadOnlySpan&amp;lt;Char&amp;gt;&lt;/see&gt; only starts with .NET Standard 2.1.
+&lt;/para&gt;</T>
+  <T ID="3FC28CC30B7E473C">Determines whether a read-only character span begins with a specified &lt;see cref="T:System.String"/&gt; when compared using a specified &lt;see cref="T:System.StringComparison"/&gt; value.</T>
+  <T ID="1C92B4B5A6A03F7B">The source span.</T>
+  <T ID="89737857A35FE867">Der &lt;see cref="T:System.String"/&gt; to compare with the start of the source span.</T>
+  <T ID="F09AE905DD28B219">An enumeration value that determines how &lt;paramref name="span"/&gt; and &lt;paramref name="value"/&gt; are compared.</T>
+  <T ID="A3B1847857940B7A">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; matches the start of &lt;paramref name="span"/&gt;, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="2C4C5746C5866F7F">&lt;para&gt;
+The method performs an ordinal character comparison. If &lt;paramref name ="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref ="F:System.String.Empty"/&gt;, &lt;c&gt;true&lt;/c&gt; is returned.
+&lt;/para&gt;
+&lt;para&gt;
+This overload is useful because the support for the implicit conversion from &lt;see cref ="T:System.String"/&gt; to &lt;see cref="T:System.ReadOnlySpan`1"&gt;ReadOnlySpan&amp;lt;Char&amp;gt;&lt;/see&gt; only starts with .NET Standard 2.1.
+&lt;/para&gt;</T>
+  <T ID="2145D8381EBACA49">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enumeration.</T>
+  <T ID="CDC522E79F15C31C">Determines whether &lt;paramref name="s"/&gt; ends with the specified &lt;see cref="T:System.String"/&gt;.</T>
+  <T ID="1FCC6D65A6A03F7B">The source span.</T>
+  <T ID="241FA300F44C0B24">The &lt;see cref="T:System.String"/&gt; to compare with the end of the source span.</T>
+  <T ID="E90CAC16D5237705">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; matches the end of &lt;paramref name="span"/&gt;, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="660E1082C5866F7F">&lt;para&gt;
+The method performs an ordinal character comparison. If &lt;paramref name ="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref ="F:System.String.Empty"/&gt;, &lt;c&gt;true&lt;/c&gt; is returned.
+&lt;/para&gt;
+&lt;para&gt;
+This overload is useful because the support for the implicit conversion from &lt;see cref ="T:System.String"/&gt; to &lt;see cref="T:System.ReadOnlySpan`1"&gt;ReadOnlySpan&amp;lt;Char&amp;gt;&lt;/see&gt; only starts with .NET Standard 2.1.
+&lt;/para&gt;</T>
+  <T ID="2DE743B72F308704">Determines whether a read-only character span ends with a specified &lt;see cref="T:System.String"/&gt; when compared using a specified &lt;see cref="T:System.StringComparison"/&gt; value.</T>
+  <T ID="EF34CE78A6A03F7B">The source span.</T>
+  <T ID="F7E33BE0F44C0B24">The &lt;see cref="T:System.String"/&gt; to compare with the end of the source span.</T>
+  <T ID="8A23192EDD28B219">An enumeration value that determines how &lt;paramref name="span"/&gt; and &lt;paramref name="value"/&gt; are compared.</T>
+  <T ID="B0ED5D6ED5237705">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; matches the end of &lt;paramref name="span"/&gt;, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="2852CAB0C54504F5">&lt;para&gt;
+If &lt;paramref name ="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref ="F:System.String.Empty"/&gt;, &lt;c&gt;true&lt;/c&gt; is returned.
+&lt;/para&gt;
+&lt;para&gt;
+This overload is useful because the support for the implicit conversion from &lt;see cref ="T:System.String"/&gt; to &lt;see cref="T:System.ReadOnlySpan`1"&gt;ReadOnlySpan&amp;lt;Char&amp;gt;&lt;/see&gt; only starts with .NET Standard 2.1.
+&lt;/para&gt;</T>
+  <T ID="F910B02F1EBACA49">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enumeration.</T>
+  <T ID="C9B2A6443CC9B757">Extension methods, which act as Polyfills for the extension methods of the class &lt;see cref="T:FolkerKinzel.Strings.StringBuilderExtension"/&gt;.</T>
+  <T ID="24BF3531AF0C6641">Replaces in &lt;paramref name="builder"/&gt; all sequences of white space with &lt;paramref name="replacement"/&gt;.</T>
+  <T ID="75D0FA5A54973274">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; whose content is changed.</T>
+  <T ID="79B421EE489703EB">A &lt;see cref="T:System.String"/&gt; that is the replacement for all sequences of white space or &lt;c&gt;null&lt;/c&gt; to completely remove any white space.</T>
+  <T ID="7D11B12A85C8117C">Pass &lt;c&gt;true&lt;/c&gt; to exclude Newline characters from the replacement. The default value is &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="2914AF4600D33280">A reference to &lt;paramref name ="builder"/&gt;.</T>
+  <T ID="6C9CA7884BA102C0">&lt;para&gt;
+The method uses &lt;see cref ="M:System.Char.IsWhiteSpace(System.Char)"/&gt; to identify white space characters and works more thoroughly with it than &lt;see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)"&gt;Regex.Replace(string input, @"\s+", string replacement)&lt;/see&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify line break characters.
+&lt;/para&gt;
+&lt;para&gt;
+This overload is useful because the support for the implicit conversion from &lt;see cref ="T:System.String"/&gt; to &lt;see cref="T:System.ReadOnlySpan`1"&gt;ReadOnlySpan&amp;lt;Char&amp;gt;&lt;/see&gt; only starts with .NET Standard 2.1.
+&lt;/para&gt;</T>
+  <T ID="DCC835A96D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="C54BB75210BC1B6D">Replaces in a section of &lt;paramref name="builder"/&gt;, which starts at &lt;paramref name="startIndex"/&gt; and extends to the end of &lt;paramref name="builder"/&gt;, all sequences of white space with &lt;paramref name="replacement"/&gt;.</T>
+  <T ID="618DD1C854973274">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; whose content is changed.</T>
+  <T ID="5BA06A29489703EB">A &lt;see cref="T:System.String"/&gt; that is the replacement for all sequences of white space or &lt;c&gt;null&lt;/c&gt; to completely remove all white space.</T>
+  <T ID="924856FE85C8117C">Pass &lt;c&gt;true&lt;/c&gt; to exclude Newline characters from the replacement. The default value is &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="1A101699C7B5D9DB">The zero-based index in &lt;paramref name ="builder"/&gt; at which the replacement starts.</T>
+  <T ID="E327D8B00D33280">A reference to &lt;paramref name ="builder"/&gt;.</T>
+  <T ID="E75479714BA102C0">&lt;para&gt;
+The method uses &lt;see cref ="M:System.Char.IsWhiteSpace(System.Char)"/&gt; to identify white space characters and works more thoroughly with it than &lt;see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)"&gt;Regex.Replace(string input, @"\s+", string replacement)&lt;/see&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify line break characters.
+&lt;/para&gt;
+&lt;para&gt;
+This overload is useful because the support for the implicit conversion from &lt;see cref ="T:System.String"/&gt; to &lt;see cref="T:System.ReadOnlySpan`1"&gt;ReadOnlySpan&amp;lt;Char&amp;gt;&lt;/see&gt; only starts with .NET Standard 2.1.
+&lt;/para&gt;</T>
+  <T ID="615888E26D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="CEF7AC0D09F1669F">&lt;paramref name ="startIndex"/&gt; is less than 0 or greater than the number of characters in &lt;paramref name ="builder"/&gt;.</T>
+  <T ID="E78A953DDCC5D301">Replaces in a section of &lt;paramref name="builder"/&gt;, which starts at &lt;paramref name="startIndex"/&gt; and which is &lt;paramref name="count"/&gt; characters long, all sequences of white space with &lt;paramref name="replacement"/&gt;.</T>
+  <T ID="BF07A19354973274">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; whose content is changed.</T>
+  <T ID="B811212F489703EB">A &lt;see cref="T:System.String"/&gt; that is the replacement for all sequences of white space or &lt;c&gt;null&lt;/c&gt; to completely remove all white space.</T>
+  <T ID="6523DE22C7B5D9DB">The zero-based index in &lt;paramref name ="builder"/&gt; at which the replacement starts.</T>
+  <T ID="D348E91997C447F3">The length of the section in which the replacements take place.</T>
+  <T ID="A3682D985C8117C">Pass &lt;c&gt;true&lt;/c&gt; to exclude Newline characters from the replacement. The default value is &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="59B1700200D33280">A reference to &lt;paramref name ="builder"/&gt;.</T>
+  <T ID="429231C4BA102C0">&lt;para&gt;
+The method uses &lt;see cref ="M:System.Char.IsWhiteSpace(System.Char)"/&gt; to identify white space characters and works more thoroughly with it than &lt;see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)"&gt;Regex.Replace(string input, @"\s+", string replacement)&lt;/see&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify line break characters.
+&lt;/para&gt;
+&lt;para&gt;
+This overload is useful because the support for the implicit conversion from &lt;see cref ="T:System.String"/&gt; to &lt;see cref="T:System.ReadOnlySpan`1"&gt;ReadOnlySpan&amp;lt;Char&amp;gt;&lt;/see&gt; only starts with .NET Standard 2.1.
+&lt;/para&gt;</T>
+  <T ID="3230A8056D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="ADF1E0DAB23C66E9">&lt;para&gt;
+&lt;paramref name ="startIndex"/&gt; or &lt;paramref name ="count"/&gt; are smaller than 0 or larger than the number of characters in &lt;paramref name ="builder"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="startIndex"/&gt; + &lt;paramref name ="count"/&gt; is larger than the number of characters in &lt;paramref name ="builder"/&gt;.
+&lt;/para&gt;</T>
+  <T ID="5386D8F7083DC46">Replaces all Newlines in &lt;paramref name="builder"/&gt; with &lt;paramref name="newLine"/&gt;.</T>
+  <T ID="599BB0BBA046D2F0">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; whose content is changed.</T>
+  <T ID="A5CB89CED99E810D">A &lt;see cref="T:System.String"/&gt; to replace each Newline or &lt;c&gt;null&lt;/c&gt; to remove all Newlines.</T>
+  <T ID="53AB3F20A4E719D">A reference to &lt;paramref name ="builder"/&gt;.</T>
+  <T ID="9578735080EB34CF">&lt;para&gt;
+&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify line break characters. The sequences CRLF and LFCR are treated as one line break.
+&lt;/para&gt;
+&lt;para&gt;
+This overload is useful because the support for the implicit conversion from &lt;see cref ="T:System.String"/&gt; to &lt;see cref="T:System.ReadOnlySpan`1"&gt;ReadOnlySpan&amp;lt;Char&amp;gt;&lt;/see&gt; only starts with .NET Standard 2.1.
+&lt;/para&gt;</T>
+  <T ID="B7DE3BB76D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="390DCC1B4330ACDD">Calls &lt;see cref="M:System.Char.ToLowerInvariant(System.Char)"/&gt; auf.</T>
+  <T ID="C5F88FCDC1B543C7">Converts the value of a Unicode character to its uppercase equivalent using the casing rules of the invariant culture.</T>
+  <T ID="76B0870DDA17CC5">The Unicode character to convert.</T>
+  <T ID="3EA858E6B28725F3">The uppercase equivalent of the &lt;paramref name="c"/&gt; parameter, or the unchanged value of &lt;paramref name="c"/&gt;, if &lt;paramref name="c"/&gt; is already uppercase or not alphabetic.</T>
+  <T ID="E259BFD640907E85">Calls &lt;see cref="M:System.Char.ToUpperInvariant(System.Char)"/&gt; auf.</T>
+  <T ID="B5A8151138645BFF">Examines whether the Unicode character is categorized as a newline character.</T>
+  <T ID="5D1F14D6522FA8C9">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is categorized as a newline character, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="C4DCB5A8D7F97A9C">&lt;para&gt;
+The following characters are recognized as line break characters:
+&lt;/para&gt;
+&lt;list type="bullet"&gt;
+&lt;item&gt;
+CR: Carriage Return (U+000D)
+&lt;/item&gt;
+&lt;item&gt;
+LF: Line Feed (U+000A)
+&lt;/item&gt;
+&lt;item&gt;
+VT: Vertical Tab (U+000B)
+&lt;/item&gt;
+&lt;item&gt;
+FF: Form Feed (U+000C)
+&lt;/item&gt;
+&lt;item&gt;
+NEL: Next Line (U+0085)
+&lt;/item&gt;
+&lt;item&gt;
+LS: Line Separator (U+2028)
+&lt;/item&gt;
+&lt;item&gt;
+PS: Paragraph Separator (U+2029)
+&lt;/item&gt;
+&lt;/list&gt;</T>
+  <T ID="A14E2B59592FCC7A">Inserts the content of a read-only character span at the specified index position into &lt;paramref name="builder"/&gt;.</T>
 </Tsltn>

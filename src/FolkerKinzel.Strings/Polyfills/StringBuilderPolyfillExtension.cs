@@ -121,10 +121,10 @@ namespace FolkerKinzel.Strings.Polyfills
         }
 
         /// <summary>
-        /// Fügt den Inhalt einer schreibgeschützten Zeichenspanne an der angegebenen Zeichenposition in diese Instanz ein.
+        /// Fügt den Inhalt einer schreibgeschützten Zeichenspanne an der angegebenen Zeichenposition in <paramref name="builder"/> ein.
         /// </summary>
         /// <param name="builder">Der <see cref="StringBuilder"/>, in den Zeichen eingefügt werden.</param>
-        /// <param name="index">Der nulbasierte Index in <paramref name="builder"/>, an dem die Einfügung beginnt.</param>
+        /// <param name="index">Der nullbasierte Index in <paramref name="builder"/>, an dem die Einfügung beginnt.</param>
         /// <param name="value">Die einzufügende Zeichenspanne.</param>
         /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Einfügevorgang abgeschlossen wurde.</returns>
         /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
