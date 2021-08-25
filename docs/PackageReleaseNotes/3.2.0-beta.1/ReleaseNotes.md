@@ -70,8 +70,8 @@ static bool ContainsNewLine(this ReadOnlySpan<char> span)
 
 - New extension methods for the `StringBuilder` class:
 ```csharp
-static bool StartsWith(this StringBuilder, char)
-static bool EndsWith(this StringBuilder, char)
+static bool StartsWith(this StringBuilder, char);
+static bool EndsWith(this StringBuilder, char);
 static bool ContainsWhiteSpace(this StringBuilder);
 static bool ContainsWhiteSpace(this StringBuilder, int);
 static bool ContainsWhiteSpace(this StringBuilder, int, int);
