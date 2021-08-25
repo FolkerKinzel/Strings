@@ -161,8 +161,8 @@ namespace FolkerKinzel.Strings
         /// zurück. (Das Fallback-Value ist 65001 für UTF-8.)
         /// </summary>
         /// <param name="data">Die zu untersuchende Spanne.</param>
-        /// <param name="bomLength">Die Länge des gefundenen BOM oder 0, wenn kein BOM
-        /// gefunden wurde.</param>
+        /// <param name="bomLength">Enthält nach Beendigung der Methode die Länge des gefundenen BOM oder 0, wenn kein BOM
+        /// gefunden wurde. Der Parameter wird uninitialisiert übergeben.</param>
         /// <returns>Eine geeignete Codepage für <paramref name="data"/> oder die Codepage
         /// für UTF-8 (65001), falls die Codepage nicht aus <paramref name="data"/> ermittelt
         /// werden konnte.</returns>
