@@ -1044,4 +1044,6 @@ UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method f
   <T ID="4F4ACA503752C23C">The &lt;see cref="T:System.String"/&gt; to search.</T>
   <T ID="B972A178E78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
   <T ID="839C46D99E894BB4">Generates an instance of the &lt;see cref ="T:System.Text.Encoding"/&gt; class from different data types.</T>
+  <T ID="4885E2A938E6E305">The polyfills are available for .NET Framework 4.5 and .NET Standard 2.0.</T>
+  <T ID="B9D8F45438E6E305">The polyfills are available for .NET Framework 4.5 and .NET Standard 2.0.</T>
 </Tsltn>

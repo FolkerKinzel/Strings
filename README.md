@@ -9,7 +9,7 @@ StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.
 * Extension methods for String, 
 StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;, which act as Polyfills for .NET Framework 4.5,
 .NET Standard 2.0 and .NET Standard 2.1 in order to make it easier to support
-such older Framework versions in Multi Targeting Projects. [(See the complete list.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/3.1.0/Polyfills.md)
+such older Framework versions in Multi Targeting Projects. [(See the complete list.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/3.2.0-beta.1/Polyfills.md)
 * Extension methods, which simulate several useful methods of the `String` class 
 for the `StringBuilder` class.
 * Extension methods, which return identical `Int32` hashcodes for 
@@ -22,9 +22,9 @@ are not used in a security-critical context. [(Read more.)](https://github.com/F
 ## Project Reference:
 A detailed project reference is available in English and German:
 
-* [Project Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/3.1.0/FolkerKinzel.Strings.Reference.en.chm)
+* [Project Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/3.2.0-beta.1/FolkerKinzel.Strings.Reference.en.chm)
 
-* [Projektdokumentation (Deutsch)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/3.1.0/FolkerKinzel.Strings.Doku.de.chm)
+* [Projektdokumentation (Deutsch)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/3.2.0-beta.1/FolkerKinzel.Strings.Doku.de.chm)
 
 > IMPORTANT: On some systems, the content of the CHM file is blocked. Before opening the file
 >  right click on the file icon, select Properties, and check the "Allow" checkbox - if it 

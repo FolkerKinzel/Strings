@@ -40,9 +40,9 @@
     <Preliminary>False</Preliminary>
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="FolkerKinzel.Strings" isDocumented="True">Enthält Klassen, die Erweiterungsmethoden für String, StringBuilder und ReadOnlySpan&amp;lt;Char&amp;gt; bereitstellen.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="FolkerKinzel.Strings (Group)" isGroup="True" isDocumented="True">Enthält Klassen, die die Arbeit mit String, StringBuilder, ReadOnlySpan&amp;lt;Char&amp;gt; und ReadOnlyMemory&amp;lt;Char&amp;gt; unterstützen.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="FolkerKinzel.Strings.Polyfills" isDocumented="True">Enthält Klassen die Erweiterungsmethoden bereitstellen, die als Polyfills verwendet werden (d.h. dass sie die Originalmethoden aktueller Frameworks für ältere Frameworkversionen simulieren).</NamespaceSummaryItem></NamespaceSummaries>
+      <NamespaceSummaryItem name="FolkerKinzel.Strings" isDocumented="True">Enthält Klassen, die Erweiterungsmethoden für String, Char, StringBuilder und ReadOnlySpan&amp;lt;Char&amp;gt; bereitstellen.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="FolkerKinzel.Strings (Group)" isGroup="True" isDocumented="True">Enthält Klassen, die die Arbeit mit String, Char, StringBuilder, ReadOnlySpan&amp;lt;Char&amp;gt; und ReadOnlyMemory&amp;lt;Char&amp;gt; unterstützen.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="FolkerKinzel.Strings.Polyfills" isDocumented="True">Enthält Klassen die Erweiterungsmethoden bereitstellen, die als Polyfills verwendet werden (d.h. dass sie die Originalmethoden aktueller Frameworks für ältere Frameworkversionen simulieren). Die Methoden dieser statischen Klassen sollten ausschließlich in der Erweiterungsmethodensyntax verwendet werden. Es ist nützlich, diesen Namensraum für .NET Framework und .NET Standard zu veröffentlichen; es wird hingegen nicht empfohlen, den Namensraum für .NET Core zu veröffentlichen.</NamespaceSummaryItem></NamespaceSummaries>
     <CopyrightText>Copyright &amp;#169%3b 2020 Folker Kinzel</CopyrightText>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>
     <SyntaxFilters>Standard</SyntaxFilters>

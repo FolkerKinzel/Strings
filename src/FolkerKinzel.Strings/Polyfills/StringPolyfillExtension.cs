@@ -23,6 +23,7 @@ namespace FolkerKinzel.Strings.Polyfills
 #endif
     public static partial class StringPolyfillExtension
     {
+        // Place this preprocessor directive inside the class to let .NET 5.0 have an empty class!
 #if NET45 || NETSTANDARD2_0
 
         /// <summary>

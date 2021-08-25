@@ -39,10 +39,9 @@
     <Preliminary>False</Preliminary>
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="FolkerKinzel.Strings" isDocumented="True">Contains classes that provide extension methods for String, StringBuilder and ReadOnlySpan&amp;lt;Char&amp;gt;.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="FolkerKinzel.Strings.Polyfills" isDocumented="True">Contains classes that provide extension methods, which are polyfills that simulate original methods from current frameworks for older frameworks.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="FolkerKinzel.Strings (Group)" isGroup="True" isDocumented="True">Contains classes that support String, StringBuilder, ReadOnlySpan&amp;lt;Char&amp;gt; and ReadOnlyMemory&amp;lt;Char&amp;gt;.</NamespaceSummaryItem>
-    </NamespaceSummaries>
+      <NamespaceSummaryItem name="FolkerKinzel.Strings" isDocumented="True">Contains classes that provide extension methods for String, Char, StringBuilder and ReadOnlySpan&amp;lt;Char&amp;gt;.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="FolkerKinzel.Strings.Polyfills" isDocumented="True">Contains classes that provide extension methods, which are used as polyfills (i.e. that they simulate the original methods of current frameworks for older framework versions). The methods of these static classes should only be used in extension method syntax. It is useful to publish this namespace for .NET Framework and .NET Standard; however, it is not recommended to publish the namespace for .NET Core.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="FolkerKinzel.Strings (Group)" isGroup="True" isDocumented="True">Contains classes that support String, Char, StringBuilder, ReadOnlySpan&amp;lt;Char&amp;gt; and ReadOnlyMemory&amp;lt;Char&amp;gt;.</NamespaceSummaryItem></NamespaceSummaries>
     <CopyrightText>Copyright &amp;#169%3b 2020 Folker Kinzel</CopyrightText>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>
     <SyntaxFilters>Standard</SyntaxFilters>
