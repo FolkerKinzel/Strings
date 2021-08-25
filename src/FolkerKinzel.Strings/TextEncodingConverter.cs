@@ -4,8 +4,8 @@ using System.Text;
 namespace FolkerKinzel.Strings
 {
     /// <summary>
-    /// Wandelt einen <see cref="string"/>, der eine Bezeichnung für einen Zeichensatz darstellt in eine
-    /// Instanz der <see cref="Encoding"/>-Klasse um.
+    /// Erzeugt aus verschiedenen Datentypen eine
+    /// Instanz der <see cref="Encoding"/>-Klasse.
     /// </summary>
     public static class TextEncodingConverter
     {
