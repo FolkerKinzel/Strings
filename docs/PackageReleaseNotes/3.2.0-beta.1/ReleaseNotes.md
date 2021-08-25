@@ -88,7 +88,7 @@ static StringBuilder NormalizeNewLinesTo(this StringBuilder, ReadOnlySpan<char>)
 
 - New extension methods for the `String` class:
 ```csharp
-static bool ContainsNewLine(this string? s);
+static bool ContainsNewLine(this string s);
 public static string NormalizeNewLinesTo(this string, ReadOnlySpan<char>);
 static string ReplaceWhiteSpaceWith(this string, ReadOnlySpan<char>, bool);
 ```
