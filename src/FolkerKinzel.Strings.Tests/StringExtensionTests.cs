@@ -231,19 +231,37 @@ namespace FolkerKinzel.Strings.Tests
 
         [DataTestMethod]
         [DataRow("", false)]
-        [DataRow(null, false)]
+        //[DataRow(null, false)]
         [DataRow("Test", false)]
         [DataRow(" Test", true)]
         [DataRow("Test ", true)]
         [DataRow("Te st", true)]
-        public void ContainsWhiteSpaceTest(string? input, bool expected) => Assert.AreEqual(expected, input.ContainsWhiteSpace());
+        public void ContainsWhiteSpaceTest1(string input, bool expected) => Assert.AreEqual(expected, input.ContainsWhiteSpace());
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsWhiteSpaceTest2()
+        {
+            string? s = null;
+
+            _ = s!.ContainsWhiteSpace();
+        }
 
         [DataTestMethod]
         [DataRow("", true)]
-        [DataRow(null, true)]
+        //[DataRow(null, true)]
         [DataRow("Test", true)]
         [DataRow("Märchen", false)]
-        public void IsAsciiTest(string? input, bool expected) => Assert.AreEqual(expected, input.IsAscii());
+        public void IsAsciiTest1(string input, bool expected) => Assert.AreEqual(expected, input.IsAscii());
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsAsciiTest2()
+        {
+            string? s = null;
+
+            _ = s!.IsAscii();
+        }
 
         [TestMethod()]
         public void GetPersistentHashCodeTest1()
