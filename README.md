@@ -19,7 +19,7 @@ that is suitable for hashing short strings, which
 are not used in a security-critical context. [(Read more.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/PersistableHashCodeExample.md)
 * Other useful helpers for the work with charsets and encodings.
 
-## The Namespaces:
+## Namespaces:
 ```csharp
 // Publish this namespace to have useful extension methods,
 // which enrich the existing methods of your runtime:
