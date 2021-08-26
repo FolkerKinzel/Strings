@@ -25,11 +25,11 @@ are not used in a security-critical context. [(Read more.)](https://github.com/F
 // which enrich the existing methods of your runtime:
 using FolkerKinzel.Strings;
 
-// Publish this namespace if .NET Framework or .NET Standard is
-// among your build targets to have polyfills for .NET 5.0 methods.
+// Publish this namespace for .NET Framework or .NET Standard
+// build targets to have polyfills for .NET 5.0 methods.
 // (It is not generally recommended to publish this namespace for 
 // .NET Core build targets because some of the polyfills might produce
-// conflicts with the existing extension methods from System.MemoryExtensions.)
+// conflicts with extension methods from System.MemoryExtensions.)
 using FolkerKinzel.Strings.Polyfills;
 ```
 
