@@ -19,6 +19,20 @@ that is suitable for hashing short strings, which
 are not used in a security-critical context. [(Read more.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/PersistableHashCodeExample.md)
 * Other useful helpers for the work with charsets and encodings.
 
+## The Namespaces:
+```csharp
+// Publish this namespace to have useful extension methods,
+// which enrich the existing methods of your runtime:
+using FolkerKinzel.Strings;
+
+// Publish this namespace if .NET Framework or .NET Standard is
+// among your build targets to have polyfills for .NET 5.0 methods.
+// (It is not generally recommended to publish this namespace for 
+// .NET Core build targets because some of the polyfills might produce
+// conflicts with the existing extension methods from System.MemoryExtensions.)
+using FolkerKinzel.Strings.Polyfills;
+```
+
 ## Project Reference:
 A detailed project reference is available in English and German:
 
