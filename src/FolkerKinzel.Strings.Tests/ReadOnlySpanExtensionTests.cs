@@ -140,5 +140,24 @@ namespace FolkerKinzel.Strings.Tests
         [DataRow("test    ", 4)]
         public void GetTrimmedLength1(string input, int length)
             => Assert.AreEqual(length, input.AsSpan().GetTrimmedLength());
+
+
+        [DataTestMethod]
+        [DataRow("Test\r\n1", true)]
+        [DataRow("Test 2", false)]
+        public void ContainsNewLineTest(string input, bool expected) => Assert.AreEqual(expected, input.AsSpan().ContainsNewLine());
+
+        [DataTestMethod]
+        [DataRow("Test", 't', true)]
+        [DataRow("Test", 'T', false)]
+        [DataRow("", 'T', false)]
+        public void EndsWithTest(string input, char c, bool expected) => Assert.AreEqual(expected, input.AsSpan().EndsWith(c));
+
+        [DataTestMethod]
+        [DataRow("Test", 'T', true)]
+        [DataRow("Test", 't', false)]
+        [DataRow("", 't', false)]
+        public void StartsWithTest(string input, char c, bool expected) => Assert.AreEqual(expected, input.AsSpan().StartsWith(c));
+
     }
 }

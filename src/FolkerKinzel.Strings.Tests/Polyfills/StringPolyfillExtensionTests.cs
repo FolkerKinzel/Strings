@@ -61,6 +61,23 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
             _ = test!.Contains('e');
         }
 
+        [DataTestMethod]
+        [DataRow("Test", "es", true)]
+        public void ContainsTest7(string input, string s, bool expected) => Assert.AreEqual(expected, input.Contains(s, StringComparison.Ordinal));
+
+        [DataTestMethod]
+        [DataRow("Test", "as", false)]
+        public void ContainsTest8(string input, string s, bool expected) => Assert.AreEqual(expected, input.Contains(s, StringComparison.Ordinal));
+
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void ContainsTest9()
+        {
+            string? test = null;
+            _ = test!.Contains("es", StringComparison.Ordinal);
+        }
+
         [DataTestMethod()]
         [DataRow("Test", 'e', StringComparison.Ordinal, 1)]
         public void IndexOfTest1(string value, char c, StringComparison comparison, int expected) => Assert.AreEqual(expected, value.IndexOf(c, comparison));
@@ -127,6 +144,104 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
         {
             string? test = null;
             _ = test!.EndsWith(',');
+        }
+
+        [DataTestMethod]
+        [DataRow("Test", "testen", "as", StringComparison.Ordinal, "Test")]
+        [DataRow("Test", "testen", "as", StringComparison.OrdinalIgnoreCase, "Test")]
+        [DataRow("Test", "testen", null, StringComparison.Ordinal, "Test")]
+        [DataRow("Test", "testen", null, StringComparison.OrdinalIgnoreCase, "Test")]
+        [DataRow("Test", "test", "as", StringComparison.Ordinal, "Test")]
+        [DataRow("Test", "test", "as", StringComparison.OrdinalIgnoreCase, "as")]
+        [DataRow("Test", "test", null, StringComparison.Ordinal, "Test")]
+        [DataRow("Test", "test", null, StringComparison.OrdinalIgnoreCase, "")]
+        [DataRow("Test", "test", "test", StringComparison.Ordinal, "Test")]
+        [DataRow("Test", "test", "test", StringComparison.OrdinalIgnoreCase, "test")]
+        [DataRow("Test", "EST", "ante", StringComparison.Ordinal, "Test")]
+        [DataRow("Test", "EST", "ante", StringComparison.OrdinalIgnoreCase, "Tante")]
+        public void ReplaceTest1(string input, string oldValue, string? replacement, StringComparison comparison, string expected)
+            => Assert.AreEqual(expected, input.Replace(oldValue, replacement, comparison));
+
+
+        [DataTestMethod]
+        [DataRow(StringComparison.Ordinal)]
+        [DataRow(StringComparison.OrdinalIgnoreCase)]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void ReplaceTest2(StringComparison comparison)
+        {
+            string? s = null;
+            _ = s!.Replace("test", "bb", comparison);
+        }
+
+        [DataTestMethod]
+        [DataRow(StringComparison.Ordinal)]
+        [DataRow(StringComparison.OrdinalIgnoreCase)]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ReplaceTest3(StringComparison comparison)
+        {
+            string s = "Test";
+            _ = s.Replace(null!, "bb", comparison);
+        }
+
+        [DataTestMethod]
+        [DataRow(StringComparison.Ordinal)]
+        [DataRow(StringComparison.OrdinalIgnoreCase)]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ReplaceTest4(StringComparison comparison)
+        {
+            string s = "Test";
+            _ = s.Replace("", "bb", comparison);
+        }
+
+
+        [DataTestMethod]
+        [DataRow("This is a test.", null, 100, StringSplitOptions.None, 1)]
+        [DataRow("This is a test.", null, 0, StringSplitOptions.None, 0)]
+        [DataRow("This is a test.", "", 100, StringSplitOptions.None, 1)]
+        [DataRow("This is a test.", "", 0, StringSplitOptions.None, 0)]
+        [DataRow("This is a test.", "is", 100, StringSplitOptions.None, 3)]
+        [DataRow("This is a test.", "is", 2, StringSplitOptions.None, 2)]
+        [DataRow("", "is", 2, StringSplitOptions.None, 1)]
+        [DataRow("", "is", 2, StringSplitOptions.RemoveEmptyEntries, 0)]
+        public void SplitTest1(string input, string? split, int parts, StringSplitOptions options, int expected)
+            => Assert.AreEqual(expected, input.Split(split, parts, options).Length);
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void SplitTest3()
+        {
+            string test = "Test";
+            _ = test.Split("bla", -1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void SplitTest5()
+        {
+            string? test = null;
+            _ = test!.Split("bla", 100);
+        }
+
+        
+        [DataTestMethod]
+        [DataRow("This is a test.", null, StringSplitOptions.None, 1)]
+        [DataRow("This is a test.", "", StringSplitOptions.None, 1)]
+        [DataRow("This is a test.", "is", StringSplitOptions.None, 3)]
+        [DataRow("", "is", StringSplitOptions.None, 1)]
+        [DataRow("", "is", StringSplitOptions.RemoveEmptyEntries, 0)]
+        public void SplitTest6(string input, string? split, StringSplitOptions options, int expected)
+            => Assert.AreEqual(expected, input.Split(split, options).Length);
+
+
+        
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void SplitTest7()
+        {
+            string? test = null;
+            _ = test!.Split("bla");
         }
     }
 }

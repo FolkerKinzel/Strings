@@ -32,6 +32,8 @@ namespace FolkerKinzel.Strings.Tests
             Assert.AreEqual(result, sb.ToString());
         }
 
+        
+
 
         [DataTestMethod]
         [DataRow("abcabc", 'b', 4)]

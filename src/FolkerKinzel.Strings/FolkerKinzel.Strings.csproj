@@ -9,7 +9,7 @@
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
     <Version>3.2.0-beta.1</Version>
-    <FileVersion>3.2.0.34</FileVersion>
+    <FileVersion>3.2.0.36</FileVersion>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/3.2.0-beta.1/ReleaseNotes.md</PackageReleaseNotes>
     <PackageTags>.net String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode c#</PackageTags>
@@ -23,6 +23,10 @@
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/FolkerKinzel/Strings</PackageProjectUrl>
     <PackageIconUrl />
+  </PropertyGroup>
+  <!-- 👇 disable the nullable warnings when compiling for .NET 4.5 and netstandard2.0 -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'netstandard2.0'">
+    <NoWarn>$(NoWarn);8600;8601;8602;8603;8604</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -122,10 +123,23 @@ namespace FolkerKinzel.Strings.Polyfills
         /// eingeschlossen werden sollen.</param>
         /// <returns>Ein Array, das maximal <paramref name="count"/> Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
         /// <paramref name="separator"/> getrennt sind.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is negative.</exception>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string[] Split(this string s, string? separator, int count, StringSplitOptions options = System.StringSplitOptions.None)
-            => s.Split(separator is null ? null : new string[] { separator }, count, options);
+            => s is null
+                ? throw new NullReferenceException(nameof(s))
+                : count < 0
+                    ? throw new ArgumentOutOfRangeException(nameof(count))
+                    : count == 0 || (s.Length == 0 && (options & StringSplitOptions.RemoveEmptyEntries) == StringSplitOptions.RemoveEmptyEntries)
+                         ?
+#if NET45
+                           new string[0]
+#else
+                           Array.Empty<string>()
+#endif
+                         : string.IsNullOrEmpty(separator) ? new string[] { s } : s.Split(new string[] { separator }, count, options);
+
 
         /// <summary>
         /// Teilt eine Zeichenfolge anhand einer angegebenen Trennzeichenfolge und optional von Optionen in Teilzeichenfolgen.
@@ -139,7 +153,16 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string[] Split(this string s, string? separator, StringSplitOptions options = System.StringSplitOptions.None)
-            => s.Split(separator is null ? null : new string[] { separator }, options);
+             => s is null
+                ? throw new NullReferenceException(nameof(s))
+                    :  (s.Length == 0 && (options & StringSplitOptions.RemoveEmptyEntries) == StringSplitOptions.RemoveEmptyEntries)
+                            ?
+#if NET45
+                                new string[0]
+#else
+                                Array.Empty<string>()
+#endif
+                            : string.IsNullOrEmpty(separator) ? new string[] { s } : s.Split(new string[] { separator }, options);
 
         /// <summary>
         /// Bestimmt, ob <paramref name="s"/> mit dem angegebenen Zeichen beginnt.
@@ -223,11 +246,15 @@ namespace FolkerKinzel.Strings.Polyfills
             var builder = new StringBuilder(newValue.Length > oldValue.Length ? s.Length + s.Length / 2 : s.Length);
             _ = builder.Append(s);
 
-            int idx = s.Length - 1;
+            int idx = s.Length;
+
             while (idx > -1)
             {
-                idx = s.LastIndexOf(oldValue, idx - 1, comparisonType);
-                _ = builder.Remove(idx, oldValue.Length).Insert(idx, newValue);
+                idx = s.LastIndexOf(oldValue, idx, comparisonType);
+                if (idx != -1)
+                {
+                    _ = builder.Remove(idx, oldValue.Length).Insert(idx, newValue);
+                }
                 --idx;
             }
 
