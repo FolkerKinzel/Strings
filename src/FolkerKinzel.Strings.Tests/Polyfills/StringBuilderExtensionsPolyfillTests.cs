@@ -24,6 +24,13 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
         }
 
         [TestMethod]
+        public void ReplaceWhiteSpaceWithTest6()
+        {
+            var sb = new StringBuilder("T e s t");
+            Assert.AreEqual("Test", sb.ReplaceWhiteSpaceWith("").ToString());
+        }
+
+        [TestMethod]
         public void ReplaceWhiteSpaceWithTest3()
         {
             var sb = new StringBuilder("T e s t");

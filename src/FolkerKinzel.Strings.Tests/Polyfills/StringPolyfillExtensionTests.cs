@@ -121,6 +121,89 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
             _ = test!.Split(',', 2, StringSplitOptions.RemoveEmptyEntries);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void SplitTest5()
+        {
+            string? test = null;
+            _ = test!.Split(",", 2, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        [DataTestMethod]
+        [DataRow("")]
+        [DataRow(null)]
+        public void SplitTest6(string? separator)
+        {
+            Assert.AreEqual(1, "test".Split(separator, 4711).Length);
+        }
+
+        [DataTestMethod]
+        [DataRow(StringSplitOptions.None, 1)]
+        [DataRow(StringSplitOptions.RemoveEmptyEntries, 0)]
+        public void SplitTest7(StringSplitOptions options, int expected)
+        {
+            Assert.AreEqual(expected, "".Split("bla", 4711, options).Length);
+        }
+
+        [TestMethod]
+        public void SplitTest8()
+        {
+            Assert.AreEqual(0, "test".Split("e", 0).Length);
+        }
+
+        
+        [DataTestMethod]
+        [DataRow("This is a test.", null, 100, StringSplitOptions.None, 1)]
+        [DataRow("This is a test.", null, 0, StringSplitOptions.None, 0)]
+        [DataRow("This is a test.", "", 100, StringSplitOptions.None, 1)]
+        [DataRow("This is a test.", "", 0, StringSplitOptions.None, 0)]
+        [DataRow("This is a test.", "is", 100, StringSplitOptions.None, 3)]
+        [DataRow("This is a test.", "is", 2, StringSplitOptions.None, 2)]
+        [DataRow("", "is", 2, StringSplitOptions.None, 1)]
+        [DataRow("", "is", 2, StringSplitOptions.RemoveEmptyEntries, 0)]
+        public void SplitTest9(string input, string? split, int parts, StringSplitOptions options, int expected)
+            => Assert.AreEqual(expected, input.Split(split, parts, options).Length);
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void SplitTest10()
+        {
+            string test = "Test";
+            _ = test.Split("bla", -1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void SplitTest11()
+        {
+            string? test = null;
+            _ = test!.Split("bla", 100);
+        }
+
+        
+        [DataTestMethod]
+        [DataRow("This is a test.", null, StringSplitOptions.None, 1)]
+        [DataRow("This is a test.", "", StringSplitOptions.None, 1)]
+        [DataRow("This is a test.", "is", StringSplitOptions.None, 3)]
+        [DataRow("", "is", StringSplitOptions.None, 1)]
+        [DataRow("", "is", StringSplitOptions.RemoveEmptyEntries, 0)]
+        public void SplitTest12(string input, string? split, StringSplitOptions options, int expected)
+            => Assert.AreEqual(expected, input.Split(split, options).Length);
+
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void SplitTest13()
+        {
+            string? test = null;
+            _ = test!.Split("bla");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void SplitTest14() => _ = "test".Split("3", -1);
+
         [DataTestMethod()]
         [DataRow("Test", 'T', true)]
         //[DataRow("aeTest", 'ä', true)]
@@ -194,54 +277,5 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
         }
 
 
-        [DataTestMethod]
-        [DataRow("This is a test.", null, 100, StringSplitOptions.None, 1)]
-        [DataRow("This is a test.", null, 0, StringSplitOptions.None, 0)]
-        [DataRow("This is a test.", "", 100, StringSplitOptions.None, 1)]
-        [DataRow("This is a test.", "", 0, StringSplitOptions.None, 0)]
-        [DataRow("This is a test.", "is", 100, StringSplitOptions.None, 3)]
-        [DataRow("This is a test.", "is", 2, StringSplitOptions.None, 2)]
-        [DataRow("", "is", 2, StringSplitOptions.None, 1)]
-        [DataRow("", "is", 2, StringSplitOptions.RemoveEmptyEntries, 0)]
-        public void SplitTest1(string input, string? split, int parts, StringSplitOptions options, int expected)
-            => Assert.AreEqual(expected, input.Split(split, parts, options).Length);
-
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void SplitTest3()
-        {
-            string test = "Test";
-            _ = test.Split("bla", -1);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void SplitTest5()
-        {
-            string? test = null;
-            _ = test!.Split("bla", 100);
-        }
-
-        
-        [DataTestMethod]
-        [DataRow("This is a test.", null, StringSplitOptions.None, 1)]
-        [DataRow("This is a test.", "", StringSplitOptions.None, 1)]
-        [DataRow("This is a test.", "is", StringSplitOptions.None, 3)]
-        [DataRow("", "is", StringSplitOptions.None, 1)]
-        [DataRow("", "is", StringSplitOptions.RemoveEmptyEntries, 0)]
-        public void SplitTest6(string input, string? split, StringSplitOptions options, int expected)
-            => Assert.AreEqual(expected, input.Split(split, options).Length);
-
-
-        
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void SplitTest7()
-        {
-            string? test = null;
-            _ = test!.Split("bla");
-        }
     }
 }

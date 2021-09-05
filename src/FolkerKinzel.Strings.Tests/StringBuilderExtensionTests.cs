@@ -21,6 +21,26 @@ namespace FolkerKinzel.Strings.Tests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void NormalizeNewLinesToTest2()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.NormalizeNewLinesTo("*");
+        }
+
+        [TestMethod]
+        public void NormalizeNewLinesToTest3()
+        {
+            const string input = "\n1\r\n\n\r2\r3\u0085\n4\r\n";
+            const string expected = "*1**2*3**4*";
+
+            var sb = new StringBuilder(input);
+
+            string output = sb.NormalizeNewLinesTo("*").ToString();
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestMethod]
         public void ReplaceWhiteSpaceWithTest1()
         {
             const string original = "    This  Is Text   ";
@@ -28,12 +48,46 @@ namespace FolkerKinzel.Strings.Tests
 
             var sb = new StringBuilder(original);
 
-            Assert.AreEqual(sb, sb.ReplaceWhiteSpaceWith(""));
+            Assert.AreEqual(sb, sb.ReplaceWhiteSpaceWith("".AsSpan()));
             Assert.AreEqual(result, sb.ToString());
         }
 
-        
+        [DataTestMethod]
+        [DataRow(-1)]
+        [DataRow(1)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ReplaceWhiteSpaceWithTest2(int startIndex) => _ = new StringBuilder().ReplaceWhiteSpaceWith("".AsSpan(), startIndex);
 
+        [DataTestMethod]
+        [DataRow(-1)]
+        [DataRow(1)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ReplaceWhiteSpaceWithTest3(int count) => _ = new StringBuilder().ReplaceWhiteSpaceWith("".AsSpan(), 0, count);
+
+        [TestMethod]
+        public void ReplaceWhitespaceWithTest4()
+            => Assert.AreEqual("*Test*\r\n*text*", new StringBuilder("\t Test   \r\n text  ").ReplaceWhiteSpaceWith("*".AsSpan(), true).ToString());
+
+
+        [TestMethod]
+        public void ReplaceWhitespaceWithTest6()
+            => Assert.AreEqual("*Test*text*", new StringBuilder("\t Test   \r\n text  ").ReplaceWhiteSpaceWith("*".AsSpan(), false).ToString());
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ReplaceWhiteSpaceWithTest7()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ReplaceWhiteSpaceWith("".AsSpan());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ReplaceWhiteSpaceWithTest8()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ReplaceWhiteSpaceWith("".AsSpan(), 0);
+        }
 
         [DataTestMethod]
         [DataRow("abcabc", 'b', 4)]
@@ -180,25 +234,30 @@ namespace FolkerKinzel.Strings.Tests
             _ = sb!.IndexOf('e', 0, 0);
         }
 
-        [TestMethod()]
+        [DataTestMethod()]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexOfTest7() => _ = new StringBuilder().IndexOf('e', -1);
+        [DataRow(-1)]
+        [DataRow(4711)]
+        public void IndexOfTest7(int startIndex) => _ = new StringBuilder().IndexOf('e', startIndex);
 
-        [TestMethod()]
+        [DataTestMethod()]
+        [DataRow(-1, -1)]
+        [DataRow(0, -1)]
+        [DataRow(0, 4711)]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexOfTest8() => _ = new StringBuilder().IndexOf('e', -1, -1);
+        public void IndexOfTest8(int startIndex, int count) => _ = new StringBuilder().IndexOf('e', startIndex, count);
 
-        [TestMethod()]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexOfTest11() => _ = new StringBuilder().IndexOf('e', 0, -1);
+        //[TestMethod()]
+        //[ExpectedException(typeof(ArgumentOutOfRangeException))]
+        //public void IndexOfTest11() => _ = new StringBuilder().IndexOf('e', 0, -1);
 
-        [TestMethod()]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexOfTest9() => _ = new StringBuilder().IndexOf('e', 4711);
+        //[TestMethod()]
+        //[ExpectedException(typeof(ArgumentOutOfRangeException))]
+        //public void IndexOfTest9() => _ = new StringBuilder().IndexOf('e', 4711);
 
-        [TestMethod()]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void IndexOfTest10() => _ = new StringBuilder().IndexOf('e', 0, 4711);
+        //[TestMethod()]
+        //[ExpectedException(typeof(ArgumentOutOfRangeException))]
+        //public void IndexOfTest10() => _ = new StringBuilder().IndexOf('e', 0, 4711);
 
         [TestMethod]
         public void ContainsTest1()
@@ -890,5 +949,196 @@ namespace FolkerKinzel.Strings.Tests
             Assert.AreEqual(input.TrimEnd(trimChars), sb.TrimEnd(trimChars.AsSpan()).ToString());
         }
 
+
+        [DataTestMethod]
+        [DataRow("Test", 't', true)]
+        [DataRow("Test", 'T', false)]
+        [DataRow("", 'T', false)]
+        public void EndsWithTest1(string input, char c, bool expected) => Assert.AreEqual(expected, new StringBuilder(input).EndsWith(c));
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void EndsWithTest2()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.EndsWith('x');
+        }
+
+        [DataTestMethod]
+        [DataRow("Test", 'T', true)]
+        [DataRow("Test", 't', false)]
+        [DataRow("", 't', false)]
+        public void StartsWithTest1(string input, char c, bool expected) => Assert.AreEqual(expected, new StringBuilder(input).StartsWith(c));
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void StartsWithTest2()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.StartsWith('x');
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsNewLineTest1()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ContainsNewLine();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsNewLineTest2()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ContainsNewLine(0);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsNewLineTest3()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ContainsNewLine(0, 0);
+        }
+
+        [DataTestMethod]
+        [DataRow("", false)]
+        //[DataRow(null, false)]
+        [DataRow("Test", false)]
+        [DataRow("\nTest", true)]
+        [DataRow("Test\r", true)]
+        [DataRow("Te\r\nst", true)]
+        public void ContainsNewLineTest4(string input, bool expexted)
+        {
+            Assert.AreEqual(expexted, new StringBuilder(input).ContainsNewLine());
+        }
+
+        [DataTestMethod]
+        [DataRow("", 0, false)]
+        //[DataRow(null, false)]
+        [DataRow("Test", 0, false)]
+        [DataRow("\nTest", 0, true)]
+        [DataRow("\nTest", 1, false)]
+        [DataRow("Test\r", 0, true)]
+        [DataRow("Test\r", 5, false)]
+        [DataRow("Te\r\nst", 0, true)]
+        public void ContainsNewLineTest5(string input, int startIndex, bool expexted)
+        {
+            Assert.AreEqual(expexted, new StringBuilder(input).ContainsNewLine(startIndex));
+        }
+
+
+        [DataTestMethod]
+        [DataRow("", 0, 0, false)]
+        //[DataRow(null, false)]
+        [DataRow("Test", 0, 4, false)]
+        [DataRow("\nTest", 0, 1, true)]
+        [DataRow("\nTest", 1, 4, false)]
+        [DataRow("Test\r", 0, 5, true)]
+        [DataRow("Test\r", 0, 4, false)]
+        [DataRow("Test\r", 5, 0, false)]
+        [DataRow("Te\r\nst", 0, 4, true)]
+        [DataRow("Te\r\nst", 0, 2, false)]
+        public void ContainsNewLineTest6(string input, int startIndex, int count, bool expexted)
+        {
+            Assert.AreEqual(expexted, new StringBuilder(input).ContainsNewLine(startIndex, count));
+        }
+
+
+        [DataTestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [DataRow(-1)]
+        [DataRow(4711)]
+        public void ContainsNewLineTest7(int startIndex) => _ = new StringBuilder().ContainsNewLine(startIndex);
+
+        [DataTestMethod()]
+        [DataRow(-1, -1)]
+        [DataRow(0, -1)]
+        [DataRow(0, 4711)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ContainsNewLineTest8(int startIndex, int count) => _ = new StringBuilder().ContainsNewLine(startIndex, count);
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsWhiteSpaceTest1()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ContainsWhiteSpace();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsWhiteSpaceTest2()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ContainsWhiteSpace(0);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsWhiteSpaceTest3()
+        {
+            StringBuilder? sb = null;
+            _ = sb!.ContainsWhiteSpace(0, 0);
+        }
+
+        [DataTestMethod]
+        [DataRow("", false)]
+        //[DataRow(null, false)]
+        [DataRow("Test", false)]
+        [DataRow(" Test", true)]
+        [DataRow("Test ", true)]
+        [DataRow("Te st", true)]
+        public void ContainsWhiteSpaceTest4(string input, bool expexted)
+        {
+            Assert.AreEqual(expexted, new StringBuilder(input).ContainsWhiteSpace());
+        }
+
+        [DataTestMethod]
+        [DataRow("", 0, false)]
+        //[DataRow(null, false)]
+        [DataRow("Test", 0, false)]
+        [DataRow(" Test", 0, true)]
+        [DataRow(" Test", 1, false)]
+        [DataRow("Test ", 0, true)]
+        [DataRow("Test ", 5, false)]
+        [DataRow("Te  st", 0, true)]
+        public void ContainsWhiteSpaceTest5(string input, int startIndex, bool expexted)
+        {
+            Assert.AreEqual(expexted, new StringBuilder(input).ContainsWhiteSpace(startIndex));
+        }
+
+
+        [DataTestMethod]
+        [DataRow("", 0, 0, false)]
+        //[DataRow(null, false)]
+        [DataRow("Test", 0, 4, false)]
+        [DataRow(" Test", 0, 1, true)]
+        [DataRow(" Test", 1, 4, false)]
+        [DataRow("Test ", 0, 5, true)]
+        [DataRow("Test ", 0, 4, false)]
+        [DataRow("Test ", 5, 0, false)]
+        [DataRow("Te  st", 0, 4, true)]
+        [DataRow("Te  st", 0, 2, false)]
+        public void ContainsWhiteSpaceTest6(string input, int startIndex, int count, bool expexted)
+        {
+            Assert.AreEqual(expexted, new StringBuilder(input).ContainsWhiteSpace(startIndex, count));
+        }
+
+
+        [DataTestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [DataRow(-1)]
+        [DataRow(4711)]
+        public void ContainsWhiteSpaceTest7(int startIndex) => _ = new StringBuilder().ContainsWhiteSpace(startIndex);
+
+        [DataTestMethod()]
+        [DataRow(-1, -1)]
+        [DataRow(0, -1)]
+        [DataRow(0, 4711)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ContainsWhiteSpaceTest8(int startIndex, int count) => _ = new StringBuilder().ContainsWhiteSpace(startIndex, count);
     }
 }

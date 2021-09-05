@@ -201,8 +201,14 @@ namespace FolkerKinzel.Strings
             {
                 if (data[0] == 0xFF && data[1] == 0xFE)
                 {
+                    if(data.Length >= 4 && data[2] == 0x00 && data[3] == 0x00 )
+                    {
+                        bomLength = 4;
+                        return UTF32LE;
+                    }
+
                     bomLength = 2;
-                    return data.Length >= 4 && data[2] == 0x00 && data[3] == 0x00 ? UTF32LE : UTF16LE;
+                    return UTF16LE;
                 }
 
                 if (data[0] == 0xFE && data[1] == 0xFF)

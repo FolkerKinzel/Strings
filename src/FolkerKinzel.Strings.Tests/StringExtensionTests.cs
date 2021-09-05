@@ -20,6 +20,22 @@ namespace FolkerKinzel.Strings.Tests
             Assert.AreEqual(expected, output);
         }
 
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void NormalizeNewLinesToTest3()
+        {
+            string? s = null;
+            _ = s!.NormalizeNewLinesTo("*".AsSpan());
+        }
+
+        [TestMethod]
+        public void NormalizeNewLinesToTest4()
+        {
+            const string test = "test";
+            Assert.AreSame(test, test.NormalizeNewLinesTo("blub".AsSpan()));
+        }
+
         [DataTestMethod]
         [DataRow('e', 's', 't', true)]
         [DataRow('e', 'y', 't', true)]
@@ -246,6 +262,25 @@ namespace FolkerKinzel.Strings.Tests
 
             _ = s!.ContainsWhiteSpace();
         }
+
+        [DataTestMethod]
+        [DataRow("", false)]
+        //[DataRow(null, false)]
+        [DataRow("Test", false)]
+        [DataRow("\nTest", true)]
+        [DataRow("Test\r", true)]
+        [DataRow("Te\r\nst", true)]
+        public void ContainsNewLineTest1(string input, bool expected) => Assert.AreEqual(expected, input.ContainsNewLine());
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ContainsNewLineTest2()
+        {
+            string? s = null;
+
+            _ = s!.ContainsNewLine();
+        }
+        
 
         [DataTestMethod]
         [DataRow("", true)]
@@ -479,8 +514,41 @@ namespace FolkerKinzel.Strings.Tests
         {
             char[] trimChars = new char[] { '\'', '\"' };
 
-            string test = "Test";
+            string test = "Test\"";
             Assert.AreEqual(test.TrimEnd(trimChars), test.TrimEnd(trimChars.AsSpan()));
+        }
+
+        [TestMethod]
+        public void TrimEndTest7()
+        {
+            const string test = "test";
+            char[] trimChars = new char[] { '\'', '\"' };
+
+            Assert.AreSame(test.TrimEnd(trimChars), test.TrimEnd(trimChars.AsSpan()));
+        }
+
+        [TestMethod]
+        public void ReplaceWhitespaceWithTest1()
+            => Assert.AreEqual("*Test*\r\n*text*", "\t Test   \r\n text  ".ReplaceWhiteSpaceWith("*", true));
+
+
+        [TestMethod]
+        public void ReplaceWhitespaceWithTest2()
+            => Assert.AreEqual("*Test*text*", "\t Test   \r\n text  ".ReplaceWhiteSpaceWith("*", false));
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ReplaceWhiteSpaceWithTest3()
+        {
+            string? s = null;
+            _ = s!.ReplaceWhiteSpaceWith("*");
+        }
+
+        [TestMethod]
+        public void ReplaceWhiteSpaceWhithTest4()
+        {
+            const string test = "test";
+            Assert.AreSame(test, test.ReplaceWhiteSpaceWith("blub"));
         }
     }
 }

@@ -128,7 +128,7 @@ namespace FolkerKinzel.Strings.Polyfills
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string[] Split(this string s, string? separator, int count, StringSplitOptions options = System.StringSplitOptions.None)
             => s is null
-                ? throw new NullReferenceException(nameof(s))
+                ? throw new NullReferenceException()
                 : count < 0
                     ? throw new ArgumentOutOfRangeException(nameof(count))
                     : count == 0 || (s.Length == 0 && (options & StringSplitOptions.RemoveEmptyEntries) == StringSplitOptions.RemoveEmptyEntries)
@@ -154,7 +154,7 @@ namespace FolkerKinzel.Strings.Polyfills
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string[] Split(this string s, string? separator, StringSplitOptions options = System.StringSplitOptions.None)
              => s is null
-                ? throw new NullReferenceException(nameof(s))
+                ? throw new NullReferenceException()
                     :  (s.Length == 0 && (options & StringSplitOptions.RemoveEmptyEntries) == StringSplitOptions.RemoveEmptyEntries)
                             ?
 #if NET45
