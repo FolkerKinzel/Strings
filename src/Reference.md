@@ -13,10 +13,12 @@ using FolkerKinzel.Strings;
 
 // Publish this namespace for .NET Framework or .NET Standard
 // build targets to have polyfills for .NET 5.0 methods.
-// (It is not generally recommended to publish this namespace for 
-// .NET Core build targets because some of the polyfills might produce
+// (It's not recommended to publish this namespace for 
+// .NET Core 3.1 build targets because some of the polyfills might produce
 // conflicts with extension methods from System.MemoryExtensions.)
+#if !NETCOREAPP3_1
 using FolkerKinzel.Strings.Polyfills;
+#endif
 ```
 .
 
