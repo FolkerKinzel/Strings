@@ -6,9 +6,9 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
     [TestClass()]
     public class StringExtensionPolyfillTests
     {
-         [TestMethod]
+        [TestMethod]
         public void ReplaceWhitespaceWithTest1()
-            => Assert.AreEqual("*Test*\r\n*text*", "\t Test   \r\n text  ".ReplaceWhiteSpaceWith("*", true));
+           => Assert.AreEqual("*Test*\r\n*text*", "\t Test   \r\n text  ".ReplaceWhiteSpaceWith("*", true));
 
 
         [TestMethod]
@@ -21,6 +21,25 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
         {
             string? s = null;
             _ = s!.ReplaceWhiteSpaceWith("*");
+        }
+
+
+        [TestMethod]
+        public void NormalizeNewLinesToTest1()
+           => Assert.AreEqual("\t Test   * text  ", "\t Test   \r\n text  ".NormalizeNewLinesTo("*"));
+
+
+        [TestMethod]
+        public void NormalizeNewLinesToTest2()
+            => Assert.AreEqual("\t Test   * text  ", "\t Test   \r\n text  ".NormalizeNewLinesTo("*"));
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void NormalizeNewLinesToTest3()
+        {
+            string? s = null;
+            _ = s!.NormalizeNewLinesTo("*");
         }
     }
 }

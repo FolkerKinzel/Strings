@@ -131,6 +131,9 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/> ist kleiner als 0 oder größer
         /// als die Länge von <paramref name="builder"/>.</exception>
+#if NETSTANDARD2_0
+        [ExcludeFromCodeCoverage]
+#endif
         public static StringBuilder Insert(this StringBuilder builder, int index, ReadOnlySpan<char> value)
         {
             if (builder is null)

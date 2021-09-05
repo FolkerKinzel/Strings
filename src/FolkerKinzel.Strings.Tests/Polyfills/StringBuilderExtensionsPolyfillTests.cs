@@ -51,5 +51,24 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
             var sb = new StringBuilder("T e s t");
             Assert.AreEqual("Test", sb.ReplaceWhiteSpaceWith("", 0, sb.Length).ToString());
         }
+
+
+        [TestMethod]
+        public void NormalizeNewLinesToTest1()
+           => Assert.AreEqual("\t Test   * text  ", new StringBuilder("\t Test   \r\n text  ").NormalizeNewLinesTo("*").ToString());
+
+
+        [TestMethod]
+        public void NormalizeNewLinesToTest2()
+            => Assert.AreEqual("\t Test   * text  ", new StringBuilder("\t Test   \r\n text  ").NormalizeNewLinesTo("*").ToString());
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void NormalizeNewLinesToTest3()
+        {
+            StringBuilder? s = null;
+            _ = s!.NormalizeNewLinesTo("*");
+        }
     }
 }

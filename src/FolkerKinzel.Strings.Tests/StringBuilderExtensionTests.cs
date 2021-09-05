@@ -1009,10 +1009,7 @@ namespace FolkerKinzel.Strings.Tests
         [DataRow("\nTest", true)]
         [DataRow("Test\r", true)]
         [DataRow("Te\r\nst", true)]
-        public void ContainsNewLineTest4(string input, bool expexted)
-        {
-            Assert.AreEqual(expexted, new StringBuilder(input).ContainsNewLine());
-        }
+        public void ContainsNewLineTest4(string input, bool expexted) => Assert.AreEqual(expexted, new StringBuilder(input).ContainsNewLine());
 
         [DataTestMethod]
         [DataRow("", 0, false)]
@@ -1023,10 +1020,7 @@ namespace FolkerKinzel.Strings.Tests
         [DataRow("Test\r", 0, true)]
         [DataRow("Test\r", 5, false)]
         [DataRow("Te\r\nst", 0, true)]
-        public void ContainsNewLineTest5(string input, int startIndex, bool expexted)
-        {
-            Assert.AreEqual(expexted, new StringBuilder(input).ContainsNewLine(startIndex));
-        }
+        public void ContainsNewLineTest5(string input, int startIndex, bool expexted) => Assert.AreEqual(expexted, new StringBuilder(input).ContainsNewLine(startIndex));
 
 
         [DataTestMethod]
@@ -1040,10 +1034,7 @@ namespace FolkerKinzel.Strings.Tests
         [DataRow("Test\r", 5, 0, false)]
         [DataRow("Te\r\nst", 0, 4, true)]
         [DataRow("Te\r\nst", 0, 2, false)]
-        public void ContainsNewLineTest6(string input, int startIndex, int count, bool expexted)
-        {
-            Assert.AreEqual(expexted, new StringBuilder(input).ContainsNewLine(startIndex, count));
-        }
+        public void ContainsNewLineTest6(string input, int startIndex, int count, bool expexted) => Assert.AreEqual(expexted, new StringBuilder(input).ContainsNewLine(startIndex, count));
 
 
         [DataTestMethod()]
@@ -1091,10 +1082,7 @@ namespace FolkerKinzel.Strings.Tests
         [DataRow(" Test", true)]
         [DataRow("Test ", true)]
         [DataRow("Te st", true)]
-        public void ContainsWhiteSpaceTest4(string input, bool expexted)
-        {
-            Assert.AreEqual(expexted, new StringBuilder(input).ContainsWhiteSpace());
-        }
+        public void ContainsWhiteSpaceTest4(string input, bool expexted) => Assert.AreEqual(expexted, new StringBuilder(input).ContainsWhiteSpace());
 
         [DataTestMethod]
         [DataRow("", 0, false)]
@@ -1105,10 +1093,7 @@ namespace FolkerKinzel.Strings.Tests
         [DataRow("Test ", 0, true)]
         [DataRow("Test ", 5, false)]
         [DataRow("Te  st", 0, true)]
-        public void ContainsWhiteSpaceTest5(string input, int startIndex, bool expexted)
-        {
-            Assert.AreEqual(expexted, new StringBuilder(input).ContainsWhiteSpace(startIndex));
-        }
+        public void ContainsWhiteSpaceTest5(string input, int startIndex, bool expexted) => Assert.AreEqual(expexted, new StringBuilder(input).ContainsWhiteSpace(startIndex));
 
 
         [DataTestMethod]
@@ -1122,10 +1107,7 @@ namespace FolkerKinzel.Strings.Tests
         [DataRow("Test ", 5, 0, false)]
         [DataRow("Te  st", 0, 4, true)]
         [DataRow("Te  st", 0, 2, false)]
-        public void ContainsWhiteSpaceTest6(string input, int startIndex, int count, bool expexted)
-        {
-            Assert.AreEqual(expexted, new StringBuilder(input).ContainsWhiteSpace(startIndex, count));
-        }
+        public void ContainsWhiteSpaceTest6(string input, int startIndex, int count, bool expexted) => Assert.AreEqual(expexted, new StringBuilder(input).ContainsWhiteSpace(startIndex, count));
 
 
         [DataTestMethod()]

@@ -132,26 +132,17 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
         [DataTestMethod]
         [DataRow("")]
         [DataRow(null)]
-        public void SplitTest6(string? separator)
-        {
-            Assert.AreEqual(1, "test".Split(separator, 4711).Length);
-        }
+        public void SplitTest6(string? separator) => Assert.AreEqual(1, "test".Split(separator, 4711).Length);
 
         [DataTestMethod]
         [DataRow(StringSplitOptions.None, 1)]
         [DataRow(StringSplitOptions.RemoveEmptyEntries, 0)]
-        public void SplitTest7(StringSplitOptions options, int expected)
-        {
-            Assert.AreEqual(expected, "".Split("bla", 4711, options).Length);
-        }
+        public void SplitTest7(StringSplitOptions options, int expected) => Assert.AreEqual(expected, "".Split("bla", 4711, options).Length);
 
         [TestMethod]
-        public void SplitTest8()
-        {
-            Assert.AreEqual(0, "test".Split("e", 0).Length);
-        }
+        public void SplitTest8() => Assert.AreEqual(0, "test".Split("e", 0).Length);
 
-        
+
         [DataTestMethod]
         [DataRow("This is a test.", null, 100, StringSplitOptions.None, 1)]
         [DataRow("This is a test.", null, 0, StringSplitOptions.None, 0)]

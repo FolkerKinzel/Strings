@@ -5,19 +5,10 @@ namespace Benchmarks
 {
     class Program
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Nicht verwendete Parameter entfernen", Justification = "<Ausstehend>")]
         static void Main(string[] args)
         {
-            //var sb1 = new StringBuilder();
-            //var sb2 = new StringBuilder("test");
-            ////sb2 = null;
-            //_ = sb1.Append(sb2, 0, 4711);
-
-            //Console.WriteLine("Hello World!");
-            const string test = "test";
-
-            char[] arr = new char[] { 't'  };
-
-            int i = test.IndexOfAny(arr, 1, test.Length-1);
+            
 
         }
     }

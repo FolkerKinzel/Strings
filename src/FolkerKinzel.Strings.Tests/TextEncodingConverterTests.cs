@@ -218,5 +218,23 @@ namespace FolkerKinzel.Strings.Tests
             Assert.AreEqual(0, bomLength);
         }
 
+        [DataTestMethod]
+        //[DataRow(1200)]
+        //[DataRow(1201)]
+        [DataRow(12000)]
+        [DataRow(12001)]
+        //[DataRow(54936, 4)]
+        //[DataRow(65000, 4)]
+        [DataRow(65001)]
+        public void GetCodePageTest8(int codePage)
+        {
+            Encoding enc = TextEncodingConverter.GetEncoding(codePage);
+            const string test = "\u03c0äöüß";
+            
+            var bytes = enc.GetBytes(test);
+
+            Assert.AreEqual(codePage, TextEncodingConverter.GetCodePage(bytes.AsSpan(), out int bomLength));
+            Assert.AreEqual(0, bomLength);
+        }
     }
 }

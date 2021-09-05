@@ -191,22 +191,55 @@ namespace FolkerKinzel.Strings
             const int GB18030 = 54936;
             const int UTF7 = 65000;
 
+            if (data.Length >= 4)
+            {
+                if (data[0] == 0xFF && data[1] == 0xFE && data[2] == 0x00 && data[3] == 0x00)
+                {
+                    bomLength = 4;
+                    return UTF32LE;
+                }
+
+                if (data[0] == 0x00 && data[1] == 0x00 && data[2] == 0xFE && data[3] == 0xFF)
+                {
+                    bomLength = 4;
+                    return UTF32BE;
+                }
+
+                if (data[0] == 0x84 && data[1] == 0x31 && data[2] == 0x95 && data[3] == 0x33)
+                {
+                    bomLength = 4;
+                    return GB18030;
+                }
+
+                if (data[0] == 0x2B && data[1] == 0x2F && data[2] == 0x76 && (data[3] == 0x38 || data[3] == 0x39 || data[3] == 0x2B || data[3] == 0x2F))
+                {
+                    bomLength = 4;
+                    return UTF7;
+                }
+
+                if ((data[0] != 0x00 || data[1] != 0x00) && data[2] == 0x00 && data[3] == 0x00)
+                {
+                    bomLength = 0;
+                    return UTF32LE;
+                }
+
+                if (data[0] == 0x00 && data[1] == 0x00 && (data[2] != 0x00 || data[3] != 0x00))
+                {
+                    bomLength = 0;
+                    return UTF32BE;
+                }
+            }
+
             if (data.Length >= 3 && data[0] == 0xEF && data[1] == 0xBB && data[2] == 0xBF)
             {
                 bomLength = 3;
                 return UTF_8;
             }
-            
+
             if (data.Length >= 2)
             {
                 if (data[0] == 0xFF && data[1] == 0xFE)
                 {
-                    if(data.Length >= 4 && data[2] == 0x00 && data[3] == 0x00 )
-                    {
-                        bomLength = 4;
-                        return UTF32LE;
-                    }
-
                     bomLength = 2;
                     return UTF16LE;
                 }
@@ -227,39 +260,6 @@ namespace FolkerKinzel.Strings
                 {
                     bomLength = 0;
                     return UTF16BE;
-                }
-            }
-            
-            if (data.Length >= 4)
-            {
-                if (data[0] == 0x00 && data[1] == 0x00 && data[2] == 0xFE && data[3] == 0xFF)
-                {
-                    bomLength = 4;
-                    return UTF32BE;
-                }
-
-                if (data[0] == 0x84 && data[1] == 0x31 && data[2] == 0x95 && data[3] == 0x33)
-                {
-                    bomLength = 4;
-                    return GB18030;
-                }
-
-                if (data[0] == 0x2B && data[1] == 0x2F && data[2] == 0x76 && (data[3] == 0x38 || data[3] == 0x39  || data[3] == 0x2B || data[3] == 0x2F))
-                {
-                    bomLength = 4;
-                    return UTF7;
-                }
-
-                if ((data[0] != 0x00 || data[1] != 0x00) && data[2] == 0x00 && data[3] == 0x00)
-                {
-                    bomLength = 0;
-                    return UTF32LE;
-                }
-
-                if (data[0] == 0x00 && data[1] == 0x00 && (data[2] != 0x00 || data[3] != 0x00))
-                {
-                    bomLength = 0;
-                    return UTF32BE;
                 }
             }
 
