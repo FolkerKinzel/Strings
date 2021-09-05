@@ -3,21 +3,20 @@
 [![GitHub](https://img.shields.io/github/license/FolkerKinzel/Strings)](https://github.com/FolkerKinzel/Strings/blob/master/LICENSE)
 
 .NET library that contains extension methods and helper classes for String, Char,
-StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.
+StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;. A very high code coverage of
+the unit tests and the consistent avoidance of unsafe code blocks are important design principles of 
+this library.
 
 ## Content:
-* Extension methods for String, 
-StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;, which act as Polyfills for .NET Framework 4.5,
-.NET Standard 2.0 and .NET Standard 2.1 in order to make it easier to support
-such older Framework versions in Multi Targeting Projects. [(See the complete list.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/3.2.0-beta.1/Polyfills.md)
-* Extension methods, which simulate several useful methods of the `String` class 
-for the `StringBuilder` class.
-* Extension methods, which return identical `Int32` hashcodes for 
-identical `Char` sequences each time the program runs. These hashcodes
-are a slim alternative to larger hash algorithms
-that is suitable for hashing short strings, which
-are not used in a security-critical context. [(Read more.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/PersistableHashCodeExample.md)
-* Other useful helpers for the work with charsets and encodings.
+* Extension methods, which help to write easier and cleaner code. Many of them are "Syntactic Sugar" 
+that calls existing Framework methods and will (hopefully) be inlined. Some other fill gaps of the 
+Framework.
+* Extension methods, which act as Polyfills for .NET Framework 4.5, .NET Standard 2.0 and .NET Standard 2.1
+ in order to make it easier to support such older Framework versions in Multi Targeting Projects. [(See the complete list.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/3.2.0-beta.1/Polyfills.md)
+* Extension methods, which return identical `Int32` hashcodes for identical `Char` sequences each time 
+the program runs. These hashcodes are a slim alternative to larger hash algorithms that is suitable for
+ hashing short strings, which are not used in a security-critical context. [(Read more.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/PersistableHashCodeExample.md)
+* Useful helpers for the work with charsets and encodings.
 
 ## Namespaces:
 ```csharp
