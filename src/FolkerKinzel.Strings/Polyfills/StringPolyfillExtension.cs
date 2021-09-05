@@ -108,6 +108,7 @@ namespace FolkerKinzel.Strings.Polyfills
         /// <returns>Ein Array, das maximal <paramref name="count"/> Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
         /// <paramref name="separator"/> getrennt sind.</returns>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> ist negativ.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string[] Split(this string s, char separator, int count, StringSplitOptions options = StringSplitOptions.None)
             => s.Split(new char[] { separator }, count, options);
@@ -123,8 +124,8 @@ namespace FolkerKinzel.Strings.Polyfills
         /// eingeschlossen werden sollen.</param>
         /// <returns>Ein Array, das maximal <paramref name="count"/> Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
         /// <paramref name="separator"/> getrennt sind.</returns>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is negative.</exception>
         /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> ist negativ.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string[] Split(this string s, string? separator, int count, StringSplitOptions options = System.StringSplitOptions.None)
             => s is null
