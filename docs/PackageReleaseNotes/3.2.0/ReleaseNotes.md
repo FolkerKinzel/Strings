@@ -1,5 +1,6 @@
-# FolkerKinzel.Strings 3.2.0-beta.1
+# FolkerKinzel.Strings 3.2.0
 ## Package Release Notes
+- High code coverage of the unit tests (100% lines and branches) and bug fixes for the beta version.
 
 - New method for TextEncodingConverter:
 ```csharp
