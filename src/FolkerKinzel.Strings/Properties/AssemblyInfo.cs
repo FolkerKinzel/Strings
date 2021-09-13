@@ -1,8 +1,11 @@
 using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 
 [assembly: CLSCompliant(true)]
+
+[assembly: InternalsVisibleTo("FolkerKinzel.Strings.Tests")]
 
 // In Projekten im SDK-Stil wie dem vorliegenden, bei dem verschiedene Assemblyattribute
 // üblicherweise in dieser Datei definiert wurden, werden diese Attribute jetzt während
