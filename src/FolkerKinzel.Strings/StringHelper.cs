@@ -25,6 +25,8 @@ namespace FolkerKinzel.Strings
         /// In neueren .NET-Versionen wird der Aufruf direkt an die vorhandene Methode der <see cref="string"/>-Klasse weitergeleitet. In 
         /// .NET Framework und .NET Standard 2.0 ermöglicht die Simulation zumindest bei der Erstellung kurzer <see cref="string"/>s, mit 
         /// nur einer Heap-Allokation auszukommen.</remarks>
+        /// <exception cref="ArgumentNullException"><paramref name="action"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="length"/> ist negativ.</exception>
         public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
         {
             if (action == null)
@@ -54,6 +56,8 @@ namespace FolkerKinzel.Strings
         /// In neueren .NET-Versionen wird der Aufruf direkt an die vorhandene Methode der <see cref="string"/>-Klasse weitergeleitet. In 
         /// .NET Framework und .NET Standard 2.0 ermöglicht die Simulation zumindest bei der Erstellung kurzer <see cref="string"/>s, mit 
         /// nur einer Heap-Allokation auszukommen.</remarks>
+        /// <exception cref="ArgumentNullException"><paramref name="action"/> ist <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="length"/> ist negativ.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
             => string.Create(length, state, action);
