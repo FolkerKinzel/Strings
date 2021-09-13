@@ -50,7 +50,7 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
             => Assert.AreEqual(expected, input.AsSpan().StartsWith(test));
 
 
-         [DataTestMethod]
+        [DataTestMethod]
         [DataRow("test", "ST", true)]
         [DataRow("test", "st", true)]
         [DataRow("test", "bla", false)]
@@ -59,7 +59,7 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
         [DataRow("", "", true)]
         [DataRow("", "st", false)]
         public void EndsWithTest1(string input, string? test, bool expected)
-            => Assert.AreEqual(expected, input.AsSpan().EndsWith(test, StringComparison.OrdinalIgnoreCase));
+           => Assert.AreEqual(expected, input.AsSpan().EndsWith(test, StringComparison.OrdinalIgnoreCase));
 
 
         [TestMethod]
@@ -83,6 +83,25 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
         {
             Thread.CurrentThread.CurrentCulture = _culture;
             GC.SuppressFinalize(this);
+        }
+
+        [DataTestMethod()]
+        [DataRow(StringComparison.Ordinal)]
+        [DataRow(StringComparison.CurrentCulture)]
+        public void LastIndexOfTest1(StringComparison comp)
+        {
+            const string test = "test";
+            Assert.AreEqual(test.Length, test.AsSpan().LastIndexOf(ReadOnlySpan<char>.Empty, comp));
+        }
+
+
+        [DataTestMethod()]
+        [DataRow(StringComparison.Ordinal)]
+        [DataRow(StringComparison.CurrentCulture)]
+        public void LastIndexOfTest2(StringComparison comp)
+        {
+            const string test = "test";
+            Assert.AreEqual(1, test.AsSpan().LastIndexOf("est".AsSpan(), comp));
         }
     }
 }

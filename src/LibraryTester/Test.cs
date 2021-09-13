@@ -163,7 +163,11 @@ namespace LibraryTesters
 
             _ = sb.Insert(0, span);
 
+             _ = test.AsSpan().LastIndexOf("es", 3, 4, StringComparison.Ordinal);
+            _ = test.AsSpan().LastIndexOf("es", StringComparison.Ordinal);
 
+            _ = test.AsSpan().LastIndexOf("es".AsSpan(), 3, 4, StringComparison.Ordinal);
+            _ = test.AsSpan().LastIndexOf("es".AsSpan(), StringComparison.Ordinal);
         }
     }
 }

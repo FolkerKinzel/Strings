@@ -31,9 +31,28 @@ namespace FolkerKinzel.Strings.Polyfills
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Contains(this ReadOnlySpan<char> span, char value)
             => span.IndexOf(value) != -1;
+
+        public static int LastIndexOf (this ReadOnlySpan<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
+        {
+            if(value.IsEmpty)
+            {
+                return span.Length;
+            }
+
+            if(comparisonType == StringComparison.Ordinal)
+            {
+                return span.LastIndexOf(value);
+            }
+
+            return span.ToString().LastIndexOf(value.ToString(), comparisonType);
+        }
 #endif
 
 #if NET45 || NETSTANDARD2_0
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int LastIndexOf(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
+            => span.LastIndexOf(value.AsSpan(), comparisonType);
 
         /// <summary>
         /// Bestimmt, ob eine schreibgeschützte Zeichenspanne mit einem angegebenen <see cref="string"/> beginnt.

@@ -51,7 +51,7 @@ prone calculating with the result when slicing the span before.
 - [x] Implement `StringBuilder.NormalizeNewLinesWith(ReadOnlySpan<Char>)`.
 
 ### 3.3.0
-- [ ] Implement `ReadOnlySpan<Char>.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
+- [x] Implement `ReadOnlySpan<Char>.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
 - [ ] Implement `String.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
 - [x] Polyfill `string StringHelper.Create<TState> (int, TState, System.Buffers.SpanAction<char,TState>)`
 

@@ -1,9 +1,14 @@
-﻿using System;
+﻿using FolkerKinzel.Strings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#if !NETCOREAPP3_1
+using FolkerKinzel.Strings.Polyfills;
+#endif
 
 namespace FolkerKinzel.Strings.Tests
 {
@@ -56,7 +61,7 @@ namespace FolkerKinzel.Strings.Tests
             Assert.AreEqual(-1, "".AsSpan().LastIndexOfAny(test.AsSpan(), 0, 0));
         }
 
-        
+
 
         [DataTestMethod]
         [DataRow(-1, 0)]
@@ -159,5 +164,10 @@ namespace FolkerKinzel.Strings.Tests
         [DataRow("", 't', false)]
         public void StartsWithTest(string input, char c, bool expected) => Assert.AreEqual(expected, input.AsSpan().StartsWith(c));
 
+        [TestMethod()]
+        public void LastIndexOfTest1()
+        {
+            Assert.AreEqual(-1, "test".AsSpan().LastIndexOf("bla", 3, 4, StringComparison.Ordinal));
+        }
     }
 }
