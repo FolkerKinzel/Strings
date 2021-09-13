@@ -21,6 +21,10 @@ namespace FolkerKinzel.Strings
         /// <param name="state">Das an <paramref name="action"/> zu übergebende Element.</param>
         /// <param name="action">Ein Rückruf zum Initialisieren der Zeichenfolge.</param>
         /// <returns>Die erstellte Zeichenfolge.</returns>
+        /// <remarks>Die Methode simuliert die statische Methode String.Create&lt;TState&gt;(int, TState, SpanAction&lt;char,TState&gt;).
+        /// In neueren .NET-Versionen wird der Aufruf direkt an die vorhandene Methode der <see cref="string"/>-Klasse weitergeleitet. In 
+        /// .NET Framework und .NET Standard 2.0 ermöglicht die Simulation zumindest bei der Erstellung kurzer <see cref="string"/>s, mit 
+        /// nur einer Heap-Allokation auszukommen.</remarks>
         public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
         {
             if (action == null)
@@ -46,6 +50,10 @@ namespace FolkerKinzel.Strings
         /// <param name="state">Das an <paramref name="action"/> zu übergebende Element.</param>
         /// <param name="action">Ein Rückruf zum Initialisieren der Zeichenfolge.</param>
         /// <returns>Die erstellte Zeichenfolge.</returns>
+        /// <remarks>Die Methode simuliert die statische Methode String.Create&lt;TState&gt;(int, TState, SpanAction&lt;char,TState&gt;).
+        /// In neueren .NET-Versionen wird der Aufruf direkt an die vorhandene Methode der <see cref="string"/>-Klasse weitergeleitet. In 
+        /// .NET Framework und .NET Standard 2.0 ermöglicht die Simulation zumindest bei der Erstellung kurzer <see cref="string"/>s, mit 
+        /// nur einer Heap-Allokation auszukommen.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
             => string.Create(length, state, action);
