@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Remove="ReadOnlySpanExtension_Obsolete.cs" />
     <Compile Remove="StringBuilderExtension_Obsolete.cs" />
+    <Compile Remove="StringExtension_LastIndexOf.cs" />
     <Compile Remove="StringExtension_Obsolete.cs" />
   </ItemGroup>
   <ItemGroup>

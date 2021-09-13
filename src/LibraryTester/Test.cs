@@ -168,6 +168,8 @@ namespace LibraryTesters
 
             _ = test.AsSpan().LastIndexOf("es".AsSpan(), 3, 4, StringComparison.Ordinal);
             _ = test.AsSpan().LastIndexOf("es".AsSpan(), StringComparison.Ordinal);
+
+
         }
     }
 }

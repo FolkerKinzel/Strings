@@ -169,5 +169,61 @@ namespace FolkerKinzel.Strings.Tests
         {
             Assert.AreEqual(-1, "test".AsSpan().LastIndexOf("bla", 3, 4, StringComparison.Ordinal));
         }
+
+        [TestMethod()]
+        public void LastIndexOfTest2()
+        {
+            Assert.AreEqual(-1, "".AsSpan().LastIndexOf("bla", -1, 0, StringComparison.Ordinal));
+        }
+
+        [TestMethod()]
+        public void LastIndexOfTest3()
+        {
+            Assert.AreEqual(-1, "".AsSpan().LastIndexOf("bla", 0, 1, StringComparison.Ordinal));
+        }
+
+        [TestMethod()]
+        //[ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void LastIndexOfTest4()
+        {
+            //Assert.AreEqual(-1, "".LastIndexOf("bla", 0, 2, StringComparison.Ordinal));
+
+            Assert.AreEqual(-1, "".AsSpan().LastIndexOf("bla", 0, 2, StringComparison.Ordinal));
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void LastIndexOfTest5()
+        {
+            _ = "".AsSpan().LastIndexOf("bla", -2, 0, StringComparison.Ordinal);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void LastIndexOfTest6()
+        {
+            _ = "".AsSpan().LastIndexOf("bla", 1, 0, StringComparison.Ordinal);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void LastIndexOfTest7()
+        {
+            _ = "test".AsSpan().LastIndexOf("bla", -1, 0, StringComparison.Ordinal);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void LastIndexOfTest8()
+        {
+            _ = "test".AsSpan().LastIndexOf("bla", 5, 0, StringComparison.Ordinal);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void LastIndexOfTest9()
+        {
+            _ = "test".AsSpan().LastIndexOf("bla", 3, 1, (StringComparison)4711);
+        }
     }
 }

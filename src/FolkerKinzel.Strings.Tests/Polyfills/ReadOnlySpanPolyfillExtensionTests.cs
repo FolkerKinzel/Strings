@@ -103,5 +103,24 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
             const string test = "test";
             Assert.AreEqual(1, test.AsSpan().LastIndexOf("est".AsSpan(), comp));
         }
+
+        //[DataTestMethod()]
+        //[DataRow(StringComparison.Ordinal)]
+        //[DataRow(StringComparison.CurrentCulture)]
+        //public void IndexOfTest1(StringComparison comp)
+        //{
+        //    const string test = "test";
+        //    Assert.AreEqual(test.Length, test.AsSpan().IndexOf(ReadOnlySpan<char>.Empty, comp));
+        //}
+
+
+        //[DataTestMethod()]
+        //[DataRow(StringComparison.Ordinal)]
+        //[DataRow(StringComparison.CurrentCulture)]
+        //public void IndexOfTest2(StringComparison comp)
+        //{
+        //    const string test = "test";
+        //    Assert.AreEqual(1, test.AsSpan().IndexOf("est".AsSpan(), comp));
+        //}
     }
 }

@@ -20,8 +20,8 @@ namespace FolkerKinzel.Strings.Polyfills
 #if NET45 || NETSTANDARD2_0
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int LastIndexOf(this ReadOnlySpan<char> span, string? value, int startIndex, int count, StringComparison comparisonType)
-            => span.LastIndexOf(value.AsSpan(), startIndex, count, comparisonType);
+        public static int LastIndexOf(this ReadOnlySpan<char> span, string value, int startIndex, int count, StringComparison comparisonType)
+            => value is null ? throw new ArgumentNullException(nameof(value)) : span.LastIndexOf(value.AsSpan(), startIndex, count, comparisonType);
         
 
 #endif
