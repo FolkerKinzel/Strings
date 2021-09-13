@@ -53,4 +53,5 @@ prone calculating with the result when slicing the span before.
 ### 3.3.0
 - [ ] Implement `ReadOnlySpan<Char>.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
 - [ ] Implement `String.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
+- [ ] Polyfill String.Create
 
