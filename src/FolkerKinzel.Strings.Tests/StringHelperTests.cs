@@ -13,19 +13,19 @@ namespace FolkerKinzel.Strings.Tests
     {
         [TestMethod()]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void CreateTest1() => _ = StringHelper.Create(0, "", null!);
+        public void CreateTest1() => _ = StringCreator.Create(0, "", null!);
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void CreateTest2() => _ = StringHelper.Create(-1, "", (span, tState) => { });
+        public void CreateTest2() => _ = StringCreator.Create(-1, "", (span, tState) => { });
 
         [TestMethod()]
-        public void CreateTest3() => Assert.AreEqual(0, StringHelper.Create(0, "", (span, tState) => { }).Length);
+        public void CreateTest3() => Assert.AreEqual(0, StringCreator.Create(0, "", (span, tState) => { }).Length);
 
         [TestMethod()]
         public void CreateTest4()
         {
-            Assert.AreEqual("HELL",  StringHelper.Create(4, "hello",
+            Assert.AreEqual("HELL",  StringCreator.Create(4, "hello",
                 (span, tState) => 
                 {
                     for (int i = 0; i < span.Length; i++)
@@ -39,7 +39,7 @@ namespace FolkerKinzel.Strings.Tests
         public void CreateTest5()
         {
             const int length = Const.ShortString + 5;
-            Assert.AreEqual(new string('x', length),  StringHelper.Create(length, "",
+            Assert.AreEqual(new string('x', length),  StringCreator.Create(length, "",
                 (span, tState) => 
                 {
                     for (int i = 0; i < span.Length; i++)

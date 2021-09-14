@@ -7,9 +7,9 @@ using System.Text;
 namespace FolkerKinzel.Strings
 {
     /// <summary>
-    /// Simuliert statische Methoden der <see cref="string"/>-Klasse für .NET-Versionen, in denen diese nicht verfügbar sind.
+    /// Simuliert statische Methoden der <see cref="string"/>-Klasse zum Erzeugen von <see cref="string"/>s für .NET-Versionen, in denen diese nicht verfügbar sind.
     /// </summary>
-    public static class StringHelper
+    public static class StringCreator
     {
 
 #if NET45 || NETSTANDARD2_0

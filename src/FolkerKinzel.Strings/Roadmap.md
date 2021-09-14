@@ -52,7 +52,7 @@ prone calculating with the result when slicing the span before.
 
 ### 3.3.0
 - [x] Implement `ReadOnlySpan<Char>.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
-- [x] Polyfill `string StringHelper.Create<TState> (int, TState, System.Buffers.SpanAction<char,TState>)`
+- [x] Polyfill `string StringCreator.Create<TState> (int, TState, System.Buffers.SpanAction<char,TState>)`
 - [ ] Implement bool `IsAsciiLowerCaseLetter(this char)`.
 - [ ] Implement bool `IsAsciiUpperCaseLetter(this char)`.
 - [ ] Implement bool `IsAsciiLetter(this char)`.
