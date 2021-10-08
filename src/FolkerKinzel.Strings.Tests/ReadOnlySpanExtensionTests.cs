@@ -72,7 +72,6 @@ namespace FolkerKinzel.Strings.Tests
         public void LastIndexOfAnyTest10(int index, int count)
         {
             ReadOnlySpan<char> needles = "testganzlang".AsSpan();
-
             _ = "".AsSpan().LastIndexOfAny(needles, index, count);
         }
 
@@ -85,7 +84,6 @@ namespace FolkerKinzel.Strings.Tests
         public void LastIndexOfAnyTest11(int index, int count)
         {
             ReadOnlySpan<char> needles = "t".AsSpan();
-
             _ = "".AsSpan().LastIndexOfAny(needles, index, count);
         }
 
@@ -165,65 +163,37 @@ namespace FolkerKinzel.Strings.Tests
         public void StartsWithTest(string input, char c, bool expected) => Assert.AreEqual(expected, input.AsSpan().StartsWith(c));
 
         [TestMethod()]
-        public void LastIndexOfTest1()
-        {
-            Assert.AreEqual(-1, "test".AsSpan().LastIndexOf("bla", 3, 4, StringComparison.Ordinal));
-        }
+        public void LastIndexOfTest1() => Assert.AreEqual(-1, "test".AsSpan().LastIndexOf("bla", 3, 4, StringComparison.Ordinal));
 
         [TestMethod()]
-        public void LastIndexOfTest2()
-        {
-            Assert.AreEqual(-1, "".AsSpan().LastIndexOf("bla", -1, 0, StringComparison.Ordinal));
-        }
+        public void LastIndexOfTest2() => Assert.AreEqual(-1, "".AsSpan().LastIndexOf("bla", -1, 0, StringComparison.Ordinal));
 
         [TestMethod()]
-        public void LastIndexOfTest3()
-        {
-            Assert.AreEqual(-1, "".AsSpan().LastIndexOf("bla", 0, 1, StringComparison.Ordinal));
-        }
+        public void LastIndexOfTest3() => Assert.AreEqual(-1, "".AsSpan().LastIndexOf("bla", 0, 1, StringComparison.Ordinal));
 
         [TestMethod()]
         //[ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void LastIndexOfTest4()
-        {
-            //Assert.AreEqual(-1, "".LastIndexOf("bla", 0, 2, StringComparison.Ordinal));
-
-            Assert.AreEqual(-1, "".AsSpan().LastIndexOf("bla", 0, 2, StringComparison.Ordinal));
-        }
+            =>  Assert.AreEqual(-1, "".AsSpan().LastIndexOf("bla", 0, 2, StringComparison.Ordinal));
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void LastIndexOfTest5()
-        {
-            _ = "".AsSpan().LastIndexOf("bla", -2, 0, StringComparison.Ordinal);
-        }
+        public void LastIndexOfTest5() => _ = "".AsSpan().LastIndexOf("bla", -2, 0, StringComparison.Ordinal);
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void LastIndexOfTest6()
-        {
-            _ = "".AsSpan().LastIndexOf("bla", 1, 0, StringComparison.Ordinal);
-        }
+        public void LastIndexOfTest6() => _ = "".AsSpan().LastIndexOf("bla", 1, 0, StringComparison.Ordinal);
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void LastIndexOfTest7()
-        {
-            _ = "test".AsSpan().LastIndexOf("bla", -1, 0, StringComparison.Ordinal);
-        }
+        public void LastIndexOfTest7() => _ = "test".AsSpan().LastIndexOf("bla", -1, 0, StringComparison.Ordinal);
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void LastIndexOfTest8()
-        {
-            _ = "test".AsSpan().LastIndexOf("bla", 5, 0, StringComparison.Ordinal);
-        }
+        public void LastIndexOfTest8() => _ = "test".AsSpan().LastIndexOf("bla", 5, 0, StringComparison.Ordinal);
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException))]
-        public void LastIndexOfTest9()
-        {
-            _ = "test".AsSpan().LastIndexOf("bla", 3, 1, (StringComparison)4711);
-        }
+        public void LastIndexOfTest9() => _ = "test".AsSpan().LastIndexOf("bla", 3, 1, (StringComparison)4711);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FolkerKinzel.Strings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -272,16 +273,42 @@ namespace FolkerKinzel.Strings.Tests
         [DataTestMethod]
         [DataRow(' ', false)]
         [DataRow('a', false)]
-        [DataRow('\r'    , true)]
- 		[DataRow('\n'    , true)]
- 		[DataRow('\u000B', true)]
- 		[DataRow('\u000C', true)]
- 		[DataRow('\u0085', true)]
- 		[DataRow('\u2028', true)]
- 		[DataRow('\u2029', true)]
+        [DataRow('\r', true)]
+        [DataRow('\n', true)]
+        [DataRow('\u000B', true)]
+        [DataRow('\u000C', true)]
+        [DataRow('\u0085', true)]
+        [DataRow('\u2028', true)]
+        [DataRow('\u2029', true)]
         public void IsNewLineTest(char input, bool expected)
             => Assert.AreEqual(expected, input.IsNewLine());
 
+        [TestMethod()]
+        public void IsAsciiLowerCaseLetterTest()
+        {
+            for (char c = char.MinValue; c < char.MaxValue; c++)
+            {
+                Assert.AreEqual(c.IsAscii() && char.IsLetter(c) && char.IsLower(c), c.IsAsciiLowerCaseLetter());
+            }
+        }
 
+        [TestMethod()]
+        public void IsAsciiUpperCaseLetterTest()
+        {
+            for (char c = char.MinValue; c < char.MaxValue; c++)
+            {
+                Assert.AreEqual(c.IsAscii() && char.IsLetter(c) && char.IsUpper(c), c.IsAsciiUpperCaseLetter());
+            }
+        }
+
+
+        [TestMethod()]
+        public void IsAsciiLetterTest()
+        {
+            for (char c = char.MinValue; c < char.MaxValue; c++)
+            {
+                Assert.AreEqual(c.IsAscii() && char.IsLetter(c), c.IsAsciiLetter());
+            }
+        }
     }
 }

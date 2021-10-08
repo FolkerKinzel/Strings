@@ -13,6 +13,36 @@ namespace FolkerKinzel.Strings
     public static class CharExtension
     {
         /// <summary>
+        /// Untersucht, ob das Unicode-Zeichen ein ASCII-Kleinbuchstabe ist.
+        /// </summary>
+        /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+        /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Kleinbuchstabe ist,
+        /// andernfalls <c>false</c>.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsAsciiLowerCaseLetter(this char c)
+            => c is >= 'a' and <= 'z';
+
+        /// <summary>
+        /// Untersucht, ob das Unicode-Zeichen ein ASCII-Großbuchstabe ist.
+        /// </summary>
+        /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+        /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
+        /// andernfalls <c>false</c>.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsAsciiUpperCaseLetter(this char c)
+            => c is >= 'A' and <= 'Z';
+
+        /// <summary>
+        /// Untersucht, ob das Unicode-Zeichen ein ASCII-Buchstabe ist.
+        /// </summary>
+        /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+        /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Buchstabe ist,
+        /// andernfalls <c>false</c>.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsAsciiLetter(this char c)
+            => c.IsAsciiLowerCaseLetter() || c.IsAsciiUpperCaseLetter();
+
+        /// <summary>
         /// Ruft den Wert einer Hexadezimalziffer ab.
         /// </summary>
         /// <param name="digit">Die zu konvertierende Hexadezimalziffer (0-9, a-f, A-F).</param>
