@@ -104,6 +104,47 @@ namespace FolkerKinzel.Strings.Polyfills.Tests
             Assert.AreEqual(1, test.AsSpan().LastIndexOf("est".AsSpan(), comp));
         }
 
+
+        [DataTestMethod()]
+        [DataRow(StringComparison.Ordinal)]
+        [DataRow(StringComparison.CurrentCulture)]
+        public void LastIndexOfTest3(StringComparison comp)
+        {
+            const string test = "test";
+            Assert.AreEqual(test.Length, test.AsSpan().LastIndexOf("", comp));
+        }
+
+
+        [DataTestMethod()]
+        [DataRow(StringComparison.Ordinal)]
+        [DataRow(StringComparison.CurrentCulture)]
+        public void LastIndexOfTest4(StringComparison comp)
+        {
+            const string test = "test";
+            Assert.AreEqual(1, test.AsSpan().LastIndexOf("est", comp));
+        }
+
+
+        [DataTestMethod()]
+        [DataRow(StringComparison.Ordinal)]
+        [DataRow(StringComparison.CurrentCulture)]
+        //[ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void LastIndexOfTest5(StringComparison comp)
+        {
+            const string test = "test";
+            Assert.AreEqual(test.Length, test.AsSpan().LastIndexOf((string?)null, comp));
+        }
+
+        [DataTestMethod()]
+        [DataRow(StringComparison.Ordinal)]
+        [DataRow(StringComparison.CurrentCulture)]
+        //[ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void LastIndexOfTest6(StringComparison comp)
+        {
+            const string test = "test";
+            Assert.AreEqual(test.Length, test.AsSpan().LastIndexOf("", comp));
+        }
+
         //[DataTestMethod()]
         //[DataRow(StringComparison.Ordinal)]
         //[DataRow(StringComparison.CurrentCulture)]

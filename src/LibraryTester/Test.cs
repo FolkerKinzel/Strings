@@ -3,7 +3,7 @@ using System.Text;
 using FolkerKinzel.Strings;
 using System.Linq;
 
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if !NETCOREAPP3_1
 using FolkerKinzel.Strings.Polyfills;
 #endif
 

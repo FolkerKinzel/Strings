@@ -24,8 +24,8 @@ int LastIndexOf(this ReadOnlySpan<char>, ReadOnlySpan<char>, int, int, StringCom
 
 - New polyfills for .NET Framework 4.5 and .NET Standard 2.0:
 ```csharp
-int LastIndexOf(this ReadOnlySpan<char>, string, StringComparison);
-int LastIndexOf(this ReadOnlySpan<char>, string, int, int, StringComparison);
+int LastIndexOf(this ReadOnlySpan<char>, string?, StringComparison);
+int LastIndexOf(this ReadOnlySpan<char>, string?, int, int, StringComparison);
 
 System.Buffers.SpanAction<T, TArg>;
 ```

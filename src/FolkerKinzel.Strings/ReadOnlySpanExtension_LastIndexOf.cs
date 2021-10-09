@@ -30,25 +30,26 @@ namespace FolkerKinzel.Strings
         /// - oder -
         /// </para>
         /// <para>
-        /// Die aktuelle Instanz entspricht nicht Empty, und startIndex ist ein negativer Wert.
+        /// <paramref name="span"/> ist nicht <see cref="ReadOnlySpan{T}.Empty"/>, und <paramref name="startIndex"/> ist ein negativer Wert.
         /// </para>
         /// <para>
         /// - oder -
         /// </para>
         /// <para>
-        /// Die aktuelle Instanz entspricht nicht Empty, und startIndex ist größer als die Länge dieser Instanz.
+        /// <paramref name="span"/> ist nicht <see cref="ReadOnlySpan{T}.Empty"/>, und <paramref name="startIndex"/> ist größer als die Länge von <paramref name="span"/>.
         /// </para>
         /// <para>
         /// - oder -
         /// </para>
         /// <para>
-        /// Die aktuelle Instanz entspricht nicht Empty, und startIndex + 1 - count gibt eine Position an, die nicht innerhalb dieser Instanz liegt.
+        /// <paramref name="span"/> ist nicht <see cref="ReadOnlySpan{T}.Empty"/>, und <paramref name="startIndex"/> + 1 - <paramref name="count"/> gibt eine Position an, 
+        /// die nicht innerhalb von <paramref name="span"/> liegt.
         /// </para>
         /// <para>
         /// - oder -
         /// </para>
         /// <para>
-        /// Die aktuelle Instanz entspricht Empty, und start ist kleiner als -1 oder größer als 0 (null).
+        /// <paramref name="span"/> ist <see cref="ReadOnlySpan{T}.Empty"/>, und <paramref name="startIndex"/> ist kleiner als -1 oder größer als 0 (null).
         /// </para>
         /// </exception>
         /// <exception cref="ArgumentException">

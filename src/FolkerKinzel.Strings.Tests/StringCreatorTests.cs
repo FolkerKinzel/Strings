@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FolkerKinzel.Strings.Tests
 {
     [TestClass()]
-    public class StringHelperTests
+    public class StringCreatorTests
     {
         [TestMethod()]
         [ExpectedException(typeof(ArgumentNullException))]

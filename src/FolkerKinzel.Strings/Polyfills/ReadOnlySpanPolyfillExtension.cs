@@ -32,6 +32,18 @@ namespace FolkerKinzel.Strings.Polyfills
         public static bool Contains(this ReadOnlySpan<char> span, char value)
             => span.IndexOf(value) != -1;
 
+
+
+        /// <summary>
+        /// Gibt den NULL-basierten Index des letzten Vorkommens einer angegebenen Zeichenfolge in <paramref name="span"/> an. 
+        /// Ein Parameter gibt den Typ der Suche für die angegebene Zeichenfolge an.
+        /// </summary>
+        /// <param name="span">Die zu durchsuchende Zeichenspanne.</param>
+        /// <param name="value">Die zu suchende Zeichenfolge.</param>
+        /// <param name="comparisonType">Einer der Enumerationswerte, der die Regeln für die Suche angibt.</param>
+        /// <returns>Die nullbasierte Indexposition des <paramref name="value"/>-Parameters, wenn diese Zeichenfolge gefunden wurde, andernfalls -1.</returns>
+        /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:In bedingten Ausdruck konvertieren", Justification = "<Ausstehend>")]
         public static int LastIndexOf (this ReadOnlySpan<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
         {
             if(value.IsEmpty)
@@ -50,9 +62,18 @@ namespace FolkerKinzel.Strings.Polyfills
 
 #if NET45 || NETSTANDARD2_0
 
+        /// <summary>
+        /// Gibt den NULL-basierten Index des letzten Vorkommens einer angegebenen Zeichenfolge in <paramref name="span"/> an. 
+        /// Ein Parameter gibt den Typ der Suche für die angegebene Zeichenfolge an.
+        /// </summary>
+        /// <param name="span">Die zu durchsuchende Zeichenspanne.</param>
+        /// <param name="value">Der zu suchende <see cref="string"/> oder <c>null</c>.</param>
+        /// <param name="comparisonType">Einer der Enumerationswerte, der die Regeln für die Suche angibt.</param>
+        /// <returns>Die nullbasierte Indexposition des <paramref name="value"/>-Parameters, wenn diese Zeichenfolge gefunden wurde, andernfalls -1.</returns>
+        /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int LastIndexOf(this ReadOnlySpan<char> span, string value, StringComparison comparisonType)
-            => value is null ? throw new ArgumentOutOfRangeException(nameof(value)) : span.LastIndexOf(value.AsSpan(), comparisonType);
+        public static int LastIndexOf(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
+            => span.LastIndexOf(value.AsSpan(), comparisonType);
 
         /// <summary>
         /// Bestimmt, ob eine schreibgeschützte Zeichenspanne mit einem angegebenen <see cref="string"/> beginnt.
