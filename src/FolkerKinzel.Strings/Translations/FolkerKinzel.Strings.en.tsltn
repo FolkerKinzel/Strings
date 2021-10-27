@@ -1048,4 +1048,166 @@ UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method f
   <T ID="B9D8F45438E6E305">The polyfills are available for .NET Framework 4.5 and .NET Standard 2.0.</T>
   <T ID="9AC2CFDBB3965005">&lt;paramref name="count"/&gt; is negative.</T>
   <T ID="F3D6814CB3965005">&lt;paramref name="count"/&gt; is negative.</T>
+  <T ID="32F7F46041FEADAA">Examines whether the Unicode character is an ASCII lowercase letter.</T>
+  <T ID="8A7A026DF644E52B">The Unicode character to examine.</T>
+  <T ID="5B12278D763A585E">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is an ASCII lowercase letter, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="360F8B8E83CECAC8">Examines whether the Unicode character is an ASCII uppercase letter.</T>
+  <T ID="61304B0BF644E52B">The Unicode character to examine.</T>
+  <T ID="628F28C554BD1294">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is an ASCII uppercase letter, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="5A8B97081BEA42EE">Examines whether the Unicode character is an ASCII letter.</T>
+  <T ID="1F62B195F644E52B">The Unicode character to examine.</T>
+  <T ID="4F271A6F2B0D6153">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="c"/&gt; is an ASCII letter, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="F881BAF16B50802C">Extension methods, which act as Polyfills for the extension methods of the class &lt;see cref="T:FolkerKinzel.Strings.ReadOnlySpanExtension"/&gt;.</T>
+  <T ID="BACC4ADC38E6E305">The Polyfills are available for .NET Framework 4.5 and .NET Standard 2.0.</T>
+  <T ID="A64045454B4F8AA7">Specifies the  zero based index position of the last occurrence of a specified string in &lt;paramref name ="span"/&gt;. The search begins at a specified character position and runs backwards to the beginning of the character span for a specified number of character positions. A parameter specifies the type of comparison to be performed when searching for the specified string.</T>
+  <T ID="A4B3A39A6CABE0FA">The span to search.</T>
+  <T ID="DE2079B2C979162C">The &lt;see cref ="T:System.String"/&gt; to search for or &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="200E0058ED0DB2EA">The start index of the search. The search continues from &lt;paramref name ="startIndex"/&gt; to the beginning of &lt;paramref name ="span"/&gt;.</T>
+  <T ID="B1445D42D1BD11B9">The number of character positions to examine.</T>
+  <T ID="8301AA1EB914CC98">One of the enumeration values that specifies the rules for the search.</T>
+  <T ID="B5759634285C1838">The zero-based start index of the &lt;paramref name ="value"/&gt; parameter if this string was found, or -1 if it was not found or &lt;paramref name ="span"/&gt; is empty.</T>
+  <T ID="E8421D238D40D4F2">&lt;para&gt;
+&lt;paramref name ="count"/&gt; is a negative value
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is a negative value.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is greater than the length of &lt;paramref name ="span"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; + 1 - &lt;paramref name ="count"/&gt; indicates a position that is not within &lt;paramref name ="span"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is less than -1 or greater than 0.
+&lt;/para&gt;</T>
+  <T ID="E8421D230D1A3DB5">&lt;para&gt;
+&lt;paramref name ="count"/&gt; is a negative value
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is a negative value.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is greater than the length of &lt;paramref name ="span"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; + 1 - &lt;paramref name ="count"/&gt; indicates a position that is not within &lt;paramref name ="span"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is less than -1 or greater than 0.
+&lt;/para&gt;</T>
+  <T ID="D8511BAE2140445F">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enumeration.</T>
+  <T ID="886786C118CE5840">Specifies the zero-based index of the last occurrence of a specified string in &lt;paramref name ="span"/&gt;. A parameter specifies the type of search for the specified string.</T>
+  <T ID="D0A3E4776CABE0FA">The character span to search.</T>
+  <T ID="88A2ED75DD6392AE">The character sequence to search for.</T>
+  <T ID="714057F7B914CC98">One of the enumeration values that specifies the rules for the search.</T>
+  <T ID="FBC5D5C27A7A2FB0">The zero-based index of &lt;paramref name="value"/&gt; if that character sequence is found, or -1 if it is not.</T>
+  <T ID="430B5052140445F">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enumeration.</T>
+  <T ID="D60709BC18CE5840">Specifies the zero-based index of the last occurrence of a specified string in &lt;paramref name ="span"/&gt;. A parameter specifies the type of search for the specified string.</T>
+  <T ID="93F584916CABE0FA">The character span to search.</T>
+  <T ID="37B30B41C979162C">The &lt;see cref="T:System.String"/&gt; to search for or &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="E485C86CB914CC98">One of the enumeration values that specifies the rules for the search.</T>
+  <T ID="ED61A1837A7A2FB0">The zero-based index of &lt;paramref name="value"/&gt; if that character sequence is found, or -1 if it is not.</T>
+  <T ID="838017F32140445F">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enumeration.</T>
+  <T ID="E0719FD07009DC21">Specifies the  zero based index position of the last occurrence of a specified string in &lt;paramref name ="span"/&gt;. The search begins at a specified character position and runs backwards to the beginning of the character span for a specified number of character positions. A parameter specifies the type of comparison to be performed when searching for the specified string.</T>
+  <T ID="497F46006CABE0FA">The character span to search.</T>
+  <T ID="FCDD900CFEBC85DC">The character span to search for.</T>
+  <T ID="612327C9ED0DB2EA">The start index of the search. The search continues from &lt;paramref name ="startIndex"/&gt; to the beginning of &lt;paramref name ="span"/&gt;.</T>
+  <T ID="1E1FAD7ED1BD11B9">The number of character positions to examine.</T>
+  <T ID="9FDAEA51B914CC98">One of the enumeration values that specifies the rules for the search.</T>
+  <T ID="C2012A5B285C1838">The zero-based start index of the &lt;paramref name ="value"/&gt; parameter if this string was found, or -1 if it was not found or &lt;paramref name ="span"/&gt; is empty.</T>
+  <T ID="985334968D40D4F2">&lt;para&gt;
+&lt;paramref name ="count"/&gt; is a negative value
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is a negative value.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is greater than the length of &lt;paramref name ="span"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; + 1 - &lt;paramref name ="count"/&gt; indicates a position that is not within &lt;paramref name ="span"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is less than -1 or greater than 0.
+&lt;/para&gt;</T>
+  <T ID="985334960D1A3DB5">&lt;para&gt;
+&lt;paramref name ="count"/&gt; is a negative value
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is a negative value.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is greater than the length of &lt;paramref name ="span"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; + 1 - &lt;paramref name ="count"/&gt; indicates a position that is not within &lt;paramref name ="span"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is less than -1 or greater than 0.
+&lt;/para&gt;</T>
+  <T ID="2405BC352140445F">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enum.</T>
+  <T ID="10FED5E91EEFBBFD">Simulates static methods of the &lt;see cref ="T:System.String"/&gt; class which generate &lt;see cref ="T:System.String"/&gt;s for .NET versions in which these are not available.</T>
+  <T ID="458D38E08E44C6A9">Creates a new string with a specified length and, once created, initializes it using the specified callback.</T>
+  <T ID="CA182F4A7505EC7A">The type of the element to be passed to &lt;paramref name ="action"/&gt;.</T>
+  <T ID="CF745BBB2C1CBC9B">The length of the string to be created.</T>
+  <T ID="FD5903DA3A54F02F">The element to be passed to &lt;paramref name ="action"/&gt;.</T>
+  <T ID="2F20B9976E30BA7">A callback to initialize the string.</T>
+  <T ID="D9F8B61DBA70D331">The string created.</T>
+  <T ID="6293E7FBC74AB846">The method simulates the static method String.Create&amp;lt;TState&amp;gt;(int, TState, SpanAction&amp;lt;char,TState&amp;gt;). In newer .NET versions, the call is forwarded directly to the existing method of the &lt;see cref ="T:System.String"/&gt; class. In .NET Framework and .NET Standard 2.0, the simulation makes it possible, when creating short &lt;see cref ="T:System.String"/&gt;s, to have only one heap allocation.</T>
+  <T ID="270A7D3D1BC798A6">&lt;paramref name="action"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="7AD017395E848455">&lt;paramref name="length"/&gt; is negative.</T>
+  <T ID="FBFDCFB95DD2040D">Polyfill for the delegate System.Buffers.SpanAction&amp;lt;T,TArg&amp;gt;.</T>
+  <T ID="7F2FAD66D1286A76">The type of the objects in the span.</T>
+  <T ID="E8E57B67D15937A4">The type of object that represents the state. This type parameter is contravariant. This means that you can either use the specified type or a less derived type.</T>
+  <T ID="D08AF3C6908AEB45">A span of objects of type &lt;typeparamref name ="T"/&gt;.</T>
+  <T ID="172ADBB0E1AB5EA7">A state object of the type &lt;typeparamref name ="TArg"/&gt;.</T>
 </Tsltn>

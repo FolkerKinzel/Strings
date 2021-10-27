@@ -19,8 +19,8 @@ namespace FolkerKinzel.Strings.Polyfills
         // Place this preprocessor directive inside the class to let .NET 5.0 have an empty class!
 #if NET45 || NETSTANDARD2_0
         /// <summary>
-        /// Gibt die NULL-basierte Indexposition des letzten Vorkommens einer angegebenen Zeichenfolge in dieser Instanz an. Die Suche beginnt an einer angegebenen Zeichenposition 
-        /// und verläuft für eine angegebene Anzahl von Zeichenpositionen rückwärts zum Anfang der Zeichenfolge. Ein Parameter gibt den Typ des bei der Suche nach der angegebenen 
+        /// Gibt die NULL-basierte Indexposition des letzten Vorkommens einer angegebenen Zeichenfolge <paramref name="span"/> an. Die Suche beginnt an einer angegebenen Zeichenposition 
+        /// und verläuft für eine angegebene Anzahl von Zeichenpositionen rückwärts zum Anfang der Zeichenspanne. Ein Parameter gibt den Typ des bei der Suche nach der angegebenen 
         /// Zeichenfolge auszuführenden Vergleichs an.
         /// </summary>
         /// <param name="span">Die zu durchsuchende Zeichenspanne.</param>
@@ -57,7 +57,7 @@ namespace FolkerKinzel.Strings.Polyfills
         /// - oder -
         /// </para>
         /// <para>
-        /// <paramref name="span"/> ist <see cref="ReadOnlySpan{T}.Empty"/>, und <paramref name="startIndex"/> ist kleiner als -1 oder größer als 0 (null).
+        /// <paramref name="span"/> ist <see cref="ReadOnlySpan{T}.Empty"/>, und <paramref name="startIndex"/> ist kleiner als -1 oder größer als 0.
         /// </para>
         /// </exception>
         /// <exception cref="ArgumentException">
