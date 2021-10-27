@@ -1066,33 +1066,6 @@ UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method f
   <T ID="B1445D42D1BD11B9">The number of character positions to examine.</T>
   <T ID="8301AA1EB914CC98">One of the enumeration values that specifies the rules for the search.</T>
   <T ID="B5759634285C1838">The zero-based start index of the &lt;paramref name ="value"/&gt; parameter if this string was found, or -1 if it was not found or &lt;paramref name ="span"/&gt; is empty.</T>
-  <T ID="E8421D238D40D4F2">&lt;para&gt;
-&lt;paramref name ="count"/&gt; is a negative value
-&lt;/para&gt;
-&lt;para&gt;
-- or -
-&lt;/para&gt;
-&lt;para&gt;
-&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is a negative value.
-&lt;/para&gt;
-&lt;para&gt;
-- or -
-&lt;/para&gt;
-&lt;para&gt;
-&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is greater than the length of &lt;paramref name ="span"/&gt;.
-&lt;/para&gt;
-&lt;para&gt;
-- or -
-&lt;/para&gt;
-&lt;para&gt;
-&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; + 1 - &lt;paramref name ="count"/&gt; indicates a position that is not within &lt;paramref name ="span"/&gt;.
-&lt;/para&gt;
-&lt;para&gt;
-- or -
-&lt;/para&gt;
-&lt;para&gt;
-&lt;paramref name ="span"/&gt; is &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is less than -1 or greater than 0.
-&lt;/para&gt;</T>
   <T ID="E8421D230D1A3DB5">&lt;para&gt;
 &lt;paramref name ="count"/&gt; is a negative value
 &lt;/para&gt;
@@ -1140,33 +1113,6 @@ UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method f
   <T ID="1E1FAD7ED1BD11B9">The number of character positions to examine.</T>
   <T ID="9FDAEA51B914CC98">One of the enumeration values that specifies the rules for the search.</T>
   <T ID="C2012A5B285C1838">The zero-based start index of the &lt;paramref name ="value"/&gt; parameter if this string was found, or -1 if it was not found or &lt;paramref name ="span"/&gt; is empty.</T>
-  <T ID="985334968D40D4F2">&lt;para&gt;
-&lt;paramref name ="count"/&gt; is a negative value
-&lt;/para&gt;
-&lt;para&gt;
-- or -
-&lt;/para&gt;
-&lt;para&gt;
-&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is a negative value.
-&lt;/para&gt;
-&lt;para&gt;
-- or -
-&lt;/para&gt;
-&lt;para&gt;
-&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is greater than the length of &lt;paramref name ="span"/&gt;.
-&lt;/para&gt;
-&lt;para&gt;
-- or -
-&lt;/para&gt;
-&lt;para&gt;
-&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; + 1 - &lt;paramref name ="count"/&gt; indicates a position that is not within &lt;paramref name ="span"/&gt;.
-&lt;/para&gt;
-&lt;para&gt;
-- or -
-&lt;/para&gt;
-&lt;para&gt;
-&lt;paramref name ="span"/&gt; is &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is less than -1 or greater than 0.
-&lt;/para&gt;</T>
   <T ID="985334960D1A3DB5">&lt;para&gt;
 &lt;paramref name ="count"/&gt; is a negative value
 &lt;/para&gt;
