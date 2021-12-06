@@ -73,7 +73,7 @@ namespace FolkerKinzel.Strings
                 {
                     _ = builder.Remove(i, 1).Insert(i, newLine);
                 }
-            }
+            } //for
 
             if(skipN || skipR)
             {
