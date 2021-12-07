@@ -1,87 +1,87 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net5.0;net6.0;netstandard2.1;net45</TargetFrameworks>
-		<LangVersion>10.0</LangVersion>
-		<Nullable>enable</Nullable>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<NeutralLanguage>en</NeutralLanguage>
-		<!-- nuget-Package: -->
-		<PackageId>FolkerKinzel.Strings</PackageId>
-		<Product>FolkerKinzel.Strings</Product>
-		<Version>4.0.0</Version>
-		<FileVersion>4.0.0.4</FileVersion>
-		<AssemblyVersion>4.0.0.0</AssemblyVersion>
-		<PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/3.3.0/ReleaseNotes.md</PackageReleaseNotes>
-		<PackageTags>.NET String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode C#</PackageTags>
-		<Description>.NET library that contains extension methods and helper classes for String, Char, StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.</Description>
-		<Authors>Folker Kinzel</Authors>
-		<Copyright>Copyright © 2020 Folker Kinzel</Copyright>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageIcon>Logo.png</PackageIcon>
-		<RepositoryUrl>https://github.com/FolkerKinzel/Strings.git</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageProjectUrl>https://github.com/FolkerKinzel/Strings</PackageProjectUrl>
-		<PackageIconUrl />
-	</PropertyGroup>
-	<!-- 👇 disable the nullable warnings when compiling for .NET 4.5 and netstandard2.0 -->
-	<PropertyGroup Condition="'$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'netstandard2.0'">
-		<NoWarn>$(NoWarn);8600;8601;8602;8603;8604</NoWarn>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-	</PropertyGroup>
-	<ItemGroup>
-		<Using Remove="System.Net.Http" />
-		<Using Include="System.Text"/>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Remove="Translations\**" />
-		<EmbeddedResource Remove="Translations\**" />
-		<None Remove="Translations\**" />
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Remove="ReadOnlySpanExtension_Obsolete.cs" />
-		<Compile Remove="StringBuilderExtension_Obsolete.cs" />
-		<Compile Remove="StringExtension_LastIndexOf.cs" />
-		<Compile Remove="StringExtension_Obsolete.cs" />
-	</ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="Nullable" Version="1.3.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="..\..\..\..\Nuget-Logo\Logo.png">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-		<PackageReference Include="System.Memory" Version="4.5.4" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-		<PackageReference Include="System.Memory" Version="4.5.4" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Update="Properties\Res.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Res.resx</DependentUpon>
-		</Compile>
-	</ItemGroup>
-	<ItemGroup>
-		<EmbeddedResource Update="Properties\Res.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Res.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-	</ItemGroup>
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="if $(ConfigurationName) == Release copy /v /b /y &quot;$(OutDir)$(ProjectName).xml&quot; &quot;$(OutDir)de/$(ProjectName).xml&quot;&#xD;&#xA;if $(ConfigurationName) == Release if '$(TargetFramework)' == 'netstandard2.1' dotnet $(SolutionDir)IncVersion\IncVersion.dll $(ProjectDir)$(ProjectFileName) --revision" />
-	</Target>
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net5.0;net6.0;netstandard2.1;net45</TargetFrameworks>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <NeutralLanguage>en</NeutralLanguage>
+    <!-- nuget-Package: -->
+    <PackageId>FolkerKinzel.Strings</PackageId>
+    <Product>FolkerKinzel.Strings</Product>
+    <Version>4.0.0</Version>
+    <FileVersion>4.0.0.6</FileVersion>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/3.3.0/ReleaseNotes.md</PackageReleaseNotes>
+    <PackageTags>.NET String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode C#</PackageTags>
+    <Description>.NET library that contains extension methods and helper classes for String, Char, StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.</Description>
+    <Authors>Folker Kinzel</Authors>
+    <Copyright>Copyright © 2020 Folker Kinzel</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageIcon>Logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/FolkerKinzel/Strings.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/FolkerKinzel/Strings</PackageProjectUrl>
+    <PackageIconUrl />
+  </PropertyGroup>
+  <!-- 👇 disable the nullable warnings when compiling for .NET 4.5 and netstandard2.0 -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'netstandard2.0'">
+    <NoWarn>$(NoWarn);8600;8601;8602;8603;8604</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Using Remove="System.Net.Http" />
+    <Using Include="System.Text" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Translations\**" />
+    <EmbeddedResource Remove="Translations\**" />
+    <None Remove="Translations\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ReadOnlySpanExtension_Obsolete.cs" />
+    <Compile Remove="StringBuilderExtension_Obsolete.cs" />
+    <Compile Remove="StringExtension_LastIndexOf.cs" />
+    <Compile Remove="StringExtension_Obsolete.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Nullable" Version="1.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Nuget-Logo\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <PackageReference Include="System.Memory" Version="4.5.4" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Memory" Version="4.5.4" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Res.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Res.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Res.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Res.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if $(ConfigurationName) == Release copy /v /b /y &quot;$(OutDir)$(ProjectName).xml&quot; &quot;$(OutDir)de/$(ProjectName).xml&quot;&#xD;&#xA;if $(ConfigurationName) == Release if '$(TargetFramework)' == 'netstandard2.1' dotnet $(SolutionDir)IncVersion\IncVersion.dll $(ProjectDir)$(ProjectFileName) --revision" />
+  </Target>
 </Project>

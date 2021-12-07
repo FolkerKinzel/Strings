@@ -1,341 +1,307 @@
-﻿
-/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net5.0)"
-Vor:
-using FolkerKinzel.Strings;
-using System;
-Nach:
-using System;
-*/
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net45)"
-Vor:
-using FolkerKinzel.Strings;
-using System;
-Nach:
-using System;
-*/
+namespace FolkerKinzel.Strings.Tests;
 
-/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp2.1)"
-Vor:
-using FolkerKinzel.Strings;
-using System;
-Nach:
-using System;
-*/
-
-/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp3.1)"
-Vor:
-using FolkerKinzel.Strings;
-using System;
-Nach:
-using System;
-*/
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.Strings.Tests
+[TestClass]
+public class CharExtensionTests
 {
-    [TestClass]
-    public class CharExtensionTests
+    [TestMethod]
+    public void IsDecimalDigitTest1()
     {
-        [TestMethod]
-        public void IsDecimalDigitTest1()
+        for (int i = 0; i < 10; i++)
         {
-            for (int i = 0; i < 10; i++)
-            {
-                Assert.IsTrue(i.ToString()[0].IsDecimalDigit());
-            }
-
-            Assert.IsFalse(((char)((int)'0' - 1)).IsDecimalDigit());
-            Assert.IsFalse(((char)((int)'9' + 1)).IsDecimalDigit());
+            Assert.IsTrue(i.ToString()[0].IsDecimalDigit());
         }
 
-        [DataTestMethod]
-        [DataRow('0', 0, true)]
-        [DataRow('9', 9, true)]
-        [DataRow('A', 10, true)]
-        [DataRow('a', 10, true)]
-        [DataRow('F', 15, true)]
-        [DataRow('f', 15, true)]
-        [DataRow('G', null, false)]
-        [DataRow('g', null, false)]
-        public void TryParseHexDigitTest(char input, int? expected, bool result)
+        Assert.IsFalse(((char)((int)'0' - 1)).IsDecimalDigit());
+        Assert.IsFalse(((char)((int)'9' + 1)).IsDecimalDigit());
+    }
+
+    [DataTestMethod]
+    [DataRow('0', 0, true)]
+    [DataRow('9', 9, true)]
+    [DataRow('A', 10, true)]
+    [DataRow('a', 10, true)]
+    [DataRow('F', 15, true)]
+    [DataRow('f', 15, true)]
+    [DataRow('G', null, false)]
+    [DataRow('g', null, false)]
+    public void TryParseHexDigitTest(char input, int? expected, bool result)
+    {
+        Assert.AreEqual(result, input.TryParseHexDigit(out int? got));
+        Assert.AreEqual(expected, got);
+    }
+
+    [DataTestMethod]
+    [DataRow('0', 0)]
+    [DataRow('9', 9)]
+    [DataRow('A', 10)]
+    [DataRow('a', 10)]
+    [DataRow('F', 15)]
+    [DataRow('f', 15)]
+    public void ParseHexDigitTest1(char input, int? expected)
+        => Assert.AreEqual(expected, input.ParseHexDigit());
+
+    [DataTestMethod]
+    [DataRow('G')]
+    [DataRow('g')]
+    [ExpectedException(typeof(ArgumentException))]
+    public void ParseHexDigitTest2(char input)
+        => _ = input.ParseHexDigit();
+
+
+    [DataTestMethod]
+    [DataRow('0', 0, true)]
+    [DataRow('9', 9, true)]
+    [DataRow('A', null, false)]
+    [DataRow('a', null, false)]
+    [DataRow('F', null, false)]
+    [DataRow('f', null, false)]
+    [DataRow('G', null, false)]
+    [DataRow('g', null, false)]
+    public void TryParseDecimalDigitTest(char input, int? expected, bool result)
+    {
+        Assert.AreEqual(result, input.TryParseDecimalDigit(out int? got));
+        Assert.AreEqual(expected, got);
+    }
+
+    [DataTestMethod]
+    [DataRow('0', 0)]
+    [DataRow('9', 9)]
+    public void ParseDecimalDigitTest1(char input, int? expected)
+        => Assert.AreEqual(expected, input.ParseDecimalDigit());
+
+    [DataTestMethod]
+    [DataRow('A')]
+    [DataRow('a')]
+    [ExpectedException(typeof(ArgumentException))]
+    public void ParseDecimalDigitTest2(char input)
+        => _ = input.ParseDecimalDigit();
+
+
+    [DataTestMethod]
+    [DataRow('0', 0, true)]
+    [DataRow('1', 1, true)]
+    [DataRow('A', null, false)]
+    [DataRow('a', null, false)]
+    [DataRow('2', null, false)]
+    [DataRow('2', null, false)]
+    public void TryParseBinaryDigitTest(char input, int? expected, bool result)
+    {
+        Assert.AreEqual(result, input.TryParseBinaryDigit(out int? got));
+        Assert.AreEqual(expected, got);
+    }
+
+
+    [DataTestMethod]
+    [DataRow('0', 0)]
+    [DataRow('1', 1)]
+    public void ParseBinaryDigitTest1(char input, int expected)
+        => Assert.AreEqual(expected, input.ParseBinaryDigit());
+
+
+    [DataTestMethod]
+    [DataRow('2')]
+    [DataRow('a')]
+    [ExpectedException(typeof(ArgumentException))]
+    public void ParseBinaryDigitTest2(char input)
+        => _ = input.ParseBinaryDigit();
+
+
+    [TestMethod]
+    public void IsControlTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            Assert.AreEqual(result, input.TryParseHexDigit(out int? got));
-            Assert.AreEqual(expected, got);
+            Assert.AreEqual(char.IsControl(c), c.IsControl());
         }
+    }
 
-        [DataTestMethod]
-        [DataRow('0', 0)]
-        [DataRow('9', 9)]
-        [DataRow('A', 10)]
-        [DataRow('a', 10)]
-        [DataRow('F', 15)]
-        [DataRow('f', 15)]
-        public void ParseHexDigitTest1(char input, int? expected)
-            => Assert.AreEqual(expected, input.ParseHexDigit());
-
-        [DataTestMethod]
-        [DataRow('G')]
-        [DataRow('g')]
-        [ExpectedException(typeof(ArgumentException))]
-        public void ParseHexDigitTest2(char input)
-            => _ = input.ParseHexDigit();
-
-
-        [DataTestMethod]
-        [DataRow('0', 0, true)]
-        [DataRow('9', 9, true)]
-        [DataRow('A', null, false)]
-        [DataRow('a', null, false)]
-        [DataRow('F', null, false)]
-        [DataRow('f', null, false)]
-        [DataRow('G', null, false)]
-        [DataRow('g', null, false)]
-        public void TryParseDecimalDigitTest(char input, int? expected, bool result)
+    [TestMethod]
+    public void IsDigitTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            Assert.AreEqual(result, input.TryParseDecimalDigit(out int? got));
-            Assert.AreEqual(expected, got);
+            Assert.AreEqual(char.IsDigit(c), c.IsDigit());
         }
-
-        [DataTestMethod]
-        [DataRow('0', 0)]
-        [DataRow('9', 9)]
-        public void ParseDecimalDigitTest1(char input, int? expected)
-            => Assert.AreEqual(expected, input.ParseDecimalDigit());
-
-        [DataTestMethod]
-        [DataRow('A')]
-        [DataRow('a')]
-        [ExpectedException(typeof(ArgumentException))]
-        public void ParseDecimalDigitTest2(char input)
-            => _ = input.ParseDecimalDigit();
+    }
 
 
-        [DataTestMethod]
-        [DataRow('0', 0, true)]
-        [DataRow('1', 1, true)]
-        [DataRow('A', null, false)]
-        [DataRow('a', null, false)]
-        [DataRow('2', null, false)]
-        [DataRow('2', null, false)]
-        public void TryParseBinaryDigitTest(char input, int? expected, bool result)
+    [TestMethod]
+    public void IsHighSurrogateTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            Assert.AreEqual(result, input.TryParseBinaryDigit(out int? got));
-            Assert.AreEqual(expected, got);
+            Assert.AreEqual(char.IsHighSurrogate(c), c.IsHighSurrogate());
         }
+    }
 
 
-        [DataTestMethod]
-        [DataRow('0', 0)]
-        [DataRow('1', 1)]
-        public void ParseBinaryDigitTest1(char input, int expected)
-            => Assert.AreEqual(expected, input.ParseBinaryDigit());
-
-
-        [DataTestMethod]
-        [DataRow('2')]
-        [DataRow('a')]
-        [ExpectedException(typeof(ArgumentException))]
-        public void ParseBinaryDigitTest2(char input)
-            => _ = input.ParseBinaryDigit();
-
-
-        [TestMethod]
-        public void IsControlTest()
+    [TestMethod]
+    public void IsLowSurrogateTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsControl(c), c.IsControl());
-            }
+            Assert.AreEqual(char.IsLowSurrogate(c), c.IsLowSurrogate());
         }
+    }
 
-        [TestMethod]
-        public void IsDigitTest()
+
+    [TestMethod]
+    public void IsSurrogateTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsDigit(c), c.IsDigit());
-            }
+            Assert.AreEqual(char.IsSurrogate(c), c.IsSurrogate());
         }
+    }
 
 
-        [TestMethod]
-        public void IsHighSurrogateTest()
+    [TestMethod]
+    public void IsLetterTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsHighSurrogate(c), c.IsHighSurrogate());
-            }
+            Assert.AreEqual(char.IsLetter(c), c.IsLetter());
         }
+    }
 
 
-        [TestMethod]
-        public void IsLowSurrogateTest()
+    [TestMethod]
+    public void IsLetterOrDigitTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsLowSurrogate(c), c.IsLowSurrogate());
-            }
+            Assert.AreEqual(char.IsLetterOrDigit(c), c.IsLetterOrDigit());
         }
+    }
 
-
-        [TestMethod]
-        public void IsSurrogateTest()
+    [TestMethod]
+    public void IsLowerTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsSurrogate(c), c.IsSurrogate());
-            }
+            Assert.AreEqual(char.IsLower(c), c.IsLower());
         }
+    }
 
 
-        [TestMethod]
-        public void IsLetterTest()
+    [TestMethod]
+    public void IsUpperTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsLetter(c), c.IsLetter());
-            }
+            Assert.AreEqual(char.IsUpper(c), c.IsUpper());
         }
+    }
 
 
-        [TestMethod]
-        public void IsLetterOrDigitTest()
+    [TestMethod]
+    public void IsNumberTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsLetterOrDigit(c), c.IsLetterOrDigit());
-            }
+            Assert.AreEqual(char.IsNumber(c), c.IsNumber());
         }
+    }
 
-        [TestMethod]
-        public void IsLowerTest()
+
+    [TestMethod]
+    public void IsPunctuationTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsLower(c), c.IsLower());
-            }
+            Assert.AreEqual(char.IsPunctuation(c), c.IsPunctuation());
         }
+    }
 
 
-        [TestMethod]
-        public void IsUpperTest()
+    [TestMethod]
+    public void IsSeparatorTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsUpper(c), c.IsUpper());
-            }
+            Assert.AreEqual(char.IsSeparator(c), c.IsSeparator());
         }
+    }
 
 
-        [TestMethod]
-        public void IsNumberTest()
+    [TestMethod]
+    public void IsSymbolTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsNumber(c), c.IsNumber());
-            }
+            Assert.AreEqual(char.IsSymbol(c), c.IsSymbol());
         }
+    }
 
-
-        [TestMethod]
-        public void IsPunctuationTest()
+    [TestMethod]
+    public void IsWhiteSpaceTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsPunctuation(c), c.IsPunctuation());
-            }
+            Assert.AreEqual(char.IsWhiteSpace(c), c.IsWhiteSpace());
         }
+    }
 
 
-        [TestMethod]
-        public void IsSeparatorTest()
+    [TestMethod]
+    public void ToLowerInvariantTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsSeparator(c), c.IsSeparator());
-            }
+            Assert.AreEqual(char.ToLowerInvariant(c), c.ToLowerInvariant());
         }
+    }
 
 
-        [TestMethod]
-        public void IsSymbolTest()
+    [TestMethod]
+    public void ToUpperInvariantTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsSymbol(c), c.IsSymbol());
-            }
+            Assert.AreEqual(char.ToUpperInvariant(c), c.ToUpperInvariant());
         }
+    }
 
-        [TestMethod]
-        public void IsWhiteSpaceTest()
+    [DataTestMethod]
+    [DataRow(' ', false)]
+    [DataRow('a', false)]
+    [DataRow('\r', true)]
+    [DataRow('\n', true)]
+    [DataRow('\u000B', true)]
+    [DataRow('\u000C', true)]
+    [DataRow('\u0085', true)]
+    [DataRow('\u2028', true)]
+    [DataRow('\u2029', true)]
+    public void IsNewLineTest(char input, bool expected)
+        => Assert.AreEqual(expected, input.IsNewLine());
+
+    [TestMethod()]
+    public void IsAsciiLowerCaseLetterTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.IsWhiteSpace(c), c.IsWhiteSpace());
-            }
+            Assert.AreEqual(c.IsAscii() && char.IsLetter(c) && char.IsLower(c), c.IsAsciiLowerCaseLetter());
         }
+    }
 
-
-        [TestMethod]
-        public void ToLowerInvariantTest()
+    [TestMethod()]
+    public void IsAsciiUpperCaseLetterTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.ToLowerInvariant(c), c.ToLowerInvariant());
-            }
+            Assert.AreEqual(c.IsAscii() && char.IsLetter(c) && char.IsUpper(c), c.IsAsciiUpperCaseLetter());
         }
+    }
 
 
-        [TestMethod]
-        public void ToUpperInvariantTest()
+    [TestMethod()]
+    public void IsAsciiLetterTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(char.ToUpperInvariant(c), c.ToUpperInvariant());
-            }
-        }
-
-        [DataTestMethod]
-        [DataRow(' ', false)]
-        [DataRow('a', false)]
-        [DataRow('\r', true)]
-        [DataRow('\n', true)]
-        [DataRow('\u000B', true)]
-        [DataRow('\u000C', true)]
-        [DataRow('\u0085', true)]
-        [DataRow('\u2028', true)]
-        [DataRow('\u2029', true)]
-        public void IsNewLineTest(char input, bool expected)
-            => Assert.AreEqual(expected, input.IsNewLine());
-
-        [TestMethod()]
-        public void IsAsciiLowerCaseLetterTest()
-        {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(c.IsAscii() && char.IsLetter(c) && char.IsLower(c), c.IsAsciiLowerCaseLetter());
-            }
-        }
-
-        [TestMethod()]
-        public void IsAsciiUpperCaseLetterTest()
-        {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(c.IsAscii() && char.IsLetter(c) && char.IsUpper(c), c.IsAsciiUpperCaseLetter());
-            }
-        }
-
-
-        [TestMethod()]
-        public void IsAsciiLetterTest()
-        {
-            for (char c = char.MinValue; c < char.MaxValue; c++)
-            {
-                Assert.AreEqual(c.IsAscii() && char.IsLetter(c), c.IsAsciiLetter());
-            }
+            Assert.AreEqual(c.IsAscii() && char.IsLetter(c), c.IsAsciiLetter());
         }
     }
 }
