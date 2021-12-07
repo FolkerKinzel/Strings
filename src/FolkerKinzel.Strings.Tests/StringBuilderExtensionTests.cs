@@ -9,8 +9,8 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void NormalizeNewLinesToTest1()
     {
-        const string input = "1\r\n\n\r2\r3\n\n4\r\n";
-        const string expected = "1**2*3**4*";
+        const string input = "1\r\n\n\r2\r3\n\n4\r\n5\u000B6\u000C7\u00858\u20289\u2029";
+        const string expected = "1**2*3**4*5*6*7*8*9*";
 
         var sb = new StringBuilder(input);
 

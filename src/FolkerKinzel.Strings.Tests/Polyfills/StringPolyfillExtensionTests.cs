@@ -20,6 +20,38 @@ public class StringPolyfillExtensionTests : IDisposable
         GC.SuppressFinalize(this);
     }
 
+    [TestMethod]
+    public void ReplaceLineEndingsTest1()
+    {
+        const string input = "1\r\n\n\r2\r3\n\n4\r\n5\u000B6\u000C7\u00858\u20289\u2029";
+        const string expected = "1***2*3**4*5\u000B6*7*8*9*";
+
+        string output = input.ReplaceLineEndings("*");
+        Assert.AreEqual(expected, output);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void ReplaceLineEndingsTest2()
+    {
+        string s = "Hi\n";
+        _ = s.ReplaceLineEndings(null!);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(NullReferenceException))]
+    public void ReplaceLineEndingsTest3()
+    {
+        string? s = null;
+        _ = s!.ReplaceLineEndings("*");
+    }
+
+    [TestMethod]
+    public void ReplaceLineEndingsTest4()
+    {
+        const string test = "test";
+        Assert.AreSame(test, test.ReplaceLineEndings("blub"));
+    }
 
     [DataTestMethod()]
     [DataRow("Test", 'e', StringComparison.Ordinal, true)]
