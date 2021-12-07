@@ -1,10 +1,13 @@
-﻿using FolkerKinzel.Strings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp3.1)"
+Vor:
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+Nach:
+using FolkerKinzel.Strings;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+*/
+Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #if !NETCOREAPP3_1
 using FolkerKinzel.Strings.Polyfills;
@@ -174,7 +177,7 @@ namespace FolkerKinzel.Strings.Tests
         [TestMethod()]
         //[ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void LastIndexOfTest4()
-            =>  Assert.AreEqual(-1, "".AsSpan().LastIndexOf("bla", 0, 2, StringComparison.Ordinal));
+            => Assert.AreEqual(-1, "".AsSpan().LastIndexOf("bla", 0, 2, StringComparison.Ordinal));
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]

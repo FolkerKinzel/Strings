@@ -156,13 +156,13 @@ namespace FolkerKinzel.Strings.Tests
         }
 
         [DataTestMethod]
-        [DataRow(0,1)]
-        [DataRow(1,0)]
-        [DataRow(1,1)]
-        [DataRow(-1,0)]
-        [DataRow(0,-1)]
-        [DataRow(-1,1)]
-        [DataRow(1,-1)]
+        [DataRow(0, 1)]
+        [DataRow(1, 0)]
+        [DataRow(1, 1)]
+        [DataRow(-1, 0)]
+        [DataRow(0, -1)]
+        [DataRow(-1, 1)]
+        [DataRow(1, -1)]
         public void LastIndexOfTest8(int startIndex, int count)
         {
             var sb = new StringBuilder();
@@ -171,13 +171,13 @@ namespace FolkerKinzel.Strings.Tests
         }
 
         [DataTestMethod]
-        [DataRow(0,2)]
+        [DataRow(0, 2)]
         //[DataRow(2,0)]
-        [DataRow(2,2)]
+        [DataRow(2, 2)]
         //[DataRow(-1,0)]
-        [DataRow(0,-1)]
-        [DataRow(-1,1)]
-        [DataRow(1,-1)]
+        [DataRow(0, -1)]
+        [DataRow(-1, 1)]
+        [DataRow(1, -1)]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void LastIndexOfTest9(int startIndex, int count)
         {

@@ -1,7 +1,6 @@
-﻿namespace FolkerKinzel.Strings
+﻿namespace FolkerKinzel.Strings;
+
+internal static class Const
 {
-    internal static class Const
-    {
-        internal const int ShortString = 64;
-    }
+    internal const int ShortString = 64;
 }

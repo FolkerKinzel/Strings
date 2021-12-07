@@ -58,16 +58,18 @@ prone calculating with the result when slicing the span before.
 - [x] Implement bool `IsAsciiLetter(this char)`.
 
 
- ### 3.4.0
-- [ ] .NET 6.0 support.
-- [ ] Polyfill `String.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>)`
-- [ ] Polyfill `String.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>)`
-- [ ] Polyfill `String.ReplaceLineEndings()`
-- [ ] Polyfill `String.ReplaceLineEndings(string)`
-- [ ] Implement `StringBuilder.ReplaceLineEndings()`
-- [ ] Implement `StringBuilder.ReplaceLineEndings(string)`
-- [ ] Make `StringBuilder.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` obsolete.
-- [ ] Make `StringBuilder.NormalizeNewLinesTo(string? newLine)` obsolete.
-- [ ] Make `String.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` obsolete.
-- [ ] Make `String.NormalizeNewLinesTo(string? newLine)` obsolete.
+ ### 4.0.0
+- [x] .NET 6.0 support.
+- [x] Replace the `StringCreator` class with a `StaticStringMethod` class.
+- [x] Make the usage of the `StringCreator` class an Obsolete error.
+- [ ] Implement `StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>)`
+- [ ] Implement `StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>)`
+- [ ] Implement `String.ReplaceLineEndings()` poyfill.
+- [ ] Implement `String.ReplaceLineEndings(string)` poyfill.
+- [ ] Implement `StringBuilder.ReplaceLineEndings()` poyfill.
+- [ ] Implement `StringBuilder.ReplaceLineEndings(string)` poyfill.
+- [ ] Let `StringBuilder.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` give an obsolete warning.
+- [ ] Let `StringBuilder.NormalizeNewLinesTo(string? newLine)` give an obsolete warning.
+- [ ] Let `String.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` give an  obsolete warning.
+- [ ] Let `String.NormalizeNewLinesTo(string? newLine)` give an obsolete warning.
 

@@ -11,7 +11,7 @@ this library.
 * Extension methods, which help to write easier and cleaner code. Many of them are "Syntactic Sugar" 
 that calls existing Framework methods and will (hopefully) be inlined. Some other fill gaps of the 
 Framework.
-* Extension methods, which act as Polyfills for .NET Framework 4.5, .NET Standard 2.0 and .NET Standard 2.1
+* Extension methods, which act as Polyfills for .NET Framework 4.5, .NET Standard 2.0, .NET Standard 2.1 and .NET 5.0
  in order to make it easier to support such older Framework versions in Multi Targeting Projects. [(See the complete list.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/3.3.0/Polyfills.md)
 * Extension methods, which return identical `Int32` hashcodes for identical `Char` sequences each time 
 the program runs. These hashcodes are a slim alternative to larger hash algorithms that is suitable for

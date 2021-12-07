@@ -1,9 +1,36 @@
-﻿using FolkerKinzel.Strings;
+﻿
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net5.0)"
+Vor:
+using FolkerKinzel.Strings;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+Nach:
+using System;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net45)"
+Vor:
+using FolkerKinzel.Strings;
+using System;
+Nach:
+using System;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp2.1)"
+Vor:
+using FolkerKinzel.Strings;
+using System;
+Nach:
+using System;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp3.1)"
+Vor:
+using FolkerKinzel.Strings;
+using System;
+Nach:
+using System;
+*/
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests

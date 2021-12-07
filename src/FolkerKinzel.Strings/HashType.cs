@@ -1,34 +1,30 @@
-﻿using System;
-using System.ComponentModel;
+﻿namespace FolkerKinzel.Strings;
 
-namespace FolkerKinzel.Strings
+/// <summary>
+/// Benannte Konstanten, um die Art eines Hashcodes für Zeichenfolgen festzulegen.
+/// </summary>
+public enum HashType
 {
     /// <summary>
-    /// Benannte Konstanten, um die Art eines Hashcodes für Zeichenfolgen festzulegen.
+    /// Ordinalvergleich der Zeichen.
     /// </summary>
-    public enum HashType
-    {
-        /// <summary>
-        /// Ordinalvergleich der Zeichen.
-        /// </summary>
-        Ordinal,
+    Ordinal,
 
-        /// <summary>
-        /// Ordinalvergleich der Zeichen ohne Berücksichtigung der Groß- und Kleinschreibung.
-        /// </summary>
-        OrdinalIgnoreCase,
+    /// <summary>
+    /// Ordinalvergleich der Zeichen ohne Berücksichtigung der Groß- und Kleinschreibung.
+    /// </summary>
+    OrdinalIgnoreCase,
 
-        /// <summary>
-        /// Nur Buchstaben und Dezimalziffern werden gehasht. Die Groß- und Kleinschreibung wird nicht berücksichtigt.
-        /// </summary>
-        AlphaNumericIgnoreCase,
+    /// <summary>
+    /// Nur Buchstaben und Dezimalziffern werden gehasht. Die Groß- und Kleinschreibung wird nicht berücksichtigt.
+    /// </summary>
+    AlphaNumericIgnoreCase,
 
-        ///// <summary>
-        ///// Obsolete.
-        ///// </summary>
-        //[Obsolete("Use AlphanumericIgnoreCase instead!", true)]
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //AlphaNumericNoCase = AlphaNumericIgnoreCase
-    }
+    ///// <summary>
+    ///// Obsolete.
+    ///// </summary>
+    //[Obsolete("Use AlphanumericIgnoreCase instead!", true)]
+    //[Browsable(false)]
+    //[EditorBrowsable(EditorBrowsableState.Never)]
+    //AlphaNumericNoCase = AlphaNumericIgnoreCase
 }

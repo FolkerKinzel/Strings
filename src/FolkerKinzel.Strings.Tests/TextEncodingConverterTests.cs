@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests
@@ -115,7 +112,7 @@ namespace FolkerKinzel.Strings.Tests
         {
             Encoding enc = TextEncodingConverter.GetEncoding(codePage);
             const string test = "test";
-            
+
             var bytes = enc.GetBytes(test);
             var preamble = enc.GetPreamble();
             preamble.CopyTo(bytes, 0);
@@ -210,8 +207,52 @@ namespace FolkerKinzel.Strings.Tests
         public void GetCodePageTest7(int codePage)
         {
             Encoding enc = TextEncodingConverter.GetEncoding(codePage);
+
+            /* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net5.0)"
+            Vor:
+                        const string test = "test";
+
+                        var bytes = enc.GetBytes(test);
+            Nach:
+                        const string test = "test";
+
+                        var bytes = enc.GetBytes(test);
+            */
+
+            /* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net45)"
+            Vor:
+                        const string test = "test";
+
+                        var bytes = enc.GetBytes(test);
+            Nach:
+                        const string test = "test";
+
+                        var bytes = enc.GetBytes(test);
+            */
+
+            /* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp2.1)"
+            Vor:
+                        const string test = "test";
+
+                        var bytes = enc.GetBytes(test);
+            Nach:
+                        const string test = "test";
+
+                        var bytes = enc.GetBytes(test);
+            */
+
+            /* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp3.1)"
+            Vor:
+                        const string test = "test";
+
+                        var bytes = enc.GetBytes(test);
+            Nach:
+                        const string test = "test";
+
+                        var bytes = enc.GetBytes(test);
+            */
             const string test = "test";
-            
+
             var bytes = enc.GetBytes(test);
 
             Assert.AreEqual(codePage, TextEncodingConverter.GetCodePage(bytes.AsSpan(), out int bomLength));
@@ -230,7 +271,7 @@ namespace FolkerKinzel.Strings.Tests
         {
             Encoding enc = TextEncodingConverter.GetEncoding(codePage);
             const string test = "\u03c0äöüß";
-            
+
             var bytes = enc.GetBytes(test);
 
             Assert.AreEqual(codePage, TextEncodingConverter.GetCodePage(bytes.AsSpan(), out int bomLength));

@@ -1,12 +1,120 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net5.0)"
+Vor:
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FolkerKinzel.Strings.Polyfills;
+Nach:
 using System;
+using System.Collections.Generic;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net45)"
+Vor:
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FolkerKinzel.Strings.Polyfills;
+Nach:
+using System;
+using System.Collections.Generic;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp2.1)"
+Vor:
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FolkerKinzel.Strings.Polyfills;
+Nach:
+using System;
+using System.Collections.Generic;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp3.1)"
+Vor:
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FolkerKinzel.Strings.Polyfills;
+Nach:
+using System;
+using System.Collections.Generic;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net5.0)"
+Vor:
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+Nach:
+using System.Linq;
+using System.Text;
+using System.Threading;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net45)"
+Vor:
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+Nach:
+using System.Linq;
+using System.Text;
+using System.Threading;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp2.1)"
+Vor:
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+Nach:
+using System.Linq;
+using System.Text;
+using System.Threading;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp3.1)"
+Vor:
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+Nach:
+using System.Linq;
+using System.Text;
+using System.Threading;
+*/
+using Microsoft.VisualStudio.TestTools.
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net5.0)"
+Vor:
 using System.Globalization;
 using System.Threading;
+Nach:
+using FolkerKinzel.Strings.Polyfills;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net45)"
+Vor:
+using System.Globalization;
+using System.Threading;
+Nach:
+using FolkerKinzel.Strings.Polyfills;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp2.1)"
+Vor:
+using System.Globalization;
+using System.Threading;
+Nach:
+using FolkerKinzel.Strings.Polyfills;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp3.1)"
+Vor:
+using System.Globalization;
+using System.Threading;
+Nach:
+using FolkerKinzel.Strings.Polyfills;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+*/
+UnitTesting;
 
 namespace FolkerKinzel.Strings.Polyfills.Tests
 {

@@ -1,9 +1,58 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FolkerKinzel.Strings;
+﻿using System;
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net5.0)"
+Vor:
 using System;
 using System.Collections.Generic;
 using System.Text;
 using FolkerKinzel.Strings.Polyfills;
+Nach:
+using System.Text;
+using FolkerKinzel.Strings;
+using FolkerKinzel.Strings.Polyfills;
+using Microsoft.VisualStudio.Strings.Polyfills;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net45)"
+Vor:
+using System;
+using System.Collections.Generic;
+using System.Text;
+using FolkerKinzel.Strings.Polyfills;
+Nach:
+using System.Text;
+using FolkerKinzel.Strings;
+using FolkerKinzel.Strings.Polyfills;
+using Microsoft.VisualStudio.Strings.Polyfills;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp2.1)"
+Vor:
+using System;
+using System.Collections.Generic;
+using System.Text;
+using FolkerKinzel.Strings.Polyfills;
+Nach:
+using System.Text;
+using FolkerKinzel.Strings;
+using FolkerKinzel.Strings.Polyfills;
+using Microsoft.VisualStudio.Strings.Polyfills;
+*/
+
+/* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp3.1)"
+Vor:
+using System;
+using System.Collections.Generic;
+using System.Text;
+using FolkerKinzel.Strings.Polyfills;
+Nach:
+using System.Text;
+using FolkerKinzel.Strings;
+using FolkerKinzel.Strings.Polyfills;
+using Microsoft.VisualStudio.Strings.Polyfills;
+*/
+using FolkerKinzel.Strings.Polyfills;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests
 {
@@ -91,7 +140,7 @@ namespace FolkerKinzel.Strings.Tests
         public void ContainsAnyTest6()
         {
             string? s = null;
-            _ = s!.ContainsAny(new char[]{ 'a', 'b'});
+            _ = s!.ContainsAny(new char[] { 'a', 'b' });
         }
 
 
@@ -280,7 +329,7 @@ namespace FolkerKinzel.Strings.Tests
 
             _ = s!.ContainsNewLine();
         }
-        
+
 
         [DataTestMethod]
         [DataRow("", true)]
@@ -465,7 +514,7 @@ namespace FolkerKinzel.Strings.Tests
             string test = "Test";
             Assert.AreEqual(test.TrimStart(trimChars), test.TrimStart(trimChars.AsSpan()));
         }
-        
+
         [TestMethod]
         public void TrimEndTest1()
         {

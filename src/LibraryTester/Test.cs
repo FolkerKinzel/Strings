@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using FolkerKinzel.Strings;
-using System.Linq;
 
 #if !NETCOREAPP3_1
 using FolkerKinzel.Strings.Polyfills;
@@ -163,7 +163,7 @@ namespace LibraryTesters
 
             _ = sb.Insert(0, span);
 
-             _ = test.AsSpan().LastIndexOf("es", 3, 4, StringComparison.Ordinal);
+            _ = test.AsSpan().LastIndexOf("es", 3, 4, StringComparison.Ordinal);
             _ = test.AsSpan().LastIndexOf("es", StringComparison.Ordinal);
 
             _ = test.AsSpan().LastIndexOf("es".AsSpan(), 3, 4, StringComparison.Ordinal);

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Text;
-using FolkerKinzel.Strings;
 using System.Linq;
+using System.Text;
 using Baz;
+using FolkerKinzel.Strings;
 
 #if !NETCOREAPP3_1
 using FolkerKinzel.Strings.Polyfills;
