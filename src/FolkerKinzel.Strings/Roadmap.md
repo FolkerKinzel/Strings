@@ -64,12 +64,14 @@ prone calculating with the result when slicing the span before.
 - [x] Make the usage of the `StringCreator` class an Obsolete error.
 - [ ] Implement `StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>)`
 - [ ] Implement `StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>)`
-- [ ] Implement `String.ReplaceLineEndings()` poyfill.
-- [ ] Implement `String.ReplaceLineEndings(string)` poyfill.
-- [ ] Implement `StringBuilder.ReplaceLineEndings()` poyfill.
-- [ ] Implement `StringBuilder.ReplaceLineEndings(string)` poyfill.
-- [ ] Let `StringBuilder.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` give an obsolete warning.
-- [ ] Let `StringBuilder.NormalizeNewLinesTo(string? newLine)` give an obsolete warning.
-- [ ] Let `String.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` give an  obsolete warning.
-- [ ] Let `String.NormalizeNewLinesTo(string? newLine)` give an obsolete warning.
+- [x] Implement `String.ReplaceLineEndings()` poyfill.
+- [x] Implement `String.ReplaceLineEndings(string)` poyfill.
+- [x] Implement `StringBuilder.ReplaceLineEndings()`.
+- [x] Implement `StringBuilder.ReplaceLineEndings(string)`.
+- [x] Let `StringBuilder.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` give an obsolete warning.
+- [x] Let `StringBuilder.NormalizeNewLinesTo(string? newLine)` give an obsolete warning.
+- [x] Let `String.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` give an  obsolete warning.
+- [x] Let `String.NormalizeNewLinesTo(string? newLine)` give an obsolete warning.
+
+.
 
