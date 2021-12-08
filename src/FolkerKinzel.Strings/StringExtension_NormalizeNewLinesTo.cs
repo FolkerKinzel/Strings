@@ -17,6 +17,7 @@ public static partial class StringExtension
     /// verwendet. Die Sequenzen CRLF und LFCR werden als ein Zeilenumbruch behandelt.
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+    [Obsolete("Use ReplaceLineEndings instead.", false)]
     public static string NormalizeNewLinesTo(this string s, ReadOnlySpan<char> newLine)
     {
         if (s is null)

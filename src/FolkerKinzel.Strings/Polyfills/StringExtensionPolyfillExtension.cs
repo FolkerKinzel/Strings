@@ -72,6 +72,7 @@ public static class StringExtensionPolyfillExtension
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [Obsolete("Use ReplaceLineEndings instead.", false)]
     public static string NormalizeNewLinesTo(this string s, string? newLine)
         => s.NormalizeNewLinesTo(newLine.AsSpan());
 #endif

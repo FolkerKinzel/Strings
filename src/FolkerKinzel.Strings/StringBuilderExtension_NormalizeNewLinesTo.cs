@@ -16,6 +16,7 @@ public static partial class StringBuilderExtension
     /// verwendet. Die Sequenzen CRLF und LFCR werden als ein Zeilenumbruch behandelt.
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    [Obsolete("Use ReplaceLineEndings instead.", false)]
     public static StringBuilder NormalizeNewLinesTo(this StringBuilder builder, ReadOnlySpan<char> newLine)
     {
         if (builder is null)

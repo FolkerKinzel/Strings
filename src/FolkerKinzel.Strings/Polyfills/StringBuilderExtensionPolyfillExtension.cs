@@ -152,6 +152,7 @@ public static class StringBuilderExtensionPolyfillExtension
     /// </para>
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    [Obsolete("Use ReplaceLineEndings instead.", false)]
     public static StringBuilder NormalizeNewLinesTo(this StringBuilder builder, string? newLine)
         => builder.NormalizeNewLinesTo(newLine.AsSpan());
 
