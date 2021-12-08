@@ -51,6 +51,7 @@ public class StringBuilderExtensionsPolyfillTests
     }
 
 
+#pragma warning disable CS0618 // Typ oder Element ist veraltet
     [TestMethod]
     public void NormalizeNewLinesToTest1()
        => Assert.AreEqual("\t Test   * text  ", new StringBuilder("\t Test   \r\n text  ").NormalizeNewLinesTo("*").ToString());
@@ -68,4 +69,7 @@ public class StringBuilderExtensionsPolyfillTests
         StringBuilder? s = null;
         _ = s!.NormalizeNewLinesTo("*");
     }
+
+#pragma warning restore CS0618 // Typ oder Element ist veraltet
+
 }

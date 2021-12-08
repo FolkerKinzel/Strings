@@ -22,7 +22,7 @@ public class StringExtensionPolyfillTests
         _ = s!.ReplaceWhiteSpaceWith("*");
     }
 
-
+#pragma warning disable CS0618 // Typ oder Element ist veraltet
     [TestMethod]
     public void NormalizeNewLinesToTest1()
        => Assert.AreEqual("\t Test   * text  ", "\t Test   \r\n text  ".NormalizeNewLinesTo("*"));
@@ -40,4 +40,7 @@ public class StringExtensionPolyfillTests
         string? s = null;
         _ = s!.NormalizeNewLinesTo("*");
     }
+
+#pragma warning restore CS0618 // Typ oder Element ist veraltet
+
 }

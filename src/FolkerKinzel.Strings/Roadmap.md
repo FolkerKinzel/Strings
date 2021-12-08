@@ -62,8 +62,8 @@ prone calculating with the result when slicing the span before.
 - [x] .NET 6.0 support.
 - [x] Replace the `StringCreator` class with a `StaticStringMethod` class.
 - [x] Make the usage of the `StringCreator` class an Obsolete error.
-- [ ] Implement `StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>)`
-- [ ] Implement `StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>)`
+- [x] Implement `StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>)`
+- [x] Implement `StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>)`
 - [x] Implement `String.ReplaceLineEndings()` poyfill.
 - [x] Implement `String.ReplaceLineEndings(string)` poyfill.
 - [x] Implement `StringBuilder.ReplaceLineEndings()`.

@@ -6,6 +6,8 @@ namespace FolkerKinzel.Strings.Tests;
 [TestClass]
 public class StringBuilderExtensionTests
 {
+#pragma warning disable CS0618 // Typ oder Element ist veraltet
+
     [TestMethod]
     public void NormalizeNewLinesToTest1()
     {
@@ -37,6 +39,9 @@ public class StringBuilderExtensionTests
         string output = sb.NormalizeNewLinesTo("*").ToString();
         Assert.AreEqual(expected, output);
     }
+
+#pragma warning restore CS0618 // Typ oder Element ist veraltet
+
 
     [TestMethod]
     public void ReplaceWhiteSpaceWithTest1()

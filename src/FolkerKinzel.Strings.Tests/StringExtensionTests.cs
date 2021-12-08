@@ -6,8 +6,9 @@ namespace FolkerKinzel.Strings.Tests;
 [TestClass()]
 public class StringExtensionTests
 {
-    
 
+
+#pragma warning disable CS0618 // Typ oder Element ist veraltet
 
     [TestMethod]
     public void NormalizeNewLinesToTest1()
@@ -34,6 +35,8 @@ public class StringExtensionTests
         const string test = "test";
         Assert.AreSame(test, test.NormalizeNewLinesTo("blub".AsSpan()));
     }
+#pragma warning restore CS0618 // Typ oder Element ist veraltet
+
 
     [DataTestMethod]
     [DataRow('e', 's', 't', true)]

@@ -1,4 +1,5 @@
 ﻿using System.Buffers;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace FolkerKinzel.Strings;
@@ -59,5 +60,45 @@ public static class StaticStringMethod
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
         => string.Create(length, state, action);
+
+#endif
+
+#if NET5_0_OR_GREATER
+
+    public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
+        => string.Concat(str0, str1, str2);
+
+    public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
+        => string.Concat(str0, str1);
+
+#else
+
+    public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
+    {
+        int length = str0.Length + str1.Length + str2.Length;
+        Span<char> span = length > Const.ShortString ? new char[length] : stackalloc char[length];
+
+        str0.CopyTo(span);
+        Span<char> spanPart = span.Slice(str0.Length);
+        str1.CopyTo(spanPart);
+        spanPart = spanPart.Slice(str1.Length);
+        str2.CopyTo(spanPart);
+
+        return span.ToString();
+    }
+
+
+    public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
+    {
+        int length = str0.Length + str1.Length;
+        Span<char> span = length > Const.ShortString ? new char[length] : stackalloc char[length];
+
+        str0.CopyTo(span);
+        Span<char> spanPart = span.Slice(str0.Length);
+        str1.CopyTo(spanPart);
+
+        return span.ToString();
+    }
+
 #endif
 }

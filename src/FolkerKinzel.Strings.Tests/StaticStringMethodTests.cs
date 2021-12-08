@@ -42,4 +42,24 @@ public class StaticStringMethodTests
                 }
             }));
     }
+
+
+    [TestMethod]
+    public void ConcatTest1()
+    {
+        const string One = "One";
+        const string Two = "Two";
+        const string Three = "Three";
+
+        Assert.AreEqual(One+Two+Three, StaticStringMethod.Concat(One.AsSpan(), Two.AsSpan(), Three.AsSpan()));
+    }
+
+    [TestMethod]
+    public void ConcatTest2()
+    {
+        const string One = "One";
+        const string Two = "Two";
+
+        Assert.AreEqual(One + Two, StaticStringMethod.Concat(One.AsSpan(), Two.AsSpan()));
+    }
 }
