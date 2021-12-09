@@ -65,9 +65,11 @@ public static class StaticStringMethod
 
 #if NET5_0_OR_GREATER
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
         => string.Concat(str0, str1, str2);
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
         => string.Concat(str0, str1);
 
