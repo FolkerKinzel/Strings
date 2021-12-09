@@ -19,50 +19,6 @@ namespace FolkerKinzel.Strings.Polyfills;
 #endif
 public static partial class StringPolyfillExtension
 {
-
-
-    // Place this preprocessor directive inside the class to let .NET 6.0 have an empty class!
-#if NET5_0 || NETSTANDARD || NET45
-
-    public static string ReplaceLineEndings(this string s)
-        => s.ReplaceLineEndings(Environment.NewLine);
-
-
-    public static string ReplaceLineEndings(this string s, string replacementText)
-    {
-        if (s is null)
-        {
-            throw new NullReferenceException();
-        }
-
-        if (replacementText is null)
-        {
-            throw new ArgumentNullException();
-        }
-
-        for (int i = 0; i < s.Length; i++)
-        {
-            switch (s[i])
-            {
-                case '\r': // CR: Carriage Return
-                case '\n': // LF: Line Feed
-                //case '\u000B': // VT: Vertical Tab
-                case '\u000C': // FF: Form Feed
-                case '\u0085': // NEL: Next Line
-                case '\u2028': // LS: Line Separator
-                case '\u2029': // PS: Paragraph Separator
-                    var sb = new StringBuilder(s.Length + s.Length / 2);
-                    return sb.Append(s).ReplaceLineEndings(replacementText, i).ToString();
-                default:
-                    break;
-            }
-        }
-
-        return s;
-    }
-
-#endif
-
 #if NET45 || NETSTANDARD2_0
 
 
