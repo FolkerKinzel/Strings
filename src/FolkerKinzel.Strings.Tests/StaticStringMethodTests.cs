@@ -43,23 +43,44 @@ public class StaticStringMethodTests
             }));
     }
 
-
-    [TestMethod]
-    public void ConcatTest1()
+    [TestMethod()]
+    public void CreateTest6()
     {
-        const string One = "One";
-        const string Two = "Two";
-        const string Three = "Three";
-
-        Assert.AreEqual(One+Two+Three, StaticStringMethod.Concat(One.AsSpan(), Two.AsSpan(), Three.AsSpan()));
+        const int length = Const.ShortString;
+        Assert.AreEqual(new string('x', length), StaticStringMethod.Create(length, "",
+            (span, tState) =>
+            {
+                for (int i = 0; i < span.Length; i++)
+                {
+                    span[i] = 'x';
+                }
+            }));
     }
 
-    [TestMethod]
-    public void ConcatTest2()
-    {
-        const string One = "One";
-        const string Two = "Two";
 
-        Assert.AreEqual(One + Two, StaticStringMethod.Concat(One.AsSpan(), Two.AsSpan()));
-    }
+    [DataTestMethod]
+    [DataRow("One", "Two", "Three")]
+    [DataRow("", "Two", "Three")]
+    [DataRow("One", "", "Three")]
+    [DataRow("One", "Two", "")]
+    [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Another veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Last veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.")]
+    [DataRow("", "Another veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Last veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.")]
+    [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "", "Last veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.")]
+    [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Another veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "")]
+    [DataRow("", "", "")]
+    [DataRow("This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.", "This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.", "")]
+    public void ConcatTest1(string one, string two, string three)
+        => Assert.AreEqual(one + two + three, StaticStringMethod.Concat(one.AsSpan(), two.AsSpan(), three.AsSpan()));
+
+    [DataTestMethod]
+    [DataRow("One", "Two")]
+    [DataRow("", "Two")]
+    [DataRow("One", "")]
+    [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Another veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.")]
+    [DataRow("", "Another veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.")]
+    [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "")]
+    [DataRow("", "")]
+    [DataRow("This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.", "This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.")]
+    public void ConcatTest2(string one, string two) 
+        => Assert.AreEqual(one + two, StaticStringMethod.Concat(one.AsSpan(), two.AsSpan()));
 }
