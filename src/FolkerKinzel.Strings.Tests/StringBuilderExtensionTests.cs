@@ -6,6 +6,32 @@ namespace FolkerKinzel.Strings.Tests;
 [TestClass]
 public class StringBuilderExtensionTests
 {
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void ReplaceLineEndingsTest1()
+    {
+        StringBuilder? sb = null;
+        _ = sb!.ReplaceLineEndings("");
+    }
+
+    [TestMethod]
+    public void ReplaceLineEndingsTest2()
+    {
+        const string input = "\n1\r\n\n\r2\r3\n\n4\r\n5\u000B6\u000C\n7\u00858\u20289\u2029";
+        const string expected = "*1***2*3**4*5\u000B6**7*8*9*";
+
+        string output = new StringBuilder(input).ReplaceLineEndings("*").ToString();
+        Assert.AreEqual(expected, output);
+    }
+
+    [TestMethod]
+    public void ReplaceLineEndingsTest3()
+    {
+        const string s = "Hi\n";
+        string output = new StringBuilder(s).ReplaceLineEndings(null).ToString();
+        Assert.AreEqual("Hi", output);
+    }
+
 #pragma warning disable CS0618 // Typ oder Element ist veraltet
 
     [TestMethod]
