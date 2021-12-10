@@ -4,7 +4,31 @@ namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
 {
-
+    /// <summary>
+    /// Ersetzt alle Newlinesequenzen in <paramref name="builder"/> durch <paramref name="replacementText"/>.
+    /// </summary>
+    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt bearbeitet wird.</param>
+    /// <param name="replacementText">Der Text, der als Ersatz verwendet werden soll. Wenn <paramref name="replacementText"/>&#160;
+    /// <c>null</c> oder <see cref="string.Empty"/> ist, werden alle Newlinesequenzen in <paramref name="builder"/> entfernt.</param>
+    /// <returns>Eine Referenz auf <paramref name="builder"/>.</returns>
+    /// <remarks>
+    /// <para>
+    /// Die Liste der behandelten Newlinesequenzen ist:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>CR (U+000D)</item>
+    /// <item>LF (U+000A)</item>
+    /// <item>CRLF (U+000D U+000A)</item>
+    /// <item>NEL(U+0085)</item>
+    /// <item>LS(U+2028)</item>
+    /// <item>FF(U+000C)</item>
+    /// <item>PS(U+2029)</item>
+    /// </list>
+    /// <para>
+    /// Diese Liste ist vom Unicode-Standard vorgegeben (Sec. 5.8, Recommendation R4 und Table 5-2).
+    /// </para>
+    /// </remarks>
+    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
     public static StringBuilder ReplaceLineEndings(this StringBuilder builder, string? replacementText)
         => builder is null ? throw new ArgumentNullException(nameof(builder))
                            : ReplaceLineEndings(builder, replacementText, 0);
