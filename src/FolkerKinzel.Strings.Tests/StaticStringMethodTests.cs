@@ -57,6 +57,21 @@ public class StaticStringMethodTests
             }));
     }
 
+    [DataTestMethod]
+    [DataRow("One", "Two", "Three", "Four")]
+    [DataRow("", "Two", "Three", "Four")]
+    [DataRow("One", "", "Three", "Four")]
+    [DataRow("One", "Two", "", "Four")]
+    [DataRow("One", "Two", "Three", "")]
+    [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Another veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Third veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Last veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.")]
+    [DataRow("", "Another veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Third veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Last veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.")]
+    [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "", "Third veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Last veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.")]
+    [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Another veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "", "Last veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.")]
+    [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Another veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Third veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "")]
+    [DataRow("", "", "", "")]
+    [DataRow("This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.", "", "This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.", "")]
+    public void ConcatTest1(string one, string two, string three, string four)
+        => Assert.AreEqual(one + two + three + four, StaticStringMethod.Concat(one.AsSpan(), two.AsSpan(), three.AsSpan(), four.AsSpan()));
 
     [DataTestMethod]
     [DataRow("One", "Two", "Three")]
@@ -69,7 +84,7 @@ public class StaticStringMethodTests
     [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Another veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "")]
     [DataRow("", "", "")]
     [DataRow("This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.", "This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.", "")]
-    public void ConcatTest1(string one, string two, string three)
+    public void ConcatTest2(string one, string two, string three)
         => Assert.AreEqual(one + two + three, StaticStringMethod.Concat(one.AsSpan(), two.AsSpan(), three.AsSpan()));
 
     [DataTestMethod]
@@ -81,6 +96,6 @@ public class StaticStringMethodTests
     [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "")]
     [DataRow("", "")]
     [DataRow("This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.", "This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.")]
-    public void ConcatTest2(string one, string two) 
+    public void ConcatTest3(string one, string two) 
         => Assert.AreEqual(one + two, StaticStringMethod.Concat(one.AsSpan(), two.AsSpan()));
 }
