@@ -28,6 +28,7 @@ System.Buffers.SpanAction<T, TArg>;
 ### Polyfills for Static Methods of the String Class
 ```csharp
 static string StaticStringMethod.Create<TState>(int, TState, SpanAction<char, TState>);
+static string StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>);
 static string StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>);
 static string StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>);
 ```

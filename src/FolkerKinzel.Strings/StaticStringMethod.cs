@@ -65,16 +65,77 @@ public static class StaticStringMethod
 
 #if NET5_0_OR_GREATER
 
+    /// <summary>
+    /// Verkettet die Zeichenfolgendarstellung von vier angegebenen schreibgeschützten Zeichenspannen.
+    /// </summary>
+    /// <param name="str0">Die erste zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="str2">Die dritte zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="str3">Die vierte zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/>, 
+    /// <paramref name="str1"/>, <paramref name="str2"/> und <paramref name="str3"/>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2, ReadOnlySpan<char> str3)
+        => string.Concat(str0, str1, str2, str3);
+
+    /// <summary>
+    /// Verkettet die Zeichenfolgendarstellung von drei angegebenen schreibgeschützten Zeichenspannen.
+    /// </summary>
+    /// <param name="str0">Die erste zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="str2">Die dritte zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/>, 
+    /// <paramref name="str1"/> und <paramref name="str2"/>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
         => string.Concat(str0, str1, str2);
 
+    /// <summary>
+    /// Verkettet die Zeichenfolgendarstellung von zwei angegebenen schreibgeschützten Zeichenspannen.
+    /// </summary>
+    /// <param name="str0">Die erste zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/> und
+    /// <paramref name="str1"/>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
         => string.Concat(str0, str1);
 
 #else
+    /// <summary>
+    /// Verkettet die Zeichenfolgendarstellung von vier angegebenen schreibgeschützten Zeichenspannen.
+    /// </summary>
+    /// <param name="str0">Die erste zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="str2">Die dritte zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="str3">Die vierte zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/>, 
+    /// <paramref name="str1"/>, <paramref name="str2"/> und <paramref name="str3"/>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2, ReadOnlySpan<char> str3)
+    {
+        int length = str0.Length + str1.Length + str2.Length + str3.Length;
+        Span<char> span = length > Const.ShortString ? new char[length] : stackalloc char[length];
 
+        str0.CopyTo(span);
+        Span<char> spanPart = span.Slice(str0.Length);
+        str1.CopyTo(spanPart);
+        spanPart = spanPart.Slice(str1.Length);
+        str2.CopyTo(spanPart);
+        spanPart = spanPart.Slice(str2.Length);
+        str3.CopyTo(spanPart);
+
+        return span.ToString();
+    }
+
+    /// <summary>
+    /// Verkettet die Zeichenfolgendarstellung von drei angegebenen schreibgeschützten Zeichenspannen.
+    /// </summary>
+    /// <param name="str0">Die erste zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="str2">Die dritte zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/>, 
+    /// <paramref name="str1"/> und <paramref name="str2"/>.</returns>
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
     {
         int length = str0.Length + str1.Length + str2.Length;
@@ -89,7 +150,13 @@ public static class StaticStringMethod
         return span.ToString();
     }
 
-
+    /// <summary>
+    /// Verkettet die Zeichenfolgendarstellung von zwei angegebenen schreibgeschützten Zeichenspannen.
+    /// </summary>
+    /// <param name="str0">Die erste zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
+    /// <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/> und
+    /// <paramref name="str1"/>.</returns>
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
     {
         int length = str0.Length + str1.Length;
