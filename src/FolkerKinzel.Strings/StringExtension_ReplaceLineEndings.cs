@@ -33,10 +33,10 @@ public static partial class StringExtension
     /// <item>CR (U+000D)</item>
     /// <item>LF (U+000A)</item>
     /// <item>CRLF (U+000D U+000A)</item>
-    /// <item>NEL(U+0085)</item>
-    /// <item>LS(U+2028)</item>
-    /// <item>FF(U+000C)</item>
-    /// <item>PS(U+2029)</item>
+    /// <item>NEL (U+0085)</item>
+    /// <item>LS (U+2028)</item>
+    /// <item>FF (U+000C)</item>
+    /// <item>PS (U+2029)</item>
     /// </list>
     /// <para>
     /// Diese Liste ist vom Unicode-Standard vorgegeben (Sec. 5.8, Recommendation R4 und Table 5-2).
@@ -69,10 +69,10 @@ public static partial class StringExtension
     /// <item>CR (U+000D)</item>
     /// <item>LF (U+000A)</item>
     /// <item>CRLF (U+000D U+000A)</item>
-    /// <item>NEL(U+0085)</item>
-    /// <item>LS(U+2028)</item>
-    /// <item>FF(U+000C)</item>
-    /// <item>PS(U+2029)</item>
+    /// <item>NEL (U+0085)</item>
+    /// <item>LS (U+2028)</item>
+    /// <item>FF (U+000C)</item>
+    /// <item>PS (U+2029)</item>
     /// </list>
     /// <para>
     /// Diese Liste ist vom Unicode-Standard vorgegeben (Sec. 5.8, Recommendation R4 und Table 5-2).

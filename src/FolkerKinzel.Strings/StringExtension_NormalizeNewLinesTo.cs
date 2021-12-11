@@ -15,6 +15,10 @@ public static partial class StringExtension
     /// <remarks>
     /// Für die Identifizierung von Zeilenwechselzeichen wird <see cref="CharExtension.IsNewLine(char)"/> 
     /// verwendet. Die Sequenzen CRLF und LFCR werden als ein Zeilenumbruch behandelt.
+    /// <note type="caution">
+    /// Diese Methode unterscheidet sich von <see cref="ReplaceLineEndings(string, string)"/> dahingehend,
+    /// dass sie zusätzlich LFCR-Sequenzen und Vertical Tab (VT: U+000B) als Zeilenwechsel behandelt.
+    /// </note>
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
     [Obsolete("Use ReplaceLineEndings instead.", false)]
