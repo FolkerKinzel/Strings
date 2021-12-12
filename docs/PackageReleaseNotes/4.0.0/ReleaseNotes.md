@@ -1,6 +1,7 @@
 # FolkerKinzel.Strings 4.0.0
 ## Package Release Notes
 
+- .NET 6.0 support.
 - New class `StaticStringMethod`, which offers polyfills for static methods of the `String` class:
 ```csharp
 static string StaticStringMethod.Create<TState>(int, TState, SpanAction<char, TState>);
