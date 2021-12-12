@@ -1,4 +1,3 @@
-
 [![GitHub](https://img.shields.io/github/license/FolkerKinzel/Strings)](https://github.com/FolkerKinzel/Strings/blob/master/LICENSE)
 
 * Extension methods, which help to write easier and cleaner code. Many of them are "Syntactic Sugar" that calls existing Framework methods and will (hopefully) be inlined. Some other fill gaps of the Framework.
@@ -24,9 +23,9 @@ using FolkerKinzel.Strings.Polyfills;
 
 A detailed project reference is available in English and German:
 
-* [Project Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/3.3.0/FolkerKinzel.Strings.Reference.en.chm)
+* [Project Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/4.0.0/FolkerKinzel.Strings.Reference.en.chm)
 
-* [Projektdokumentation (Deutsch)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/3.3.0/FolkerKinzel.Strings.Doku.de.chm)
+* [Projektdokumentation (Deutsch)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/4.0.0/FolkerKinzel.Strings.Doku.de.chm)
 
 > IMPORTANT: On some systems, the content of the CHM file is blocked. Before opening the file
 >  right click on the file icon, select Properties, and check the "Allow" checkbox - if it 
