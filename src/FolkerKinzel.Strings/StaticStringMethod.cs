@@ -16,10 +16,10 @@ public static class StaticStringMethod
     /// Erstellt eine neue Zeichenfolge mit einer bestimmten Länge und initialisiert sie nach der Erstellung unter Verwendung des angegebenen Rückrufs.
     /// </summary>
     /// <typeparam name="TState">Der Typ des Elements, das an <paramref name="action"/> übergeben werden soll.</typeparam>
-    /// <param name="length">Die Länge der zu erstellenden Zeichenfolge.</param>
+    /// <param name="length">Die Länge des zu erstellenden <see cref="string"/>s.</param>
     /// <param name="state">Das an <paramref name="action"/> zu übergebende Element.</param>
     /// <param name="action">Ein Rückruf zum Initialisieren der Zeichenfolge.</param>
-    /// <returns>Die erstellte Zeichenfolge.</returns>
+    /// <returns>Der erstellte <see cref="string"/>.</returns>
     /// <remarks>Die Methode simuliert die statische Methode String.Create&lt;TState&gt;(int, TState, SpanAction&lt;char,TState&gt;).
     /// In neueren .NET-Versionen wird der Aufruf direkt an die vorhandene Methode der <see cref="string"/>-Klasse weitergeleitet. In 
     /// .NET Framework und .NET Standard 2.0 ermöglicht die Simulation zumindest bei der Erstellung kurzer <see cref="string"/>s, mit 

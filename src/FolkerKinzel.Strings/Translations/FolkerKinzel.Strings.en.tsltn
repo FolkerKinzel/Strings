@@ -925,7 +925,6 @@ This overload is useful because the support for the implicit conversion from &lt
   <T ID="D7EA6E71A046D2F0">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; whose content is changed.</T>
   <T ID="2266D3A2792AEBDC">A read-only character span that is the replacement for all newlines. If an empty span is passed to the parameter, all newline characters will be completely removed.</T>
   <T ID="A188003A0A4E719D">A reference to &lt;paramref name ="builder"/&gt;.</T>
-  <T ID="C86629FA78B6C437">&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify newline characters. The sequences CRLF and LFCR are treated as one line break.</T>
   <T ID="D342FF746D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
   <T ID="E18E3D474771213A">Examines a section of the &lt;see cref ="T:System.Text.StringBuilder"/&gt; that begins at &lt;paramref name ="startIndex"/&gt; and includes &lt;paramref name ="count"/&gt; characters to determine whether this section contains a newline character.</T>
   <T ID="C86E7834AF0C6641">Replaces in &lt;paramref name="builder"/&gt; all sequences of white space with &lt;paramref name="replacement"/&gt;.</T>
@@ -992,7 +991,6 @@ The method uses &lt;see cref ="M:System.Char.IsWhiteSpace(System.Char)"/&gt; to 
   <T ID="3BAF2748B86216C5">The source &lt;see cref="T:System.String"/&gt;.</T>
   <T ID="F4C23026792AEBDC">A read-only character span that is the replacement for all newlines. If an empty span is passed to the parameter, all newline characters will be completely removed.</T>
   <T ID="5FB379CACF1F5506">A new &lt;see cref ="T:System.String"/&gt; in which all newlines are replaced by &lt;paramref name="replacement"/&gt;. If &lt;paramref name="s"/&gt; doesn't contain a newline character, &lt;paramref name="s"/&gt; is returned.</T>
-  <T ID="C7B32B5278B6C437">&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify newline characters. The sequences CRLF and LFCR are treated as one line break.</T>
   <T ID="74F4517DE78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
   <T ID="F0948A71C955B46E">Generates a &lt;see cref ="T:System.String"/&gt; in which all sequences of white space are replaced by &lt;paramref name="replacement"/&gt;.</T>
   <T ID="94B679DA75A68DC9">The source &lt;see cref="T:System.String"/&gt;.</T>
@@ -1141,14 +1139,12 @@ UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method f
 &lt;paramref name ="span"/&gt; is &lt;see cref ="P:System.ReadOnlySpan`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is less than -1 or greater than 0.
 &lt;/para&gt;</T>
   <T ID="2405BC352140445F">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enum.</T>
-  <T ID="10FED5E91EEFBBFD">Simulates static methods of the &lt;see cref ="T:System.String"/&gt; class which generate &lt;see cref ="T:System.String"/&gt;s for .NET versions in which these are not available.</T>
   <T ID="458D38E08E44C6A9">Creates a new string with a specified length and, once created, initializes it using the specified callback.</T>
   <T ID="CA182F4A7505EC7A">The type of the element to be passed to &lt;paramref name ="action"/&gt;.</T>
   <T ID="CF745BBB2C1CBC9B">The length of the string to be created.</T>
   <T ID="FD5903DA3A54F02F">The element to be passed to &lt;paramref name ="action"/&gt;.</T>
   <T ID="2F20B9976E30BA7">A callback to initialize the string.</T>
   <T ID="D9F8B61DBA70D331">The string created.</T>
-  <T ID="6293E7FBC74AB846">The method simulates the static method String.Create&amp;lt;TState&amp;gt;(int, TState, SpanAction&amp;lt;char,TState&amp;gt;). In newer .NET versions, the call is forwarded directly to the existing method of the &lt;see cref ="T:System.String"/&gt; class. In .NET Framework and .NET Standard 2.0, the simulation makes it possible, when creating short &lt;see cref ="T:System.String"/&gt;s, to have only one heap allocation.</T>
   <T ID="270A7D3D1BC798A6">&lt;paramref name="action"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
   <T ID="7AD017395E848455">&lt;paramref name="length"/&gt; is negative.</T>
   <T ID="FBFDCFB95DD2040D">Polyfill for the delegate System.Buffers.SpanAction&amp;lt;T,TArg&amp;gt;.</T>
@@ -1156,4 +1152,160 @@ UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method f
   <T ID="E8E57B67D15937A4">The type of object that represents the state. This type parameter is contravariant. This means that you can either use the specified type or a less derived type.</T>
   <T ID="D08AF3C6908AEB45">A span of objects of type &lt;typeparamref name ="T"/&gt;.</T>
   <T ID="172ADBB0E1AB5EA7">A state object of the type &lt;typeparamref name ="TArg"/&gt;.</T>
+  <T ID="B3225CD6C6295F91">Simulates static methods of the &lt;see cref ="T:System.String"/&gt; class for .NET versions in which they are not available, and forwards the method calls in .NET versions in which the methods are available directly to the BCL methods.</T>
+  <T ID="6F43A0568E44C6A9">Creates a new string with a specified length and, once created, initializes it using the specified callback.</T>
+  <T ID="2A9BEA727505EC7A">The type of the element to be passed to &lt;paramref name ="action"/&gt;.</T>
+  <T ID="509B72C79ACBF06B">The length of the &lt;see cref="T:System.String"/&gt; to be created.</T>
+  <T ID="DE1F310C3A54F02F">The element to be passed to &lt;paramref name="action"/&gt;.</T>
+  <T ID="54EB9A2D76E30BA7">A callback to initialize the string.</T>
+  <T ID="1229E96D0ECBC9E3">The &lt;see cref="T:System.String"/&gt; created.</T>
+  <T ID="460A5B3FC74AB846">The method simulates the static method String.Create&amp;lt;TState&amp;gt;(int, TState, SpanAction&amp;lt;char,TState&amp;gt;). In newer .NET versions, the call is forwarded directly to the existing method of the &lt;see cref ="T:System.String"/&gt; class. In .NET Framework and .NET Standard 2.0, the simulation makes it possible, when creating short &lt;see cref ="T:System.String"/&gt;s, to have only one heap allocation.</T>
+  <T ID="B534278B1BC798A6">&lt;paramref name="action"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="6D0A4F865E848455">&lt;paramref name="length"/&gt; is negative.</T>
+  <T ID="B574CC69B2CE5275">Concatenates the string representations of four specified read-only character spans.</T>
+  <T ID="139C60C03B003AE9">The first read-only character span to concatenate.</T>
+  <T ID="70F4EC25B442CD86">The second read-only character span to concatenate.</T>
+  <T ID="58EB49F690910F18">The third read-only character span to concatenate.</T>
+  <T ID="B643D55BF3415BCC">The fourth read-only character span to concatenate.</T>
+  <T ID="75BED80C856802A8">The concatenated string representations of the values of &lt;paramref name="str0"/&gt;, &lt;paramref name="str1"/&gt;, &lt;paramref name="str2"/&gt; and &lt;paramref name="str3"/&gt;.</T>
+  <T ID="71ED4D51F91B31DE">Concatenates the string representations of three specified read-only character spans.</T>
+  <T ID="13960EB53B003AE9">The first read-only character span to concatenate.</T>
+  <T ID="13960EB4B442CD86">The second read-only character span to concatenate.</T>
+  <T ID="13960EB390910F18">The third read-only character span to concatenate.</T>
+  <T ID="540D5A128C0B7BCD">The concatenated string representations of the values of &lt;paramref name="str0"/&gt;, &lt;paramref name="str1"/&gt; and &lt;paramref name="str2"/&gt;.</T>
+  <T ID="805A0FCC55B10B29">Concatenates the string representations of two specified read-only character spans.</T>
+  <T ID="4A8C40D7B442CD86">The first read-only character span to concatenate.</T>
+  <T ID="F7C14B0D079B7727">The concatenated string representations of the values of &lt;paramref name="str0"/&gt; and &lt;paramref name="str1"/&gt;.</T>
+  <T ID="A7E4CC3C3B003AE9">The first read-only character span to concatenate.</T>
+  <T ID="C86629FA030DA770">&lt;see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify newline characters. The sequences CRLF and LFCR are treated as one line break.
+&lt;note type ="caution"&gt;
+This method differs from &lt;see cref ="M:FolkerKinzel.Strings.StringBuilderExtension.ReplaceLineEndings(System.Text.StringBuilder,System.String)"/&gt; in that it also treats LFCR sequences and vertical tab (VT: U + 000B ) as a line break.
+&lt;/note&gt;</T>
+  <T ID="514636D11598B4BC">Replaces all newlines in &lt;paramref name="builder"/&gt; with &lt;paramref name="newLine"/&gt;.</T>
+  <T ID="CDF38C3654973274">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; whose content is changed.</T>
+  <T ID="F8A46D3AA30B8D4B">The text to use as replacement. If &lt;paramref name="replacementText"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref="F:System.String.Empty"/&gt;, all newlines will be removed.</T>
+  <T ID="84F04AA400D33280">A reference to &lt;paramref name ="builder"/&gt;.</T>
+  <T ID="6279F05EFE54D699">&lt;para&gt;
+The list of recognized newline sequences is:
+&lt;/para&gt;
+&lt;list type="bullet"&gt;
+&lt;item&gt;
+CR (U+000D)
+&lt;/item&gt;
+&lt;item&gt;
+LF (U+000A)
+&lt;/item&gt;
+&lt;item&gt;
+CRLF (U+000D U+000A)
+&lt;/item&gt;
+&lt;item&gt;
+NEL (U+0085)
+&lt;/item&gt;
+&lt;item&gt;
+LS (U+2028)
+&lt;/item&gt;
+&lt;item&gt;
+FF (U+000C)
+&lt;/item&gt;
+&lt;item&gt;
+PS (U+2029)
+&lt;/item&gt;
+&lt;/list&gt;
+&lt;para&gt;
+This list is given by the Unicode Standard, Sec. 5.8, Recommendation R4 and Table 5-2.
+&lt;/para&gt;</T>
+  <T ID="17DACBFE6D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="10FED5E98B9ED1A6">Simulates static methods of the &lt;see cref ="T:System.String"/&gt; class, which generate &lt;see cref ="T:System.String"/&gt;s, for .NET versions in which these are not available.
+&lt;note type="important"&gt;
+Use the &lt;see cref="T:FolkerKinzel.Strings.StaticStringMethod"/&gt; class instead!
+&lt;/note&gt;</T>
+  <T ID="6293E7FBD18FF914">&lt;note type="important"&gt;
+Use the see cref="T:FolkerKinzel.Strings.StaticStringMethod"/&gt; class instead!
+&lt;/note&gt;
+The method simulates the static method String.Create&amp;lt;TState&amp;gt;(int, TState, SpanAction&amp;lt;char,TState&amp;gt;). In newer .NET versions, the call is forwarded directly to the existing method of the &lt;see cref ="T:System.String"/&gt; class. In .NET Framework and .NET Standard 2.0, the simulation makes it possible to have only one heap allocation, when creating short &lt;see cref ="T:System.String"/&gt;s, .</T>
+  <T ID="C7B32B52C8D0D6A9">&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify newline characters. The sequences CRLF and LFCR are treated as one line break.
+
+&lt;note type ="caution"&gt;
+This method differs from &lt;see cref="M:FolkerKinzel.Strings.StringExtension.ReplaceLineEndings(System.String,System.String)"/&gt; in that it also treats LFCR sequences and Vertical Tab (VT: U+000B ) as a line break.
+&lt;/note&gt;</T>
+  <T ID="A19DCD7DB36D6F89">Replaces all newlines in &lt;paramref name="s"/&gt; with &lt;see cref="P:System.Environment.NewLine"/&gt;.</T>
+  <T ID="EF277F475A68DC9">The source &lt;see cref="T:System.String"/&gt;.</T>
+  <T ID="C1D6D7AEC433B04B">A &lt;see cref="T:System.String"/&gt; whose contents match the content of &lt;paramref name="s"/&gt;, but with all newline sequences replaced with &lt;see cref="P:System.Environment.NewLine"/&gt;.</T>
+  <T ID="7116F0268ABB10AD">&lt;para&gt;
+This is a polyfill for the .NET 6.0 method String.ReplaceLineEndings(). The method should therefore only be used in the extension method syntax. It throws a &lt;see cref ="T:System.NullReferenceException"/&gt; if &lt;paramref name ="s"/&gt; is &lt;c&gt;null&lt;/c&gt; in order to show identical behavior to the original .NET method.
+&lt;/para&gt;
+&lt;para&gt;
+The method searches for all newline sequences within &lt;paramref name ="s"/&gt; and canonicalizes them to match the newline sequence for the current environment. For example, when running on Windows, all occurrences of non-Windows Newline sequences are replaced with the sequence CRLF. When running on Unix, all occurrences of non-Unix Newline sequences are replaced with a single LF character.
+&lt;/para&gt;
+&lt;para&gt;
+The list of recognized newline sequences is:
+&lt;/para&gt;
+&lt;list type ="bullet"&gt;
+&lt;item&gt;
+CR (U+000D)
+&lt;/item&gt;
+&lt;item&gt;
+LF (U+000A)
+&lt;/item&gt;
+&lt;item&gt;
+CRLF (U+000D U+000A)
+&lt;/item&gt;
+&lt;item&gt;
+NEL (U+0085)
+&lt;/item&gt;
+&lt;item&gt;
+LS (U+2028)
+&lt;/item&gt;
+&lt;item&gt;
+FF (U+000C)
+&lt;/item&gt;
+&lt;item&gt;
+PS (U+2029)
+&lt;/item&gt;
+&lt;/list&gt;
+&lt;para&gt;
+This list is specified by the Unicode standard (Sec. 5.8, Recommendation R4 and Table 5-2).
+&lt;/para&gt;</T>
+  <T ID="75FAD01BE78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="21DAEBBA93405BD7">Replaces all newlines in &lt;paramref name="s"/&gt; with &lt;paramref name="replacementText"/&gt;.</T>
+  <T ID="8CA36E8375A68DC9">The source &lt;see cref="T:System.String"/&gt;.</T>
+  <T ID="6FA2382C1AE3BC4">The text to use as replacement. If &lt;paramref name="replacementText"/&gt; is &lt;see cref="F:System.String.Empty"/&gt;, all newline sequences within &lt;paramref name="s"/&gt; will be removed.</T>
+  <T ID="15D3154B4C936CC3">A &lt;see cref="T:System.String"/&gt; whose contents match the content of &lt;paramref name="s"/&gt;, but with all newline sequences replaced with &lt;paramref name="replacementText"/&gt;.</T>
+  <T ID="A90534073D061D93">&lt;para&gt;
+This is a polyfill for the .NET 6.0 method String.ReplaceLineEndings(String). The method should therefore only be used in the extension method syntax. It throws a &lt;see cref ="T:System.NullReferenceException"/&gt; if &lt;paramref name ="s"/&gt; is &lt;c&gt;null&lt;/c&gt; in order to show identical behavior to the original .NET method.
+&lt;/para&gt;
+&lt;para&gt;
+The method searches for all newline sequences within &lt;paramref name ="s"/&gt; and canonicalizes them to match &lt;paramref name="replacementText"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+The list of recognized newline sequences is:
+&lt;/para&gt;
+&lt;list type ="bullet"&gt;
+&lt;item&gt;
+CR (U+000D)
+&lt;/item&gt;
+&lt;item&gt;
+LF (U+000A)
+&lt;/item&gt;
+&lt;item&gt;
+CRLF (U+000D U+000A)
+&lt;/item&gt;
+&lt;item&gt;
+NEL (U+0085)
+&lt;/item&gt;
+&lt;item&gt;
+LS (U+2028)
+&lt;/item&gt;
+&lt;item&gt;
+FF (U+000C)
+&lt;/item&gt;
+&lt;item&gt;
+PS (U+2029)
+&lt;/item&gt;
+&lt;/list&gt;
+&lt;para&gt;
+This list is specified by the Unicode standard (Sec. 5.8, Recommendation R4 and Table 5-2).
+&lt;/para&gt;</T>
+  <T ID="F2976A3E78A6666">&lt;paramref name="s"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="4E3CDC1D6FA65FA6">&lt;paramref name="replacementText"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
 </Tsltn>
