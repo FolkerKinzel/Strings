@@ -10,7 +10,7 @@ static string StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>);
 ```
 - The class `StringCreator` has been replaced by `StaticStringMethod`.
 - Polyfills for the .NET 6.0 methods `String.ReplaceLineEndings()` and `String.ReplaceLineEndings(String)`.
-- The following methods are marked as obsolete and have a replacement in `ReplaceLineEndings` methods now,
+- The following methods are marked as obsolete and have replacements in the several `ReplaceLineEndings` methods now,
 which exactly simulate the behavior of the .NET 6.0 method `String.ReplaceLineEndings(String)`:
 ```csharp
 NormalizeNewLinesTo(this StringBuilder, ReadOnlySpan<char>);
