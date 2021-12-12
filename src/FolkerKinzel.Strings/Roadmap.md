@@ -73,5 +73,9 @@ prone calculating with the result when slicing the span before.
 - [x] Let `String.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` give an  obsolete warning.
 - [x] Let `String.NormalizeNewLinesTo(string? newLine)` give an obsolete warning.
 
+### 4.1.0
+- [x] Dependency update.
+- [x] Remove `StringCreator`
+
 .
 
