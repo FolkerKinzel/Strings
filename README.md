@@ -25,7 +25,7 @@ the program runs. These hashcodes are a slim alternative to larger hash algorith
 using FolkerKinzel.Strings;
 
 // Publish this namespace for .NET Framework or .NET Standard
-// build targets to have polyfills for .NET 5.0 methods.
+// build targets to have polyfills for .NET 6.0 methods.
 // (It's not recommended to publish this namespace for 
 // .NET Core 3.1 build targets because some of the polyfills might produce
 // conflicts with extension methods from System.MemoryExtensions.)
