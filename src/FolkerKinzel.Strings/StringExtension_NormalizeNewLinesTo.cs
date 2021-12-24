@@ -13,8 +13,10 @@ public static partial class StringExtension
     /// durch <paramref name="newLine"/> ersetzt sind. Wenn <paramref name="s"/> keine Zeilenwechselzeichen
     /// enthält, wird <paramref name="s"/> unverändert zurückgegeben.</returns>
     /// <remarks>
+    /// <para>
     /// Für die Identifizierung von Zeilenwechselzeichen wird <see cref="CharExtension.IsNewLine(char)"/> 
     /// verwendet. Die Sequenzen CRLF und LFCR werden als ein Zeilenumbruch behandelt.
+    /// </para>
     /// <note type="caution">
     /// Diese Methode unterscheidet sich von <see cref="ReplaceLineEndings(string, string)"/> dahingehend,
     /// dass sie zusätzlich LFCR-Sequenzen und Vertical Tab (VT: U+000B) als Zeilenwechsel behandelt.
