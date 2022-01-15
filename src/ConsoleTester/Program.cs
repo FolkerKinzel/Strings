@@ -172,6 +172,7 @@ namespace LibraryTesters
             _ = test.AsSpan().LastIndexOf("es", StringComparison.Ordinal);
 
 
+            _ = test.AsSpan().Contains("es", StringComparison.Ordinal);
 
 
         }

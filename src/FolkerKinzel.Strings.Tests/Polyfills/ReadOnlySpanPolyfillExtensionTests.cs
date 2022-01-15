@@ -14,6 +14,10 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
         Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
     }
 
+
+    [TestMethod]
+    public void ContainsTest1() => Assert.IsTrue(Environment.NewLine.AsSpan().Contains(Environment.NewLine, StringComparison.Ordinal));
+
     [DataTestMethod]
     [DataRow("test", "TE", true)]
     [DataRow("test", "te", true)]

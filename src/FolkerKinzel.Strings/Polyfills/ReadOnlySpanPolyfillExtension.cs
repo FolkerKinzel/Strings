@@ -13,7 +13,24 @@ namespace FolkerKinzel.Strings.Polyfills;
 /// </remarks>
 public static class ReadOnlySpanPolyfillExtension
 {
-    // Place this preprocessor directive inside the class to let .NET 5.0 have an empty class!
+    // Place this preprocessor directive inside the class to let .NET 6.0 have an empty class!
+#if NET45 || NETSTANDARD2_0
+
+    /// <summary>
+    /// Gibt an, ob ein angegebener Wert innerhalb einer schreibgeschützten Zeichenspanne auftritt.
+    /// </summary>
+    /// <param name="span">Die Quellspanne.</param>
+    /// <param name="value">Der innerhalb der Quellspanne zu suchende Wert. <paramref name="value"/> darf <c>null</c> sein.</param>
+    /// <param name="comparisonType">Ein Enumerationswert, der bestimmt, wie die Zeichen in <paramref name="span"/> und 
+    /// <paramref name="value"/> verglichen werden.</param>
+    /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb der Spanne auftritt, andernfalls <c>false</c>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool Contains(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
+        => span.Contains(value.AsSpan(), comparisonType);
+
+#endif
+
+
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
     /// <summary>
     /// Gibt an, ob ein angegebenes Unicodezeichen in der Spanne gefunden wird. 
