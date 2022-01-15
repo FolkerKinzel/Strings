@@ -24,6 +24,7 @@ public static class ReadOnlySpanPolyfillExtension
     /// <param name="comparisonType">Ein Enumerationswert, der bestimmt, wie die Zeichen in <paramref name="span"/> und 
     /// <paramref name="value"/> verglichen werden.</param>
     /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb der Spanne auftritt, andernfalls <c>false</c>.</returns>
+    /// <remarks>Verfügbar für .NET Framework 4.5 und .NET Standard 2.0.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
         => span.Contains(value.AsSpan(), comparisonType);

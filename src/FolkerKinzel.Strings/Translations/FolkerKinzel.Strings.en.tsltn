@@ -1301,4 +1301,10 @@ This method differs from &lt;see cref ="M:FolkerKinzel.Strings.StringBuilderExte
 &lt;note type ="caution"&gt;
 This method differs from &lt;see cref="M:FolkerKinzel.Strings.StringExtension.ReplaceLineEndings(System.String,System.String)"/&gt; in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line break.
 &lt;/note&gt;</T>
+  <T ID="7F5BEAA5B981D60A">Indicates whether a specified value occurs within a read-only character span.</T>
+  <T ID="E8E16840A6A03F7B">The source span.</T>
+  <T ID="25F1BA9652485DE7">The value to seek within the source span. &lt;paramref name="value"/&gt; can be &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="B3B0FA64CD7C3FFA">An enumeration value that determines how the characters in &lt;paramref name="span"/&gt; and &lt;paramref name="value"/&gt; are compared.</T>
+  <T ID="BF0DEAC6EAD802E1">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; occurs within the span, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="3C0F4F32A01B304E">Available for .NET Framework 4.5 and .NET Standard 2.0.</T>
 </Tsltn>
