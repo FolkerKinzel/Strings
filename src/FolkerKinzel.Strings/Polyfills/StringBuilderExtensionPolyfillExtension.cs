@@ -13,9 +13,6 @@ namespace FolkerKinzel.Strings.Polyfills;
 public static class StringBuilderExtensionPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 6.0 have an empty class!
-
-
-
 #if NET45 || NETSTANDARD2_0
     /// <summary>
     /// Ersetzt in <paramref name="builder"/> alle Sequenzen von Leerzeichen durch <paramref name="replacement"/>.

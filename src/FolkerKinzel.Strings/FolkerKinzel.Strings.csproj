@@ -9,7 +9,7 @@
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
     <Version>4.2.0</Version>
-    <FileVersion>4.2.0.5</FileVersion>
+    <FileVersion>4.2.0.6</FileVersion>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/4.2.0/ReleaseNotes.md</PackageReleaseNotes>
     <PackageTags>.NET String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode C#</PackageTags>
@@ -38,8 +38,8 @@
   <ItemGroup>
     <Using Remove="System.Net.Http" />
     <Using Include="System.Text" />
-	  <Using Include="System.Runtime.CompilerServices"/>
-	  <Using Include="System.Diagnostics.CodeAnalysis"/>
+    <Using Include="System.Runtime.CompilerServices" />
+    <Using Include="System.Diagnostics.CodeAnalysis" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Translations\**" />
@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Remove="PolyfillSpanAction.cs" />
     <Compile Remove="ReadOnlySpanExtension_Obsolete.cs" />
+    <Compile Remove="StringBuilderExtension_Insert.cs" />
     <Compile Remove="StringBuilderExtension_Obsolete.cs" />
     <Compile Remove="StringCreator.cs" />
     <Compile Remove="StringExtension_LastIndexOf.cs" />
