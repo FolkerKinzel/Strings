@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 namespace FolkerKinzel.Strings.Polyfills;
 
@@ -25,6 +26,7 @@ public static class StringBuilderPolyfillExtension
 #if NETSTANDARD2_1
     [ExcludeFromCodeCoverage]
 #endif
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder Append(this StringBuilder builder, ReadOnlyMemory<char> value)
     => builder.Append(value.Span);
 

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using FolkerKinzel.Strings.Polyfills;
+﻿using FolkerKinzel.Strings.Polyfills;
 
 namespace FolkerKinzel.Strings;
 
@@ -15,6 +14,7 @@ public static partial class StringBuilderExtension
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/> ist kleiner als 0 oder größer
     /// als die Länge von <paramref name="builder"/>.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder Insert(this StringBuilder builder, int index, ReadOnlyMemory<char> value)
         => builder.Insert(index, value.Span);
 
