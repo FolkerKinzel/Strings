@@ -81,7 +81,8 @@ prone calculating with the result when slicing the span before.
 - [x] Polyfill `bool Contains(this ReadOnlySpan<char>, string?, StringComparison)`
 
 ### 4.3.0
-- [ ] Polyfill `StringBuilder.Append(ReadOnlyMemory<Char>)`
+- [x] Polyfill `StringBuilder.Append(ReadOnlyMemory<Char>)`
+- [x] `StringBuilder Insert(this StringBuilder builder, int index, ReadOnlyMemory<char> value)`
 - [ ] `StringBuilder.AppendLine(ReadOnlyMemory<Char>)`
 - [ ] `StringBuilder.AppendLine(ReadOnlySpan<Char>)`
 

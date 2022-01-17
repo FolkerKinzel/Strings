@@ -14,7 +14,23 @@ namespace FolkerKinzel.Strings.Polyfills;
 /// </remarks>
 public static class StringBuilderPolyfillExtension
 {
-    // Place this preprocessor directive inside the class to let .NET 5.0 have an empty class!
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
+
+    /// Fügt den Inhalt eines schreibgeschützten Zeichenspeichers an einen <see cref="StringBuilder"/> an.
+    /// </summary>
+    /// <param name="builder">Der <see cref="StringBuilder"/>, an den die Zeichen angefügt werden.</param>
+    /// <param name="value">Der anzufügende schreibgeschützte Zeichenspeicher.</param>
+    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
+#if NETSTANDARD2_1
+    [ExcludeFromCodeCoverage]
+#endif
+    public static StringBuilder Append(this StringBuilder builder, ReadOnlyMemory<char> value)
+    => builder.Append(value.Span);
+
+#endif
+
+
 #if NET45 || NETSTANDARD2_0
     /// <summary>
     /// Fügt eine Kopie einer Teilzeichenfolge, die aus einem als Argument übergebenen <see cref="StringBuilder"/> stammt, an 

@@ -171,7 +171,14 @@ namespace LibraryTesters
 
             _ = test.AsSpan().Contains("es", StringComparison.Ordinal);
 
+            _ = sb.Append(test.AsSpan());
+            _ = sb.Append(test.AsMemory());
 
+            _ = sb.Insert(0, test.AsSpan());
+            _ = sb.Insert(0, test.AsMemory());
+
+            _ = sb.AppendLine(test.AsMemory());
+            _ = sb.AppendLine(test.AsSpan());
         }
     }
 }
