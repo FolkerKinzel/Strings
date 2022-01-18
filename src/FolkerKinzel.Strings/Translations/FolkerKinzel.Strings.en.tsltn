@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Tsltn Version="1.0" SourceFile="..\bin\Release\netstandard2.0\de\FolkerKinzel.Strings.xml" SourceLanguage="de" TargetLanguage="en">
+<Tsltn Version="1.0" SourceFile="de\FolkerKinzel.Strings.xml" SourceLanguage="de" TargetLanguage="en">
   <T ID="FB7C6BB26EEA39EB">Ordinal comparison of the characters.</T>
   <T ID="AA2EB5F98CF489A2">Ordinal comparison of the characters without taking upper and lower case into account.</T>
   <T ID="76722699059A0A21">Named constants to specify the type of hashcode for Char sequences.</T>

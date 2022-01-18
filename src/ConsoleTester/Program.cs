@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Baz;
@@ -15,6 +16,8 @@ namespace LibraryTesters
         static void Main()
         {
             //Console.WriteLine(Uri.HexEscape('e'));
+
+            
 
             string test = "Test";
             char c = 'e';
@@ -178,8 +181,8 @@ namespace LibraryTesters
             _ = sb.Append(test.AsSpan());
             _ = sb.Append(test.AsMemory());
 
-            _ = sb.AppendLine(test.AsMemory());
-            _ = sb.AppendLine(test.AsSpan());
+            //_ = sb.AppendLine(test.AsMemory());
+            //_ = sb.AppendLine(test.AsSpan());
 
         }
     }

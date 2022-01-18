@@ -1,0 +1,1939 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>FolkerKinzel.Strings</name>
+  </assembly>
+  <members>
+    <member name="T:FolkerKinzel.Strings.CharExtension">
+      <summary>Extension methods for the <see cref="T:System.Char" /> structure.</summary>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiLowerCaseLetter(System.Char)">
+      <summary>Examines whether the Unicode character is an ASCII lowercase letter.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is an ASCII lowercase letter, otherwise <c>false</c>.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiUpperCaseLetter(System.Char)">
+      <summary>Examines whether the Unicode character is an ASCII uppercase letter.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is an ASCII uppercase letter, otherwise <c>false</c>.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiLetter(System.Char)">
+      <summary>Examines whether the Unicode character is an ASCII letter.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is an ASCII letter, otherwise <c>false</c>.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.ParseHexDigit(System.Char)">
+      <summary>Gets the value of a hexadecimal digit.</summary>
+      <param name="digit">The hexadecimal digit to convert (0-9, a-f, A-F).</param>
+      <returns>A number from 0 to 15 that corresponds to the specified hexadecimal digit.</returns>
+      <remarks>Calls <see cref="M:System.Uri.FromHex(System.Char)" />.</remarks>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="digit" /> is not a valid hexadecimal digit (0-9, a-f, A-F).</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.TryParseHexDigit(System.Char,System.Nullable{System.Int32}@)">
+      <summary>Tries to interpret a character as a hexadecimal digit and to return the value that this hexadecimal digit represents.</summary>
+      <param name="digit">The Unicode character to analyze.</param>
+      <param name="value">After the method has been successfully completed, it contains the value that <paramref name="digit" /> represents as a hexadecimal digit, otherwise <c>null</c>. The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if <paramref name="digit" /> represents a hexadecimal digit, otherwise <c>false</c>.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.TryParseDecimalDigit(System.Char,System.Nullable{System.Int32}@)">
+      <summary>Tries to interpret a character as a decimal digit (0-9) and to return the value that this decimal digit represents.</summary>
+      <param name="digit">The Unicode character to analyze.</param>
+      <param name="value">After the method has been successfully completed, it contains the value that <paramref name="digit" /> represents as a decimal digit, otherwise <c>null</c>. The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if <paramref name="digit" /> represents a decimal digit, otherwise <c>false</c>.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.TryParseBinaryDigit(System.Char,System.Nullable{System.Int32}@)">
+      <summary>Tries to interpret a character as a binary digit (0 or 1) and to return the value that this binary digit represents.</summary>
+      <param name="digit">The Unicode character to analyze.</param>
+      <param name="value">After the method has been successfully completed, it contains the value that <paramref name="digit" /> represents as a binary digit, otherwise <c>null</c>. The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if <paramref name="digit" /> represents a binary digit, otherwise <c>false</c>.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.ParseBinaryDigit(System.Char)">
+      <summary>Gets the value of a binary digit.</summary>
+      <param name="digit">The binary digit to convert (0 or 1).</param>
+      <returns>A number that corresponds to the specified binary digit.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="digit" /> is not a valid binary digit (0 or 1).</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.ParseDecimalDigit(System.Char)">
+      <summary>Gets the value of a decimal digit (0-9).</summary>
+      <param name="digit">The decimal digit to convert (0-9).</param>
+      <returns>A number from 0 to 9 that corresponds to the specified decimal digit.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="digit" /> is not a valid decimal digit (0-9).</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsAscii(System.Char)">
+      <summary>Indicates whether the Unicode character belongs to the ASCII character set.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is part of the ASCII character set, otherwise <c>false</c>.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsDecimalDigit(System.Char)">
+      <summary>Indicates whether the Unicode character is a decimal digit (0-9).</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="digit" /> represents a decimal digit, otherwise <c>false</c>.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsHexDigit(System.Char)">
+      <summary>Indicates whether the Unicode character is a hexadecimal digit (0-9, a-f, A-F).</summary>
+      <param name="character">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="character" /> represents a hexadecimal digit, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Uri.IsHexDigit(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsBinaryDigit(System.Char)">
+      <summary>Indicates whether the Unicode character is a binary digit (0 or 1).</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="digit" /> represents a binary digit, otherwise <c>false</c>.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsControl(System.Char)">
+      <summary>Indicates whether the Unicode character is categorized as a control character.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is categorized as a control character, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsControl(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsDigit(System.Char)">
+      <summary>Indicates whether the Unicode character is categorized as a member of the Unicode category "Decimal Digit Number".</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c>, if <paramref name="c" /> is categorized as a member of the Unicode category "Decimal Digit Number", otherwise <c>false</c>.</returns>
+      <remarks>
+        <para>
+Calls the <see cref="M:System.Char.IsDigit(System.Char)" /> method.
+</para>
+        <note type="important">
+The Unicode category "Decimal Digit Number" includes many more characters than the digits 0-9. Use the <see cref="M:FolkerKinzel.Strings.CharExtension.IsDecimalDigit(System.Char)" /> method if you want to check for the characters 0-9.
+</note>
+      </remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsHighSurrogate(System.Char)">
+      <summary>Indicates whether the Unicode character is a high surrogate.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is a high surrogate, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsHighSurrogate(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsLowSurrogate(System.Char)">
+      <summary>Indicates whether the Unicode character is a low surrogate.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is a low surrogate, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsLowSurrogate(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsSurrogate(System.Char)">
+      <summary>Indicates whether the Unicode character has a surrogate code unit.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" />  has a surrogate code unit, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsSurrogate(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsLetter(System.Char)">
+      <summary>Indicates whether the Unicode character is categorized as a Unicode letter.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is categorized as a Unicode letter, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsLetter(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsLetterOrDigit(System.Char)">
+      <summary>Indicates whether the Unicode character is categorized as a Unicode letter or decimal digit.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is categorized as a Unicode letter or decimal digit, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsLetterOrDigit(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsLower(System.Char)">
+      <summary>Indicates whether the Unicode character is categorized as a lowercase letter.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is categorized as a lowercase letter, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsLower(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsUpper(System.Char)">
+      <summary>Indicates whether the Unicode character is categorized as a uppercase letter.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is categorized as a uppercase letter, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsUpper(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsNumber(System.Char)">
+      <summary>Indicates whether the Unicode character is categorized as a number.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is categorized as a number, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsNumber(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsPunctuation(System.Char)">
+      <summary>Indicates whether the Unicode character is categorized as a punctuation mark.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is categorized as a punctuation mark, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsPunctuation(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsSeparator(System.Char)">
+      <summary>Indicates whether the Unicode character is categorized as a separator character.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is categorized as a separator character, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsSeparator(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsSymbol(System.Char)">
+      <summary>Indicates whether the Unicode character is categorized as a symbol character.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is categorized as a symbol character, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsSymbol(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsWhiteSpace(System.Char)">
+      <summary>Indicates whether the Unicode character is categorized as white space.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is categorized as white space, otherwise <c>false</c>.</returns>
+      <remarks>Calls <see cref="M:System.Char.IsWhiteSpace(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.ToLowerInvariant(System.Char)">
+      <summary>Converts the value of a Unicode character to its lowercase equivalent using the casing rules of the invariant culture.</summary>
+      <param name="c">The Unicode character to convert.</param>
+      <returns>The lowercase equivalent of the <paramref name="c" /> parameter, or the unchanged value of <paramref name="c" />, if <paramref name="c" /> is already lowercase or not alphabetic.</returns>
+      <remarks>Calls <see cref="M:System.Char.ToLowerInvariant(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.ToUpperInvariant(System.Char)">
+      <summary>Converts the value of a Unicode character to its uppercase equivalent using the casing rules of the invariant culture.</summary>
+      <param name="c">The Unicode character to convert.</param>
+      <returns>The uppercase equivalent of the <paramref name="c" /> parameter, or the unchanged value of <paramref name="c" />, if <paramref name="c" /> is already uppercase or not alphabetic.</returns>
+      <remarks>Calls <see cref="M:System.Char.ToUpperInvariant(System.Char)" />.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)">
+      <summary>Indicates whether the Unicode character is categorized as a newline character.</summary>
+      <param name="c">The Unicode character to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="c" /> is categorized as a newline character, otherwise <c>false</c>.</returns>
+      <remarks>
+        <para>
+The following characters are recognized as newline characters:
+</para>
+        <list type="bullet">
+          <item>
+CR: Carriage Return (U+000D)
+</item>
+          <item>
+LF: Line Feed (U+000A)
+</item>
+          <item>
+VT: Vertical Tab (U+000B)
+</item>
+          <item>
+FF: Form Feed (U+000C)
+</item>
+          <item>
+NEL: Next Line (U+0085)
+</item>
+          <item>
+LS: Line Separator (U+2028)
+</item>
+          <item>
+PS: Paragraph Separator (U+2029)
+</item>
+        </list>
+      </remarks>
+    </member>
+    <member name="T:FolkerKinzel.Strings.HashType">
+      <summary>Named constants to specify the type of hashcode for Char sequences.</summary>
+    </member>
+    <member name="F:FolkerKinzel.Strings.HashType.Ordinal">
+      <summary>Ordinal comparison of the characters.</summary>
+    </member>
+    <member name="F:FolkerKinzel.Strings.HashType.OrdinalIgnoreCase">
+      <summary>Ordinal comparison of the characters without taking upper and lower case into account.</summary>
+    </member>
+    <member name="F:FolkerKinzel.Strings.HashType.AlphaNumericIgnoreCase">
+      <summary>Only letters and decimal digits are hashed. The case is not considered.</summary>
+    </member>
+    <member name="T:FolkerKinzel.Strings.Polyfills.ReadOnlyMemoryPolyfillExtension">
+      <summary>Extension methods for the <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> structure, which are used in .NET Framework 4.5, .NET Standard 2.0 and  .NET Standard 2.1 as polyfills for methods from current .NET versions.</summary>
+      <remarks>The methods of this class should only be used in the extension method syntax to simulate the methods of the <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> structure, which exist in more modern frameworks.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlyMemoryPolyfillExtension.Trim(System.ReadOnlyMemory{System.Char})">
+      <summary>Removes all leading and trailing white space characters from a read-only character memory region.</summary>
+      <param name="memory">The source memory from which the characters are removed.</param>
+      <returns>The trimmed character memory region.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlyMemoryPolyfillExtension.TrimStart(System.ReadOnlyMemory{System.Char})">
+      <summary>Removes all leading white space characters from a read-only character memory region.</summary>
+      <param name="memory">The source memory from which the characters are removed.</param>
+      <returns>The trimmed character memory region.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlyMemoryPolyfillExtension.TrimEnd(System.ReadOnlyMemory{System.Char})">
+      <summary>Removes all trailing white space characters from a read-only character memory region.</summary>
+      <param name="memory">The source memory from which the characters are removed.</param>
+      <returns>The trimmed character memory region.</returns>
+    </member>
+    <member name="T:FolkerKinzel.Strings.Polyfills.ReadOnlySpanExtensionPolyfillExtension">
+      <summary>Extension methods, which act as Polyfills for the extension methods of the class <see cref="T:FolkerKinzel.Strings.ReadOnlySpanExtension" />.</summary>
+      <remarks>The Polyfills are available for .NET Framework 4.5 and .NET Standard 2.0.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanExtensionPolyfillExtension.LastIndexOf(System.ReadOnlySpan{System.Char},System.String,System.Int32,System.Int32,System.StringComparison)">
+      <summary>Specifies the  zero based index position of the last occurrence of a specified string in <paramref name="span" />. The search begins at a specified character position and runs backwards to the beginning of the character span for a specified number of character positions. A parameter specifies the type of comparison to be performed when searching for the specified string.</summary>
+      <param name="span">The span to search.</param>
+      <param name="value">The <see cref="T:System.String" /> to search for or <c>null</c>.</param>
+      <param name="startIndex">The start index of the search. The search continues from <paramref name="startIndex" /> to the beginning of <paramref name="span" />.</param>
+      <param name="count">The number of character positions to examine.</param>
+      <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
+      <returns>The zero-based start index of the <paramref name="value" /> parameter if this string was found, or -1 if it was not found or <paramref name="span" /> is empty.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="count" /> is a negative value
+</para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="span" /> is not <see cref="P:System.ReadOnlySpan`1.Empty" />, and <paramref name="startIndex" /> is a negative value.
+</para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="span" /> is not <see cref="P:System.ReadOnlySpan`1.Empty" />, and <paramref name="startIndex" /> is greater than the length of <paramref name="span" />.
+</para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="span" /> is not <see cref="P:System.ReadOnlySpan`1.Empty" />, and <paramref name="startIndex" /> + 1 - <paramref name="count" /> indicates a position that is not within <paramref name="span" />.
+</para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="span" /> is <see cref="P:System.ReadOnlySpan`1.Empty" />, and <paramref name="startIndex" /> is less than -1 or greater than 0.
+</para>
+      </exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="comparisonType" /> is not a defined value of the <see cref="T:System.StringComparison" /> enumeration.</exception>
+    </member>
+    <member name="T:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension">
+      <summary>Extension methods for the <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> structure, which are used in .NET Framework 4.5, .NET Standard 2.0 and  .NET Standard 2.1 as polyfills for methods from current .NET versions.</summary>
+      <remarks>The methods of this class should only be used in the extension method syntax to simulate the methods of the <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> structure, which exist in more modern frameworks.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.Contains(System.ReadOnlySpan{System.Char},System.String,System.StringComparison)">
+      <summary>Indicates whether a specified value occurs within a read-only character span.</summary>
+      <param name="span">The source span.</param>
+      <param name="value">The value to seek within the source span. <paramref name="value" /> can be <c>null</c>.</param>
+      <param name="comparisonType">An enumeration value that determines how the characters in <paramref name="span" /> and <paramref name="value" /> are compared.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> occurs within the span, otherwise <c>false</c>.</returns>
+      <remarks>Available for .NET Framework 4.5 and .NET Standard 2.0.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.Contains(System.ReadOnlySpan{System.Char},System.Char)">
+      <summary>Indicates whether a specified Unicode character is found in a read-only span. MemoryExtensions.IndexOf(this ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) is used for the comparison.</summary>
+      <param name="span">The span to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <returns>
+        <c>true</c> if found, <c>false</c> otherwise.</returns>
+      <remarks>Available for .NET Framework 4.5, .NET Standard 2.0 and .NET Standard 2.1.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.LastIndexOf(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.StringComparison)">
+      <summary>Specifies the zero-based index of the last occurrence of a specified string in <paramref name="span" />. A parameter specifies the type of search for the specified string.</summary>
+      <param name="span">The character span to search.</param>
+      <param name="value">The character sequence to search for.</param>
+      <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
+      <returns>The zero-based index of <paramref name="value" /> if that character sequence is found, or -1 if it is not.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="comparisonType" /> is not a defined value of the <see cref="T:System.StringComparison" /> enumeration.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.LastIndexOf(System.ReadOnlySpan{System.Char},System.String,System.StringComparison)">
+      <summary>Specifies the zero-based index of the last occurrence of a specified string in <paramref name="span" />. A parameter specifies the type of search for the specified string.</summary>
+      <param name="span">The character span to search.</param>
+      <param name="value">The <see cref="T:System.String" /> to search for or <c>null</c>.</param>
+      <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
+      <returns>The zero-based index of <paramref name="value" /> if that character sequence is found, or -1 if it is not.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="comparisonType" /> is not a defined value of the <see cref="T:System.StringComparison" /> enumeration.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.StartsWith(System.ReadOnlySpan{System.Char},System.String)">
+      <summary>Indicates whether a read-only span of characters starts with the specified <see cref="T:System.String" />.</summary>
+      <param name="span">The source span.</param>
+      <param name="value">Der <see cref="T:System.String" /> to compare with the start of the source span.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> matches the start of <paramref name="span" />, otherwise <c>false</c>.</returns>
+      <remarks>
+        <para>
+The method performs an ordinal character comparison. If <paramref name="value" /> is <c>null</c> or <see cref="F:System.String.Empty" />, <c>true</c> is returned.
+</para>
+        <para>
+This overload is useful because the support for the implicit conversion from <see cref="T:System.String" /> to <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> only starts with .NET Standard 2.1.
+</para>
+      </remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.StartsWith(System.ReadOnlySpan{System.Char},System.String,System.StringComparison)">
+      <summary>Indicates whether a read-only character span begins with a specified <see cref="T:System.String" /> when compared using a specified <see cref="T:System.StringComparison" /> value.</summary>
+      <param name="span">The source span.</param>
+      <param name="value">Der <see cref="T:System.String" /> to compare with the start of the source span.</param>
+      <param name="comparisonType">An enumeration value that determines how <paramref name="span" /> and <paramref name="value" /> are compared.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> matches the start of <paramref name="span" />, otherwise <c>false</c>.</returns>
+      <remarks>
+        <para>
+The method performs an ordinal character comparison. If <paramref name="value" /> is <c>null</c> or <see cref="F:System.String.Empty" />, <c>true</c> is returned.
+</para>
+        <para>
+This overload is useful because the support for the implicit conversion from <see cref="T:System.String" /> to <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> only starts with .NET Standard 2.1.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="comparisonType" /> is not a defined value of the <see cref="T:System.StringComparison" /> enumeration.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.EndsWith(System.ReadOnlySpan{System.Char},System.String)">
+      <summary>Indicates whether <paramref name="s" /> ends with the specified <see cref="T:System.String" />.</summary>
+      <param name="span">The source span.</param>
+      <param name="value">The <see cref="T:System.String" /> to compare with the end of the source span.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> matches the end of <paramref name="span" />, otherwise <c>false</c>.</returns>
+      <remarks>
+        <para>
+The method performs an ordinal character comparison. If <paramref name="value" /> is <c>null</c> or <see cref="F:System.String.Empty" />, <c>true</c> is returned.
+</para>
+        <para>
+This overload is useful because the support for the implicit conversion from <see cref="T:System.String" /> to <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> only starts with .NET Standard 2.1.
+</para>
+      </remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.EndsWith(System.ReadOnlySpan{System.Char},System.String,System.StringComparison)">
+      <summary>Indicates whether a read-only character span ends with a specified <see cref="T:System.String" /> when compared using a specified <see cref="T:System.StringComparison" /> value.</summary>
+      <param name="span">The source span.</param>
+      <param name="value">The <see cref="T:System.String" /> to compare with the end of the source span.</param>
+      <param name="comparisonType">An enumeration value that determines how <paramref name="span" /> and <paramref name="value" /> are compared.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> matches the end of <paramref name="span" />, otherwise <c>false</c>.</returns>
+      <remarks>
+        <para>
+If <paramref name="value" /> is <c>null</c> or <see cref="F:System.String.Empty" />, <c>true</c> is returned.
+</para>
+        <para>
+This overload is useful because the support for the implicit conversion from <see cref="T:System.String" /> to <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> only starts with .NET Standard 2.1.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="comparisonType" /> is not a defined value of the <see cref="T:System.StringComparison" /> enumeration.</exception>
+    </member>
+    <member name="T:FolkerKinzel.Strings.Polyfills.StringBuilderExtensionPolyfillExtension">
+      <summary>Extension methods, which act as Polyfills for the extension methods of the class <see cref="T:FolkerKinzel.Strings.StringBuilderExtension" />.</summary>
+      <remarks>The polyfills are available for .NET Framework 4.5 and .NET Standard 2.0.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderExtensionPolyfillExtension.ReplaceWhiteSpaceWith(System.Text.StringBuilder,System.String,System.Boolean)">
+      <summary>Replaces in <paramref name="builder" /> all sequences of white space with <paramref name="replacement" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="replacement">A <see cref="T:System.String" /> that is the replacement for all sequences of white space or <c>null</c> to completely remove any white space.</param>
+      <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the replacement. The default value is <c>false</c>.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <remarks>
+        <para>
+The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identify white space characters and works more thoroughly with it than <see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+</para>
+        <para>
+          <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters.
+</para>
+        <para>
+This overload is useful because the support for the implicit conversion from <see cref="T:System.String" /> to <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> only starts with .NET Standard 2.1.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderExtensionPolyfillExtension.ReplaceWhiteSpaceWith(System.Text.StringBuilder,System.String,System.Int32,System.Boolean)">
+      <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref name="startIndex" /> and extends to the end of <paramref name="builder" />, all sequences of white space with <paramref name="replacement" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="replacement">A <see cref="T:System.String" /> that is the replacement for all sequences of white space or <c>null</c> to completely remove all white space.</param>
+      <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the replacement. The default value is <c>false</c>.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the replacement starts.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <remarks>
+        <para>
+The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identify white space characters and works more thoroughly with it than <see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+</para>
+        <para>
+          <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters.
+</para>
+        <para>
+This overload is useful because the support for the implicit conversion from <see cref="T:System.String" /> to <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> only starts with .NET Standard 2.1.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="startIndex" /> is less than zero or greater than the number of characters in <paramref name="builder" />.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderExtensionPolyfillExtension.ReplaceWhiteSpaceWith(System.Text.StringBuilder,System.String,System.Int32,System.Int32,System.Boolean)">
+      <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref name="startIndex" /> and which is <paramref name="count" /> characters long, all sequences of white space with <paramref name="replacement" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="replacement">A <see cref="T:System.String" /> that is the replacement for all sequences of white space or <c>null</c> to completely remove all white space.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the replacement starts.</param>
+      <param name="count">The length of the section in which the replacements take place.</param>
+      <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the replacement. The default value is <c>false</c>.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <remarks>
+        <para>
+The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identify white space characters and works more thoroughly with it than <see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+</para>
+        <para>
+          <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters.
+</para>
+        <para>
+This overload is useful because the support for the implicit conversion from <see cref="T:System.String" /> to <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> only starts with .NET Standard 2.1.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero or larger than the number of characters in <paramref name="builder" /></para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number of characters in <paramref name="builder" />.
+</para>
+      </exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderExtensionPolyfillExtension.NormalizeNewLinesTo(System.Text.StringBuilder,System.String)">
+      <summary>Replaces all newlines in <paramref name="builder" /> with <paramref name="newLine" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="newLine">A <see cref="T:System.String" /> to replace each newline or <c>null</c> to remove all newlines.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <remarks>
+        <para>
+          <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters. The sequences CRLF and LFCR are treated as one line break.
+</para>
+        <note type="caution">
+This method differs from <see cref="M:FolkerKinzel.Strings.StringBuilderExtension.ReplaceLineEndings(System.Text.StringBuilder,System.String)" /> in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line break.
+</note>
+        <para>
+This overload is useful because the support for the implicit conversion from <see cref="T:System.String" /> to <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> only starts with .NET Standard 2.1.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="T:FolkerKinzel.Strings.Polyfills.StringBuilderPolyfillExtension">
+      <summary>Extension methods for the <see cref="T:System.Text.StringBuilder" /> class, which are used in .NET Framework 4.5 and .NET Standard 2.0 as polyfills for methods from current .NET versions.</summary>
+      <remarks>The methods of this class should only be used in the extension method syntax to simulate the original methods of the <see cref="T:System.String" /> class, which exist in more modern frameworks. To match the behavior of the original methods, these extension methods throw a <see cref="T:System.NullReferenceException" /> when called on <c>null</c>.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderPolyfillExtension.Append(System.Text.StringBuilder,System.Text.StringBuilder,System.Int32,System.Int32)">
+      <summary>Appends a copy of a sequence of Unicode characters that comes from a <see cref="T:System.Text.StringBuilder" /> to the existing content of <paramref name="builder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which the characters are appended.</param>
+      <param name="value">The <see cref="T:System.Text.StringBuilder" /> from which the characters are copied.</param>
+      <param name="startIndex">The zero-based index in <paramref name="value" /> at which the copy operation starts.</param>
+      <param name="count">The number of Unicode characters to copy.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero
+</para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number of characters in <paramref name="value" />.
+</para>
+      </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> is <c>null</c> and the values of <paramref name="startIndex" /> or <paramref name="count" /> are  greater than zero.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderPolyfillExtension.Append(System.Text.StringBuilder,System.ReadOnlySpan{System.Char})">
+      <summary>Appends the string representation of a specified read-only character span to a <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which the characters are appended.</param>
+      <param name="value">The read-only character span to append.</param>
+      <returns>A reference to <paramref name="builder" /> after the append operation is completed.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder" />
+            würde <see cref="P:System.Text.StringBuilder.MaxCapacity" /> überschritten.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderPolyfillExtension.Insert(System.Text.StringBuilder,System.Int32,System.ReadOnlySpan{System.Char})">
+      <summary>Inserts the content of a read-only character span at the specified index position into <paramref name="builder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> into which the characters are inserted.</param>
+      <param name="index">The zero-based index in <paramref name="builder" /> at which the characters are inserted.</param>
+      <param name="value">The character span to insert.</param>
+      <returns>A reference to <paramref name="builder" /> after the insert operation is completed.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> is less than zero or greater than the number of characters in <paramref name="builder" />.</exception>
+    </member>
+    <member name="T:FolkerKinzel.Strings.Polyfills.StringExtensionPolyfillExtension">
+      <summary>Extension methods, which act as Polyfills for the extension methods of the class <see cref="T:FolkerKinzel.Strings.StringExtension" />.</summary>
+      <remarks>The polyfills are available for .NET Framework 4.5 and .NET Standard 2.0.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringExtensionPolyfillExtension.ReplaceWhiteSpaceWith(System.String,System.String,System.Boolean)">
+      <summary>Generates a <see cref="T:System.String" /> in which all sequences of white space are replaced by <paramref name="replacement" />.</summary>
+      <param name="s">The source <see cref="T:System.String" />.</param>
+      <param name="replacement">A <see cref="T:System.String" />, which replaces the white space or <c>null</c> to remove all white space.</param>
+      <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the replacement. The default value is <c>false</c>.</param>
+      <returns>A new <see cref="T:System.String" /> in which all sequences of white space are replaced by <paramref name="replacement" />. If <paramref name="s" /> doesn't contain a white space character, <paramref name="s" /> is returned.</returns>
+      <remarks>
+        <para>
+The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identify white space characters and works more thoroughly with it than <see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+</para>
+        <para>
+          <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters.
+</para>
+        <para>
+This overload is useful because the support for the implicit conversion from <see cref="T:System.String" /> to <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> only starts with .NET Standard 2.1.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringExtensionPolyfillExtension.NormalizeNewLinesTo(System.String,System.String)">
+      <summary>Generates a <see cref="T:System.String" /> in which all newlines are replaced by <paramref name="newLine" />.</summary>
+      <param name="s">The source <see cref="T:System.String" />.</param>
+      <param name="newLine">A <see cref="T:System.String" /> that is the replacement for all newlines or <c>null</c> to completely remove all newline characters.</param>
+      <returns>A new <see cref="T:System.String" /> in which all newlines are replaced by <paramref name="replacement" />. If <paramref name="s" /> doesn't contain a newline character, <paramref name="s" /> is returned.</returns>
+      <remarks>
+        <para>
+          <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters. The sequences CRLF and LFCR are treated as one line break.
+</para>
+        <note type="caution">
+This method differs from <see cref="M:FolkerKinzel.Strings.StringExtension.ReplaceLineEndings(System.String,System.String)" /> in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line break.
+</note>
+        <para>
+This overload is useful because the support for the implicit conversion from <see cref="T:System.String" /> to <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> only starts with .NET Standard 2.1.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="T:FolkerKinzel.Strings.Polyfills.StringPolyfillExtension">
+      <summary>Extension methods for the <see cref="T:System.String" /> class, which are used in .NET Framework 4.5 and .NET Standard 2.0 as polyfills for methods from current .NET versions.</summary>
+      <remarks>To match the behavior of the original methods, these extension methods throw a <see cref="T:System.NullReferenceException" /> when called on a <c>null</c> string.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringPolyfillExtension.Contains(System.String,System.Char,System.StringComparison)">
+      <summary>Returns a value indicating whether a specified character occurs within this <see cref="T:System.String" />, using the specified comparison rules.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <param name="comparisonType">An enumeration value that specifies the rules for the comparison.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="comparisonType" /> is not a defined value of the <see cref="T:System.StringComparison" /> enum.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringPolyfillExtension.Contains(System.String,System.Char)">
+      <summary>Returns a value indicating whether a specified character appears in the <see cref="T:System.String" />.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+      <remarks>The method performs an ordinal character comparison.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringPolyfillExtension.Contains(System.String,System.String,System.StringComparison)">
+      <summary>Returns a value indicating whether a specified <see cref="T:System.String" /> occurs within <paramref name="s" />, using the specified comparison rules.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="value">The <see cref="T:System.String" /> to search for.</param>
+      <param name="comparisonType">An enumeration value that specifies the rules for the comparison.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringPolyfillExtension.IndexOf(System.String,System.Char,System.StringComparison)">
+      <summary>Returns the zero-based index of the first occurrence of the specified Unicode character in this <see cref="T:System.String" />. A parameter specifies the type of search to use for the specified character.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <param name="comparisonType">An enumeration value that specifies the rules for the search.</param>
+      <returns>The zero-based index of <paramref name="value" /> if that character is found, or -1 if it is not.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="comparisonType" /> is not a defined value of the <see cref="T:System.StringComparison" /> enum.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringPolyfillExtension.Split(System.String,System.Char,System.StringSplitOptions)">
+      <summary>Splits a <see cref="T:System.String" /> into substrings based on a specified delimiting character and, optionally, options.</summary>
+      <param name="s">The <see cref="T:System.String" /> to split.</param>
+      <param name="separator">A character that delimits the substrings in <paramref name="s" />.</param>
+      <param name="options">An enumeration value that specifies whether to include empty substrings.</param>
+      <returns>An array whose elements contain the substrings from <paramref name="s" /> that are delimited by <paramref name="separator" />.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringPolyfillExtension.Split(System.String,System.Char,System.Int32,System.StringSplitOptions)">
+      <summary>Splits a <see cref="T:System.String" /> into a maximum number of substrings based on the provided character separator, optionally omitting empty substrings from the result.</summary>
+      <param name="s">The <see cref="T:System.String" /> to split.</param>
+      <param name="separator">A character that delimits the substrings in <paramref name="s" />.</param>
+      <param name="count">The maximum number of elements expected in the array.</param>
+      <param name="options">An enumeration value that specifies whether to include empty substrings.</param>
+      <returns>An array that contains at most <paramref name="count" /> substrings from <paramref name="s" /> that are delimited by <paramref name="separator" />.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="count" /> is negative.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringPolyfillExtension.Split(System.String,System.String,System.Int32,System.StringSplitOptions)">
+      <summary>Splits a <see cref="T:System.String" /> into a maximum number of substrings based on the provided separator, optionally omitting empty substrings from the result.</summary>
+      <param name="s">The <see cref="T:System.String" /> to split.</param>
+      <param name="separator">A <see cref="T:System.String" /> that delimits the substrings in <paramref name="s" />.</param>
+      <param name="count">The maximum number of elements expected in the array.</param>
+      <param name="options">An enumeration value that specifies whether to include empty substrings.</param>
+      <returns>An array that contains at most <paramref name="count" /> substrings from <paramref name="s" /> that are delimited by <paramref name="separator" />.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="count" /> is negative.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringPolyfillExtension.Split(System.String,System.String,System.StringSplitOptions)">
+      <summary>Splits a <see cref="T:System.String" /> into substrings based on the provided separator, optionally omitting empty substrings from the result.</summary>
+      <param name="s">The <see cref="T:System.String" /> to split.</param>
+      <param name="separator">A <see cref="T:System.String" /> that delimits the substrings in <paramref name="s" />.</param>
+      <param name="options">An enumeration value that specifies whether to include empty substrings.</param>
+      <returns>An array whose elements contain the substrings from <paramref name="s" /> that are delimited by <paramref name="separator" />.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringPolyfillExtension.StartsWith(System.String,System.Char)">
+      <summary>Indicates whether <paramref name="s" /> starts with the specified character.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="value">The Unicode character to compare.</param>
+      <returns>
+        <c>true</c> if value matches the beginning of <paramref name="s" />; otherwise, <c>false</c>.</returns>
+      <remarks>This method performs a word (case-sensitive and culture-sensitive) comparison using the current culture.</remarks>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringPolyfillExtension.EndsWith(System.String,System.Char)">
+      <summary>Indicates whether the end of <paramref name="s" /> matches the specified character.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="value">The Unicode character to compare.</param>
+      <returns>
+        <c>true</c> if value matches the end of <paramref name="s" />; otherwise, <c>false</c>.</returns>
+      <remarks>This method performs a word (case-sensitive and culture-sensitive) comparison using the current culture.</remarks>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringPolyfillExtension.Replace(System.String,System.String,System.String,System.StringComparison)">
+      <summary>Returns a new <see cref="T:System.String" /> in which all occurrences of a specified <see cref="T:System.String" /> in the current <see cref="T:System.String" /> are replaced with another specified <see cref="T:System.String" />, using the provided comparison type.</summary>
+      <param name="s">The source <see cref="T:System.String" />.</param>
+      <param name="oldValue">The <see cref="T:System.String" /> to be replaced.</param>
+      <param name="newValue">The <see cref="T:System.String" /> to replace all occurrences of <paramref name="oldValue" />.</param>
+      <param name="comparisonType">An enumeration value that specifies the rules for the comparison.</param>
+      <returns>A <see cref="T:System.String" /> that is equivalent to <paramref name="s" /> except that all instances of <paramref name="oldValue" /> are replaced with <paramref name="newValue" />. If <paramref name="oldValue" /> is not found in <paramref name="s" />, the method returns <paramref name="s" /> unchanged.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="oldValue" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <para>
+          <paramref name="oldValue" /> is <see cref="F:System.String.Empty" /></para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="comparisonType" /> is not a defined value of the <see cref="T:System.StringComparison" /> enumeration.
+</para>
+      </exception>
+    </member>
+    <member name="T:FolkerKinzel.Strings.Properties.Res">
+      <summary />
+    </member>
+    <member name="P:FolkerKinzel.Strings.Properties.Res.ResourceManager">
+      <summary />
+    </member>
+    <member name="P:FolkerKinzel.Strings.Properties.Res.Culture">
+      <summary />
+    </member>
+    <member name="P:FolkerKinzel.Strings.Properties.Res.NoBinaryDigit">
+      <summary />
+    </member>
+    <member name="P:FolkerKinzel.Strings.Properties.Res.NoDecimalDigit">
+      <summary />
+    </member>
+    <member name="P:FolkerKinzel.Strings.Properties.Res.NoEmptyStringAllowed">
+      <summary />
+    </member>
+    <member name="P:FolkerKinzel.Strings.Properties.Res.UndefinedEnumValue">
+      <summary />
+    </member>
+    <member name="T:FolkerKinzel.Strings.ReadOnlySpanExtension">
+      <summary>Extension methods for the <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> structure.</summary>
+      <threadsafety static="true" instance="false" />
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.ContainsAny(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+      <summary>Indicates whether a read-only span of Unicode characters contains one of the Unicode characters that are passed to the method in another span.</summary>
+      <param name="span">The span to search.</param>
+      <param name="values">A read-only span, which contains the Unicode characters to search for.</param>
+      <returns>
+        <c>true</c> if <paramref name="span" /> contains one of the characters passed with <paramref name="values" />. If <paramref name="span" /> or <paramref name="chars" /> are empty, <c>false</c> is returned.</returns>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used to avoid performance issues.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.ContainsAny(System.ReadOnlySpan{System.Char},System.Char,System.Char)">
+      <summary>Indicates whether a read-only character span contains one of the two characters that are passed to the method as arguments.</summary>
+      <param name="span">The span to examine.</param>
+      <param name="value0">The first character to search for.</param>
+      <param name="value1">The second character to search for.</param>
+      <returns>
+        <c>true</c> if one of the characters to be searched for is found in the span, otherwise <c>false</c>.</returns>
+      <remarks>MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)  is used for the comparison.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.ContainsAny(System.ReadOnlySpan{System.Char},System.Char,System.Char,System.Char)">
+      <summary>Indicates whether a read-only character span contains one of the 3 characters that are passed to the method as arguments.</summary>
+      <param name="span">The span to examine.</param>
+      <param name="value0">The first character to search for.</param>
+      <param name="value1">The second character to search for.</param>
+      <param name="value2">The third character to search for.</param>
+      <returns>
+        <c>true</c> if one of the characters to be searched for is found in the span, otherwise <c>false</c>.</returns>
+      <remarks>MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T)  is used for the comparison.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.ContainsNewLine(System.ReadOnlySpan{System.Char})">
+      <summary>Indicates whether a read-only character span contains a newline character.</summary>
+      <param name="span">The span to search.</param>
+      <returns>
+        <c>true</c> if <paramref name="span" /> contains a newline character, otherwise <c>false</c>.</returns>
+      <remarks>
+        <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used for the comparison.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.ContainsWhiteSpace(System.ReadOnlySpan{System.Char})">
+      <summary>Indicates whether a read-only span of characters contains white space.</summary>
+      <param name="span">The span to search.</param>
+      <returns>
+        <c>true</c> if <paramref name="span" /> contains white space, otherwise <c>false</c>.</returns>
+      <remarks>
+        <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> is used for the comparison.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.EndsWith(System.ReadOnlySpan{System.Char},System.Char)">
+      <summary>Indicates whether a read-only character span ends with a specified Unicode character.</summary>
+      <param name="span">The span to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> matches the end of <paramref name="span" />, otherwise <c>false</c>.</returns>
+      <remarks>The method performs an ordinal character comparison.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.GetPersistentHashCode(System.ReadOnlySpan{System.Char},FolkerKinzel.Strings.HashType)">
+      <summary>Generates the same <see cref="T:System.Int32" /> hash code for an identical string of characters each time the program is run.</summary>
+      <param name="span">The Char sequence to be hashed.</param>
+      <param name="hashType">The kind of hashcode to be generated.</param>
+      <returns>The hashcode.</returns>
+      <remarks>
+        <para>
+The method <see cref="M:System.String.GetHashCode">String.GetHashCode()</see> returns a different hash code for an identical string with each program run for security reasons. Apart from the fact that the hash algorithm of <see cref="M:System.String.GetHashCode">String.GetHashCode()</see> could be different in different framework versions, it makes no sense to use the return value of <see cref="M:System.String.GetHashCode" /> for reuse. The alternatives, e.g. <see cref="T:System.Security.Cryptography.MD5" /> or <see cref="T:System.Security.Cryptography.SHA256" />, use more storage space and are slower. This method offers a slim alternative that is suitable for hashing very short strings that are not used in a security-critical context.
+</para>
+        <para>
+The hashcode generated by this method is not identical to the hashcode generated by the .NET Framework 4.0, because it uses roundshifting to preserve more information.
+</para>
+        <para>
+The hashcodes generated with different values for <paramref name="hashType" /> may provide different hashcodes for an identical Char sequence and MUST therefore not be mixed.
+</para>
+        <para>
+Do not use the hashcodes generated by this method for security-critical purposes (such as hashing passwords)!
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashType" /> is not a defined value of the <see cref="T:FolkerKinzel.Strings.HashType" /> enum.</exception>
+      <example>
+        <code language="cs" source="..\Examples\Example.cs" />
+      </example>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.GetTrimmedLength(System.ReadOnlySpan{System.Char})">
+      <summary>Returns the length that the read-only span would have without trailing white space.</summary>
+      <param name="span">The read-only span of Unicode characters to examine.</param>
+      <returns>The length that the read-only span would have without trailing white space.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.GetTrimmedStart(System.ReadOnlySpan{System.Char})">
+      <summary>Returns the index of the first non-white-space character in the span.</summary>
+      <param name="span">The read-only span of Unicode characters to examine.</param>
+      <returns>The index of the first non-white-space character found in the span. If the span is empty or consists only of white space, the length of the span is returned.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.IndexOfAny(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+      <summary>Searches for the zero-based index of the first occurrence of one of the specified Unicode characters.</summary>
+      <param name="span">The span to examine.</param>
+      <param name="values">A read-only span, which contains the characters to search for.</param>
+      <returns>The zero-based index of the first occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is an empty span, the method returns -1.</returns>
+      <remarks>
+        <para>
+This specialization of the extension method MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the data type <see cref="T:System.Char" /> is required to avoid performance problems.
+</para>
+        <para>
+If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used.
+</para>
+      </remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.IsAscii(System.ReadOnlySpan{System.Char})">
+      <summary>Indicates whether the read-only character span contains Unicode characters that do not belong to the ASCII character set.</summary>
+      <param name="span">A read-only span of Unicode characters.</param>
+      <returns>
+        <c>false</c> if <paramref name="span" /> contains a Unicode character, which doesn't belong to the ASCII character set, otherwise <c>true</c>.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.LastIndexOf(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.Int32,System.Int32,System.StringComparison)">
+      <summary>Specifies the  zero based index position of the last occurrence of a specified string in <paramref name="span" />. The search begins at a specified character position and runs backwards to the beginning of the character span for a specified number of character positions. A parameter specifies the type of comparison to be performed when searching for the specified string.</summary>
+      <param name="span">The character span to search.</param>
+      <param name="value">The character span to search for.</param>
+      <param name="startIndex">The start index of the search. The search continues from <paramref name="startIndex" /> to the beginning of <paramref name="span" />.</param>
+      <param name="count">The number of character positions to examine.</param>
+      <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
+      <returns>The zero-based start index of the <paramref name="value" /> parameter if this string was found, or -1 if it was not found or <paramref name="span" /> is empty.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="count" /> is a negative value
+</para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="span" /> is not <see cref="P:System.ReadOnlySpan`1.Empty" />, and <paramref name="startIndex" /> is a negative value.
+</para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="span" /> is not <see cref="P:System.ReadOnlySpan`1.Empty" />, and <paramref name="startIndex" /> is greater than the length of <paramref name="span" />.
+</para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="span" /> is not <see cref="P:System.ReadOnlySpan`1.Empty" />, and <paramref name="startIndex" /> + 1 - <paramref name="count" /> indicates a position that is not within <paramref name="span" />.
+</para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="span" /> is <see cref="P:System.ReadOnlySpan`1.Empty" />, and <paramref name="startIndex" /> is less than -1 or greater than 0.
+</para>
+      </exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="comparisonType" /> is not a defined value of the <see cref="T:System.StringComparison" /> enum.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.LastIndexOfAny(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+      <summary>Searches for the zero-based index of the last occurrence of one of the specified Unicode characters.</summary>
+      <param name="span">The span to examine.</param>
+      <param name="values">A read-only span, which contains the characters to search for.</param>
+      <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is an empty span, the method returns -1.</returns>
+      <remarks>
+        <para>
+This specialization of the extension method MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the data type <see cref="T:System.Char" /> is required to avoid performance problems.
+</para>
+        <para>
+If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])" /> is used.
+</para>
+      </remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.LastIndexOfAny(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.Int32,System.Int32)">
+      <summary>Returns the zero-based index position of the last occurrence of one of the specified characters in <paramref name="span" />. The search begins at a specified index and runs for a specified number of character positions backwards to the beginning of the span.</summary>
+      <param name="span">The span to search.</param>
+      <param name="values">A read-only character span that contains the characters to search for.</param>
+      <param name="startIndex">The start index of the search. The search is done backwards to the beginning of <paramref name="span" />.</param>
+      <param name="count">The number of characters positions to examine in <paramref name="span" />.</param>
+      <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in the specified part of <paramref name="span" /> or -1 if none of these characters have been found in this area.</returns>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used to avoid performance issues.</remarks>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="span" /> is not <see cref="P:System.ReadOnlySpan`1.Empty" /> and <paramref name="startIndex" /> is less than zero or greater than or equal to the length of <paramref name="span" /></para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="span" /> is not <see cref="P:System.ReadOnlySpan`1.Empty" /> and <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
+</para>
+      </exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.StartsWith(System.ReadOnlySpan{System.Char},System.Char)">
+      <summary>Indicates whether a read-only character span begins with the specified Unicode character.</summary>
+      <param name="span">The span to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> matches the beginning of <paramref name="span" />, otherwise <c>false</c>.</returns>
+      <remarks>The method performs an ordinal character comparison.</remarks>
+    </member>
+    <member name="T:FolkerKinzel.Strings.StaticStringMethod">
+      <summary>Simulates static methods of the <see cref="T:System.String" /> class for .NET versions in which they are not available, and forwards the method calls in .NET versions in which the methods are available directly to the BCL methods.</summary>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StaticStringMethod.Create``1(System.Int32,``0,System.Buffers.SpanAction{System.Char,``0})">
+      <summary>Creates a new string with a specified length and, once created, initializes it using the specified callback.</summary>
+      <typeparam name="TState">The type of the element to be passed to <paramref name="action" />.</typeparam>
+      <param name="length">The length of the <see cref="T:System.String" /> to be created.</param>
+      <param name="state">The element to be passed to <paramref name="action" />.</param>
+      <param name="action">A callback to initialize the string.</param>
+      <returns>The <see cref="T:System.String" /> created.</returns>
+      <remarks>The method simulates the static method String.Create&lt;TState&gt;(int, TState, SpanAction&lt;char,TState&gt;). In newer .NET versions, the call is forwarded directly to the existing method of the <see cref="T:System.String" /> class. In .NET Framework and .NET Standard 2.0, the simulation makes it possible, when creating short <see cref="T:System.String" />s, to have only one heap allocation.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="action" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="length" /> is negative.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StaticStringMethod.Concat(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+      <summary>Concatenates the string representations of four specified read-only character spans.</summary>
+      <param name="str0">The first read-only character span to concatenate.</param>
+      <param name="str1">The second read-only character span to concatenate.</param>
+      <param name="str2">The third read-only character span to concatenate.</param>
+      <param name="str3">The fourth read-only character span to concatenate.</param>
+      <returns>The concatenated string representations of the values of <paramref name="str0" />, <paramref name="str1" />, <paramref name="str2" /> and <paramref name="str3" />.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StaticStringMethod.Concat(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+      <summary>Concatenates the string representations of three specified read-only character spans.</summary>
+      <param name="str0">The first read-only character span to concatenate.</param>
+      <param name="str1">The second read-only character span to concatenate.</param>
+      <param name="str2">The third read-only character span to concatenate.</param>
+      <returns>The concatenated string representations of the values of <paramref name="str0" />, <paramref name="str1" /> and <paramref name="str2" />.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StaticStringMethod.Concat(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+      <summary>Concatenates the string representations of two specified read-only character spans.</summary>
+      <param name="str0">The first read-only character span to concatenate.</param>
+      <param name="str1">The first read-only character span to concatenate.</param>
+      <returns>The concatenated string representations of the values of <paramref name="str0" /> and <paramref name="str1" />.</returns>
+    </member>
+    <member name="T:FolkerKinzel.Strings.StringBuilderExtension">
+      <summary>Extension methods for the <see cref="T:System.Text.StringBuilder" /> class.</summary>
+      <threadsafety static="true" instance="false" />
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendLine(System.Text.StringBuilder,System.ReadOnlySpan{System.Char})">
+      <summary>
+            Fügt eine Kopie der angegebenen schreibgeschützten Zeichenspanne gefolgt vom Standardzeilenabschlusszeichen 
+            am Ende eines <see cref="T:System.Text.StringBuilder" />-Objekts an.
+            </summary>
+      <param name="builder">Der <see cref="T:System.Text.StringBuilder" />, an den Zeichen angefügt werden.</param>
+      <param name="value">Die anzufügende schreibgeschützte Zeichenspanne.</param>
+      <returns>Ein Verweis auf <paramref name="builder" />, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="builder" /> ist <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder" />
+            würde <see cref="P:System.Text.StringBuilder.MaxCapacity" /> überschritten.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendLine(System.Text.StringBuilder,System.ReadOnlyMemory{System.Char})">
+      <summary>
+            Fügt eine Kopie des angegebenen schreibgeschützten Zeichenspeichers gefolgt vom Standardzeilenabschlusszeichen 
+            am Ende eines <see cref="T:System.Text.StringBuilder" />-Objekts an.
+            </summary>
+      <param name="builder">Der <see cref="T:System.Text.StringBuilder" />, an den Zeichen angefügt werden.</param>
+      <param name="value">Der anzufügende schreibgeschützte Zeichenspeicher.</param>
+      <returns>Ein Verweis auf <paramref name="builder" />, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="builder" /> ist <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder" />
+            würde <see cref="P:System.Text.StringBuilder.MaxCapacity" /> überschritten.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.Contains(System.Text.StringBuilder,System.Char)">
+      <summary>Indicates whether a specified Unicode character is found in a <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
+      <remarks>The method performs an ordinal character comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ContainsNewLine(System.Text.StringBuilder)">
+      <summary>Indicates whether the <see cref="T:System.Text.StringBuilder" /> contains a newline character.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <returns>
+        <c>true</c> if <paramref name="builder" /> contains a newline character, otherwise <c>false</c>.</returns>
+      <remarks>
+        <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ContainsNewLine(System.Text.StringBuilder,System.Int32)">
+      <summary>Examines a section of the <see cref="T:System.Text.StringBuilder" /> that begins at <paramref name="startIndex" /> to see whether it contains a newline character.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the examination begins.</param>
+      <returns>
+        <c>true</c> if the specified section in <paramref name="builder" /> contains a newline character, otherwise <c>false</c>.</returns>
+      <remarks>
+        <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="startIndex" /> is less than zero or greater than the number of characters in <paramref name="builder" />.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ContainsNewLine(System.Text.StringBuilder,System.Int32,System.Int32)">
+      <summary>Examines a section of the <see cref="T:System.Text.StringBuilder" /> that begins at <paramref name="startIndex" /> and includes <paramref name="count" /> characters to determine whether this section contains a newline character.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the examination begins.</param>
+      <param name="count">The number of character positions to examine.</param>
+      <returns>
+        <c>true</c> if the specified section in <paramref name="builder" /> contains a newline character, otherwise <c>false</c>.</returns>
+      <remarks>
+        <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero or larger than the number of characters in <paramref name="builder" /></para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number of characters in <paramref name="builder" />.
+</para>
+      </exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ContainsNonAscii(System.Text.StringBuilder)">
+      <summary>Indicates whether the <see cref="T:System.Text.StringBuilder" /> contains Unicode characters that do not belong to the ASCII character set.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is examined.</param>
+      <returns>
+        <c>true</c> if <paramref name="builder" /> contains a Unicode character, which doesn't belong to the ASCII character set; otherwise, <c>false</c>.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ContainsNonAscii(System.Text.StringBuilder,System.Int32)">
+      <summary>Examines a section of the <see cref="T:System.Text.StringBuilder" /> that begins at <paramref name="startIndex" /> to see whether it contains Unicode characters that do not belong to the ASCII character set .</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is examined.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the examination begins.</param>
+      <returns>
+        <c>true</c> if the specified section in <paramref name="builder" /> contains a Unicode character, which doesn't belong to the ASCII character set; otherwise, <c>false</c>.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="startIndex" /> is less than zero or greater than the number of characters in <paramref name="builder" />.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ContainsNonAscii(System.Text.StringBuilder,System.Int32,System.Int32)">
+      <summary>Examines a section of the <see cref="T:System.Text.StringBuilder" /> that begins at <paramref name="startIndex" /> and includes <paramref name="count" /> characters to determine whether this section contains Unicode characters that do not belong to the ASCII character set.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is examined.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the examination begins.</param>
+      <param name="count">The length of the section to examine.</param>
+      <returns>
+        <c>true</c> if the specified section in <paramref name="builder" /> contains a Unicode character, which doesn't belong to the ASCII character set; otherwise, <c>false</c>.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero or larger than the number of characters in <paramref name="builder" /></para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number of characters in <paramref name="builder" />.
+</para>
+      </exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ContainsWhiteSpace(System.Text.StringBuilder)">
+      <summary>Indicates whether the <see cref="T:System.Text.StringBuilder" /> contains white space.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <returns>
+        <c>true</c> if <paramref name="builder" /> contains white space, otherwise <c>false</c>.</returns>
+      <remarks>
+        <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> is used to identify white space.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ContainsWhiteSpace(System.Text.StringBuilder,System.Int32)">
+      <summary>Examines a section of the <see cref="T:System.Text.StringBuilder" /> that begins at <paramref name="startIndex" /> to see whether it contains white space.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the examination begins.</param>
+      <returns>
+        <c>true</c> if the specified section in <paramref name="builder" /> contains white space, otherwise <c>false</c>.</returns>
+      <remarks>
+        <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> is used to identify white space.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="startIndex" /> is less than zero or greater than the number of characters in <paramref name="builder" />.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ContainsWhiteSpace(System.Text.StringBuilder,System.Int32,System.Int32)">
+      <summary>Examines a section of the <see cref="T:System.Text.StringBuilder" /> that begins at <paramref name="startIndex" /> and includes <paramref name="count" /> characters to determine whether this section contains white space.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the examination begins.</param>
+      <param name="count">The number of character positions to examine.</param>
+      <returns>
+        <c>true</c> if the specified section in <paramref name="builder" /> contains white space, otherwise <c>false</c>.</returns>
+      <remarks>
+        <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> is used to identify white space.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero or larger than the number of characters in <paramref name="builder" /></para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number of characters in <paramref name="builder" />.
+</para>
+      </exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.EndsWith(System.Text.StringBuilder,System.Char)">
+      <summary>Indicates whether the specified Unicode character matches the end of the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> matches the end of <paramref name="builder" />; otherwise, <c>false</c>.</returns>
+      <remarks>The method performs an ordinal character comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.GetPersistentHashCode(System.Text.StringBuilder,FolkerKinzel.Strings.HashType)">
+      <summary>Generates the same <see cref="T:System.Int32" /> hash code for an identical string of characters each time the program is run.</summary>
+      <param name="builder">The Char sequence to be hashed.</param>
+      <param name="hashType">The kind of hashcode to be generated.</param>
+      <returns>The hashcode.</returns>
+      <remarks>
+        <para>
+The method <see cref="M:System.String.GetHashCode">String.GetHashCode()</see> returns a different hash code for an identical string with each program run for security reasons. Apart from the fact that the hash algorithm of <see cref="M:System.String.GetHashCode">String.GetHashCode()</see> could be different in different framework versions, it makes no sense to use the return value of <see cref="M:System.String.GetHashCode" /> for reuse. The alternatives, e.g. <see cref="T:System.Security.Cryptography.MD5" /> or <see cref="T:System.Security.Cryptography.SHA256" />, use more storage space and are slower. This method offers a slim alternative that is suitable for hashing very short strings that are not used in a security-critical context.
+</para>
+        <para>
+The hashcode generated by this method is not identical to the hashcode generated by the .NET Framework 4.0, because it uses roundshifting to preserve more information.
+</para>
+        <para>
+The hashcodes generated with different values for <paramref name="hashType" /> may provide different hashcodes for an identical Char sequence and MUST therefore not be mixed.
+</para>
+        <para>
+Do not use the hashcodes generated by this method for security-critical purposes (such as hashing passwords)!
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashType" /> is not a defined value of the <see cref="T:FolkerKinzel.Strings.HashType" /> enum.</exception>
+      <example>
+        <code language="cs" source="..\Examples\Example.cs" />
+      </example>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.IndexOf(System.Text.StringBuilder,System.Char)">
+      <summary>Specifies the zero-based index of the first occurrence of the specified character in <paramref name="builder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <returns>The zero-based index position of <paramref name="value" /> from the beginning of the <see cref="T:System.Text.StringBuilder" />, if this character was found, otherwise -1.</returns>
+      <remarks>The method performs an ordinal character comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.IndexOf(System.Text.StringBuilder,System.Char,System.Int32)">
+      <summary>Returns the zero-based index of the first occurrence of the specified character in <paramref name="builder" />. The search starts at the specified index.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <param name="startIndex">The start index of the search.</param>
+      <returns>The zero-based index of <paramref name="value" /> if that character is found, or -1 if it's not.</returns>
+      <remarks>The method performs an ordinal character comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="startIndex" /> is less than zero or greater than the number of characters in <paramref name="builder" />.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.IndexOf(System.Text.StringBuilder,System.Char,System.Int32,System.Int32)">
+      <summary>Returns the zero-based index of the first occurrence of the specified character in <paramref name="builder" />. The search begins at a specified index and a specified number of character positions are checked.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <param name="startIndex">The start index of the search.</param>
+      <param name="count">The number of characters positions to examine.</param>
+      <returns>The zero-based index position of <paramref name="value" /> from the beginning of the <see cref="T:System.Text.StringBuilder" />, if this character was found, otherwise -1.</returns>
+      <remarks>The method performs an ordinal character comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero or larger than the number of characters in <paramref name="builder" /></para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number of characters in <paramref name="builder" />.
+</para>
+      </exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.LastIndexOf(System.Text.StringBuilder,System.Char)">
+      <summary>Returns the zero-based index of the last occurrence of the specified character in <paramref name="builder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <returns>The zero-based index of the last occurrence of <paramref name="value" /> if this character has been found, otherwise -1.</returns>
+      <remarks>The method performs an ordinal character comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.LastIndexOf(System.Text.StringBuilder,System.Char,System.Int32)">
+      <summary>Returns the zero-based index of the last occurrence of the specified character in <paramref name="builder" />. The search begins at a specified character position and runs backwards to the beginning of the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <param name="startIndex">The start index of the search. The search is done backwards to the beginning of <paramref name="builder" />.</param>
+      <returns>The zero-based index of the last occurence of <paramref name="value" /> if that character is found, or -1 if it's not.</returns>
+      <remarks>The method performs an ordinal character comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="builder" /> is not empty and <paramref name="startIndex" /> is less than zero or greater than or equal to the length of <paramref name="builder" />.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.LastIndexOf(System.Text.StringBuilder,System.Char,System.Int32,System.Int32)">
+      <summary>Specifies the zero-based index of the last occurrence of the specified character in <paramref name="builder" />. The search begins at a specified index and runs backwards for a specified number of character positions to the beginning of the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to search.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <param name="startIndex">The start index of the search. The search is done backwards to the beginning of <paramref name="builder" />.</param>
+      <param name="count">The number of characters positions to examine.</param>
+      <returns>If <paramref name="value" /> was found, the zero-based index position of its last occurrence within the section to be searched, otherwise -1.</returns>
+      <remarks>The method performs an ordinal character comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="builder" /> is not empty and <paramref name="startIndex" /> is less than zero or greater than or equal to the length of <paramref name="builder" /></para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="builder" /> is not empty and <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
+</para>
+      </exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.NormalizeNewLinesTo(System.Text.StringBuilder,System.ReadOnlySpan{System.Char})">
+      <summary>Replaces all newlines in <paramref name="builder" /> with <paramref name="newLine" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="newLine">A read-only character span that is the replacement for all newlines. If an empty span is passed to the parameter, all newline characters will be completely removed.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <remarks>
+        <para>
+          <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters. The sequences CRLF and LFCR are treated as one line break.
+</para>
+        <note type="caution">
+This method differs from <see cref="M:FolkerKinzel.Strings.StringBuilderExtension.ReplaceLineEndings(System.Text.StringBuilder,System.String)" /> in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line break.
+</note>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ReplaceLineEndings(System.Text.StringBuilder,System.String)">
+      <summary>Replaces all newlines in <paramref name="builder" /> with <paramref name="newLine" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="replacementText">The text to use as replacement. If <paramref name="replacementText" /> is <c>null</c> or <see cref="F:System.String.Empty" />, all newlines will be removed.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <remarks>
+        <para>
+The list of recognized newline sequences is:
+</para>
+        <list type="bullet">
+          <item>
+CR (U+000D)
+</item>
+          <item>
+LF (U+000A)
+</item>
+          <item>
+CRLF (U+000D U+000A)
+</item>
+          <item>
+NEL (U+0085)
+</item>
+          <item>
+LS (U+2028)
+</item>
+          <item>
+FF (U+000C)
+</item>
+          <item>
+PS (U+2029)
+</item>
+        </list>
+        <para>
+This list is given by the Unicode Standard, Sec. 5.8, Recommendation R4 and Table 5-2.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ReplaceWhiteSpaceWith(System.Text.StringBuilder,System.ReadOnlySpan{System.Char},System.Boolean)">
+      <summary>Replaces in <paramref name="builder" /> all sequences of white space with <paramref name="replacement" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="replacement">A read-only character span that is the replacement for all white space sequences. If an empty span is passed to the parameter, each white space will be completely removed.</param>
+      <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the replacement. The default value is <c>false</c>.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <remarks>
+        <para>
+The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identify white space characters and works more thoroughly with it than <see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+</para>
+        <para>
+          <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ReplaceWhiteSpaceWith(System.Text.StringBuilder,System.ReadOnlySpan{System.Char},System.Int32,System.Boolean)">
+      <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref name="startIndex" /> and extends to the end of <paramref name="builder" />, all sequences of white space with <paramref name="replacement" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="replacement">A read-only character span that is the replacement for all white space sequences. If an empty span is passed to the parameter, each white space will be completely removed.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the replacement starts.</param>
+      <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the replacement. The default value is <c>false</c>.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <remarks>
+        <para>
+The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identify white space characters and works more thoroughly with it than <see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+</para>
+        <para>
+          <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="startIndex" /> is less than zero or greater than the number of characters in <paramref name="builder" />.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ReplaceWhiteSpaceWith(System.Text.StringBuilder,System.ReadOnlySpan{System.Char},System.Int32,System.Int32,System.Boolean)">
+      <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref name="startIndex" /> and which is <paramref name="count" /> characters long, all sequences of white space with <paramref name="replacement" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="replacement">A read-only character span that is the replacement for all white space sequences. If an empty span is passed to the parameter, each white space will be completely removed.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the replacement starts.</param>
+      <param name="count">The length of the specified section in <paramref name="builder" /> where replacement operations take place.</param>
+      <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the replacement. The default value is <c>false</c>.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <remarks>
+        <para>
+The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identify white space characters and works more thoroughly with it than <see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+</para>
+        <para>
+          <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero or larger than the number of characters in <paramref name="builder" /></para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number of characters in <paramref name="builder" />.
+</para>
+      </exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.StartsWith(System.Text.StringBuilder,System.Char)">
+      <summary>Indicates whether the specified Unicode character matches the beginning of <paramref name="builder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is examined.</param>
+      <param name="value">The Unicode character to search for.</param>
+      <returns>
+        <c>true</c> if value matches the beginning of <paramref name="builder" />; otherwise, <c>false</c>.</returns>
+      <remarks>The method performs an ordinal character comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ToLowerInvariant(System.Text.StringBuilder)">
+      <summary>Converts the entire content of a <see cref="T:System.Text.StringBuilder" /> to lowercase letters using the rules of the invariant culture.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ToLowerInvariant(System.Text.StringBuilder,System.Int32)">
+      <summary>Converts the content of a <see cref="T:System.Text.StringBuilder" /> starting with <paramref name="startIndex" /> into lowercase letters and uses the rules of the invariant culture.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the conversion starts.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="startIndex" /> is less than zero or greater than the number of characters in <paramref name="builder" />.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ToLowerInvariant(System.Text.StringBuilder,System.Int32,System.Int32)">
+      <summary>Converts the content of a section in <see cref="T:System.Text.StringBuilder" /> that begins at <paramref name="startIndex" /> and includes <paramref name="count" /> characters to lowercase using the rules of the invariant culture.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the conversion starts.</param>
+      <param name="count">The number of characters to convert.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero or larger than the number of characters in <paramref name="builder" /></para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number of characters in <paramref name="builder" />.
+</para>
+      </exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ToUpperInvariant(System.Text.StringBuilder)">
+      <summary>Converts the entire content of a <see cref="T:System.Text.StringBuilder" /> to uppercase letters using the rules of the invariant culture.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ToUpperInvariant(System.Text.StringBuilder,System.Int32)">
+      <summary>Converts the content of a <see cref="T:System.Text.StringBuilder" /> starting with <paramref name="startIndex" /> into uppercase letters and uses the rules of the invariant culture.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the conversion starts.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="startIndex" /> is less than zero or greater than the number of characters in <paramref name="builder" />.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ToUpperInvariant(System.Text.StringBuilder,System.Int32,System.Int32)">
+      <summary>Converts the content of a section in <see cref="T:System.Text.StringBuilder" /> that begins at <paramref name="startIndex" /> and includes <paramref name="count" /> characters to uppercase using the rules of the invariant culture.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the conversion starts.</param>
+      <param name="count">The number of characters to convert.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero or larger than the number of characters in <paramref name="builder" /></para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number of characters in <paramref name="builder" />.
+</para>
+      </exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.Trim(System.Text.StringBuilder)">
+      <summary>Removes all leading and trailing white-space characters from the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.Trim(System.Text.StringBuilder,System.Char)">
+      <summary>Removes all leading and trailing instances of a character from the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="trimChar">A Unicode character to remove.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.Trim(System.Text.StringBuilder,System.Char[])">
+      <summary>Removes all leading and trailing occurrences of a set of characters specified in an array from the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="trimChars">An array of Unicode characters to remove, or <c>null</c>. If <paramref name="trimChars" /> is <c>null</c> or an empty array, Unicode white-space characters are removed instead.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.Trim(System.Text.StringBuilder,System.ReadOnlySpan{System.Char})">
+      <summary>Removes all leading and trailing occurrences of a set of characters specified in a Span from the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="trimChars">A Span of Unicode characters to remove. If <paramref name="trimChars" /> is an empty Span, Unicode white-space characters are removed instead.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.TrimEnd(System.Text.StringBuilder)">
+      <summary>Removes all the trailing white-space characters from the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.TrimEnd(System.Text.StringBuilder,System.Char)">
+      <summary>Removes all the trailing white-space characters from the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="trimChar">A Unicode character to remove.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.TrimEnd(System.Text.StringBuilder,System.Char[])">
+      <summary>Removes all the trailing occurrences of a set of characters specified in an array from the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="trimChars">An array of Unicode characters to remove, or <c>null</c>. If <paramref name="trimChars" /> is <c>null</c> or an empty array, Unicode white-space characters are removed instead.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.TrimEnd(System.Text.StringBuilder,System.ReadOnlySpan{System.Char})">
+      <summary>Removes all trailing occurrences of a set of characters specified in a Span from the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="trimChars">A Span of Unicode characters to remove. If <paramref name="trimChars" /> is an empty Span, Unicode white-space characters are removed instead.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.TrimStart(System.Text.StringBuilder)">
+      <summary>Removes all the leading white-space characters from the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.TrimStart(System.Text.StringBuilder,System.Char)">
+      <summary>Removes all the leading occurrences of a specified character from the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="trimChar">The Unicode character to remove.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.TrimStart(System.Text.StringBuilder,System.Char[])">
+      <summary>Removes all the leading occurrences of a set of characters specified in an array from the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="trimChars">An array of Unicode characters to remove, or <c>null</c>. If <paramref name="trimChars" /> is <c>null</c> or an empty array, Unicode white-space characters are removed instead.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.TrimStart(System.Text.StringBuilder,System.ReadOnlySpan{System.Char})">
+      <summary>Removes all leading occurrences of a set of characters specified in a Span from the <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
+      <param name="trimChars">A Span of Unicode characters to remove. If <paramref name="trimChars" /> is an empty Span, Unicode white-space characters are removed instead.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="T:FolkerKinzel.Strings.StringExtension">
+      <summary>Extension methods for the <see cref="T:System.String" /> class.</summary>
+      <threadsafety static="true" instance="false" />
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.ContainsAny(System.String,System.Char,System.Char)">
+      <summary>Indicates whether a <see cref="T:System.String" /> contains one of the two characters that are passed to the method as arguments.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="value0">The first character to search for.</param>
+      <param name="value1">The second character to search for.</param>
+      <returns>
+        <c>true</c> if one of the characters to be searched for is found, otherwise <c>false</c>.</returns>
+      <remarks>MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)  is used for the comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.ContainsAny(System.String,System.Char,System.Char,System.Char)">
+      <summary>Indicates whether a <see cref="T:System.String" /> contains one of the 3 characters that are passed to the method as arguments.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="value0">The first character to search for.</param>
+      <param name="value1">The second character to search for.</param>
+      <param name="value2">The third character to search for.</param>
+      <returns>
+        <c>true</c> if one of the characters to be searched for is found, otherwise <c>false</c>.</returns>
+      <remarks>MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T)  is used for the comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.ContainsAny(System.String,System.ReadOnlySpan{System.Char})">
+      <summary>Indicates whether a <see cref="T:System.String" /> contains one of the Unicode characters that are passed to the method in a read-only span.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="anyOf">A read-only span, which contains the characters to search for.</param>
+      <returns>
+        <c>true</c> if one of the characters to be searched for is found in <paramref name="s" />, otherwise <c>false</c>. If <paramref name="s" /> or <paramref name="anyOf" /> have the length zero, <c>false</c> is returned.</returns>
+      <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used to avoid performance issues.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.ContainsAny(System.String,System.Char[])">
+      <summary>Indicates whether a <see cref="T:System.String" /> contains one of the Unicode characters that are passed to the method as an array.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="anyOf">An array, which contains the characters to search for.</param>
+      <returns>
+        <c>true</c> if one of the characters to be searched for is found in <paramref name="s" />, otherwise <c>false</c>. If <paramref name="s" /> or <paramref name="anyOf" /> have the length zero, <c>false</c> is returned.</returns>
+      <remarks>
+        <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used for the comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> or <paramref name="anyOf" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.ContainsNewLine(System.String)">
+      <summary>Indicates whether the <see cref="T:System.String" /> contains a newline character.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <returns>
+        <c>true</c> if <paramref name="s" /> contains a newline character, otherwise <c>false</c>.</returns>
+      <remarks>
+        <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.ContainsWhiteSpace(System.String)">
+      <summary>Indicates whether a <see cref="T:System.String" /> contains white space.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <returns>
+        <c>true</c> if <paramref name="s" /> contains white space, otherwise <c>false</c>.</returns>
+      <remarks>
+        <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> is used for the comparison.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.GetPersistentHashCode(System.String,FolkerKinzel.Strings.HashType)">
+      <summary>Generates the same <see cref="T:System.Int32" /> hash code for an identical string of characters each time the program is run.</summary>
+      <param name="s">The Char sequence to be hashed.</param>
+      <param name="hashType">The kind of hashcode to be generated.</param>
+      <returns>The hashcode.</returns>
+      <remarks>
+        <para>
+The method <see cref="M:System.String.GetHashCode">String.GetHashCode()</see> returns a different hash code for an identical string with each program run for security reasons. Apart from the fact that the hash algorithm of <see cref="M:System.String.GetHashCode">String.GetHashCode()</see> could be different in different framework versions, it makes no sense to use the return value of <see cref="M:System.String.GetHashCode" /> for reuse. The alternatives, e.g. <see cref="T:System.Security.Cryptography.MD5" /> or <see cref="T:System.Security.Cryptography.SHA256" />, use more storage space and are slower. This method offers a slim alternative that is suitable for hashing very short strings that are not used in a security-critical context.
+</para>
+        <para>
+The hashcode generated by this method is not identical to the hashcode generated by the .NET Framework 4.0, because it uses roundshifting to preserve more information.
+</para>
+        <para>
+The hashcodes generated with different values for <paramref name="hashType" /> may provide different hashcodes for an identical Char sequence and MUST therefore not be mixed.
+</para>
+        <para>
+Do not use the hashcodes generated by this method for security-critical purposes (such as hashing passwords)!
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashType" /> is not a defined value of the <see cref="T:FolkerKinzel.Strings.HashType" /> enum.</exception>
+      <example>
+        <code language="cs" source="..\Examples\Example.cs" />
+      </example>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.IndexOfAny(System.String,System.ReadOnlySpan{System.Char},System.Int32,System.Int32)">
+      <summary>Returns the zero-based index of the first occurrence of one of the the specified characters in <paramref name="s" />. The search begins at a specified index and a specified number of character positions are checked.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="anyOf">A read-only span, which contains the characters to search for.</param>
+      <param name="startIndex">The zero-based index in <paramref name="s" /> at which the search starts.</param>
+      <param name="count">The number of characters positions to examine in <paramref name="s" />.</param>
+      <returns>The zero-based index of the first occurrence of one of the specified Unicode characters in <paramref name="s" /> or -1 if none of these characters have been found. If <paramref name="anyOf" /> is an empty span, the method returns -1.</returns>
+      <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> or <paramref name="anyOf" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero
+</para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number of characters in <paramref name="value" />.
+</para>
+      </exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.IsAscii(System.String)">
+      <summary>Indicates whether the <see cref="T:System.String" /> contains Unicode characters that do not belong to the ASCII character set.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <returns>
+        <c>false</c> if <paramref name="s" /> contains a Unicode character, which doesn't belong to the ASCII character set; otherwise, <c>true</c>.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.LastIndexOfAny(System.String,System.ReadOnlySpan{System.Char},System.Int32,System.Int32)">
+      <summary>Returns the zero-based index position of the last occurrence of one of the specified characters in <paramref name="s" />. The search begins at a specified index and runs backwards to the beginning of the <see cref="T:System.String" /> for a specified number of character positions.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="anyOf">A read-only span, which contains the characters to search for.</param>
+      <param name="startIndex">The start index of the search. The search is done backwards to the beginning of <paramref name="s" />.</param>
+      <param name="count">The number of characters positions to examine in <paramref name="s" />.</param>
+      <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in the specified part of <paramref name="s" /> or -1 if none of these characters have been found in this area.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <para>
+          <paramref name="s" /> is not <see cref="F:System.String.Empty" /> and <paramref name="startIndex" /> is less than zero or greater than or equal to the length of <paramref name="s" /></para>
+        <para>
+- or -
+</para>
+        <para>
+          <paramref name="s" /> is not <see cref="F:System.String.Empty" /> and <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
+</para>
+      </exception>
+      <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])" /> is used.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.NormalizeNewLinesTo(System.String,System.ReadOnlySpan{System.Char})">
+      <summary>Generates a <see cref="T:System.String" /> in which all newlines are replaced by <paramref name="newLine" />.</summary>
+      <param name="s">The source <see cref="T:System.String" />.</param>
+      <param name="newLine">A read-only character span that is the replacement for all newlines. If an empty span is passed to the parameter, all newline characters will be completely removed.</param>
+      <returns>A new <see cref="T:System.String" /> in which all newlines are replaced by <paramref name="replacement" />. If <paramref name="s" /> doesn't contain a newline character, <paramref name="s" /> is returned.</returns>
+      <remarks>
+        <para>
+          <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters. The sequences CRLF and LFCR are treated as one line break.
+</para>
+        <note type="caution">
+This method differs from <see cref="M:FolkerKinzel.Strings.StringExtension.ReplaceLineEndings(System.String,System.String)" /> in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line break.
+</note>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.ReplaceLineEndings(System.String)">
+      <summary>Replaces all newlines in <paramref name="s" /> with <see cref="P:System.Environment.NewLine" />.</summary>
+      <param name="s">The source <see cref="T:System.String" />.</param>
+      <returns>A <see cref="T:System.String" /> whose contents match the content of <paramref name="s" />, but with all newline sequences replaced with <see cref="P:System.Environment.NewLine" />.</returns>
+      <remarks>
+        <para>
+This is a polyfill for the .NET 6.0 method String.ReplaceLineEndings(). The method should therefore only be used in the extension method syntax. It throws a <see cref="T:System.NullReferenceException" /> if <paramref name="s" /> is <c>null</c> in order to show identical behavior to the original .NET method.
+</para>
+        <para>
+The method searches for all newline sequences within <paramref name="s" /> and canonicalizes them to match the newline sequence for the current environment. For example, when running on Windows, all occurrences of non-Windows Newline sequences are replaced with the sequence CRLF. When running on Unix, all occurrences of non-Unix Newline sequences are replaced with a single LF character.
+</para>
+        <para>
+The list of recognized newline sequences is:
+</para>
+        <list type="bullet">
+          <item>
+CR (U+000D)
+</item>
+          <item>
+LF (U+000A)
+</item>
+          <item>
+CRLF (U+000D U+000A)
+</item>
+          <item>
+NEL (U+0085)
+</item>
+          <item>
+LS (U+2028)
+</item>
+          <item>
+FF (U+000C)
+</item>
+          <item>
+PS (U+2029)
+</item>
+        </list>
+        <para>
+This list is specified by the Unicode standard (Sec. 5.8, Recommendation R4 and Table 5-2).
+</para>
+      </remarks>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.ReplaceLineEndings(System.String,System.String)">
+      <summary>Replaces all newlines in <paramref name="s" /> with <paramref name="replacementText" />.</summary>
+      <param name="s">The source <see cref="T:System.String" />.</param>
+      <param name="replacementText">The text to use as replacement. If <paramref name="replacementText" /> is <see cref="F:System.String.Empty" />, all newline sequences within <paramref name="s" /> will be removed.</param>
+      <returns>A <see cref="T:System.String" /> whose contents match the content of <paramref name="s" />, but with all newline sequences replaced with <paramref name="replacementText" />.</returns>
+      <remarks>
+        <para>
+This is a polyfill for the .NET 6.0 method String.ReplaceLineEndings(String). The method should therefore only be used in the extension method syntax. It throws a <see cref="T:System.NullReferenceException" /> if <paramref name="s" /> is <c>null</c> in order to show identical behavior to the original .NET method.
+</para>
+        <para>
+The method searches for all newline sequences within <paramref name="s" /> and canonicalizes them to match <paramref name="replacementText" />.
+</para>
+        <para>
+The list of recognized newline sequences is:
+</para>
+        <list type="bullet">
+          <item>
+CR (U+000D)
+</item>
+          <item>
+LF (U+000A)
+</item>
+          <item>
+CRLF (U+000D U+000A)
+</item>
+          <item>
+NEL (U+0085)
+</item>
+          <item>
+LS (U+2028)
+</item>
+          <item>
+FF (U+000C)
+</item>
+          <item>
+PS (U+2029)
+</item>
+        </list>
+        <para>
+This list is specified by the Unicode standard (Sec. 5.8, Recommendation R4 and Table 5-2).
+</para>
+      </remarks>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="replacementText" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.ReplaceWhiteSpaceWith(System.String,System.ReadOnlySpan{System.Char},System.Boolean)">
+      <summary>Generates a <see cref="T:System.String" /> in which all sequences of white space are replaced by <paramref name="replacement" />.</summary>
+      <param name="s">The source <see cref="T:System.String" />.</param>
+      <param name="replacement">A read-only character span that is the replacement for all white space sequences. If an empty span is passed to the parameter, each white space will be completely removed.</param>
+      <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the replacement. The default value is <c>false</c>.</param>
+      <returns>A new <see cref="T:System.String" /> in which all sequences of white space are replaced by <paramref name="replacement" />. If <paramref name="s" /> doesn't contain a white space character, <paramref name="s" /> is returned.</returns>
+      <remarks>
+        <para>
+The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identify white space characters and works more thoroughly with it than <see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+</para>
+        <para>
+          <see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)" /> is used to identify newline characters.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.Trim(System.String,System.ReadOnlySpan{System.Char})">
+      <summary>Generates a <see cref="T:System.String" /> from which all leading and trailing occurrences of the characters in the specified Span are removed.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="trimChars">A Span of Unicode characters to remove. If <paramref name="trimChars" /> is an empty Span, Unicode white-space characters are removed instead.</param>
+      <returns>The resulting <see cref="T:System.String" /> after removing all characters passed in the <paramref name="trimChars" /> parameter from the beginning and end of the <see cref="T:System.String" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.TrimEnd(System.String,System.ReadOnlySpan{System.Char})">
+      <summary>Generates a <see cref="T:System.String" /> from which all trailing occurrences of the characters in the specified Span are removed.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="trimChars">A Span of Unicode characters to remove. If <paramref name="trimChars" /> is an empty Span, Unicode white-space characters are removed instead.</param>
+      <returns>The resulting <see cref="T:System.String" /> after removing all characters passed in the <paramref name="trimChars" /> parameter from the end of the <see cref="T:System.String" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringExtension.TrimStart(System.String,System.ReadOnlySpan{System.Char})">
+      <summary>Generates a <see cref="T:System.String" /> from which all leading occurrences of the characters in the specified Span are removed.</summary>
+      <param name="s">The <see cref="T:System.String" /> to search.</param>
+      <param name="trimChars">A Span of Unicode characters to remove. If <paramref name="trimChars" /> is an empty Span, Unicode white-space characters are removed instead.</param>
+      <returns>The resulting <see cref="T:System.String" /> after removing all characters passed in the <paramref name="trimChars" /> parameter from the beginning of the <see cref="T:System.String" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="s" /> is <c>null</c>.</exception>
+    </member>
+    <member name="T:FolkerKinzel.Strings.TextEncodingConverter">
+      <summary>Generates an instance of the <see cref="T:System.Text.Encoding" /> class from different data types.</summary>
+    </member>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.String)">
+      <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the identifier of a character set, for which <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to ReplacementFallback. <see cref="P:System.Text.Encoding.UTF8" /> is the fallback value.</summary>
+      <param name="name">The identifier of a character set or <c>null</c> for <see cref="P:System.Text.Encoding.UTF8" />.</param>
+      <returns>An <see cref="T:System.Text.Encoding" /> object that matches the specified identifier of the character set or <see cref="P:System.Text.Encoding.UTF8" /> if no match was found .</returns>
+      <remarks>.NET Standard and .NET 5.0 recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.String,System.Text.EncoderFallback,System.Text.DecoderFallback)">
+      <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the identifier of a charset whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values.</summary>
+      <param name="name">The identifier of a character set or <c>null</c> for the UTF-8 character set.</param>
+      <returns>An <see cref="T:System.Text.Encoding" /> object that corresponds to the specified identifier of the character set or a <see cref="T:System.Text.Encoding" /> object for the UTF-8 character set if no match was found.</returns>
+      <param name="encoderFallback">An object that provides an error handling mechanism if a character cannot be encoded with the <see cref="T:System.Text.Encoding" /> object.</param>
+      <param name="decoderFallback">An object that provides an error handling mechanism if a <see cref="T:System.Byte" /> sequence cannot be decoded with the <see cref="T:System.Text.Encoding" /> object .</param>
+      <remarks>.NET Standard and .NET 5.0 recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32)">
+      <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the number of a code page, for which <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to ReplacementFallback. <see cref="P:System.Text.Encoding.UTF8" /> is the fallback value.</summary>
+      <param name="codepage">The number of a code page or zero for <see cref="P:System.Text.Encoding.Default" />.</param>
+      <returns>An <see cref="T:System.Text.Encoding" /> object that matches the specified code page number or <see cref="P:System.Text.Encoding.UTF8" /> if no match was found .</returns>
+      <remarks>.NET Standard and .NET 5.0 recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback)">
+      <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the number of a code page whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values.</summary>
+      <param name="codepage">The number of a code page or zero for <see cref="P:System.Text.Encoding.Default" />.</param>
+      <returns>An <see cref="T:System.Text.Encoding" /> object that corresponds to the specified code page number or a <see cref="T:System.Text.Encoding" /> object for the UTF-8 character set if no match was found.</returns>
+      <param name="encoderFallback">An object that provides an error handling mechanism if a <see cref="T:System.Byte" /> sequence cannot be decoded with the <see cref="T:System.Text.Encoding" /> object .</param>
+      <param name="decoderFallback">An object that provides an error handling mechanism if a <see cref="T:System.Byte" /> sequence cannot be decoded with the <see cref="T:System.Text.Encoding" /> object .</param>
+      <remarks>.NET Standard and .NET 5.0 recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetCodePage(System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>Examines a read-only <see cref="T:System.Byte" /> span, that represents the contents of a text file, to see if it starts with a Byte Order Mark (BOM), and returns an appropriate code page. (The fallback value is 65001 for UTF-8.)</summary>
+      <param name="data">The span to examine.</param>
+      <param name="bomLength">When the method returns, it contains the length of the BOM found or zero if no BOM was found. The parameter is passed uninitialized.</param>
+      <returns>An appropriate code page for <paramref name="data" /> or the code page for UTF-8 (65001) if the code page could not be determined from <paramref name="data" />.</returns>
+      <remarks>The method recognizes the Byte Order Marks for the following character sets:
+<list type="bullet"><item>
+UTF-8
+</item><item>
+UTF-16LE
+</item><item>
+UTF-16BE
+</item><item>
+UTF-32LE
+</item><item>
+UTF-32BE
+</item><item>
+UTF-7
+</item><item>
+GB18030
+</item></list><para>
+UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method from the data if there is no Byte Order Mark.
+</para></remarks>
+    </member>
+    <member name="T:System.Buffers.SpanAction`2">
+      <summary>Polyfill for the delegate System.Buffers.SpanAction&lt;T,TArg&gt;.</summary>
+      <typeparam name="T">The type of the objects in the span.</typeparam>
+      <typeparam name="TArg">The type of object that represents the state. This type parameter is contravariant. This means that you can either use the specified type or a less derived type.</typeparam>
+      <param name="span">A span of objects of type <typeparamref name="T" />.</param>
+      <param name="arg">A state object of the type <typeparamref name="TArg" />.</param>
+    </member>
+  </members>
+</doc>
