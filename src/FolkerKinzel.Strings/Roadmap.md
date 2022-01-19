@@ -83,6 +83,8 @@ prone calculating with the result when slicing the span before.
 ### 4.3.0
 - [x] `StringBuilder.AppendLine(ReadOnlyMemory<Char>)`
 - [x] `StringBuilder.AppendLine(ReadOnlySpan<Char>)`
+
+### 4.4.0
 - [ ] `StringBuilder.AppendJoin()` - Polyfills
 
 .
