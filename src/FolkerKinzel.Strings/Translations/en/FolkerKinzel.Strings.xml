@@ -556,8 +556,7 @@ This overload is useful because the support for the implicit conversion from <se
       <returns>A reference to <paramref name="builder" /> after the append operation is completed.</returns>
       <exception cref="T:System.NullReferenceException">
         <paramref name="builder" /> is <c>null</c>.</exception>
-      <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder" />
-            würde <see cref="P:System.Text.StringBuilder.MaxCapacity" /> überschritten.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Increasing the capacity of <paramref name="builder" /> would exceed <see cref="P:System.Text.StringBuilder.MaxCapacity" />.</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderPolyfillExtension.Insert(System.Text.StringBuilder,System.Int32,System.ReadOnlySpan{System.Char})">
       <summary>Inserts the content of a read-only character span at the specified index position into <paramref name="builder" />.</summary>
@@ -998,30 +997,22 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
       <threadsafety static="true" instance="false" />
     </member>
     <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendLine(System.Text.StringBuilder,System.ReadOnlySpan{System.Char})">
-      <summary>
-            Fügt eine Kopie der angegebenen schreibgeschützten Zeichenspanne gefolgt vom Standardzeilenabschlusszeichen 
-            am Ende eines <see cref="T:System.Text.StringBuilder" />-Objekts an.
-            </summary>
-      <param name="builder">Der <see cref="T:System.Text.StringBuilder" />, an den Zeichen angefügt werden.</param>
-      <param name="value">Die anzufügende schreibgeschützte Zeichenspanne.</param>
-      <returns>Ein Verweis auf <paramref name="builder" />, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+      <summary>Appends a copy of the specified read-only character span followed by the standard line terminator to the end of a <see cref="T:System.Text.StringBuilder" /> object.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to append characters to.</param>
+      <param name="value">The read-only character span to append.</param>
+      <returns>A reference to <paramref name="builder" /> after the append operation has completed.</returns>
       <exception cref="T:System.NullReferenceException">
-        <paramref name="builder" /> ist <c>null</c>.</exception>
-      <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder" />
-            würde <see cref="P:System.Text.StringBuilder.MaxCapacity" /> überschritten.</exception>
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Increasing the capacity of <paramref name="builder" /> would exceed <see cref="P:System.Text.StringBuilder.MaxCapacity" />.</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendLine(System.Text.StringBuilder,System.ReadOnlyMemory{System.Char})">
-      <summary>
-            Fügt eine Kopie des angegebenen schreibgeschützten Zeichenspeichers gefolgt vom Standardzeilenabschlusszeichen 
-            am Ende eines <see cref="T:System.Text.StringBuilder" />-Objekts an.
-            </summary>
-      <param name="builder">Der <see cref="T:System.Text.StringBuilder" />, an den Zeichen angefügt werden.</param>
-      <param name="value">Der anzufügende schreibgeschützte Zeichenspeicher.</param>
-      <returns>Ein Verweis auf <paramref name="builder" />, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+      <summary>Appends a copy of the specified read-only character memory region followed by the standard line terminator to the end of a <see cref="T:System.Text.StringBuilder" /> object.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which the characters are appended.</param>
+      <param name="value">The read-only character memory region to append.</param>
+      <returns>A reference to <paramref name="builder" /> after the append operation has completed.</returns>
       <exception cref="T:System.NullReferenceException">
-        <paramref name="builder" /> ist <c>null</c>.</exception>
-      <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder" />
-            würde <see cref="P:System.Text.StringBuilder.MaxCapacity" /> überschritten.</exception>
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Increasing the capacity of <paramref name="builder" /> would exceed <see cref="P:System.Text.StringBuilder.MaxCapacity" />.</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.StringBuilderExtension.Contains(System.Text.StringBuilder,System.Char)">
       <summary>Indicates whether a specified Unicode character is found in a <see cref="T:System.Text.StringBuilder" />.</summary>
