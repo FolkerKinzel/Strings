@@ -7,6 +7,28 @@ namespace FolkerKinzel.Strings.Tests;
 public class StringBuilderExtensionTests
 {
     [TestMethod]
+    public void AppendNewLineTest1()
+    {
+        const string test = "hi";
+
+        var builder = new StringBuilder();
+
+        Assert.AreEqual(builder, builder.AppendLine(test.AsSpan()));
+        Assert.AreEqual(builder.ToString(), new StringBuilder().AppendLine(test).ToString());
+    }
+
+    [TestMethod]
+    public void AppendNewLineTest2()
+    {
+        const string test = "hi";
+
+        var builder = new StringBuilder();
+
+        Assert.AreEqual(builder, builder.AppendLine(test.AsMemory()));
+        Assert.AreEqual(builder.ToString(), new StringBuilder().AppendLine(test).ToString());
+    }
+
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void ReplaceLineEndingsTest1()
     {
