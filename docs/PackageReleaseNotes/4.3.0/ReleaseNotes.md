@@ -1,9 +1,10 @@
 # FolkerKinzel.Strings 4.3.0
 ## Package Release Notes
 
-- New polyfill for .NET Framework 4.5 and .NET Standard 2.0:
+- New extension methods for the `StringBuilder` class:
 ```csharp
-bool Contains(this ReadOnlySpan<char>, string?, StringComparison);
+StringBuilder AppendLine(this StringBuilder, ReadOnlyMemory<Char>);
+StringBuilder AppendLine(this StringBuilder, ReadOnlySpan<Char>);
 ```
 
 .
