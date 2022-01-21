@@ -526,6 +526,110 @@ This overload is useful because the support for the implicit conversion from <se
       <summary>Extension methods for the <see cref="T:System.Text.StringBuilder" /> class, which are used in .NET Framework 4.5 and .NET Standard 2.0 as polyfills for methods from current .NET versions.</summary>
       <remarks>The methods of this class should only be used in the extension method syntax to simulate the original methods of the <see cref="T:System.String" /> class, which exist in more modern frameworks. To match the behavior of the original methods, these extension methods throw a <see cref="T:System.NullReferenceException" /> when called on <c>null</c>.</remarks>
     </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderPolyfillExtension.AppendJoin(System.Text.StringBuilder,System.Char,System.String[])">
+      <summary>
+            Verkettet die Zeichenfolgen des bereitgestellten Arrays, wobei das angegebene als Trennzeichen zu verwendende Zeichen 
+            zwischen den einzelnen Zeichenfolgen verwendet wird, und fügt dann das Ergebnis an <paramref name="builder" />
+            an.
+            </summary>
+      <param name="builder">Der <see cref="T:System.Text.StringBuilder" />, an den Zeichen angefügt werden.</param>
+      <param name="separator">Das Zeichen, das als Trennzeichen verwendet werden soll. <paramref name="separator" />
+            ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values" /> mehr als ein Element enthält.</param>
+      <param name="values">Ein Array, das die zu verkettenden Zeichenfolgen enthält, die an <paramref name="builder" />
+            angefügt werden sollen.</param>
+      <returns>Ein Verweis auf <paramref name="builder" />, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="builder" /> ist <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="values" /> ist <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderPolyfillExtension.AppendJoin(System.Text.StringBuilder,System.Char,System.Object[])">
+      <summary>
+            Verkettet die Zeichenfolgendarstellungen der Elemente im bereitgestellten Array von Objekten, wobei das angegebene als 
+            Trennzeichen zu verwendende Zeichen zwischen den einzelnen Elementen verwendet wird, und fügt dann das Ergebnis an 
+            <paramref name="builder" /> an.
+            </summary>
+      <param name="builder">Der <see cref="T:System.Text.StringBuilder" />, an den Zeichen angefügt werden.</param>
+      <param name="separator">Das Zeichen, das als Trennzeichen verwendet werden soll. <paramref name="separator" />
+            ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values" /> mehr als ein Element enthält.</param>
+      <param name="values">Ein Array, das die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder" />
+            angefügt werden soll.</param>
+      <returns>Ein Verweis auf <paramref name="builder" />, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="builder" /> ist <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="values" /> ist <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderPolyfillExtension.AppendJoin``1(System.Text.StringBuilder,System.Char,System.Collections.Generic.IEnumerable{``0})">
+      <summary>
+            Verkettet die Zeichenfolgendarstellungen der Elemente in der bereitgestellten Sammlung, wobei das angegebene als 
+            Trennzeichen zu verwendende Zeichen zwischen den einzelnen Elementen verwendet wird, und fügt dann das Ergebnis an 
+            <paramref name="builder" /> an.
+            </summary>
+      <typeparam name="T">Generischer Typparameter, der den Typ der Elemente in <paramref name="values" /> angibt.</typeparam>
+      <param name="builder">Der <see cref="T:System.Text.StringBuilder" />, an den Zeichen angefügt werden.</param>
+      <param name="separator">Das Zeichen, das als Trennzeichen verwendet werden soll. <paramref name="separator" />
+            ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values" /> mehr als ein Element enthält.</param>
+      <param name="values">Eine Sammlung, die die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder" />
+            angefügt werden soll.</param>
+      <returns>Ein Verweis auf <paramref name="builder" />, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="builder" /> ist <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="values" /> ist <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderPolyfillExtension.AppendJoin(System.Text.StringBuilder,System.String,System.String[])">
+      <summary>
+            Verkettet die Zeichenfolgen des bereitgestellten Arrays, wobei das angegebene Trennzeichen 
+            zwischen den einzelnen Zeichenfolgen verwendet wird, und fügt dann das Ergebnis an <paramref name="builder" />
+            an.
+            </summary>
+      <param name="builder">Der <see cref="T:System.Text.StringBuilder" />, an den Zeichen angefügt werden.</param>
+      <param name="separator">Die Zeichenfolge, die als Trennzeichen verwendet werden soll. <paramref name="separator" />
+            ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values" /> mehr als ein Element enthält.</param>
+      <param name="values">Ein Array, das die zu verkettenden Zeichenfolgen enthält, die an <paramref name="builder" />
+            angefügt werden sollen.</param>
+      <returns>Ein Verweis auf <paramref name="builder" />, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="builder" /> ist <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="values" /> ist <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderPolyfillExtension.AppendJoin(System.Text.StringBuilder,System.String,System.Object[])">
+      <summary>
+            Verkettet die Zeichenfolgendarstellungen der Elemente im bereitgestellten Array von Objekten, wobei das angegebene
+            Trennzeichen zwischen den einzelnen Elementen verwendet wird, und fügt dann das Ergebnis an 
+            <paramref name="builder" /> an.
+            </summary>
+      <param name="builder">Der <see cref="T:System.Text.StringBuilder" />, an den Zeichen angefügt werden.</param>
+      <param name="separator">Die Zeichenfolge, die als Trennzeichen verwendet werden soll. <paramref name="separator" />
+            ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values" /> mehr als ein Element enthält.</param>
+      <param name="values">Ein Array, das die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder" />
+            angefügt werden soll.</param>
+      <returns>Ein Verweis auf <paramref name="builder" />, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="builder" /> ist <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="values" /> ist <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderPolyfillExtension.AppendJoin``1(System.Text.StringBuilder,System.String,System.Collections.Generic.IEnumerable{``0})">
+      <summary>
+            Verkettet die Zeichenfolgendarstellungen der Elemente in der bereitgestellten Sammlung, wobei das angegebene
+            Trennzeichen zwischen den einzelnen Elementen verwendet wird, und fügt dann das Ergebnis an 
+            <paramref name="builder" /> an.
+            </summary>
+      <typeparam name="T">Generischer Typparameter, der den Typ der Elemente in <paramref name="values" /> angibt.</typeparam>
+      <param name="builder">Der <see cref="T:System.Text.StringBuilder" />, an den Zeichen angefügt werden.</param>
+      <param name="separator">Die Zeichenfolge, die als Trennzeichen verwendet werden soll. <paramref name="separator" />
+            ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values" /> mehr als ein Element enthält.</param>
+      <param name="values">Eine Sammlung, die die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder" />
+            angefügt werden soll.</param>
+      <returns>Ein Verweis auf <paramref name="builder" />, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="builder" /> ist <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="values" /> ist <c>null</c>.</exception>
+    </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderPolyfillExtension.Append(System.Text.StringBuilder,System.Text.StringBuilder,System.Int32,System.Int32)">
       <summary>Appends a copy of a sequence of Unicode characters that comes from a <see cref="T:System.Text.StringBuilder" /> to the existing content of <paramref name="builder" />.</summary>
       <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which the characters are appended.</param>
