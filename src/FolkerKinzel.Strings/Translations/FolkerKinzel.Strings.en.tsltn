@@ -1320,4 +1320,48 @@ This method differs from &lt;see cref="M:FolkerKinzel.Strings.StringExtension.Re
   <T ID="89E2A65772DE8164">A reference to &lt;paramref name="builder"/&gt; after the append operation has completed.</T>
   <T ID="EDFFA1366D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
   <T ID="EBE551D5C5B973E4">Increasing the capacity of &lt;paramref name="builder"/&gt; would exceed &lt;see cref="P:System.Text.StringBuilder.MaxCapacity"/&gt;.</T>
+  <T ID="3462DB6DF9CF5656">Concatenates the strings of the provided array, using the specified char separator between each string, then appends the result to &lt;paramref name="builder"/&gt;.</T>
+  <T ID="17324F774EA50E59">The &lt;see cref ="T:System.Text.StringBuilder"/&gt; to which the characters are appended.</T>
+  <T ID="9ABA76164EA50E59">The &lt;see cref="T:System.Text.StringBuilder"/&gt; to which the characters are appended.</T>
+  <T ID="C2E08F934EA50E59">The &lt;see cref="T:System.Text.StringBuilder"/&gt; to which the characters are appended.</T>
+  <T ID="EC713DD14EA50E59">The &lt;see cref="T:System.Text.StringBuilder"/&gt; to which the characters are appended.</T>
+  <T ID="34275B864EA50E59">The &lt;see cref="T:System.Text.StringBuilder"/&gt; to which the characters are appended.</T>
+  <T ID="7A9AFA244EA50E59">The &lt;see cref="T:System.Text.StringBuilder"/&gt; to which the characters are appended.</T>
+  <T ID="6C1BA3ED6D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="CD06B5286D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="B68668046D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="B40063226D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="BA2C1BC16D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="77239A766D12D017">&lt;paramref name="builder"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="FAF70F23C4B07229">&lt;paramref name="values"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="CBE63CB8C4B07229">&lt;paramref name="values"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="25924F8C4B07229">&lt;paramref name="values"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="4CB8105C4B07229">&lt;paramref name="values"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="FF1C7476C4B07229">&lt;paramref name="values"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="D0EED0E8C4B07229">&lt;paramref name="values"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="B159F14472DE8164">A reference to &lt;paramref name="builder"/&gt; after the append operation is completed.</T>
+  <T ID="C3D6789372DE8164">A reference to &lt;paramref name="builder"/&gt; after the append operation is completed.</T>
+  <T ID="A19CF87D72DE8164">A reference to &lt;paramref name="builder"/&gt; after the append operation is completed.</T>
+  <T ID="D4F83DAB72DE8164">A reference to &lt;paramref name="builder"/&gt; after the append operation is completed.</T>
+  <T ID="6C3FCEBF72DE8164">A reference to &lt;paramref name="builder"/&gt; after the append operation is completed.</T>
+  <T ID="3888E5E972DE8164">A reference to &lt;paramref name="builder"/&gt; after the append operation is completed.</T>
+  <T ID="2417FB1F06E291D6">The type of the members of &lt;paramref name="values"/&gt;.</T>
+  <T ID="8F3186D306E291D6">The type of the members of &lt;paramref name="values"/&gt;.</T>
+  <T ID="FC5DAC0E65032232">The string to use as a separator. &lt;paramref name="separator"/&gt; is included in the joined strings only if &lt;paramref name="values"/&gt; has more than one element.</T>
+  <T ID="A7155C0165032232">The string to use as a separator. &lt;paramref name="separator"/&gt; is included in the joined strings only if &lt;paramref name="values"/&gt; has more than one element.</T>
+  <T ID="C7E5F02765032232">The string to use as a separator. &lt;paramref name="separator"/&gt; is included in the joined strings only if &lt;paramref name="values"/&gt; has more than one element.</T>
+  <T ID="75233B77CBD0F2DB">The character to use as a separator. &lt;paramref name="separator"/&gt; is included in the joined strings only if &lt;paramref name="values"/&gt; has more than one element.</T>
+  <T ID="597A923CBD0F2DB">The character to use as a separator. &lt;paramref name="separator"/&gt; is included in the joined strings only if &lt;paramref name="values"/&gt; has more than one element.</T>
+  <T ID="2BA1446CBD0F2DB">The character to use as a separator. &lt;paramref name="separator"/&gt; is included in the joined strings only if &lt;paramref name="values"/&gt; has more than one element.</T>
+  <T ID="FF2107DD451744AF">An array that contains the objects whose string representations have to be concatenated and appended to &lt;paramref name="builder"/&gt;.</T>
+  <T ID="1432475451744AF">An array that contains the objects whose string representations have to be concatenated and appended to &lt;paramref name="builder"/&gt;.</T>
+  <T ID="1B2CDE55EE2C6B31">A collection that contains the objects whose string representations have to be concatenated and appended to &lt;paramref name="builder"/&gt;.</T>
+  <T ID="A5FD16CAEE2C6B31">A collection that contains the objects whose string representations have to be concatenated and appended to &lt;paramref name="builder"/&gt;.</T>
+  <T ID="67A97304F6A7D67E">An array that contains the strings to concatenate and append to &lt;paramref name="builder"/&gt;.</T>
+  <T ID="8523CFACF6A7D67E">An array that contains the strings to concatenate and append to &lt;paramref name="builder"/&gt;.</T>
+  <T ID="CAD2F042E7585A39">Concatenates the string representations of the elements in the provided array of objects, using the specified separator between each member, then appends the result to &lt;paramref name="builder"/&gt;.</T>
+  <T ID="331B21985F760C23">Concatenates the strings in the provided array of objects, using the specified separator between each member, then appends the result to &lt;paramref name="builder"/&gt;.</T>
+  <T ID="50030AD0E250050D">Concatenates the string representations of the elements in the provided array of objects, using the specified separator character between each member, then appends the result to &lt;paramref name="builder"/&gt;.</T>
+  <T ID="4EDEA032F440E554">Concatenates the string representations of the elements in the provided collection, using the specified separator between each member, then appends the result to &lt;paramref name="builder"/&gt;.</T>
+  <T ID="61B11645BA5522F">Concatenates the string representations of the elements in the provided collection, using the specified separator character between each member, then appends the result to &lt;paramref name="builder"/&gt;.</T>
 </Tsltn>
