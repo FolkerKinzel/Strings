@@ -20,7 +20,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new string?[] {null};
         char separator = ',';
 
-        Assert.AreEqual(string.Join(separator.ToString(), input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -29,7 +29,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new string?[] { "" };
         char separator = ',';
 
-        Assert.AreEqual(string.Join(separator.ToString(), input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [DataTestMethod]
@@ -45,7 +45,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new string?[] { s1, s2 };
         char separator = ',';
 
-        Assert.AreEqual(string.Join(separator.ToString(), input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual(s1 + separator + s2, new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -70,7 +70,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new List<string>();
         char separator = ',';
 
-        Assert.AreEqual(string.Join(separator.ToString(), input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -79,7 +79,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new List<string?>() { null };
         char separator = ',';
 
-        Assert.AreEqual(string.Join(separator.ToString(), input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -88,7 +88,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new List<string?>() { "" };
         char separator = ',';
 
-        Assert.AreEqual(string.Join(separator.ToString(), input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [DataTestMethod]
@@ -104,7 +104,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new List<string?>() { s1, s2 };
         char separator = ',';
 
-        Assert.AreEqual(string.Join(separator.ToString(), input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual(s1 + separator + s2, new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -129,7 +129,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new string[0];
         string separator = "::";
 
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -137,7 +137,7 @@ public class StringBuilderPolyfillExtensionTests
     {
         var input = new string?[] { null };
         string separator = "::";
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -146,7 +146,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new string?[] { "" };
         string separator = "::";
 
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [DataTestMethod]
@@ -162,7 +162,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new string?[] { s1, s2 };
         string separator = "::";
 
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual(s1 + separator + s2, new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -194,7 +194,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new string?[] { s1, s2 };
         string? separator = null;
 
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual(s1 + s2, new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -203,7 +203,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new List<string>();
         string separator = "::";
 
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -212,7 +212,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new List<string?>() { null };
         string separator = "::";
 
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -221,7 +221,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new List<string?>() { "" };
         string separator = "::";
 
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [DataTestMethod]
@@ -237,7 +237,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new List<string?>() { s1, s2 };
         string separator = "::";
 
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual(s1 + separator + s2, new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -269,7 +269,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new List<string?>() { s1, s2 };
         string? separator = null;
 
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual(s1 + s2, new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -278,7 +278,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new object[0];
         char separator = ',';
 
-        Assert.AreEqual(string.Join(separator.ToString(), input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -287,7 +287,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new object?[] { null };
         char separator = ',';
 
-        Assert.AreEqual(string.Join(separator.ToString(), input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -296,7 +296,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new object?[] { '\0' };
         char separator = ',';
 
-        Assert.AreEqual(string.Join(separator.ToString(), input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("\0", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [DataTestMethod]
@@ -341,7 +341,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new object[0];
         string separator = "::";
 
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -349,7 +349,7 @@ public class StringBuilderPolyfillExtensionTests
     {
         var input = new object?[] { null };
         string separator = "::";
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [TestMethod]
@@ -358,7 +358,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new object?[] { '\0' };
         string separator = "::";
 
-        Assert.AreEqual(string.Join(separator, input), new StringBuilder().AppendJoin(separator, input).ToString());
+        Assert.AreEqual("\0", new StringBuilder().AppendJoin(separator, input).ToString());
     }
 
     [DataTestMethod]

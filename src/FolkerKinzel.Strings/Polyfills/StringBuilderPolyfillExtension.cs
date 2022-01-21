@@ -17,23 +17,106 @@ public static class StringBuilderPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 6.0 have an empty class!
 #if NET45 || NETSTANDARD2_0
-     public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params string?[] values)
+
+    /// <summary>
+    /// Verkettet die Zeichenfolgen des bereitgestellten Arrays, wobei das angegebene als Trennzeichen zu verwendende Zeichen 
+    /// zwischen den einzelnen Zeichenfolgen verwendet wird, und fügt dann das Ergebnis an <paramref name="builder"/>
+    /// an.
+    /// </summary>
+    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
+    /// <param name="separator">Das Zeichen, das als Trennzeichen verwendet werden soll. <paramref name="separator"/>
+    /// ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values"/> mehr als ein Element enthält.</param>
+    /// <param name="values">Ein Array, das die zu verkettenden Zeichenfolgen enthält, die an <paramref name="builder"/>
+    /// angefügt werden sollen.</param>
+    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+    public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params string?[] values)
         => builder.AppendJoin(stackalloc char[] { separator }, values);
 
+    /// <summary>
+    /// Verkettet die Zeichenfolgendarstellungen der Elemente im bereitgestellten Array von Objekten, wobei das angegebene als 
+    /// Trennzeichen zu verwendende Zeichen zwischen den einzelnen Elementen verwendet wird, und fügt dann das Ergebnis an 
+    /// <paramref name="builder"/> an.
+    /// </summary>
+    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
+    /// <param name="separator">Das Zeichen, das als Trennzeichen verwendet werden soll. <paramref name="separator"/>
+    /// ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values"/> mehr als ein Element enthält.</param>
+    /// <param name="values">Ein Array, das die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder"/>
+    /// angefügt werden soll.</param>
+    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
     public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params object?[] values)
         => builder.AppendJoin(stackalloc char[] { separator }, values);
 
+    /// <summary>
+    /// Verkettet die Zeichenfolgendarstellungen der Elemente in der bereitgestellten Sammlung, wobei das angegebene als 
+    /// Trennzeichen zu verwendende Zeichen zwischen den einzelnen Elementen verwendet wird, und fügt dann das Ergebnis an 
+    /// <paramref name="builder"/> an.
+    /// </summary>
+    /// <typeparam name="T">Generischer Typparameter, der den Typ der Elemente in <paramref name="values"/> angibt.</typeparam>
+    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
+    /// <param name="separator">Das Zeichen, das als Trennzeichen verwendet werden soll. <paramref name="separator"/>
+    /// ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values"/> mehr als ein Element enthält.</param>
+    /// <param name="values">Eine Sammlung, die die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder"/>
+    /// angefügt werden soll.</param>
+    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
     public static StringBuilder AppendJoin<T>(this StringBuilder builder, char separator, IEnumerable<T> values)
         => builder.AppendJoin(stackalloc char[] { separator }, values);
 
+    /// <summary>
+    /// Verkettet die Zeichenfolgen des bereitgestellten Arrays, wobei das angegebene Trennzeichen 
+    /// zwischen den einzelnen Zeichenfolgen verwendet wird, und fügt dann das Ergebnis an <paramref name="builder"/>
+    /// an.
+    /// </summary>
+    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
+    /// <param name="separator">Die Zeichenfolge, die als Trennzeichen verwendet werden soll. <paramref name="separator"/>
+    /// ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values"/> mehr als ein Element enthält.</param>
+    /// <param name="values">Ein Array, das die zu verkettenden Zeichenfolgen enthält, die an <paramref name="builder"/>
+    /// angefügt werden sollen.</param>
+    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
     public static StringBuilder AppendJoin(this StringBuilder builder, string? separator, params string?[] values)
         => builder.AppendJoin(separator.AsSpan(), values);
 
+    /// <summary>
+    /// Verkettet die Zeichenfolgendarstellungen der Elemente im bereitgestellten Array von Objekten, wobei das angegebene
+    /// Trennzeichen zwischen den einzelnen Elementen verwendet wird, und fügt dann das Ergebnis an 
+    /// <paramref name="builder"/> an.
+    /// </summary>
+    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
+    /// <param name="separator">Die Zeichenfolge, die als Trennzeichen verwendet werden soll. <paramref name="separator"/>
+    /// ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values"/> mehr als ein Element enthält.</param>
+    /// <param name="values">Ein Array, das die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder"/>
+    /// angefügt werden soll.</param>
+    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
     public static StringBuilder AppendJoin(this StringBuilder builder, string? separator, params object?[] values)
         => builder.AppendJoin(separator.AsSpan(), values);
 
+
+    /// <summary>
+    /// Verkettet die Zeichenfolgendarstellungen der Elemente in der bereitgestellten Sammlung, wobei das angegebene
+    /// Trennzeichen zwischen den einzelnen Elementen verwendet wird, und fügt dann das Ergebnis an 
+    /// <paramref name="builder"/> an.
+    /// </summary>
+    /// <typeparam name="T">Generischer Typparameter, der den Typ der Elemente in <paramref name="values"/> angibt.</typeparam>
+    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
+    /// <param name="separator">Die Zeichenfolge, die als Trennzeichen verwendet werden soll. <paramref name="separator"/>
+    /// ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values"/> mehr als ein Element enthält.</param>
+    /// <param name="values">Eine Sammlung, die die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder"/>
+    /// angefügt werden soll.</param>
+    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
     public static StringBuilder AppendJoin<T>(this StringBuilder builder, string? separator, IEnumerable<T> values)
         => builder.AppendJoin(separator.AsSpan(), values);
+
 
     private static StringBuilder AppendJoin<T>(this StringBuilder builder, ReadOnlySpan<char> separator, IEnumerable<T> values)
     {
@@ -65,9 +148,7 @@ public static class StringBuilderPolyfillExtension
         }
         return builder;
     }
-#endif
 
-#if NET45 || NETSTANDARD2_0
     /// <summary>
     /// Fügt eine Kopie einer Teilzeichenfolge, die aus einem als Argument übergebenen <see cref="StringBuilder"/> stammt, an 
     /// den vorhandenen Inhalt von <paramref name="builder"/> an.
