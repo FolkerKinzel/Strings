@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FolkerKinzel.Strings;
@@ -179,6 +180,16 @@ namespace LibraryTesters
 
             _ = sb.AppendLine(test.AsMemory());
             _ = sb.AppendLine(test.AsSpan());
+
+            _ = sb.AppendJoin(',', "one", "two");
+            _ = sb.AppendJoin(',', new List<string>());
+
+
+            _ = sb.AppendJoin("::", "one", "two");
+            _ = sb.AppendJoin("::", new List<string>());
+
+            _ = sb.AppendJoin(',', 42, 'x');
+            _ = sb.AppendJoin("::", 42, 'x');
         }
     }
 }

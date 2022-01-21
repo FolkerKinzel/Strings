@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FolkerKinzel.Strings" Version="4.3.0-alpha.4" />
+    <ProjectReference Include="..\FolkerKinzel.Strings\FolkerKinzel.Strings.csproj" />
   </ItemGroup>
 
 </Project>

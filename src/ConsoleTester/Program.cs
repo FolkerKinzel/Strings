@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -180,6 +181,17 @@ namespace LibraryTesters
 
             _ = sb.Append(test.AsSpan());
             _ = sb.Append(test.AsMemory());
+
+            _ = sb.AppendJoin(',', "one", "two");
+            _ = sb.AppendJoin(',', new List<string>());
+
+            _ = sb.AppendJoin("::", "one", "two");
+            _ = sb.AppendJoin("::", new List<string>());
+
+            _ = sb.AppendJoin(',', 42, 'x');
+            _ = sb.AppendJoin("::", 42, 'x');
+
+
 
             //_ = sb.AppendLine(test.AsMemory());
             //_ = sb.AppendLine(test.AsSpan());

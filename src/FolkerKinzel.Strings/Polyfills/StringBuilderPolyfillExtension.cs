@@ -17,6 +17,26 @@ public static class StringBuilderPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 6.0 have an empty class!
 #if NET45 || NETSTANDARD2_0
+     public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params string?[] values)
+        => throw new NotImplementedException();
+
+    public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params object?[] values)
+       => throw new NotImplementedException();
+
+    public static StringBuilder AppendJoin<T>(this StringBuilder builder, char separator, IEnumerable<T> values)
+        => throw new NotImplementedException();
+
+    public static StringBuilder AppendJoin(this StringBuilder builder, string? separator, params string?[] values)
+        => throw new NotImplementedException();
+
+    public static StringBuilder AppendJoin(this StringBuilder builder, string? separator, params object?[] values)
+        => throw new NotImplementedException();
+
+    public static StringBuilder AppendJoin<T>(this StringBuilder builder, string? separator, IEnumerable<T> values)
+        => throw new NotImplementedException();
+#endif
+
+#if NET45 || NETSTANDARD2_0
     /// <summary>
     /// Fügt eine Kopie einer Teilzeichenfolge, die aus einem als Argument übergebenen <see cref="StringBuilder"/> stammt, an 
     /// den vorhandenen Inhalt von <paramref name="builder"/> an.
