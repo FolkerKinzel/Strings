@@ -18,22 +18,53 @@ public static class StringBuilderPolyfillExtension
     // Place this preprocessor directive inside the class to let .NET 6.0 have an empty class!
 #if NET45 || NETSTANDARD2_0
      public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params string?[] values)
-        => throw new NotImplementedException();
+        => builder.AppendJoin(stackalloc char[] { separator }, values);
 
     public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params object?[] values)
-       => throw new NotImplementedException();
+        => builder.AppendJoin(stackalloc char[] { separator }, values);
 
     public static StringBuilder AppendJoin<T>(this StringBuilder builder, char separator, IEnumerable<T> values)
-        => throw new NotImplementedException();
+        => builder.AppendJoin(stackalloc char[] { separator }, values);
 
     public static StringBuilder AppendJoin(this StringBuilder builder, string? separator, params string?[] values)
-        => throw new NotImplementedException();
+        => builder.AppendJoin(separator.AsSpan(), values);
 
     public static StringBuilder AppendJoin(this StringBuilder builder, string? separator, params object?[] values)
-        => throw new NotImplementedException();
+        => builder.AppendJoin(separator.AsSpan(), values);
 
     public static StringBuilder AppendJoin<T>(this StringBuilder builder, string? separator, IEnumerable<T> values)
-        => throw new NotImplementedException();
+        => builder.AppendJoin(separator.AsSpan(), values);
+
+    private static StringBuilder AppendJoin<T>(this StringBuilder builder, ReadOnlySpan<char> separator, IEnumerable<T> values)
+    {
+        if (builder is null)
+        {
+            throw new NullReferenceException();
+        }
+        if(values is null)
+        {
+            throw new ArgumentNullException(nameof(values));
+        }
+
+        using (IEnumerator<T> en = values.GetEnumerator())
+        {
+            if (!en.MoveNext())
+            {
+                return builder;
+            }
+
+            T value = en.Current;
+            _ = builder.Append(value?.ToString());
+
+            while (en.MoveNext())
+            {
+                _ = builder.Append(separator);
+                value = en.Current;
+                _ = builder.Append(value?.ToString());
+            }
+        }
+        return builder;
+    }
 #endif
 
 #if NET45 || NETSTANDARD2_0
