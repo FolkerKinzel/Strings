@@ -9,7 +9,6 @@
     StringBuilder AppendJoin(this StringBuilder, string?, params string?[]);
     StringBuilder AppendJoin(this StringBuilder, string?, params object?[]);
     StringBuilder AppendJoin<T>(this StringBuilder, string?, IEnumerable<T>);
-
 ```
 
 .

@@ -31,6 +31,9 @@ public static class StringBuilderPolyfillExtension
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+#if NETSTANDARD2_0
+    [ExcludeFromCodeCoverage]
+#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params string?[] values)
         => builder.AppendJoin(stackalloc char[] { separator }, values);
@@ -48,6 +51,9 @@ public static class StringBuilderPolyfillExtension
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+#if NETSTANDARD2_0
+    [ExcludeFromCodeCoverage]
+#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params object?[] values)
         => builder.AppendJoin(stackalloc char[] { separator }, values);
@@ -66,6 +72,9 @@ public static class StringBuilderPolyfillExtension
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+#if NETSTANDARD2_0
+    [ExcludeFromCodeCoverage]
+#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin<T>(this StringBuilder builder, char separator, IEnumerable<T> values)
         => builder.AppendJoin(stackalloc char[] { separator }, values);
@@ -83,6 +92,9 @@ public static class StringBuilderPolyfillExtension
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+#if NETSTANDARD2_0
+    [ExcludeFromCodeCoverage]
+#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin(this StringBuilder builder, string? separator, params string?[] values)
         => builder.AppendJoin(separator.AsSpan(), values);
@@ -100,6 +112,9 @@ public static class StringBuilderPolyfillExtension
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+#if NETSTANDARD2_0
+    [ExcludeFromCodeCoverage]
+#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin(this StringBuilder builder, string? separator, params object?[] values)
         => builder.AppendJoin(separator.AsSpan(), values);
@@ -119,11 +134,17 @@ public static class StringBuilderPolyfillExtension
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+#if NETSTANDARD2_0
+    [ExcludeFromCodeCoverage]
+#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin<T>(this StringBuilder builder, string? separator, IEnumerable<T> values)
         => builder.AppendJoin(separator.AsSpan(), values);
 
 
+#if NETSTANDARD2_0
+    [ExcludeFromCodeCoverage]
+#endif
     private static StringBuilder AppendJoin<T>(this StringBuilder builder, ReadOnlySpan<char> separator, IEnumerable<T> values)
     {
         if (builder is null)
