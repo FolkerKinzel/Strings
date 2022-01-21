@@ -12,10 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		..\.github\ISSUE_TEMPLATE\bug_report.md = ..\.github\ISSUE_TEMPLATE\bug_report.md
 		..\.github\ISSUE_TEMPLATE\feature_request.md = ..\.github\ISSUE_TEMPLATE\feature_request.md
-		..\docs\PackageReleaseNotes\4.2.0\Polyfills.md = ..\docs\PackageReleaseNotes\4.2.0\Polyfills.md
+		..\docs\PackageReleaseNotes\4.4.0\Polyfills.md = ..\docs\PackageReleaseNotes\4.4.0\Polyfills.md
 		..\README.md = ..\README.md
 		Reference.md = Reference.md
-		..\docs\PackageReleaseNotes\4.3.0\ReleaseNotes.md = ..\docs\PackageReleaseNotes\4.3.0\ReleaseNotes.md
+		..\docs\PackageReleaseNotes\4.4.0\ReleaseNotes.md = ..\docs\PackageReleaseNotes\4.4.0\ReleaseNotes.md
 	EndProjectSection
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "FolkerKinzel.Strings.Reference.en", "FolkerKinzel.Strings.Reference.en\FolkerKinzel.Strings.Reference.en.shfbproj", "{7A4F9D87-3555-4705-861A-61CE8AFBE9FC}"
