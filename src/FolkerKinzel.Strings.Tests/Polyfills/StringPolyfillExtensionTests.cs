@@ -19,7 +19,6 @@ public class StringPolyfillExtensionTests : IDisposable
         Thread.CurrentThread.CurrentCulture = _culture;
         GC.SuppressFinalize(this);
     }
-
     
 
     [DataTestMethod()]

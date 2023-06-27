@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net48;net5.0;net6.0;netcoreapp3.1;netcoreapp2.1;net45</TargetFrameworks>
+		<TargetFrameworks>net48;net5.0;net6.0;net7.0;netcoreapp3.1;netcoreapp2.1;net45</TargetFrameworks>
 		<LangVersion>10.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -10,8 +10,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Using Remove="System.Net.Http"/>
-		<Using Include="System.Text"/>
+		<Using Remove="System.Net.Http" />
+		<Using Include="System.Text" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Remove="reports\**" />
@@ -31,11 +31,11 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Nullable" Version="1.3.0">
+		<PackageReference Include="Nullable" Version="1.3.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="System.Memory" Version="4.5.4" />
+		<PackageReference Include="System.Memory" Version="4.5.5" />
 	</ItemGroup>
 
 	<ItemGroup>

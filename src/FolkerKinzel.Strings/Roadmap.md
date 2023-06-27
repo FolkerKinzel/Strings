@@ -2,32 +2,45 @@
 
 ## Roadmap
 
-### 2.0.0
-- [x] Add support for .NET 5.0.
-- [x] End .NET Framework 4.0 support.
-- [x] Rename the GetStableHashCode extension methods to GetPersistentHashCode.
-- [x] Rename the StringBuilderExtensions class to StringBuilderExtension.
-- [x] Rename the ReadOnlySpanExtensions class to ReadOnlySpanExtension.
-- [x] Rename the StringExtensions class to StringExtension.
-- [x] Remove redundant code.
-- [x] Let GetPersistentHashCode throw an ArgumentException instead of an ArgumentOutOfRangeException 
-when an undefined enum value is passed as argument.
-- [x] Add a Trim extension method for StringBuilder.
+### 4.4.1
+- [x] Add .NET 7 support.
+- [x] Dependency update.
 
-### 2.0.1
-- [x] Cleanup: Remove obsolete symbols.
+### 4.4.0
+- [x] `StringBuilder.AppendJoin()` - Polyfills
 
-### 2.1.0
-- [x] Add IndexOf- and Contains-Polyfills. 
+### 4.3.0
+- [x] `StringBuilder.AppendLine(ReadOnlyMemory<Char>)`
+- [x] `StringBuilder.AppendLine(ReadOnlySpan<Char>)`
 
-### 3.0.0
-- [x] Move the Polyfills to the namespace FolkerKinzel.Strings.Polyfills.
-- [x] Add new extension methods and polyfills.
-- [x] Make the extension method classes partial.
+### 4.2.0
+- [x] Polyfill `bool Contains(this ReadOnlySpan<char>, string?, StringComparison)`
 
-### 3.1.0
-- [x] New overloads for TextEncodingConverter.GetEncoding
-- [x] Additional extension methods and polyfills.
+### 4.1.0
+- [x] Dependency update.
+- [x] Remove `StringCreator`
+
+ ### 4.0.0
+- [x] .NET 6.0 support.
+- [x] Replace the `StringCreator` class with a `StaticStringMethod` class.
+- [x] Make the usage of the `StringCreator` class an Obsolete error.
+- [x] Implement `StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>)`
+- [x] Implement `StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>)`
+- [x] Implement `String.ReplaceLineEndings()` poyfill.
+- [x] Implement `String.ReplaceLineEndings(string)` poyfill.
+- [x] Implement `StringBuilder.ReplaceLineEndings()`.
+- [x] Implement `StringBuilder.ReplaceLineEndings(string)`.
+- [x] Let `StringBuilder.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` give an obsolete warning.
+- [x] Let `StringBuilder.NormalizeNewLinesTo(string? newLine)` give an obsolete warning.
+- [x] Let `String.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` give an  obsolete warning.
+- [x] Let `String.NormalizeNewLinesTo(string? newLine)` give an obsolete warning.
+
+### 3.3.0
+- [x] Implement `ReadOnlySpan<Char>.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
+- [x] Polyfill `string StringCreator.Create<TState> (int, TState, System.Buffers.SpanAction<char,TState>)`
+- [x] Implement bool `IsAsciiLowerCaseLetter(this char)`.
+- [x] Implement bool `IsAsciiUpperCaseLetter(this char)`.
+- [x] Implement bool `IsAsciiLetter(this char)`.
 
 ### 3.2.0
 - [x] Remove obsolete stuff.
@@ -50,42 +63,33 @@ prone calculating with the result when slicing the span before.
 - [x] Implement `String.NormalizeNewLinesWith(ReadOnlySpan<Char>)`.
 - [x] Implement `StringBuilder.NormalizeNewLinesWith(ReadOnlySpan<Char>)`.
 
-### 3.3.0
-- [x] Implement `ReadOnlySpan<Char>.LastIndexOf(ReadOnlySpan<Char>, Int32, Int32, StringComparison)`.
-- [x] Polyfill `string StringCreator.Create<TState> (int, TState, System.Buffers.SpanAction<char,TState>)`
-- [x] Implement bool `IsAsciiLowerCaseLetter(this char)`.
-- [x] Implement bool `IsAsciiUpperCaseLetter(this char)`.
-- [x] Implement bool `IsAsciiLetter(this char)`.
+### 3.1.0
+- [x] New overloads for TextEncodingConverter.GetEncoding
+- [x] Additional extension methods and polyfills.
 
+### 3.0.0
+- [x] Move the Polyfills to the namespace FolkerKinzel.Strings.Polyfills.
+- [x] Add new extension methods and polyfills.
+- [x] Make the extension method classes partial.
 
- ### 4.0.0
-- [x] .NET 6.0 support.
-- [x] Replace the `StringCreator` class with a `StaticStringMethod` class.
-- [x] Make the usage of the `StringCreator` class an Obsolete error.
-- [x] Implement `StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>)`
-- [x] Implement `StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>)`
-- [x] Implement `String.ReplaceLineEndings()` poyfill.
-- [x] Implement `String.ReplaceLineEndings(string)` poyfill.
-- [x] Implement `StringBuilder.ReplaceLineEndings()`.
-- [x] Implement `StringBuilder.ReplaceLineEndings(string)`.
-- [x] Let `StringBuilder.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` give an obsolete warning.
-- [x] Let `StringBuilder.NormalizeNewLinesTo(string? newLine)` give an obsolete warning.
-- [x] Let `String.NormalizeNewLinesTo(ReadOnlySpan<char> newLine)` give an  obsolete warning.
-- [x] Let `String.NormalizeNewLinesTo(string? newLine)` give an obsolete warning.
+### 2.1.0
+- [x] Add IndexOf- and Contains-Polyfills. 
 
-### 4.1.0
-- [x] Dependency update.
-- [x] Remove `StringCreator`
+### 2.0.1
+- [x] Cleanup: Remove obsolete symbols.
 
-### 4.2.0
-- [x] Polyfill `bool Contains(this ReadOnlySpan<char>, string?, StringComparison)`
+### 2.0.0
+- [x] Add support for .NET 5.0.
+- [x] End .NET Framework 4.0 support.
+- [x] Rename the GetStableHashCode extension methods to GetPersistentHashCode.
+- [x] Rename the StringBuilderExtensions class to StringBuilderExtension.
+- [x] Rename the ReadOnlySpanExtensions class to ReadOnlySpanExtension.
+- [x] Rename the StringExtensions class to StringExtension.
+- [x] Remove redundant code.
+- [x] Let GetPersistentHashCode throw an ArgumentException instead of an ArgumentOutOfRangeException 
+when an undefined enum value is passed as argument.
+- [x] Add a Trim extension method for StringBuilder.
 
-### 4.3.0
-- [x] `StringBuilder.AppendLine(ReadOnlyMemory<Char>)`
-- [x] `StringBuilder.AppendLine(ReadOnlySpan<Char>)`
-
-### 4.4.0
-- [x] `StringBuilder.AppendJoin()` - Polyfills
 
 .
 
