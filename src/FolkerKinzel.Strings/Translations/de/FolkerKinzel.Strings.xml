@@ -4,6 +4,17 @@
         <name>FolkerKinzel.Strings</name>
     </assembly>
     <members>
+        <member name="T:System.Buffers.SpanAction`2">
+            <summary>
+            Polyfill für das ab .NET Standard 2.0 verfügbare Delegat System.Buffers.SpanAction&lt;T,TArg&gt;.
+            </summary>
+            <typeparam name="T">Der Typ der Objekte in der Spanne.</typeparam>
+            <typeparam name="TArg">Der Typ des Objekts, das den Zustand darstellt.
+            Dieser Typparameter ist kontravariant. Das bedeutet, dass Sie entweder den angegebenen Typ oder 
+            einen weniger abgeleiteten Typ verwenden können. </typeparam>
+            <param name="span">Eine Spanne von Objekten des Typs <typeparamref name="T"/>.</param>
+            <param name="arg">Ein Zustandsobjekt des Typs <typeparamref name="TArg"/>.</param>
+        </member>
         <member name="T:FolkerKinzel.Strings.CharExtension">
             <summary>
             Erweiterungsmethoden für die <see cref="T:System.Char"/>-Struktur.
@@ -2566,8 +2577,10 @@
             <returns>Ein <see cref="T:System.Text.Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
             entspricht oder <see cref="P:System.Text.Encoding.UTF8"/>, falls keine Entsprechung gefunden wurde.</returns>
             <remarks>
-            .NET Standard und .NET 5.0 erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
+            <para>
+            .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
             Die Methode überschreibt diese Standardeinstellung.
+            </para>
             </remarks>
         </member>
         <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.String,System.Text.EncoderFallback,System.Text.DecoderFallback)">
@@ -2586,7 +2599,7 @@
             Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
             falls eine <see cref="T:System.Byte"/>-Sequenz mit dem <see cref="T:System.Text.Encoding"/>-Objekt nicht dekodiert werden kann.</param>
             <remarks>
-            .NET Standard und .NET 5.0 erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
+            .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
             Die Methode überschreibt diese Standardeinstellung.
             </remarks>
         </member>
@@ -2596,12 +2609,14 @@
             zurück, bei dem <see cref="P:System.Text.Encoding.EncoderFallback"/> und <see cref="P:System.Text.Encoding.DecoderFallback"/>
             auf ReplacementFallback eingestellt sind. <see cref="P:System.Text.Encoding.UTF8"/> ist der Fallback-Wert.
             </summary>
-            <param name="codepage">Die Nummer der Codepage oder 0 für <see cref="P:System.Text.Encoding.Default"/>.</param>
+            <param name="codepage">Die Nummer der Codepage. (Wird <c>0</c> übergeben, gibt die Methode <see cref="P:System.Text.Encoding.UTF8"/> zurück.)</param>
             <returns>Ein <see cref="T:System.Text.Encoding"/>-Objekt, das der angegebenen Nummer der Codepage
             entspricht oder <see cref="P:System.Text.Encoding.UTF8"/>, falls keine Entsprechung gefunden wurde.</returns>
             <remarks>
-            .NET Standard und .NET 5.0 erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
+            <para>
+            .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
             Die Methode überschreibt diese Standardeinstellung.
+            </para>
             </remarks>
         </member>
         <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback)">
@@ -2610,7 +2625,7 @@
             zurück, dessen Eigenschaften <see cref="P:System.Text.Encoding.EncoderFallback"/> und <see cref="P:System.Text.Encoding.DecoderFallback"/>
             auf die gewünschten Werte eingestellt sind.
             </summary>
-            <param name="codepage">Die Nummer der Codepage oder 0 für <see cref="P:System.Text.Encoding.Default"/>.</param>
+            <param name="codepage">Die Nummer der Codepage. (Wird <c>0</c> übergeben, gibt die Methode ein UTF-8-<see cref="T:System.Text.Encoding"/> zurück.)</param>
             <returns>Ein <see cref="T:System.Text.Encoding"/>-Objekt, das der angegebenen Nummer der Codepage
             entspricht oder ein <see cref="T:System.Text.Encoding"/>-Objekt für den UTF-8 Zeichensatz, falls keine Entsprechung
             gefunden wurde.</returns>
@@ -2620,7 +2635,7 @@
             Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
             falls eine <see cref="T:System.Byte"/>-Sequenz mit dem <see cref="T:System.Text.Encoding"/>-Objekt nicht dekodiert werden kann.</param>
             <remarks>
-            .NET Standard und .NET 5.0 erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
+            .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
             Die Methode überschreibt diese Standardeinstellung.
             </remarks>
         </member>
@@ -2653,17 +2668,6 @@
             Daten erkannt werden, wenn kein Byte Order Mark vorliegt.
             </para>
             </remarks>
-        </member>
-        <member name="T:System.Buffers.SpanAction`2">
-            <summary>
-            Polyfill für das ab .NET Standard 2.0 verfügbare Delegat System.Buffers.SpanAction&lt;T,TArg&gt;.
-            </summary>
-            <typeparam name="T">Der Typ der Objekte in der Spanne.</typeparam>
-            <typeparam name="TArg">Der Typ des Objekts, das den Zustand darstellt.
-            Dieser Typparameter ist kontravariant. Das bedeutet, dass Sie entweder den angegebenen Typ oder 
-            einen weniger abgeleiteten Typ verwenden können. </typeparam>
-            <param name="span">Eine Spanne von Objekten des Typs <typeparamref name="T"/>.</param>
-            <param name="arg">Ein Zustandsobjekt des Typs <typeparamref name="TArg"/>.</param>
         </member>
     </members>
 </doc>

@@ -5,6 +5,11 @@
 ### 4.4.1
 - [x] Add .NET 7 support.
 - [x] Dependency update.
+- [x] Change the behavior of the methods `TextEncodingConverter.GetEncoding(int)` and `TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback)` to treat the argument `0` as an invalid value.
+- [x] The methods `TextEncodingConverter.GetEncoding(string?)` and `TextEncodingConverter.GetEncoding(string?, EncoderFallback, DecoderFallback)` should accept encoding names that contain `SPACE` characters.
+> Project reference: On some systems, the content of the CHM file in the Assets is blocked. Before opening the file
+>  right click on the file icon, select Properties, and check the "Allow" checkbox - if it 
+> is present - in the lower right corner of the General tab in the Properties dialog.
 
 ### 4.4.0
 - [x] `StringBuilder.AppendJoin()` - Polyfills

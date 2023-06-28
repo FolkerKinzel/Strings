@@ -20,6 +20,23 @@ public class TextEncodingConverterTests
 
     [DataTestMethod]
     [DataRow(null, 65001)]
+    [DataRow("windows-1252", 1252)]
+    [DataRow("Windows-1252", 1252)]
+    [DataRow("WINDOWS-1252", 1252)]
+    [DataRow("WINDOWS - 1252", 1252)]
+    [DataRow("unBekannt", 65001)]
+    public void GetEncodingTest7(string? input, int codePage)
+    {
+        Encoding enc = TextEncodingConverter.GetEncoding(input);
+        Assert.AreEqual(codePage, enc.CodePage);
+        Assert.IsNotInstanceOfType(enc.EncoderFallback, EncoderFallback.ExceptionFallback.GetType());
+        Assert.IsNotInstanceOfType(enc.DecoderFallback.GetType(), DecoderFallback.ExceptionFallback.GetType());
+    }
+
+
+
+    [DataTestMethod]
+    [DataRow(null, 65001)]
     [DataRow("iso-8859-1", 28591)]
     [DataRow("ISO-8859-1", 28591)]
     [DataRow("unBekannt", 65001)]
@@ -80,9 +97,8 @@ public class TextEncodingConverterTests
     [TestMethod]
     public void GetEncodingTest5()
     {
-        const int defaultCodePage = 1252;
         Encoding enc = TextEncodingConverter.GetEncoding(0);
-        Assert.AreEqual(defaultCodePage, enc.CodePage);
+        Assert.AreEqual(Encoding.UTF8, enc);
         Assert.IsNotInstanceOfType(enc.EncoderFallback, EncoderFallback.ExceptionFallback.GetType());
         Assert.IsNotInstanceOfType(enc.DecoderFallback.GetType(), DecoderFallback.ExceptionFallback.GetType());
     }
@@ -90,9 +106,8 @@ public class TextEncodingConverterTests
     [TestMethod]
     public void GetEncodingTest6()
     {
-        const int defaultCodePage = 1252;
         Encoding enc = TextEncodingConverter.GetEncoding(0, EncoderFallback.ExceptionFallback, DecoderFallback.ExceptionFallback);
-        Assert.AreEqual(defaultCodePage, enc.CodePage);
+        Assert.AreEqual(Encoding.UTF8.CodePage, enc.CodePage);
         Assert.IsInstanceOfType(enc.EncoderFallback, EncoderFallback.ExceptionFallback.GetType());
         Assert.IsInstanceOfType(enc.DecoderFallback, DecoderFallback.ExceptionFallback.GetType());
     }

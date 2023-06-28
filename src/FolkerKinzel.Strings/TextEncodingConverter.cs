@@ -1,4 +1,6 @@
-﻿namespace FolkerKinzel.Strings;
+﻿using FolkerKinzel.Strings.Polyfills;
+
+namespace FolkerKinzel.Strings;
 
 /// <summary>
 /// Erzeugt aus verschiedenen Datentypen eine
@@ -18,8 +20,10 @@ public static class TextEncodingConverter
     /// <returns>Ein <see cref="Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
     /// entspricht oder <see cref="Encoding.UTF8"/>, falls keine Entsprechung gefunden wurde.</returns>
     /// <remarks>
-    /// .NET Standard und .NET 5.0 erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
+    /// <para>
+    /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
     /// Die Methode überschreibt diese Standardeinstellung.
+    /// </para>
     /// </remarks>
     public static Encoding GetEncoding(string? name)
     {
@@ -33,7 +37,7 @@ public static class TextEncodingConverter
 #endif
         try
         {
-            return Encoding.GetEncoding(name);
+            return Encoding.GetEncoding(name.Replace(" ", "", StringComparison.Ordinal));
         }
         catch
         {
@@ -56,7 +60,7 @@ public static class TextEncodingConverter
     /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
     /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
     /// <remarks>
-    /// .NET Standard und .NET 5.0 erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
+    /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
     /// Die Methode überschreibt diese Standardeinstellung.
     /// </remarks>
     public static Encoding GetEncoding(string? name, EncoderFallback encoderFallback, DecoderFallback decoderFallback)
@@ -72,7 +76,7 @@ public static class TextEncodingConverter
 
         try
         {
-            return Encoding.GetEncoding(name, encoderFallback, decoderFallback);
+            return Encoding.GetEncoding(name.Replace(" ", "", StringComparison.Ordinal), encoderFallback, decoderFallback);
         }
         catch
         {
@@ -85,16 +89,18 @@ public static class TextEncodingConverter
     /// zurück, bei dem <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
     /// auf ReplacementFallback eingestellt sind. <see cref="Encoding.UTF8"/> ist der Fallback-Wert.
     /// </summary>
-    /// <param name="codepage">Die Nummer der Codepage oder 0 für <see cref="Encoding.Default"/>.</param>
+    /// <param name="codepage">Die Nummer der Codepage. (Wird <c>0</c> übergeben, gibt die Methode <see cref="Encoding.UTF8"/> zurück.)</param>
     /// <returns>Ein <see cref="Encoding"/>-Objekt, das der angegebenen Nummer der Codepage
     /// entspricht oder <see cref="Encoding.UTF8"/>, falls keine Entsprechung gefunden wurde.</returns>
     /// <remarks>
-    /// .NET Standard und .NET 5.0 erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
+    /// <para>
+    /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
     /// Die Methode überschreibt diese Standardeinstellung.
+    /// </para>
     /// </remarks>
     public static Encoding GetEncoding(int codepage)
     {
-        if (codepage is < 0 or > CODEPAGE_MAX)
+        if (codepage is < 1 or > CODEPAGE_MAX)
         {
             return Encoding.UTF8;
         }
@@ -117,7 +123,7 @@ public static class TextEncodingConverter
     /// zurück, dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
     /// auf die gewünschten Werte eingestellt sind.
     /// </summary>
-    /// <param name="codepage">Die Nummer der Codepage oder 0 für <see cref="Encoding.Default"/>.</param>
+    /// <param name="codepage">Die Nummer der Codepage. (Wird <c>0</c> übergeben, gibt die Methode ein UTF-8-<see cref="Encoding"/> zurück.)</param>
     /// <returns>Ein <see cref="Encoding"/>-Objekt, das der angegebenen Nummer der Codepage
     /// entspricht oder ein <see cref="Encoding"/>-Objekt für den UTF-8 Zeichensatz, falls keine Entsprechung
     /// gefunden wurde.</returns>
@@ -127,12 +133,12 @@ public static class TextEncodingConverter
     /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
     /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
     /// <remarks>
-    /// .NET Standard und .NET 5.0 erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
+    /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
     /// Die Methode überschreibt diese Standardeinstellung.
     /// </remarks>
     public static Encoding GetEncoding(int codepage, EncoderFallback encoderFallback, DecoderFallback decoderFallback)
     {
-        if (codepage is < 0 or > CODEPAGE_MAX)
+        if (codepage is < 1 or > CODEPAGE_MAX)
         {
             return Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
         }
