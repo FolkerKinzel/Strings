@@ -1,4 +1,6 @@
-﻿using FolkerKinzel.Strings.Polyfills;
+﻿using System.Xml.Linq;
+using FolkerKinzel.Strings.Polyfills;
+using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings;
 
@@ -9,106 +11,173 @@ namespace FolkerKinzel.Strings;
 public static class TextEncodingConverter
 {
     private const int UTF_8 = 65001;
+    private const int CODEPAGE_MIN = 1;
     private const int CODEPAGE_MAX = 65535;
 
     /// <summary>
     /// Gibt für den Bezeichner eines Zeichensatzes ein entsprechendes <see cref="Encoding"/>-Objekt
     /// zurück, bei dem <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
-    /// auf ReplacementFallback eingestellt sind. <see cref="Encoding.UTF8"/> ist der Fallback-Wert.
+    /// auf ReplacementFallback eingestellt sind. (<see cref="Encoding.UTF8"/> ist der Fallback-Wert.)
     /// </summary>
-    /// <param name="name">Der Bezeichner eines Zeichensatzes oder <c>null</c> für <see cref="Encoding.UTF8"/>.</param>
+    /// 
+    /// <param name="encodingWebName">Der Bezeichner eines Zeichensatzes.</param>
+    /// <param name="throwOnInvalidName">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
+    /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="encodingWebName"/> nicht übersetzt werden konnte.</param>
+    /// 
     /// <returns>Ein <see cref="Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
-    /// entspricht oder <see cref="Encoding.UTF8"/>, falls keine Entsprechung gefunden wurde.</returns>
+    /// entspricht. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung <see cref="Encoding.UTF8"/> zurückgegeben.
+    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidName"/> aufgerufen wird, wird
+    /// in diesem Fall eine <see cref="ArgumentException"/> geworfen.</returns>
+    /// 
     /// <remarks>
     /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
     /// Die Methode überschreibt diese Standardeinstellung.
     /// </remarks>
-    public static Encoding GetEncoding(string? name)
+    /// 
+    /// <exception cref="ArgumentException">
+    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Eine Ausnahme wird nur dann geworfen, wenn
+    /// die Option <paramref name="throwOnInvalidName"/> auf <c>true</c> gesetzt ist.
+    /// </exception>
+    public static Encoding GetEncoding(string? encodingWebName, bool throwOnInvalidName = false)
     {
-        if (string.IsNullOrWhiteSpace(name))
+        if (string.IsNullOrWhiteSpace(encodingWebName))
         {
-            return Encoding.UTF8;
+            return throwOnInvalidName
+                ? throw new ArgumentException(Res.ArgumentNullOrWhiteSpace, nameof(encodingWebName)) 
+                : Encoding.UTF8;
         }
 
         EnableAnsiEncodings();
 
         try
         {
-            return Encoding.GetEncoding(PrepareEncodingName(name));
+            return Encoding.GetEncoding(PrepareEncodingName(encodingWebName));
         }
-        catch
+        catch(Exception e)
         {
-            return Encoding.UTF8;
+            return throwOnInvalidName 
+                ? throw new ArgumentException(e.Message, nameof(encodingWebName), e)
+                : Encoding.UTF8;
         }
     }
 
-    
 
     /// <summary>
     /// Gibt für den Bezeichner eines Zeichensatzes ein entsprechendes <see cref="Encoding"/>-Objekt
     /// zurück, dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
     /// auf die gewünschten Werte eingestellt sind.
     /// </summary>
-    /// <param name="name">Der Bezeichner eines Zeichensatzes oder <c>null</c> für den UTF-8-Zeichensatz.</param>
-    /// <returns>Ein <see cref="Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
-    /// entspricht oder ein <see cref="Encoding"/>-Objekt für den UTF-8 Zeichensatz, falls keine Entsprechung
-    /// gefunden wurde.</returns>
+    /// 
+    /// <param name="encodingWebName">Der Bezeichner eines Zeichensatzes oder <c>null</c> für den UTF-8-Zeichensatz.</param>
     /// <param name="encoderFallback">Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
     /// falls ein Zeichen mit dem <see cref="Encoding"/>-Objekt nicht enkodiert werden kann.</param>
     /// <param name="decoderFallback">
     /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
     /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
+    /// <param name="throwOnInvalidName">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
+    /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="encodingWebName"/> nicht übersetzt werden konnte.</param>
+    /// 
+    /// <returns>Ein <see cref="Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
+    /// entspricht und dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
+    /// auf die gewünschten Werte eingestellt sind. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung 
+    /// ein entsprechendes <see cref="Encoding"/>-Objekt für UTF-8 zurückgegeben.
+    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidName"/> aufgerufen wird, wird
+    /// in diesem Fall eine <see cref="ArgumentException"/> geworfen.</returns>
+    /// 
     /// <remarks>
     /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
     /// Die Methode überschreibt diese Standardeinstellung.
     /// </remarks>
-    public static Encoding GetEncoding(string? name, EncoderFallback encoderFallback, DecoderFallback decoderFallback)
+    /// <exception cref="ArgumentException">
+    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Eine Ausnahme wird nur dann geworfen, wenn
+    /// die Option <paramref name="throwOnInvalidName"/> auf <c>true</c> gesetzt ist.
+    /// </exception>
+    public static Encoding GetEncoding(string? encodingWebName,
+                                       EncoderFallback encoderFallback,
+                                       DecoderFallback decoderFallback,
+                                       bool throwOnInvalidName = false)
     {
-        if (string.IsNullOrWhiteSpace(name))
+        if (string.IsNullOrWhiteSpace(encodingWebName))
         {
-            return Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
+            return throwOnInvalidName
+                ? throw new ArgumentException(Res.ArgumentNullOrWhiteSpace, nameof(encodingWebName))
+                : CreateFallBack();
         }
-
+        
         EnableAnsiEncodings();
 
         try
         {
-            return Encoding.GetEncoding(PrepareEncodingName(name), encoderFallback, decoderFallback);
+            return Encoding.GetEncoding(PrepareEncodingName(encodingWebName), encoderFallback, decoderFallback);
         }
-        catch
+        catch(Exception e)
         {
-            return Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
+            return throwOnInvalidName
+                ? throw new ArgumentException(e.Message, nameof(encodingWebName), e)
+                : CreateFallBack();
         }
+
+        Encoding CreateFallBack() => Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
     }
 
     /// <summary>
     /// Gibt für die Nummer einer Codepage ein entsprechendes <see cref="Encoding"/>-Objekt
     /// zurück, bei dem <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
-    /// auf ReplacementFallback eingestellt sind. <see cref="Encoding.UTF8"/> ist der Fallback-Wert.
+    /// auf ReplacementFallback eingestellt sind. (<see cref="Encoding.UTF8"/> ist der Fallback-Wert.)
     /// </summary>
-    /// <param name="codepage">Die Nummer der Codepage. (Wird <c>0</c> übergeben, gibt die Methode <see cref="Encoding.UTF8"/> zurück.)</param>
-    /// <returns>Ein <see cref="Encoding"/>-Objekt, das der angegebenen Nummer der Codepage
-    /// entspricht oder <see cref="Encoding.UTF8"/>, falls keine Entsprechung gefunden wurde.</returns>
+    /// <param name="codePage">
+    /// <para>
+    /// Die Nummer der Codepage.
+    /// </para>
+    /// <note type="caution">
+    /// <c>0</c> wird als ungültiges Argument behandelt. Das Verhalten der Methode unterscheidet sich damit von
+    /// <see cref="Encoding.GetEncoding(int)"/>.
+    /// </note>
+    /// </param>
+    /// <param name="throwOnInvalidCodePage">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
+    /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="codePage"/> nicht übersetzt werden konnte.</param>
+    /// 
+    /// <returns>
+    /// Ein <see cref="Encoding"/>-Objekt, das der angegebenen Nummer der Codepage
+    /// entspricht. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung <see cref="Encoding.UTF8"/> zurückgegeben.
+    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidCodePage"/> aufgerufen wird, wird
+    /// in diesem Fall eine <see cref="ArgumentException"/> geworfen.
+    /// </returns>
+    /// 
     /// <remarks>
     /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
     /// Die Methode überschreibt diese Standardeinstellung.
     /// </remarks>
-    public static Encoding GetEncoding(int codepage)
+    /// 
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Die Ausnahme wird nur dann geworfen, wenn
+    /// die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
+    /// </exception>
+    /// <exception cref="ArgumentException">
+    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Die Ausnahme wird nur dann geworfen, wenn
+    /// die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
+    /// </exception>
+    /// 
+    public static Encoding GetEncoding(int codePage, bool throwOnInvalidCodePage = false)
     {
-        if (codepage is < 1 or > CODEPAGE_MAX)
+        if (codePage is < CODEPAGE_MIN or > CODEPAGE_MAX)
         {
-            return Encoding.UTF8;
+            return throwOnInvalidCodePage
+                ? throw new ArgumentOutOfRangeException(nameof(codePage))
+                : Encoding.UTF8;
         }
 
         EnableAnsiEncodings();
 
         try
         {
-            return Encoding.GetEncoding(codepage);
+            return Encoding.GetEncoding(codePage);
         }
-        catch
+        catch(Exception e)
         {
-            return Encoding.UTF8;
+            return throwOnInvalidCodePage
+                ? throw new ArgumentException(e.Message, nameof(codePage), e)
+                : Encoding.UTF8;
         }
     }
 
@@ -117,36 +186,70 @@ public static class TextEncodingConverter
     /// zurück, dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
     /// auf die gewünschten Werte eingestellt sind.
     /// </summary>
-    /// <param name="codepage">Die Nummer der Codepage. (Wird <c>0</c> übergeben, gibt die Methode ein UTF-8-<see cref="Encoding"/> zurück.)</param>
-    /// <returns>Ein <see cref="Encoding"/>-Objekt, das der angegebenen Nummer der Codepage
-    /// entspricht oder ein <see cref="Encoding"/>-Objekt für den UTF-8 Zeichensatz, falls keine Entsprechung
-    /// gefunden wurde.</returns>
+    /// 
+    /// <param name="codePage">
+    /// <para>
+    /// Die Nummer der Codepage.
+    /// </para>
+    /// <note type="caution">
+    /// <c>0</c> wird als ungültiges Argument behandelt. Das Verhalten der Methode unterscheidet sich damit von
+    /// <see cref="Encoding.GetEncoding(int)"/>.
+    /// </note></param>
+    /// 
     /// <param name="encoderFallback">Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
     /// falls ein Zeichen mit dem <see cref="Encoding"/>-Objekt nicht enkodiert werden kann.</param>
     /// <param name="decoderFallback">
     /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
     /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
+    /// <param name="throwOnInvalidCodePage">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
+    /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="codePage"/> nicht übersetzt werden konnte.</param>
+    ///  
+    /// <returns>Ein <see cref="Encoding"/>-Objekt, das der angegebenen Nummer der Codepage
+    /// entspricht und dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
+    /// auf die gewünschten Werte eingestellt sind. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung 
+    /// ein entsprechendes <see cref="Encoding"/>-Objekt für UTF-8 zurückgegeben.
+    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidName"/> aufgerufen wird, wird
+    /// in diesem Fall eine <see cref="ArgumentException"/> geworfen.</returns>
+    /// 
     /// <remarks>
     /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
     /// Die Methode überschreibt diese Standardeinstellung.
     /// </remarks>
-    public static Encoding GetEncoding(int codepage, EncoderFallback encoderFallback, DecoderFallback decoderFallback)
+    /// 
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Die Ausnahme wird nur dann geworfen, wenn
+    /// die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
+    /// </exception>
+    /// <exception cref="ArgumentException">
+    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Die Ausnahme wird nur dann geworfen, wenn
+    /// die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
+    /// </exception>
+    public static Encoding GetEncoding(int codePage,
+                                       EncoderFallback encoderFallback,
+                                       DecoderFallback decoderFallback,
+                                       bool throwOnInvalidCodePage = false)
     {
-        if (codepage is < 1 or > CODEPAGE_MAX)
+        if (codePage is < CODEPAGE_MIN or > CODEPAGE_MAX)
         {
-            return Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
+            return throwOnInvalidCodePage
+                ? throw new ArgumentOutOfRangeException(nameof(codePage))
+                : CreateFallBack();
         }
 
         EnableAnsiEncodings();
 
         try
         {
-            return Encoding.GetEncoding(codepage, encoderFallback, decoderFallback);
+            return Encoding.GetEncoding(codePage, encoderFallback, decoderFallback);
         }
-        catch
+        catch(Exception e )
         {
-            return Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
+            return throwOnInvalidCodePage
+                ? throw new ArgumentException(e.Message, nameof(codePage), e)
+                : CreateFallBack();
         }
+
+        Encoding CreateFallBack() => Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
     }
 
 
@@ -269,9 +372,11 @@ public static class TextEncodingConverter
 
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static void EnableAnsiEncodings() =>
+    private static void EnableAnsiEncodings()
+    {
 #if NETSTANDARD2_0_OR_GREATER || NET5_0_OR_GREATER
-    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 #endif
+    }
 
 }

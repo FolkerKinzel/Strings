@@ -7,9 +7,9 @@
 - [x] Dependency update.
 - [x] Change the behavior of the methods `TextEncodingConverter.GetEncoding(int)` and `TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback)` to treat the argument `0` as an invalid value.
 - [x] The methods `TextEncodingConverter.GetEncoding(string?)` and `TextEncodingConverter.GetEncoding(string?, EncoderFallback, DecoderFallback)` should accept encoding names that contain `SPACE` characters.
-> Project reference: On some systems, the content of the CHM file in the Assets is blocked. Before opening the file
->  right click on the file icon, select Properties, and check the "Allow" checkbox - if it 
-> is present - in the lower right corner of the General tab in the Properties dialog.
+- [x] Give the `TextEncodingConverter.GetEncoding(...)` methods an optional parameter that allows to choose whether in case of a failed conversion the fallback value is returned or an exception is thrown.
+- [x] Rename the parameter `name` in `TextEncodingConverter.GetEncoding(string?)` and `TextEncodingConverter.GetEncoding(string?, EncoderFallback, DecoderFallback)` to `encodingWebName`.
+- [x] Rename the parameter `codepage` in `TextEncodingConverter.GetEncoding(int)` and `TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback)` to `codePage`.
 
 ### 4.4.0
 - [x] `StringBuilder.AppendJoin()` - Polyfills
