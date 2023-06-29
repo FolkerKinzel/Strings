@@ -21,12 +21,12 @@ public static class TextEncodingConverter
     /// </summary>
     /// 
     /// <param name="encodingWebName">Der Bezeichner eines Zeichensatzes.</param>
-    /// <param name="throwOnInvalidName">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
+    /// <param name="throwOnInvalidWebName">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
     /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="encodingWebName"/> nicht übersetzt werden konnte.</param>
     /// 
     /// <returns>Ein <see cref="Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
     /// entspricht. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung <see cref="Encoding.UTF8"/> zurückgegeben.
-    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidName"/> aufgerufen wird, wird
+    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidWebName"/> aufgerufen wird, wird
     /// in diesem Fall eine <see cref="ArgumentException"/> geworfen.</returns>
     /// 
     /// <remarks>
@@ -36,13 +36,13 @@ public static class TextEncodingConverter
     /// 
     /// <exception cref="ArgumentException">
     /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Eine Ausnahme wird nur dann geworfen, wenn
-    /// die Option <paramref name="throwOnInvalidName"/> auf <c>true</c> gesetzt ist.
+    /// die Option <paramref name="throwOnInvalidWebName"/> auf <c>true</c> gesetzt ist.
     /// </exception>
-    public static Encoding GetEncoding(string? encodingWebName, bool throwOnInvalidName = false)
+    public static Encoding GetEncoding(string? encodingWebName, bool throwOnInvalidWebName = false)
     {
         if (string.IsNullOrWhiteSpace(encodingWebName))
         {
-            return throwOnInvalidName
+            return throwOnInvalidWebName
                 ? throw new ArgumentException(Res.ArgumentNullOrWhiteSpace, nameof(encodingWebName)) 
                 : Encoding.UTF8;
         }
@@ -55,7 +55,7 @@ public static class TextEncodingConverter
         }
         catch(Exception e)
         {
-            return throwOnInvalidName 
+            return throwOnInvalidWebName 
                 ? throw new ArgumentException(e.Message, nameof(encodingWebName), e)
                 : Encoding.UTF8;
         }
@@ -74,32 +74,37 @@ public static class TextEncodingConverter
     /// <param name="decoderFallback">
     /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
     /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
-    /// <param name="throwOnInvalidName">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
+    /// <param name="throwOnInvalidWebName">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
     /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="encodingWebName"/> nicht übersetzt werden konnte.</param>
     /// 
     /// <returns>Ein <see cref="Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
     /// entspricht und dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
     /// auf die gewünschten Werte eingestellt sind. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung 
     /// ein entsprechendes <see cref="Encoding"/>-Objekt für UTF-8 zurückgegeben.
-    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidName"/> aufgerufen wird, wird
+    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidWebName"/> aufgerufen wird, wird
     /// in diesem Fall eine <see cref="ArgumentException"/> geworfen.</returns>
     /// 
     /// <remarks>
     /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
     /// Die Methode überschreibt diese Standardeinstellung.
     /// </remarks>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="encoderFallback"/> oder <paramref name="decoderFallback"/> ist <c>null</c>.
+    /// </exception>
     /// <exception cref="ArgumentException">
-    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Eine Ausnahme wird nur dann geworfen, wenn
-    /// die Option <paramref name="throwOnInvalidName"/> auf <c>true</c> gesetzt ist.
+    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
+    /// die Option <paramref name="throwOnInvalidWebName"/> auf <c>true</c> gesetzt ist.
     /// </exception>
     public static Encoding GetEncoding(string? encodingWebName,
                                        EncoderFallback encoderFallback,
                                        DecoderFallback decoderFallback,
-                                       bool throwOnInvalidName = false)
+                                       bool throwOnInvalidWebName = false)
     {
+        CheckEncoderAndDecoderFallback(encoderFallback, decoderFallback);
+
         if (string.IsNullOrWhiteSpace(encodingWebName))
         {
-            return throwOnInvalidName
+            return throwOnInvalidWebName
                 ? throw new ArgumentException(Res.ArgumentNullOrWhiteSpace, nameof(encodingWebName))
                 : CreateFallBack();
         }
@@ -112,13 +117,14 @@ public static class TextEncodingConverter
         }
         catch(Exception e)
         {
-            return throwOnInvalidName
+            return throwOnInvalidWebName
                 ? throw new ArgumentException(e.Message, nameof(encodingWebName), e)
                 : CreateFallBack();
         }
 
         Encoding CreateFallBack() => Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
     }
+
 
     /// <summary>
     /// Gibt für die Nummer einer Codepage ein entsprechendes <see cref="Encoding"/>-Objekt
@@ -150,11 +156,11 @@ public static class TextEncodingConverter
     /// </remarks>
     /// 
     /// <exception cref="ArgumentOutOfRangeException">
-    /// <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Die Ausnahme wird nur dann geworfen, wenn
+    /// <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Diese Ausnahme wird nur dann geworfen, wenn
     /// die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
     /// </exception>
     /// <exception cref="ArgumentException">
-    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Die Ausnahme wird nur dann geworfen, wenn
+    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
     /// die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
     /// </exception>
     /// 
@@ -215,13 +221,15 @@ public static class TextEncodingConverter
     /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
     /// Die Methode überschreibt diese Standardeinstellung.
     /// </remarks>
-    /// 
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="encoderFallback"/> oder <paramref name="decoderFallback"/> ist <c>null</c>.
+    /// </exception>
     /// <exception cref="ArgumentOutOfRangeException">
-    /// <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Die Ausnahme wird nur dann geworfen, wenn
+    /// <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Diese Ausnahme wird nur dann geworfen, wenn
     /// die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
     /// </exception>
     /// <exception cref="ArgumentException">
-    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Die Ausnahme wird nur dann geworfen, wenn
+    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
     /// die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
     /// </exception>
     public static Encoding GetEncoding(int codePage,
@@ -229,6 +237,8 @@ public static class TextEncodingConverter
                                        DecoderFallback decoderFallback,
                                        bool throwOnInvalidCodePage = false)
     {
+        CheckEncoderAndDecoderFallback(encoderFallback, decoderFallback);
+
         if (codePage is < CODEPAGE_MIN or > CODEPAGE_MAX)
         {
             return throwOnInvalidCodePage
@@ -367,6 +377,21 @@ public static class TextEncodingConverter
     }
 
 
+
+    private static void CheckEncoderAndDecoderFallback(EncoderFallback encoderFallback, DecoderFallback decoderFallback)
+    {
+        if (encoderFallback is null)
+        {
+            throw new ArgumentNullException(nameof(encoderFallback));
+        }
+
+        if (decoderFallback is null)
+        {
+            throw new ArgumentNullException(nameof(decoderFallback));
+        }
+    }
+
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static string PrepareEncodingName(string name) => name.Replace(" ", "", StringComparison.Ordinal);
 
@@ -375,7 +400,9 @@ public static class TextEncodingConverter
     private static void EnableAnsiEncodings()
     {
 #if NETSTANDARD2_0_OR_GREATER || NET5_0_OR_GREATER
+#pragma warning disable IDE0022 // Ausdruckskörper für Methode verwenden
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+#pragma warning restore IDE0022 // Ausdruckskörper für Methode verwenden
 #endif
     }
 

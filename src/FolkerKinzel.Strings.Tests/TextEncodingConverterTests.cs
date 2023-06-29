@@ -20,24 +20,6 @@ public class TextEncodingConverterTests
 
     [DataTestMethod]
     [DataRow(null, 65001)]
-    [DataRow("windows-1252", 1252)]
-    [DataRow("Windows-1252", 1252)]
-    [DataRow("WINDOWS-1252", 1252)]
-    [DataRow("WINDOWS - 1252", 1252)]
-    //[DataRow("Latin1", 1252)]
-    [DataRow("unBekannt", 65001)]
-    public void GetEncodingTest7(string? input, int codePage)
-    {
-        Encoding enc = TextEncodingConverter.GetEncoding(input);
-        Assert.AreEqual(codePage, enc.CodePage);
-        Assert.IsNotInstanceOfType(enc.EncoderFallback, EncoderFallback.ExceptionFallback.GetType());
-        Assert.IsNotInstanceOfType(enc.DecoderFallback.GetType(), DecoderFallback.ExceptionFallback.GetType());
-    }
-
-
-
-    [DataTestMethod]
-    [DataRow(null, 65001)]
     [DataRow("iso-8859-1", 28591)]
     [DataRow("ISO-8859-1", 28591)]
     [DataRow("unBekannt", 65001)]
@@ -71,31 +53,6 @@ public class TextEncodingConverterTests
         Assert.IsInstanceOfType(enc.DecoderFallback, DecoderFallback.ExceptionFallback.GetType());
     }
 
-    [DataTestMethod]
-    [DataRow(-17)]
-    [DataRow(int.MaxValue)]
-    [DataRow(42)]
-    [DataRow(4711)]
-    public void GetEncodingTest7(int codePage)
-    {
-        Encoding enc = TextEncodingConverter.GetEncoding(codePage);
-        Assert.AreEqual(65001, enc.CodePage);
-        Assert.IsNotInstanceOfType(enc.EncoderFallback, EncoderFallback.ExceptionFallback.GetType());
-        Assert.IsNotInstanceOfType(enc.DecoderFallback.GetType(), DecoderFallback.ExceptionFallback.GetType());
-    }
-
-    [DataTestMethod]
-    [DataRow(-17)]
-    [DataRow(int.MaxValue)]
-    [DataRow(42)]
-    public void GetEncodingTest8(int codePage)
-    {
-        Encoding enc = TextEncodingConverter.GetEncoding(codePage, EncoderFallback.ExceptionFallback, DecoderFallback.ExceptionFallback);
-        Assert.AreEqual(65001, enc.CodePage);
-        Assert.IsInstanceOfType(enc.EncoderFallback, EncoderFallback.ExceptionFallback.GetType());
-        Assert.IsInstanceOfType(enc.DecoderFallback, DecoderFallback.ExceptionFallback.GetType());
-    }
-
     [TestMethod]
     public void GetEncodingTest5()
     {
@@ -114,6 +71,124 @@ public class TextEncodingConverterTests
         Assert.IsInstanceOfType(enc.DecoderFallback, DecoderFallback.ExceptionFallback.GetType());
     }
 
+    [DataTestMethod]
+    [DataRow(null, 65001)]
+    [DataRow("windows-1252", 1252)]
+    [DataRow("Windows-1252", 1252)]
+    [DataRow("WINDOWS-1252", 1252)]
+    [DataRow("WINDOWS - 1252", 1252)]
+    //[DataRow("Latin1", 1252)]
+    [DataRow("unBekannt", 65001)]
+    public void GetEncodingTest7(string? input, int codePage)
+    {
+        Encoding enc = TextEncodingConverter.GetEncoding(input);
+        Assert.AreEqual(codePage, enc.CodePage);
+        Assert.IsNotInstanceOfType(enc.EncoderFallback, EncoderFallback.ExceptionFallback.GetType());
+        Assert.IsNotInstanceOfType(enc.DecoderFallback.GetType(), DecoderFallback.ExceptionFallback.GetType());
+    }
+
+    [DataTestMethod]
+    [DataRow(-17)]
+    [DataRow(int.MaxValue)]
+    [DataRow(42)]
+    [DataRow(4711)]
+    public void GetEncodingTest8(int codePage)
+    {
+        Encoding enc = TextEncodingConverter.GetEncoding(codePage);
+        Assert.AreEqual(65001, enc.CodePage);
+        Assert.IsNotInstanceOfType(enc.EncoderFallback, EncoderFallback.ExceptionFallback.GetType());
+        Assert.IsNotInstanceOfType(enc.DecoderFallback.GetType(), DecoderFallback.ExceptionFallback.GetType());
+    }
+
+    [DataTestMethod]
+    [DataRow(-17)]
+    [DataRow(int.MaxValue)]
+    [DataRow(42)]
+    public void GetEncodingTest9(int codePage)
+    {
+        Encoding enc = TextEncodingConverter.GetEncoding(codePage, EncoderFallback.ExceptionFallback, DecoderFallback.ExceptionFallback);
+        Assert.AreEqual(65001, enc.CodePage);
+        Assert.IsInstanceOfType(enc.EncoderFallback, EncoderFallback.ExceptionFallback.GetType());
+        Assert.IsInstanceOfType(enc.DecoderFallback, DecoderFallback.ExceptionFallback.GetType());
+    }
+
+    [DataTestMethod]
+    [DataRow(-17)]
+    [DataRow(int.MaxValue)]
+    [DataRow(0)]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void GetEncodingTest10(int codePage) =>
+        _ = TextEncodingConverter.GetEncoding(
+            codePage, EncoderFallback.ExceptionFallback, DecoderFallback.ExceptionFallback, throwOnInvalidCodePage: true);
+
+
+    [DataTestMethod]
+    [DataRow(42)]
+    [ExpectedException(typeof(ArgumentException))]
+    public void GetEncodingTest11(int codePage) =>
+        _ = TextEncodingConverter.GetEncoding(
+            codePage, EncoderFallback.ExceptionFallback, DecoderFallback.ExceptionFallback, throwOnInvalidCodePage: true);
+
+    [DataTestMethod]
+    [DataRow(-17)]
+    [DataRow(int.MaxValue)]
+    [DataRow(0)]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void GetEncodingTest12(int codePage) => _ = TextEncodingConverter.GetEncoding(codePage, throwOnInvalidCodePage: true);
+
+
+    [DataTestMethod]
+    [DataRow(42)]
+    [ExpectedException(typeof(ArgumentException))]
+    public void GetEncodingTest13(int codePage) => _ = TextEncodingConverter.GetEncoding(codePage, throwOnInvalidCodePage: true);
+
+
+    [DataTestMethod]
+    [DataRow(null)]
+    [DataRow("   ")]
+    [DataRow("")]
+    [DataRow("unBekannt")]
+    [ExpectedException(typeof(ArgumentException))]
+    public void GetEncodingTest14(string? input) => _ = TextEncodingConverter.GetEncoding(input, throwOnInvalidWebName: true);
+
+
+    [DataTestMethod]
+    [DataRow(null)]
+    [DataRow("   ")]
+    [DataRow("")]
+    [DataRow("unBekannt")]
+    [ExpectedException(typeof(ArgumentException))]
+    public void GetEncodingTest15(string? input) => _ = TextEncodingConverter.GetEncoding(input, EncoderFallback.ExceptionFallback, DecoderFallback.ExceptionFallback, throwOnInvalidWebName: true);
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void GetEncodingTest16() => 
+        _ = TextEncodingConverter.GetEncoding("utf-8", null!, DecoderFallback.ExceptionFallback, true);
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void GetEncodingTest17() =>
+        _ = TextEncodingConverter.GetEncoding("utf-8", EncoderFallback.ExceptionFallback, null!, true);
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void GetEncodingTest18() =>
+        _ = TextEncodingConverter.GetEncoding("utf-8", null!, null!, true);
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void GetEncodingTest19() =>
+        _ = TextEncodingConverter.GetEncoding(65001, null!, DecoderFallback.ExceptionFallback, true);
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void GetEncodingTest20() =>
+        _ = TextEncodingConverter.GetEncoding(65001, EncoderFallback.ExceptionFallback, null!, true);
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void GetEncodingTest21() =>
+        _ = TextEncodingConverter.GetEncoding(65001, null!, null!, true);
 
     [DataTestMethod]
     [DataRow(1200, 2)]

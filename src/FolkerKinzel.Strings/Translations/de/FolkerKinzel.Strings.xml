@@ -2580,12 +2580,12 @@
             </summary>
             
             <param name="encodingWebName">Der Bezeichner eines Zeichensatzes.</param>
-            <param name="throwOnInvalidName">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
+            <param name="throwOnInvalidWebName">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
             eine <see cref="T:System.ArgumentException"/> wirft, falls <paramref name="encodingWebName"/> nicht übersetzt werden konnte.</param>
             
             <returns>Ein <see cref="T:System.Text.Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
             entspricht. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung <see cref="P:System.Text.Encoding.UTF8"/> zurückgegeben.
-            Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidName"/> aufgerufen wird, wird
+            Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidWebName"/> aufgerufen wird, wird
             in diesem Fall eine <see cref="T:System.ArgumentException"/> geworfen.</returns>
             
             <remarks>
@@ -2595,7 +2595,7 @@
             
             <exception cref="T:System.ArgumentException">
             <paramref name="encodingWebName"/> konnte keinem <see cref="T:System.Text.Encoding"/>-Objekt zugeordnet werden. Eine Ausnahme wird nur dann geworfen, wenn
-            die Option <paramref name="throwOnInvalidName"/> auf <c>true</c> gesetzt ist.
+            die Option <paramref name="throwOnInvalidWebName"/> auf <c>true</c> gesetzt ist.
             </exception>
         </member>
         <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.String,System.Text.EncoderFallback,System.Text.DecoderFallback,System.Boolean)">
@@ -2611,23 +2611,26 @@
             <param name="decoderFallback">
             Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
             falls eine <see cref="T:System.Byte"/>-Sequenz mit dem <see cref="T:System.Text.Encoding"/>-Objekt nicht dekodiert werden kann.</param>
-            <param name="throwOnInvalidName">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
+            <param name="throwOnInvalidWebName">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
             eine <see cref="T:System.ArgumentException"/> wirft, falls <paramref name="encodingWebName"/> nicht übersetzt werden konnte.</param>
             
             <returns>Ein <see cref="T:System.Text.Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
             entspricht und dessen Eigenschaften <see cref="P:System.Text.Encoding.EncoderFallback"/> und <see cref="P:System.Text.Encoding.DecoderFallback"/>
             auf die gewünschten Werte eingestellt sind. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung 
             ein entsprechendes <see cref="T:System.Text.Encoding"/>-Objekt für UTF-8 zurückgegeben.
-            Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidName"/> aufgerufen wird, wird
+            Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidWebName"/> aufgerufen wird, wird
             in diesem Fall eine <see cref="T:System.ArgumentException"/> geworfen.</returns>
             
             <remarks>
             .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
             Die Methode überschreibt diese Standardeinstellung.
             </remarks>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="encoderFallback"/> oder <paramref name="decoderFallback"/> ist <c>null</c>.
+            </exception>
             <exception cref="T:System.ArgumentException">
-            <paramref name="encodingWebName"/> konnte keinem <see cref="T:System.Text.Encoding"/>-Objekt zugeordnet werden. Eine Ausnahme wird nur dann geworfen, wenn
-            die Option <paramref name="throwOnInvalidName"/> auf <c>true</c> gesetzt ist.
+            <paramref name="encodingWebName"/> konnte keinem <see cref="T:System.Text.Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
+            die Option <paramref name="throwOnInvalidWebName"/> auf <c>true</c> gesetzt ist.
             </exception>
         </member>
         <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32,System.Boolean)">
@@ -2661,11 +2664,11 @@
             </remarks>
             
             <exception cref="T:System.ArgumentOutOfRangeException">
-            <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Die Ausnahme wird nur dann geworfen, wenn
+            <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Diese Ausnahme wird nur dann geworfen, wenn
             die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
             </exception>
             <exception cref="T:System.ArgumentException">
-            <paramref name="encodingWebName"/> konnte keinem <see cref="T:System.Text.Encoding"/>-Objekt zugeordnet werden. Die Ausnahme wird nur dann geworfen, wenn
+            <paramref name="encodingWebName"/> konnte keinem <see cref="T:System.Text.Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
             die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
             </exception>
             
@@ -2705,13 +2708,15 @@
             .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
             Die Methode überschreibt diese Standardeinstellung.
             </remarks>
-            
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="encoderFallback"/> oder <paramref name="decoderFallback"/> ist <c>null</c>.
+            </exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Die Ausnahme wird nur dann geworfen, wenn
+            <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Diese Ausnahme wird nur dann geworfen, wenn
             die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
             </exception>
             <exception cref="T:System.ArgumentException">
-            <paramref name="encodingWebName"/> konnte keinem <see cref="T:System.Text.Encoding"/>-Objekt zugeordnet werden. Die Ausnahme wird nur dann geworfen, wenn
+            <paramref name="encodingWebName"/> konnte keinem <see cref="T:System.Text.Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
             die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
             </exception>
         </member>
