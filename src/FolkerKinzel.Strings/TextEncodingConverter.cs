@@ -30,18 +30,19 @@ public static class TextEncodingConverter
             return Encoding.UTF8;
         }
 
-#if NETSTANDARD2_0_OR_GREATER || NET5_0_OR_GREATER
-        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-#endif
+        EnableAnsiEncodings();
+
         try
         {
-            return Encoding.GetEncoding(name.Replace(" ", "", StringComparison.Ordinal));
+            return Encoding.GetEncoding(PrepareEncodingName(name));
         }
         catch
         {
             return Encoding.UTF8;
         }
     }
+
+    
 
     /// <summary>
     /// Gibt für den Bezeichner eines Zeichensatzes ein entsprechendes <see cref="Encoding"/>-Objekt
@@ -68,13 +69,11 @@ public static class TextEncodingConverter
             return Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
         }
 
-#if NETSTANDARD2_0_OR_GREATER || NET5_0_OR_GREATER
-        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-#endif
+        EnableAnsiEncodings();
 
         try
         {
-            return Encoding.GetEncoding(name.Replace(" ", "", StringComparison.Ordinal), encoderFallback, decoderFallback);
+            return Encoding.GetEncoding(PrepareEncodingName(name), encoderFallback, decoderFallback);
         }
         catch
         {
@@ -101,9 +100,8 @@ public static class TextEncodingConverter
             return Encoding.UTF8;
         }
 
-#if NETSTANDARD2_0_OR_GREATER || NET5_0_OR_GREATER
-        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-#endif
+        EnableAnsiEncodings();
+
         try
         {
             return Encoding.GetEncoding(codepage);
@@ -139,9 +137,8 @@ public static class TextEncodingConverter
             return Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
         }
 
-#if NETSTANDARD2_0_OR_GREATER || NET5_0_OR_GREATER
-        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-#endif
+        EnableAnsiEncodings();
+
         try
         {
             return Encoding.GetEncoding(codepage, encoderFallback, decoderFallback);
@@ -265,5 +262,16 @@ public static class TextEncodingConverter
         bomLength = 0;
         return UTF_8;
     }
+
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static string PrepareEncodingName(string name) => name.Replace(" ", "", StringComparison.Ordinal);
+
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static void EnableAnsiEncodings() =>
+#if NETSTANDARD2_0_OR_GREATER || NET5_0_OR_GREATER
+    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+#endif
 
 }
