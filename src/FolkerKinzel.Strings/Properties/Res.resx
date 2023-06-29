@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ArgumentNullOrWhiteSpace" xml:space="preserve">
-    <value>The argument is null or consists only of white space.</value>
+    <value>The argument is either null or empty or it consists only of white space characters.</value>
   </data>
   <data name="NoBinaryDigit" xml:space="preserve">
     <value>{0} is not a binary digit.</value>

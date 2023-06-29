@@ -61,7 +61,7 @@ namespace FolkerKinzel.Strings.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die The argument is null or consists only of white space. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die The argument is either null or empty or it consists only of white space characters. ähnelt.
         /// </summary>
         internal static string ArgumentNullOrWhiteSpace {
             get {
