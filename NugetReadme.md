@@ -21,7 +21,7 @@ using FolkerKinzel.Strings.Polyfills;
 ```
 .
 
-* [Project Reference and Release Notes](https://github.com/FolkerKinzel/Strings/releases/tag/v4.4.1)
+* [Project Reference and Release Notes](https://github.com/FolkerKinzel/Strings/releases/tag/v5.0.0)
 - [Version History](https://github.com/FolkerKinzel/Strings/releases)
 
 

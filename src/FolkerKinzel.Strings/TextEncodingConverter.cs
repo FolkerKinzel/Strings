@@ -20,10 +20,8 @@ public static class TextEncodingConverter
     /// <returns>Ein <see cref="Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
     /// entspricht oder <see cref="Encoding.UTF8"/>, falls keine Entsprechung gefunden wurde.</returns>
     /// <remarks>
-    /// <para>
     /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
     /// Die Methode überschreibt diese Standardeinstellung.
-    /// </para>
     /// </remarks>
     public static Encoding GetEncoding(string? name)
     {
@@ -93,10 +91,8 @@ public static class TextEncodingConverter
     /// <returns>Ein <see cref="Encoding"/>-Objekt, das der angegebenen Nummer der Codepage
     /// entspricht oder <see cref="Encoding.UTF8"/>, falls keine Entsprechung gefunden wurde.</returns>
     /// <remarks>
-    /// <para>
     /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
     /// Die Methode überschreibt diese Standardeinstellung.
-    /// </para>
     /// </remarks>
     public static Encoding GetEncoding(int codepage)
     {

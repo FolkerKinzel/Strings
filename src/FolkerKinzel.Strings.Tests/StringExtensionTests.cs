@@ -7,6 +7,12 @@ namespace FolkerKinzel.Strings.Tests;
 public class StringExtensionTests
 {
     [TestMethod]
+    public void TestTest()
+    {
+        var enc = TextEncodingConverter.GetEncoding(4711);
+    }
+
+    [TestMethod]
     public void ReplaceLineEndingsTest1()
     {
         const string input = "\n1\r\n\n\r2\r3\n\n4\r\n5\u000B6\u000C\n7\u00858\u20289\u2029";

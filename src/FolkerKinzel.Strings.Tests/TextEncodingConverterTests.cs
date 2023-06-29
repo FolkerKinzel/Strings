@@ -2,7 +2,7 @@
 
 namespace FolkerKinzel.Strings.Tests;
 
-[TestClass]
+[TestClass()]
 public class TextEncodingConverterTests
 {
     [DataTestMethod]
@@ -24,6 +24,7 @@ public class TextEncodingConverterTests
     [DataRow("Windows-1252", 1252)]
     [DataRow("WINDOWS-1252", 1252)]
     [DataRow("WINDOWS - 1252", 1252)]
+    //[DataRow("Latin1", 1252)]
     [DataRow("unBekannt", 65001)]
     public void GetEncodingTest7(string? input, int codePage)
     {
@@ -74,6 +75,7 @@ public class TextEncodingConverterTests
     [DataRow(-17)]
     [DataRow(int.MaxValue)]
     [DataRow(42)]
+    [DataRow(4711)]
     public void GetEncodingTest7(int codePage)
     {
         Encoding enc = TextEncodingConverter.GetEncoding(codePage);

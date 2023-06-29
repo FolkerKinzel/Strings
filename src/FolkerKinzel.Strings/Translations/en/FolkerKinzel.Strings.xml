@@ -4,6 +4,13 @@
     <name>FolkerKinzel.Strings</name>
   </assembly>
   <members>
+    <member name="T:System.Buffers.SpanAction`2">
+      <summary>Polyfill for the delegate System.Buffers.SpanAction&lt;T,TArg&gt;.</summary>
+      <typeparam name="T">The type of the objects in the span.</typeparam>
+      <typeparam name="TArg">The type of object that represents the state. This type parameter is contravariant. This means that you can either use the specified type or a less derived type.</typeparam>
+      <param name="span">A span of objects of type <typeparamref name="T" />.</param>
+      <param name="arg">A state object of the type <typeparamref name="TArg" />.</param>
+    </member>
     <member name="T:FolkerKinzel.Strings.CharExtension">
       <summary>Extension methods for the <see cref="T:System.Char" /> structure.</summary>
     </member>
@@ -1939,7 +1946,7 @@ The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identi
       <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the identifier of a character set, for which <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to ReplacementFallback. <see cref="P:System.Text.Encoding.UTF8" /> is the fallback value.</summary>
       <param name="name">The identifier of a character set or <c>null</c> for <see cref="P:System.Text.Encoding.UTF8" />.</param>
       <returns>An <see cref="T:System.Text.Encoding" /> object that matches the specified identifier of the character set or <see cref="P:System.Text.Encoding.UTF8" /> if no match was found .</returns>
-      <remarks>.NET Standard and .NET 5.0 recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+      <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.String,System.Text.EncoderFallback,System.Text.DecoderFallback)">
       <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the identifier of a charset whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values.</summary>
@@ -1947,21 +1954,21 @@ The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identi
       <returns>An <see cref="T:System.Text.Encoding" /> object that corresponds to the specified identifier of the character set or a <see cref="T:System.Text.Encoding" /> object for the UTF-8 character set if no match was found.</returns>
       <param name="encoderFallback">An object that provides an error handling mechanism if a character cannot be encoded with the <see cref="T:System.Text.Encoding" /> object.</param>
       <param name="decoderFallback">An object that provides an error handling mechanism if a <see cref="T:System.Byte" /> sequence cannot be decoded with the <see cref="T:System.Text.Encoding" /> object .</param>
-      <remarks>.NET Standard and .NET 5.0 recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+      <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32)">
       <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the number of a code page, for which <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to ReplacementFallback. <see cref="P:System.Text.Encoding.UTF8" /> is the fallback value.</summary>
-      <param name="codepage">The number of a code page or zero for <see cref="P:System.Text.Encoding.Default" />.</param>
+      <param name="codepage">The number of the code page. (If <c>0</c> is passed, the method returns <see cref="P:System.Text.Encoding.UTF8" />.)</param>
       <returns>An <see cref="T:System.Text.Encoding" /> object that matches the specified code page number or <see cref="P:System.Text.Encoding.UTF8" /> if no match was found .</returns>
-      <remarks>.NET Standard and .NET 5.0 recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+      <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback)">
       <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the number of a code page whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values.</summary>
-      <param name="codepage">The number of a code page or zero for <see cref="P:System.Text.Encoding.Default" />.</param>
+      <param name="codepage">The number of the code page. (If <c>0</c> is passed, the method returns a UTF-8 <see cref="P:System.Text.Encoding" />.)</param>
       <returns>An <see cref="T:System.Text.Encoding" /> object that corresponds to the specified code page number or a <see cref="T:System.Text.Encoding" /> object for the UTF-8 character set if no match was found.</returns>
       <param name="encoderFallback">An object that provides an error handling mechanism if a <see cref="T:System.Byte" /> sequence cannot be decoded with the <see cref="T:System.Text.Encoding" /> object .</param>
       <param name="decoderFallback">An object that provides an error handling mechanism if a <see cref="T:System.Byte" /> sequence cannot be decoded with the <see cref="T:System.Text.Encoding" /> object .</param>
-      <remarks>.NET Standard and .NET 5.0 recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+      <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetCodePage(System.ReadOnlySpan{System.Byte},System.Int32@)">
       <summary>Examines a read-only <see cref="T:System.Byte" /> span, that represents the contents of a text file, to see if it starts with a Byte Order Mark (BOM), and returns an appropriate code page. (The fallback value is 65001 for UTF-8.)</summary>
@@ -1986,13 +1993,6 @@ GB18030
 </item></list><para>
 UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method from the data if there is no Byte Order Mark.
 </para></remarks>
-    </member>
-    <member name="T:System.Buffers.SpanAction`2">
-      <summary>Polyfill for the delegate System.Buffers.SpanAction&lt;T,TArg&gt;.</summary>
-      <typeparam name="T">The type of the objects in the span.</typeparam>
-      <typeparam name="TArg">The type of object that represents the state. This type parameter is contravariant. This means that you can either use the specified type or a less derived type.</typeparam>
-      <param name="span">A span of objects of type <typeparamref name="T" />.</param>
-      <param name="arg">A state object of the type <typeparamref name="TArg" />.</param>
     </member>
   </members>
 </doc>
