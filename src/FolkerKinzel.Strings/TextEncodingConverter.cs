@@ -53,7 +53,9 @@ public static class TextEncodingConverter
             ? TryGetEncodingInternal(encodingWebName, null, null, out Encoding? encoding, out Exception? exception)
                 ? encoding
                 : throw exception
-            : TryGetEncoding(encodingWebName, out encoding) ? encoding : Encoding.UTF8;
+            : TryGetEncoding(encodingWebName, out encoding)
+                ? encoding
+                : Encoding.UTF8;
     }
 
 
@@ -156,7 +158,9 @@ public static class TextEncodingConverter
             ? TryGetEncodingInternal(codePage, null, null, out Encoding? encoding, out Exception? exception)
                 ? encoding
                 : throw exception
-            : TryGetEncoding(codePage, out encoding) ? encoding : Encoding.UTF8;
+            : TryGetEncoding(codePage, out encoding)
+                ? encoding 
+                : Encoding.UTF8;
     }
 
     /// <summary>
@@ -367,8 +371,7 @@ public static class TextEncodingConverter
                                                DecoderFallback decoderFallback,
                                                [NotNullWhen(true)] out Encoding? encoding)
     {
-        Debug.Assert(encoderFallback != null);
-        Debug.Assert(decoderFallback != null);
+        AssertEncoderAndDecoderFallbackNotNull(encoderFallback, decoderFallback);
 
         encoding = null;
         return !IsWebNameEmpty(encodingWebName) && BuildEncoding(encodingWebName, encoderFallback, decoderFallback, ref encoding, out _);
@@ -379,12 +382,13 @@ public static class TextEncodingConverter
                                                DecoderFallback decoderFallback,
                                                [NotNullWhen(true)] out Encoding? encoding)
     {
-        Debug.Assert(encoderFallback != null);
-        Debug.Assert(decoderFallback != null);
+        AssertEncoderAndDecoderFallbackNotNull(encoderFallback, decoderFallback);
 
         encoding = null;
         return !CodepageOutOfRange(codePage) && BuildEncoding(codePage, encoderFallback, decoderFallback, ref encoding, out _);
     }
+
+    
 
     private static bool TryGetEncodingInternal(int codePage,
                                        EncoderFallback? encoderFallback,
@@ -409,7 +413,7 @@ public static class TextEncodingConverter
                                       [NotNullWhen(true)] ref Encoding? encoding,
                                       [NotNullWhen(false)] out Exception? exception)
     {
-        Debug.Assert((encoderFallback is null && decoderFallback is null) || (encoderFallback is not null && decoderFallback is not null));
+        AssertEncoderAndDecoderFallbackBothNullOrBothNotNull(encoderFallback, decoderFallback);
 
         EnableAnsiEncodings();
 
@@ -427,6 +431,8 @@ public static class TextEncodingConverter
         exception = null;
         return true;
     }
+
+    
 
     private static bool TryGetEncodingInternal(string? encodingWebName,
                                                EncoderFallback? encoderFallback,
@@ -451,7 +457,8 @@ public static class TextEncodingConverter
                                       [NotNullWhen(true)] ref Encoding? encoding,
                                       [NotNullWhen(false)] out Exception? exception)
     {
-        Debug.Assert((encoderFallback is null && decoderFallback is null) || (encoderFallback is not null && decoderFallback is not null));
+        AssertEncoderAndDecoderFallbackBothNullOrBothNotNull(encoderFallback, decoderFallback);
+
         EnableAnsiEncodings();
         encodingWebName = PrepareEncodingName(encodingWebName);
         try
@@ -509,6 +516,22 @@ public static class TextEncodingConverter
 #endif
     }
 
+    #region Assert
+
+    [Conditional("DEBUG")]
+    [ExcludeFromCodeCoverage]
+    private static void AssertEncoderAndDecoderFallbackNotNull(EncoderFallback encoderFallback, DecoderFallback decoderFallback)
+    {
+        Debug.Assert(encoderFallback != null);
+        Debug.Assert(decoderFallback != null);
+    }
+
+    [Conditional("DEBUG")]
+    [ExcludeFromCodeCoverage]
+    private static void AssertEncoderAndDecoderFallbackBothNullOrBothNotNull(EncoderFallback? encoderFallback, DecoderFallback? decoderFallback) =>
+        Debug.Assert((encoderFallback is null && decoderFallback is null) || (encoderFallback is not null && decoderFallback is not null));
+
+    #endregion
     #endregion
 
     /// <summary>
