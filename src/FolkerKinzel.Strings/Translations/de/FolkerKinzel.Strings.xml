@@ -2576,7 +2576,7 @@
             <summary>
             Gibt für den Bezeichner eines Zeichensatzes ein entsprechendes <see cref="T:System.Text.Encoding"/>-Objekt
             zurück, bei dem <see cref="P:System.Text.Encoding.EncoderFallback"/> und <see cref="P:System.Text.Encoding.DecoderFallback"/>
-            auf ReplacementFallback eingestellt sind. (<see cref="P:System.Text.Encoding.UTF8"/> ist der Fallback-Wert.)
+            auf ReplacementFallback eingestellt sind.
             </summary>
             
             <param name="encodingWebName">Der Bezeichner eines Zeichensatzes.</param>
@@ -2634,7 +2634,7 @@
             <summary>
             Gibt für die Nummer einer Codepage ein entsprechendes <see cref="T:System.Text.Encoding"/>-Objekt
             zurück, bei dem <see cref="P:System.Text.Encoding.EncoderFallback"/> und <see cref="P:System.Text.Encoding.DecoderFallback"/>
-            auf ReplacementFallback eingestellt sind. (<see cref="P:System.Text.Encoding.UTF8"/> ist der Fallback-Wert.)
+            auf ReplacementFallback eingestellt sind.
             </summary>
             <param name="codePage">
             <para>

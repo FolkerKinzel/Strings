@@ -17,7 +17,7 @@ public static class TextEncodingConverter
     /// <summary>
     /// Gibt für den Bezeichner eines Zeichensatzes ein entsprechendes <see cref="Encoding"/>-Objekt
     /// zurück, bei dem <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
-    /// auf ReplacementFallback eingestellt sind. (<see cref="Encoding.UTF8"/> ist der Fallback-Wert.)
+    /// auf ReplacementFallback eingestellt sind.
     /// </summary>
     /// 
     /// <param name="encodingWebName">Der Bezeichner eines Zeichensatzes.</param>
@@ -123,7 +123,7 @@ public static class TextEncodingConverter
     /// <summary>
     /// Gibt für die Nummer einer Codepage ein entsprechendes <see cref="Encoding"/>-Objekt
     /// zurück, bei dem <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
-    /// auf ReplacementFallback eingestellt sind. (<see cref="Encoding.UTF8"/> ist der Fallback-Wert.)
+    /// auf ReplacementFallback eingestellt sind.
     /// </summary>
     /// <param name="codePage">
     /// <para>
