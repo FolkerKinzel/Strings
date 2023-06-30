@@ -2,7 +2,7 @@
 
 ## Roadmap
 
-### 4.4.1
+### 5.0.0
 - [x] Add .NET 7 support.
 - [x] Dependency update.
 - [x] Change the behavior of the methods `TextEncodingConverter.GetEncoding(int)` and `TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback)` to treat the argument `0` as an invalid value.
@@ -10,6 +10,13 @@
 - [x] Give the `TextEncodingConverter.GetEncoding(...)` methods an optional parameter that allows to choose whether in case of a failed conversion the fallback value is returned or an exception is thrown.
 - [x] Rename the parameter `name` in `TextEncodingConverter.GetEncoding(string?)` and `TextEncodingConverter.GetEncoding(string?, EncoderFallback, DecoderFallback)` to `encodingWebName`.
 - [x] Rename the parameter `codepage` in `TextEncodingConverter.GetEncoding(int)` and `TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback)` to `codePage`.
+- [x] Implement:
+```csharp
+static bool TextEncodingConverter.TryGetEncoding(string?, out Encoding?);
+static bool TextEncodingConverter.TryGetEncoding(string?, EncoderFallback, DecoderFallback, out Encoding?);
+static bool TextEncodingConverter.TryGetEncoding(int, out Encoding?);
+static bool TextEncodingConverter.TryGetEncoding(int, EncoderFallback, DecoderFallback, out Encoding?);
+```
 
 ### 4.4.0
 - [x] `StringBuilder.AppendJoin()` - Polyfills
