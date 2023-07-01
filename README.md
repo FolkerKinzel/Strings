@@ -34,17 +34,7 @@ using FolkerKinzel.Strings.Polyfills;
 #endif
 ```
 
-## Project Reference:
-A detailed project reference is available in English and German:
-
-* [Project Reference (English)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/4.4.0/FolkerKinzel.Strings.Reference.en.chm)
-
-* [Projektdokumentation (Deutsch)](https://github.com/FolkerKinzel/Strings/blob/master/ProjectReference/4.4.0/FolkerKinzel.Strings.Doku.de.chm)
-
-> IMPORTANT: On some systems, the content of the CHM file is blocked. Before opening the file
->  right click on the file icon, select Properties, and check the "Allow" checkbox - if it 
-> is present - in the lower right corner of the General tab in the Properties dialog.
-
+- [Project Reference and Release Notes](https://github.com/FolkerKinzel/Strings/releases/tag/v5.0.0)
 
 - [Version History](https://github.com/FolkerKinzel/Strings/releases)
 
