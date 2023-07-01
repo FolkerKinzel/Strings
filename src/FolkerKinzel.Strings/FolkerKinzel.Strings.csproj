@@ -12,7 +12,7 @@
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
     <Version>5.0.0</Version>
-    <FileVersion>5.0.0.12</FileVersion>
+    <FileVersion>5.0.0.18</FileVersion>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v5.0.0</PackageReleaseNotes>

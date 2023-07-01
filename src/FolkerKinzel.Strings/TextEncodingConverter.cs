@@ -9,8 +9,7 @@ using FolkerKinzel.Strings.Properties;
 namespace FolkerKinzel.Strings;
 
 /// <summary>
-/// Erzeugt aus verschiedenen Datentypen eine
-/// Instanz der <see cref="Encoding"/>-Klasse.
+/// Kapselt Methoden, die das Erzeugen geeigneter Instanzen der <see cref="Encoding"/>-Klasse unterstützen.
 /// </summary>
 public static class TextEncodingConverter
 {
@@ -24,7 +23,7 @@ public static class TextEncodingConverter
     /// </summary>
     /// 
     /// <param name="encodingWebName">Der Bezeichner des Zeichensatzes.</param>
-    /// <param name="throwOnInvalidWebName">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
+    /// <param name="throwOnInvalidWebName">Geben Sie <c>true</c> an, damit die Methode
     /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="encodingWebName"/> nicht übersetzt werden konnte.</param>
     /// 
     /// <returns>Ein <see cref="Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
@@ -45,7 +44,7 @@ public static class TextEncodingConverter
     /// 
     /// <exception cref="ArgumentException">
     /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Eine Ausnahme wird nur dann geworfen, wenn
-    /// die Option <paramref name="throwOnInvalidWebName"/> auf <c>true</c> gesetzt ist.
+    /// für den optionalen Parameter <paramref name="throwOnInvalidWebName"/>&#160;<c>true</c> übergeben wurde.
     /// </exception>
     public static Encoding GetEncoding(string? encodingWebName, bool throwOnInvalidWebName = false)
     {
@@ -71,7 +70,7 @@ public static class TextEncodingConverter
     /// <param name="decoderFallback">
     /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
     /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
-    /// <param name="throwOnInvalidWebName">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
+    /// <param name="throwOnInvalidWebName">Geben Sie <c>true</c> an, damit die Methode
     /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="encodingWebName"/> nicht übersetzt werden konnte.</param>
     /// 
     /// <returns>Ein <see cref="Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
@@ -90,7 +89,7 @@ public static class TextEncodingConverter
     /// </exception>
     /// <exception cref="ArgumentException">
     /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
-    /// die Option <paramref name="throwOnInvalidWebName"/> auf <c>true</c> gesetzt ist.
+    /// für den optionalen Parameter <paramref name="throwOnInvalidWebName"/>&#160;<c>true</c> übergeben wurde.
     /// </exception>
     public static Encoding GetEncoding(string? encodingWebName,
                                        EncoderFallback encoderFallback,
@@ -122,7 +121,7 @@ public static class TextEncodingConverter
     /// <see cref="Encoding"/>-Klasse.
     /// </note>
     /// </param>
-    /// <param name="throwOnInvalidCodePage">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
+    /// <param name="throwOnInvalidCodePage">Geben Sie <c>true</c> an, damit die Methode
     /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="codePage"/> nicht übersetzt werden konnte.</param>
     /// 
     /// <returns>
@@ -145,11 +144,11 @@ public static class TextEncodingConverter
     /// 
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Diese Ausnahme wird nur dann geworfen, wenn
-    /// die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
+    /// für den optionalen Parameter <paramref name="throwOnInvalidCodePage"/>&#160;<c>true</c> übergeben wurde.
     /// </exception>
     /// <exception cref="ArgumentException">
-    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
-    /// die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
+    /// <paramref name="codePage"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
+    /// für den optionalen Parameter <paramref name="throwOnInvalidCodePage"/>&#160;<c>true</c> übergeben wurde.
     /// </exception>
     /// 
     public static Encoding GetEncoding(int codePage, bool throwOnInvalidCodePage = false)
@@ -183,14 +182,14 @@ public static class TextEncodingConverter
     /// <param name="decoderFallback">
     /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
     /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
-    /// <param name="throwOnInvalidCodePage">Optionales Argument. Geben Sie <c>true</c> an, damit die Methode
+    /// <param name="throwOnInvalidCodePage">Geben Sie <c>true</c> an, damit die Methode
     /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="codePage"/> nicht übersetzt werden konnte.</param>
     ///  
     /// <returns>Ein <see cref="Encoding"/>-Objekt, das der angegebenen Nummer der Codepage
     /// entspricht und dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
     /// auf die gewünschten Werte eingestellt sind. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung 
     /// ein entsprechendes <see cref="Encoding"/>-Objekt für UTF-8 zurückgegeben.
-    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidName"/> aufgerufen wird, wird
+    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidCodePage"/> aufgerufen wird, wird
     /// in diesem Fall eine <see cref="ArgumentException"/> geworfen.</returns>
     /// 
     /// <remarks>
@@ -203,11 +202,11 @@ public static class TextEncodingConverter
     /// </exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Diese Ausnahme wird nur dann geworfen, wenn
-    /// die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
+    /// für den optionalen Parameter <paramref name="throwOnInvalidCodePage"/>&#160;<c>true</c> übergeben wurde.
     /// </exception>
     /// <exception cref="ArgumentException">
-    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
-    /// die Option <paramref name="throwOnInvalidCodePage"/> auf <c>true</c> gesetzt ist.
+    /// <paramref name="codePage"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
+    /// für den optionalen Parameter <paramref name="throwOnInvalidCodePage"/>&#160;<c>true</c> übergeben wurde.
     /// </exception>
     public static Encoding GetEncoding(int codePage,
                                        EncoderFallback encoderFallback,
@@ -297,7 +296,14 @@ public static class TextEncodingConverter
     /// zurückzugeben.
     /// </summary>
     /// 
-    /// <param name="codePage">Die Nummer der Codepage.</param>
+    /// <param name="codePage">
+    /// <para>
+    /// Die Nummer der Codepage.
+    /// </para>
+    /// <note type="caution">
+    /// <c>0</c> wird als ungültiges Argument behandelt. Das Verhalten unterscheidet sich damit von
+    /// dem der <see cref="Encoding"/>-Klasse.
+    /// </note></param>
     /// <param name="encoding">Enthält nach dem erfolgreichen Beenden der Methode ein <see cref="Encoding"/>-Objekt, 
     /// das der angegebenen Nummer der Codepage entspricht, andernfalls <c>null</c>. Der Parameter wird 
     /// uninitialisiert übergeben.</param>

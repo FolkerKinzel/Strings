@@ -827,6 +827,9 @@ This overload is useful because the support for the implicit conversion from <se
     <member name="P:FolkerKinzel.Strings.Properties.Res.Culture">
       <summary />
     </member>
+    <member name="P:FolkerKinzel.Strings.Properties.Res.ArgumentNullOrWhiteSpace">
+      <summary />
+    </member>
     <member name="P:FolkerKinzel.Strings.Properties.Res.NoBinaryDigit">
       <summary />
     </member>
@@ -1940,35 +1943,153 @@ The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identi
         <paramref name="s" /> is <c>null</c>.</exception>
     </member>
     <member name="T:FolkerKinzel.Strings.TextEncodingConverter">
-      <summary>Generates an instance of the <see cref="T:System.Text.Encoding" /> class from different data types.</summary>
+      <summary>Encapsulates methods that support creating appropriate instances of the <see cref="T:System.Text.Encoding" /> class.</summary>
     </member>
-    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.String)">
-      <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the identifier of a character set, for which <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to ReplacementFallback. <see cref="P:System.Text.Encoding.UTF8" /> is the fallback value.</summary>
-      <param name="name">The identifier of a character set or <c>null</c> for <see cref="P:System.Text.Encoding.UTF8" />.</param>
-      <returns>An <see cref="T:System.Text.Encoding" /> object that matches the specified identifier of the character set or <see cref="P:System.Text.Encoding.UTF8" /> if no match was found .</returns>
-      <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.String,System.Boolean)">
+      <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the specified identifier of a character set.</summary>
+      <param name="encodingWebName">The identifier of the character set.</param>
+      <param name="throwOnInvalidWebName">Pass <c>true</c> to have the method throw an <see cref="T:System.ArgumentException" /> if <paramref name="encodingWebName" /> could not be converted.</param>
+      <returns>An <see cref="T:System.Text.Encoding" /> object that corresponds to the specified character set identifier. If no match is found, <see cref="P:System.Text.Encoding.UTF8" /> is returned by default. If the method is called with <c>true</c> as an argument for the <paramref name="throwOnInvalidWebName" /> parameter, an <see cref="T:System.ArgumentException" /> will be thrown instead.</returns>
+      <remarks>
+        <para>
+.NET Standard and .NET 5.0 or later only recognize a small number of character sets by default. The method overrides this default.
+</para>
+        <para>
+The properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> of the generated <see cref="T:System.Text.Encoding" /> object are set to ReplacementFallback.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="encodingWebName" /> could not be mapped to a <see cref="T:System.Text.Encoding" /> object. An exception is only thrown if the optional parameter <paramref name="throwOnInvalidWebName" /> is <c>true</c>.</exception>
     </member>
-    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.String,System.Text.EncoderFallback,System.Text.DecoderFallback)">
-      <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the identifier of a charset whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values.</summary>
-      <param name="name">The identifier of a character set or <c>null</c> for the UTF-8 character set.</param>
-      <returns>An <see cref="T:System.Text.Encoding" /> object that corresponds to the specified identifier of the character set or a <see cref="T:System.Text.Encoding" /> object for the UTF-8 character set if no match was found.</returns>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.String,System.Text.EncoderFallback,System.Text.DecoderFallback,System.Boolean)">
+      <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the specified identifier of a character set, whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values.</summary>
+      <param name="encodingWebName">The identifier of the character set.</param>
       <param name="encoderFallback">An object that provides an error handling mechanism if a character cannot be encoded with the <see cref="T:System.Text.Encoding" /> object.</param>
       <param name="decoderFallback">An object that provides an error handling mechanism if a <see cref="T:System.Byte" /> sequence cannot be decoded with the <see cref="T:System.Text.Encoding" /> object .</param>
+      <param name="throwOnInvalidWebName">Pass <c>true</c> to have the method throw an <see cref="T:System.ArgumentException" /> if <paramref name="encodingWebName" /> could not be converted.</param>
+      <returns>An <see cref="T:System.Text.Encoding" /> object that corresponds to the specified identifier of a character set and whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values. If no match is found, a corresponding <see cref="P:System.Text.Encoding" /> object for UTF-8 is returned by default. If the method is called with <c>true</c> as an argument for the <paramref name="throwOnInvalidWebName" /> parameter, an <see cref="T:System.ArgumentException" /> will be thrown instead.</returns>
       <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="encoderFallback" /> or <paramref name="decoderFallback" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="encodingWebName" /> could not be mapped to a <see cref="T:System.Text.Encoding" /> object. An exception is only thrown if the optional parameter <paramref name="throwOnInvalidWebName" /> is <c>true</c>.</exception>
     </member>
-    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32)">
-      <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the number of a code page, for which <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to ReplacementFallback. <see cref="P:System.Text.Encoding.UTF8" /> is the fallback value.</summary>
-      <param name="codepage">The number of the code page. (If <c>0</c> is passed, the method returns <see cref="P:System.Text.Encoding.UTF8" />.)</param>
-      <returns>An <see cref="T:System.Text.Encoding" /> object that matches the specified code page number or <see cref="P:System.Text.Encoding.UTF8" /> if no match was found .</returns>
-      <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32,System.Boolean)">
+      <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the specified code page number.</summary>
+      <param name="codePage">
+        <para>
+The code page number.
+</para>
+        <note type="caution">
+          <c>0</c> is treated as an invalid argument. This behavior is different from that of the <see cref="T:System.Text.Encoding" /> class.
+</note>
+      </param>
+      <param name="throwOnInvalidCodePage">Pass <c>true</c> to have the method throw an <see cref="T:System.ArgumentException" /> if <paramref name="codePage" /> could not be converted.</param>
+      <returns>An <see cref="T:System.Text.Encoding" /> object that corresponds to the specified code page number. If no match is found, <see cref="P:System.Text.Encoding.UTF8" /> is returned by default. If the method is called with <c>true</c> as an argument for the <paramref name="throwOnInvalidCodePage" /> parameter, an <see cref="T:System.ArgumentException" /> will be thrown instead.</returns>
+      <remarks>
+        <para>
+.NET Standard and .NET 5.0 or later only recognize a small number of character sets by default. The method overrides this default.
+</para>
+        <para>
+The properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> of the generated <see cref="T:System.Text.Encoding" /> object are set to ReplacementFallback.
+</para>
+      </remarks>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="codePage" /> is less than 1 or greater than 65535. This exception is only thrown if the optional parameter <paramref name="throwOnInvalidCodePage" /> is 
+<c>true</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="codePage" /> could not be mapped to a <see cref="T:System.Text.Encoding" /> object. This exception is only thrown if the optional parameter <paramref name="throwOnInvalidWebName" /> is <c>true</c>.</exception>
     </member>
-    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback)">
-      <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for the number of a code page whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values.</summary>
-      <param name="codepage">The number of the code page. (If <c>0</c> is passed, the method returns a UTF-8 <see cref="P:System.Text.Encoding" />.)</param>
-      <returns>An <see cref="T:System.Text.Encoding" /> object that corresponds to the specified code page number or a <see cref="T:System.Text.Encoding" /> object for the UTF-8 character set if no match was found.</returns>
-      <param name="encoderFallback">An object that provides an error handling mechanism if a <see cref="T:System.Byte" /> sequence cannot be decoded with the <see cref="T:System.Text.Encoding" /> object .</param>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback,System.Boolean)">
+      <summary>Returns a corresponding <see cref="T:System.Text.Encoding" /> object for a specified code page number, whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values.</summary>
+      <param name="codePage">
+        <para>
+The code page number.
+</para>
+        <note type="caution">
+          <c>0</c> is treated as an invalid argument. This behavior is different from that of the <see cref="T:System.Text.Encoding" /> class.
+</note>
+      </param>
+      <param name="encoderFallback">An object that provides an error handling mechanism if a character cannot be encoded with the <see cref="T:System.Text.Encoding" /> object.</param>
       <param name="decoderFallback">An object that provides an error handling mechanism if a <see cref="T:System.Byte" /> sequence cannot be decoded with the <see cref="T:System.Text.Encoding" /> object .</param>
+      <param name="throwOnInvalidCodePage">Pass <c>true</c> to have the method throw an <see cref="T:System.ArgumentException" /> if <paramref name="codePage" /> could not be converted.</param>
+      <returns>An <see cref="T:System.Text.Encoding" /> object that corresponds to the specified code page number and whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values. If no match is found, a corresponding <see cref="P:System.Text.Encoding" /> object for UTF-8 is returned by default. If the method is called with <c>true</c> as an argument for the <paramref name="throwOnInvalidCodePage" /> parameter, an <see cref="T:System.ArgumentException" /> will be thrown instead.</returns>
       <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="encoderFallback" /> or <paramref name="decoderFallback" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="codePage" /> is less than 1 or greater than 65535. This exception is only thrown if the optional parameter <paramref name="throwOnInvalidCodePage" /> is 
+<c>true</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="codePage" /> could not be mapped to a <see cref="T:System.Text.Encoding" /> object. This exception is only thrown if the optional parameter <paramref name="throwOnInvalidCodePage" /> is <c>true</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.TryGetEncoding(System.String,System.Text.Encoding@)">
+      <summary>Tries to return a corresponding <see cref="T:System.Text.Encoding" /> object for the specified identifier of a character set.</summary>
+      <param name="encodingWebName">The identifier of the character set.</param>
+      <param name="encoding">When this method returns <c>true</c>, contains an <see cref="T:System.Text.Encoding" /> object that matches the specified identifier of a character set, <c>null</c> otherwise. This parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if the conversion was successful, <c>false</c> otherwise.</returns>
+      <remarks>
+        <para>
+.NET Standard and .NET 5.0 or later only recognize a small number of character sets by default. The method overrides this default.
+</para>
+        <para>
+The properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> of the generated <see cref="T:System.Text.Encoding" /> object are set to ReplacementFallback.
+</para>
+      </remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.TryGetEncoding(System.String,System.Text.EncoderFallback,System.Text.DecoderFallback,System.Text.Encoding@)">
+      <summary>Tries to return a corresponding <see cref="T:System.Text.Encoding" /> object for the specified identifier of a character set, whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values.</summary>
+      <param name="encodingWebName">The identifier of the character set.</param>
+      <param name="encoderFallback">An object that provides an error handling mechanism if a character cannot be encoded with the <see cref="T:System.Text.Encoding" /> object.</param>
+      <param name="decoderFallback">An object that provides an error handling mechanism if a <see cref="T:System.Byte" /> sequence cannot be decoded with the <see cref="T:System.Text.Encoding" /> object .</param>
+      <param name="encoding">When this method returns <c>true</c>, contains an <see cref="T:System.Text.Encoding" /> object that matches the specified identifier of a character set and whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> und <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values, <c>null</c> otherwise. This parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if the conversion was successful, <c>false</c> otherwise.</returns>
+      <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="encoderFallback" /> or <paramref name="decoderFallback" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.TryGetEncoding(System.Int32,System.Text.Encoding@)">
+      <summary>Tries to return a corresponding <see cref="T:System.Text.Encoding" /> object for the specified code page number.</summary>
+      <param name="codePage">
+        <para>
+The code page number.
+</para>
+        <note type="caution">
+          <c>0</c> is treated as an invalid argument. This behavior is different from that of the <see cref="T:System.Text.Encoding" /> class.
+</note>
+      </param>
+      <param name="encoding">When this method returns <c>true</c>, contains an <see cref="T:System.Text.Encoding" /> object that matches the specified code page number, <c>null</c> otherwise. This parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if the conversion was successful, <c>false</c> otherwise.</returns>
+      <remarks>
+        <para>
+.NET Standard and .NET 5.0 or later only recognize a small number of character sets by default. The method overrides this default.
+</para>
+        <para>
+The properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> of the generated <see cref="T:System.Text.Encoding" /> object are set to ReplacementFallback.
+</para>
+      </remarks>
+    </member>
+    <member name="M:FolkerKinzel.Strings.TextEncodingConverter.TryGetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback,System.Text.Encoding@)">
+      <summary>Tries to return a corresponding <see cref="T:System.Text.Encoding" /> object for the specified code page number, whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> and <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values.</summary>
+      <param name="codePage">
+        <para>
+The code page number.
+</para>
+        <note type="caution">
+          <c>0</c> is treated as an invalid argument. This behavior is different from that of the <see cref="T:System.Text.Encoding" /> class.
+</note>
+      </param>
+      <param name="encoderFallback">An object that provides an error handling mechanism if a character cannot be encoded with the <see cref="T:System.Text.Encoding" /> object.</param>
+      <param name="decoderFallback">An object that provides an error handling mechanism if a <see cref="T:System.Byte" /> sequence cannot be decoded with the <see cref="T:System.Text.Encoding" /> object .</param>
+      <param name="encoding">When this method returns <c>true</c>, contains an <see cref="T:System.Text.Encoding" /> object that matches the specified code page number and whose properties <see cref="P:System.Text.Encoding.EncoderFallback" /> und <see cref="P:System.Text.Encoding.DecoderFallback" /> are set to the desired values, <c>null</c> otherwise. This parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if the conversion was successful, <c>false</c> otherwise.</returns>
+      <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number of character sets. The method overrides this default setting.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="encoderFallback" /> or <paramref name="decoderFallback" /> is <c>null</c>.</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.TextEncodingConverter.GetCodePage(System.ReadOnlySpan{System.Byte},System.Int32@)">
       <summary>Examines a read-only <see cref="T:System.Byte" /> span, that represents the contents of a text file, to see if it starts with a Byte Order Mark (BOM), and returns an appropriate code page. (The fallback value is 65001 for UTF-8.)</summary>

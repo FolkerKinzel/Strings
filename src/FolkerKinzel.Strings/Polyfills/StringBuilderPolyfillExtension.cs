@@ -15,7 +15,7 @@ namespace FolkerKinzel.Strings.Polyfills;
 /// </remarks>
 public static class StringBuilderPolyfillExtension
 {
-    // Place this preprocessor directive inside the class to let .NET 6.0 have an empty class!
+    // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET45 || NETSTANDARD2_0
 
     /// <summary>
