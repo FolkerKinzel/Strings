@@ -190,6 +190,8 @@ namespace LibraryTesters
 
             _ = sb.AppendJoin(',', 42, 'x');
             _ = sb.AppendJoin("::", 42, 'x');
+
+            _ = span.Equals("USA", StringComparison.Ordinal);
         }
     }
 }

@@ -330,6 +330,14 @@ PS: Paragraph Separator (U+2029)
       <summary>Extension methods for the <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> structure, which are used in .NET Framework 4.5, .NET Standard 2.0 and  .NET Standard 2.1 as polyfills for methods from current .NET versions.</summary>
       <remarks>The methods of this class should only be used in the extension method syntax to simulate the methods of the <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> structure, which exist in more modern frameworks.</remarks>
     </member>
+    <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.Equals(System.ReadOnlySpan{System.Char},System.String,System.StringComparison)">
+      <summary>Determines whether this <paramref name="span" /> and the specified other <paramref name="other" /> <see cref="T:System.String" /> have the same characters when compared using the specified <paramref name="comparisonType" /> option.</summary>
+      <param name="span">The source span.</param>
+      <param name="other">The value to compare with the source span.</param>
+      <param name="comparisonType">An enumeration value that determines how <paramref name="span" /> and <paramref name="other" /> are compared.</param>
+      <returns>
+        <c>true</c> if equal, <c>false</c> otherwise.</returns>
+    </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.Contains(System.ReadOnlySpan{System.Char},System.String,System.StringComparison)">
       <summary>Indicates whether a specified value occurs within a read-only character span.</summary>
       <param name="span">The source span.</param>

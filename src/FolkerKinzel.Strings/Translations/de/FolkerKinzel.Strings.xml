@@ -475,6 +475,18 @@
             in moderneren Frameworks vorhandenen Originalmethoden der<see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see>-Struktur zu simulieren.
             </remarks>
         </member>
+        <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.Equals(System.ReadOnlySpan{System.Char},System.String,System.StringComparison)">
+            <summary>
+            Bestimmt, ob dieser <paramref name="span"/> und der angegebene <paramref name="other"/>-<see cref="T:System.String"/> 
+            dieselben Zeichen aufweisen, wenn sie mit der angegebenen <paramref name="comparisonType"/>-Option verglichen
+            werden.
+            </summary>
+            <param name="span">Die Quellspanne.</param>
+            <param name="other">Der Wert, der mit der Quellspanne verglichen werden soll.</param>
+            <param name="comparisonType">Ein Enumerationswert, der bestimmt, wie <paramref name="span"/> und 
+            <paramref name="other"/> verglichen werden.</param>
+            <returns><c>true</c>, sofern identisch, andernfalls <c>false</c>.</returns>
+        </member>
         <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.Contains(System.ReadOnlySpan{System.Char},System.String,System.StringComparison)">
             <summary>
             Gibt an, ob ein angegebener Wert innerhalb einer schreibgeschützten Zeichenspanne auftritt.

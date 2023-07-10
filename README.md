@@ -34,7 +34,7 @@ using FolkerKinzel.Strings.Polyfills;
 #endif
 ```
 
-- [Project Reference and Release Notes](https://github.com/FolkerKinzel/Strings/releases/tag/v5.0.0)
+- [Project Reference and Release Notes](https://github.com/FolkerKinzel/Strings/releases/tag/v5.1.0)
 
 - [Version History](https://github.com/FolkerKinzel/Strings/releases)
 

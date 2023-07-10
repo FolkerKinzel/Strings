@@ -1445,4 +1445,9 @@ The code page number.
   <T ID="F95CF73658770B6D">.NET Standard and .NET 5.0 or higher recognize by default only a small number of character sets. The method overrides this default setting.</T>
   <T ID="80B19D932455EEBA">&lt;paramref name="encoderFallback"/&gt; or &lt;paramref name="decoderFallback"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
   <T ID="839C46D98D4AB60A">Encapsulates methods that support creating appropriate instances of the &lt;see cref="T:System.Text.Encoding"/&gt; class.</T>
+  <T ID="5CEC5127DD0B15DC">Determines whether this &lt;paramref name="span"/&gt; and the specified other &lt;paramref name="other"/&gt;&amp;#160;&lt;see cref="T:System.String"/&gt; have the same characters when compared using the specified &lt;paramref name="comparisonType"/&gt; option.</T>
+  <T ID="3562C94CA6A03F7B">The source span.</T>
+  <T ID="4B89C4E1CB2FC16E">The value to compare with the source span.</T>
+  <T ID="E59B8E0FC72E95FF">An enumeration value that determines how &lt;paramref name="span"/&gt; and &lt;paramref name="other"/&gt; are compared.</T>
+  <T ID="7B5BE574FDA8E67D">&lt;c&gt;true&lt;/c&gt; if equal, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
 </Tsltn>

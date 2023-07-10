@@ -14,7 +14,22 @@ namespace FolkerKinzel.Strings.Polyfills;
 public static class ReadOnlySpanPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
+
 #if NET45 || NETSTANDARD2_0
+
+    /// <summary>
+    /// Bestimmt, ob dieser <paramref name="span"/> und der angegebene <paramref name="other"/>-<see cref="string"/> 
+    /// dieselben Zeichen aufweisen, wenn sie mit der angegebenen <paramref name="comparisonType"/>-Option verglichen
+    /// werden.
+    /// </summary>
+    /// <param name="span">Die Quellspanne.</param>
+    /// <param name="other">Der Wert, der mit der Quellspanne verglichen werden soll.</param>
+    /// <param name="comparisonType">Ein Enumerationswert, der bestimmt, wie <paramref name="span"/> und 
+    /// <paramref name="other"/> verglichen werden.</param>
+    /// <returns><c>true</c>, sofern identisch, andernfalls <c>false</c>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool Equals(this ReadOnlySpan<char> span, string? other, StringComparison comparisonType) =>
+        span.Equals(other.AsSpan(), comparisonType);
 
     /// <summary>
     /// Gibt an, ob ein angegebener Wert innerhalb einer schreibgeschützten Zeichenspanne auftritt.

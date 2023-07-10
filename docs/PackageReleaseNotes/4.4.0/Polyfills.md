@@ -52,6 +52,7 @@ int LastIndexOf(this ReadOnlySpan<char>, string?, StringComparison);
 int LastIndexOf(this ReadOnlySpan<char>, string?, int, int, StringComparison);
 bool StartsWith(this ReadOnlySpan<char>, string?);
 bool StartsWith(this ReadOnlySpan<char>, string?, StringComparison);
+bool Equals(this ReadOnlySpan<char>, string?, StringComparison);
 ```
 .
 
