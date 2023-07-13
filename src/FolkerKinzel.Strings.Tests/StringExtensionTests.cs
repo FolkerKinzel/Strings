@@ -51,8 +51,22 @@ public class FileInfoExtensionTests
         Assert.IsTrue(fi.Exists);
         Assert.IsFalse(fi.IsUtf8());
 
-        var enc = new Utf8ValidationEncoding();
-        Assert.IsTrue(enc.DecoderFallback is DecoderValidatorFallback);
+        //var fb = DecoderReplacementFallback.ReplacementFallback;
+    }
+
+    [TestMethod]
+    public void IsUtf8Test5()
+    {
+        string outPath = Path.Combine(TestContext.TestResultsDirectory, "test4.txt");
+        File.WriteAllText(outPath, "äöüABC", TextEncodingConverter.GetEncoding(1252, true));
+
+        string s = File.ReadAllText(outPath, Encoding.GetEncoding(65001, EncoderFallback.ReplacementFallback, new DecoderValidationFallback()));
+
+        var fi = new FileInfo(outPath);
+        Assert.IsTrue(fi.Exists);
+        Assert.IsFalse(fi.IsUtf8());
+
+        //var fb = DecoderReplacementFallback.ReplacementFallback;
     }
 }
 
