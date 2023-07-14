@@ -1,15 +1,16 @@
 ﻿# FolkerKinzel.Strings
 
 ## Roadmap
-
 ### 5.3.0
-- [ ] Stream.IsUtf8(long length);
-- [ ] Stream.IsValidUtf8(long length);
-
-### 5.2.0
 - [ ] `StringBuilder.EscapeUri(int start, int length)`
 - [ ] `StringBuilder.UnEscapeUri(int start, int length, string? charSet = null)`
 
+### 5.2.0
+- [x] Stream.IsUtf8(int, bool);
+- [x] Stream.IsValidUtf8(int, bool);
+- [x] FileInfo.IsUtf8(int);
+- [x] FileInfo.IsValidUtf8(int);
+- [x] DecoderValidationFallback
 
 ### 5.1.0
 - [x] Polyfill for the `ReadOnlySpan<Char>` Struct (.NET Framework 4.5, .NET Standard 2.0):
