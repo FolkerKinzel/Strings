@@ -30,7 +30,7 @@ public class FileInfoExtensionTests
 
         var fi = new FileInfo(outPath);
         Assert.IsTrue(fi.Exists);
-        Assert.IsFalse(fi.IsValidUtf8());
+        Assert.IsFalse(fi.IsUtf8Valid());
     }
 
     [TestMethod]

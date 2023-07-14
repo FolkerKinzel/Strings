@@ -356,6 +356,101 @@
             </list>
             </remarks>
         </member>
+        <member name="T:FolkerKinzel.Strings.DecoderValidationFallback">
+            <summary>
+            Stellt einen als Fallback bezeichneten Fehlerbehandlungsmechanismus für eine codierte Eingabebytefolge bereit, 
+            die nicht in ein Ausgabezeichen konvertiert werden kann. Das Fallback gibt eine benutzerdefinierte Ersatzzeichenfolge (&#x2B1C;)
+            anstelle einer decodierten Eingabebytefolge aus und informiert in seiner Eigenschaft <see cref="P:FolkerKinzel.Strings.DecoderValidationFallback.HasError"/> darüber,
+            ob ein Fehler aufgetreten ist.
+            </summary>
+            <remarks>
+            Verwenden Sie <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/>-Objekte in den Methoden
+            <list type="bullet">
+            <item><see cref="M:System.Text.Encoding.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback)">
+            Encoding.GetEncoding(int, EncoderFallback, DecoderFallback)</see></item>
+            <item><see cref="M:System.Text.Encoding.GetEncoding(System.String,System.Text.EncoderFallback,System.Text.DecoderFallback)">
+            Encoding.GetEncoding(string, EncoderFallback, DecoderFallback)</see> oder</item>
+            <item><see cref="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback,System.Boolean)">
+            TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback, bool)</see> und</item>
+            <item><see cref="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback,System.Boolean)">
+            TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback, bool)</see>.</item>
+            </list>
+            <para>
+            Das <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/>-Objekt wird dabei als <see cref="T:System.Text.DecoderFallback"/>-Objekt übergeben.
+            </para>
+            <para>
+            Die <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/>-Klasse verhält sich wie die Klasse 
+            <see cref="T:System.Text.DecoderReplacementFallback"/>, mit dem Unterschied, dass sie in ihrer Eigenschaft <see cref="P:FolkerKinzel.Strings.DecoderValidationFallback.HasError"/>
+            nach Benutzung darüber informiert, ob ein Fehler aufgetreten ist. Zur Auswertung der Eigenschaft, sollten Sie eine 
+            Referenz auf das <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/>-Objekt behalten oder den Rückgabewert der Eigenschaft 
+            <see cref="P:System.Text.Encoding.DecoderFallback">Encoding.DecoderFallback</see> in den Typ 
+            <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/> casten.
+            </para>
+            <para>
+            Wenn Sie das <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/>-Objekt mehrfach verwenden, können sie die Eigenschaft
+            <see cref="P:FolkerKinzel.Strings.DecoderValidationFallback.HasError"/> mit der Methode <see cref="M:FolkerKinzel.Strings.DecoderValidationFallback.Reset"/> zurücksetzen.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:FolkerKinzel.Strings.DecoderValidationFallback.HasError">
+            <summary>
+            Gibt an, ob ein Dekodierungsfehler aufgetreten ist.
+            </summary>
+            <value><c>true</c>, wenn ein Fehler aufgetreten ist, andernfalls <c>false</c>.</value>
+        </member>
+        <member name="M:FolkerKinzel.Strings.DecoderValidationFallback.Reset">
+            <summary>
+            Setzt die Eigenschaft <see cref="P:FolkerKinzel.Strings.DecoderValidationFallback.HasError"/> auf ihren Ausgangswert
+            <c>false</c> zurück.
+            </summary>
+        </member>
+        <member name="P:FolkerKinzel.Strings.DecoderValidationFallback.MaxCharCount">
+            <inheritdoc/>
+        </member>
+        <member name="M:FolkerKinzel.Strings.DecoderValidationFallback.CreateFallbackBuffer">
+            <inheritdoc/>
+        </member>
+        <member name="T:FolkerKinzel.Strings.DecoderValidationFallback.ValidatorFallbackBuffer">
+            ///////////////////////////////////////////////////////////////
+        </member>
+        <member name="T:FolkerKinzel.Strings.FileInfoExtension">
+            <summary>
+            Erweiterungsmethoden für die <see cref="T:System.IO.FileInfo"/>-Klasse.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.Strings.FileInfoExtension.IsUtf8(System.IO.FileInfo,System.Int32)">
+            <summary>
+            Testet, ob der Abschnitt der durch <paramref name="fileInfo"/> angegebenen Datei, der sich vom Dateianfang über mindestens
+            <paramref name="count"/> Zeichen erstreckt, UTF-8-Text ist. Die Methode bezieht das Byte-Order-Mark (BOM)
+            in die Prüfung ein.
+            </summary>
+            <param name="fileInfo">Ein <see cref="T:System.IO.FileInfo"/>-Objekt, das auf die zu überprüfende Datei verweist.</param>
+            <param name="count">Die Anzahl der mindestens zu überprüfenden Buchstaben. Wenn dem Parameter eine negative Zahl übergeben 
+            wird oder wenn <paramref name="count"/> größer ist als die
+            Länge der Daten in der angegebenen Datei, wird die gesamte Datei überprüft. Wird dem Parameter <c>0</c> übergeben, überprüft 
+            die Methode nur das Byte-Order-Mark (BOM).</param>
+            
+            <returns><c>true</c>, wenn der überprüfte Dateiabschnitt UTF-8-Text darstellt, andernfalls <c>false</c>.
+            Wenn die Methode ein UTF-8-BOM findet, wird in jedem Fall <c>true</c> zurückgegeben. Wenn <paramref name="count"/>&#160;<c>0</c> ist 
+            und kein UTF-8-BOM gefunden wird, wird <c>false</c> zurückgegeben.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="fileInfo"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.IO.IOException">E/A Fehler.</exception>
+        </member>
+        <member name="M:FolkerKinzel.Strings.FileInfoExtension.IsUtf8Valid(System.IO.FileInfo,System.Int32)">
+            <summary>
+            Testet, ob der Abschnitt der durch <paramref name="fileInfo"/> angegebenen Datei, der sich vom Dateianfang über mindestens
+            <paramref name="count"/> Zeichen erstreckt, gültiges UTF-8 darstellt.
+            </summary>
+            
+            <param name="fileInfo">Ein <see cref="T:System.IO.FileInfo"/>-Objekt, das auf die zu überprüfende Datei verweist.</param>
+            <param name="count">Die Anzahl der mindestens zu überprüfenden Buchstaben. Wenn dem Parameter eine negative Zahl übergeben 
+            wird (Default) oder wenn <paramref name="count"/> größer ist als die
+            Länge der Daten in der angegebenen Datei, wird die gesamte Datei überprüft. Der Wert <c>0</c> ist nicht erlaubt.</param>
+            <returns><c>true</c>, wenn der überprüfte Dateiabschnitt gültiges UTF-8 darstellt, andernfalls <c>false</c>.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="fileInfo"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count"/> ist <c>0</c>.</exception>
+            <exception cref="T:System.IO.IOException">E/A Fehler.</exception>
+        </member>
         <member name="T:FolkerKinzel.Strings.HashType">
             <summary>
             Benannte Konstanten, um die Art eines Hashcodes für Zeichenfolgen festzulegen.
@@ -375,6 +470,61 @@
             <summary>
             Nur Buchstaben und Dezimalziffern werden gehasht. Die Groß- und Kleinschreibung wird nicht berücksichtigt.
             </summary>
+        </member>
+        <member name="T:FolkerKinzel.Strings.Intls.Utf8Validator">
+            <summary>
+            Provides methods to examine data in order to see whether it is UTF-8 text.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.Strings.Intls.Utf8Validator.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.Strings.Intls.Utf8Validator.IsUtf8(System.IO.Stream,System.Int32,System.Boolean)">
+            <summary>
+            Tests whether the byte sequence of <paramref name="stream"/> that starts with the current <see cref="P:System.IO.Stream.Position"/>
+            and is at least <paramref name="count"/> characters long is UTF-8 text. The method takes the Byte Order Mark (BOM)
+            into account.
+            </summary>
+            <param name="stream">The <see cref="T:System.IO.Stream"/> to examine.</param>
+            <param name="count">The number of characters to examine at least. If 
+            <paramref name="count"/> is larger than <paramref name="stream"/> has data, <paramref name="stream"/> is
+            examined until EOF. Passing a negative number to this parameter lets the method examine the whole 
+            <paramref name="stream"/> from the current
+            position until EOF. Passing <c>0</c> lets the method examine the BOM only.</param>
+            <param name="leaveOpen"><c>false</c> to let the method close the <paramref name="stream"/>, <c>true</c> 
+            otherwise.</param>
+            <returns><c>true</c> if <paramref name="stream"/> might be UTF-8 text, otherwise <c>false</c>.
+            If the method finds a UTF-8 BOM, it always returns <c>true</c>. If <paramref name="count"/> is 
+            <c>0</c> and there's no BOM, it returns <c>false</c>.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream"/> is <c>null</c>.</exception>
+            <exception cref="T:System.IO.IOException">I/O error.</exception>
+            <exception cref="T:System.ObjectDisposedException"><paramref name="stream"/> was already
+            closed.</exception>
+            <exception cref="T:System.NotSupportedException"><paramref name="stream"/> is not readable or <paramref name="stream"/>
+            does not support seek operations.</exception>
+        </member>
+        <member name="M:FolkerKinzel.Strings.Intls.Utf8Validator.IsUtf8Valid(System.IO.Stream,System.Int32,System.Boolean)">
+            <summary>
+            Tests whether the <see cref="T:System.Byte"/> sequence of <paramref name="stream"/> that starts with the current 
+            <see cref="P:System.IO.Stream.Position"/>
+            and is at least <paramref name="count"/> characters long is valid UTF-8 text.
+            </summary>
+            <param name="stream">The <see cref="T:System.IO.Stream"/> to examine.</param>
+            <param name="count">The number of characters to examine from the <paramref name="stream"/> at least. If 
+            <paramref name="count"/> is larger than <paramref name="stream"/> has data, <paramref name="stream"/> is
+            examined until EOF. Passing a negative number to this parameter lets the method examine from the current
+            position until EOF. <c>0</c> is not allowed.</param>
+            <param name="leaveOpen"><c>false</c> to let the method close the <paramref name="stream"/>, <c>true</c> 
+            otherwise.</param>
+            <returns><c>true</c> if the examined sequence in <paramref name="stream"/> is valid UTF-8 text, otherwise <c>false</c>.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count"/> is <c>0</c>.</exception>
+            <exception cref="T:System.IO.IOException">I/O error.</exception>
+            <exception cref="T:System.ObjectDisposedException"><paramref name="stream"/> was already
+            closed.</exception>
+            <exception cref="T:System.NotSupportedException"><paramref name="stream"/> is not readable.</exception>
         </member>
         <member name="T:FolkerKinzel.Strings.Polyfills.ReadOnlyMemoryPolyfillExtension">
             <summary>
@@ -1492,6 +1642,49 @@
             <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
             <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/> und
             <paramref name="str1"/>.</returns>
+        </member>
+        <member name="T:FolkerKinzel.Strings.StreamExtension">
+            <summary>
+            Erweiterungsmethoden für die <see cref="T:System.IO.Stream"/>-Klasse.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.Strings.StreamExtension.IsUtf8(System.IO.Stream,System.Int32,System.Boolean)">
+            <summary>
+            Testet, ob der angegebene Abschnitt von <paramref name="stream"/>, der sich von der aktuellen <see cref="P:System.IO.Stream.Position"/>
+            über mindestens <paramref name="count"/> Zeichen erstreckt, UTF-8-Text ist. Die Methode bezieht das Byte-Order-Mark (BOM)
+            in die Prüfung ein.
+            </summary>
+            <param name="stream">Der zu testende <see cref="T:System.IO.Stream"/>.</param>
+            <param name="count">Die Anzahl der mindestens zu überprüfenden Buchstaben. Wenn dem Parameter eine negative Zahl übergeben 
+            wird oder wenn <paramref name="count"/> größer ist als die
+            Länge der Daten in <paramref name="stream"/>, wird <paramref name="stream"/> von der aktuellen <see cref="P:System.IO.Stream.Position"/> 
+            bis zu seinem Ende (EOF) überprüft. Wird dem Parameter <c>0</c> übergeben, überprüft die Methode nur das Byte-Order-Mark (BOM).</param>
+            <param name="leaveOpen"><c>false</c>, damit die Methode <paramref name="stream"/> schließt, andernfalls <c>true</c>.</param>
+            <returns><c>true</c>, wenn der in <paramref name="stream"/> überprüfte Abschnitt UTF-8-Text darstellt, andernfalls <c>false</c>.
+            Wenn die Methode ein UTF-8-BOM findet, wird in jedem Fall <c>true</c> zurückgegeben. Wenn <paramref name="count"/>&#160;<c>0</c> ist 
+            und kein UTF-8-BOM gefunden wird, wird <c>false</c> zurückgegeben.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.IO.IOException">E/A Fehler.</exception>
+            <exception cref="T:System.ObjectDisposedException"><paramref name="stream"/> war bereits geschlossen.</exception>
+            <exception cref="T:System.NotSupportedException"><paramref name="stream"/> unterstützt keine Lesevorgänge oder keinen wahlfreien Zugriff.</exception>
+        </member>
+        <member name="M:FolkerKinzel.Strings.StreamExtension.IsUtf8Valid(System.IO.Stream,System.Int32,System.Boolean)">
+            <summary>
+            Testet, ob der angegebene Abschnitt von <paramref name="stream"/>, der sich von der aktuellen <see cref="P:System.IO.Stream.Position"/>
+            über mindestens <paramref name="count"/> Zeichen erstreckt, gültiges UTF-8 darstellt.
+            </summary>
+            <param name="stream">Der zu testende <see cref="T:System.IO.Stream"/>.</param>
+            <param name="count">Die Anzahl der mindestens zu überprüfenden Buchstaben. Wenn dem Parameter eine negative Zahl übergeben 
+            wird (Default) oder wenn <paramref name="count"/> größer ist als die
+            Länge der Daten in <paramref name="stream"/>, wird <paramref name="stream"/> von der aktuellen <see cref="P:System.IO.Stream.Position"/> 
+            bis zu seinem Ende (EOF) überprüft. Der Wert <c>0</c> ist nicht erlaubt.</param>
+            <param name="leaveOpen"><c>false</c>, damit die Methode <paramref name="stream"/> schließt, andernfalls <c>true</c>.</param>
+            <returns><c>true</c>, wenn der in <paramref name="stream"/> überprüfte Abschnitt gültiges UTF-8 darstellt, andernfalls <c>false</c>.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count"/> ist <c>0</c>.</exception>
+            <exception cref="T:System.IO.IOException">E/A Fehler.</exception>
+            <exception cref="T:System.ObjectDisposedException"><paramref name="stream"/> war bereits geschlossen.</exception>
+            <exception cref="T:System.NotSupportedException"><paramref name="stream"/> unterstützt keine Lesevorgänge.</exception>
         </member>
         <member name="T:FolkerKinzel.Strings.StringBuilderExtension">
             <summary>

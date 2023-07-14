@@ -35,12 +35,13 @@ internal sealed class Utf8Validator
     /// into account.
     /// </summary>
     /// <param name="stream">The <see cref="Stream"/> to examine.</param>
-    /// <param name="count">The number of characters to examine from the <paramref name="stream"/> at least. If 
+    /// <param name="count">The number of characters to examine at least. If 
     /// <paramref name="count"/> is larger than <paramref name="stream"/> has data, <paramref name="stream"/> is
     /// examined until EOF. Passing a negative number to this parameter lets the method examine the whole 
     /// <paramref name="stream"/> from the current
     /// position until EOF. Passing <c>0</c> lets the method examine the BOM only.</param>
-    /// <param name="leaveOpen"></param>
+    /// <param name="leaveOpen"><c>false</c> to let the method close the <paramref name="stream"/>, <c>true</c> 
+    /// otherwise.</param>
     /// <returns><c>true</c> if <paramref name="stream"/> might be UTF-8 text, otherwise <c>false</c>.
     /// If the method finds a UTF-8 BOM, it always returns <c>true</c>. If <paramref name="count"/> is 
     /// <c>0</c> and there's no BOM, it returns <c>false</c>.</returns>
@@ -58,19 +59,19 @@ internal sealed class Utf8Validator
             throw new ArgumentNullException(nameof(stream));
         }
 
-            long position = stream.Position;
+        long position = stream.Position;
 
-            if (ParseBom(stream))
-            {
-                if (!leaveOpen) { stream.Close(); }
-                return true;
-            }
-            if (count == 0)
-            {
-                return false;
-            }
-            stream.Position = position;
-        
+        if (ParseBom(stream))
+        {
+            if (!leaveOpen) { stream.Close(); }
+            return true;
+        }
+        if (count == 0)
+        {
+            return false;
+        }
+        stream.Position = position;
+
         return !(HasError || (!DoIsValidUtf8(stream, InitCount(count), leaveOpen)));
 
         /////////////////////////////////
@@ -101,7 +102,7 @@ internal sealed class Utf8Validator
     /// <exception cref="ObjectDisposedException"><paramref name="stream"/> was already
     /// closed.</exception>
     /// <exception cref="NotSupportedException"><paramref name="stream"/> is not readable.</exception>
-    public bool IsValidUtf8(Stream stream, int count, bool leaveOpen)
+    public bool IsUtf8Valid(Stream stream, int count, bool leaveOpen)
     {
         _ = stream ?? throw new ArgumentNullException(nameof(stream));
         return DoIsValidUtf8(stream, InitCount(count), leaveOpen);
@@ -113,7 +114,7 @@ internal sealed class Utf8Validator
         Debug.Assert(count != 0);
 
         _fallback.Reset();
-        using StreamReader reader = InitStreamReader(stream, count, leaveOpen: leaveOpen);
+        using StreamReader reader = InitStreamReader(stream, leaveOpen: leaveOpen);
 
         int i;
         while (count-- > 0 && (i = reader.Read()) != EOF)
@@ -127,22 +128,15 @@ internal sealed class Utf8Validator
     }
 
 
-    private StreamReader InitStreamReader(Stream stream, long count, bool leaveOpen)
+    private StreamReader InitStreamReader(Stream stream, bool leaveOpen)
     {
         return new(stream, _encoding, bufferSize: 128, detectEncodingFromByteOrderMarks: false,
              leaveOpen: leaveOpen);
-
-        //static int ComputeBufSize(long count) =>
-        //count >= 1024 ? 1024 : count >= 512 ? 512 : count >= 256 ? 256 : 128;
     }
 
 
-    private static long InitCount(int count)
-    {
-        if (count < 0)
-        {
-            return long.MaxValue;
-        }
-        return count != 0 ? count : throw new ArgumentOutOfRangeException(nameof(count));
-    }
+    private static long InitCount(int count) =>
+        count < 0 ? long.MaxValue 
+                  : count == 0 ? throw new ArgumentOutOfRangeException(nameof(count)) 
+                               : count;
 }

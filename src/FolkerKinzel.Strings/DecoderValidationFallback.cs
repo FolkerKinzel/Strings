@@ -4,8 +4,8 @@ namespace FolkerKinzel.Strings;
 
 /// <summary>
 /// Stellt einen als Fallback bezeichneten Fehlerbehandlungsmechanismus für eine codierte Eingabebytefolge bereit, 
-/// die nicht in ein Ausgabezeichen konvertiert werden kann. Der Fallback gibt eine benutzerdefinierte Ersatzzeichenfolge (&#x2B1C;)
-/// anstelle einer decodierten Eingabebytefolge aus und informiert in ihrer Eigenschaft <see cref="HasError"/> darüber,
+/// die nicht in ein Ausgabezeichen konvertiert werden kann. Das Fallback gibt eine benutzerdefinierte Ersatzzeichenfolge (&#x2B1C;)
+/// anstelle einer decodierten Eingabebytefolge aus und informiert in seiner Eigenschaft <see cref="HasError"/> darüber,
 /// ob ein Fehler aufgetreten ist.
 /// </summary>
 /// <remarks>
@@ -29,7 +29,7 @@ namespace FolkerKinzel.Strings;
 /// nach Benutzung darüber informiert, ob ein Fehler aufgetreten ist. Zur Auswertung der Eigenschaft, sollten Sie eine 
 /// Referenz auf das <see cref="DecoderValidationFallback"/>-Objekt behalten oder den Rückgabewert der Eigenschaft 
 /// <see cref="Encoding.DecoderFallback">Encoding.DecoderFallback</see> in den Typ 
-/// <see cref="DecoderValidationFallback"/> umwandeln.
+/// <see cref="DecoderValidationFallback"/> casten.
 /// </para>
 /// <para>
 /// Wenn Sie das <see cref="DecoderValidationFallback"/>-Objekt mehrfach verwenden, können sie die Eigenschaft
