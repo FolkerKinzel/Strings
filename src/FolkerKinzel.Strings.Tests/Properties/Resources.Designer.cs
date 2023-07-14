@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Benchmarks.Properties {
+namespace FolkerKinzel.Strings.Tests.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Benchmarks.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Benchmarks.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FolkerKinzel.Strings.Tests.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,27 +61,12 @@ namespace Benchmarks.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
+        ///   Sucht eine lokalisierte Zeichenfolge, die C:\Users\fkinz\source\repos\FolkerKinzel.Strings\src\FolkerKinzel.Strings.Tests\ 
+        /// ähnelt.
         /// </summary>
-        internal static byte[] AnsiIssue {
+        internal static string ProjDir {
             get {
-                object obj = ResourceManager.GetObject("AnsiIssue", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Die ist eine gaaaaaaaaaaaaaanz gaaaaaaaaaaaaaaaaanz laaaaaaaaaaaaaaange Zeile
-        ///Die ist eine gaaaaaaaaaaaaaanz gaaaaaaaaaaaaaaaaanz laaaaaaaaaaaaaaange Zeile
-        ///Die ist eine gaaaaaaaaaaaaaanz gaaaaaaaaaaaaaaaaanz laaaaaaaaaaaaaaange Zeile
-        ///Die ist eine gaaaaaaaaaaaaaanz gaaaaaaaaaaaaaaaaanz laaaaaaaaaaaaaaange Zeile
-        ///Die ist eine gaaaaaaaaaaaaaanz gaaaaaaaaaaaaaaaaanz laaaaaaaaaaaaaaange Zeile
-        ///Die ist eine gaaaaaaaaaaaaaanz gaaaaaaaaaaaaaaaaanz laaaaaaaaaaaaaaange Zeile
-        ///Die ist eine gaaaaaaaaaaaaaanz gaaaaaa [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
-        /// </summary>
-        internal static string ReplaceLineEndingsTest {
-            get {
-                return ResourceManager.GetString("ReplaceLineEndingsTest", resourceCulture);
+                return ResourceManager.GetString("ProjDir", resourceCulture);
             }
         }
     }

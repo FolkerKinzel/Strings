@@ -8,9 +8,10 @@ namespace Benchmarks
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Nicht verwendete Parameter entfernen", Justification = "<Ausstehend>")]
         static void Main(string[] args)
         {
-            var summary = BenchmarkRunner.Run<ReplaceLineEndingsBench>();
-            Console.Write("Total Time:");
-            Console.WriteLine(summary.TotalTime);
+            var summary = BenchmarkRunner.Run<IsUtf8Bench>();
+            //var summary = BenchmarkRunner.Run<ReplaceLineEndingsBench>();
+            //Console.Write("Total Time:");
+            //Console.WriteLine(summary.TotalTime);
         }
     }
 }
