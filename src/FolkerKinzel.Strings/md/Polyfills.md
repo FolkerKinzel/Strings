@@ -1,7 +1,7 @@
 # FolkerKinzel.Strings
 
 ### List of Polyfill Extension Methods 
-(Referring to the latest nuget version)
+(Refers to the latest nuget version)
 #### Polyfills for the String Class (.NET 5.0, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.5)
 ```csharp
 string ReplaceLineEndings(this string);
