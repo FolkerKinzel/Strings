@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings.Intls;
 
@@ -72,7 +73,7 @@ internal sealed class Utf8Validator
         }
         stream.Position = position;
 
-        return !(HasError || (!DoIsValidUtf8(stream, InitCount(count), leaveOpen)));
+        return !(HasError || !DoIsValidUtf8(stream, InitCount(count), leaveOpen));
 
         /////////////////////////////////
 
@@ -137,6 +138,6 @@ internal sealed class Utf8Validator
 
     private static long InitCount(int count) =>
         count < 0 ? long.MaxValue 
-                  : count == 0 ? throw new ArgumentOutOfRangeException(nameof(count)) 
+                  : count == 0 ? throw new ArgumentOutOfRangeException(nameof(count), Res.ZeroNotAllowed) 
                                : count;
 }

@@ -104,5 +104,14 @@ namespace FolkerKinzel.Strings.Properties {
                 return ResourceManager.GetString("UndefinedEnumValue", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 0 is not allowed. ähnelt.
+        /// </summary>
+        internal static string ZeroNotAllowed {
+            get {
+                return ResourceManager.GetString("ZeroNotAllowed", resourceCulture);
+            }
+        }
     }
 }

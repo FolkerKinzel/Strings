@@ -359,15 +359,17 @@
         <member name="T:FolkerKinzel.Strings.DecoderValidationFallback">
             <summary>
             Stellt einen als Fallback bezeichneten Fehlerbehandlungsmechanismus für eine codierte Eingabebytefolge bereit, 
-            die nicht in ein Ausgabezeichen konvertiert werden kann. Das Fallback gibt eine benutzerdefinierte Ersatzzeichenfolge (&#x2B1C;)
+            die nicht in ein Ausgabezeichen konvertiert werden kann. Das Fallback gibt ein Ersatzzeichen (&#x2B1C;)
             anstelle einer decodierten Eingabebytefolge aus und informiert in seiner Eigenschaft <see cref="P:FolkerKinzel.Strings.DecoderValidationFallback.HasError"/> darüber,
             ob ein Fehler aufgetreten ist.
             </summary>
             <remarks>
+            <para>
             Verwenden Sie <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/>-Objekte in den Methoden
+            </para>
             <list type="bullet">
             <item><see cref="M:System.Text.Encoding.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback)">
-            Encoding.GetEncoding(int, EncoderFallback, DecoderFallback)</see></item>
+            Encoding.GetEncoding(int, EncoderFallback, DecoderFallback)</see>,</item>
             <item><see cref="M:System.Text.Encoding.GetEncoding(System.String,System.Text.EncoderFallback,System.Text.DecoderFallback)">
             Encoding.GetEncoding(string, EncoderFallback, DecoderFallback)</see> oder</item>
             <item><see cref="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback,System.Boolean)">
@@ -1312,6 +1314,11 @@
         <member name="P:FolkerKinzel.Strings.Properties.Res.UndefinedEnumValue">
             <summary>
               Sucht eine lokalisierte Zeichenfolge, die The value is not defined. ähnelt.
+            </summary>
+        </member>
+        <member name="P:FolkerKinzel.Strings.Properties.Res.ZeroNotAllowed">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die 0 is not allowed. ähnelt.
             </summary>
         </member>
         <member name="T:FolkerKinzel.Strings.ReadOnlySpanExtension">

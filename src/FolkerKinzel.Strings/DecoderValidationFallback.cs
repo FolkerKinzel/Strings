@@ -4,15 +4,17 @@ namespace FolkerKinzel.Strings;
 
 /// <summary>
 /// Stellt einen als Fallback bezeichneten Fehlerbehandlungsmechanismus für eine codierte Eingabebytefolge bereit, 
-/// die nicht in ein Ausgabezeichen konvertiert werden kann. Das Fallback gibt eine benutzerdefinierte Ersatzzeichenfolge (&#x2B1C;)
+/// die nicht in ein Ausgabezeichen konvertiert werden kann. Das Fallback gibt ein Ersatzzeichen (&#x2B1C;)
 /// anstelle einer decodierten Eingabebytefolge aus und informiert in seiner Eigenschaft <see cref="HasError"/> darüber,
 /// ob ein Fehler aufgetreten ist.
 /// </summary>
 /// <remarks>
+/// <para>
 /// Verwenden Sie <see cref="DecoderValidationFallback"/>-Objekte in den Methoden
+/// </para>
 /// <list type="bullet">
 /// <item><see cref="Encoding.GetEncoding(int, EncoderFallback, DecoderFallback)">
-/// Encoding.GetEncoding(int, EncoderFallback, DecoderFallback)</see></item>
+/// Encoding.GetEncoding(int, EncoderFallback, DecoderFallback)</see>,</item>
 /// <item><see cref="Encoding.GetEncoding(string, EncoderFallback, DecoderFallback)">
 /// Encoding.GetEncoding(string, EncoderFallback, DecoderFallback)</see> oder</item>
 /// <item><see cref="TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback, bool)">
@@ -71,7 +73,6 @@ public sealed class DecoderValidationFallback : DecoderFallback
         public void ResetError() => HasError = false;
 
         public override void Reset() { }
-        
 
         public override int Remaining => 0;
 
@@ -84,7 +85,7 @@ public sealed class DecoderValidationFallback : DecoderFallback
 
         public override char GetNextChar()
         {
-            char result = _finished ? '\0' : '\u2B1C'; //'\u25A1';
+            char result = _finished ? '\0' : '\u2B1C';
             _finished = true;
             return result;
         }

@@ -132,4 +132,7 @@
   <data name="UndefinedEnumValue" xml:space="preserve">
     <value>Der Wert ist nicht definiert.</value>
   </data>
+  <data name="ZeroNotAllowed" xml:space="preserve">
+    <value>0 ist nicht erlaubt.</value>
+  </data>
 </root>

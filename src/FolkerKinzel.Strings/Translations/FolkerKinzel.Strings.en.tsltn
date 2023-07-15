@@ -1450,4 +1450,90 @@ The code page number.
   <T ID="4B89C4E1CB2FC16E">The value to compare with the source span.</T>
   <T ID="E59B8E0FC72E95FF">An enumeration value that determines how &lt;paramref name="span"/&gt; and &lt;paramref name="other"/&gt; are compared.</T>
   <T ID="7B5BE574FDA8E67D">&lt;c&gt;true&lt;/c&gt; if equal, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="D6AD0F9A9C4CA0B2">Provides a failure-handling mechanism, called a fallback, for an encoded input byte sequence that cannot be converted to an output character. The fallback emits a replacement character (⬜) instead of a decoded input byte sequence and informs in its property &lt;see cref="P:FolkerKinzel.Strings.DecoderValidationFallback.HasError"/&gt; whether an error has occurred.</T>
+  <T ID="C5528629C08BE0D5">&lt;para&gt;
+Use &lt;see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/&gt; objects with the methods
+&lt;/para&gt;
+&lt;list type="bullet"&gt;
+&lt;item&gt;
+&lt;see cref="M:System.Text.Encoding.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback)"&gt; Encoding.GetEncoding(int, EncoderFallback, DecoderFallback)&lt;/see&gt;,
+&lt;/item&gt;
+&lt;item&gt;
+&lt;see cref="M:System.Text.Encoding.GetEncoding(System.String,System.Text.EncoderFallback,System.Text.DecoderFallback)"&gt; Encoding.GetEncoding(string, EncoderFallback, DecoderFallback)&lt;/see&gt; or
+&lt;/item&gt;
+&lt;item&gt;
+&lt;see cref="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback,System.Boolean)"&gt; TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback, bool)&lt;/see&gt; and
+&lt;/item&gt;
+&lt;item&gt;
+&lt;see cref="M:FolkerKinzel.Strings.TextEncodingConverter.GetEncoding(System.Int32,System.Text.EncoderFallback,System.Text.DecoderFallback,System.Boolean)"&gt; TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback, bool)&lt;/see&gt;.
+&lt;/item&gt;
+&lt;/list&gt;
+&lt;para&gt;
+The &lt;see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/&gt; object is passed as a &lt;see cref="T:System.Text.DecoderFallback"/&gt; object.
+&lt;/para&gt;
+&lt;para&gt;
+The &lt;see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/&gt; class behaves like the &lt;see cref="T:System.Text.DecoderReplacementFallback"/&gt; class, except that it informs after use in its &lt;see cref="P:FolkerKinzel.Strings.DecoderValidationFallback.HasError"/&gt; property whether an error has occurred. To evaluate the property, you should keep a reference to the &lt;see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/&gt; object or cast the return value of the &lt;see cref="P:System.Text.Encoding.DecoderFallback"&gt;Encoding.DecoderFallback&lt;/see&gt; property to the Type &lt;see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/&gt; .
+&lt;/para&gt;
+&lt;para&gt;
+If you use the &lt;see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/&gt; object multiple times, you can use the &lt;see cref="M:FolkerKinzel.Strings.DecoderValidationFallback.Reset"/&gt; method to reset the &lt;see cref="P:FolkerKinzel.Strings.DecoderValidationFallback.HasError"/&gt; property.
+&lt;/para&gt;</T>
+  <T ID="27174CB8BB624307">Indicates whether a decoding error occurred.</T>
+  <T ID="72AE0480980F10CD">&lt;c&gt;true&lt;/c&gt; if an error occurred, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="E5062C35B74077EF">Resets the &lt;see cref="P:FolkerKinzel.Strings.DecoderValidationFallback.HasError"/&gt; property to its initial value &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="8F2F84B60AF69A30">Extension methods for the &lt;see cref="T:System.IO.FileInfo"/&gt; class.</T>
+  <T ID="2382EEA3B7112ED2">Tests whether the portion of the file specified by &lt;paramref name="fileInfo"/&gt; that extends at least &lt;paramref name="count"/&gt; characters from the beginning of the file is UTF-8 text. The method includes the byte order mark (BOM) in the check.</T>
+  <T ID="FC67A5BB373100D1">A &lt;see cref="T:System.IO.FileInfo"/&gt; object that references the file to check.</T>
+  <T ID="65F9CF2081C8F42B">The minimum number of characters to check. If the parameter is passed a negative number or if &lt;paramref name="count"/&gt; is greater than the length of the data in the specified file, the entire file is checked. If &lt;c&gt;0&lt;/c&gt; is passed to the parameter, the method only checks the byte order mark (BOM).</T>
+  <T ID="C61F0A9A56D8BD4A">&lt;c&gt;true&lt;/c&gt; if the checked file section represents UTF-8 text, &lt;c&gt;false&lt;/c&gt; otherwise. In any case, if the method finds a UTF-8 BOM, it returns &lt;c&gt;true&lt;/c&gt;. If &lt;paramref name="count"/&gt; is &lt;c&gt;0&lt;/c&gt; and no UTF-8 BOM is found, &lt;c&gt;false&lt;/c&gt; is returned.</T>
+  <T ID="EAB5A60CEAD00DFE">&lt;paramref name="fileInfo"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="4439529C3696023E">I/O error.</T>
+  <T ID="47D3E334E0C8BFF9">Tests whether the portion of the file specified by &lt;paramref name="fileInfo"/&gt; that extends at least &lt;paramref name="count"/&gt; characters from the beginning of the file represents valid UTF-8.</T>
+  <T ID="4AD2506373100D1">A &lt;see cref="T:System.IO.FileInfo"/&gt; object that references the file to check.</T>
+  <T ID="6386D356A7F5F969">The minimum number of characters to check. If a negative number is passed to the parameter (default) or if &lt;paramref name="count"/&gt; is greater than the length of the data in the specified file, the entire file is checked. The value &lt;c&gt;0&lt;/c&gt; is not allowed.</T>
+  <T ID="BBA24C1DFE532776">&lt;c&gt;true&lt;/c&gt; if the checked file section represents valid UTF-8, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="7DDBA1EAD00DFE">&lt;paramref name="fileInfo"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="E325474B081C57CF">&lt;paramref name="count"/&gt; is &lt;c&gt;0&lt;/c&gt;.</T>
+  <T ID="2EEBFDEE3696023E">I/O error.</T>
+  <T ID="580211F95809773D">Provides methods to examine data in order to see whether it is UTF-8 text.</T>
+  <T ID="C5240E5E3C74E9BC">ctor</T>
+  <T ID="131A9E854AE15AA3">Tests whether the byte sequence of &lt;paramref name="stream"/&gt; that starts with the current &lt;see cref="P:System.IO.Stream.Position"/&gt; and is at least &lt;paramref name="count"/&gt; characters long is UTF-8 text. The method takes the Byte Order Mark (BOM) into account.</T>
+  <T ID="6C7625E091A84A68">The &lt;see cref="T:System.IO.Stream"/&gt; to examine.</T>
+  <T ID="1F82ED23981E97C7">The number of characters to examine at least. If &lt;paramref name="count"/&gt; is larger than &lt;paramref name="stream"/&gt; has data, &lt;paramref name="stream"/&gt; is examined until EOF. Passing a negative number to this parameter lets the method examine the whole &lt;paramref name="stream"/&gt; from the current position until EOF. Passing &lt;c&gt;0&lt;/c&gt; lets the method examine the BOM only.</T>
+  <T ID="3652ED4385108942">&lt;c&gt;false&lt;/c&gt; to let the method close the &lt;paramref name="stream"/&gt;, &lt;c&gt;true&lt;/c&gt; otherwise.</T>
+  <T ID="713C99B0917154F2">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="stream"/&gt; might be UTF-8 text, otherwise &lt;c&gt;false&lt;/c&gt;. If the method finds a UTF-8 BOM, it always returns &lt;c&gt;true&lt;/c&gt;. If &lt;paramref name="count"/&gt; is &lt;c&gt;0&lt;/c&gt; and there's no BOM, it returns &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="1C0FA1ECA697AE3A"></T>
+  <T ID="1D979D90771F236F"></T>
+  <T ID="D8516AA79CF7E1EA"></T>
+  <T ID="F22E9AF3C38011D9"></T>
+  <T ID="C48328994D1AF2DA"></T>
+  <T ID="FB4EC1CA91A84A68">The &lt;see cref="T:System.IO.Stream"/&gt; to examine.</T>
+  <T ID="CAF4D1ED1A693D7B">The number of characters to examine from the &lt;paramref name="stream"/&gt; at least. If &lt;paramref name="count"/&gt; is larger than &lt;paramref name="stream"/&gt; has data, &lt;paramref name="stream"/&gt; is examined until EOF. Passing a negative number to this parameter lets the method examine from the current position until EOF. &lt;c&gt;0&lt;/c&gt; is not allowed.</T>
+  <T ID="5197DF9485108942">&lt;c&gt;false&lt;/c&gt; to let the method close the &lt;paramref name="stream"/&gt;, &lt;c&gt;true&lt;/c&gt; otherwise.</T>
+  <T ID="8D10738E1D3F3435">&lt;c&gt;true&lt;/c&gt; if the examined sequence in &lt;paramref name="stream"/&gt; is valid UTF-8 text, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="2C02398CA697AE3A">&lt;paramref name="stream"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="E60ADF878CE1FD6B">&lt;paramref name="count"/&gt; is &lt;c&gt;0&lt;/c&gt;.</T>
+  <T ID="5E127499771F236F">I/O error.</T>
+  <T ID="2A2DE1359CF7E1EA">&lt;paramref name="stream"/&gt; was already closed.</T>
+  <T ID="9400B24B662D2C4F">&lt;paramref name="stream"/&gt; is not readable.</T>
+  <T ID="429AB6DE15A71723"></T>
+  <T ID="F035628E000888B8">Extension methods for the &lt;see cref="T:System.IO.Stream"/&gt; class.</T>
+  <T ID="A6D65D8124778466">Tests whether the specified section of &lt;paramref name="stream"/&gt; that extends at least &lt;paramref name="count"/&gt; decoded characters from the current &lt;see cref="P:System.IO.Stream.Position"/&gt; is UTF-8 text. The method includes the byte order mark (BOM) in the check.</T>
+  <T ID="6F76755A6D12EA43">The &lt;see cref="T:System.IO.Stream"/&gt; to test.</T>
+  <T ID="8641D160F25BDB64">The minimum number of characters to check. If &lt;paramref name="count"/&gt; is larger than &lt;paramref name="stream"/&gt; has data, &lt;paramref name="stream"/&gt; is examined beginning from the current &lt;see cref="P:System.IO.Stream.Position"/&gt; until EOF. If the parameter is passed a negative number or if &lt;paramref name="count"/&gt; is greater than the length of the data in  &lt;paramref name="stream"/&gt;,  &lt;paramref name="stream"/&gt; is checked from the current position until EOF. If &lt;c&gt;0&lt;/c&gt; is passed to the parameter, the method only checks the byte order mark (BOM).</T>
+  <T ID="4855FCBDD4953A6F">&lt;c&gt;true&lt;/c&gt; to leave the stream open after the method has finished; otherwise, false.</T>
+  <T ID="48B45992058F1D7B">&lt;c&gt;true&lt;/c&gt; if the checked stream section represents UTF-8 text, &lt;c&gt;false&lt;/c&gt; otherwise. In any case, if the method finds a UTF-8 BOM, it returns &lt;c&gt;true&lt;/c&gt;. If &lt;paramref name="count"/&gt; is &lt;c&gt;0&lt;/c&gt; and no UTF-8 BOM is found, &lt;c&gt;false&lt;/c&gt; is returned.</T>
+  <T ID="8E6CBFE7BD36427E">&lt;paramref name="stream"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="C7D58BFE3696023E">I/O error.</T>
+  <T ID="34DB6FB977CCFE4F">&lt;paramref name="stream"/&gt; was already closed.</T>
+  <T ID="7FF46FC900F2B">&lt;paramref name="stream"/&gt; doesn't support read and seek operations.</T>
+  <T ID="B00CF943B18EA1FE">Tests whether the byte sequence of &lt;paramref name="stream"/&gt; that starts with the current &lt;see cref="P:System.IO.Stream.Position"/&gt; and is at least &lt;paramref name="count"/&gt; characters long is valid UTF-8.</T>
+  <T ID="2D779756D12EA43">The &lt;see cref="T:System.IO.Stream"/&gt; to test.</T>
+  <T ID="59B96F1DD69B39EF">The minimum number of characters to check. If a negative number is passed to the parameter (default) or if &lt;paramref name="count"/&gt; is greater than the length of the data in &lt;paramref name="stream"/&gt;, &lt;paramref name="stream"/&gt; is checked beginning from its current &lt;see cref="P:System.IO.Stream.Position"/&gt; until EOF. The value &lt;c&gt;0&lt;/c&gt; is not allowed.</T>
+  <T ID="22C60F31D4953A6F">&lt;c&gt;true&lt;/c&gt; to leave the stream open after the method has finished; otherwise, &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="44D0769844703D9D">&lt;c&gt;true&lt;/c&gt; if the checked stream section represents valid UTF-8, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="67D5DDCFBD36427E">&lt;paramref name="stream"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="793F2491081C57CF">&lt;paramref name="count"/&gt; is &lt;c&gt;0&lt;/c&gt;.</T>
+  <T ID="4B27D1753696023E">I/O error.</T>
+  <T ID="C58C343A77CCFE4F">&lt;paramref name="stream"/&gt; was already closed.</T>
+  <T ID="B855D35F600E4E3A">&lt;paramref name="stream"/&gt; doesn't support read operations.</T>
 </Tsltn>
