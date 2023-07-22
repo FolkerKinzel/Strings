@@ -1,10 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<!--
 		<TargetFrameworks>net48;net5.0;net6.0;net7.0;netcoreapp3.1;netcoreapp2.1;net45</TargetFrameworks>
-		-->
 		<LangVersion>11.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
