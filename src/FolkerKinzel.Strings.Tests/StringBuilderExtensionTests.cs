@@ -327,6 +327,60 @@ public class StringBuilderExtensionTests
         _ = sb!.Contains('e');
     }
 
+    
+
+    [TestMethod]
+    public void ContainsTest5()
+        => Assert.IsTrue(new StringBuilder("testen").Contains('e', 0));
+
+    [TestMethod]
+    public void ContainsTest6()
+    {
+        const string test = "testen";
+        Assert.IsTrue(new StringBuilder(test).Contains('e', 0));
+        Assert.IsTrue(new StringBuilder(test).Contains('e', 1));
+        Assert.IsTrue( new StringBuilder(test).Contains('e', 2));
+        Assert.IsFalse( new StringBuilder(test).Contains('e', 2, 2));
+        Assert.IsTrue(new StringBuilder(test).Contains('e', 2, 3));
+    }
+
+    [TestMethod]
+    public void ContainsTest7()
+    {
+        const string input = "testen";
+        Assert.IsTrue(new StringBuilder(input).Contains('e', 0, input.Length));
+    }
+
+    [TestMethod()]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void ContainsTest8()
+    {
+        StringBuilder? sb = null;
+        _ = sb!.Contains('e', 0);
+    }
+
+    [TestMethod()]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void ContainsTest9()
+    {
+        StringBuilder? sb = null;
+        _ = sb!.Contains('e', 0, 0);
+    }
+
+    [DataTestMethod()]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    [DataRow(-1)]
+    [DataRow(4711)]
+    public void ContainsTest10(int startIndex) => _ = new StringBuilder().Contains('e', startIndex);
+
+    [DataTestMethod()]
+    [DataRow(-1, -1)]
+    [DataRow(0, -1)]
+    [DataRow(0, 4711)]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void ContainsTest11(int startIndex, int count) => _ = new StringBuilder().Contains('e', startIndex, count);
+
+
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void ToLowerInvariantTest1()

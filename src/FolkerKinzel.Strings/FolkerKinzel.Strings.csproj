@@ -1,161 +1,163 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup Condition="False And '$(Configuration)'=='Release' And '$(TargetFramework)' == 'netstandard2.0'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net5.0;net6.0;net7.0;netstandard2.1;net45</TargetFrameworks>
-    <LangVersion>11.0</LangVersion>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <NeutralLanguage>en</NeutralLanguage>
-    <!-- nuget-Package: -->
-    <PackageId>FolkerKinzel.Strings</PackageId>
-    <Product>FolkerKinzel.Strings</Product>
-    <Version>5.2.0</Version>
-    <FileVersion>5.2.0.18</FileVersion>
-    <AssemblyVersion>5.0.0.0</AssemblyVersion>
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v5.2.0</PackageReleaseNotes>
-    <PackageTags>.NET String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode C#</PackageTags>
-    <Description>.NET library that contains extension methods and helper classes for String, Char, StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.</Description>
-    <Authors>Folker Kinzel</Authors>
-    <Copyright>Copyright © 2020 Folker Kinzel</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageIcon>Logo.png</PackageIcon>
-    <PackageReadmeFile>NugetReadme.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/FolkerKinzel/Strings.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageProjectUrl>https://github.com/FolkerKinzel/Strings</PackageProjectUrl>
-    <PackageIconUrl />
-  </PropertyGroup>
-  <PropertyGroup>
-    <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
-  <!-- 👇 disable the nullable warnings when compiling for .NET 4.5 and netstandard2.0 -->
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'netstandard2.0'">
-    <NoWarn>$(NoWarn);8600;8601;8602;8603;8604</NoWarn>
-  </PropertyGroup>
-  <ItemGroup>
-    <Using Remove="System.Net.Http" />
-    <Using Include="System.Text" />
-    <Using Include="System.Runtime.CompilerServices" />
-    <Using Include="System.Diagnostics.CodeAnalysis" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="PolyfillSpanAction.cs" />
-    <Compile Remove="ReadOnlySpanExtension_Obsolete.cs" />
-    <Compile Remove="StringBuilderExtension_Insert.cs" />
-    <Compile Remove="StringBuilderExtension_Obsolete.cs" />
-    <Compile Remove="StringCreator.cs" />
-    <Compile Remove="StringExtension_LastIndexOf.cs" />
-    <Compile Remove="StringExtension_Obsolete.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Translations\de\FolkerKinzel.Strings.xml" />
-    <None Remove="Translations\FolkerKinzel.Strings.en.tsltn" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Nullable" Version="1.3.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\Nuget-Logo\Logo.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="md\NugetReadme.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-    <PackageReference Include="System.Memory" Version="4.5.5" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="System.Memory" Version="4.5.5" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Properties\Res.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Res.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Res.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Res.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Translations\en\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net7.0</PackagePath>
-    </None>
-    <None Include="Translations\en\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net6.0</PackagePath>
-    </None>
-    <None Include="Translations\en\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net5.0</PackagePath>
-    </None>
-    <None Include="Translations\en\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net45</PackagePath>
-    </None>
-    <None Include="Translations\en\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\netstandard2.0</PackagePath>
-    </None>
-    <None Include="Translations\en\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\netstandard2.1</PackagePath>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Translations\de\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net7.0\de</PackagePath>
-    </None>
-    <None Include="Translations\de\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net6.0\de</PackagePath>
-    </None>
-    <None Include="Translations\de\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net5.0\de</PackagePath>
-    </None>
-    <None Include="Translations\de\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net45\de</PackagePath>
-    </None>
-    <None Include="Translations\de\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\netstandard2.0\de</PackagePath>
-    </None>
-    <None Include="Translations\de\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\netstandard2.1\de</PackagePath>
-    </None>
-  </ItemGroup>
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if $(ConfigurationName) == Release if '$(TargetFramework)' == 'net6.0' dotnet $(SolutionDir)IncVersion\IncVersion.dll $(ProjectDir)$(ProjectFileName) --revision" />
-  </Target>
+	<PropertyGroup Condition="False And '$(Configuration)'=='Release' And '$(TargetFramework)' == 'netstandard2.0'">
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net5.0;net6.0;net7.0;netstandard2.1;net45</TargetFrameworks>
+		<LangVersion>11.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<NeutralLanguage>en</NeutralLanguage>
+		<!-- nuget-Package: -->
+		<PackageId>FolkerKinzel.Strings</PackageId>
+		<Product>FolkerKinzel.Strings</Product>
+		<Version>5.2.0</Version>
+		<FileVersion>5.2.0.18</FileVersion>
+		<AssemblyVersion>5.0.0.0</AssemblyVersion>
+		<PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v5.2.0</PackageReleaseNotes>
+		<PackageTags>.NET String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode C#</PackageTags>
+		<Description>.NET library that contains extension methods and helper classes for String, Char, StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;.</Description>
+		<Authors>Folker Kinzel</Authors>
+		<Copyright>Copyright © 2020 Folker Kinzel</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageIcon>Logo.png</PackageIcon>
+		<PackageReadmeFile>NugetReadme.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/FolkerKinzel/Strings.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageProjectUrl>https://github.com/FolkerKinzel/Strings</PackageProjectUrl>
+		<PackageIconUrl />
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
+	<PropertyGroup>
+		<!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+	<!-- 👇 disable the nullable warnings when compiling for .NET 4.5 and netstandard2.0 -->
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'netstandard2.0'">
+		<NoWarn>$(NoWarn);8600;8601;8602;8603;8604</NoWarn>
+	</PropertyGroup>
+	<ItemGroup>
+		<Using Remove="System.Net.Http" />
+		<Using Include="System.Text" />
+		<Using Include="System.Runtime.CompilerServices" />
+		<Using Include="System.Diagnostics.CodeAnalysis" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="PolyfillSpanAction.cs" />
+		<Compile Remove="ReadOnlySpanExtension_Obsolete.cs" />
+		<Compile Remove="StringBuilderExtension_Insert.cs" />
+		<Compile Remove="StringBuilderExtension_Obsolete.cs" />
+		<Compile Remove="StringCreator.cs" />
+		<Compile Remove="StringExtension_LastIndexOf.cs" />
+		<Compile Remove="StringExtension_Obsolete.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Translations\de\FolkerKinzel.Strings.xml" />
+		<None Remove="Translations\FolkerKinzel.Strings.en.tsltn" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Nullable" Version="1.3.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\..\..\Nuget-Logo\Logo.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="md\NugetReadme.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+		<PackageReference Include="System.Memory" Version="4.5.5" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<PackageReference Include="System.Memory" Version="4.5.5" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Res.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Res.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Res.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Res.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Translations\en\FolkerKinzel.Strings.xml">
+			<Pack>True</Pack>
+			<PackagePath>lib\net7.0</PackagePath>
+		</None>
+		<None Include="Translations\en\FolkerKinzel.Strings.xml">
+			<Pack>True</Pack>
+			<PackagePath>lib\net6.0</PackagePath>
+		</None>
+		<None Include="Translations\en\FolkerKinzel.Strings.xml">
+			<Pack>True</Pack>
+			<PackagePath>lib\net5.0</PackagePath>
+		</None>
+		<None Include="Translations\en\FolkerKinzel.Strings.xml">
+			<Pack>True</Pack>
+			<PackagePath>lib\net45</PackagePath>
+		</None>
+		<None Include="Translations\en\FolkerKinzel.Strings.xml">
+			<Pack>True</Pack>
+			<PackagePath>lib\netstandard2.0</PackagePath>
+		</None>
+		<None Include="Translations\en\FolkerKinzel.Strings.xml">
+			<Pack>True</Pack>
+			<PackagePath>lib\netstandard2.1</PackagePath>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Translations\de\FolkerKinzel.Strings.xml">
+			<Pack>True</Pack>
+			<PackagePath>lib\net7.0\de</PackagePath>
+		</None>
+		<None Include="Translations\de\FolkerKinzel.Strings.xml">
+			<Pack>True</Pack>
+			<PackagePath>lib\net6.0\de</PackagePath>
+		</None>
+		<None Include="Translations\de\FolkerKinzel.Strings.xml">
+			<Pack>True</Pack>
+			<PackagePath>lib\net5.0\de</PackagePath>
+		</None>
+		<None Include="Translations\de\FolkerKinzel.Strings.xml">
+			<Pack>True</Pack>
+			<PackagePath>lib\net45\de</PackagePath>
+		</None>
+		<None Include="Translations\de\FolkerKinzel.Strings.xml">
+			<Pack>True</Pack>
+			<PackagePath>lib\netstandard2.0\de</PackagePath>
+		</None>
+		<None Include="Translations\de\FolkerKinzel.Strings.xml">
+			<Pack>True</Pack>
+			<PackagePath>lib\netstandard2.1\de</PackagePath>
+		</None>
+	</ItemGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="if $(ConfigurationName) == Release if '$(TargetFramework)' == 'net6.0' dotnet $(SolutionDir)IncVersion\IncVersion.dll $(ProjectDir)$(ProjectFileName) --revision" />
+	</Target>
 </Project>

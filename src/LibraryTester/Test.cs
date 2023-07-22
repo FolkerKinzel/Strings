@@ -93,6 +93,8 @@ namespace LibraryTesters
             _ = test.LastIndexOfAny(test.AsSpan(), 0, 0);
 
             _ = sb.Contains('e');
+            _ = sb.Contains('e', 0);
+            _ = sb.Contains('e', 0, 0);
             _ = sb.IndexOf('e');
             _ = sb.IndexOf('e', 0);
             _ = sb.IndexOf('e', 0, 0);

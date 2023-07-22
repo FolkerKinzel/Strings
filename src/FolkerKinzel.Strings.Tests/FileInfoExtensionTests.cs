@@ -92,4 +92,12 @@ public class FileInfoExtensionTests
         var fi = new FileInfo(TestFiles.AnsiIssueVcf);
         Assert.IsFalse(fi.IsUtf8(count: 1));
     }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void IsUtf8ValidTest()
+    {
+        FileInfo? file = null;
+        _ = file!.IsUtf8Valid();
+    }
 }
