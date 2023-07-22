@@ -1736,6 +1736,52 @@
             </remarks>
             <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
         </member>
+        <member name="M:FolkerKinzel.Strings.StringBuilderExtension.Contains(System.Text.StringBuilder,System.Char,System.Int32)">
+            <summary>
+            Gibt an, ob ein angegebenes Zeichen im <see cref="T:System.Text.StringBuilder"/> vorkommt. 
+            Die Suche beginnt an der angegebenen Zeichenposition.
+            </summary>
+            <param name="builder">Der zu durchsuchende <see cref="T:System.Text.StringBuilder"/>.</param>
+            <param name="value">Das zu suchende Unicode-Zeichen.</param>
+            <param name="startIndex">Die Anfangsposition der Suche.</param>
+            <returns><c>true</c>, wenn <paramref name="value"/> im angegebenen Abschnitt von 
+            <paramref name="builder"/> gefunden wird, andernfalls <c>false</c>.</returns>
+            <remarks>
+            Die Methode führt einen Ordinalzeichenvergleich durch.
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> ist kleiner als 0 oder
+            größer als die Anzahl der Zeichen in <paramref name="builder"/>.</exception>
+        </member>
+        <member name="M:FolkerKinzel.Strings.StringBuilderExtension.Contains(System.Text.StringBuilder,System.Char,System.Int32,System.Int32)">
+            <summary>
+            Gibt an, ob ein angegebenes Zeichen im <see cref="T:System.Text.StringBuilder"/> vorkommt. 
+            Die Suche beginnt an einer angegebenen Zeichenposition, und es wird eine angegebene Anzahl 
+            von Zeichenpositionen überprüft.
+            </summary>
+            <param name="builder">Der zu durchsuchende <see cref="T:System.Text.StringBuilder"/>.</param>
+            <param name="value">Das zu suchende Unicode-Zeichen.</param>
+            <param name="startIndex">Die Anfangsposition der Suche.</param>
+            <param name="count">Die Anzahl der zu überprüfenden Zeichenpositionen.</param>
+            <returns><c>true</c>, wenn <paramref name="value"/> im angegebenen Abschnitt von 
+            <paramref name="builder"/> gefunden wird, andernfalls <c>false</c>.</returns>
+            <remarks>
+            Die Methode führt einen Ordinalzeichenvergleich durch.
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <para>
+            <paramref name="startIndex"/> oder <paramref name="count"/> sind kleiner als 0 oder
+            größer als die Anzahl der Zeichen in <paramref name="builder"/>
+            </para>
+            <para>
+            - oder -
+            </para>
+            <para>
+            <paramref name="startIndex"/> + <paramref name="count"/> ist größer als die Anzahl der Zeichen in
+            <paramref name="builder"/>.
+            </para></exception>
+        </member>
         <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ContainsNewLine(System.Text.StringBuilder)">
             <summary>
             Untersucht, ob der <see cref="T:System.Text.StringBuilder"/> Zeilenwechselzeichen enthält.

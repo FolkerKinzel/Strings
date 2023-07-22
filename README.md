@@ -2,6 +2,8 @@
 [![NuGet](https://img.shields.io/nuget/v/FolkerKinzel.Strings)](https://www.nuget.org/packages/FolkerKinzel.Strings/)
 [![GitHub](https://img.shields.io/github/license/FolkerKinzel/Strings)](https://github.com/FolkerKinzel/Strings/blob/master/LICENSE)
 
+[Project Reference and Release Notes](https://github.com/FolkerKinzel/Strings/releases/tag/v5.3.0)
+
 .NET library that contains extension methods and helper classes for String, Char,
 StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;. A very high code coverage of
 the unit tests (100% line and branch) and the consistent avoidance of unsafe code blocks are main design principles of 
@@ -12,7 +14,7 @@ this library.
 that calls existing Framework methods and will (hopefully) be inlined. Some other fill gaps of the 
 Framework.
 * Extension methods, which act as Polyfills for .NET Framework 4.5, .NET Standard 2.0, .NET Standard 2.1 and .NET 5.0
- in order to make it easier to support such older Framework versions in Multi Targeting Projects. [(See the complete list.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/4.4.0/Polyfills.md)
+ in order to make it easier to support such older Framework versions in Multi Targeting Projects. [(See the complete list.)](https://github.com/FolkerKinzel/Strings/blob/master/src/FolkerKinzel.Strings/md/Polyfills.md)
 * Extension methods, which return identical `Int32` hashcodes for identical `Char` sequences each time 
 the program runs. These hashcodes are a slim alternative to larger hash algorithms that is suitable for
  hashing short strings, which are not used in a security-critical context. [(Read more.)](https://github.com/FolkerKinzel/Strings/blob/master/docs/PackageReleaseNotes/2.0.0/PersistableHashCodeExample.md)
@@ -33,8 +35,7 @@ using FolkerKinzel.Strings;
 using FolkerKinzel.Strings.Polyfills;
 #endif
 ```
+.
 
-- [Project Reference and Release Notes](https://github.com/FolkerKinzel/Strings/releases/tag/v5.1.0)
-
-- [Version History](https://github.com/FolkerKinzel/Strings/releases)
+[Version History](https://github.com/FolkerKinzel/Strings/releases)
 
