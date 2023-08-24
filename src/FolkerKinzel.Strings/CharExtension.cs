@@ -36,8 +36,8 @@ public static class CharExtension
     /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Buchstabe ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsAsciiLetter(this char c)
-        => c.IsAsciiLowerCaseLetter() || c.IsAsciiUpperCaseLetter();
+    public static bool IsAsciiLetter(this char c) =>
+       ((char)(c | 32)).IsAsciiLowerCaseLetter();
 
     /// <summary>
     /// Ruft den Wert einer Hexadezimalziffer ab.

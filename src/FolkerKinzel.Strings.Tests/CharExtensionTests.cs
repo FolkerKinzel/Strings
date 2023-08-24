@@ -304,4 +304,13 @@ public class CharExtensionTests
             Assert.AreEqual(c.IsAscii() && char.IsLetter(c), c.IsAsciiLetter());
         }
     }
+
+    //[TestMethod()]
+    //public void IsAsciiLetter2Test()
+    //{
+    //    for (char c = char.MinValue; c < char.MaxValue; c++)
+    //    {
+    //        Assert.AreEqual(c.IsAsciiLetter(), c.IsAsciiLetter2());
+    //    }
+    //}
 }

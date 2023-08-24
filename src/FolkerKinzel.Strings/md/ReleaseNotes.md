@@ -1,7 +1,6 @@
-- New extension method overloads for `System.Text.StringBuilder`:
+- Better performance:
 ```csharp
-bool Contains(this StringBuilder, char, int);
-bool Contains(this StringBuilder, char, int, int);
+bool IsAsciiLetter(this char);
 ```
 
 .

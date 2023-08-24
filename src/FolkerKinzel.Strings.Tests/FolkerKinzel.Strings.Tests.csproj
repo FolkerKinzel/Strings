@@ -42,6 +42,10 @@
 		</PackageReference>
 		<PackageReference Include="System.Memory" Version="4.5.5" />
 	</ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)' == 'netcoreapp2.1' Or '$(TargetFramework)' == 'net5.0'">
+    <PackageReference Include="System.Text.Json" Version="4.6.0" />
+
+  </ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\FolkerKinzel.Strings\FolkerKinzel.Strings.csproj" />
