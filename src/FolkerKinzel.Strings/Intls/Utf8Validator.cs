@@ -59,7 +59,7 @@ internal sealed class Utf8Validator
         {
             throw new ArgumentNullException(nameof(stream));
         }
-
+        _fallback.Reset();
         long position = stream.Position;
 
         if (ParseBom(stream))
@@ -73,7 +73,7 @@ internal sealed class Utf8Validator
         }
         stream.Position = position;
 
-        return !(HasError || !DoIsValidUtf8(stream, InitCount(count), leaveOpen));
+        return DoIsValidUtf8(stream, InitCount(count), leaveOpen);
 
         /////////////////////////////////
 
