@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using BenchmarkDotNet.Attributes;
 using FolkerKinzel.Strings;
 
 namespace Benchmarks;
-
 
 [MemoryDiagnoser]
 public class IsAsciiLetterBench

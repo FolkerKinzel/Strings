@@ -17,6 +17,8 @@ namespace LibraryTesters
             string test = "Test";
             var span = test.AsSpan();
             char c = 'e';
+            byte[] bytes = new byte[1];
+
 
             _ = test.Trim(stackalloc char[] { ',', ';' });
             _ = test.TrimStart(stackalloc char[] { ',', ';' });
@@ -194,6 +196,9 @@ namespace LibraryTesters
             _ = sb.AppendJoin("::", 42, 'x');
 
             _ = span.Equals("USA", StringComparison.Ordinal);
+
+            _ = Encoding.UTF8.GetString(bytes.AsSpan());
+
         }
     }
 }

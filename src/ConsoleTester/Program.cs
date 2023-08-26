@@ -23,6 +23,8 @@ namespace LibraryTesters
             string test = "Test";
             char c = 'e';
 
+            byte[] bytes = new byte[1];
+
             var sb1 = new StringBuilder();
             var sb2 = new StringBuilder(test);
             ReadOnlySpan<char> span = test.AsSpan();
@@ -199,6 +201,10 @@ namespace LibraryTesters
 
             //_ = sb.AppendLine(test.AsMemory());
             //_ = sb.AppendLine(test.AsSpan());
+
+            Encoding.UTF8.GetString(bytes.AsSpan());
+
+
 
         }
     }

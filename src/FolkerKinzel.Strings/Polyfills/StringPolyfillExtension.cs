@@ -21,8 +21,6 @@ public static partial class StringPolyfillExtension
 {
 #if NET45 || NETSTANDARD2_0
 
-
-
     /// <summary>
     /// Gibt mithilfe der festgelegten Vergleichsregeln einen Wert zurück, der angibt, ob ein angegebenes Zeichen innerhalb der Zeichenfolge auftritt.
     /// </summary>

@@ -10,7 +10,9 @@ class Program
     {
         //var val = new IsAsciiLetterBench();
         //new IsUtf8Bench().IsUtf8Exception();
-        _ = BenchmarkRunner.Run<IsAsciiLetterBench>();
+        //_ = BenchmarkRunner.Run<IsAsciiLetterBench>();
+        _ = BenchmarkRunner.Run<ToArrayVsToStringBench>();
+
         //BenchmarkDotNet.Reports.Summary summary = BenchmarkRunner.Run<IsUtf8Bench>();
         //var summary = BenchmarkRunner.Run<ReplaceLineEndingsBench>();
         //Console.Write("Total Time:");
