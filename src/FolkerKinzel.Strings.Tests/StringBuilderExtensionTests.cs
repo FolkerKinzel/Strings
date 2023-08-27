@@ -1299,7 +1299,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void AppendBase64EncodedTest5()
     {
-        StringBuilder builder = new StringBuilder().AppendBase64Encoded(new byte[] { 42 }.AsSpan(), Base64FormattingOptions.InsertLineBreaks);
+        StringBuilder builder = new StringBuilder().AppendBase64Encoded(new byte[] { 42 }, Base64FormattingOptions.InsertLineBreaks);
         Assert.IsFalse(builder.Contains('\n'));
     }
 
@@ -1325,6 +1325,10 @@ public class StringBuilderExtensionTests
 
         Assert.AreEqual(
             Convert.ToBase64String(bytes, Base64FormattingOptions.InsertLineBreaks),
-            new StringBuilder().AppendBase64Encoded(bytes.AsSpan(), Base64FormattingOptions.InsertLineBreaks).ToString());
+            new StringBuilder().AppendBase64Encoded(bytes, Base64FormattingOptions.InsertLineBreaks).ToString());
     }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void AppendBase64EncodedTest9() => new StringBuilder().AppendBase64Encoded((byte[]?)null!);
 }

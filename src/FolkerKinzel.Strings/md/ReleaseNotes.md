@@ -1,14 +1,18 @@
 - New extension methods:
 ```csharp
-byte[] GetBytes(this Encoding encoding, ReadOnlySpan<char> chars);
+byte[] GetBytes(this Encoding, ReadOnlySpan<char>);
 
-StringBuilder AppendBase64Encoded(this StringBuilder builder,
-                                  IEnumerable<byte> bytes,
-                                  Base64FormattingOptions options = Base64FormattingOptions.None);
+StringBuilder AppendBase64Encoded(this StringBuilder,
+                                  IEnumerable<byte>,
+                                  Base64FormattingOptions);
 
-StringBuilder AppendBase64Encoded(this StringBuilder builder,
-                                  ReadOnlySpan<byte> span,
-                                  Base64FormattingOptions options = Base64FormattingOptions.None);
+StringBuilder AppendBase64Encoded(this StringBuilder,
+                                  byte[],
+                                  Base64FormattingOptions);
+
+StringBuilder AppendBase64Encoded(this StringBuilder,
+                                  ReadOnlySpan<byte>,
+                                  Base64FormattingOptions);
 ```
 .
 - New polyfill for the Encoding Class (.NET Framework 4.5, .NET Standard 2.0)
