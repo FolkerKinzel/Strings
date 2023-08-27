@@ -327,7 +327,7 @@ public class StringBuilderExtensionTests
         _ = sb!.Contains('e');
     }
 
-    
+
 
     [TestMethod]
     public void ContainsTest5()
@@ -339,8 +339,8 @@ public class StringBuilderExtensionTests
         const string test = "testen";
         Assert.IsTrue(new StringBuilder(test).Contains('e', 0));
         Assert.IsTrue(new StringBuilder(test).Contains('e', 1));
-        Assert.IsTrue( new StringBuilder(test).Contains('e', 2));
-        Assert.IsFalse( new StringBuilder(test).Contains('e', 2, 2));
+        Assert.IsTrue(new StringBuilder(test).Contains('e', 2));
+        Assert.IsFalse(new StringBuilder(test).Contains('e', 2, 2));
         Assert.IsTrue(new StringBuilder(test).Contains('e', 2, 3));
     }
 
@@ -762,7 +762,7 @@ public class StringBuilderExtensionTests
     public void TrimTest8()
     {
 #if NET45
-            char[] trimChars = new char[0];
+        char[] trimChars = new char[0];
 #else
         char[] trimChars = Array.Empty<char>();
 #endif
@@ -797,7 +797,7 @@ public class StringBuilderExtensionTests
     public void TrimTest11()
     {
 #if NET45
-            char[] trimChars = new char[0];
+        char[] trimChars = new char[0];
 #else
         char[] trimChars = Array.Empty<char>();
 #endif
@@ -899,7 +899,7 @@ public class StringBuilderExtensionTests
     public void TrimStartTest11()
     {
 #if NET45
-            char[] trimChars = new char[0];
+        char[] trimChars = new char[0];
 #else
         char[] trimChars = Array.Empty<char>();
 #endif
@@ -933,7 +933,7 @@ public class StringBuilderExtensionTests
     public void TrimStartTest14()
     {
 #if NET45
-            char[] trimChars = new char[0];
+        char[] trimChars = new char[0];
 #else
         char[] trimChars = Array.Empty<char>();
 #endif
@@ -1010,7 +1010,7 @@ public class StringBuilderExtensionTests
     public void TrimEndTest8()
     {
 #if NET45
-            char[] trimChars = new char[0];
+        char[] trimChars = new char[0];
 #else
         char[] trimChars = Array.Empty<char>();
 #endif
@@ -1044,7 +1044,7 @@ public class StringBuilderExtensionTests
     public void TrimEndTest11()
     {
 #if NET45
-            char[] trimChars = new char[0];
+        char[] trimChars = new char[0];
 #else
         char[] trimChars = Array.Empty<char>();
 #endif
@@ -1227,4 +1227,21 @@ public class StringBuilderExtensionTests
     [DataRow(0, 4711)]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void ContainsWhiteSpaceTest8(int startIndex, int count) => _ = new StringBuilder().ContainsWhiteSpace(startIndex, count);
+
+
+
+    [DataTestMethod()]
+    [DataRow("", "")]
+    [DataRow("f", "Zg==")]
+    [DataRow("fo", "Zm8=")]
+    [DataRow("foo", "Zm9v")]
+    [DataRow("foob", "Zm9vYg==")]
+    [DataRow("fooba", "Zm9vYmE=")]
+    [DataRow("foobar", "Zm9vYmFy")]
+    public void AppendBase64EncodedTest1(string input, string expected)
+    {
+        var builder = new StringBuilder();
+        builder.AppendBase64Encoded(Encoding.UTF8.GetBytes(input).ToList());
+        Assert.AreEqual(expected, builder.ToString());
+    }
 }

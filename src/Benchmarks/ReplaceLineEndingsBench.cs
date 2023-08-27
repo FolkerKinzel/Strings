@@ -34,14 +34,8 @@ public class ReplaceLineEndingsBench
     }
 
     [Benchmark]
-    public string BenchString1()
-    {
-        return TestString.ReplaceLineEndings("\r\n");
-    }
+    public string BenchString1() => TestString.ReplaceLineEndings("\r\n");
 
     [Benchmark]
-    public string BenchString2()
-    {
-        return TestString.ReplaceLineEndings("\n");
-    }
+    public string BenchString2() => TestString.ReplaceLineEndings("\n");
 }
