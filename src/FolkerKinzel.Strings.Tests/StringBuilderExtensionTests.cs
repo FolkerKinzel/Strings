@@ -1,4 +1,5 @@
-﻿using FolkerKinzel.Strings.Polyfills;
+﻿using System.Collections.ObjectModel;
+using FolkerKinzel.Strings.Polyfills;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
@@ -1245,15 +1246,85 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(expected, builder.ToString());
     }
 
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void AppendBase64EnodedTest2()
+    [DataTestMethod()]
+    [DataRow("", "")]
+    [DataRow("f", "Zg==")]
+    [DataRow("fo", "Zm8=")]
+    [DataRow("foo", "Zm9v")]
+    [DataRow("foob", "Zm9vYg==")]
+    [DataRow("fooba", "Zm9vYmE=")]
+    [DataRow("foobar", "Zm9vYmFy")]
+    public void AppendBase64EncodedTest1b(string input, string expected)
     {
-        StringBuilder? builder = null;
-        _ = builder!.AppendBase64Encoded(new byte[] { 42 });
+        var builder = new StringBuilder();
+        builder.AppendBase64Encoded(Encoding.UTF8.GetBytes(input).AsEnumerable());
+        Assert.AreEqual(expected, builder.ToString());
+    }
+
+    [DataTestMethod()]
+    [DataRow("", "")]
+    [DataRow("f", "Zg==")]
+    [DataRow("fo", "Zm8=")]
+    [DataRow("foo", "Zm9v")]
+    [DataRow("foob", "Zm9vYg==")]
+    [DataRow("fooba", "Zm9vYmE=")]
+    [DataRow("foobar", "Zm9vYmFy")]
+    public void AppendBase64EncodedTest1c(string input, string expected)
+    {
+        var builder = new StringBuilder();
+        builder.AppendBase64Encoded(new ReadOnlyCollection<byte>(Encoding.UTF8.GetBytes(input)));
+        Assert.AreEqual(expected, builder.ToString());
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void AppendBase64EnodedTest3() => _ = new StringBuilder().AppendBase64Encoded(null!);
+    public void AppendBase64EncodedTest2()
+    {
+        StringBuilder? builder = null;
+        _ = builder!.AppendBase64Encoded(new byte[] { 42 }.ToList());
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void AppendBase64EncodedTest3() => _ = new StringBuilder().AppendBase64Encoded((List<byte>)null!);
+
+
+    [TestMethod]
+    public void AppendBase64EncodedTest4()
+    {
+        StringBuilder builder = new StringBuilder().AppendBase64Encoded(ReadOnlySpan<byte>.Empty, Base64FormattingOptions.InsertLineBreaks);
+        Assert.AreEqual(0, builder.Length);
+    }
+
+    [TestMethod]
+    public void AppendBase64EncodedTest5()
+    {
+        StringBuilder builder = new StringBuilder().AppendBase64Encoded(new byte[] { 42 }.AsSpan(), Base64FormattingOptions.InsertLineBreaks);
+        Assert.IsFalse(builder.Contains('\n'));
+    }
+
+    [TestMethod]
+    public void AppendBase64EncodedTest6()
+    {
+        StringBuilder builder = new StringBuilder(new string('a', 75)).AppendBase64Encoded(new byte[] { 42 }.AsSpan(), Base64FormattingOptions.InsertLineBreaks);
+        Assert.IsTrue(builder.Contains('\n'));
+    }
+
+    [TestMethod]
+    public void AppendBase64EncodedTest7()
+    {
+        StringBuilder builder = new StringBuilder(new string('a', 77)).AppendBase64Encoded(new byte[] { 42 }.AsSpan(), Base64FormattingOptions.InsertLineBreaks);
+        Assert.IsTrue(builder.Contains('\n'));
+    }
+
+    [TestMethod]
+    public void AppendBase64EncodedTest8()
+    {
+        byte[] bytes = new byte[200];
+        new Random().NextBytes(bytes);
+
+        Assert.AreEqual(
+            Convert.ToBase64String(bytes, Base64FormattingOptions.InsertLineBreaks),
+            new StringBuilder().AppendBase64Encoded(bytes.AsSpan(), Base64FormattingOptions.InsertLineBreaks).ToString());
+    }
 }

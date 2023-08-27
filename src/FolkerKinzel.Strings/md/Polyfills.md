@@ -79,3 +79,8 @@ StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, bool);
 StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, bool);
 StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, int, bool);
 ```
+.
+#### Polyfills for the Encoding Class (.NET Framework 4.5, .NET Standard 2.0)
+```csharp
+string GetString(this Encoding encoding, ReadOnlySpan<byte> bytes);
+```

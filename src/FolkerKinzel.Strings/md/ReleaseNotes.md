@@ -1,6 +1,19 @@
-- Better performance:
+- New extension methods:
 ```csharp
-bool IsAsciiLetter(this char);
+byte[] GetBytes(this Encoding encoding, ReadOnlySpan<char> chars);
+
+StringBuilder AppendBase64Encoded(this StringBuilder builder,
+                                  IEnumerable<byte> bytes,
+                                  Base64FormattingOptions options = Base64FormattingOptions.None);
+
+StringBuilder AppendBase64Encoded(this StringBuilder builder,
+                                  ReadOnlySpan<byte> span,
+                                  Base64FormattingOptions options = Base64FormattingOptions.None);
+```
+.
+- New polyfill for the Encoding Class (.NET Framework 4.5, .NET Standard 2.0)
+```csharp
+string GetString(this Encoding encoding, ReadOnlySpan<byte> bytes);
 ```
 
 .
