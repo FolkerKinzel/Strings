@@ -1244,4 +1244,16 @@ public class StringBuilderExtensionTests
         builder.AppendBase64Encoded(Encoding.UTF8.GetBytes(input).ToList());
         Assert.AreEqual(expected, builder.ToString());
     }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void AppendBase64EnodedTest2()
+    {
+        StringBuilder? builder = null;
+        _ = builder!.AppendBase64Encoded(new byte[] { 42 });
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void AppendBase64EnodedTest3() => _ = new StringBuilder().AppendBase64Encoded(null!);
 }

@@ -1,26 +1,34 @@
-﻿
+﻿using System.Runtime.InteropServices;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
 {
-    
+
     public static StringBuilder AppendBase64Encoded(this StringBuilder builder,
-                                                    IList<byte> bytes,
+                                                    IEnumerable<byte> bytes,
                                                     Base64FormattingOptions options = Base64FormattingOptions.None)
     {
-        if(builder is null) { throw new ArgumentNullException(nameof(builder)); }
-        if(bytes is null) { throw new ArgumentNullException(nameof(bytes)); }
-
-        bool insertLineBreaks = options.HasFlag(Base64FormattingOptions.InsertLineBreaks) && bytes.Count != 0;
-
-        builder.EnsureCapacity(builder.Length + ComputeNeededCapacity(bytes.Count, insertLineBreaks));
+        if (builder is null) { throw new ArgumentNullException(nameof(builder)); }
+        if (bytes is null) { throw new ArgumentNullException(nameof(bytes)); }
 
         int startOfBase64 = builder.Length;
-        Base64.AppendEncodedTo(builder, bytes);
+        ReadOnlySpan<byte> span = bytes switch
+        {
+            byte[] arr => arr,
+#if NET5_0_OR_GREATER
+            List<byte> list => CollectionsMarshal.AsSpan(list),
+#endif
+            _ => bytes.ToArray(),
+        };
 
-        if(insertLineBreaks)
+        bool insertLineBreaks = options.HasFlag(Base64FormattingOptions.InsertLineBreaks) && !span.IsEmpty;
+        builder.EnsureCapacity(builder.Length + ComputeNeededCapacity(span.Length, insertLineBreaks));
+
+        Base64New.AppendEncodedTo(builder, span);
+
+        if (insertLineBreaks)
         {
             InsertLineBreaks(builder, startOfBase64);
         }
@@ -32,9 +40,9 @@ public static partial class StringBuilderExtension
     {
         int capacity = (int)Math.Ceiling(dataLength / 3.0) * 4;
 
-        if(insertLineBreaks)
+        if (insertLineBreaks)
         {
-            capacity += dataLength / Base64.LINE_LENGTH * Base64.LINE_BREAK.Length;
+            capacity += dataLength / Base64New.LINE_LENGTH * Base64New.LINE_BREAK.Length;
         }
 
         return capacity;
@@ -46,14 +54,14 @@ public static partial class StringBuilderExtension
 
         if (lastLineBreakIndex >= 0)
         {
-            if (startOfBase64 - lastLineBreakIndex < Base64.LINE_LENGTH) { startOfBase64 = lastLineBreakIndex; }
+            if (startOfBase64 - lastLineBreakIndex < Base64New.LINE_LENGTH) { startOfBase64 = lastLineBreakIndex; }
         }
 
-        int nextLineStart = startOfBase64 + Base64.LINE_LENGTH;
+        int nextLineStart = startOfBase64 + Base64New.LINE_LENGTH;
         while (nextLineStart < builder.Length)
         {
-            builder.Insert(nextLineStart, Base64.LINE_BREAK);
-            nextLineStart += Base64.LINE_BREAK.Length + Base64.LINE_LENGTH;
+            builder.Insert(nextLineStart, Base64New.LINE_BREAK);
+            nextLineStart += Base64New.LINE_BREAK.Length + Base64New.LINE_LENGTH;
         }
     }
 
