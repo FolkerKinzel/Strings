@@ -23,12 +23,12 @@ public class Base64Bench
     }
 
 
-    [Benchmark]
-    public StringBuilder ExtensionMethodBench() => new StringBuilder().AppendBase64Encoded(_coll);
+    //[Benchmark]
+    //public StringBuilder ExtensionMethodBench() => new StringBuilder().AppendBase64Encoded(_coll);
 
 
-    [Benchmark]
-    public StringBuilder FrameworkBench() => new(Convert.ToBase64String(_coll.ToArray()));
+    //[Benchmark]
+    //public StringBuilder FrameworkBench() => new(Convert.ToBase64String(_coll.ToArray()));
 
 
     [Benchmark]

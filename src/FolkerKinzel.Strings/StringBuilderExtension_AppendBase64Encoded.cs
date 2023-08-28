@@ -17,24 +17,12 @@ public static partial class StringBuilderExtension
     /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
     public static StringBuilder AppendBase64Encoded(this StringBuilder builder,
                                                     IEnumerable<byte> bytes,
-                                                    Base64FormattingOptions options = Base64FormattingOptions.None)
-    {
-        if (bytes is null) 
-        { 
-            throw new ArgumentNullException(nameof(bytes)); 
-        }
+                                                    Base64FormattingOptions options = Base64FormattingOptions.None) =>
+        bytes is null
+               ? throw new ArgumentNullException(nameof(bytes))
+               : builder.AppendBase64Encoded(ConvertToReadOnlySpan(bytes), options);
 
-        ReadOnlySpan<byte> span = bytes switch
-        {
-            byte[] arr => arr,
-#if NET5_0_OR_GREATER
-            List<byte> list => CollectionsMarshal.AsSpan(list),
-#endif
-            _ => bytes.ToArray(),
-        };
 
-        return builder.AppendBase64Encoded(span, options);
-    }
 
     /// <summary>
     /// Fügt den Inhalt eines <see cref="byte"/>-Arrays als Base64-kodierte Zeichenfolge
@@ -83,6 +71,19 @@ public static partial class StringBuilderExtension
         }
 
         return builder;
+    }
+
+    private static ReadOnlySpan<byte> ConvertToReadOnlySpan(IEnumerable<byte> bytes)
+    {
+        ReadOnlySpan<byte> span = bytes switch
+        {
+            byte[] arr => arr,
+#if NET5_0_OR_GREATER
+            List<byte> list => CollectionsMarshal.AsSpan(list),
+#endif
+            _ => bytes.ToArray(),
+        };
+        return span;
     }
 
     private static int ComputeNeededCapacity(int dataLength, bool insertLineBreaks)

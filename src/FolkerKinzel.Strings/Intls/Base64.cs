@@ -23,7 +23,7 @@ internal static class Base64
         int paddingLength = CHUNK_LENGTH - (data.Length % CHUNK_LENGTH);
         int finalPartLength = CHUNK_LENGTH - paddingLength;
 
-        AppendChunks(sb, data, finalPartLength);
+        AppendChunks2(sb, data, finalPartLength);
 
         if (finalPartLength > 0)
         {
@@ -31,7 +31,8 @@ internal static class Base64
         }
     }
 
-    private static void AppendChunks(StringBuilder sb, ReadOnlySpan<byte> data, int finalPartLength)
+
+    private static void AppendChunks2(StringBuilder sb, ReadOnlySpan<byte> data, int finalPartLength)
     {
         if (data.Length < CHUNK_LENGTH)
         {
@@ -40,7 +41,6 @@ internal static class Base64
 
         int counter = 0;
         ReadOnlySpan<char> idx = IDX.AsSpan();
-        Span<char> tmp = stackalloc char[4];
 
         while (counter < data.Length - finalPartLength)
         {
@@ -48,13 +48,11 @@ internal static class Base64
             i |= data[counter + 1] << 8;
             i |= data[counter + 2];
 
-            for (int j = 3; j >= 0; j--)
-            {
-                tmp[j] = idx[i & CHAR_MASK];
-                i >>= CHAR_WIDTH;
-            }
+            _ = sb.Append(idx[(i >> 3 * CHAR_WIDTH) & CHAR_MASK])
+                  .Append(idx[(i >> 2 * CHAR_WIDTH) & CHAR_MASK])
+                  .Append(idx[(i >> CHAR_WIDTH) & CHAR_MASK])
+                  .Append(idx[i & CHAR_MASK]);
 
-            sb.Append(tmp);
             counter += CHUNK_LENGTH;
         }
     }
