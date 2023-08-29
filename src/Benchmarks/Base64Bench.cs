@@ -32,7 +32,7 @@ public class Base64Bench
 
 
     [Benchmark]
-    public StringBuilder ExtensionMethodBenchArray() => new StringBuilder().AppendBase64Encoded(_arr.AsSpan());
+    public StringBuilder ExtensionMethodBenchArray() => new StringBuilder().AppendBase64(_arr.AsSpan());
 
 
     [Benchmark]

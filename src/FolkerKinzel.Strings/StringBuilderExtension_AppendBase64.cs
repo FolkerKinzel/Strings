@@ -15,12 +15,12 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentNullException"><paramref name="builder"/> oder <paramref name="bytes"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
     /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
-    public static StringBuilder AppendBase64Encoded(this StringBuilder builder,
+    public static StringBuilder AppendBase64(this StringBuilder builder,
                                                     IEnumerable<byte> bytes,
                                                     Base64FormattingOptions options = Base64FormattingOptions.None) =>
         bytes is null
                ? throw new ArgumentNullException(nameof(bytes))
-               : builder.AppendBase64Encoded(ConvertToReadOnlySpan(bytes), options);
+               : builder.AppendBase64(ConvertToReadOnlySpan(bytes), options);
 
 
 
@@ -34,10 +34,10 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentNullException"><paramref name="builder"/> oder <paramref name="bytes"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
     /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
-    public static StringBuilder AppendBase64Encoded(this StringBuilder builder,
+    public static StringBuilder AppendBase64(this StringBuilder builder,
                                                     byte[] bytes,
                                                     Base64FormattingOptions options = Base64FormattingOptions.None) =>
-        builder.AppendBase64Encoded(bytes is null ? throw new ArgumentNullException(nameof(bytes)) : bytes.AsSpan(), options);
+        builder.AppendBase64(bytes is null ? throw new ArgumentNullException(nameof(bytes)) : bytes.AsSpan(), options);
 
 
     /// <summary>
@@ -50,7 +50,7 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
     /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
-    public static StringBuilder AppendBase64Encoded(this StringBuilder builder,
+    public static StringBuilder AppendBase64(this StringBuilder builder,
                                                     ReadOnlySpan<byte> bytes,
                                                     Base64FormattingOptions options = Base64FormattingOptions.None)
     {

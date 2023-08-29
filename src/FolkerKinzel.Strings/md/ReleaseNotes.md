@@ -2,17 +2,17 @@
 ```csharp
 byte[] GetBytes(this Encoding, ReadOnlySpan<char>);
 
-StringBuilder AppendBase64Encoded(this StringBuilder,
-                                  IEnumerable<byte>,
-                                  Base64FormattingOptions);
+StringBuilder AppendBase64(this StringBuilder,
+                           IEnumerable<byte>,
+                           Base64FormattingOptions);
 
-StringBuilder AppendBase64Encoded(this StringBuilder,
-                                  byte[],
-                                  Base64FormattingOptions);
+StringBuilder AppendBase64(this StringBuilder,
+                           byte[],
+                           Base64FormattingOptions);
 
-StringBuilder AppendBase64Encoded(this StringBuilder,
-                                  ReadOnlySpan<byte>,
-                                  Base64FormattingOptions);
+StringBuilder AppendBase64(this StringBuilder,
+                           ReadOnlySpan<byte>,
+                           Base64FormattingOptions);
 ```
 .
 - New polyfill for the Encoding Class (.NET Framework 4.5, .NET Standard 2.0)

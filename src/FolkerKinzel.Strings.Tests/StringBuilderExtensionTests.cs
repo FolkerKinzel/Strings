@@ -1239,10 +1239,10 @@ public class StringBuilderExtensionTests
     [DataRow("foob", "Zm9vYg==")]
     [DataRow("fooba", "Zm9vYmE=")]
     [DataRow("foobar", "Zm9vYmFy")]
-    public void AppendBase64EncodedTest1(string input, string expected)
+    public void AppendBase64Test1(string input, string expected)
     {
         var builder = new StringBuilder();
-        builder.AppendBase64Encoded(Encoding.UTF8.GetBytes(input).ToList());
+        builder.AppendBase64(Encoding.UTF8.GetBytes(input).ToList());
         Assert.AreEqual(expected, builder.ToString());
     }
 
@@ -1254,10 +1254,10 @@ public class StringBuilderExtensionTests
     [DataRow("foob", "Zm9vYg==")]
     [DataRow("fooba", "Zm9vYmE=")]
     [DataRow("foobar", "Zm9vYmFy")]
-    public void AppendBase64EncodedTest1b(string input, string expected)
+    public void AppendBase64Test1b(string input, string expected)
     {
         var builder = new StringBuilder();
-        builder.AppendBase64Encoded(Encoding.UTF8.GetBytes(input).AsEnumerable());
+        builder.AppendBase64(Encoding.UTF8.GetBytes(input).AsEnumerable());
         Assert.AreEqual(expected, builder.ToString());
     }
 
@@ -1269,66 +1269,66 @@ public class StringBuilderExtensionTests
     [DataRow("foob", "Zm9vYg==")]
     [DataRow("fooba", "Zm9vYmE=")]
     [DataRow("foobar", "Zm9vYmFy")]
-    public void AppendBase64EncodedTest1c(string input, string expected)
+    public void AppendBase64Test1c(string input, string expected)
     {
         var builder = new StringBuilder();
-        builder.AppendBase64Encoded(new ReadOnlyCollection<byte>(Encoding.UTF8.GetBytes(input)));
+        builder.AppendBase64(new ReadOnlyCollection<byte>(Encoding.UTF8.GetBytes(input)));
         Assert.AreEqual(expected, builder.ToString());
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void AppendBase64EncodedTest2()
+    public void AppendBase64Test2()
     {
         StringBuilder? builder = null;
-        _ = builder!.AppendBase64Encoded(new byte[] { 42 }.ToList());
+        _ = builder!.AppendBase64(new byte[] { 42 }.ToList());
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void AppendBase64EncodedTest3() => _ = new StringBuilder().AppendBase64Encoded((List<byte>)null!);
+    public void AppendBase64Test3() => _ = new StringBuilder().AppendBase64((List<byte>)null!);
 
 
     [TestMethod]
-    public void AppendBase64EncodedTest4()
+    public void AppendBase64Test4()
     {
-        StringBuilder builder = new StringBuilder().AppendBase64Encoded(ReadOnlySpan<byte>.Empty, Base64FormattingOptions.InsertLineBreaks);
+        StringBuilder builder = new StringBuilder().AppendBase64(ReadOnlySpan<byte>.Empty, Base64FormattingOptions.InsertLineBreaks);
         Assert.AreEqual(0, builder.Length);
     }
 
     [TestMethod]
-    public void AppendBase64EncodedTest5()
+    public void AppendBase64Test5()
     {
-        StringBuilder builder = new StringBuilder().AppendBase64Encoded(new byte[] { 42 }, Base64FormattingOptions.InsertLineBreaks);
+        StringBuilder builder = new StringBuilder().AppendBase64(new byte[] { 42 }, Base64FormattingOptions.InsertLineBreaks);
         Assert.IsFalse(builder.Contains('\n'));
     }
 
     [TestMethod]
-    public void AppendBase64EncodedTest6()
+    public void AppendBase64Test6()
     {
-        StringBuilder builder = new StringBuilder(new string('a', 75)).AppendBase64Encoded(new byte[] { 42 }.AsSpan(), Base64FormattingOptions.InsertLineBreaks);
+        StringBuilder builder = new StringBuilder(new string('a', 75)).AppendBase64(new byte[] { 42 }.AsSpan(), Base64FormattingOptions.InsertLineBreaks);
         Assert.IsTrue(builder.Contains('\n'));
     }
 
     [TestMethod]
-    public void AppendBase64EncodedTest7()
+    public void AppendBase64Test7()
     {
-        StringBuilder builder = new StringBuilder(new string('a', 77)).AppendBase64Encoded(new byte[] { 42 }.AsSpan(), Base64FormattingOptions.InsertLineBreaks);
+        StringBuilder builder = new StringBuilder(new string('a', 77)).AppendBase64(new byte[] { 42 }.AsSpan(), Base64FormattingOptions.InsertLineBreaks);
         Assert.IsTrue(builder.Contains('\n'));
     }
 
     [TestMethod]
-    public void AppendBase64EncodedTest8()
+    public void AppendBase64Test8()
     {
         byte[] bytes = new byte[200];
         new Random().NextBytes(bytes);
 
         Assert.AreEqual(
             Convert.ToBase64String(bytes, Base64FormattingOptions.InsertLineBreaks),
-            new StringBuilder().AppendBase64Encoded(bytes, Base64FormattingOptions.InsertLineBreaks).ToString());
+            new StringBuilder().AppendBase64(bytes, Base64FormattingOptions.InsertLineBreaks).ToString());
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void AppendBase64EncodedTest9() => new StringBuilder().AppendBase64Encoded((byte[]?)null!);
+    public void AppendBase64Test9() => new StringBuilder().AppendBase64((byte[]?)null!);
 }
