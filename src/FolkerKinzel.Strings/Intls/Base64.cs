@@ -9,10 +9,10 @@ internal static class Base64
     internal const string LINE_BREAK = "\r\n";
     internal const int LINE_LENGTH = 76;
 
-    private const string IDX = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    internal const string IDX = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     private const int CHAR_MASK = 0b11_1111;
     private const int CHUNK_LENGTH = 3;
-    private const int CHAR_WIDTH = 6;
+    internal const int CHAR_WIDTH = 6;
 
     internal static void AppendEncodedTo(StringBuilder sb, ReadOnlySpan<byte> data)
     {
@@ -60,7 +60,6 @@ internal static class Base64
 
     private static void AppendFinalBlock(StringBuilder sb, ReadOnlySpan<byte> data, int paddingLength, int finalPartLength)
     {
-        ReadOnlySpan<char> idx = IDX.AsSpan();
         int dataHolder = 0;
 
         for (int j = 0; j < finalPartLength; j++)
@@ -76,7 +75,7 @@ internal static class Base64
         for (int j = 1; j <= remainingDataLength; j++)
         {
             int shift = (remainingDataLength - j) * CHAR_WIDTH;
-            sb.Append(idx[(dataHolder >> shift) & CHAR_MASK]);
+            sb.Append(IDX[(dataHolder >> shift) & CHAR_MASK]);
         }
 
         for (int j = 0; j < paddingLength; j++)
