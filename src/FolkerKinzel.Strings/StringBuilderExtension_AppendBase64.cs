@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
@@ -19,8 +20,7 @@ public static partial class StringBuilderExtension
                                                     Base64FormattingOptions options = Base64FormattingOptions.None) =>
         bytes is null
                ? throw new ArgumentNullException(nameof(bytes))
-               : builder.AppendBase64(ConvertToReadOnlySpan(bytes), options);
-
+               : builder.AppendBase64(CollectionConverter.ToReadOnlySpan(bytes), options);
 
 
     /// <summary>
@@ -50,74 +50,9 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
     /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
     public static StringBuilder AppendBase64(this StringBuilder builder,
-                                                    ReadOnlySpan<byte> bytes,
-                                                    Base64FormattingOptions options = Base64FormattingOptions.None)
-    {
-        if (builder is null) 
-        { 
-            throw new ArgumentNullException(nameof(builder));
-        }
-
-        bool insertLineBreaks = options.HasFlag(Base64FormattingOptions.InsertLineBreaks) && !bytes.IsEmpty;
-        builder.EnsureCapacity(builder.Length + ComputeNeededCapacity(bytes.Length, insertLineBreaks));
-        int startOfBase64 = builder.Length;
-
-        Base64.AppendEncodedTo(builder, bytes);
-
-        if (insertLineBreaks)
-        {
-            InsertLineBreaks(builder, startOfBase64);
-        }
-
-        return builder;
-    }
-
-    private static ReadOnlySpan<byte> ConvertToReadOnlySpan(IEnumerable<byte> bytes)
-    {
-        ReadOnlySpan<byte> span = bytes switch
-        {
-            byte[] arr => arr,
-#if NET5_0_OR_GREATER
-            List<byte> list => CollectionsMarshal.AsSpan(list),
-#endif
-            _ => bytes.ToArray(),
-        };
-        return span;
-    }
-
-    private static int ComputeNeededCapacity(int dataLength, bool insertLineBreaks)
-    {
-        int capacity = (int)Math.Ceiling(dataLength / 3.0) * 4;
-
-        if (insertLineBreaks)
-        {
-            capacity += dataLength / Base64.LINE_LENGTH * Base64.LINE_BREAK.Length;
-        }
-
-        return capacity;
-    }
-
-    private static void InsertLineBreaks(StringBuilder builder, int startOfBase64)
-    {
-        int currentLineStartIndex = builder.LastIndexOf('\n', startOfBase64) + 1;
-        
-        if (startOfBase64 - currentLineStartIndex < Base64.LINE_LENGTH)
-        { 
-            startOfBase64 = currentLineStartIndex; 
-        }
-        else
-        {
-            builder.Insert(startOfBase64, Base64.LINE_BREAK);
-            startOfBase64 += Base64.LINE_BREAK.Length;
-        }
-        
-
-        int nextLineStart = startOfBase64 + Base64.LINE_LENGTH;
-        while (nextLineStart < builder.Length)
-        {
-            builder.Insert(nextLineStart, Base64.LINE_BREAK);
-            nextLineStart += Base64.LINE_BREAK.Length + Base64.LINE_LENGTH;
-        }
-    }
-
+                                             ReadOnlySpan<byte> bytes,
+                                             Base64FormattingOptions options = Base64FormattingOptions.None) =>
+         builder is null ? throw new ArgumentNullException(nameof(builder)) 
+                         : Base64.AppendEncodedTo(builder, bytes, options);
+    
 }

@@ -1328,6 +1328,7 @@ public class StringBuilderExtensionTests
             new StringBuilder().AppendBase64(bytes, Base64FormattingOptions.InsertLineBreaks).ToString());
     }
 
+
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void AppendBase64Test9() => new StringBuilder().AppendBase64((byte[]?)null!);
