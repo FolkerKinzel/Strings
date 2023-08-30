@@ -25,7 +25,7 @@ public class Base64Bench
     }
 
     [Benchmark]
-    public byte[] ToBytesBench() => Base64Decoder.GetBytes(_base64);
+    public byte[] ToBytesBench() => Base64.GetBytes(_base64);
 
     [Benchmark]
     public byte[] FrameworkDecoder() => Convert.FromBase64String(_base64.AsSpan().ToString());

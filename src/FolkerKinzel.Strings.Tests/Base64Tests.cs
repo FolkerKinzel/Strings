@@ -3,7 +3,7 @@
 namespace FolkerKinzel.Strings.Tests;
 
 [TestClass]
-public class Base64DecoderTests
+public class Base64Tests
 {
     [DataTestMethod()]
     [DataRow("", "")]
@@ -15,7 +15,7 @@ public class Base64DecoderTests
     [DataRow("foobar", "Zm9vYmFy")]
     public void GetBytesTest1(string expected, string input)
     {
-        var bytes = Base64Decoder.GetBytes(input.AsSpan());
+        var bytes = Base64.GetBytes(input.AsSpan());
         Assert.AreEqual(expected, Encoding.UTF8.GetString(bytes));
     }
 

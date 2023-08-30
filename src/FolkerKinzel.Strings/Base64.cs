@@ -1,18 +1,63 @@
 ﻿using System.Diagnostics;
+using FolkerKinzel.Strings;
 using FolkerKinzel.Strings.Polyfills;
 
-namespace FolkerKinzel.Strings.Intls;
+namespace FolkerKinzel.Strings;
 
 [SuppressMessage("Globalization", "CA1303:Literale nicht als lokalisierte Parameter übergeben", Justification = "<Ausstehend>")]
-internal static class Base64
+public static class Base64
 {
     internal const string LINE_BREAK = "\r\n";
     internal const int LINE_LENGTH = 76;
 
-    internal const string IDX = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    private const string IDX = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     private const int CHAR_MASK = 0b11_1111;
     private const int CHUNK_LENGTH = 3;
-    internal const int CHAR_WIDTH = 6;
+    private const int CHAR_WIDTH = 6;
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static byte[] GetBytes(string s) => Convert.FromBase64String(s);
+
+
+    public static byte[] GetBytes(ReadOnlySpan<char> base64, Base64ParserOptions options)
+    {
+        int missingPaddingCount = options.HasFlag(Base64ParserOptions.AcceptMissingPadding) ? GetMissingPaddingCount(base64) : 0;
+
+        bool isBase64Url = options.HasFlag(Base64ParserOptions.AcceptBase64Url) ? IsBase64Url(base64) : false;
+
+        if(missingPaddingCount != 0 ||  isBase64Url)
+        {
+            if(missingPaddingCount > 2)
+            {
+                throw new FormatException();
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.EnsureCapacity(base64.Length + missingPaddingCount);
+            _ = sb.Append(base64);
+
+            if(isBase64Url)
+            {
+                sb.Replace('-', '+').Replace('_', '/');
+            }
+
+            for (int i = 0; i < missingPaddingCount; i++)
+            {
+                sb.Append('=');
+            }
+
+            return Convert.FromBase64String(sb.ToString());
+        }
+
+        return GetBytes(base64);
+
+        /////////////////////////////////////////////////////
+
+        static int GetMissingPaddingCount(ReadOnlySpan<char> base64) => 4 - (base64.Length % 4);
+        
+        static bool IsBase64Url(ReadOnlySpan<char> base64) => base64.ContainsAny("-_".AsSpan());
+        
+    }
 
 
     public static byte[] GetBytes(ReadOnlySpan<char> base64)
@@ -46,7 +91,7 @@ internal static class Base64
         }
         else
         {
-            int outLength = base64.Length / 4 * 3;
+            int outLength = (base64.Length >> 2) * 3;
 
             try
             {
@@ -73,7 +118,7 @@ internal static class Base64
 
         // paddingLength may be 3, but finalPartLength is 0 then and no 
         // padding will be added:
-        int paddingLength = CHUNK_LENGTH - (data.Length % CHUNK_LENGTH);
+        int paddingLength = CHUNK_LENGTH - data.Length % CHUNK_LENGTH;
         int finalPartLength = CHUNK_LENGTH - paddingLength;
 
         AppendChunks2(sb, data, finalPartLength);
@@ -101,9 +146,9 @@ internal static class Base64
             i |= data[counter + 1] << 8;
             i |= data[counter + 2];
 
-            _ = sb.Append(idx[(i >> 3 * CHAR_WIDTH) & CHAR_MASK])
-                  .Append(idx[(i >> 2 * CHAR_WIDTH) & CHAR_MASK])
-                  .Append(idx[(i >> CHAR_WIDTH) & CHAR_MASK])
+            _ = sb.Append(idx[i >> 3 * CHAR_WIDTH & CHAR_MASK])
+                  .Append(idx[i >> 2 * CHAR_WIDTH & CHAR_MASK])
+                  .Append(idx[i >> CHAR_WIDTH & CHAR_MASK])
                   .Append(idx[i & CHAR_MASK]);
 
             counter += CHUNK_LENGTH;
@@ -128,7 +173,7 @@ internal static class Base64
         for (int j = 1; j <= remainingDataLength; j++)
         {
             int shift = (remainingDataLength - j) * CHAR_WIDTH;
-            sb.Append(IDX[(dataHolder >> shift) & CHAR_MASK]);
+            sb.Append(IDX[dataHolder >> shift & CHAR_MASK]);
         }
 
         for (int j = 0; j < paddingLength; j++)
