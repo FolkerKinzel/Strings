@@ -14,6 +14,59 @@ internal static class Base64
     private const int CHUNK_LENGTH = 3;
     internal const int CHAR_WIDTH = 6;
 
+
+    public static byte[] GetBytes(ReadOnlySpan<char> base64)
+    {
+#if NET45 || NETSTANDARD2_0
+        return Convert.FromBase64String(base64.ToString());
+#else
+        int outPutSize = ComputeMaxOutputSize(base64);
+        if (outPutSize == 0)
+        {
+#if NET45
+            return new byte[0];
+#else
+            return Array.Empty<byte>();
+#endif
+        }
+
+        byte[] output = new byte[outPutSize];
+
+        return Convert.TryFromBase64Chars(base64, output, out outPutSize)
+            ? output.Length == outPutSize ? output : output[0..outPutSize]
+            : throw new FormatException();
+#endif
+    }
+
+    private static int ComputeMaxOutputSize(ReadOnlySpan<char> base64)
+    {
+        if (base64.IsWhiteSpace())
+        {
+            return 0;
+        }
+        else
+        {
+            int outLength = base64.Length / 4 * 3;
+
+            try
+            {
+
+                if (base64[base64.Length - 1] == '=')
+                {
+                    --outLength;
+                }
+
+                if (base64[base64.Length - 2] == '=')
+                {
+                    --outLength;
+                }
+            }
+            catch { throw new FormatException(); }
+
+            return outLength;
+        }
+    }
+
     internal static void AppendEncodedTo(StringBuilder sb, ReadOnlySpan<byte> data)
     {
         Debug.Assert(sb != null);

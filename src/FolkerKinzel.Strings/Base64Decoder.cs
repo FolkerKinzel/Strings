@@ -8,54 +8,41 @@ namespace FolkerKinzel.Strings;
 
 public static class Base64Decoder
 {
-    public static byte[] GetBytes(ReadOnlySpan<char> base64)
-    {
-        int outPutSize = ComputeMaxOutputSize(base64);
-        if (outPutSize == 0)
-        {
-#if NET45
-            return new byte[0];
-#else
-            return Array.Empty<byte>();
-#endif
-        }
-
-        Span<char> chars = stackalloc char[4];
-        Span<int> lookup = stackalloc int[123];
-
-        InitLookup(lookup);
+    
 
 
-        byte[] output =
+    //Span<char> chars = stackalloc char[4];
+    //Span<int> lookup = stackalloc int[123];
 
-            new byte[outPutSize];
+    //InitLookup(lookup);
 
-        int inputIdx = 0;
-        int outputIdx = 0;
 
-        while (GetNextChunk(base64, chars, ref inputIdx))
-        {
-            if (chars[3] == '=')
-            {
-                HandlePadding(chars, lookup, output, ref outputIdx);
-                break;
-            }
 
-            int carrier = 0;
 
-            for (int i = 0; i < 4; i++)
-            {
-                carrier |= lookup[chars[i]] << ((3 - i) * Base64.CHAR_WIDTH);
-            }
+    //int inputIdx = 0;
+    //int outputIdx = 0;
 
-            output[outputIdx++] = (byte)(carrier >> 16);
-            output[outputIdx++] = (byte)((carrier >> 8) & 0xFF);
-            output[outputIdx++] = (byte)(carrier & 0xFF);
-        }
+    //while (GetNextChunk(base64, chars, ref inputIdx))
+    //{
+    //    if (chars[3] == '=')
+    //    {
+    //        HandlePadding(chars, lookup, output, ref outputIdx);
+    //        break;
+    //    }
 
-        return outputIdx == output.Length ? output : output.AsSpan(0, outputIdx).ToArray();
+    //    int carrier = 0;
 
-    }
+    //    for (int i = 0; i < 4; i++)
+    //    {
+    //        carrier |= lookup[chars[i]] << ((3 - i) * Base64.CHAR_WIDTH);
+    //    }
+
+    //    output[outputIdx++] = (byte)(carrier >> 16);
+    //    output[outputIdx++] = (byte)((carrier >> 8) & 0xFF);
+    //    output[outputIdx++] = (byte)(carrier & 0xFF);
+    //}
+
+    //return outputIdx == output.Length ? output : output.AsSpan(0, outputIdx).ToArray();
 
     private static void HandlePadding(Span<char> chars, ReadOnlySpan<int> lookup, byte[] output, ref int outputIdx)
     {
@@ -76,34 +63,7 @@ public static class Base64Decoder
     }
 
 
-    private static int ComputeMaxOutputSize(ReadOnlySpan<char> base64)
-    {
-        if (base64.IsWhiteSpace())
-        {
-            return 0;
-        }
-        else
-        {
-            int outLength = base64.Length / 4 * 3;
-
-            try
-            {
-
-                if (base64[base64.Length - 1] == '=')
-                {
-                    --outLength;
-                }
-
-                if (base64[base64.Length - 2] == '=')
-                {
-                    --outLength;
-                }
-            }
-            catch { throw new FormatException(); }
-
-            return outLength;
-        }
-    }
+ 
 
 
     [SuppressMessage("Globalization", "CA1303:Literale nicht als lokalisierte Parameter übergeben", Justification = "<Ausstehend>")]

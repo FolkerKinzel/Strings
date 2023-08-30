@@ -18,4 +18,15 @@ public class Base64DecoderTests
         var bytes = Base64Decoder.GetBytes(input.AsSpan());
         Assert.AreEqual(expected, Encoding.UTF8.GetString(bytes));
     }
+
+
+
+
+
+    //[TestMethod()]
+    //public void FrameworkTest()
+    //{
+    //    var bytes = Convert.FromBase64String("Zm9#vYmFy");
+    //    string s = Encoding.UTF8.GetString(bytes);
+    //}
 }
