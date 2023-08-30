@@ -1,3 +1,5 @@
+- New static class `Base64`
+- New enum `Base64ParserOptions`
 - New extension methods:
 ```csharp
 byte[] GetBytes(this Encoding, ReadOnlySpan<char>);

@@ -178,20 +178,22 @@ public static class Base64
 #endif
         }
 
-        int missingPaddingCount = options.HasFlag(Base64ParserOptions.AcceptMissingPadding) ? GetMissingPaddingCount(base64.Length) : 0;
+        StringBuilder? sb = null;
 
-        bool isBase64Url = options.HasFlag(Base64ParserOptions.AcceptBase64Url) && IsBase64Url(base64);
-
-        if (missingPaddingCount != 0 || isBase64Url)
+        if (options.HasFlag(Base64ParserOptions.AcceptBase64Url) && IsBase64Url(base64))
         {
-            var sb = new StringBuilder();
-            sb.EnsureCapacity(base64.Length + missingPaddingCount);
+            sb = new StringBuilder();
+            sb.EnsureCapacity(base64.Length + 2);
             _ = sb.Append(base64);
+            
+            base64 = sb.Replace('-', '+').Replace('_', '/').Replace("%3d", "=").Replace("%3D", "=").ToString().AsSpan();
+        }
 
-            if (isBase64Url)
-            {
-                sb.Replace('-', '+').Replace('_', '/');
-            }
+        int missingPaddingCount = options.HasFlag(Base64ParserOptions.AcceptMissingPadding) ? GetMissingPaddingCount(base64) : 0;
+
+        if (missingPaddingCount != 0)
+        {
+            sb ??= new StringBuilder(base64.Length + missingPaddingCount);
 
             for (int i = 0; i < missingPaddingCount; i++)
             {
@@ -205,12 +207,22 @@ public static class Base64
 
         /////////////////////////////////////////////////////
 
-        static int GetMissingPaddingCount(int base64Length) =>
-            (base64Length % 4) switch { 0 => 0, 2 => 2, 3 => 1, _ => throw new FormatException() };
+        static int GetMissingPaddingCount(ReadOnlySpan<char> base64)
+        {
+            int whiteSpaceLength = 0;
 
+            for (int i = 0; i < base64.Length; i++)
+            {
+                if (base64[i] < '!')
+                {
+                    whiteSpaceLength++;
+                }
+            }
 
-        static bool IsBase64Url(ReadOnlySpan<char> base64) => base64.ContainsAny("-_".AsSpan());
+            return ((base64.Length - whiteSpaceLength) % 4) switch { 0 => 0, 2 => 2, 3 => 1, _ => throw new FormatException() };
+        }
 
+        static bool IsBase64Url(ReadOnlySpan<char> base64) => base64.ContainsAny("-_%".AsSpan());
     }
 
 
