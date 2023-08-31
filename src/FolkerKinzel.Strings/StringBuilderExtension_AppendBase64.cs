@@ -22,7 +22,7 @@ public static partial class StringBuilderExtension
                                              Base64FormattingOptions options = Base64FormattingOptions.None) =>
         bytes is null
                ? throw new ArgumentNullException(nameof(bytes))
-               : builder.AppendBase64(CollectionConverter.ToReadOnlySpan(bytes), options);
+               : builder.AppendBase64(CollectionConverter.AsReadOnlySpan(bytes), options);
 
 
     /// <summary>

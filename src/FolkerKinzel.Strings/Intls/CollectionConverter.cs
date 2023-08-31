@@ -6,7 +6,7 @@ namespace FolkerKinzel.Strings.Intls;
 internal static class CollectionConverter
 {
 
-    internal static ReadOnlySpan<T> ToReadOnlySpan<T>(IEnumerable<T> coll)
+    internal static ReadOnlySpan<T> AsReadOnlySpan<T>(IEnumerable<T> coll)
     {
         Debug.Assert(coll != null);
 
