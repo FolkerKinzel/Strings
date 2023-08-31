@@ -15,8 +15,8 @@ namespace LibraryTesters
         public static void Method()
         {
             string test = "Test";
-            ReadOnlySpan<char> roSpan = test.AsSpan();
-            Span<char> span = new char[] {'x'}.AsSpan();
+            var roSpan = test.AsSpan();
+            var span = new char[] {'x'}.AsSpan();
 
             char c = 'e';
             byte[] bytes = new byte[1];
@@ -229,6 +229,11 @@ namespace LibraryTesters
 
 
             _ = Encoding.UTF8.GetString(bytes.AsSpan());
+
+            _ = span.Trim();
+            _ = span.TrimStart();
+            _ = span.TrimEnd();
+            _ = span.IsWhiteSpace();
 
         }
     }

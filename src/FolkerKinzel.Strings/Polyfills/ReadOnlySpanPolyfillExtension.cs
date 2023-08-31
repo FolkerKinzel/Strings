@@ -73,6 +73,7 @@ public static class ReadOnlySpanPolyfillExtension
     public static bool Equals(this ReadOnlySpan<char> span, string? other, StringComparison comparisonType) =>
         span.Equals(other.AsSpan(), comparisonType);
 
+
     /// <summary>
     /// Gibt an, ob ein angegebener Wert innerhalb einer schreibgeschützten Zeichenspanne auftritt.
     /// </summary>
