@@ -2,6 +2,7 @@
 
 namespace FolkerKinzel.Strings.Polyfills;
 
+
 /// <summary>
 /// Erweiterungsmethoden für die <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>-Struktur, die in .NET Framework 4.5, .NET Standard 2.0 
 /// und .NET Standard 2.1 als
@@ -14,43 +15,10 @@ namespace FolkerKinzel.Strings.Polyfills;
 public static class ReadOnlySpanPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
-
-#if NET45 || NETSTANDARD2_0
-
-    /// <summary>
-    /// Bestimmt, ob dieser <paramref name="span"/> und der angegebene <paramref name="other"/>-<see cref="string"/> 
-    /// dieselben Zeichen aufweisen, wenn sie mit der angegebenen <paramref name="comparisonType"/>-Option verglichen
-    /// werden.
-    /// </summary>
-    /// <param name="span">Die Quellspanne.</param>
-    /// <param name="other">Der Wert, der mit der Quellspanne verglichen werden soll.</param>
-    /// <param name="comparisonType">Ein Enumerationswert, der bestimmt, wie <paramref name="span"/> und 
-    /// <paramref name="other"/> verglichen werden.</param>
-    /// <returns><c>true</c>, sofern identisch, andernfalls <c>false</c>.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool Equals(this ReadOnlySpan<char> span, string? other, StringComparison comparisonType) =>
-        span.Equals(other.AsSpan(), comparisonType);
-
-    /// <summary>
-    /// Gibt an, ob ein angegebener Wert innerhalb einer schreibgeschützten Zeichenspanne auftritt.
-    /// </summary>
-    /// <param name="span">Die Quellspanne.</param>
-    /// <param name="value">Der innerhalb der Quellspanne zu suchende Wert. <paramref name="value"/> darf <c>null</c> sein.</param>
-    /// <param name="comparisonType">Ein Enumerationswert, der bestimmt, wie die Zeichen in <paramref name="span"/> und 
-    /// <paramref name="value"/> verglichen werden.</param>
-    /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb der Spanne auftritt, andernfalls <c>false</c>.</returns>
-    /// <remarks>Verfügbar für .NET Framework 4.5 und .NET Standard 2.0.</remarks>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool Contains(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
-        => span.Contains(value.AsSpan(), comparisonType);
-
-#endif
-
-
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
     /// <summary>
     /// Gibt an, ob ein angegebenes Unicodezeichen in der Spanne gefunden wird. 
-    /// Zum Vergleich wird MemoryExtensions.IndexOf(this ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) verwendet.
+    /// Zum Vergleich wird MemoryExtensions.IndexOf(this ReadOnlySpan&lt;T&gt;, T) verwendet.
     /// </summary>
     /// <param name="span">Die zu durchsuchende Spanne.</param>
     /// <param name="value">Das zu suchende Unicodezeichen.</param>
@@ -88,7 +56,36 @@ public static class ReadOnlySpanPolyfillExtension
     }
 #endif
 
+
 #if NET45 || NETSTANDARD2_0
+
+    /// <summary>
+    /// Bestimmt, ob dieser <paramref name="span"/> und der angegebene <paramref name="other"/>-<see cref="string"/> 
+    /// dieselben Zeichen aufweisen, wenn sie mit der angegebenen <paramref name="comparisonType"/>-Option verglichen
+    /// werden.
+    /// </summary>
+    /// <param name="span">Die Quellspanne.</param>
+    /// <param name="other">Der Wert, der mit der Quellspanne verglichen werden soll.</param>
+    /// <param name="comparisonType">Ein Enumerationswert, der bestimmt, wie <paramref name="span"/> und 
+    /// <paramref name="other"/> verglichen werden.</param>
+    /// <returns><c>true</c>, sofern identisch, andernfalls <c>false</c>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool Equals(this ReadOnlySpan<char> span, string? other, StringComparison comparisonType) =>
+        span.Equals(other.AsSpan(), comparisonType);
+
+    /// <summary>
+    /// Gibt an, ob ein angegebener Wert innerhalb einer schreibgeschützten Zeichenspanne auftritt.
+    /// </summary>
+    /// <param name="span">Die Quellspanne.</param>
+    /// <param name="value">Der innerhalb der Quellspanne zu suchende Wert. <paramref name="value"/> darf <c>null</c> sein.</param>
+    /// <param name="comparisonType">Ein Enumerationswert, der bestimmt, wie die Zeichen in <paramref name="span"/> und 
+    /// <paramref name="value"/> verglichen werden.</param>
+    /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb der Spanne auftritt, andernfalls <c>false</c>.</returns>
+    /// <remarks>Verfügbar für .NET Framework 4.5 und .NET Standard 2.0.</remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool Contains(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
+        => span.Contains(value.AsSpan(), comparisonType);
+
 
     /// <summary>
     /// Gibt den NULL-basierten Index des letzten Vorkommens einer angegebenen Zeichenfolge in <paramref name="span"/> an. 

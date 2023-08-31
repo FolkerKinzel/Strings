@@ -10,202 +10,252 @@ using FolkerKinzel.Strings;
 using FolkerKinzel.Strings.Polyfills;
 #endif
 
-namespace LibraryTesters
+namespace LibraryTesters;
+
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main()
-        {
-            //Console.WriteLine(Uri.HexEscape('e'));
+        //Console.WriteLine(Uri.HexEscape('e'));
 
-            
+        
 
-            string test = "Test";
-            char c = 'e';
+        string test = "Test";
+        char c = 'e';
 
-            byte[] bytes = new byte[1];
+        byte[] bytes = new byte[1];
 
-            var sb1 = new StringBuilder();
-            var sb2 = new StringBuilder(test);
-            ReadOnlySpan<char> span = test.AsSpan();
-            _ = sb1.Append(sb2, -17, sb2.Length);
+        var sb1 = new StringBuilder();
+        var sb2 = new StringBuilder(test);
+        ReadOnlySpan<char> roSpan = test.AsSpan();
+        Span<char> span = new char[] {'x'}.AsSpan();
 
-            _ = test.Trim(stackalloc char[] { ',', ';' });
-            _ = test.TrimStart(stackalloc char[] { ',', ';' });
-            _ = test.TrimEnd(stackalloc char[] { ',', ';' });
+        _ = sb1.Append(sb2, -17, sb2.Length);
 
-            _ = test.Contains('e');
+        _ = test.Trim(stackalloc char[] { ',', ';' });
+        _ = test.TrimStart(stackalloc char[] { ',', ';' });
+        _ = test.TrimEnd(stackalloc char[] { ',', ';' });
 
-            _ = test.AsSpan().Contains('e');
+        _ = test.Contains('e');
 
+        _ = test.AsSpan().Contains('e');
+        _ = span.Contains('e');
 
-            _ = test.Contains('e', StringComparison.OrdinalIgnoreCase);
 
+        _ = test.Contains('e', StringComparison.OrdinalIgnoreCase);
 
-            _ = test.StartsWith('T');
 
-            _ = test.EndsWith('T');
+        _ = test.StartsWith('T');
 
-            _ = test.IndexOf('e', StringComparison.Ordinal);
+        _ = test.EndsWith('T');
 
+        _ = test.IndexOf('e', StringComparison.Ordinal);
 
-            _ = test.Split('e');
 
-            _ = test.Split('e', 2);
+        _ = test.Split('e');
 
-            //#if !NETCOREAPP3_1
-            _ = test.AsMemory().Trim();
+        _ = test.Split('e', 2);
 
-            _ = test.AsMemory().TrimStart();
+        //#if !NETCOREAPP3_1
+        _ = test.AsMemory().Trim();
 
-            _ = test.AsMemory().TrimEnd();
-            //#endif
+        _ = test.AsMemory().TrimStart();
 
-            var sb = new StringBuilder();
+        _ = test.AsMemory().TrimEnd();
+        //#endif
 
-            _ = sb.Append("Test".AsSpan());
+        var sb = new StringBuilder();
 
-            //MemoryExtensions.Trim(test.AsMemory());
+        _ = sb.Append("Test".AsSpan());
 
-            _ = TextEncodingConverter.GetEncoding("iso-8859-1");
+        //MemoryExtensions.Trim(test.AsMemory());
 
-            _ = "c".IsAscii();
+        _ = TextEncodingConverter.GetEncoding("iso-8859-1");
 
-            _ = "test".IsAscii();
+        _ = "c".IsAscii();
 
-            _ = "test".AsSpan().IsAscii();
+        _ = "test".IsAscii();
 
-            _ = sb.ContainsNonAscii();
+        _ = "test".AsSpan().IsAscii();
+        _ = span.IsAscii();
 
-            _ = sb.ContainsNonAscii(0);
+        _ = sb.ContainsNonAscii();
 
-            _ = sb.ContainsNonAscii(0, 0);
+        _ = sb.ContainsNonAscii(0);
 
-            _ = sb.ToUpperInvariant();
-            _ = sb.ToUpperInvariant(0);
-            _ = sb.ToUpperInvariant(0, 0);
+        _ = sb.ContainsNonAscii(0, 0);
 
-            _ = sb.ToLowerInvariant();
-            _ = sb.ToLowerInvariant(0);
-            _ = sb.ToLowerInvariant(0, 0);
+        _ = sb.ToUpperInvariant();
+        _ = sb.ToUpperInvariant(0);
+        _ = sb.ToUpperInvariant(0, 0);
 
-            _ = span.ContainsAny(ReadOnlySpan<char>.Empty);
+        _ = sb.ToLowerInvariant();
+        _ = sb.ToLowerInvariant(0);
+        _ = sb.ToLowerInvariant(0, 0);
 
-            _ = span.GetTrimmedLength();
+        _ = roSpan.ContainsAny(ReadOnlySpan<char>.Empty);
+        _ = roSpan.ContainsAny("xy");
 
-            _ = span.GetTrimmedStart();
 
-            test.Foo();
+        _ = roSpan.GetTrimmedLength();
+        _ = span.GetTrimmedLength();
 
-            _ = test.ContainsWhiteSpace();
+        _ = roSpan.GetTrimmedStart();
+        _ = span.GetTrimmedStart();
 
-            _ = test.ContainsAny(new char[0]);
-            _ = test.ContainsAny(test.AsSpan());
-            _ = test.ContainsAny('t', 's');
-            _ = test.ContainsAny('t', 'e', 's');
-            _ = test.IndexOfAny(test.AsSpan(), 0, 0);
-            _ = test.LastIndexOfAny(test.AsSpan(), 0, 0);
 
-            _ = sb.Contains('e');
-            _ = sb.Contains('e', 0);
-            _ = sb.Contains('e', 0, 0);
-            _ = sb.IndexOf('e');
-            _ = sb.IndexOf('e', 0);
-            _ = sb.IndexOf('e', 0, 0);
-            _ = sb.LastIndexOf('e');
-            _ = sb.LastIndexOf('e', 0);
-            _ = sb.LastIndexOf('e', 0, 0);
+        test.Foo();
 
-            _ = sb.Append(sb2, 0, 0);
+        _ = test.ContainsWhiteSpace();
 
-            _ = span.ContainsAny(span);
-            _ = span.ContainsAny('e', 'f');
-            _ = span.ContainsAny('e', 'f', 'g');
-            _ = span.IndexOfAny(span);
-            _ = span.LastIndexOfAny(span);
-            _ = span.ContainsWhiteSpace();
+        _ = test.ContainsAny(new char[0]);
+        _ = test.ContainsAny(test.AsSpan());
+        _ = test.ContainsAny('t', 's');
+        _ = test.ContainsAny('t', 'e', 's');
+        _ = test.IndexOfAny(test.AsSpan(), 0, 0);
+        _ = test.LastIndexOfAny(test.AsSpan(), 0, 0);
 
-            _ = span.StartsWith("test", StringComparison.OrdinalIgnoreCase);
-            _ = span.StartsWith("test");
+        _ = sb.Contains('e');
+        _ = sb.Contains('e', 0);
+        _ = sb.Contains('e', 0, 0);
+        _ = sb.IndexOf('e');
+        _ = sb.IndexOf('e', 0);
+        _ = sb.IndexOf('e', 0, 0);
+        _ = sb.LastIndexOf('e');
+        _ = sb.LastIndexOf('e', 0);
+        _ = sb.LastIndexOf('e', 0, 0);
 
-            _ = span.EndsWith("test", StringComparison.OrdinalIgnoreCase);
-            _ = span.EndsWith("test");
+        _ = sb.Append(sb2, 0, 0);
 
-            _ = span.StartsWith('t');
-            _ = span.EndsWith('t');
+        _ = roSpan.ContainsAny(roSpan);
+        _ = span.ContainsAny(roSpan);
 
+        _ = roSpan.ContainsAny("abc");
+        _ = span.ContainsAny("abc");
 
-            _ = sb.StartsWith('t');
-            _ = sb.EndsWith('t');
 
-            _ = test.Split("es", 2, StringSplitOptions.RemoveEmptyEntries);
-            _ = test.Split("es", StringSplitOptions.RemoveEmptyEntries);
-            _ = test.Contains("es", StringComparison.OrdinalIgnoreCase);
-            _ = test.Replace("es", "AN", StringComparison.OrdinalIgnoreCase);
+        _ = roSpan.ContainsAny('e', 'f');
+        _ = span.ContainsAny('e', 'f');
 
-            _ = span.LastIndexOfAny(span, span.Length - 1, span.Length);
+        _ = roSpan.ContainsAny('e', 'f', 'g');
+        _ = span.ContainsAny('e', 'f', 'g');
 
+        _ = roSpan.IndexOfAny(roSpan);
+        _ = roSpan.IndexOfAny("abc");
 
-            _ = c.IsAscii();
-            _ = c.IsBinaryDigit();
-            _ = c.IsDecimalDigit();
-            _ = c.IsHexDigit();
-            _ = c.ParseDecimalDigit();
-            _ = c.ParseHexDigit();
-            _ = c.IsControl();
-            _ = c.IsDigit();
-            _ = c.IsSurrogate();
-            _ = c.IsHighSurrogate();
-            _ = c.IsLowSurrogate();
-            _ = c.IsLetter();
-            _ = c.IsLetterOrDigit();
-            _ = c.IsLower();
-            _ = c.IsUpper();
-            _ = c.IsNumber();
-            _ = c.IsPunctuation();
-            _ = c.IsSeparator();
-            _ = c.IsSymbol();
-            _ = c.IsWhiteSpace();
-            _ = c.ToLowerInvariant();
-            _ = c.ToUpperInvariant();
+        _ = span.IndexOfAny(roSpan);
+        _ = span.IndexOfAny("abc");
 
-            _ = c.ParseBinaryDigit();
-            _ = c.TryParseHexDigit(out int? _);
-            _ = c.TryParseDecimalDigit(out int? _);
-            _ = c.TryParseBinaryDigit(out int? _);
+        _ = roSpan.LastIndexOfAny(roSpan);
+        _ = roSpan.LastIndexOfAny("abc");
 
-            _ = c.IsNewLine();
+        _ = span.LastIndexOfAny(roSpan);
+        _ = span.LastIndexOfAny("abc");
 
-            _ = test.AsSpan().LastIndexOf("es", 3, 4, StringComparison.Ordinal);
-            _ = test.AsSpan().LastIndexOf("es", StringComparison.Ordinal);
+        _ = roSpan.ContainsWhiteSpace();
+        _ = span.ContainsWhiteSpace();
 
 
-            _ = test.AsSpan().Contains("es", StringComparison.Ordinal);
+        _ = roSpan.StartsWith("test", StringComparison.OrdinalIgnoreCase);
+        _ = roSpan.StartsWith("test");
 
+        _ = span.StartsWith("test", StringComparison.OrdinalIgnoreCase);
+        _ = span.StartsWith("test");
 
-            _ = sb.Append(test.AsSpan());
-            _ = sb.Append(test.AsMemory());
+        _ = roSpan.EndsWith("test", StringComparison.OrdinalIgnoreCase);
+        _ = roSpan.EndsWith("test");
 
-            _ = sb.AppendJoin(',', "one", "two");
-            _ = sb.AppendJoin(',', new List<string>());
+        _ = span.EndsWith("test", StringComparison.OrdinalIgnoreCase);
+        _ = span.EndsWith("test");
 
-            _ = sb.AppendJoin("::", "one", "two");
-            _ = sb.AppendJoin("::", new List<string>());
+        _ = roSpan.StartsWith('t');
+        _ = roSpan.EndsWith('t');
 
-            _ = sb.AppendJoin(',', 42, 'x');
-            _ = sb.AppendJoin("::", 42, 'x');
+        _ = span.StartsWith('t');
+        _ = span.EndsWith('t');
 
-            _ = span.Equals("USA", StringComparison.Ordinal);
 
+        _ = sb.StartsWith('t');
+        _ = sb.EndsWith('t');
 
+        _ = test.Split("es", 2, StringSplitOptions.RemoveEmptyEntries);
+        _ = test.Split("es", StringSplitOptions.RemoveEmptyEntries);
+        _ = test.Contains("es", StringComparison.OrdinalIgnoreCase);
+        _ = test.Replace("es", "AN", StringComparison.OrdinalIgnoreCase);
 
-            //_ = sb.AppendLine(test.AsMemory());
-            //_ = sb.AppendLine(test.AsSpan());
+        _ = roSpan.LastIndexOfAny(roSpan, roSpan.Length - 1, roSpan.Length);
+        _ = roSpan.LastIndexOfAny("abc", roSpan.Length - 1, roSpan.Length);
 
-            Encoding.UTF8.GetString(bytes.AsSpan());
+        _ = span.LastIndexOfAny(roSpan, roSpan.Length - 1, roSpan.Length);
+        _ = span.LastIndexOfAny("abc", roSpan.Length - 1, roSpan.Length);
 
 
+        _ = c.IsAscii();
+        _ = c.IsBinaryDigit();
+        _ = c.IsDecimalDigit();
+        _ = c.IsHexDigit();
+        _ = c.ParseDecimalDigit();
+        _ = c.ParseHexDigit();
+        _ = c.IsControl();
+        _ = c.IsDigit();
+        _ = c.IsSurrogate();
+        _ = c.IsHighSurrogate();
+        _ = c.IsLowSurrogate();
+        _ = c.IsLetter();
+        _ = c.IsLetterOrDigit();
+        _ = c.IsLower();
+        _ = c.IsUpper();
+        _ = c.IsNumber();
+        _ = c.IsPunctuation();
+        _ = c.IsSeparator();
+        _ = c.IsSymbol();
+        _ = c.IsWhiteSpace();
+        _ = c.ToLowerInvariant();
+        _ = c.ToUpperInvariant();
 
-        }
+        _ = c.ParseBinaryDigit();
+        _ = c.TryParseHexDigit(out int? _);
+        _ = c.TryParseDecimalDigit(out int? _);
+        _ = c.TryParseBinaryDigit(out int? _);
+
+        _ = c.IsNewLine();
+
+        _ = test.AsSpan().LastIndexOf("es", 3, 4, StringComparison.Ordinal);
+        _ = test.AsSpan().LastIndexOf("es", StringComparison.Ordinal);
+
+
+        _ = test.AsSpan().Contains("es", StringComparison.Ordinal);
+
+        _ = span.LastIndexOf("es", 3, 4, StringComparison.Ordinal);
+        _ = span.LastIndexOf("es", StringComparison.Ordinal);
+
+
+        _ = span.Contains("es", StringComparison.Ordinal);
+
+
+        _ = sb.Append(test.AsSpan());
+        _ = sb.Append(test.AsMemory());
+
+        _ = sb.AppendJoin(',', "one", "two");
+        _ = sb.AppendJoin(',', new List<string>());
+
+        _ = sb.AppendJoin("::", "one", "two");
+        _ = sb.AppendJoin("::", new List<string>());
+
+        _ = sb.AppendJoin(',', 42, 'x');
+        _ = sb.AppendJoin("::", 42, 'x');
+
+        _ = roSpan.Equals("USA", StringComparison.Ordinal);
+        _ = span.Equals("USA", StringComparison.Ordinal);
+
+
+
+        //_ = sb.AppendLine(test.AsMemory());
+        //_ = sb.AppendLine(test.AsSpan());
+
+        Encoding.UTF8.GetString(bytes.AsSpan());
+
+
+
     }
 }

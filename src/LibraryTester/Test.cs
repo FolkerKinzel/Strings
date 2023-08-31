@@ -15,7 +15,9 @@ namespace LibraryTesters
         public static void Method()
         {
             string test = "Test";
-            var span = test.AsSpan();
+            ReadOnlySpan<char> roSpan = test.AsSpan();
+            Span<char> span = new char[] {'x'}.AsSpan();
+
             char c = 'e';
             byte[] bytes = new byte[1];
 
@@ -64,6 +66,7 @@ namespace LibraryTesters
             _ = "test".IsAscii();
 
             _ = "test".AsSpan().IsAscii();
+            _ = span.IsAscii();
 
             _ = sb.ContainsNonAscii();
 
@@ -80,10 +83,14 @@ namespace LibraryTesters
             _ = sb.ToLowerInvariant(0, 0);
 
             _ = test.AsSpan().ContainsAny(ReadOnlySpan<char>.Empty);
+            _ = test.AsSpan().ContainsAny("abc");
+
 
             _ = test.AsSpan().GetTrimmedLength();
+            _ = span.GetTrimmedLength();
 
             _ = test.AsSpan().GetTrimmedStart();
+            _ = span.GetTrimmedStart();
 
             _ = test.ContainsWhiteSpace();
 
@@ -106,19 +113,36 @@ namespace LibraryTesters
 
             _ = sb.Append(sb, 0, 0);
 
-            _ = span.ContainsAny(span);
+            _ = roSpan.ContainsAny(roSpan);
+            _ = roSpan.ContainsAny("abc");
+
+            _ = roSpan.ContainsAny('e', 'f');
+            _ = roSpan.ContainsAny('e', 'f', 'g');
+            _ = roSpan.IndexOfAny(roSpan);
+            _ = roSpan.IndexOfAny("abc");
+            _ = roSpan.LastIndexOfAny(roSpan);
+            _ = roSpan.LastIndexOfAny("abc");
+            _ = roSpan.ContainsWhiteSpace();
+            _ = roSpan.StartsWith("test", StringComparison.OrdinalIgnoreCase);
+            _ = roSpan.StartsWith("test");
+            _ = roSpan.EndsWith("test", StringComparison.OrdinalIgnoreCase);
+            _ = roSpan.EndsWith("test");
+            _ = roSpan.StartsWith('t');
+            _ = roSpan.EndsWith('t');
+            _ = roSpan.Contains('e');
+            _ = span.Contains('e');
+
             _ = span.ContainsAny('e', 'f');
             _ = span.ContainsAny('e', 'f', 'g');
-            _ = span.IndexOfAny(span);
-            _ = span.LastIndexOfAny(span);
+            _ = span.IndexOfAny(roSpan);
+            _ = span.IndexOfAny("abc");
+            _ = span.LastIndexOfAny(roSpan);
+            _ = span.LastIndexOfAny("abc");
             _ = span.ContainsWhiteSpace();
-
             _ = span.StartsWith("test", StringComparison.OrdinalIgnoreCase);
             _ = span.StartsWith("test");
-
             _ = span.EndsWith("test", StringComparison.OrdinalIgnoreCase);
             _ = span.EndsWith("test");
-
             _ = span.StartsWith('t');
             _ = span.EndsWith('t');
 
@@ -133,7 +157,8 @@ namespace LibraryTesters
             _ = test.Contains("es", StringComparison.OrdinalIgnoreCase);
             _ = test.Replace("es", "AN", StringComparison.OrdinalIgnoreCase);
 
-            _ = span.LastIndexOfAny(span, span.Length - 1, span.Length);
+            _ = roSpan.LastIndexOfAny(roSpan, roSpan.Length - 1, roSpan.Length);
+            _ = roSpan.LastIndexOfAny("abc", roSpan.Length - 1, roSpan.Length);
 
             _ = c.IsAscii();
             _ = c.IsBinaryDigit();
@@ -166,15 +191,19 @@ namespace LibraryTesters
             _ = c.IsNewLine();
 
 
-            _ = sb.Insert(0, span);
+            _ = sb.Insert(0, roSpan);
 
             _ = test.AsSpan().LastIndexOf("es", 3, 4, StringComparison.Ordinal);
             _ = test.AsSpan().LastIndexOf("es", StringComparison.Ordinal);
-
             _ = test.AsSpan().LastIndexOf("es".AsSpan(), 3, 4, StringComparison.Ordinal);
             _ = test.AsSpan().LastIndexOf("es".AsSpan(), StringComparison.Ordinal);
-
             _ = test.AsSpan().Contains("es", StringComparison.Ordinal);
+
+            _ = span.LastIndexOf("es", 3, 4, StringComparison.Ordinal);
+            _ = span.LastIndexOf("es", StringComparison.Ordinal);
+            _ = span.LastIndexOf("es".AsSpan(), 3, 4, StringComparison.Ordinal);
+            _ = span.LastIndexOf("es".AsSpan(), StringComparison.Ordinal);
+            _ = span.Contains("es", StringComparison.Ordinal);
 
             _ = sb.Append(test.AsSpan());
             _ = sb.Append(test.AsMemory());
@@ -195,7 +224,9 @@ namespace LibraryTesters
             _ = sb.AppendJoin(',', 42, 'x');
             _ = sb.AppendJoin("::", 42, 'x');
 
+            _ = roSpan.Equals("USA", StringComparison.Ordinal);
             _ = span.Equals("USA", StringComparison.Ordinal);
+
 
             _ = Encoding.UTF8.GetString(bytes.AsSpan());
 

@@ -39,6 +39,14 @@ static string StaticStringMethod.Create<TState>(int, TState, SpanAction<char, TS
 
 ```csharp
 bool Contains(this ReadOnlySpan<char>, char);
+```
+
+.
+
+#### Polyfills for the Span&lt;Char&gt; Struct (.NET Framework 4.5, .NET Standard 2.0, .NET Standard 2.1)
+
+```csharp
+bool Contains(this ReadOnlySpan<char>, char);
 int LastIndexOf(this ReadOnlySpan<char>, ReadOnlySpan<char>, StringComparison);
 ```
 .
@@ -54,6 +62,10 @@ int LastIndexOf(this ReadOnlySpan<char>, string?, int, int, StringComparison);
 bool StartsWith(this ReadOnlySpan<char>, string?);
 bool StartsWith(this ReadOnlySpan<char>, string?, StringComparison);
 bool Equals(this ReadOnlySpan<char>, string?, StringComparison);
+bool ContainsAny(this ReadOnlySpan<char>, string?);
+int IndexOfAny(this ReadOnlySpan<char>, string?);
+int LastIndexOfAny(this ReadOnlySpan<char>, string?);
+int LastIndexOfAny(this ReadOnlySpan<char>, string?, int, int);
 ```
 .
 
