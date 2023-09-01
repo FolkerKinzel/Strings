@@ -38,9 +38,7 @@ int LastIndexOfAny(this Span<char>, ReadOnlySpan<char>, int, int);
 bool StartsWith(this Span<char>, char);
 bool StartsWith(this Span<char>, ReadOnlySpan<char>, StringComparison);
 void ToLowerInvariant(this Span<char>);
-void ToLower(this Span<char> span, CultureInfo?);
 void ToUpperInvariant(this Span<char>);
-void ToUpper(this Span<char>, CultureInfo?);
 ```
 .
 - New polyfill for the Encoding class (.NET Framework 4.5, .NET Standard 2.0)
