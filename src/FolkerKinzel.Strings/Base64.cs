@@ -18,6 +18,7 @@ public static class Base64
     private const int CHAR_MASK = 0b11_1111;
     private const int CHUNK_LENGTH = 3;
     private const int CHAR_WIDTH = 6;
+    private const string URL_ENCODED_PADDING = "%3d";
 
     /// <summary>
     /// Konvertiert eine Sammlung von 8-Bit-Ganzzahlen ohne Vorzeichen in die entsprechende mit Base64-Ziffern 
@@ -171,39 +172,42 @@ public static class Base64
 
         if (base64.IsEmpty)
         {
-#if NET45
-            return new byte[0];
-#else
-            return Array.Empty<byte>();
-#endif
+            return GetEmptyByteArray();
         }
 
-        StringBuilder? sb = null;
+        char[]? arr = null;
+        Span<char> contentSpan = default;
 
         if (options.HasFlag(Base64ParserOptions.AcceptBase64Url) && IsBase64Url(base64))
         {
-            sb = new StringBuilder();
-            sb.EnsureCapacity(base64.Length + 2);
-            _ = sb.Append(base64);
-            
-            base64 = sb.Replace('-', '+').Replace('_', '/').Replace("%3d", "=").Replace("%3D", "=").ToString().AsSpan();
+            arr = new char[base64.Length + 2];
+            contentSpan = arr.AsSpan(0, base64.Length);
+            base64.CopyTo(contentSpan);
+
+            int urlEncodedPaddingCount = ReplaceUrlEncodedPadding(arr, ref contentSpan);
+            ReplaceBase64UrlChars(contentSpan, urlEncodedPaddingCount);
         }
 
         int missingPaddingCount = options.HasFlag(Base64ParserOptions.AcceptMissingPadding) ? GetMissingPaddingCount(base64) : 0;
 
         if (missingPaddingCount != 0)
         {
-            sb ??= new StringBuilder(base64.Length + missingPaddingCount);
-
-            for (int i = 0; i < missingPaddingCount; i++)
+            if (arr is null)
             {
-                sb.Append('=');
+                arr = new char[base64.Length + missingPaddingCount];
+                contentSpan = arr.AsSpan();
+                base64.CopyTo(contentSpan);
+            }
+            else
+            {
+                Debug.Assert(arr.Length >= contentSpan.Length + missingPaddingCount);
+                contentSpan = arr.AsSpan(0, contentSpan.Length + missingPaddingCount);
             }
 
-            return Convert.FromBase64String(sb.ToString());
+            ApplyPadding(contentSpan, missingPaddingCount);
         }
 
-        return DoGetBytes(base64);
+        return arr == null ? DoGetBytes(base64) : DoGetBytes(contentSpan);
 
         /////////////////////////////////////////////////////
 
@@ -222,7 +226,54 @@ public static class Base64
             return ((base64.Length - whiteSpaceLength) % 4) switch { 0 => 0, 2 => 2, 3 => 1, _ => throw new FormatException() };
         }
 
-        static bool IsBase64Url(ReadOnlySpan<char> base64) => base64.ContainsAny("-_%".AsSpan());
+        static bool IsBase64Url(ReadOnlySpan<char> base64)
+            => base64.EndsWith(URL_ENCODED_PADDING, StringComparison.OrdinalIgnoreCase) || base64.ContainsAny("-_");
+
+
+        static int ReplaceUrlEncodedPadding(char[]? arr, ref Span<char> contentSpan)
+        {
+            int urlEncodedPaddingCount = 0;
+
+            while (contentSpan.EndsWith(URL_ENCODED_PADDING, StringComparison.OrdinalIgnoreCase))
+            {
+                contentSpan = contentSpan.Slice(0, contentSpan.Length - 3);
+                urlEncodedPaddingCount++;
+            }
+
+            if (urlEncodedPaddingCount != 0)
+            {
+                contentSpan = arr.AsSpan(0, contentSpan.Length + urlEncodedPaddingCount);
+                ApplyPadding(contentSpan, urlEncodedPaddingCount);
+            }
+
+            return urlEncodedPaddingCount;
+        }
+
+        static void ReplaceBase64UrlChars(Span<char> contentSpan, int urlEncodedPaddingCount)
+        {
+            int replacementLength = contentSpan.Length - urlEncodedPaddingCount;
+            for (int i = 0; i < replacementLength; i++)
+            {
+                char c = contentSpan[i];
+
+                if (c == '-')
+                {
+                    contentSpan[i] = '+';
+                }
+                else if (c == '_')
+                {
+                    contentSpan[i] = '/';
+                }
+            }
+        }
+
+        static void ApplyPadding(Span<char> span, int urlEncodedPaddingCount)
+        {
+            for (int i = 1; i <= urlEncodedPaddingCount; i++)
+            {
+                span[span.Length - i] = '=';
+            }
+        }
     }
 
 
@@ -242,17 +293,7 @@ public static class Base64
     public static byte[] GetBytes(ReadOnlySpan<char> base64)
     {
         base64 = base64.Trim();
-
-        if (base64.IsEmpty)
-        {
-#if NET45
-            return new byte[0];
-#else
-            return Array.Empty<byte>();
-#endif
-        }
-
-        return DoGetBytes(base64);
+        return base64.IsEmpty ? GetEmptyByteArray() : DoGetBytes(base64);
     }
 
     private static byte[] DoGetBytes(ReadOnlySpan<char> base64)
@@ -423,4 +464,73 @@ public static class Base64
             sb.Append('=');
         }
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static byte[] GetEmptyByteArray() =>
+#if NET45
+            return new byte[0];
+#else
+                Array.Empty<byte>();
+#endif
+
+
+    //    public static byte[] GetBytes2(ReadOnlySpan<char> base64, Base64ParserOptions options)
+    //    {
+    //        base64 = base64.Trim();
+
+    //        if (base64.IsEmpty)
+    //        {
+    //#if NET45
+    //            return new byte[0];
+    //#else
+    //            return Array.Empty<byte>();
+    //#endif
+    //        }
+
+    //        StringBuilder? sb = null;
+
+    //        if (options.HasFlag(Base64ParserOptions.AcceptBase64Url) && IsBase64Url(base64))
+    //        {
+    //            sb = new StringBuilder();
+    //            sb.EnsureCapacity(base64.Length + 2);
+    //            _ = sb.Append(base64);
+
+    //            base64 = sb.Replace('-', '+').Replace('_', '/').Replace("%3d", "=").Replace("%3D", "=").ToString().AsSpan();
+    //        }
+
+    //        int missingPaddingCount = options.HasFlag(Base64ParserOptions.AcceptMissingPadding) ? GetMissingPaddingCount(base64) : 0;
+
+    //        if (missingPaddingCount != 0)
+    //        {
+    //            sb ??= new StringBuilder(base64.Length + missingPaddingCount);
+
+    //            for (int i = 0; i < missingPaddingCount; i++)
+    //            {
+    //                sb.Append('=');
+    //            }
+
+    //            return Convert.FromBase64String(sb.ToString());
+    //        }
+
+    //        return DoGetBytes(base64);
+
+    //        /////////////////////////////////////////////////////
+
+    //        static int GetMissingPaddingCount(ReadOnlySpan<char> base64)
+    //        {
+    //            int whiteSpaceLength = 0;
+
+    //            for (int i = 0; i < base64.Length; i++)
+    //            {
+    //                if (base64[i] < '!')
+    //                {
+    //                    whiteSpaceLength++;
+    //                }
+    //            }
+
+    //            return ((base64.Length - whiteSpaceLength) % 4) switch { 0 => 0, 2 => 2, 3 => 1, _ => throw new FormatException() };
+    //        }
+
+    //        static bool IsBase64Url(ReadOnlySpan<char> base64) => base64.ContainsAny("-_%".AsSpan());
+    //    }
 }
