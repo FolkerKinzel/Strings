@@ -36,21 +36,29 @@ public static class ReadOnlySpanPolyfillExtension
     /// <param name="span">Die zu durchsuchende Zeichenspanne.</param>
     /// <param name="value">Die zu suchende Zeichenfolge.</param>
     /// <param name="comparisonType">Einer der Enumerationswerte, der die Regeln für die Suche angibt.</param>
-    /// <returns>Die nullbasierte Indexposition des <paramref name="value"/>-Parameters, wenn diese Zeichenfolge gefunden wurde, andernfalls -1.</returns>
+    /// <returns>Die nullbasierte Indexposition des <paramref name="value"/>-Parameters, wenn diese Zeichenfolge gefunden wurde, andernfalls -1.
+    /// Wenn <paramref name="value"/>&#160;<see cref="ReadOnlySpan{T}.Empty"/> ist, wird die letzte Indexposition in <paramref name="span"/> zurückgegeben.
+    /// In dem speziellen Fall, dass <paramref name="span"/>&#160;<see cref="ReadOnlySpan{T}.Empty"/> ist, ist das <c>0</c>.</returns>
+    /// 
+    /// <remarks>
+    /// Das Verhalten der Methode ist identisch mit dem von <see cref="string.LastIndexOf(string, StringComparison)"/> der jeweiligen Framework-Version.
+    /// Dieses hat sich mit .NET 5.0 geändert: Seitdem wird <paramref name="span"/>.Length zurückgegeben, wenn <paramref name="value"/>&#160;<see cref="ReadOnlySpan{T}.Empty"/>
+    /// ist.
+    /// </remarks>
     /// 
     /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:In bedingten Ausdruck konvertieren", Justification = "<Ausstehend>")]
     public static int LastIndexOf(this ReadOnlySpan<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
     {
-        //if (value.IsEmpty)
-        //{
-        //    return span.Length;
-        //}
+        if (value.IsEmpty)
+        {
+            return span.IsEmpty ? 0 : span.Length - 1;
+        }
 
-        //if (comparisonType == StringComparison.Ordinal)
-        //{
-        //    return span.LastIndexOf(value);
-        //}
+        if (comparisonType == StringComparison.Ordinal)
+        {
+            return span.LastIndexOf(value);
+        }
 
         return span.ToString().LastIndexOf(value.ToString(), comparisonType);
     }
@@ -94,7 +102,15 @@ public static class ReadOnlySpanPolyfillExtension
     /// <param name="span">Die zu durchsuchende Zeichenspanne.</param>
     /// <param name="value">Der zu suchende <see cref="string"/> oder <c>null</c>.</param>
     /// <param name="comparisonType">Einer der Enumerationswerte, der die Regeln für die Suche angibt.</param>
-    /// <returns>Die nullbasierte Indexposition des <paramref name="value"/>-Parameters, wenn diese Zeichenfolge gefunden wurde, andernfalls -1.</returns>
+    /// <returns>Die nullbasierte Indexposition des <paramref name="value"/>-Parameters, wenn diese Zeichenfolge gefunden wurde, andernfalls -1.
+    /// Wenn <paramref name="value"/>&#160;<see cref="string.Empty"/> oder <c>null</c> ist, wird die letzte Indexposition in <paramref name="span"/> zurückgegeben.
+    /// In dem speziellen Fall, dass <paramref name="span"/>&#160;<see cref="ReadOnlySpan{T}.Empty"/> ist, ist das <c>0</c>.</returns>
+    /// 
+    /// <remarks>
+    /// Das Verhalten der Methode ist identisch mit dem von <see cref="string.LastIndexOf(string, StringComparison)"/> der jeweiligen Framework-Version.
+    /// Dieses hat sich mit .NET 5.0 geändert: Seitdem wird <paramref name="span"/>.Length zurückgegeben, wenn <paramref name="value"/>&#160;<see cref="string.Empty"/>
+    /// ist.
+    /// </remarks>
     /// 
     /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

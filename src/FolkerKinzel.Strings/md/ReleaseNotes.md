@@ -1,5 +1,26 @@
+**Breaking Change:**  The behavior of the following polyfill methods has been changed:
+```csharp
+// For NET45 || NETSTANDARD2_0 || NETSTANDARD2_1:
+int ReadOnlySpanPolyfillExtension.LastIndexOf(this ReadOnlySpan<char> span, 
+                                              ReadOnlySpan<char> value, 
+                                              StringComparison comparisonType);
+
+// For NET45 || NETSTANDARD2_0:
+int ReadOnlySpanPolyfillExtension.LastIndexOf(this ReadOnlySpan<char> span, 
+                                              string? value, 
+                                              StringComparison comparisonType)
+```
+The behavior of the methods is now adapted to the behavior of `String.LastIndexOf(string, StringComparison)` of the respective framework 
+version. This seems to be intended by the makers of System.MemoryExtensions. 
+
+Since .NET 5.0 the method returns the length of span if
+value is `ReadOnlySpan<char>.Empty`. Until .NET Core 3.1 it did instead return the last index position in span in this case - just like the corresponding 
+String method.
+
 - New static class `Base64`
 - New enum `Base64ParserOptions`
+
+.
 - New extension methods:
 ```csharp
 byte[] GetBytes(this Encoding, ReadOnlySpan<char>);

@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Polyfills.Tests;
 
+
 [TestClass()]
 public class ReadOnlySpanPolyfillExtensionTests : IDisposable
 {
@@ -12,6 +13,12 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     {
         _culture = Thread.CurrentThread.CurrentCulture;
         Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
+    }
+
+    public void Dispose()
+    {
+        Thread.CurrentThread.CurrentCulture = _culture;
+        GC.SuppressFinalize(this);
     }
 
     [DataTestMethod]
@@ -86,11 +93,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
         => Assert.AreEqual(expected, input.AsSpan().EndsWith(test));
 
 
-    public void Dispose()
-    {
-        Thread.CurrentThread.CurrentCulture = _culture;
-        GC.SuppressFinalize(this);
-    }
+    
 
     [DataTestMethod()]
     [DataRow(StringComparison.Ordinal)]
@@ -98,7 +101,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void LastIndexOfTest1(StringComparison comp)
     {
         const string test = "test";
-        Assert.AreEqual(test.Length, test.AsSpan().LastIndexOf(ReadOnlySpan<char>.Empty, comp));
+        Assert.AreEqual(test.LastIndexOf("", comp), test.AsSpan().LastIndexOf(ReadOnlySpan<char>.Empty, comp));
     }
 
 
@@ -118,7 +121,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void LastIndexOfTest3(StringComparison comp)
     {
         const string test = "test";
-        Assert.AreEqual(test.Length, test.AsSpan().LastIndexOf("", comp));
+        Assert.AreEqual(test.LastIndexOf("", comp), test.AsSpan().LastIndexOf("", comp));
     }
 
 
@@ -139,7 +142,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void LastIndexOfTest5(StringComparison comp)
     {
         const string test = "test";
-        Assert.AreEqual(test.Length, test.AsSpan().LastIndexOf((string?)null, comp));
+        Assert.AreEqual(test.LastIndexOf("", comp), test.AsSpan().LastIndexOf((string?)null, comp));
     }
 
     [DataTestMethod()]
@@ -149,7 +152,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void LastIndexOfTest6(StringComparison comp)
     {
         const string test = "test";
-        Assert.AreEqual(test.Length, test.AsSpan().LastIndexOf("", comp));
+        Assert.AreEqual(test.LastIndexOf("", comp), test.AsSpan().LastIndexOf("", comp));
     }
 
     //[DataTestMethod()]

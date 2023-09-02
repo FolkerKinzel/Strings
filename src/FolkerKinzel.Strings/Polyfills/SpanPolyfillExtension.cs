@@ -82,19 +82,7 @@ public static class SpanPolyfillExtension
         => ((ReadOnlySpan<char>)span).Contains(value.AsSpan(), comparisonType);
 
 
-    /// <summary>
-    /// Gibt den NULL-basierten Index des letzten Vorkommens einer angegebenen Zeichenfolge in <paramref name="span"/> an. 
-    /// Ein Parameter gibt den Typ der Suche für die angegebene Zeichenfolge an.
-    /// </summary>
-    /// <param name="span">Die zu durchsuchende Zeichenspanne.</param>
-    /// <param name="value">Der zu suchende <see cref="string"/> oder <c>null</c>.</param>
-    /// <param name="comparisonType">Einer der Enumerationswerte, der die Regeln für die Suche angibt.</param>
-    /// <returns>Die nullbasierte Indexposition des <paramref name="value"/>-Parameters, wenn diese Zeichenfolge gefunden wurde, andernfalls -1.</returns>
-    /// 
-    /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOf(this Span<char> span, string? value, StringComparison comparisonType)
-        => ((ReadOnlySpan<char>) span).LastIndexOf(value.AsSpan(), comparisonType);
+    
 
     /// <summary>
     /// Bestimmt, ob eine Zeichenspanne mit einem angegebenen <see cref="string"/> beginnt.
@@ -166,6 +154,20 @@ public static class SpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool EndsWith(this Span<char> span, string? value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).EndsWith(value.AsSpan(), comparisonType);
+
+    /// <summary>
+    /// Gibt den NULL-basierten Index des letzten Vorkommens einer angegebenen Zeichenfolge in <paramref name="span"/> an. 
+    /// Ein Parameter gibt den Typ der Suche für die angegebene Zeichenfolge an.
+    /// </summary>
+    /// <param name="span">Die zu durchsuchende Zeichenspanne.</param>
+    /// <param name="value">Der zu suchende <see cref="string"/> oder <c>null</c>.</param>
+    /// <param name="comparisonType">Einer der Enumerationswerte, der die Regeln für die Suche angibt.</param>
+    /// <returns>Die nullbasierte Indexposition des <paramref name="value"/>-Parameters, wenn diese Zeichenfolge gefunden wurde, andernfalls -1.</returns>
+    /// 
+    /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int LastIndexOf(this Span<char> span, string? value, StringComparison comparisonType)
+        => ((ReadOnlySpan<char>)span).LastIndexOf(value.AsSpan(), comparisonType);
 
     /// <summary>
     /// Gibt die NULL-basierte Indexposition des letzten Vorkommens einer angegebenen Zeichenfolge in <paramref name="span"/> an. Die Suche beginnt an einer angegebenen Zeichenposition 

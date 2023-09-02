@@ -173,24 +173,24 @@ public class SpanExtensionTests
                           input.ToCharArray().AsSpan().LastIndexOf(end.AsSpan(), StringComparison.OrdinalIgnoreCase));
 
 
-    [TestMethod]
-    public void OnlyDebugging()
-    {
-        // ReadOnlySpanPolyfillExtension.LastIndexOf(this ReadOnlySpan<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
-        const string test = "ab";
+    //[TestMethod]
+    //public void OnlyDebugging()
+    //{
+    //    // ReadOnlySpanPolyfillExtension.LastIndexOf(this ReadOnlySpan<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
+    //    const string test = "ab";
 
-        int stringIndex = test.LastIndexOf("", StringComparison.OrdinalIgnoreCase);
-        int roSpanIndex = test.AsSpan().LastIndexOf("".AsSpan(), StringComparison.OrdinalIgnoreCase);
-        int spanIndex = test.ToCharArray().AsSpan().LastIndexOf("".AsSpan(), StringComparison.OrdinalIgnoreCase);
+    //    int stringIndex = test.LastIndexOf("", StringComparison.OrdinalIgnoreCase);
+    //    int roSpanIndex = test.AsSpan().LastIndexOf("".AsSpan(), StringComparison.OrdinalIgnoreCase);
+    //    int spanIndex = test.ToCharArray().AsSpan().LastIndexOf("".AsSpan(), StringComparison.OrdinalIgnoreCase);
 
-        int stringIndex1 = test.LastIndexOf("", StringComparison.Ordinal);
-        int roSpanIndex1 = test.AsSpan().LastIndexOf("".AsSpan(), StringComparison.Ordinal);
-        int spanIndex1 = test.ToCharArray().AsSpan().LastIndexOf("".AsSpan(), StringComparison.Ordinal);
+    //    int stringIndex1 = test.LastIndexOf("", StringComparison.Ordinal);
+    //    int roSpanIndex1 = test.AsSpan().LastIndexOf("".AsSpan(), StringComparison.Ordinal);
+    //    int spanIndex1 = test.ToCharArray().AsSpan().LastIndexOf("".AsSpan(), StringComparison.Ordinal);
 
-        int stringIndex2 = "".LastIndexOf("", StringComparison.OrdinalIgnoreCase);
-        int roSpanIndex2 = "".AsSpan().LastIndexOf("".AsSpan(), StringComparison.OrdinalIgnoreCase);
-        int spanIndex2 =   "".ToCharArray().AsSpan().LastIndexOf("".AsSpan(), StringComparison.OrdinalIgnoreCase);
-    }
+    //    int stringIndex2 = "".LastIndexOf("", StringComparison.OrdinalIgnoreCase);
+    //    int roSpanIndex2 = "".AsSpan().LastIndexOf("".AsSpan(), StringComparison.OrdinalIgnoreCase);
+    //    int spanIndex2 =   "".ToCharArray().AsSpan().LastIndexOf("".AsSpan(), StringComparison.OrdinalIgnoreCase);
+    //}
 
 
     [DataTestMethod]
@@ -203,6 +203,29 @@ public class SpanExtensionTests
     public void LastIndexOfTest2(string input, string end)
        => Assert.AreEqual(input.AsSpan().LastIndexOf(end.AsSpan(), input.Length - 1, input.Length, StringComparison.OrdinalIgnoreCase),
                           input.ToCharArray().AsSpan().LastIndexOf(end.AsSpan(), input.Length - 1, input.Length, StringComparison.OrdinalIgnoreCase));
+
+    [DataTestMethod]
+    [DataRow("", "abc")]
+    [DataRow("", "")]
+    [DataRow("xxxabc  ", "bc")]
+    [DataRow("xxxabc  ", "bcd")]
+    [DataRow("xxxabc  ", "")]
+    [DataRow("xxxabc   ", "BC")]
+    public void LastIndexOfTest3(string input, string end)
+       => Assert.AreEqual(input.AsSpan().LastIndexOf(end.AsSpan(), StringComparison.Ordinal),
+                          input.ToCharArray().AsSpan().LastIndexOf(end.AsSpan(), StringComparison.Ordinal));
+
+    [DataTestMethod]
+    [DataRow("", "abc")]
+    [DataRow("", "")]
+    [DataRow("xxxabc  ", "bc")]
+    [DataRow("xxxabc  ", "bcd")]
+    [DataRow("xxxabc  ", "")]
+    [DataRow("xxxabc   ", "BC")]
+    public void LastIndexOfTest4(string input, string end)
+       => Assert.AreEqual(input.AsSpan().LastIndexOf(end.AsSpan(), input.Length - 1, input.Length, StringComparison.Ordinal),
+                          input.ToCharArray().AsSpan().LastIndexOf(end.AsSpan(), input.Length - 1, input.Length, StringComparison.Ordinal));
+
 
 
     [DataTestMethod]
