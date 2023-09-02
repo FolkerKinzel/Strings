@@ -26,6 +26,7 @@ public static class StringExtensionPolyfillExtension
     /// <returns>Ein neuer <see cref="string"/>, in in dem alle Sequenzen von Leerzeichen in <paramref name="s"/> durch 
     /// <paramref name="replacement"/> ersetzt sind. Wenn <paramref name="s"/> kein Leerzeichen enthält, wird <paramref name="s"/>
     /// zurückgegeben.</returns>
+    /// 
     /// <remarks>
     /// <para>
     /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)"/> zur Identifizierung von Leerraumzeichen und arbeitet
@@ -35,12 +36,8 @@ public static class StringExtensionPolyfillExtension
     /// <para>Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
     /// verwendet.
     /// </para>
-    /// <para>
-    /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
-    /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
-    /// </para>
-    /// 
     /// </remarks>
+    /// 
     /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ReplaceWhiteSpaceWith(
@@ -60,6 +57,7 @@ public static class StringExtensionPolyfillExtension
     /// <returns>Ein neuer <see cref="string"/>, in dem alle Zeilenumbrüche
     /// durch <paramref name="newLine"/> ersetzt sind. Wenn <paramref name="s"/> keine Zeilenwechselzeichen
     /// enthält, wird <paramref name="s"/> unverändert zurückgegeben.</returns>
+    /// 
     /// <remarks>
     /// <para>
     /// Für die Identifizierung von Zeilenwechselzeichen wird <see cref="CharExtension.IsNewLine(char)"/> 
@@ -69,11 +67,8 @@ public static class StringExtensionPolyfillExtension
     /// Diese Methode unterscheidet sich von <see cref="StringExtension.ReplaceLineEndings(string, string)"/> dahingehend,
     /// dass sie zusätzlich LFCR-Sequenzen und Vertical Tab (VT: U+000B) als Zeilenwechsel behandelt.
     /// </note>
-    /// <para>
-    /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
-    /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
-    /// </para>
     /// </remarks>
+    /// 
     /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Obsolete("Use ReplaceLineEndings instead.", false)]

@@ -31,6 +31,7 @@ public static partial class SpanExtension
     /// <param name="comparisonType">Einer der Enumerationswerte, der die Regeln für die Suche angibt.</param>
     /// <returns>Die nullbasierte Anfangsindexposition des <paramref name="value"/>-Parameters, wenn diese Zeichenfolge gefunden wurde, oder -1, wenn sie nicht 
     /// gefunden wurde oder <paramref name="span"/> leer ist.</returns>
+    /// 
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
     /// <paramref name="count"/> ist ein negativer Wert

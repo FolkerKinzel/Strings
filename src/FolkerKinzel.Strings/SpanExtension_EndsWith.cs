@@ -12,6 +12,7 @@ public static partial class SpanExtension
     /// <param name="value">Das Zeichen, nach dem gesucht wird.</param>
     /// <returns><c>true</c>, wenn <paramref name="span"/> mit <paramref name="value"/>
     /// endet, andernfalls <c>false</c>.</returns>
+    /// 
     /// <remarks>
     /// Die Methode führt einen Ordinalzeichenvergleich durch.
     /// </remarks>

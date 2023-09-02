@@ -29,6 +29,7 @@ public static class StringBuilderPolyfillExtension
     /// <param name="values">Ein Array, das die zu verkettenden Zeichenfolgen enthält, die an <paramref name="builder"/>
     /// angefügt werden sollen.</param>
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
 #if NETSTANDARD2_0
@@ -49,6 +50,7 @@ public static class StringBuilderPolyfillExtension
     /// <param name="values">Ein Array, das die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder"/>
     /// angefügt werden soll.</param>
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
 #if NETSTANDARD2_0
@@ -70,6 +72,7 @@ public static class StringBuilderPolyfillExtension
     /// <param name="values">Eine Sammlung, die die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder"/>
     /// angefügt werden soll.</param>
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
 #if NETSTANDARD2_0
@@ -90,6 +93,7 @@ public static class StringBuilderPolyfillExtension
     /// <param name="values">Ein Array, das die zu verkettenden Zeichenfolgen enthält, die an <paramref name="builder"/>
     /// angefügt werden sollen.</param>
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
 #if NETSTANDARD2_0
@@ -110,6 +114,7 @@ public static class StringBuilderPolyfillExtension
     /// <param name="values">Ein Array, das die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder"/>
     /// angefügt werden soll.</param>
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
 #if NETSTANDARD2_0
@@ -132,6 +137,7 @@ public static class StringBuilderPolyfillExtension
     /// <param name="values">Eine Sammlung, die die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder"/>
     /// angefügt werden soll.</param>
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
 #if NETSTANDARD2_0
@@ -186,7 +192,9 @@ public static class StringBuilderPolyfillExtension
     /// Abschnitt beginnt.</param>
     /// <param name="count">Die Anzahl der zu kopierenden Zeichen.</param>
     /// <returns>Eine Referenz auf <paramref name="builder"/>.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// 
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
     /// <paramref name="startIndex"/> oder <paramref name="count"/>
@@ -200,6 +208,7 @@ public static class StringBuilderPolyfillExtension
     /// der Zeichen in <paramref name="value"/>.
     /// </para>
     /// </exception>
+    /// 
     /// <exception cref="ArgumentNullException">
     /// <paramref name="value"/> ist <c>null</c> und <paramref name="startIndex"/> oder <paramref name="count"/>
     /// haben einen Wert, der größer als 0 ist.
@@ -258,6 +267,7 @@ public static class StringBuilderPolyfillExtension
     /// <param name="builder">Der <see cref="StringBuilder"/>, an den die Zeichen angefügt werden.</param>
     /// <param name="value">Der anzufügende schreibgeschützte Zeichenspeicherbereich.</param>
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
     /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
@@ -287,6 +297,7 @@ public static class StringBuilderPolyfillExtension
     /// <param name="index">Der nullbasierte Index in <paramref name="builder"/>, an dem die Einfügung beginnt.</param>
     /// <param name="value">Die einzufügende Zeichenspanne.</param>
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Einfügevorgang abgeschlossen wurde.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/> ist kleiner als 0 oder größer
     /// als die Länge von <paramref name="builder"/>.</exception>

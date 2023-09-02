@@ -78,7 +78,10 @@ public class Base64Tests
     [DataRow("fooba", "Zm9vYmE")]
     [DataRow("foobar", "Zm9vYmFy")]
     [DataRow("foobar", " Zm\r\n9v  YmFy  ")]
-    public void GetBytesTest7(string expected, string input) => Assert.AreEqual(expected, Encoding.UTF8.GetString(Base64.GetBytes(input.AsSpan(), Base64ParserOptions.AcceptMissingPadding)));
+    public void GetBytesTest7(string expected, string input)
+        => Assert.AreEqual(expected,
+                           Encoding.UTF8.GetString(Base64.GetBytes(input, 
+                                                   Base64ParserOptions.AcceptMissingPadding)));
 
     [TestMethod]
     [ExpectedException(typeof(FormatException))]
@@ -102,6 +105,29 @@ public class Base64Tests
     [TestMethod]
     [ExpectedException(typeof(FormatException))]
     public void GetBytesTest11() => _ = Base64.GetBytes("A".AsSpan(), Base64ParserOptions.AcceptMissingPadding);
+
+    [TestMethod]
+    public void GetBytesTest12()
+    {
+        const string input = "A+b/fg==";
+        byte[] originalBytes = Base64.GetBytes(input);
+
+        string base64Url = input.Replace('+', '-').Replace('/', '_');
+        base64Url = Uri.EscapeDataString(base64Url);
+        byte[] base64UrlBytes = Base64.GetBytes(base64Url, Base64ParserOptions.AcceptBase64Url);
+        CollectionAssert.AreEqual(originalBytes, base64UrlBytes);
+    }
+
+    [TestMethod]
+    public void GetBytesTest13()
+    {
+        const string input = "A+b/fg";
+        byte[] originalBytes = Base64.GetBytes(input, Base64ParserOptions.AcceptMissingPadding);
+
+        string base64Url = input.Replace('+', '-').Replace('/', '_');
+        byte[] base64UrlBytes = Base64.GetBytes(base64Url, Base64ParserOptions.AcceptBase64Url | Base64ParserOptions.AcceptMissingPadding);
+        CollectionAssert.AreEqual(originalBytes, base64UrlBytes);
+    }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]

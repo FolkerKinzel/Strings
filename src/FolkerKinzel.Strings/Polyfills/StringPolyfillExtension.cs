@@ -28,6 +28,7 @@ public static partial class StringPolyfillExtension
     /// <param name="value">Das zu suchende Zeichen.</param>
     /// <param name="comparisonType">Ein Enumerationswert, der die für den Vergleich zu verwendende Regel angibt.</param>
     /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
     public static bool Contains(this string s, char value, StringComparison comparisonType)
@@ -40,6 +41,7 @@ public static partial class StringPolyfillExtension
     /// <param name="s">Der zu untersuchende <see cref="string"/>.</param>
     /// <param name="value">Das zu suchende Zeichen.</param>
     /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
     /// <remarks>
     /// Die Methode führt einen Ordinalzeichenvergleich aus.
@@ -56,6 +58,7 @@ public static partial class StringPolyfillExtension
     /// <param name="value">Die zu suchende Zeichenfolge.</param>
     /// <param name="comparisonType">Ein Enumerationswert, der die für den Vergleich zu verwendende Regel angibt.</param>
     /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb dieser Zeichenfolge auftritt, andernfalls <c>false</c>.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(this string s, string value, StringComparison comparisonType)
@@ -70,6 +73,7 @@ public static partial class StringPolyfillExtension
     /// <param name="value">Das zu suchende Zeichen.</param>
     /// <param name="comparisonType">Ein Enumerationswert, der die Regeln für die Suche festlegt.</param>
     /// <returns>Der nullbasierte Index von <paramref name="value"/>, wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
     public static int IndexOf(this string s, char value, StringComparison comparisonType)
@@ -85,6 +89,7 @@ public static partial class StringPolyfillExtension
     /// eingeschlossen werden sollen.</param>
     /// <returns>Ein Array, dessen Elemente die Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
     /// <paramref name="separator"/> getrennt sind.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string[] Split(this string s, char separator, StringSplitOptions options = StringSplitOptions.None)
@@ -101,6 +106,7 @@ public static partial class StringPolyfillExtension
     /// eingeschlossen werden sollen.</param>
     /// <returns>Ein Array, das maximal <paramref name="count"/> Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
     /// <paramref name="separator"/> getrennt sind.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> ist negativ.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -118,6 +124,7 @@ public static partial class StringPolyfillExtension
     /// eingeschlossen werden sollen.</param>
     /// <returns>Ein Array, das maximal <paramref name="count"/> Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
     /// <paramref name="separator"/> getrennt sind.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> ist negativ.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -145,6 +152,7 @@ public static partial class StringPolyfillExtension
     /// eingeschlossen werden sollen.</param>
     /// <returns>Ein Array, dessen Elemente die Teilzeichenfolgen von <paramref name="s"/> enthält, die durch
     /// <paramref name="separator"/> getrennt sind.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string[] Split(this string s, string? separator, StringSplitOptions options = System.StringSplitOptions.None)
@@ -168,6 +176,7 @@ public static partial class StringPolyfillExtension
     /// <remarks>
     /// Diese Methode führt einen Vergleich mit der aktuellen Kultur durch (Unterscheidung nach Groß-/Kleinschreibung und Kultur sensitiv).
     /// </remarks>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
     public static bool StartsWith(this string s, char value)
         => s is null ? throw new NullReferenceException()
@@ -183,6 +192,7 @@ public static partial class StringPolyfillExtension
     /// <remarks>
     /// Diese Methode führt einen Vergleich mit der aktuellen Kultur durch (Unterscheidung nach Groß-/Kleinschreibung und Kultur sensitiv).
     /// </remarks>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
     public static bool EndsWith(this string s, char value)
         => s is null ? throw new NullReferenceException()
@@ -200,8 +210,10 @@ public static partial class StringPolyfillExtension
     /// <returns>Eine Zeichenfolge, die der aktuellen Zeichenfolge entspricht, außer dass alle Instanzen von <paramref name="oldValue"/>
     /// durch <paramref name="newValue"/> ersetzt wurden. Wenn <paramref name="oldValue"/> nicht in der aktuellen Instanz gefunden wird, 
     /// gibt die Methode die aktuelle Instanz unverändert zurück.</returns>
+    /// 
     /// <exception cref="NullReferenceException"><paramref name="s"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="oldValue"/> ist <c>null</c>.</exception>
+    /// 
     /// <exception cref="ArgumentException">
     /// <para><paramref name="oldValue"/> ist <see cref="string.Empty"/></para>
     /// <para>- oder -</para>

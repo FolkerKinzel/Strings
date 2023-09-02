@@ -23,7 +23,6 @@ public static class ReadOnlySpanPolyfillExtension
     /// <param name="span">Die zu durchsuchende Spanne.</param>
     /// <param name="value">Das zu suchende Unicodezeichen.</param>
     /// <returns><c>true</c>, wenn <paramref name="value"/> gefunden wurde, andernfalls <c>false</c>.</returns>
-    /// <remarks>Verfügbar für .NET Framework 4.5, .NET Standard 2.0 und .NET Standard 2.1.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(this ReadOnlySpan<char> span, char value)
         => span.IndexOf(value) != -1;
@@ -38,6 +37,7 @@ public static class ReadOnlySpanPolyfillExtension
     /// <param name="value">Die zu suchende Zeichenfolge.</param>
     /// <param name="comparisonType">Einer der Enumerationswerte, der die Regeln für die Suche angibt.</param>
     /// <returns>Die nullbasierte Indexposition des <paramref name="value"/>-Parameters, wenn diese Zeichenfolge gefunden wurde, andernfalls -1.</returns>
+    /// 
     /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:In bedingten Ausdruck konvertieren", Justification = "<Ausstehend>")]
     public static int LastIndexOf(this ReadOnlySpan<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
@@ -82,7 +82,6 @@ public static class ReadOnlySpanPolyfillExtension
     /// <param name="comparisonType">Ein Enumerationswert, der bestimmt, wie die Zeichen in <paramref name="span"/> und 
     /// <paramref name="value"/> verglichen werden.</param>
     /// <returns><c>true</c>, wenn <paramref name="value"/> innerhalb der Spanne auftritt, andernfalls <c>false</c>.</returns>
-    /// <remarks>Verfügbar für .NET Framework 4.5 und .NET Standard 2.0.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
         => span.Contains(value.AsSpan(), comparisonType);
@@ -96,6 +95,7 @@ public static class ReadOnlySpanPolyfillExtension
     /// <param name="value">Der zu suchende <see cref="string"/> oder <c>null</c>.</param>
     /// <param name="comparisonType">Einer der Enumerationswerte, der die Regeln für die Suche angibt.</param>
     /// <returns>Die nullbasierte Indexposition des <paramref name="value"/>-Parameters, wenn diese Zeichenfolge gefunden wurde, andernfalls -1.</returns>
+    /// 
     /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein gültiger <see cref="StringComparison"/>-Wert.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOf(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
@@ -109,14 +109,9 @@ public static class ReadOnlySpanPolyfillExtension
     /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Anfang von <paramref name="span"/> übereinstimmt,
     /// andernfalls <c>false</c>.</returns>
     /// <remarks>
-    /// <para>
     /// Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
     /// wird <c>true</c> zurückgegeben.
-    /// </para>
-    /// <para>
-    /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
-    /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
-    /// </para></remarks>
+    /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool StartsWith(this ReadOnlySpan<char> span, string? value)
         => span.StartsWith(value.AsSpan());
@@ -132,14 +127,8 @@ public static class ReadOnlySpanPolyfillExtension
     /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Anfang von <paramref name="span"/> übereinstimmt,
     /// andernfalls <c>false</c>.</returns>
     /// <remarks>
-    /// <para>
-    /// Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
+    /// Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
     /// wird <c>true</c> zurückgegeben.
-    /// </para>
-    /// <para>
-    /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
-    /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
-    /// </para>
     /// </remarks>
     /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein definierter <see cref="StringComparison"/>-Wert.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -155,14 +144,9 @@ public static class ReadOnlySpanPolyfillExtension
     /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Ende von <paramref name="span"/> übereinstimmt,
     /// andernfalls <c>false</c>.</returns>
     /// <remarks>
-    /// <para>
     /// Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
     /// wird <c>true</c> zurückgegeben.
-    /// </para>
-    /// <para>
-    /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
-    /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
-    /// </para></remarks>
+    /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool EndsWith(this ReadOnlySpan<char> span, string? value)
         => span.EndsWith(value.AsSpan());
@@ -178,14 +162,8 @@ public static class ReadOnlySpanPolyfillExtension
     /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Ende von <paramref name="span"/> übereinstimmt,
     /// andernfalls <c>false</c>.</returns>
     /// <remarks>
-    /// <para>
     /// Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
     /// wird <c>true</c> zurückgegeben.
-    /// </para>
-    /// <para>
-    /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
-    /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
-    /// </para>
     /// </remarks>
     /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein definierter <see cref="StringComparison"/>-Wert.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

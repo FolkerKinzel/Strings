@@ -32,10 +32,6 @@ public static class StringBuilderExtensionPolyfillExtension
     /// <para>Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
     /// verwendet.
     /// </para>
-    /// <para>
-    /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
-    /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
-    /// </para>
     /// 
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
@@ -67,11 +63,6 @@ public static class StringBuilderExtensionPolyfillExtension
     /// <para>Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
     /// verwendet.
     /// </para>
-    /// <para>
-    /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
-    /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
-    /// </para>
-    /// 
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
@@ -107,11 +98,6 @@ public static class StringBuilderExtensionPolyfillExtension
     /// <para>Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
     /// verwendet.
     /// </para>
-    /// <para>
-    /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
-    /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
-    /// </para>
-    /// 
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
@@ -150,10 +136,6 @@ public static class StringBuilderExtensionPolyfillExtension
     /// Diese Methode unterscheidet sich von <see cref="StringBuilderExtension.ReplaceLineEndings(StringBuilder, string?)"/> dahingehend,
     /// dass sie zusätzlich LFCR-Sequenzen und Vertical Tab (VT: U+000B) als Zeilenwechsel behandelt.
     /// </note>
-    /// <para>
-    /// Diese Überladung ist nützlich, da die implizite Umwandlung von <see cref="string"/> in 
-    /// <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see> erst ab .NET Standard 2.1 unterstützt wird.
-    /// </para>
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
     [Obsolete("Use ReplaceLineEndings instead.", false)]
