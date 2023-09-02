@@ -1,4 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿#if !NETCOREAPP3_1
+using FolkerKinzel.Strings.Polyfills;
+#endif
+
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
 
@@ -122,12 +127,104 @@ public class SpanExtensionTests
 
 
     [DataTestMethod]
-    [DataRow("")]
-    [DataRow("abc")]
-    [DataRow("  abc")]
-    [DataRow("  abc   ")]
-    public void StartsWithTest1(string input)
-       => Assert.AreEqual(input.AsSpan().ContainsWhiteSpace(),
-                          input.ToCharArray().AsSpan().ContainsWhiteSpace());
+    [DataRow("", "abc")]
+    [DataRow("abc", "ab")]
+    [DataRow("abc", "AB")]
+    public void StartsWithTest1(string input, string starter)
+       => Assert.AreEqual(input.AsSpan().StartsWith(starter.AsSpan(), StringComparison.OrdinalIgnoreCase),
+                          input.ToCharArray().AsSpan().StartsWith(starter.AsSpan(), StringComparison.OrdinalIgnoreCase));
+
+
+    [DataTestMethod]
+    [DataRow("", 'a')]
+    [DataRow("abc", 'a')]
+    [DataRow("abc", 'A')]
+    public void StartsWithTest2(string input, char starter)
+       => Assert.AreEqual(input.AsSpan().StartsWith(starter),
+                          input.ToCharArray().AsSpan().StartsWith(starter));
+
+    [DataTestMethod]
+    [DataRow("", "abc")]
+    [DataRow("abc", "bc")]
+    [DataRow("abc", "BC")]
+    public void EndsWithTest1(string input, string end)
+       => Assert.AreEqual(input.AsSpan().EndsWith(end.AsSpan(), StringComparison.OrdinalIgnoreCase),
+                          input.ToCharArray().AsSpan().EndsWith(end.AsSpan(), StringComparison.OrdinalIgnoreCase));
+
+
+    [DataTestMethod]
+    [DataRow("", 'c')]
+    [DataRow("abc", 'c')]
+    [DataRow("abc", 'C')]
+    public void EndsWithTest2(string input, char end)
+       => Assert.AreEqual(input.AsSpan().EndsWith(end),
+                          input.ToCharArray().AsSpan().EndsWith(end));
+
+
+    [DataTestMethod]
+    [DataRow("", "abc")]
+    [DataRow("", "")]
+    [DataRow("xxxabc  ", "bc")]
+    [DataRow("xxxabc  ", "bcd")]
+    [DataRow("xxxabc  ", "")]
+    [DataRow("xxxabc   ", "BC")]
+    public void LastIndexOfTest1(string input, string end)
+       => Assert.AreEqual(input.AsSpan().LastIndexOf(end.AsSpan(), StringComparison.OrdinalIgnoreCase),
+                          input.ToCharArray().AsSpan().LastIndexOf(end.AsSpan(), StringComparison.OrdinalIgnoreCase));
+
+
+    [TestMethod]
+    public void OnlyDebugging()
+    {
+        // ReadOnlySpanPolyfillExtension.LastIndexOf(this ReadOnlySpan<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
+        const string test = "ab";
+
+        int stringIndex = test.LastIndexOf("", StringComparison.OrdinalIgnoreCase);
+        int roSpanIndex = test.AsSpan().LastIndexOf("".AsSpan(), StringComparison.OrdinalIgnoreCase);
+        int spanIndex = test.ToCharArray().AsSpan().LastIndexOf("".AsSpan(), StringComparison.OrdinalIgnoreCase);
+
+        int stringIndex1 = test.LastIndexOf("", StringComparison.Ordinal);
+        int roSpanIndex1 = test.AsSpan().LastIndexOf("".AsSpan(), StringComparison.Ordinal);
+        int spanIndex1 = test.ToCharArray().AsSpan().LastIndexOf("".AsSpan(), StringComparison.Ordinal);
+
+        int stringIndex2 = "".LastIndexOf("", StringComparison.OrdinalIgnoreCase);
+        int roSpanIndex2 = "".AsSpan().LastIndexOf("".AsSpan(), StringComparison.OrdinalIgnoreCase);
+        int spanIndex2 =   "".ToCharArray().AsSpan().LastIndexOf("".AsSpan(), StringComparison.OrdinalIgnoreCase);
+    }
+
+
+    [DataTestMethod]
+    [DataRow("", "abc")]
+    [DataRow("", "")]
+    [DataRow("xxxabc  ", "bc")]
+    [DataRow("xxxabc  ", "bcd")]
+    [DataRow("xxxabc  ", "")]
+    [DataRow("xxxabc   ", "BC")]
+    public void LastIndexOfTest2(string input, string end)
+       => Assert.AreEqual(input.AsSpan().LastIndexOf(end.AsSpan(), input.Length - 1, input.Length, StringComparison.OrdinalIgnoreCase),
+                          input.ToCharArray().AsSpan().LastIndexOf(end.AsSpan(), input.Length - 1, input.Length, StringComparison.OrdinalIgnoreCase));
+
+
+    [DataTestMethod]
+    [DataRow("", "abc")]
+    [DataRow("", "")]
+    [DataRow("xxxabc  ", "bc")]
+    [DataRow("xxxabc  ", "bcd")]
+    [DataRow("xxxabc  ", "")]
+    [DataRow("xxxabc   ", "BC")]
+    public void ContainsTest1(string input, string needle)
+       => Assert.AreEqual(input.AsSpan().Contains(needle.AsSpan(), StringComparison.OrdinalIgnoreCase),
+                          input.ToCharArray().AsSpan().Contains(needle.AsSpan(), StringComparison.OrdinalIgnoreCase));
+
+
+    [DataTestMethod]
+    [DataRow("", "abc")]
+    [DataRow("", "")]
+    [DataRow("abc  ", "abc")]
+    [DataRow("abc  ", "ABC")]
+    [DataRow("abc  ", "abcd")]
+    public void EqualsTest1(string input, string comparison)
+       => Assert.AreEqual(input.AsSpan().Equals(comparison.AsSpan(), StringComparison.OrdinalIgnoreCase),
+                          input.ToCharArray().AsSpan().Equals(comparison.AsSpan(), StringComparison.OrdinalIgnoreCase));
 
 }

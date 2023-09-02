@@ -42,15 +42,15 @@ public static class ReadOnlySpanPolyfillExtension
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:In bedingten Ausdruck konvertieren", Justification = "<Ausstehend>")]
     public static int LastIndexOf(this ReadOnlySpan<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
     {
-        if (value.IsEmpty)
-        {
-            return span.Length;
-        }
+        //if (value.IsEmpty)
+        //{
+        //    return span.Length;
+        //}
 
-        if (comparisonType == StringComparison.Ordinal)
-        {
-            return span.LastIndexOf(value);
-        }
+        //if (comparisonType == StringComparison.Ordinal)
+        //{
+        //    return span.LastIndexOf(value);
+        //}
 
         return span.ToString().LastIndexOf(value.ToString(), comparisonType);
     }

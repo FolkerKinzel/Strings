@@ -6,6 +6,7 @@ using FolkerKinzel.Strings.Polyfills;
 
 namespace FolkerKinzel.Strings.Tests;
 
+
 [TestClass]
 public class ReadOnlySpanExtensionTests
 {
@@ -24,6 +25,17 @@ public class ReadOnlySpanExtensionTests
 
         Assert.AreEqual(expected, test.AsSpan().LastIndexOfAny(needles.AsSpan()));
     }
+
+    [DataTestMethod]
+    [DataRow("ef", 4)]
+    [DataRow("0123456789ef", 4)]
+    [DataRow("", -1)]
+    [DataRow("xy", -1)]
+    [DataRow("qwxyza0123456789", -1)]
+    public void LastIndexOfAnyTest1b(string needles, int expected) => Assert.AreEqual(expected, "testen".AsSpan().LastIndexOfAny(needles));
+
+    
+
 
     [TestMethod]
     public void LastIndexOfAnyTest2()
@@ -82,6 +94,14 @@ public class ReadOnlySpanExtensionTests
     }
 
     [DataTestMethod]
+    [DataRow(-1, 0)]
+    [DataRow(0, -1)]
+    [DataRow(0, 2)]
+    [DataRow(-2, 2)]
+    [DataRow(2, -2)]
+    public void LastIndexOfAnyTest11b(int index, int count) => _ = "".AsSpan().LastIndexOfAny("t", index, count);
+
+    [DataTestMethod]
     //[DataRow(-1, 0)]
     [DataRow(0, -1)]
     [DataRow(0, 2)]
@@ -118,6 +138,18 @@ public class ReadOnlySpanExtensionTests
     [DataRow("testtest", "", -1)]
     public void IndexOfAnyTest1(string testStr, string needles, int expectedIndex)
         => Assert.AreEqual(expectedIndex, testStr.AsSpan().IndexOfAny(needles.AsSpan()));
+
+
+    [DataTestMethod]
+    [DataRow("t", "abcdefghi", -1)]
+    [DataRow("t", "abcdefghit", 0)]
+    [DataRow("testtest", "abcdfghi", -1)]
+    [DataRow("testtest", "abcdfghit", 0)]
+    [DataRow("", "abcdefghit", -1)]
+    [DataRow("t", "", -1)]
+    [DataRow("testtest", "", -1)]
+    public void IndexOfAnyTest2(string testStr, string needles, int expectedIndex)
+        => Assert.AreEqual(expectedIndex, testStr.AsSpan().IndexOfAny(needles));
 
     [TestMethod]
     public void ContainsAnyTest1() => Assert.IsFalse("test".AsSpan().ContainsAny(ReadOnlySpan<char>.Empty));

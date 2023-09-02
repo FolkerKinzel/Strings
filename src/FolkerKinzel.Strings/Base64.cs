@@ -316,6 +316,7 @@ public static class Base64
     }
 
 
+#if !(NET45 || NETSTANDARD2_0)
     private static int ComputeMaxOutputSize(ReadOnlySpan<char> base64)
     {
         int outLength = (base64.Length >> 2) * 3;
@@ -339,6 +340,7 @@ public static class Base64
 
         return outLength;
     }
+#endif
 
 
     internal static StringBuilder AppendEncodedTo(this StringBuilder builder,
