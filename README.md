@@ -5,7 +5,7 @@
 [Project Reference and Release Notes](https://github.com/FolkerKinzel/Strings/releases/tag/v5.3.1)
 
 .NET library that contains extension methods and helper classes for String, Char,
-StringBuilder, ReadOnlySpan&lt;Char&gt; and ReadOnlyMemory&lt;Char&gt;. A very high code coverage of
+StringBuilder, ReadOnlySpan&lt;Char&gt;, Span&lt;Char&gt;, ReadOnlyMemory&lt;Char&gt; and System.Text.Encoding. A very high code coverage of
 the unit tests (100% line and branch) and the consistent avoidance of unsafe code blocks are main design principles of 
 this library.
 
