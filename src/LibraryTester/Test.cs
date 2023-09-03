@@ -45,6 +45,9 @@ namespace LibraryTesters
 
             _ = test.Split('e', 2);
 
+            _ = test.ReplaceLineEndings();
+            _ = test.ReplaceLineEndings(Environment.NewLine);
+
             //#if !NETCOREAPP3_1
             _ = test.AsMemory().Trim();
 
