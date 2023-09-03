@@ -148,7 +148,7 @@ public static class Base64
     /// <exception cref="ArgumentNullException"><paramref name="base64"/> ist <c>null</c>.</exception>
     /// <exception cref="FormatException">
     /// <paramref name="base64"/> lässt sich - abhängig von den mit <paramref name="options"/> angegebenen Konvertierungsoptionen - 
-    /// nicht in gültiges Base64 umwandeln.
+    /// nicht in ein <see cref="byte"/>-Array umwandeln.
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] GetBytes(string base64, Base64ParserOptions options) =>
@@ -164,7 +164,7 @@ public static class Base64
     /// <returns>Ein Array von 8-Bit-Ganzzahlen ohne Vorzeichen, das <paramref name="base64"/> entspricht.</returns>
     /// <exception cref="FormatException">
     /// <paramref name="base64"/> lässt sich - abhängig von den mit <paramref name="options"/> angegebenen Konvertierungsoptionen - 
-    /// nicht in gültiges Base64 umwandeln.
+    /// nicht in ein <see cref="byte"/>-Array umwandeln.
     /// </exception>
     public static byte[] GetBytes(ReadOnlySpan<char> base64, Base64ParserOptions options)
     {
@@ -236,6 +236,8 @@ public static class Base64
         {
             int urlEncodedPaddingCount = 0;
 
+            // This is based on the assumption that Base64Url contains no white space -
+            // neither URL-encoded nor unencoded.
             while (span.EndsWith(URL_ENCODED_PADDING, StringComparison.OrdinalIgnoreCase))
             {
                 span = span.Slice(0, span.Length - 3);

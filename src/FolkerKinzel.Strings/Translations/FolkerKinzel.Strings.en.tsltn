@@ -1561,4 +1561,61 @@ If you use the &lt;see cref="T:FolkerKinzel.Strings.DecoderValidationFallback"/&
 &lt;para&gt;
 &lt;paramref name ="startIndex"/&gt; + &lt;paramref name ="count"/&gt; is larger than the number of characters in &lt;paramref name ="builder"/&gt;.
 &lt;/para&gt;</T>
+  <T ID="4CF7C982C4D3A9A0">Static class that provides methods to encode and decode strings in Base64 format.</T>
+  <T ID="370A95E27D309440">Converts a collection of Bytes into a corresponding Base64 string. You can determine, whether line breaks are to be inserted into the return value.</T>
+  <T ID="6DF5130C411A0B8D">A collection of Bytes.</T>
+  <T ID="3CC294D34073B16D">One of the enumeration values, which specify whether or not line breaks are to be inserted into the return value. The default is &lt;see cref="F:System.Base64FormattingOptions.None"/&gt;.</T>
+  <T ID="FE61FCC3D8969AC8">The string representation of the elements in &lt;paramref name="bytes"/&gt; as Base64.</T>
+  <T ID="CEFB5739FD8B2F43">&lt;paramref name="bytes"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="4CDA6A75D86A439C">&lt;paramref name="options"/&gt; is not a defined &lt;see cref="T:System.Base64FormattingOptions"/&gt; value.</T>
+  <T ID="1C954948C5230AF1">Converts an Array of Bytes into a corresponding Base64 string. You can determine, whether line breaks are to be inserted into the return value.</T>
+  <T ID="380B855C44BD54B9">An Array of Bytes.</T>
+  <T ID="2A7BB14A4073B16D">One of the enumeration values, which specify whether or not line breaks are to be inserted into the return value. The default is &lt;see cref="F:System.Base64FormattingOptions.None"/&gt;.</T>
+  <T ID="693B6A51D8969AC8">The string representation of the elements in &lt;paramref name="bytes"/&gt; as Base64.</T>
+  <T ID="FCE45639FD8B2F43">&lt;paramref name="bytes"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="B1CCA1E8D86A439C">&lt;paramref name="options"/&gt; is not a defined &lt;see cref="T:System.Base64FormattingOptions"/&gt; value.</T>
+  <T ID="23FC0E0AA070F5B7">Converts a subset of an Array of Bytes to their equivalent Base64-encoded string representation. Parameters specify the subset as an offset in the input array, the number of bytes to be converted, and whether newlines are to be inserted in the return value.</T>
+  <T ID="F7F0D68A44BD54B9">A Byte Array.</T>
+  <T ID="79342EB82FE0941C">An offset in &lt;paramref name="bytes"/&gt;.</T>
+  <T ID="57848C056B93BCA8">The number of Bytes that are to be converted.</T>
+  <T ID="651105034073B16D">One of the enumeration values, which specify whether or not line breaks are to be inserted into the return value. The default is &lt;see cref="F:System.Base64FormattingOptions.None"/&gt;.</T>
+  <T ID="16C7CE29CC4716D5">The Base64 string representation of &lt;paramref name="length"/&gt; Bytes taken from the Array &lt;paramref name="bytes"/&gt; beginning at the index &lt;paramref name="offset"/&gt;.</T>
+  <T ID="F1C96440FD8B2F43">&lt;paramref name="bytes"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="5FED53FD70F9873A">&lt;para&gt;
+&lt;paramref name="offset"/&gt; or &lt;paramref name="length"/&gt; are negative values.
+&lt;/para&gt;
+&lt;para&gt;
+- oder -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name="offset"/&gt; plus &lt;paramref name="length"/&gt; is greater than the length of &lt;paramref name="bytes"/&gt;.
+&lt;/para&gt;</T>
+  <T ID="F8AA792CD86A439C">&lt;paramref name="options"/&gt; is not a defined &lt;see cref="T:System.Base64FormattingOptions"/&gt; value.</T>
+  <T ID="14EF2E830B8C756D">Converts a read only span of Bytes into a corresponding Base64 string. Optional you can determine, whether line breaks are to be inserted into the return value.</T>
+  <T ID="19406D1D3D48A411">A read only span of Bytes.</T>
+  <T ID="87936DE04073B16D">One of the enumeration values, which specify whether or not line breaks are to be inserted into the return value. The default is &lt;see cref="F:System.Base64FormattingOptions.None"/&gt;.</T>
+  <T ID="490B071C5B42714D">The Base64 string reprensentation of the elements in &lt;paramref name="bytes"/&gt;.</T>
+  <T ID="6B8219FCDB3625DC">&lt;note type="note"&gt;
+In the  .NET-Framework 4.5 and .NET Standard 2.0 versions of the nuget package, the method has to allocate a new Array. For this reason it is recommended, to use the overloads &lt;see cref="M:FolkerKinzel.Strings.Base64.Encode(System.Byte[],System.Int32,System.Int32,System.Base64FormattingOptions)"/&gt; or &lt;see cref="M:FolkerKinzel.Strings.Base64.Encode(System.Byte[],System.Base64FormattingOptions)"/&gt; when supporting old framework versions.
+&lt;/note&gt;</T>
+  <T ID="CB6E3E4DD86A439C">&lt;paramref name="options"/&gt; is not a defined &lt;see cref="T:System.Base64FormattingOptions"/&gt; value.</T>
+  <T ID="C465498DC726F03A">The output length was greater than &lt;see cref="F:System.Int32.MaxValue"&gt;Int32.MaxValue&lt;/see&gt;.</T>
+  <T ID="A665809938352810">Converts the Base64-encoded string into a byte array.</T>
+  <T ID="30F18BFCFB0227DC">The string to convert.</T>
+  <T ID="DA0FD4683BDC8964">A byte array decoded from &lt;paramref name="base64"/&gt;.</T>
+  <T ID="5C6B42EDAE82D414">&lt;paramref name="base64"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="87A3AB172C56AF4F">&lt;para&gt;
+The length of &lt;paramref name="base64"/&gt; with ignored white space characters is not zero or a multiple of 4.
+&lt;/para&gt;
+&lt;para&gt;
+- oder -
+&lt;/para&gt;
+&lt;para&gt;
+The format of &lt;paramref name="base64"/&gt; is invalid. &lt;paramref name="base64"/&gt; contains a non-base64 character, more than two padding characters, or a non-space character between the padding characters.
+&lt;/para&gt;</T>
+  <T ID="F74BD7EE7D02BD51">Converts a Base64-string into a corresponding byte array and allows to pass options for the conversion.</T>
+  <T ID="2233EC6FB0227DC">The string to convert.</T>
+  <T ID="5C23A5C23C65CCA1">Options for the conversion.</T>
+  <T ID="A8FCBA473BDC8964">A byte array decoded from &lt;paramref name="base64"/&gt;.</T>
+  <T ID="B6752BB3AE82D414">&lt;paramref name="base64"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
 </Tsltn>
