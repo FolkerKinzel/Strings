@@ -1618,4 +1618,89 @@ The format of &lt;paramref name="base64"/&gt; is invalid. &lt;paramref name="bas
   <T ID="5C23A5C23C65CCA1">Options for the conversion.</T>
   <T ID="A8FCBA473BDC8964">A byte array decoded from &lt;paramref name="base64"/&gt;.</T>
   <T ID="B6752BB3AE82D414">&lt;paramref name="base64"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="E6A5C5D7E23B43BA">Depending on the conversion options specified with &lt;paramref name="options"/&gt;, &lt;paramref name="base64"/&gt; cannot be converted into a &lt;see cref="T:System.Byte"/&gt; array .</T>
+  <T ID="24C760193F701914">Converts a Base64-encoded read only character span into a corresponding byte array and allows to pass options for the conversion.</T>
+  <T ID="95B3095628B170B9">The read only character span to convert.</T>
+  <T ID="8F48DD773C65CCA1">Options for the conversion.</T>
+  <T ID="CFDCAF6A3BDC8964">A byte array decoded from &lt;paramref name="base64"/&gt;.</T>
+  <T ID="967CB8B1E23B43BA">Depending on the conversion options specified with &lt;paramref name="options"/&gt;, &lt;paramref name="base64"/&gt; cannot be converted into a &lt;see cref="T:System.Byte"/&gt; array .</T>
+  <T ID="135BCDEA6C1A6434">Converts a Base64-encoded read only character span into a corresponding byte array.</T>
+  <T ID="EB91603128B170B9">The read only character span to convert.</T>
+  <T ID="A48F4EF93BDC8964">A byte array decoded from &lt;paramref name="base64"/&gt;.</T>
+  <T ID="A010A0CC2C56AF4F">&lt;para&gt;
+The length of &lt;paramref name="base64"/&gt; with ignored white space characters is not zero or a multiple of 4.
+&lt;/para&gt;
+&lt;para&gt;
+- oder -
+&lt;/para&gt;
+&lt;para&gt;
+The format of &lt;paramref name="base64"/&gt; is invalid. &lt;paramref name="base64"/&gt; contains a non-base64 character, more than two padding characters, or a non-space character between the padding characters.
+&lt;/para&gt;</T>
+  <T ID="CF4F38E9298484B8">Named constants to specify options for the parsing of Base64 encoded strings. The flags can be combined.</T>
+  <T ID="16707C98A7FB4316">None of the flags has been set.</T>
+  <T ID="3AEB696A0BD2119A">Setting the flag lets the parser automatically add missing padding characters at the end of the Base64 encoded data.</T>
+  <T ID="BE8A8CEB9434D5F7">Setting the flag lets the parser accept Base64Url too (RFC 4648, chapter 5). (The flag should normally be combined with &lt;see cref="F:FolkerKinzel.Strings.Base64ParserOptions.AcceptMissingPadding"/&gt;.)</T>
+  <T ID="5F9C320829EAA54F">Extension methods for the &lt;see cref="T:System.Text.Encoding"/&gt; class.</T>
+  <T ID="7D16489CB4106301">Encodes all characters of the read only character span to a corresponding byte sequence.</T>
+  <T ID="D53BAF1144D7429E">The &lt;see cref="T:System.Text.Encoding"/&gt; object on which the extension method is executed.</T>
+  <T ID="947881F6BE090BA5">The read only character span that provides the characters that have to be encoded.</T>
+  <T ID="4417510D8F903AFE">A byte array containing the results of the encoding.</T>
+  <T ID="12CBBA66E937738A">&lt;paramref name="encoding"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="E341AFEB06C6DE8D">Decodes all bytes in the specified read only span into a string.</T>
+  <T ID="F4ECE5C744D7429E">The &lt;see cref="T:System.Text.Encoding"/&gt; object on which the extension method is executed.</T>
+  <T ID="767EABB355E7FE25">A read only byte span that is converted into a string.</T>
+  <T ID="82EEE0501CCCAECD">A string decoded from the specified byte span.</T>
+  <T ID="F941FC3AE937738A">&lt;paramref name="encoding"/&gt; is &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="3FA3903A417AE35D">This method is a polyfill for the instance method of current .NET versions. Use this method in the extension method syntax only.</T>
+  <T ID="5544D7B957D9A6D0">Indicates whether a read only character span contains one of the Unicode characters that are passed to the method as a string.</T>
+  <T ID="57A7A0D0BC26D7E7">The read only span to examine.</T>
+  <T ID="A91AB62F06DE735A">A string containing the characters to search for or &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="A42AC822F33BDDE4">&lt;c&gt;true&lt;/c&gt; if one of the characters to be searched for is found in &lt;paramref name="span"/&gt;, otherwise &lt;c&gt;false&lt;/c&gt;. If &lt;paramref name="span"/&gt; is an empty span or &lt;paramref name="values"/&gt; is &lt;c&gt;null&lt;/c&gt; or empty, &lt;c&gt;false&lt;/c&gt; is returned.</T>
+  <T ID="2CC566C2B5245F66">If the length of &lt;paramref name ="values"/&gt; is less than 5, the method uses MemoryExtensions.IndexOfAny&amp;lt;T&amp;gt;(ReadOnlySpan&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the comparison. If the length of &lt;paramref name ="values"/&gt; is greater, &lt;see cref ="M:System.String.IndexOfAny(System.Char[])"/&gt; is used to avoid performance issues.</T>
+  <T ID="22C562A672917496">Searches for the zero-based index of the first occurrence of one of the specified Unicode characters.</T>
+  <T ID="DE9A532EBC26D7E7">The span to examine.</T>
+  <T ID="E5721B5006DE735A">A string that contains the characters to search for or &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="792F4FB562B016E5">The zero-based index of the first occurrence of one of the specified Unicode characters in &lt;paramref name="span"/&gt; or -1 if none of these characters have been found. If &lt;paramref name="values"/&gt; is &lt;c&gt;null&lt;/c&gt; or empty, the method returns -1.</T>
+  <T ID="7DF77881E1C8334F">&lt;para&gt;
+This specialization of the extension method MemoryExtensions.LastIndexOfAny&amp;lt;T&amp;gt;(ReadOnlySpan&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the data type &lt;see cref ="T:System.Char"/&gt; is required to avoid performance problems.
+&lt;/para&gt;
+&lt;para&gt;
+If the length of &lt;paramref name ="values"/&gt; is less than 5, the method uses MemoryExtensions.LastIndexOfAny&amp;lt;T&amp;gt;(ReadOnlySpan&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the comparison. If the length of &lt;paramref name ="values"/&gt; is greater, &lt;see cref ="M:System.String.LastIndexOfAny(System.Char[])"/&gt; is used.
+&lt;/para&gt;</T>
+  <T ID="F2E8225604858F54">Searches for the zero-based index of the last occurrence of one of the specified Unicode characters.</T>
+  <T ID="BB7E47EBBC26D7E7">The span to examine.</T>
+  <T ID="182A114A06DE735A">A string containing the characters to search for or &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="3A08FF3FEA397261">The zero-based index of the last occurrence of one of the specified Unicode characters in &lt;paramref name="span"/&gt; or -1 if none of these characters have been found. If &lt;paramref name="values"/&gt; is &lt;c&gt;null&lt;/c&gt; or empty, the method returns -1.</T>
+  <T ID="66512E67E9F3F6AE">&lt;para&gt;
+This specialization of the extension method MemoryExtensions.LastIndexOfAny&amp;lt;T&amp;gt;(ReadOnlySpan&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the data type &lt;see cref ="T:System.Char"/&gt; is required to avoid performance problems.
+&lt;/para&gt;
+&lt;para&gt;
+If the length of &lt;paramref name ="values"/&gt; is less than 5, the method uses MemoryExtensions.LastIndexOfAny&amp;lt;T&amp;gt;(ReadOnlySpan&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the comparison. If the length of &lt;paramref name ="values"/&gt; is greater, &lt;see cref ="M:System.String.LastIndexOfAny(System.Char[])"/&gt; is used.
+&lt;/para&gt;</T>
+  <T ID="741BDCF3361C7957">Returns the zero-based index of the last occurrence of one of the specified characters in &lt;paramref name="span"/&gt;. The search begins at a specified character position and runs a specified number of character positions backwards to the beginning of the &lt;paramref name="span"/&gt;.</T>
+  <T ID="9CEAFA6D523F4210">The span to search.</T>
+  <T ID="F846B38006DE735A">A string containing the characters to search for or &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="D0E7D633D6EBA283">The start index of the search. The search is done backwards to the beginning of &lt;paramref name="span"/&gt;.</T>
+  <T ID="F4E3F1F554950E41">The number of character positions to examine.</T>
+  <T ID="1CFF9F3C095F2955">The zero-based index of the last occurrence of one of the specified Unicode characters in &lt;paramref name="span"/&gt; or -1 if none of these characters have been found.</T>
+  <T ID="486A44DE78B05FF1">If the length of &lt;paramref name ="values"/&gt; is less than 5, the method uses MemoryExtensions.LastIndexOfAny&amp;lt;T&amp;gt;(ReadOnlySpan&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the comparison. If the length of &lt;paramref name ="values"/&gt; is greater, &lt;see cref ="M:System.String.LastIndexOfAny(System.Char[])"/&gt; is used.</T>
+  <T ID="BA256C24D1341667">&lt;para&gt;
+&lt;paramref name="span"/&gt; is not &lt;see cref="P:System.ReadOnlySpan`1.Empty"/&gt; and &lt;paramref name ="startIndex"/&gt; is less than zero or greater than or equal to the length of &lt;paramref name="span"/&gt;
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref="P:System.ReadOnlySpan`1.Empty"/&gt; and &lt;paramref name ="startIndex"/&gt; - &lt;paramref name ="count"/&gt; + 1 is less than zero.
+&lt;/para&gt;</T>
+  <T ID="BAB0884B6803A740">Indicates whether a read-only character span contains the Unicode character that is passed to the method as argument.</T>
+  <T ID="FBC5D5C267CEDAFB">The zero-based index of &lt;paramref name="value"/&gt; if that character sequence is found, or -1 if it is not. If &lt;paramref name="value"/&gt; is &lt;see cref="P:System.ReadOnlySpan`1.Empty"/&gt;, the last index position in &lt;paramref name="span"/&gt; is returned. In the specific case that &lt;paramref name="span"/&gt; is &lt;see cref="P:System.ReadOnlySpan`1.Empty"/&gt;, that is &lt;c&gt;0&lt;/c&gt;.</T>
+  <T ID="15E45662D8F9B07">The behavior of the method is identical to that of &lt;see cref="M:System.String.LastIndexOf(System.String,System.StringComparison)"/&gt; of the respective framework version. This has changed with .NET 5.0: Since then &lt;paramref name="span"/&gt;.Length is returned if &lt;paramref name="value"/&gt; is &lt;see cref="P:System.ReadOnlySpan`1.Empty"/&gt;.</T>
+  <T ID="ED61A183B51BD9D5">The zero-based index of &lt;paramref name="value"/&gt; if that character sequence is found, or -1 if it is not. If &lt;paramref name="value"/&gt; is &lt;see cref="P:System.String.Empty"/&gt; or &lt;c&gt;null&lt;/c&gt;, the last index position in &lt;paramref name="span"/&gt; is returned. In the specific case that &lt;paramref name="span"/&gt; is &lt;see cref="P:System.ReadOnlySpan`1.Empty"/&gt;, that is &lt;c&gt;0&lt;/c&gt;.</T>
+  <T ID="E82DFBD19301B3E4">The behavior of the method is identical to that of &lt;see cref="M:System.String.LastIndexOf(System.String,System.StringComparison)"/&gt; of the respective framework version. This has changed with .NET 5.0: Since then &lt;paramref name="span"/&gt;.Length is returned if &lt;paramref name="value"/&gt; is &lt;see cref="P:System.ReadOnlySpan`1.Empty"/&gt;.</T>
+  <T ID="1DE34C2C1412FA60">The method performs an ordinal character comparison. If &lt;paramref name="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref="F:System.String.Empty"/&gt; the method returns &lt;c&gt;true&lt;/c&gt;.</T>
+  <T ID="2C4C57460BA066C3">If &lt;paramref name="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref="F:System.String.Empty"/&gt; the method returns &lt;c&gt;true&lt;/c&gt;.</T>
+  <T ID="660E10821412FA60">The method performs an ordinal character comparison. If &lt;paramref name="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref="F:System.String.Empty"/&gt; the method returns &lt;c&gt;true&lt;/c&gt;.</T>
+  <T ID="2852CAB00BA066C3">If &lt;paramref name="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref="F:System.String.Empty"/&gt; the method returns &lt;c&gt;true&lt;/c&gt;.</T>
+  <T ID="8D87299619E2FA7C">Extension methods for the &lt;see cref="T:System.Span`1"&gt;Span&amp;lt;Char&amp;gt;&lt;/see&gt; structure used in the .NET Framework 4.5, .NET Standard 2.0, and .NET Standard 2.1 as polyfills for methods from current .NET versions.</T>
 </Tsltn>

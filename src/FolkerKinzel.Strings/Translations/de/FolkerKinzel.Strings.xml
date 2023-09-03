@@ -118,7 +118,7 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="base64"/> ist <c>null</c>.</exception>
             <exception cref="T:System.FormatException">
             <paramref name="base64"/> lässt sich - abhängig von den mit <paramref name="options"/> angegebenen Konvertierungsoptionen - 
-            nicht in gültiges Base64 umwandeln.
+            nicht in ein <see cref="T:System.Byte"/>-Array umwandeln.
             </exception>
         </member>
         <member name="M:FolkerKinzel.Strings.Base64.GetBytes(System.ReadOnlySpan{System.Char},FolkerKinzel.Strings.Base64ParserOptions)">
@@ -131,7 +131,7 @@
             <returns>Ein Array von 8-Bit-Ganzzahlen ohne Vorzeichen, das <paramref name="base64"/> entspricht.</returns>
             <exception cref="T:System.FormatException">
             <paramref name="base64"/> lässt sich - abhängig von den mit <paramref name="options"/> angegebenen Konvertierungsoptionen - 
-            nicht in gültiges Base64 umwandeln.
+            nicht in ein <see cref="T:System.Byte"/>-Array umwandeln.
             </exception>
         </member>
         <member name="M:FolkerKinzel.Strings.Base64.GetBytes(System.ReadOnlySpan{System.Char})">
@@ -980,8 +980,8 @@
             <returns><c>true</c>, wenn <paramref name="value"/> mit dem Anfang von <paramref name="span"/> übereinstimmt,
             andernfalls <c>false</c>.</returns>
             <remarks>
-            Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="F:System.String.Empty"/> ist
-            wird <c>true</c> zurückgegeben.
+            Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder 
+            <see cref="F:System.String.Empty"/> ist, wird <c>true</c> zurückgegeben.
             </remarks>
         </member>
         <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.StartsWith(System.ReadOnlySpan{System.Char},System.String,System.StringComparison)">
@@ -996,7 +996,7 @@
             <returns><c>true</c>, wenn <paramref name="value"/> mit dem Anfang von <paramref name="span"/> übereinstimmt,
             andernfalls <c>false</c>.</returns>
             <remarks>
-            Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="F:System.String.Empty"/> ist
+            Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="F:System.String.Empty"/> ist,
             wird <c>true</c> zurückgegeben.
             </remarks>
             <exception cref="T:System.ArgumentException"><paramref name="comparisonType"/> ist kein definierter <see cref="T:System.StringComparison"/>-Wert.</exception>
@@ -1010,7 +1010,8 @@
             <returns><c>true</c>, wenn <paramref name="value"/> mit dem Ende von <paramref name="span"/> übereinstimmt,
             andernfalls <c>false</c>.</returns>
             <remarks>
-            Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="F:System.String.Empty"/> ist
+            Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder 
+            <see cref="F:System.String.Empty"/> ist,
             wird <c>true</c> zurückgegeben.
             </remarks>
         </member>
@@ -1026,7 +1027,7 @@
             <returns><c>true</c>, wenn <paramref name="value"/> mit dem Ende von <paramref name="span"/> übereinstimmt,
             andernfalls <c>false</c>.</returns>
             <remarks>
-            Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="F:System.String.Empty"/> ist
+            Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="F:System.String.Empty"/> ist,
             wird <c>true</c> zurückgegeben.
             </remarks>
             <exception cref="T:System.ArgumentException"><paramref name="comparisonType"/> ist kein definierter <see cref="T:System.StringComparison"/>-Wert.</exception>

@@ -125,8 +125,8 @@ public static class ReadOnlySpanPolyfillExtension
     /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Anfang von <paramref name="span"/> übereinstimmt,
     /// andernfalls <c>false</c>.</returns>
     /// <remarks>
-    /// Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
-    /// wird <c>true</c> zurückgegeben.
+    /// Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder 
+    /// <see cref="string.Empty"/> ist, wird <c>true</c> zurückgegeben.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool StartsWith(this ReadOnlySpan<char> span, string? value)
@@ -143,7 +143,7 @@ public static class ReadOnlySpanPolyfillExtension
     /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Anfang von <paramref name="span"/> übereinstimmt,
     /// andernfalls <c>false</c>.</returns>
     /// <remarks>
-    /// Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
+    /// Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist,
     /// wird <c>true</c> zurückgegeben.
     /// </remarks>
     /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein definierter <see cref="StringComparison"/>-Wert.</exception>
@@ -160,7 +160,8 @@ public static class ReadOnlySpanPolyfillExtension
     /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Ende von <paramref name="span"/> übereinstimmt,
     /// andernfalls <c>false</c>.</returns>
     /// <remarks>
-    /// Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
+    /// Die Methode führt einen Ordinalzeichenvergleich durch. Wenn <paramref name="value"/>&#160;<c>null</c> oder 
+    /// <see cref="string.Empty"/> ist,
     /// wird <c>true</c> zurückgegeben.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -178,7 +179,7 @@ public static class ReadOnlySpanPolyfillExtension
     /// <returns><c>true</c>, wenn <paramref name="value"/> mit dem Ende von <paramref name="span"/> übereinstimmt,
     /// andernfalls <c>false</c>.</returns>
     /// <remarks>
-    /// Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist
+    /// Wenn <paramref name="value"/>&#160;<c>null</c> oder <see cref="string.Empty"/> ist,
     /// wird <c>true</c> zurückgegeben.
     /// </remarks>
     /// <exception cref="ArgumentException"><paramref name="comparisonType"/> ist kein definierter <see cref="StringComparison"/>-Wert.</exception>
