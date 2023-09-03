@@ -26,7 +26,7 @@ public static class SpanPolyfillExtension
         => span.IndexOf(value) != -1;
 
     /// <summary>
-    /// Entfernt alle führenden und nachfolgenden Leerzeichen aus einer schreibgeschützten Zeichenspanne.
+    /// Entfernt alle führenden und nachfolgenden Leerzeichen aus einer Zeichenspanne.
     /// </summary>
     /// <param name="span">Die Quellspanne, aus der die Zeichen entfernt werden.</param>
     /// <returns>Die zugeschnittene Zeichenspanne.</returns>
@@ -35,7 +35,7 @@ public static class SpanPolyfillExtension
 
 
     /// <summary>
-    /// Entfernt alle führenden Leerzeichen aus einer schreibgeschützten Zeichenspanne.
+    /// Entfernt alle führenden Leerzeichen aus einer Zeichenspanne.
     /// </summary>
     /// <param name="span">Die Quellspanne, aus der die Zeichen entfernt werden.</param>
     /// <returns>Die zugeschnittene Zeichenspanne.</returns>
@@ -44,7 +44,7 @@ public static class SpanPolyfillExtension
         => span.Slice(span.GetTrimmedStart());
 
     /// <summary>
-    /// Entfernt alle nachfolgenden Leerzeichen aus einer schreibgeschützten Zeichenspanne.
+    /// Entfernt alle nachfolgenden Leerzeichen aus einer Zeichenspanne.
     /// </summary>
     /// <param name="span">Die Quellspanne, aus der die Zeichen entfernt werden.</param>
     /// <returns>Die zugeschnittene Zeichenspanne.</returns>

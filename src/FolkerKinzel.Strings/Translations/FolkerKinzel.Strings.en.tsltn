@@ -1703,4 +1703,52 @@ If the length of &lt;paramref name ="values"/&gt; is less than 5, the method use
   <T ID="660E10821412FA60">The method performs an ordinal character comparison. If &lt;paramref name="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref="F:System.String.Empty"/&gt; the method returns &lt;c&gt;true&lt;/c&gt;.</T>
   <T ID="2852CAB00BA066C3">If &lt;paramref name="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref="F:System.String.Empty"/&gt; the method returns &lt;c&gt;true&lt;/c&gt;.</T>
   <T ID="8D87299619E2FA7C">Extension methods for the &lt;see cref="T:System.Span`1"&gt;Span&amp;lt;Char&amp;gt;&lt;/see&gt; structure used in the .NET Framework 4.5, .NET Standard 2.0, and .NET Standard 2.1 as polyfills for methods from current .NET versions.</T>
+  <T ID="72A98275F32A978D">The methods of this class should only be used in the extension method syntax to simulate the methods of the &lt;see cref="T:System.Span`1"&gt;Span&amp;lt;Char&amp;gt;&lt;/see&gt; structure, which exist in current frameworks.</T>
+  <T ID="32DADEE7B413C05C">Indicates whether a read-only character span contains a specified Unicode character.</T>
+  <T ID="F8B6A2CFC6DCBCB1">The span to examine.</T>
+  <T ID="AA4211680AB9F496">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; has been found, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="BC9D1FD1D05DB862">The Unicode character to search for.</T>
+  <T ID="DD6642AB2661F77">Removes all leading and trailing white space characters from a character span.</T>
+  <T ID="29CF83104C7E2198">The source span from which the characters are removed.</T>
+  <T ID="1CDE5A9F955512B">The sliced span.</T>
+  <T ID="27D0EA75DC1CC28D">Removes all leading white space characters from a character span.</T>
+  <T ID="5A3B8F9F4C7E2198">The source span from which the characters are removed.</T>
+  <T ID="F49297BCF955512B">The sliced span.</T>
+  <T ID="B9F3863CB6873CB0">Removes all trailing white space characters from a character span.</T>
+  <T ID="64CD5C1C4C7E2198">The source span from which the characters are removed.</T>
+  <T ID="403B5AC3F955512B">The sliced span.</T>
+  <T ID="73CEFEF2DD0B15DC">Determines whether this &lt;paramref name="span"/&gt; and the specified other &lt;paramref name="other"/&gt;&amp;#160;&lt;see cref="T:System.String"/&gt; have the same characters when compared using the specified &lt;paramref name="comparisonType"/&gt; option.</T>
+  <T ID="F84B2AD9A6A03F7B">The source span.</T>
+  <T ID="8E168052CB2FC16E">The value to compare with the source span.</T>
+  <T ID="ADBA25DC72E95FF">An enumeration value that determines how &lt;paramref name="span"/&gt; and &lt;paramref name="other"/&gt; are compared.</T>
+  <T ID="4F5F32E7FDA8E67D">&lt;c&gt;true&lt;/c&gt; if equal, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="5C04B8B3A28C4625">Indicates whether a specified value occurs within a character span.</T>
+  <T ID="9592804BA6A03F7B">The source span.</T>
+  <T ID="4C378FDE52485DE7">The value to seek within the source span. &lt;paramref name="value"/&gt; can be &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="F1EF3C5ECD7C3FFA">An enumeration value that determines how &lt;paramref name="span"/&gt; and &lt;paramref name="value"/&gt; are compared.</T>
+  <T ID="4CD0D156EAD802E1">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; has been found, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="A69C1CE3CC3D338D">Indicates whether a read-only character span begins with a specified &lt;see cref="T:System.String"/&gt;.</T>
+  <T ID="83C5CD3A6A03F7B">The source span.</T>
+  <T ID="633794CA35FE867">The &lt;see cref="T:System.String"/&gt; to compare with the beginning of the source span.</T>
+  <T ID="4A3F539657940B7A">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; matches the beginning of &lt;paramref name="span"/&gt;, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="A25D465E1412FA60">The method performs an ordinal character comparison. If &lt;paramref name="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref="F:System.String.Empty"/&gt; the method returns &lt;c&gt;true&lt;/c&gt;.</T>
+  <T ID="4E160CAE4637399E">Indicates whether a character span begins with a specified &lt;see cref="T:System.String"/&gt; when compared using a specified &lt;see cref="T:System.StringComparison"/&gt; value.</T>
+  <T ID="2513449EA6A03F7B">The source span.</T>
+  <T ID="72D5FA20A35FE867">The &lt;see cref="T:System.String"/&gt; to compare with the beginning of the source span.</T>
+  <T ID="C72CFFDADD28B219">An enumeration value that determines how &lt;paramref name="span"/&gt; and &lt;paramref name="other"/&gt; are compared.</T>
+  <T ID="5419236957940B7A">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; matches the beginning of &lt;paramref name="span"/&gt;, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="93CFDD870BA066C3">If &lt;paramref name="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref="F:System.String.Empty"/&gt; the method returns &lt;c&gt;true&lt;/c&gt;.</T>
+  <T ID="DB5A63C81EBACA49">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enumeration.</T>
+  <T ID="100D79249E1E3069">Indicates whether a character span ends with the specified &lt;see cref="T:System.String"/&gt;.</T>
+  <T ID="511CD093A6A03F7B">The source span.</T>
+  <T ID="19317B6DF44C0B24">The &lt;see cref="T:System.String"/&gt; to compare with the end of the source span.</T>
+  <T ID="DC61597BD5237705">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; matches the end of &lt;paramref name="span"/&gt;, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="B1EE5EE51412FA60">The method performs an ordinal character comparison. If &lt;paramref name="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref="F:System.String.Empty"/&gt; the method returns &lt;c&gt;true&lt;/c&gt;.</T>
+  <T ID="64375EA60C0DC2D6">Indicates whether a character span ends with a specified &lt;see cref="T:System.String"/&gt; when compared using a specified &lt;see cref="T:System.StringComparison"/&gt; value.</T>
+  <T ID="E1BACF80A6A03F7B">The source span.</T>
+  <T ID="24CA7F5FF44C0B24">The &lt;see cref="T:System.String"/&gt; to compare with the end of the source span.</T>
+  <T ID="507A10F9DD28B219">An enumeration value that determines how &lt;paramref name="span"/&gt; and &lt;paramref name="value"/&gt; are compared.</T>
+  <T ID="ECD15273D5237705">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; matches the end of &lt;paramref name="span"/&gt;, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="5A2B2E870BA066C3">If &lt;paramref name="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref="F:System.String.Empty"/&gt; the method returns &lt;c&gt;true&lt;/c&gt;.</T>
+  <T ID="B1DFBC181EBACA49">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enum.</T>
 </Tsltn>

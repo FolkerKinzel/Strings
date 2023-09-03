@@ -1054,21 +1054,21 @@
         </member>
         <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.Trim(System.Span{System.Char})">
             <summary>
-            Entfernt alle führenden und nachfolgenden Leerzeichen aus einer schreibgeschützten Zeichenspanne.
+            Entfernt alle führenden und nachfolgenden Leerzeichen aus einer Zeichenspanne.
             </summary>
             <param name="span">Die Quellspanne, aus der die Zeichen entfernt werden.</param>
             <returns>Die zugeschnittene Zeichenspanne.</returns>
         </member>
         <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.TrimStart(System.Span{System.Char})">
             <summary>
-            Entfernt alle führenden Leerzeichen aus einer schreibgeschützten Zeichenspanne.
+            Entfernt alle führenden Leerzeichen aus einer Zeichenspanne.
             </summary>
             <param name="span">Die Quellspanne, aus der die Zeichen entfernt werden.</param>
             <returns>Die zugeschnittene Zeichenspanne.</returns>
         </member>
         <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.TrimEnd(System.Span{System.Char})">
             <summary>
-            Entfernt alle nachfolgenden Leerzeichen aus einer schreibgeschützten Zeichenspanne.
+            Entfernt alle nachfolgenden Leerzeichen aus einer Zeichenspanne.
             </summary>
             <param name="span">Die Quellspanne, aus der die Zeichen entfernt werden.</param>
             <returns>Die zugeschnittene Zeichenspanne.</returns>
