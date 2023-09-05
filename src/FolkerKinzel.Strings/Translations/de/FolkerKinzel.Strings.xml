@@ -1298,14 +1298,14 @@
             
             <exception cref="T:System.ArgumentOutOfRangeException">
             <para>
-            <paramref name="span"/> ist nicht <see cref="P:System.ReadOnlySpan`1.Empty"/> und <paramref name="startIndex"/> ist 
+            <paramref name="span"/> ist nicht <see cref="P:System.Span`1.Empty"/> und <paramref name="startIndex"/> ist 
             kleiner als 0 oder größer oder gleich der Länge von <paramref name="span"/>
             </para>
             <para>
             - oder -
             </para>
             <para>
-            <paramref name="span"/> ist nicht <see cref="P:System.ReadOnlySpan`1.Empty"/> und <paramref name="startIndex"/> - <paramref name="count"/> + 1 
+            <paramref name="span"/> ist nicht <see cref="P:System.Span`1.Empty"/> und <paramref name="startIndex"/> - <paramref name="count"/> + 1 
             ist kleiner als 0.
             </para>
             </exception>

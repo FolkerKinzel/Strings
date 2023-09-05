@@ -1751,4 +1751,169 @@ If the length of &lt;paramref name ="values"/&gt; is less than 5, the method use
   <T ID="ECD15273D5237705">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; matches the end of &lt;paramref name="span"/&gt;, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
   <T ID="5A2B2E870BA066C3">If &lt;paramref name="value"/&gt; is &lt;c&gt;null&lt;/c&gt; or &lt;see cref="F:System.String.Empty"/&gt; the method returns &lt;c&gt;true&lt;/c&gt;.</T>
   <T ID="B1DFBC181EBACA49">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enum.</T>
+  <T ID="F325533118CE5840">Specifies the zero-based index of the last occurrence of a specified string in &lt;paramref name ="span"/&gt;. A parameter specifies the type of search for the specified string.</T>
+  <T ID="C451927A6CABE0FA">The span to search.</T>
+  <T ID="903DD144C979162C">The &lt;see cref ="T:System.String"/&gt; to search for or &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="1C3CC2B6B914CC98">One of the enumeration values that specifies the rules for the search.</T>
+  <T ID="DF7AD6BA7A7A2FB0">The zero-based index of &lt;paramref name="value"/&gt; if that string is found, or -1 if it is not.</T>
+  <T ID="C8FC53E42140445F">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enum.</T>
+  <T ID="4EF607327009DC21">Specifies the  zero based index position of the last occurrence of a specified string in &lt;paramref name ="span"/&gt;. The search begins at a specified character position and runs backwards to the beginning of the character span for a specified number of character positions. A parameter specifies the type of comparison to be performed when searching for the specified string.</T>
+  <T ID="965DC6DC6CABE0FA">The span to search.</T>
+  <T ID="E04C7D7C979162C">The &lt;see cref ="T:System.String"/&gt; to search for or &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="A65C709EED0DB2EA">The start index of the search. The search continues from &lt;paramref name ="startIndex"/&gt; to the beginning of &lt;paramref name ="span"/&gt;.</T>
+  <T ID="9784F027D1BD11B9">The number of character positions to examine.</T>
+  <T ID="B12674D8B914CC98">One of the enumeration values that specifies the rules for the search.</T>
+  <T ID="3EB5C729285C1838">The zero-based index of the last occurence of &lt;paramref name="value"/&gt; if that string is found, or -1 if it's not or if &lt;paramref name="span"/&gt; is empty.</T>
+  <T ID="73BEF83A6057C30">&lt;para&gt;
+&lt;paramref name ="count"/&gt; is a negative value
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.Span`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is a negative value.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.Span`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is greater than the length of &lt;paramref name ="span"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref ="P:System.Span`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; + 1 - &lt;paramref name ="count"/&gt; indicates a position that is not within &lt;paramref name ="span"/&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is &lt;see cref ="P:System.Span`1.Empty"/&gt;, and &lt;paramref name ="startIndex"/&gt; is less than -1 or greater than 0.
+&lt;/para&gt;</T>
+  <T ID="66BEF4E72140445F">&lt;paramref name="comparisonType"/&gt; is not a defined value of the &lt;see cref="T:System.StringComparison"/&gt; enum.</T>
+  <T ID="1DE5B803094DC2">Indicates whether a character span contains one of the Unicode characters that are passed to the method as a string.</T>
+  <T ID="6E5555DBC26D7E7">The span to examine.</T>
+  <T ID="52452F5306DE735A">A string containing the characters to search for or &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="680C01E3F33BDDE4">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="span"/&gt; contains one of the characters passed with &lt;paramref name="values"/&gt;. If &lt;paramref name="span"/&gt; is empty or &lt;paramref name="values"/&gt; is &lt;c&gt;null&lt;/c&gt; or empty, &lt;c&gt;false&lt;/c&gt; is returned.</T>
+  <T ID="FF789DBDB5245F66">If the length of &lt;paramref name ="values"/&gt; is less than 5, the method uses MemoryExtensions.IndexOfAny&amp;lt;T&amp;gt;(ReadOnlySpan&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the comparison. If the length of &lt;paramref name ="values"/&gt; is greater, &lt;see cref ="M:System.String.IndexOfAny(System.Char[])"/&gt; is used to avoid performance issues.</T>
+  <T ID="25D9DD7C72917496">Searches for the zero-based index of the first occurrence of one of the specified Unicode characters.</T>
+  <T ID="25BC38C9BC26D7E7">The span to search.</T>
+  <T ID="3AF8543A06DE735A">A string containing the characters to search for or &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="AE72C4AF62B016E5">The zero-based index of the first occurrence of one of the specified Unicode characters in &lt;paramref name="span"/&gt; or -1 if none of these characters have been found. If &lt;paramref name="values"/&gt; is &lt;c&gt;null&lt;/c&gt; or empty, the method returns -1.</T>
+  <T ID="8993A299A817F1F7">&lt;para&gt;
+This specialization of the extension method MemoryExtensions.IndexOfAny&amp;lt;T&amp;gt;(Span&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the data type &lt;see cref ="T:System.Char"/&gt; is required to avoid performance problems.
+&lt;/para&gt;
+&lt;para&gt;
+If the length of &lt;paramref name ="values"/&gt; is less than 5, the method uses MemoryExtensions.IndexOfAny&amp;lt;T&amp;gt;(ReadOnlySpan&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the comparison. If the length of &lt;paramref name ="values"/&gt; is greater, &lt;see cref ="M:System.String.IndexOfAny(System.Char[])"/&gt; is used.
+&lt;/para&gt;</T>
+  <T ID="6D34452304858F54">Searches for the zero-based index of the last occurrence of one of the specified Unicode characters.</T>
+  <T ID="6BD3F211BC26D7E7">The span to search.</T>
+  <T ID="54EEDDB106DE735A">A string containing the characters to search for or &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="2C18FC4EEA397261">The zero-based index of the last occurrence of one of the specified Unicode characters in &lt;paramref name="span"/&gt; or -1 if none of these characters have been found. If &lt;paramref name="values"/&gt; is &lt;c&gt;null&lt;/c&gt; or empty, the method returns -1.</T>
+  <T ID="ACAEC78E47537EFB">&lt;para&gt;
+This specialization of the extension method MemoryExtensions.LastIndexOfAny&amp;lt;T&amp;gt;(Span&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the data type &lt;see cref ="T:System.Char"/&gt; is required to avoid performance problems.
+&lt;/para&gt;
+&lt;para&gt;
+If the length of &lt;paramref name ="values"/&gt; is less than 5, the method uses MemoryExtensions.LastIndexOfAny&amp;lt;T&amp;gt;(ReadOnlySpan&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the comparison. If the length of &lt;paramref name ="values"/&gt; is greater, &lt;see cref ="M:System.String.LastIndexOfAny(System.Char[])"/&gt; is used.
+&lt;/para&gt;</T>
+  <T ID="8BEF947D361C7957">Returns the zero-based index of the last occurrence of one of the specified characters in &lt;paramref name="span"/&gt;. The search begins at a specified character position and runs a specified number of character positions backwards to the beginning of the &lt;paramref name="span"/&gt;.</T>
+  <T ID="8AC9D73A6CABE0FA">The span to search.</T>
+  <T ID="45CFDB8A06DE735A">A string containing the characters to search for or &lt;c&gt;null&lt;/c&gt;.</T>
+  <T ID="9FDE2646D6EBA283">The start index of the search. The search is done backwards to the beginning of &lt;paramref name="span"/&gt;.</T>
+  <T ID="1BACA92954950E41">The number of characters positions to examine in &lt;paramref name="span"/&gt;.</T>
+  <T ID="BC69F4F4095F2955">The zero-based index of the last occurrence of one of the specified Unicode characters in &lt;paramref name="span"/&gt; or -1 if none of these characters have been found.</T>
+  <T ID="F41C28AC78B05FF1">If the length of &lt;paramref name ="values"/&gt; is less than 5, the method uses &lt;see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})"/&gt; for the comparison. If the length of &lt;paramref name ="values"/&gt; is greater, &lt;see cref="M:System.String.LastIndexOfAny(System.Char[])"/&gt; is used to avoid performance issues.</T>
+  <T ID="7A6BBAA1E0557AD7">&lt;para&gt;
+&lt;paramref name="span"/&gt; is not &lt;see cref="P:System.Span`1.Empty"/&gt; and &lt;paramref name ="startIndex"/&gt; is less than zero or greater than or equal to the length of &lt;paramref name="span"/&gt;
+&lt;/para&gt;
+&lt;para&gt;
+- or -
+&lt;/para&gt;
+&lt;para&gt;
+&lt;paramref name ="span"/&gt; is not &lt;see cref="P:System.Span`1.Empty"/&gt; and &lt;paramref name ="startIndex"/&gt; - &lt;paramref name ="count"/&gt; + 1 is less than zero.
+&lt;/para&gt;</T>
+  <T ID="6C9CA788DE74F327">&lt;para&gt;
+The method uses &lt;see cref ="M:System.Char.IsWhiteSpace(System.Char)"/&gt; to identify white space characters and works more thoroughly with it than &lt;see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)"&gt;Regex.Replace(string input, @"\s+", string replacement)&lt;/see&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify newline characters.
+&lt;/para&gt;</T>
+  <T ID="E7547971DE74F327">&lt;para&gt;
+The method uses &lt;see cref="M:System.Char.IsWhiteSpace(System.Char)"/&gt; to identify white space characters and works more thoroughly with it than &lt;see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)"&gt;Regex.Replace(string input, @"\s+", string replacement)&lt;/see&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+&lt;see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify newline characters.
+&lt;/para&gt;</T>
+  <T ID="429231CDE74F327">&lt;para&gt;
+The method uses &lt;see cref="M:System.Char.IsWhiteSpace(System.Char)"/&gt; to identify white space characters and works more thoroughly with it than &lt;see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)"&gt;Regex.Replace(string input, @"\s+", string replacement)&lt;/see&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+&lt;see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify newline characters.
+&lt;/para&gt;</T>
+  <T ID="9578735056BB535A">&lt;para&gt;
+&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify newline characters. The sequences CRLF and LFCR are treated as one line break.
+&lt;/para&gt;
+&lt;note type ="caution"&gt;
+This method differs from &lt;see cref ="M:FolkerKinzel.Strings.StringBuilderExtension.ReplaceLineEndings(System.Text.StringBuilder,System.String)"/&gt; in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line break.
+&lt;/note&gt;</T>
+  <T ID="65CA41B4DE74F327">&lt;para&gt;
+The method uses &lt;see cref="M:System.Char.IsWhiteSpace(System.Char)"/&gt; to identify white space characters and works more thoroughly with it than &lt;see cref="M:System.Text.RegularExpressions.Regex.Replace(System.String,System.String,System.String)"&gt;Regex.Replace(string input, @"\s+", string replacement)&lt;/see&gt;.
+&lt;/para&gt;
+&lt;para&gt;
+&lt;see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify newline characters.
+&lt;/para&gt;</T>
+  <T ID="B10626F553F206EB">&lt;para&gt;
+&lt;see cref ="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used to identify newline characters. The sequences CRLF and LFCR are treated as one line break.
+&lt;/para&gt;
+&lt;note type ="caution"&gt;
+This method differs from &lt;see cref ="M:FolkerKinzel.Strings.StringBuilderExtension.ReplaceLineEndings(System.Text.StringBuilder,System.String)"/&gt; in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line break.
+&lt;/note&gt;</T>
+  <T ID="F1DF6AC3C31D3467">Extension methods for the &lt;see cref="T:System.Span`1"&gt;Span&amp;lt;Char&amp;gt;&lt;/see&gt; struct</T>
+  <T ID="3E56F8C3E32605C4">Indicates whether a specified sequence of Unicode characters occurs within a character span.</T>
+  <T ID="FEE0728EA6A03F7B">The source span.</T>
+  <T ID="83819524FC2889B">The character sequence to search for.</T>
+  <T ID="EA703363CD7C3FFA">An enumeration value that determines how &lt;paramref name="span"/&gt; and &lt;paramref name="other"/&gt; are compared.</T>
+  <T ID="E0631690EAD802E1">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="value"/&gt; has been found, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
+  <T ID="1E406AE80B4FCC2C">Indicates whether a character span contains one of the Unicode characters that are passed to the method as a read only character span.</T>
+  <T ID="FCC8E2FFBC26D7E7">The span to examine.</T>
+  <T ID="CD3113A2F13A4FB1">A read-only character span that contains the characters to search for.</T>
+  <T ID="F3C26171086BB66A">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="span"/&gt; contains one of the characters passed with &lt;paramref name="values"/&gt;. If &lt;paramref name="span"/&gt; or &lt;paramref name="values"/&gt; are empty, &lt;c&gt;false&lt;/c&gt; is returned.</T>
+  <T ID="6384C945B5245F66">If the length of &lt;paramref name ="values"/&gt; is less than 5, the method uses MemoryExtensions.IndexOfAny&amp;lt;T&amp;gt;(ReadOnlySpan&amp;lt;T&amp;gt;, ReadOnlySpan&amp;lt;T&amp;gt;) for the comparison. If the length of &lt;paramref name ="values"/&gt; is greater, &lt;see cref ="M:System.String.IndexOfAny(System.Char[])"/&gt; is used to avoid performance issues.</T>
+  <T ID="42940BE3F879C93C">Indicates whether a character span contains one of the two characters that are passed to the method as arguments.</T>
+  <T ID="4C8434A7BC26D7E7">The span to examine.</T>
+  <T ID="9DD52C40621D3E8B">The first character to search for.</T>
+  <T ID="9DD52C4149D8BC06">The second character to search for.</T>
+  <T ID="3EB34C3A98466F9C">&lt;c&gt;true&lt;/c&gt; if one of the characters to be searched for is found in the span, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="F8D1B8266C6962E3">MemoryExtensions.IndexOfAny&amp;lt;T&amp;gt;(Span&amp;lt;T&amp;gt;, T, T) is used for the comparison.</T>
+  <T ID="3D80247AD5D77B58">Indicates whether a character span contains one of the three characters that are passed to the method as arguments.</T>
+  <T ID="AE31563ABC26D7E7">The span to examine.</T>
+  <T ID="A7E19B1B621D3E8B">The first character to search for.</T>
+  <T ID="A7E19B1C49D8BC06">The second character to search for.</T>
+  <T ID="A7E19B1D408D16FE">The third character to search for.</T>
+  <T ID="53C20FF198466F9C">&lt;c&gt;true&lt;/c&gt; if one of the characters to be searched for is found in the span, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="6357FEA9082BAB57">MemoryExtensions.IndexOfAny&amp;lt;T&amp;gt;(Span&amp;lt;T&amp;gt;, T, T, T) is used for the comparison.</T>
+  <T ID="D88DD44351ACFCDC">Indicates whether a character span contains a newline character.</T>
+  <T ID="370AB138C6DCBCB1">The span to search.</T>
+  <T ID="634FAD6CEB82C8E5">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="span"/&gt; contains a newline character, otherwise  &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="319FC91C60457753">&lt;see cref="M:FolkerKinzel.Strings.CharExtension.IsNewLine(System.Char)"/&gt; is used for the comparison.</T>
+  <T ID="DD3AA71716A680DB">Indicates whether a character span contains a white space character.</T>
+  <T ID="DBA0813BC6DCBCB1">The span to search.</T>
+  <T ID="CE0766261428BBF3">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="span"/&gt; contains white space, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="DBEA35C6962AF8F">&lt;see cref="M:System.Char.IsWhiteSpace(System.Char)"/&gt; is used for the comparison.</T>
+  <T ID="1A04E88F13BAD2FC">Indicates whether a character span ends with the specified Unicode character.</T>
+  <T ID="E33DB639BC26D7E7">The span to examine.</T>
+  <T ID="C993797AB7371F16">The character to search for.</T>
+  <T ID="10D53A6440D010EC">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="span"/&gt; ends with &lt;paramref name="value"/&gt;, otherwise  &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="E6616634E1E70044">The method performs an ordinal character comparison.</T>
+  <T ID="C67CB3A077F8C56B">Indicates whether &lt;paramref name="span"/&gt; ends with &lt;paramref name="value"/&gt;  when compared using a specified &lt;see cref="T:System.StringComparison"/&gt; value.</T>
+  <T ID="65B2E52C5F806C06">The span to examine.</T>
+  <T ID="E2AD2F66D254CF17">The character sequence to compare with the end of &lt;paramref name="span"/&gt;.</T>
+  <T ID="30C70DB13CCFB897">One of the enumeration values that specifies the rules for the comparison.</T>
+  <T ID="6493312540D010EC">&lt;c&gt;true&lt;/c&gt; if &lt;paramref name="span"/&gt; ends with &lt;paramref name="value"/&gt;, otherwise  &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="C2FB9AF64DC57F30">Determines whether this &lt;paramref name="span"/&gt; and &lt;paramref name="other"/&gt; have the same characters when compared using the specified &lt;paramref name="comparisonType"/&gt; option.</T>
+  <T ID="69002E75F806C06">The span to examine.</T>
+  <T ID="FCAAC1BDC153699C">The value to compare with the source span.</T>
+  <T ID="E388AB98C72E95FF">An enumeration value that determines how &lt;paramref name="span"/&gt; and &lt;paramref name="other"/&gt; are compared.</T>
+  <T ID="AB8F68DBFDA8E67D">&lt;c&gt;true&lt;/c&gt; if identical, &lt;c&gt;false&lt;/c&gt; otherwise.</T>
 </Tsltn>

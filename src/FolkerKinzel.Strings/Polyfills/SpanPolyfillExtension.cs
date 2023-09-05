@@ -306,14 +306,14 @@ public static class SpanPolyfillExtension
     /// 
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="span"/> ist nicht <see cref="ReadOnlySpan{T}.Empty"/> und <paramref name="startIndex"/> ist 
+    /// <paramref name="span"/> ist nicht <see cref="Span{T}.Empty"/> und <paramref name="startIndex"/> ist 
     /// kleiner als 0 oder größer oder gleich der Länge von <paramref name="span"/>
     /// </para>
     /// <para>
     /// - oder -
     /// </para>
     /// <para>
-    /// <paramref name="span"/> ist nicht <see cref="ReadOnlySpan{T}.Empty"/> und <paramref name="startIndex"/> - <paramref name="count"/> + 1 
+    /// <paramref name="span"/> ist nicht <see cref="Span{T}.Empty"/> und <paramref name="startIndex"/> - <paramref name="count"/> + 1 
     /// ist kleiner als 0.
     /// </para>
     /// </exception>
