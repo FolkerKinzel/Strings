@@ -40,13 +40,13 @@ public static partial class SpanExtension
     /// - oder -
     /// </para>
     /// <para>
-    /// <paramref name="span"/> ist nicht <see cref="ReadOnlySpan{T}.Empty"/>, und <paramref name="startIndex"/> ist ein negativer Wert.
+    /// <paramref name="span"/> ist nicht <see cref="Span{T}.Empty"/>, und <paramref name="startIndex"/> ist ein negativer Wert.
     /// </para>
     /// <para>
     /// - oder -
     /// </para>
     /// <para>
-    /// <paramref name="span"/> ist nicht <see cref="ReadOnlySpan{T}.Empty"/>, und <paramref name="startIndex"/> ist größer als die Länge von <paramref name="span"/>.
+    /// <paramref name="span"/> ist nicht <see cref="Span{T}.Empty"/>, und <paramref name="startIndex"/> ist größer als die Länge von <paramref name="span"/>.
     /// </para>
     /// <para>
     /// - oder -

@@ -71,8 +71,7 @@ public static partial class StringBuilderExtension
 
         for (int i = startIndex; i < count; i++)
         {
-            char current = builder[i];
-            builder[i] = char.ToLowerInvariant(current);
+            builder[i] = char.ToLowerInvariant(builder[i]);
         }
 
         return builder;

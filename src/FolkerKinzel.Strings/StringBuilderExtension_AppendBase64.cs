@@ -6,11 +6,13 @@ namespace FolkerKinzel.Strings;
 public static partial class StringBuilderExtension
 {
     /// <summary>
-    /// Fügt den Inhalt einer <see cref="byte"/>-Enumeration als Base64-kodierte Zeichenfolge
+    /// Fügt den Inhalt einer <see cref="byte"/>-Sammlung als Base64-kodierte Zeichenfolge
     /// am Ende eines <see cref="StringBuilder"/>-Objekts an.
     /// </summary>
     /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
     /// <param name="bytes">Die <see cref="byte"/>-Enumeration, die die anzufügenden Daten enthält.</param>
+    /// <param name="options">Ein Enumerationswert, der es erlaubt festzulegen, ob in das Base64 automatisch Zeilenumbrüche 
+    /// eingefügt werden sollen.</param>
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
     /// <remarks>Die Methode verwendet eine eigene Base64-Implementierung, die etwas langsamer als die BCL-Methoden
     /// ist, aber für den Zweck sehr viel weniger Heap-Speicher alloziert.</remarks>
@@ -31,6 +33,8 @@ public static partial class StringBuilderExtension
     /// </summary>
     /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
     /// <param name="bytes">Das <see cref="byte"/>-Array, das die anzufügenden Daten enthält.</param>
+    /// <param name="options">Ein Enumerationswert, der es erlaubt festzulegen, ob in das Base64 automatisch Zeilenumbrüche 
+    /// eingefügt werden sollen.</param>
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
     /// <remarks>Die Methode verwendet eine eigene Base64-Implementierung, die etwas langsamer als die BCL-Methoden
     /// ist, aber für den Zweck sehr viel weniger Heap-Speicher alloziert.</remarks>
@@ -49,6 +53,8 @@ public static partial class StringBuilderExtension
     /// </summary>
     /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
     /// <param name="bytes">Die schreibgeschützte Bytespanne, die die anzufügenden Daten enthält.</param>
+    /// <param name="options">Ein Enumerationswert, der es erlaubt festzulegen, ob in das Base64 automatisch Zeilenumbrüche 
+    /// eingefügt werden sollen.</param>
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
     /// <remarks>Die Methode verwendet eine eigene Base64-Implementierung, die etwas langsamer als die BCL-Methoden
     /// ist, aber für den Zweck sehr viel weniger Heap-Speicher alloziert.</remarks>

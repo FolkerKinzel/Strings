@@ -2383,13 +2383,13 @@
             - oder -
             </para>
             <para>
-            <paramref name="span"/> ist nicht <see cref="P:System.ReadOnlySpan`1.Empty"/>, und <paramref name="startIndex"/> ist ein negativer Wert.
+            <paramref name="span"/> ist nicht <see cref="P:System.Span`1.Empty"/>, und <paramref name="startIndex"/> ist ein negativer Wert.
             </para>
             <para>
             - oder -
             </para>
             <para>
-            <paramref name="span"/> ist nicht <see cref="P:System.ReadOnlySpan`1.Empty"/>, und <paramref name="startIndex"/> ist größer als die Länge von <paramref name="span"/>.
+            <paramref name="span"/> ist nicht <see cref="P:System.Span`1.Empty"/>, und <paramref name="startIndex"/> ist größer als die Länge von <paramref name="span"/>.
             </para>
             <para>
             - oder -
@@ -2608,11 +2608,13 @@
         </member>
         <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendBase64(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{System.Byte},System.Base64FormattingOptions)">
             <summary>
-            Fügt den Inhalt einer <see cref="T:System.Byte"/>-Enumeration als Base64-kodierte Zeichenfolge
+            Fügt den Inhalt einer <see cref="T:System.Byte"/>-Sammlung als Base64-kodierte Zeichenfolge
             am Ende eines <see cref="T:System.Text.StringBuilder"/>-Objekts an.
             </summary>
             <param name="builder">Der <see cref="T:System.Text.StringBuilder"/>, an den Zeichen angefügt werden.</param>
             <param name="bytes">Die <see cref="T:System.Byte"/>-Enumeration, die die anzufügenden Daten enthält.</param>
+            <param name="options">Ein Enumerationswert, der es erlaubt festzulegen, ob in das Base64 automatisch Zeilenumbrüche 
+            eingefügt werden sollen.</param>
             <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
             <remarks>Die Methode verwendet eine eigene Base64-Implementierung, die etwas langsamer als die BCL-Methoden
             ist, aber für den Zweck sehr viel weniger Heap-Speicher alloziert.</remarks>
@@ -2627,6 +2629,8 @@
             </summary>
             <param name="builder">Der <see cref="T:System.Text.StringBuilder"/>, an den Zeichen angefügt werden.</param>
             <param name="bytes">Das <see cref="T:System.Byte"/>-Array, das die anzufügenden Daten enthält.</param>
+            <param name="options">Ein Enumerationswert, der es erlaubt festzulegen, ob in das Base64 automatisch Zeilenumbrüche 
+            eingefügt werden sollen.</param>
             <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
             <remarks>Die Methode verwendet eine eigene Base64-Implementierung, die etwas langsamer als die BCL-Methoden
             ist, aber für den Zweck sehr viel weniger Heap-Speicher alloziert.</remarks>
@@ -2641,6 +2645,8 @@
             </summary>
             <param name="builder">Der <see cref="T:System.Text.StringBuilder"/>, an den Zeichen angefügt werden.</param>
             <param name="bytes">Die schreibgeschützte Bytespanne, die die anzufügenden Daten enthält.</param>
+            <param name="options">Ein Enumerationswert, der es erlaubt festzulegen, ob in das Base64 automatisch Zeilenumbrüche 
+            eingefügt werden sollen.</param>
             <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
             <remarks>Die Methode verwendet eine eigene Base64-Implementierung, die etwas langsamer als die BCL-Methoden
             ist, aber für den Zweck sehr viel weniger Heap-Speicher alloziert.</remarks>
