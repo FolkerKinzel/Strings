@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using Baz;
 using FolkerKinzel.Strings;
@@ -258,7 +259,7 @@ class Program
 
         Encoding.UTF8.GetString(bytes.AsSpan());
 
-
-
+        const string Abc = "ABC";
+        _ = StaticStringMethod.Create<string>(Abc.Length, Abc, (chars, str) => str.AsSpan().CopyTo(chars));
     }
 }

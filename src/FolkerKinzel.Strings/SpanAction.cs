@@ -1,4 +1,6 @@
-﻿namespace System.Buffers;
+﻿//namespace System.Buffers;
+namespace FolkerKinzel.Strings;
+
 #if NET45 || NETSTANDARD2_0
 
 /// <summary>

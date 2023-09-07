@@ -17,6 +17,32 @@ Since .NET 5.0 the method returns the length of span if
 value is `ReadOnlySpan<char>.Empty`. Until .NET Core 3.1 it did instead return the last index position in span in this case - just like the corresponding 
 String method.
 
+.
+
+**Breaking Change:** The polyfill
+```csharp
+delegate void System.Buffers.SpanAction<T, in TArg>(Span<T> span, TArg arg);
+```
+for NET45 and NETSTANDARD2_0 has been replaced by 
+```csharp
+delegate void FolkerKinzel.Strings.SpanAction<T, in TArg>(Span<T> span, TArg arg);
+``` 
+and the method 
+```csharp
+StaticStringMethod.Create<TState>(int length, TState state, System.Buffers.SpanAction<char, TState> action);
+``` 
+has been modified to 
+```csharp
+StaticStringMethod.Create<TState>(int length, TState state, FolkerKinzel.Strings.SpanAction<char, TState> action);
+``` 
+for NET45 and NETSTANDARD2_0.
+
+That's more elegant than bringing in a polyfill for the `Sytem` namespace. Most existing code won't require changes.
+
+.
+
+**Other Changes:**
+
 - New static class `Base64`
 - New enum `Base64ParserOptions`
 
@@ -103,5 +129,5 @@ public static Span<char> TrimEnd(this Span<char>);
 ```
 .
 
-.
+
 > **Project reference:** On some systems, the content of the CHM file in the Assets is blocked. Before opening the file right click on the file icon, select Properties, and check the "Allow" checkbox - if it is present - in the lower right corner of the General tab in the Properties dialog.

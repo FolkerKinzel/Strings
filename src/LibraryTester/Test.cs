@@ -238,6 +238,9 @@ namespace LibraryTesters
             _ = span.TrimEnd();
             _ = span.IsWhiteSpace();
 
+            const string Abc = "ABC";
+            _ = StaticStringMethod.Create<string>(Abc.Length, Abc, (chars, str) => str.AsSpan().CopyTo(chars));
+
         }
     }
 }

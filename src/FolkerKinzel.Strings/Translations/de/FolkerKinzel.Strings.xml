@@ -4,17 +4,6 @@
         <name>FolkerKinzel.Strings</name>
     </assembly>
     <members>
-        <member name="T:System.Buffers.SpanAction`2">
-            <summary>
-            Polyfill für das ab .NET Standard 2.0 verfügbare Delegat System.Buffers.SpanAction&lt;T,TArg&gt;.
-            </summary>
-            <typeparam name="T">Der Typ der Objekte in der Spanne.</typeparam>
-            <typeparam name="TArg">Der Typ des Objekts, das den Zustand darstellt.
-            Dieser Typparameter ist kontravariant. Das bedeutet, dass Sie entweder den angegebenen Typ oder 
-            einen weniger abgeleiteten Typ verwenden können. </typeparam>
-            <param name="span">Eine Spanne von Objekten des Typs <typeparamref name="T"/>.</param>
-            <param name="arg">Ein Zustandsobjekt des Typs <typeparamref name="TArg"/>.</param>
-        </member>
         <member name="T:FolkerKinzel.Strings.Base64">
             <summary>
             Statische Klasse, die Methoden zu Verfügung stellt, um Zeichenfolgen im Base64-Format zu enkodieren und zu dekodieren.
@@ -2146,6 +2135,17 @@
             Die Methode führt einen Ordinalzeichenvergleich durch.
             </remarks>
         </member>
+        <member name="T:FolkerKinzel.Strings.SpanAction`2">
+            <summary>
+            Polyfill für das ab .NET Standard 2.0 verfügbare Delegat System.Buffers.SpanAction&lt;T,TArg&gt;.
+            </summary>
+            <typeparam name="T">Der Typ der Objekte in der Spanne.</typeparam>
+            <typeparam name="TArg">Der Typ des Objekts, das den Zustand darstellt.
+            Dieser Typparameter ist kontravariant. Das bedeutet, dass Sie entweder den angegebenen Typ oder 
+            einen weniger abgeleiteten Typ verwenden können. </typeparam>
+            <param name="span">Eine Spanne von Objekten des Typs <typeparamref name="T"/>.</param>
+            <param name="arg">Ein Zustandsobjekt des Typs <typeparamref name="TArg"/>.</param>
+        </member>
         <member name="T:FolkerKinzel.Strings.SpanExtension">
             <summary>
             Erweiterungsmethoden für die <see cref="T:System.Span`1">Span&lt;Char&gt;</see>-Struktur.
@@ -2511,7 +2511,7 @@
             in .NET-Versionen, in denen die Methoden verfügbar sind, an die BCL-Methoden weiter.
             </summary>
         </member>
-        <member name="M:FolkerKinzel.Strings.StaticStringMethod.Create``1(System.Int32,``0,System.Buffers.SpanAction{System.Char,``0})">
+        <member name="M:FolkerKinzel.Strings.StaticStringMethod.Create``1(System.Int32,``0,FolkerKinzel.Strings.SpanAction{System.Char,``0})">
             <summary>
             Erstellt eine neue Zeichenfolge mit einer bestimmten Länge und initialisiert sie nach der Erstellung unter Verwendung des angegebenen Rückrufs.
             </summary>
