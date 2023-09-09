@@ -4,7 +4,7 @@ namespace FolkerKinzel.Strings;
 #if NET45 || NETSTANDARD2_0
 
 /// <summary>
-/// Polyfill für das ab .NET Standard 2.0 verfügbare Delegat System.Buffers.SpanAction&lt;T,TArg&gt;.
+/// Polyfill für das ab .NET Standard 2.1 verfügbare Delegat System.Buffers.SpanAction&lt;T,TArg&gt;.
 /// </summary>
 /// <typeparam name="T">Der Typ der Objekte in der Spanne.</typeparam>
 /// <typeparam name="TArg">Der Typ des Objekts, das den Zustand darstellt.

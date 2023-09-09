@@ -12,12 +12,12 @@
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
     <Version>6.0.0</Version>
-    <FileVersion>6.0.0.12</FileVersion>
+    <FileVersion>6.0.0.13</FileVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v6.0.0</PackageReleaseNotes>
     <PackageTags>.NET String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode C#</PackageTags>
     <Description>
-      .NET library that contains extension methods and helper classes for String, Char, StringBuilder, ReadOnlySpan&lt;Char&gt;, Span&lt;Char&gt;, ReadOnlyMemory&lt;Char&gt; and System.Text.Encoding.
+      .NET library that contains extension methods and helper classes for character-based data types.
     </Description>
     <Authors>Folker Kinzel</Authors>
     <Copyright>Copyright © 2020 Folker Kinzel</Copyright>

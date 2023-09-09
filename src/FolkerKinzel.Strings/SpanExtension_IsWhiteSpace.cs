@@ -5,7 +5,7 @@ namespace FolkerKinzel.Strings;
 public static partial class SpanExtension
 {
     /// <summary>
-    /// Gibt an, ob die angegebene Zeichenspanne ausschließlich Leerraumzeichen enthält.
+    /// Gibt an, ob die Zeichenspanne ausschließlich Leerraumzeichen enthält.
     /// </summary>
     /// <param name="span">Die zu untersuchende Zeichenspanne.</param>
     /// <returns><c>true</c>, wenn <paramref name="span"/> ausschließlich Leerraumzeichen enthält, andernfalls <c>false</c>.</returns>

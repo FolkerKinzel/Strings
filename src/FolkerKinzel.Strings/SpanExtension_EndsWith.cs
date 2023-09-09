@@ -5,7 +5,7 @@ namespace FolkerKinzel.Strings;
 public static partial class SpanExtension
 {
     /// <summary>
-    /// Gibt an, ob eine schreibgeschützte Zeichenspanne mit dem angegebenen
+    /// Gibt an, ob eine Zeichenspanne mit dem angegebenen
     /// Unicode-Zeichen endet.
     /// </summary>
     /// <param name="span">Die zu untersuchende Spanne.</param>

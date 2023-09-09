@@ -2,7 +2,7 @@
 
 [Project Reference and Release Notes](https://github.com/FolkerKinzel/Strings/releases/tag/v6.0.0)
 
-.NET library that contains extension methods and helper classes for String, Char, StringBuilder, ReadOnlySpan&lt;Char&gt;, Span&lt;Char&gt;, ReadOnlyMemory&lt;Char&gt; and System.Text.Encoding. 
+.NET library that contains extension methods and helper classes for character-based data types. 
 
 Very high code coverage of the unit tests (100% line and branch) and the consistent avoidance of unsafe code blocks are main design principles of this library.
 

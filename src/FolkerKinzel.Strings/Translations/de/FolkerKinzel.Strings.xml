@@ -818,8 +818,9 @@
             </para>
             <para>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). Ist die Länge von <paramref name="values"/>
-            größer, wird <see cref="M:System.String.IndexOfAny(System.Char[])"/> verwendet.
+            <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>. 
+            Ist die Länge von <paramref name="values"/>
+            größer, wird <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> verwendet.
             </para>
             </remarks>
         </member>
@@ -839,9 +840,9 @@
             </para>
             <para>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;).
+            <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.Span{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
             Ist die Länge von <paramref name="values"/>
-            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])"/> verwendet.
+            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> verwendet.
             </para>
             </remarks>
         </member>
@@ -860,8 +861,9 @@
             in <paramref name="span"/> oder -1, wenn keines dieser Zeichen gefunden wurde.</returns>
             <remarks>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})"/>. Ist die Länge von <paramref name="values"/>
-            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])"/> verwendet.
+            <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.Span{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
+            Ist die Länge von <paramref name="values"/>
+            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> verwendet.
             </remarks>
             <exception cref="T:System.ArgumentOutOfRangeException">
             <para>
@@ -1035,11 +1037,13 @@
         <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.Contains(System.Span{System.Char},System.Char)">
             <summary>
             Gibt an, ob ein angegebenes Unicodezeichen in der Spanne gefunden wird. 
-            Zum Vergleich wird MemoryExtensions.IndexOf(this Span&lt;T&gt;, T) verwendet.
             </summary>
             <param name="span">Die zu durchsuchende Spanne.</param>
             <param name="value">Das zu suchende Unicodezeichen.</param>
+            
             <returns><c>true</c>, wenn <paramref name="value"/> gefunden wurde, andernfalls <c>false</c>.</returns>
+            
+            <remarks>Für den Vergleich wird MemoryExtensions.IndexOf(this Span&lt;T&gt;, T) verwendet.</remarks>
         </member>
         <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.Trim(System.Span{System.Char})">
             <summary>
@@ -1076,7 +1080,8 @@
         </member>
         <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.Contains(System.Span{System.Char},System.String,System.StringComparison)">
             <summary>
-            Gibt an, ob ein angegebener Wert innerhalb einer Zeichenspanne auftritt.
+            Gibt an, ob ein angegebener Wert innerhalb einer Zeichenspanne auftritt, wenn unter Verwendung eines angegebenen
+            <see cref="T:System.StringComparison"/>-Werts verglichen wird.
             </summary>
             <param name="span">Die Quellspanne.</param>
             <param name="value">Der innerhalb der Quellspanne zu suchende Wert. <paramref name="value"/> darf <c>null</c> sein.</param>
@@ -1218,9 +1223,9 @@
             oder eine leere Zeichenfolge ist, wird <c>false</c> zurückgegeben.</returns>
             <remarks>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). 
+            <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>. 
             Ist die Länge von <paramref name="values"/>
-            größer, wird - um Performanceprobleme zu vermeiden - <see cref="M:System.String.IndexOfAny(System.Char[])"/> verwendet.
+            größer, wird  - um Performanceprobleme zu vermeiden - <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> verwendet.
             </remarks>
         </member>
         <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.IndexOfAny(System.Span{System.Char},System.String)">
@@ -1239,8 +1244,9 @@
             </para>
             <para>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). Ist die Länge von <paramref name="values"/>
-            größer, wird <see cref="M:System.String.IndexOfAny(System.Char[])"/> verwendet.
+            <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>. 
+            Ist die Länge von <paramref name="values"/>
+            größer, wird <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> verwendet.
             </para>
             </remarks>
         </member>
@@ -1260,9 +1266,9 @@
             </para>
             <para>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;).
+            <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.Span{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
             Ist die Länge von <paramref name="values"/>
-            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])"/> verwendet.
+            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> verwendet.
             </para>
             </remarks>
         </member>
@@ -1281,8 +1287,9 @@
             in <paramref name="span"/> oder -1, wenn keines dieser Zeichen gefunden wurde.</returns>
             <remarks>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})"/>. Ist die Länge von <paramref name="values"/>
-            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])"/> verwendet.
+            <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.Span{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
+            Ist die Länge von <paramref name="values"/>
+            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> verwendet.
             </remarks>
             
             <exception cref="T:System.ArgumentOutOfRangeException">
@@ -1874,9 +1881,9 @@
             wird <c>false</c> zurückgegeben.</returns>
             <remarks>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). 
+            <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>. 
             Ist die Länge von <paramref name="values"/>
-            größer, wird - um Performanceprobleme zu vermeiden - <see cref="M:System.String.IndexOfAny(System.Char[])"/> verwendet.
+            größer, wird  - um Performanceprobleme zu vermeiden - <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> verwendet.
             </remarks>
         </member>
         <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.ContainsAny(System.ReadOnlySpan{System.Char},System.Char,System.Char)">
@@ -2004,8 +2011,9 @@
             </para>
             <para>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). Ist die Länge von <paramref name="values"/>
-            größer, wird <see cref="M:System.String.IndexOfAny(System.Char[])"/> verwendet.
+            <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>. 
+            Ist die Länge von <paramref name="values"/>
+            größer, wird <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> verwendet.
             </para>
             </remarks>
         </member>
@@ -2082,9 +2090,9 @@
             </para>
             <para>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;).
+            <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.Span{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
             Ist die Länge von <paramref name="values"/>
-            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])"/> verwendet.
+            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> verwendet.
             </para>
             </remarks>
         </member>
@@ -2103,8 +2111,9 @@
             in <paramref name="span"/> oder -1, wenn keines dieser Zeichen gefunden wurde.</returns>
             <remarks>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})"/>. Ist die Länge von <paramref name="values"/>
-            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])"/> verwendet.
+            <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.Span{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
+            Ist die Länge von <paramref name="values"/>
+            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> verwendet.
             </remarks>
             <exception cref="T:System.ArgumentOutOfRangeException">
             <para>
@@ -2137,7 +2146,7 @@
         </member>
         <member name="T:FolkerKinzel.Strings.SpanAction`2">
             <summary>
-            Polyfill für das ab .NET Standard 2.0 verfügbare Delegat System.Buffers.SpanAction&lt;T,TArg&gt;.
+            Polyfill für das ab .NET Standard 2.1 verfügbare Delegat System.Buffers.SpanAction&lt;T,TArg&gt;.
             </summary>
             <typeparam name="T">Der Typ der Objekte in der Spanne.</typeparam>
             <typeparam name="TArg">Der Typ des Objekts, das den Zustand darstellt.
@@ -2174,9 +2183,9 @@
             wird <c>false</c> zurückgegeben.</returns>
             <remarks>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). 
+            <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>. 
             Ist die Länge von <paramref name="values"/>
-            größer, wird - um Performanceprobleme zu vermeiden - <see cref="M:System.String.IndexOfAny(System.Char[])"/> verwendet.
+            größer, wird  - um Performanceprobleme zu vermeiden - <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> verwendet.
             </remarks>
         </member>
         <member name="M:FolkerKinzel.Strings.SpanExtension.ContainsAny(System.Span{System.Char},System.Char,System.Char)">
@@ -2224,7 +2233,7 @@
         </member>
         <member name="M:FolkerKinzel.Strings.SpanExtension.EndsWith(System.Span{System.Char},System.Char)">
             <summary>
-            Gibt an, ob eine schreibgeschützte Zeichenspanne mit dem angegebenen
+            Gibt an, ob eine Zeichenspanne mit dem angegebenen
             Unicode-Zeichen endet.
             </summary>
             <param name="span">Die zu untersuchende Spanne.</param>
@@ -2329,14 +2338,15 @@
             </para>
             <para>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). Ist die Länge von <paramref name="values"/>
-            größer, wird <see cref="M:System.String.IndexOfAny(System.Char[])"/> verwendet.
+            <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>. 
+            Ist die Länge von <paramref name="values"/>
+            größer, wird <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> verwendet.
             </para>
             </remarks>
         </member>
         <member name="M:FolkerKinzel.Strings.SpanExtension.IsAscii(System.Span{System.Char})">
             <summary>
-            Untersucht, ob die schreibgeschützte Zeichenspanne Unicode-Zeichen enthält,
+            Untersucht, ob die Zeichenspanne Unicode-Zeichen enthält,
             die nicht zum ASCII-Zeichensatz gehören.
             </summary>
             <param name="span">Eine Spanne von Unicode-Zeichen.</param>
@@ -2345,7 +2355,7 @@
         </member>
         <member name="M:FolkerKinzel.Strings.SpanExtension.IsWhiteSpace(System.Span{System.Char})">
             <summary>
-            Gibt an, ob die angegebene Zeichenspanne ausschließlich Leerraumzeichen enthält.
+            Gibt an, ob die Zeichenspanne ausschließlich Leerraumzeichen enthält.
             </summary>
             <param name="span">Die zu untersuchende Zeichenspanne.</param>
             <returns><c>true</c>, wenn <paramref name="span"/> ausschließlich Leerraumzeichen enthält, andernfalls <c>false</c>.</returns>
@@ -2425,9 +2435,9 @@
             </para>
             <para>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;).
+            <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.Span{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
             Ist die Länge von <paramref name="values"/>
-            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])"/> verwendet.
+            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> verwendet.
             </para>
             </remarks>
         </member>
@@ -2446,8 +2456,9 @@
             in <paramref name="span"/> oder -1, wenn keines dieser Zeichen gefunden wurde.</returns>
             <remarks>
             Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-            <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})"/>. Ist die Länge von <paramref name="values"/>
-            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])"/> verwendet.
+            <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.Span{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
+            Ist die Länge von <paramref name="values"/>
+            größer, wird <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> verwendet.
             </remarks>
             <exception cref="T:System.ArgumentOutOfRangeException">
             <para>
