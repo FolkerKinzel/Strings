@@ -17,7 +17,7 @@ public static partial class ReadOnlySpanExtension
     /// Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
     /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>. 
     /// Ist die Länge von <paramref name="values"/>
-    /// größer, wird  - um Performanceprobleme zu vermeiden - <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see> verwendet.
+    /// größer, wird - um Performanceprobleme zu vermeiden - <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see> verwendet.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
@@ -33,7 +33,7 @@ public static partial class ReadOnlySpanExtension
     /// <param name="value1">Das zweite zu suchende Zeichen.</param>
     /// <returns><c>true</c>, wenn eines der zu suchenden Zeichen in der Spanne gefunden wird, andernfalls <c>false</c>.</returns>
     /// <remarks>
-    /// Für den Vergleich wird MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T) verwendet.
+    /// Für den Vergleich wird <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)</see> verwendet.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1)
@@ -49,7 +49,7 @@ public static partial class ReadOnlySpanExtension
     /// <param name="value2">Das dritte zu suchende Zeichen.</param>
     /// <returns><c>true</c>, wenn eines der zu suchenden Zeichen in der Spanne gefunden wird, andernfalls <c>false</c>.</returns>
     /// <remarks>
-    /// Für den Vergleich wird MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T) verwendet.
+    /// Für den Vergleich wird <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, T, T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T)</see> verwendet.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1, char value2)

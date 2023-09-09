@@ -18,8 +18,9 @@ public static partial class StringExtension
     /// leere Spanne ist, wird -1 zurückgegeben.</returns>
     /// <remarks>
     /// Wenn die Länge von <paramref name="anyOf"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-    /// MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). Ist die Länge von <paramref name="anyOf"/>
-    /// größer, wird <see cref="string.IndexOfAny(char[])"/> verwendet.
+    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>. 
+    /// Ist die Länge von <paramref name="anyOf"/>
+    /// größer, wird <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see> verwendet.
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="s"/> oder <paramref name="anyOf"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">

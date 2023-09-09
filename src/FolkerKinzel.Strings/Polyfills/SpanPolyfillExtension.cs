@@ -22,7 +22,8 @@ public static class SpanPolyfillExtension
     /// 
     /// <returns><c>true</c>, wenn <paramref name="value"/> gefunden wurde, andernfalls <c>false</c>.</returns>
     /// 
-    /// <remarks>Für den Vergleich wird MemoryExtensions.IndexOf(this Span&lt;T&gt;, T) verwendet.</remarks>
+    /// <remarks>Für den Vergleich wird <see cref="MemoryExtensions.IndexOf{T}(Span{T}, T)"> MemoryExtensions.IndexOf(this Span&lt;T&gt;, T)</see>
+    /// verwendet.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(this Span<char> span, char value)
         => span.IndexOf(value) != -1;
@@ -251,16 +252,10 @@ public static class SpanPolyfillExtension
     /// in <paramref name="span"/> oder -1, wenn keines der Zeichen gefunden wurde. Wenn <paramref name="values"/>&#160;<c>null</c> oder eine 
     /// leere Zeichenfolge ist, gibt die Methode -1 zurück.</returns>
     /// <remarks>
-    /// <para>
-    /// Diese Spezialisierung der Erweiterungsmethode MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;)
-    /// für den Datentyp <see cref="char"/> wird benötigt, um Performanceprobleme zu vermeiden.
-    /// </para>
-    /// <para>
     /// Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
     /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>. 
     /// Ist die Länge von <paramref name="values"/>
-    /// größer, wird <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see> verwendet.
-    /// </para>
+    /// größer, wird  - um Performanceprobleme zu vermeiden - <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see> verwendet.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this Span<char> span, string? values)
@@ -275,16 +270,10 @@ public static class SpanPolyfillExtension
     /// in <paramref name="span"/> oder -1, wenn keines der Zeichen gefunden wurde. Wenn <paramref name="values"/>&#160;<c>null</c>
     /// oder eine leere Zeichenfolge ist, wird -1 zurückgegeben</returns>
     /// <remarks>
-    /// <para>
-    /// Diese Spezialisierung der Erweiterungsmethode MemoryExtensions.LastIndexOfAny&lt;T&gt;(Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;)
-    /// für den Datentyp <see cref="char"/> wird benötigt, um Performanceprobleme zu vermeiden.
-    /// </para>
-    /// <para>
     /// Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T}, ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
+    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
     /// Ist die Länge von <paramref name="values"/>
-    /// größer, wird <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see> verwendet.
-    /// </para>
+    /// größer, wird  - um Performanceprobleme zu vermeiden - <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see> verwendet.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(this Span<char> span, string? values)
@@ -304,9 +293,9 @@ public static class SpanPolyfillExtension
     /// in <paramref name="span"/> oder -1, wenn keines dieser Zeichen gefunden wurde.</returns>
     /// <remarks>
     /// Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T}, ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
+    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
     /// Ist die Länge von <paramref name="values"/>
-    /// größer, wird <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see> verwendet.
+    /// größer, wird  - um Performanceprobleme zu vermeiden - <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see> verwendet.
     /// </remarks>
     /// 
     /// <exception cref="ArgumentOutOfRangeException">

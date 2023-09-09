@@ -576,35 +576,21 @@ If you use the <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback" /> o
       <param name="values">A string containing the characters to search for or <c>null</c>.</param>
       <returns>
         <c>true</c> if one of the characters to be searched for is found in <paramref name="span" />, otherwise <c>false</c>. If <paramref name="span" /> is an empty span or <paramref name="values" /> is <c>null</c> or empty, <c>false</c> is returned.</returns>
-      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used to avoid performance issues.</remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanExtensionPolyfillExtension.IndexOfAny(System.ReadOnlySpan{System.Char},System.String)">
       <summary>Searches for the zero-based index of the first occurrence of one of the specified Unicode characters.</summary>
       <param name="span">The span to examine.</param>
       <param name="values">A string that contains the characters to search for or <c>null</c>.</param>
       <returns>The zero-based index of the first occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is <c>null</c> or empty, the method returns -1.</returns>
-      <remarks>
-        <para>
-This specialization of the extension method MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the data type <see cref="T:System.Char" /> is required to avoid performance problems.
-</para>
-        <para>
-If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])" /> is used.
-</para>
-      </remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanExtensionPolyfillExtension.LastIndexOfAny(System.ReadOnlySpan{System.Char},System.String)">
       <summary>Searches for the zero-based index of the last occurrence of one of the specified Unicode characters.</summary>
       <param name="span">The span to examine.</param>
       <param name="values">A string containing the characters to search for or <c>null</c>.</param>
       <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is <c>null</c> or empty, the method returns -1.</returns>
-      <remarks>
-        <para>
-This specialization of the extension method MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the data type <see cref="T:System.Char" /> is required to avoid performance problems.
-</para>
-        <para>
-If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])" /> is used.
-</para>
-      </remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanExtensionPolyfillExtension.LastIndexOfAny(System.ReadOnlySpan{System.Char},System.String,System.Int32,System.Int32)">
       <summary>Returns the zero-based index of the last occurrence of one of the specified characters in <paramref name="span" />. The search begins at a specified character position and runs a specified number of character positions backwards to the beginning of the <paramref name="span" />.</summary>
@@ -613,7 +599,7 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
       <param name="startIndex">The start index of the search. The search is done backwards to the beginning of <paramref name="span" />.</param>
       <param name="count">The number of character positions to examine.</param>
       <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found.</returns>
-      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])" /> is used.</remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <para>
           <paramref name="span" /> is not <see cref="P:System.ReadOnlySpan`1.Empty" /> and <paramref name="startIndex" /> is less than zero or greater than or equal to the length of <paramref name="span" /></para>
@@ -715,11 +701,13 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
       <remarks>The methods of this class should only be used in the extension method syntax to simulate the methods of the <see cref="T:System.Span`1">Span&lt;Char&gt;</see> structure, which exist in current frameworks.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.Contains(System.Span{System.Char},System.Char)">
-      <summary>Indicates whether a read-only character span contains a specified Unicode character.</summary>
+      <summary>Indicates whether a character span contains a specified Unicode character.</summary>
       <param name="span">The span to examine.</param>
       <param name="value">The Unicode character to search for.</param>
       <returns>
         <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
+      <remarks>
+        <see cref="M:System.MemoryExtensions.IndexOf``1(System.Span{``0},``0)"> MemoryExtensions.IndexOf(this Span&lt;T&gt;, T)</see> is used for the comparison.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.Trim(System.Span{System.Char})">
       <summary>Removes all leading and trailing white space characters from a character span.</summary>
@@ -745,7 +733,7 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
         <c>true</c> if equal, <c>false</c> otherwise.</returns>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.Contains(System.Span{System.Char},System.String,System.StringComparison)">
-      <summary>Indicates whether a specified value occurs within a character span.</summary>
+      <summary>Indicates whether a specified value occurs within a character span when compared using a specified <see cref="T:System.StringComparison" /> value.</summary>
       <param name="span">The source span.</param>
       <param name="value">The value to seek within the source span. <paramref name="value" /> can be <c>null</c>.</param>
       <param name="comparisonType">An enumeration value that determines how <paramref name="span" /> and <paramref name="value" /> are compared.</param>
@@ -845,35 +833,21 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
       <param name="values">A string containing the characters to search for or <c>null</c>.</param>
       <returns>
         <c>true</c> if <paramref name="span" /> contains one of the characters passed with <paramref name="values" />. If <paramref name="span" /> is empty or <paramref name="values" /> is <c>null</c> or empty, <c>false</c> is returned.</returns>
-      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used to avoid performance issues.</remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.IndexOfAny(System.Span{System.Char},System.String)">
       <summary>Searches for the zero-based index of the first occurrence of one of the specified Unicode characters.</summary>
       <param name="span">The span to search.</param>
       <param name="values">A string containing the characters to search for or <c>null</c>.</param>
       <returns>The zero-based index of the first occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is <c>null</c> or empty, the method returns -1.</returns>
-      <remarks>
-        <para>
-This specialization of the extension method MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the data type <see cref="T:System.Char" /> is required to avoid performance problems.
-</para>
-        <para>
-If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used.
-</para>
-      </remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.LastIndexOfAny(System.Span{System.Char},System.String)">
       <summary>Searches for the zero-based index of the last occurrence of one of the specified Unicode characters.</summary>
       <param name="span">The span to search.</param>
       <param name="values">A string containing the characters to search for or <c>null</c>.</param>
       <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is <c>null</c> or empty, the method returns -1.</returns>
-      <remarks>
-        <para>
-This specialization of the extension method MemoryExtensions.LastIndexOfAny&lt;T&gt;(Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the data type <see cref="T:System.Char" /> is required to avoid performance problems.
-</para>
-        <para>
-If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])" /> is used.
-</para>
-      </remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.LastIndexOfAny(System.Span{System.Char},System.String,System.Int32,System.Int32)">
       <summary>Returns the zero-based index of the last occurrence of one of the specified characters in <paramref name="span" />. The search begins at a specified character position and runs a specified number of character positions backwards to the beginning of the <paramref name="span" />.</summary>
@@ -882,7 +856,7 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
       <param name="startIndex">The start index of the search. The search is done backwards to the beginning of <paramref name="span" />.</param>
       <param name="count">The number of characters positions to examine in <paramref name="span" />.</param>
       <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found.</returns>
-      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})" /> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])" /> is used to avoid performance issues.</remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <para>
           <paramref name="span" /> is not <see cref="P:System.Span`1.Empty" /> and <paramref name="startIndex" /> is less than zero or greater than or equal to the length of <paramref name="span" /></para>
@@ -1300,7 +1274,7 @@ This method differs from <see cref="M:FolkerKinzel.Strings.StringBuilderExtensio
       <param name="values">A read-only span, which contains the Unicode characters to search for.</param>
       <returns>
         <c>true</c> if <paramref name="span" /> contains one of the characters passed with <paramref name="values" />. If <paramref name="span" /> or <paramref name="chars" /> are empty, <c>false</c> is returned.</returns>
-      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used to avoid performance issues.</remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.ContainsAny(System.ReadOnlySpan{System.Char},System.Char,System.Char)">
       <summary>Indicates whether a read-only character span contains one of the two characters that are passed to the method as arguments.</summary>
@@ -1309,7 +1283,8 @@ This method differs from <see cref="M:FolkerKinzel.Strings.StringBuilderExtensio
       <param name="value1">The second character to search for.</param>
       <returns>
         <c>true</c> if one of the characters to be searched for is found in the span, otherwise <c>false</c>.</returns>
-      <remarks>MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)  is used for the comparison.</remarks>
+      <remarks>
+        <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},``0,``0)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)</see> is used for the comparison.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.ContainsAny(System.ReadOnlySpan{System.Char},System.Char,System.Char,System.Char)">
       <summary>Indicates whether a read-only character span contains one of the 3 characters that are passed to the method as arguments.</summary>
@@ -1319,7 +1294,8 @@ This method differs from <see cref="M:FolkerKinzel.Strings.StringBuilderExtensio
       <param name="value2">The third character to search for.</param>
       <returns>
         <c>true</c> if one of the characters to be searched for is found in the span, otherwise <c>false</c>.</returns>
-      <remarks>MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T)  is used for the comparison.</remarks>
+      <remarks>
+        <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},``0,``0,``0)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T)</see> is used for the comparison.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.ContainsNewLine(System.ReadOnlySpan{System.Char})">
       <summary>Indicates whether a read-only character span contains a newline character.</summary>
@@ -1385,17 +1361,10 @@ Do not use the hashcodes generated by this method for security-critical purposes
       <param name="span">The span to examine.</param>
       <param name="values">A read-only span, which contains the characters to search for.</param>
       <returns>The zero-based index of the first occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is an empty span, the method returns -1.</returns>
-      <remarks>
-        <para>
-This specialization of the extension method MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the data type <see cref="T:System.Char" /> is required to avoid performance problems.
-</para>
-        <para>
-If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used.
-</para>
-      </remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.IsAscii(System.ReadOnlySpan{System.Char})">
-      <summary>Indicates whether the read-only character span contains Unicode characters that do not belong to the ASCII character set.</summary>
+      <summary>Checks whether the read-only character span contains only Unicode characters that belong to the ASCII character set.</summary>
       <param name="span">A read-only span of Unicode characters.</param>
       <returns>
         <c>false</c> if <paramref name="span" /> contains a Unicode character, which doesn't belong to the ASCII character set, otherwise <c>true</c>.</returns>
@@ -1445,14 +1414,7 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
       <param name="span">The span to examine.</param>
       <param name="values">A read-only span, which contains the characters to search for.</param>
       <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is an empty span, the method returns -1.</returns>
-      <remarks>
-        <para>
-This specialization of the extension method MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the data type <see cref="T:System.Char" /> is required to avoid performance problems.
-</para>
-        <para>
-If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])" /> is used.
-</para>
-      </remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.ReadOnlySpanExtension.LastIndexOfAny(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.Int32,System.Int32)">
       <summary>Returns the zero-based index position of the last occurrence of one of the specified characters in <paramref name="span" />. The search begins at a specified index and runs for a specified number of character positions backwards to the beginning of the span.</summary>
@@ -1461,7 +1423,7 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
       <param name="startIndex">The start index of the search. The search is done backwards to the beginning of <paramref name="span" />.</param>
       <param name="count">The number of characters positions to examine in <paramref name="span" />.</param>
       <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in the specified part of <paramref name="span" /> or -1 if none of these characters have been found in this area.</returns>
-      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used to avoid performance issues.</remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <para>
           <paramref name="span" /> is not <see cref="P:System.ReadOnlySpan`1.Empty" /> and <paramref name="startIndex" /> is less than zero or greater than or equal to the length of <paramref name="span" /></para>
@@ -1506,7 +1468,7 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
       <param name="values">A read-only character span that contains the characters to search for.</param>
       <returns>
         <c>true</c> if <paramref name="span" /> contains one of the characters passed with <paramref name="values" />. If <paramref name="span" /> or <paramref name="values" /> are empty, <c>false</c> is returned.</returns>
-      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used to avoid performance issues.</remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.SpanExtension.ContainsAny(System.Span{System.Char},System.Char,System.Char)">
       <summary>Indicates whether a character span contains one of the two characters that are passed to the method as arguments.</summary>
@@ -1515,7 +1477,8 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
       <param name="value1">The second character to search for.</param>
       <returns>
         <c>true</c> if one of the characters to be searched for is found in the span, otherwise <c>false</c>.</returns>
-      <remarks>MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, T, T) is used for the comparison.</remarks>
+      <remarks>
+        <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.Span{``0},``0,``0)">MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, T, T)</see> is used for the comparison.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.SpanExtension.ContainsAny(System.Span{System.Char},System.Char,System.Char,System.Char)">
       <summary>Indicates whether a character span contains one of the three characters that are passed to the method as arguments.</summary>
@@ -1525,7 +1488,8 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
       <param name="value2">The third character to search for.</param>
       <returns>
         <c>true</c> if one of the characters to be searched for is found in the span, otherwise <c>false</c>.</returns>
-      <remarks>MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, T, T, T) is used for the comparison.</remarks>
+      <remarks>
+        <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.Span{``0},``0,``0,``0)">MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, T, T, T)</see> is used for the comparison.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.SpanExtension.ContainsNewLine(System.Span{System.Char})">
       <summary>Indicates whether a character span contains a newline character.</summary>
@@ -1607,23 +1571,16 @@ Do not use the hashcodes generated by this method for security-critical purposes
       <param name="span">The span to examine.</param>
       <param name="values">A read-only character span that contains the characters to search for.</param>
       <returns>The zero-based index of the first occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is an empty span, the method returns -1.</returns>
-      <remarks>
-        <para>
-This specialization of the extension method MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the data type <see cref="T:System.Char" /> is required to avoid performance problems.
-</para>
-        <para>
-If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used.
-</para>
-      </remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.SpanExtension.IsAscii(System.Span{System.Char})">
-      <summary>Indicates whether the character span contains Unicode characters that do not belong to the ASCII character set.</summary>
+      <summary>Checks whether the character span contains only Unicode characters that belong to the ASCII character set.</summary>
       <param name="span">A span of Unicode characters.</param>
       <returns>
         <c>false</c> if <paramref name="span" /> contains a Unicode character, which doesn't belong to the ASCII character set, otherwise <c>true</c>.</returns>
     </member>
     <member name="M:FolkerKinzel.Strings.SpanExtension.IsWhiteSpace(System.Span{System.Char})">
-      <summary>Indicates whether the character span consists only of white space.</summary>
+      <summary>Indicates whether the character span contains only white space characters.</summary>
       <param name="span">The span to examine.</param>
       <returns>
         <c>true</c> if <paramref name="span" /> consists only of white space, otherwise <c>false</c>.</returns>
@@ -1680,14 +1637,7 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
       <param name="span">The span to examine.</param>
       <param name="values">A read-only character span that contains the characters to search for.</param>
       <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is an empty span, the method returns -1.</returns>
-      <remarks>
-        <para>
-This specialization of the extension method MemoryExtensions.LastIndexOfAny&lt;T&gt;(Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the data type <see cref="T:System.Char" /> is required to avoid performance problems.
-</para>
-        <para>
-If the length of <paramref name="values" /> is less than 5, the method uses MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])" /> is used.
-</para>
-      </remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.SpanExtension.LastIndexOfAny(System.Span{System.Char},System.ReadOnlySpan{System.Char},System.Int32,System.Int32)">
       <summary>Returns the zero-based index of the last occurrence of one of the specified characters in <paramref name="span" />. The search begins at a specified character position and runs a specified number of character positions backwards to the beginning of the <paramref name="span" />.</summary>
@@ -1696,7 +1646,7 @@ If the length of <paramref name="values" /> is less than 5, the method uses Memo
       <param name="startIndex">The start index of the search. The search is done backwards to the beginning of <paramref name="span" />.</param>
       <param name="count">The number of characters positions to examine in <paramref name="span" />.</param>
       <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found.</returns>
-      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})" /> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])" /> is used to avoid performance issues.</remarks>
+      <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <para>
           <paramref name="span" /> is not <see cref="P:System.Span`1.Empty" /> and <paramref name="startIndex" /> is less than zero or greater than or equal to the length of <paramref name="span" /></para>
@@ -2465,7 +2415,8 @@ The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identi
       <param name="value1">The second character to search for.</param>
       <returns>
         <c>true</c> if one of the characters to be searched for is found, otherwise <c>false</c>.</returns>
-      <remarks>MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)  is used for the comparison.</remarks>
+      <remarks>
+        <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},``0,``0)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)</see> is used for the comparison.</remarks>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="s" /> is <c>null</c>.</exception>
     </member>
@@ -2477,7 +2428,8 @@ The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identi
       <param name="value2">The third character to search for.</param>
       <returns>
         <c>true</c> if one of the characters to be searched for is found, otherwise <c>false</c>.</returns>
-      <remarks>MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T)  is used for the comparison.</remarks>
+      <remarks>
+        <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},``0,``0,``0)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T)</see> is used for the comparison.</remarks>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="s" /> is <c>null</c>.</exception>
     </member>
@@ -2487,7 +2439,7 @@ The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identi
       <param name="anyOf">A read-only span, which contains the characters to search for.</param>
       <returns>
         <c>true</c> if one of the characters to be searched for is found in <paramref name="s" />, otherwise <c>false</c>. If <paramref name="s" /> or <paramref name="anyOf" /> have the length zero, <c>false</c> is returned.</returns>
-      <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used to avoid performance issues.</remarks>
+      <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="anyOf" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used.</remarks>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="s" /> is <c>null</c>.</exception>
     </member>
@@ -2556,7 +2508,7 @@ Do not use the hashcodes generated by this method for security-critical purposes
       <param name="startIndex">The zero-based index in <paramref name="s" /> at which the search starts.</param>
       <param name="count">The number of characters positions to examine in <paramref name="s" />.</param>
       <returns>The zero-based index of the first occurrence of one of the specified Unicode characters in <paramref name="s" /> or -1 if none of these characters have been found. If <paramref name="anyOf" /> is an empty span, the method returns -1.</returns>
-      <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;) for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])" /> is used.</remarks>
+      <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="anyOf" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used.</remarks>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="s" /> or <paramref name="anyOf" /> is <c>null</c>.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">

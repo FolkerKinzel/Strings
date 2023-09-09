@@ -38,7 +38,6 @@ public class StreamExtensionTests
     [TestMethod]
     public void IsUtf8Test4()
     {
-        
         using (var str1 = new MemoryStream(_noUtf8))
         {
             Assert.IsFalse(str1.IsUtf8());

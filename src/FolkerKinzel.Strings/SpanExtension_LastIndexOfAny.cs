@@ -11,16 +11,10 @@ public static partial class SpanExtension
     /// in <paramref name="span"/> oder -1, wenn keines der Zeichen gefunden wurde. Wenn <paramref name="values"/> eine
     /// leere Spanne ist, wird -1 zurückgegeben</returns>
     /// <remarks>
-    /// <para>
-    /// Diese Spezialisierung der Erweiterungsmethode MemoryExtensions.LastIndexOfAny&lt;T&gt;(Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;)
-    /// für den Datentyp <see cref="char"/> wird benötigt, um Performanceprobleme zu vermeiden.
-    /// </para>
-    /// <para>
     /// Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
     /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T}, ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
     /// Ist die Länge von <paramref name="values"/>
-    /// größer, wird <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see> verwendet.
-    /// </para>
+    /// größer, wird - um Performanceprobleme zu vermeiden - <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see> verwendet.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(this Span<char> span, ReadOnlySpan<char> values)
@@ -43,7 +37,7 @@ public static partial class SpanExtension
     /// Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
     /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T}, ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
     /// Ist die Länge von <paramref name="values"/>
-    /// größer, wird <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see> verwendet.
+    /// größer, wird - um Performanceprobleme zu vermeiden - <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see> verwendet.
     /// </remarks>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>

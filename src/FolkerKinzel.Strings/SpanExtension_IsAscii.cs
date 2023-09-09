@@ -3,8 +3,8 @@
 public static partial class SpanExtension
 {
     /// <summary>
-    /// Untersucht, ob die Zeichenspanne Unicode-Zeichen enthält,
-    /// die nicht zum ASCII-Zeichensatz gehören.
+    /// Untersucht, ob die Zeichenspanne ausschließlich Unicode-Zeichen enthält,
+    /// die zum ASCII-Zeichensatz gehören.
     /// </summary>
     /// <param name="span">Eine Spanne von Unicode-Zeichen.</param>
     /// <returns><c>false</c>, wenn <paramref name="span"/> ein Unicode-Zeichen enthält, das nicht zum 

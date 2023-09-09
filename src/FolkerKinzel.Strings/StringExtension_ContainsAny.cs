@@ -11,7 +11,7 @@ public static partial class StringExtension
     /// <param name="value1">Das zweite zu suchende Zeichen.</param>
     /// <returns><c>true</c>, wenn eines der zu suchenden Zeichen in <paramref name="s"/> gefunden wird, andernfalls <c>false</c>.</returns>
     /// <remarks>
-    /// Für den Vergleich wird MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T) verwendet.
+    /// Für den Vergleich wird <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)</see> verwendet.
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
     public static bool ContainsAny(this string s, char value0, char value1)
@@ -29,7 +29,9 @@ public static partial class StringExtension
     /// <returns><c>true</c>, wenn eines der zu suchenden Zeichen in <paramref name="s"/>
     /// gefunden wird, andernfalls <c>false</c>.</returns>
     /// <remarks>
-    /// Für den Vergleich wird MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T) verwendet.
+    /// Für den Vergleich wird 
+    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, T, T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T)</see> 
+    /// verwendet.
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
     public static bool ContainsAny(this string s, char value0, char value1, char value2)
@@ -47,8 +49,9 @@ public static partial class StringExtension
     /// wird <c>false</c> zurückgegeben.</returns>
     /// <remarks>
     /// Wenn die Länge von <paramref name="anyOf"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-    /// MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;). Ist die Länge von <paramref name="anyOf"/>
-    /// größer, wird <see cref="string.IndexOfAny(char[])"/> verwendet.
+    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>. 
+    /// Ist die Länge von <paramref name="anyOf"/>
+    /// größer, wird <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see> verwendet.
     /// </remarks>
     /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
     public static bool ContainsAny(this string s, ReadOnlySpan<char> anyOf)
