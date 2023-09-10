@@ -51,8 +51,8 @@
         <paramref name="options" /> is not a defined <see cref="T:System.Base64FormattingOptions" /> value.</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.Base64.Encode(System.ReadOnlySpan{System.Byte},System.Base64FormattingOptions)">
-      <summary>Converts a read only span of Bytes into a corresponding Base64 string. Optional you can determine, whether line breaks are to be inserted into the return value.</summary>
-      <param name="bytes">A read only span of Bytes.</param>
+      <summary>Converts a read-only span of Bytes into a corresponding Base64 string. Optional you can determine, whether line breaks are to be inserted into the return value.</summary>
+      <param name="bytes">A read-only span of Bytes.</param>
       <param name="options">One of the enumeration values, which specify whether or not line breaks are to be inserted into the return value. The default is <see cref="F:System.Base64FormattingOptions.None" />.</param>
       <returns>The Base64 string reprensentation of the elements in <paramref name="bytes" />.</returns>
       <remarks>
@@ -92,15 +92,15 @@ The format of <paramref name="base64" /> is invalid. <paramref name="base64" /> 
       <exception cref="T:System.FormatException">Depending on the conversion options specified with <paramref name="options" />, <paramref name="base64" /> cannot be converted into a <see cref="T:System.Byte" /> array .</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.Base64.GetBytes(System.ReadOnlySpan{System.Char},FolkerKinzel.Strings.Base64ParserOptions)">
-      <summary>Converts a Base64-encoded read only character span into a corresponding byte array and allows to pass options for the conversion.</summary>
-      <param name="base64">The read only character span to convert.</param>
+      <summary>Converts a Base64-encoded read-only character span into a corresponding byte array and allows to pass options for the conversion.</summary>
+      <param name="base64">The read-only character span to convert.</param>
       <param name="options">Options for the conversion.</param>
       <returns>A byte array decoded from <paramref name="base64" />.</returns>
       <exception cref="T:System.FormatException">Depending on the conversion options specified with <paramref name="options" />, <paramref name="base64" /> cannot be converted into a <see cref="T:System.Byte" /> array .</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.Base64.GetBytes(System.ReadOnlySpan{System.Char})">
-      <summary>Converts a Base64-encoded read only character span into a corresponding byte array.</summary>
-      <param name="base64">The read only character span to convert.</param>
+      <summary>Converts a Base64-encoded read-only character span into a corresponding byte array.</summary>
+      <param name="base64">The read-only character span to convert.</param>
       <returns>A byte array decoded from <paramref name="base64" />.</returns>
       <exception cref="T:System.FormatException">
         <para>
@@ -418,17 +418,17 @@ If you use the <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback" /> o
       <summary>Extension methods for the <see cref="T:System.Text.Encoding" /> class.</summary>
     </member>
     <member name="M:FolkerKinzel.Strings.EncodingExtension.GetBytes(System.Text.Encoding,System.ReadOnlySpan{System.Char})">
-      <summary>Encodes all characters of the read only character span to a corresponding byte sequence.</summary>
+      <summary>Encodes all characters of the read-only character span to a corresponding byte sequence.</summary>
       <param name="encoding">The <see cref="T:System.Text.Encoding" /> object on which the extension method is executed.</param>
-      <param name="chars">The read only character span that provides the characters that have to be encoded.</param>
+      <param name="chars">The read-only character span that provides the characters that have to be encoded.</param>
       <returns>A byte array containing the results of the encoding.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="encoding" /> is <c>null</c>.</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.EncodingExtension.GetString(System.Text.Encoding,System.ReadOnlySpan{System.Byte})">
-      <summary>Decodes all bytes in the specified read only span into a string.</summary>
+      <summary>Decodes all bytes in the specified read-only span into a string.</summary>
       <param name="encoding">The <see cref="T:System.Text.Encoding" /> object on which the extension method is executed.</param>
-      <param name="bytes">A read only byte span that is converted into a string.</param>
+      <param name="bytes">A read-only byte span that is converted into a string.</param>
       <returns>A string decoded from the specified byte span.</returns>
       <exception cref="T:System.NullReferenceException">
         <paramref name="encoding" /> is <c>null</c>.</exception>
@@ -571,8 +571,8 @@ If you use the <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback" /> o
         <paramref name="comparisonType" /> is not a defined value of the <see cref="T:System.StringComparison" /> enumeration.</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanExtensionPolyfillExtension.ContainsAny(System.ReadOnlySpan{System.Char},System.String)">
-      <summary>Indicates whether a read only character span contains one of the Unicode characters that are passed to the method as a string.</summary>
-      <param name="span">The read only span to examine.</param>
+      <summary>Indicates whether a read-only character span contains one of the Unicode characters that are passed to the method as a string.</summary>
+      <param name="span">The read-only span to examine.</param>
       <param name="values">A string containing the characters to search for or <c>null</c>.</param>
       <returns>
         <c>true</c> if one of the characters to be searched for is found in <paramref name="span" />, otherwise <c>false</c>. If <paramref name="span" /> is an empty span or <paramref name="values" /> is <c>null</c> or empty, <c>false</c> is returned.</returns>
@@ -1463,7 +1463,7 @@ Do not use the hashcodes generated by this method for security-critical purposes
         <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
     </member>
     <member name="M:FolkerKinzel.Strings.SpanExtension.ContainsAny(System.Span{System.Char},System.ReadOnlySpan{System.Char})">
-      <summary>Indicates whether a character span contains one of the Unicode characters that are passed to the method as a read only character span.</summary>
+      <summary>Indicates whether a character span contains one of the Unicode characters that are passed to the method as a read-only character span.</summary>
       <param name="span">The span to examine.</param>
       <param name="values">A read-only character span that contains the characters to search for.</param>
       <returns>
