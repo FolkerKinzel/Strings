@@ -110,6 +110,7 @@ StringBuilder Insert(this StringBuilder, int, ReadOnlySpan<char>);
 StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, bool);
 StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, bool);
 StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, int, bool);
+StringBuilder AppendUrlEncoded(this StringBuilder, string?);
 ```
 .
 #### Polyfills for the Encoding class (.NET Framework 4.5, .NET Standard 2.0)
