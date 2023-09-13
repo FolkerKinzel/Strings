@@ -14,6 +14,11 @@ public static class StringBuilderExtensionPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET45 || NETSTANDARD2_0
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static StringBuilder AppendUrlEncoded(this StringBuilder builder, string? value)
+        => UrlEncoding.AppendUrlEncodedTo(builder, value.AsSpan());
+
     /// <summary>
     /// Ersetzt in <paramref name="builder"/> alle Sequenzen von Leerzeichen durch <paramref name="replacement"/>.
     /// </summary>

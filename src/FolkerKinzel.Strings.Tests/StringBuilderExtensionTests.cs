@@ -8,6 +8,49 @@ namespace FolkerKinzel.Strings.Tests;
 public class StringBuilderExtensionTests
 {
     [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void ReplaceTest1()
+    {
+        StringBuilder? sb = null;
+        sb!.Replace("abc", "", 0);
+
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void ReplaceTest2()
+    {
+        StringBuilder? sb = null;
+        sb!.Replace('a', 'b', 0);
+
+    }
+
+    [TestMethod]
+    public void ReplaceTest3()
+    {
+        var sb = new StringBuilder("aaa");
+        sb.Replace("a", "bb", 1);
+        Assert.AreEqual("abbbb", sb.ToString());
+    }
+
+    [TestMethod]
+    public void ReplaceTest4()
+    {
+        var sb = new StringBuilder("aaa");
+        sb.Replace("a", null, 1);
+        Assert.AreEqual("a", sb.ToString());
+    }
+
+    [TestMethod]
+    public void ReplaceTest5()
+    {
+        var sb = new StringBuilder("aaa");
+        sb.Replace('a', 'b', 1);
+        Assert.AreEqual("abb", sb.ToString());
+
+    }
+
+    [TestMethod]
     public void AppendNewLineTest1()
     {
         const string test = "hi";

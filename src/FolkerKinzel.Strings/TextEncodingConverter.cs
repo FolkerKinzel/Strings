@@ -13,7 +13,7 @@ namespace FolkerKinzel.Strings;
 /// </summary>
 public static class TextEncodingConverter
 {
-    private const int UTF_8 = 65001;
+    internal const int UTF_8 = 65001;
     private const int CODEPAGE_MIN = 1;
     private const int CODEPAGE_MAX = 65535;
 

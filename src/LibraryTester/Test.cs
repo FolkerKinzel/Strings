@@ -58,6 +58,11 @@ namespace LibraryTesters
 
             var sb = new StringBuilder();
 
+            sb.Replace("abc", null, 17);
+            sb.Replace('a', 'b', 17);
+
+            sb.AppendUrlEncoded("abc");
+
             _ = sb.Append("Test".AsSpan());
 
             //MemoryExtensions.Trim(test.AsMemory());

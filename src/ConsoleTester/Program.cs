@@ -72,6 +72,11 @@ class Program
 
         _ = sb.Append("Test".AsSpan());
 
+        sb.Replace("abc", null, 17);
+        sb.Replace('a', 'b', 17);
+
+        sb.AppendUrlEncoded("abc");
+
         //MemoryExtensions.Trim(test.AsMemory());
 
         _ = TextEncodingConverter.GetEncoding("iso-8859-1");
