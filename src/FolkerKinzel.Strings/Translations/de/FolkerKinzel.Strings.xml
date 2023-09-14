@@ -1292,6 +1292,25 @@
             Die Polyfills sind verfügbar für .NET Framework 4.5 und .NET Standard 2.0.
             </remarks>
         </member>
+        <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderExtensionPolyfillExtension.AppendUrlEncoded(System.Text.StringBuilder,System.String)">
+            <summary>
+            Fügt den Inhalt eines <see cref="T:System.String"/>s als URL-codierte Zeichenfolge
+            an das Ende eines <see cref="T:System.Text.StringBuilder"/>-Objekts an.
+            </summary>
+            
+            <param name="builder">Der <see cref="T:System.Text.StringBuilder"/>, an den Zeichen angefügt werden.</param>
+            <param name="value">Der <see cref="T:System.String"/>, der die zu kodierenden und anzufügenden Zeichen enthält, oder <c>null</c>.</param>
+            
+            <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+            
+            <remarks>Die Methode ersetzt alle Zeichen mit Ausnahme von nicht reservierten RFC 3986-Zeichen in ihre hexadezimale 
+            Darstellung. Alle Unicode-Zeichen werden in das UTF-8-Format konvertiert, bevor sie mit Escapezeichen versehen werden.
+            Bei dieser Methode wird davon ausgegangen, dass in <paramref name="value"/> keine Escapesequenzen enthalten sind.</remarks>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
+            würde <see cref="P:System.Text.StringBuilder.MaxCapacity"/> überschritten.</exception>
+        </member>
         <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderExtensionPolyfillExtension.ReplaceWhiteSpaceWith(System.Text.StringBuilder,System.String,System.Boolean)">
             <summary>
             Ersetzt in <paramref name="builder"/> alle Sequenzen von Leerzeichen durch <paramref name="replacement"/>.
@@ -2643,6 +2662,25 @@
             <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
             würde <see cref="P:System.Text.StringBuilder.MaxCapacity"/> überschritten.</exception>
         </member>
+        <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendUrlEncoded(System.Text.StringBuilder,System.ReadOnlySpan{System.Char})">
+            <summary>
+            Fügt den Inhalt einer schreibgeschützten Zeichenspanne als URL-codierte Zeichenfolge
+            an das Ende eines <see cref="T:System.Text.StringBuilder"/>-Objekts an.
+            </summary>
+            
+            <param name="builder">Der <see cref="T:System.Text.StringBuilder"/>, an den Zeichen angefügt werden.</param>
+            <param name="value">Die schreibgeschützte Zeichenspanne, die die zu kodierenden und anzufügenden Zeichen enthält.</param>
+            
+            <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+            
+            <remarks>Die Methode ersetzt alle Zeichen mit Ausnahme von nicht reservierten RFC 3986-Zeichen in ihre hexadezimale 
+            Darstellung. Alle Unicode-Zeichen werden in das UTF-8-Format konvertiert, bevor sie mit Escapezeichen versehen werden.
+            Bei dieser Methode wird davon ausgegangen, dass in <paramref name="value"/> keine Escapesequenzen enthalten sind.</remarks>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
+            würde <see cref="P:System.Text.StringBuilder.MaxCapacity"/> überschritten.</exception>
+        </member>
         <member name="M:FolkerKinzel.Strings.StringBuilderExtension.Contains(System.Text.StringBuilder,System.Char)">
             <summary>
             Gibt an, ob ein angegebenes Zeichen im <see cref="T:System.Text.StringBuilder"/> vorkommt.
@@ -3058,6 +3096,65 @@
             </note>
             </remarks>
             <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+        </member>
+        <member name="M:FolkerKinzel.Strings.StringBuilderExtension.Replace(System.Text.StringBuilder,System.String,System.String,System.Int32)">
+            <summary>
+            Ersetzt alle Vorkommen einer angegebenen Zeichenfolge in einer Teilzeichenfolge 
+            von <paramref name="builder"/> durch eine andere angegebene Zeichenfolge.
+            </summary>
+            <param name="builder">Der <see cref="T:System.Text.StringBuilder"/>, dessen Inhalt geändert wird.</param>
+            <param name="oldValue">Die zu ersetzende Zeichenfolge.</param>
+            <param name="newValue">Die Zeichenfolge, die <paramref name="oldValue"/> ersetzt, oder <c>null</c>.</param>
+            <param name="startIndex">Die Position in dieser Instanz, an der die Teilzeichenfolge beginnt.</param>
+            <returns>Ein Verweis auf <paramref name="builder"/>, bei dem alle Instanzen von <paramref name="oldValue"/>
+            im Bereich von <paramref name="startIndex"/> bis zum Ende von <paramref name="builder"/> durch
+            <paramref name="newValue"/> ersetzt wurden.</returns>
+            
+            <remarks>
+            Diese Methode führt einen Ordnungsvergleich zwischen Groß- und Kleinschreibung durch, um Vorkommen von 
+            <paramref name="oldValue"/> in der angegebenen Teilzeichenfolge zu identifizieren. Wenn <paramref name="newValue"/>
+            &#160;<c>null</c> oder <see cref="F:System.String.Empty"/> ist, werden alle Vorkommen von <paramref name="oldValue"/> entfernt.
+            </remarks>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> oder <paramref name="oldValue"/> ist <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException">Die Länge von <paramref name="oldValue"/> ist <see cref="F:System.String.Empty"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <para><paramref name="startIndex"/> ist kleiner als <c>0</c></para>
+            <para>- oder -</para>
+            <para><paramref name="startIndex"/> gibt eine Zeichenposition außerhalb dieser Instanz an</para>
+            <para>- oder -</para>
+            <para>durch Verlängerung des Inhalts von <paramref name="builder"/> würde <see cref="P:System.Text.StringBuilder.MaxCapacity"/> überschritten.</para>
+            </exception>
+        </member>
+        <member name="M:FolkerKinzel.Strings.StringBuilderExtension.Replace(System.Text.StringBuilder,System.Char,System.Char,System.Int32)">
+            <summary>
+            Ersetzt alle Vorkommen eines angegebenen Zeichens in einer Teilzeichenfolge 
+            von <paramref name="builder"/> durch ein anderes angegebenes Zeichen.
+            </summary>
+            <param name="builder">Der <see cref="T:System.Text.StringBuilder"/>, dessen Inhalt geändert wird.</param>
+            <param name="oldChar">Das zu ersetzende Zeichen.</param>
+            <param name="newChar">Das Zeichen, das <paramref name="oldChar"/> ersetzt.</param>
+            <param name="startIndex">Die Position in dieser Instanz, an der die Teilzeichenfolge beginnt.</param>
+            
+            <returns>Ein Verweis auf <paramref name="builder"/>, bei dem <paramref name="oldChar"/>
+            im Bereich von <paramref name="startIndex"/> bis zum Ende von <paramref name="builder"/> durch
+            <paramref name="newChar"/> ersetzt wurde.</returns>
+            
+            <remarks>
+            Diese Methode führt einen Ordnungsvergleich zwischen Groß- und Kleinschreibung durch, um Vorkommen von 
+            <paramref name="oldChar"/> in der angegebenen Teilzeichenfolge zu identifizieren. Die Länge von <paramref name="builder"/>
+            bleibt durch das Ersetzen unverändert.
+            </remarks>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> oder <paramref name="oldChar"/> ist <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException">Die Länge von <paramref name="oldChar"/> ist <see cref="F:System.String.Empty"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <para><paramref name="startIndex"/> ist kleiner als <c>0</c></para>
+            <para>- oder -</para>
+            <para><paramref name="startIndex"/> gibt eine Zeichenposition außerhalb dieser Instanz an</para>.
+            </exception>
         </member>
         <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ReplaceLineEndings(System.Text.StringBuilder,System.String)">
             <summary>
@@ -4062,6 +4159,104 @@
             Daten erkannt werden, wenn kein Byte Order Mark vorliegt.
             </para>
             </remarks>
+        </member>
+        <member name="T:FolkerKinzel.Strings.UrlEncoding">
+            <summary>
+            Statische Klasse, die Methoden zur Behandlung von URL-Enkodierung (RFC 3986) zur Verfügung stellt.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.String,System.String,System.Boolean,System.String@)">
+            <summary>
+            Versucht, einen URL-kodierten <see cref="T:System.String"/> unter Verwendung eines angegebenen
+            Zeichensatzes zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
+            dekodiert werden.
+            </summary>
+            <param name="value">Der zu dekodierende <see cref="T:System.String"/>.</param>
+            <param name="encodingWebName">Der standardisierte Internetname des zu verwendenden Zeichensatzes oder <c>null</c>
+            bzw. ein leerer <see cref="T:System.String"/> als Ersatz für "utf-8".</param>
+            <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
+            dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
+            <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="T:System.String"/>, der den
+            dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
+            <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.String,System.Int32,System.Boolean,System.String@)">
+            <summary>
+            Versucht, einen URL-kodierten <see cref="T:System.String"/> unter Verwendung einer angegebenen
+            Codepage zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
+            dekodiert werden.
+            </summary>
+            <param name="value">Der zu dekodierende <see cref="T:System.String"/>.</param>
+            <param name="codePage">Die Codepage des zu verwendenden Zeichensatzes.</param>
+            <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
+            dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
+            <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="T:System.String"/>, der den
+            dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
+            <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.String,System.Boolean,System.String@)">
+            <summary>
+            Versucht, einen URL-kodierten <see cref="T:System.String"/> unter Verwendung des UTF-8-Zeichensatzes
+            zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
+            dekodiert werden.
+            </summary>
+            <param name="value">Der zu dekodierende <see cref="T:System.String"/>.</param>
+            <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
+            dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
+            <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="T:System.String"/>, der den
+            dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
+            <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.ReadOnlySpan{System.Char},System.String,System.Boolean,System.String@)">
+            <summary>
+            Versucht, den URL-kodierten Inhalt einer schreibgeschützten Zeichenspanne unter Verwendung eines angegebenen
+            Zeichensatzes zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
+            dekodiert werden.
+            </summary>
+            <param name="value">Die zu dekodierende schreibgeschützte Zeichenspanne.</param>
+            <param name="encodingWebName">Der standardisierte Internetname des zu verwendenden Zeichensatzes oder <c>null</c>
+            bzw. ein leerer <see cref="T:System.String"/> als Ersatz für "utf-8".</param>
+            <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
+            dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
+            <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="T:System.String"/>, der den
+            dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
+            <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.ReadOnlySpan{System.Char},System.Int32,System.Boolean,System.String@)">
+            <summary>
+            Versucht, den URL-kodierten Inhalt einer schreibgeschützten Zeichenspanne unter Verwendung einer angegebenen
+            Codepage zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
+            dekodiert werden.
+            </summary>
+            <param name="value">Die zu dekodierende schreibgeschützte Zeichenspanne.</param>
+            <param name="codePage">Die Codepage des zu verwendenden Zeichensatzes.</param>
+            <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
+            dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
+            <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="T:System.String"/>, der den
+            dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
+            <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.ReadOnlySpan{System.Char},System.Boolean,System.String@)">
+            <summary>
+            Versucht, den URL-kodierten Inhalt einer schreibgeschützten Zeichenspanne unter Verwendung des UTF-8-Zeichensatzes
+            zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
+            dekodiert werden.
+            </summary>
+            <param name="value">Die zu dekodierende schreibgeschützte Zeichenspanne.</param>
+            <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
+            dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
+            <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="T:System.String"/>, der den
+            dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
+            <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.UrlEncoding.UnescapeValueFromUrlEncoding(System.ReadOnlySpan{System.Char},System.Text.Encoding,System.Boolean)">
+            <summary>
+            Removes URL encoding from <paramref name="value"/>.
+            </summary>
+            <param name="value"></param>
+            <param name="encoding"></param>
+            <param name="decodePlusSigns"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

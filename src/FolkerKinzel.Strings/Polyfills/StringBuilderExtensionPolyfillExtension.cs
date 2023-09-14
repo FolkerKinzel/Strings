@@ -15,6 +15,23 @@ public static class StringBuilderExtensionPolyfillExtension
     // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET45 || NETSTANDARD2_0
 
+    /// <summary>
+    /// Fügt den Inhalt eines <see cref="string"/>s als URL-codierte Zeichenfolge
+    /// an das Ende eines <see cref="StringBuilder"/>-Objekts an.
+    /// </summary>
+    /// 
+    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
+    /// <param name="value">Der <see cref="string"/>, der die zu kodierenden und anzufügenden Zeichen enthält, oder <c>null</c>.</param>
+    /// 
+    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+    /// 
+    /// <remarks>Die Methode ersetzt alle Zeichen mit Ausnahme von nicht reservierten RFC 3986-Zeichen in ihre hexadezimale 
+    /// Darstellung. Alle Unicode-Zeichen werden in das UTF-8-Format konvertiert, bevor sie mit Escapezeichen versehen werden.
+    /// Bei dieser Methode wird davon ausgegangen, dass in <paramref name="value"/> keine Escapesequenzen enthalten sind.</remarks>
+    /// 
+    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
+    /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, string? value)
         => UrlEncoding.AppendUrlEncodedTo(builder, value.AsSpan());

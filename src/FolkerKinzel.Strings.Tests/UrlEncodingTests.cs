@@ -1,9 +1,9 @@
 ﻿#if !NETCOREAPP3_1
-using System.Net;
 using FolkerKinzel.Strings.Polyfills;
 #endif
-
 using System.Net;
+
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
@@ -49,7 +49,7 @@ public class UrlEncodingTests
 
         string input = new(chars);
 
-        Assert.IsTrue(UrlEncoding.TryDecode(Uri.EscapeDataString(input), out string? decoded));
+        Assert.IsTrue(UrlEncoding.TryDecode(Uri.EscapeDataString(input), true, out string? decoded));
         Assert.AreEqual(input, decoded);
     }
 
@@ -66,24 +66,33 @@ public class UrlEncodingTests
 
         string input = new(chars);
 
-        Assert.IsTrue(UrlEncoding.TryDecode(Uri.EscapeDataString(input), null, out string? decoded));
+        Assert.IsTrue(UrlEncoding.TryDecode(Uri.EscapeDataString(input), null, true, out string? decoded));
         Assert.AreEqual(input, decoded);
     }
 
     [TestMethod]
     public void TryDecodeTest2()
     {
-        const string input = "1+2";
+        const string input = "1+2%3D3";
 
-        Assert.IsTrue(UrlEncoding.TryDecode(input, out string? decoded));
-        Assert.AreEqual("1 2", decoded);
+        Assert.IsTrue(UrlEncoding.TryDecode(input, true, out string? decoded));
+        Assert.AreEqual("1 2=3", decoded);
+    }
+
+    [TestMethod]
+    public void TryDecodeTest2b()
+    {
+        const string input = "1+2%3D3";
+
+        Assert.IsTrue(UrlEncoding.TryDecode(input, false, out string? decoded));
+        Assert.AreEqual("1+2=3", decoded);
     }
 
     [TestMethod]
     public void TryDecodeTest3()
     {
         const string input = "äöü";
-        Assert.IsFalse(UrlEncoding.TryDecode(input, out _));
+        Assert.IsFalse(UrlEncoding.TryDecode(input, true, out _));
     }
 
 
@@ -99,10 +108,10 @@ public class UrlEncodingTests
 
         string encoded = Encoding.UTF8.GetString(bytes);
 
-        Assert.IsFalse(UrlEncoding.TryDecode(encoded, out _));
-        Assert.IsFalse(UrlEncoding.TryDecode(encoded, "nixdablabla", out _));
-        Assert.IsFalse(UrlEncoding.TryDecode(encoded, "utf-8", out _));
-        Assert.IsTrue(UrlEncoding.TryDecode(encoded, charSet, out string? decoded));
+        Assert.IsFalse(UrlEncoding.TryDecode(encoded, true, out _));
+        Assert.IsFalse(UrlEncoding.TryDecode(encoded, "nixdablabla", true, out _));
+        Assert.IsFalse(UrlEncoding.TryDecode(encoded, "utf-8", true, out _));
+        Assert.IsTrue(UrlEncoding.TryDecode(encoded, charSet, true, out string? decoded));
 
         Assert.AreEqual(input, decoded);
     }
@@ -120,10 +129,10 @@ public class UrlEncodingTests
 
         string encoded = Encoding.UTF8.GetString(bytes);
 
-        Assert.IsFalse(UrlEncoding.TryDecode(encoded, out _));
-        Assert.IsFalse(UrlEncoding.TryDecode(encoded, -1, out _));
-        Assert.IsFalse(UrlEncoding.TryDecode(encoded, Encoding.UTF8.CodePage, out _));
-        Assert.IsTrue(UrlEncoding.TryDecode(encoded, encoding.CodePage, out string? decoded));
+        Assert.IsFalse(UrlEncoding.TryDecode(encoded, true, out _));
+        Assert.IsFalse(UrlEncoding.TryDecode(encoded, -1, true, out _));
+        Assert.IsFalse(UrlEncoding.TryDecode(encoded, Encoding.UTF8.CodePage, true, out _));
+        Assert.IsTrue(UrlEncoding.TryDecode(encoded, encoding.CodePage, true, out string? decoded));
 
         Assert.AreEqual(input, decoded);
     }
