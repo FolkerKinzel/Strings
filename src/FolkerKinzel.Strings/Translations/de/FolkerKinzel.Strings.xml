@@ -3118,11 +3118,11 @@
             
             <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> oder <paramref name="oldValue"/> ist <c>null</c>.
             </exception>
-            <exception cref="T:System.ArgumentException">Die Länge von <paramref name="oldValue"/> ist <see cref="F:System.String.Empty"/>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="oldValue"/> ist <see cref="F:System.String.Empty"/>.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
             <para><paramref name="startIndex"/> ist kleiner als <c>0</c></para>
             <para>- oder -</para>
-            <para><paramref name="startIndex"/> gibt eine Zeichenposition außerhalb dieser Instanz an</para>
+            <para><paramref name="startIndex"/> gibt eine Zeichenposition außerhalb von <paramref name="builder"/> an</para>
             <para>- oder -</para>
             <para>durch Verlängerung des Inhalts von <paramref name="builder"/> würde <see cref="P:System.Text.StringBuilder.MaxCapacity"/> überschritten.</para>
             </exception>
@@ -3147,13 +3147,12 @@
             bleibt durch das Ersetzen unverändert.
             </remarks>
             
-            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> oder <paramref name="oldChar"/> ist <c>null</c>.
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.
             </exception>
-            <exception cref="T:System.ArgumentException">Die Länge von <paramref name="oldChar"/> ist <see cref="F:System.String.Empty"/>.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
             <para><paramref name="startIndex"/> ist kleiner als <c>0</c></para>
             <para>- oder -</para>
-            <para><paramref name="startIndex"/> gibt eine Zeichenposition außerhalb dieser Instanz an</para>.
+            <para><paramref name="startIndex"/> gibt eine Zeichenposition außerhalb von <paramref name="builder"/> an</para>.
             </exception>
         </member>
         <member name="M:FolkerKinzel.Strings.StringBuilderExtension.ReplaceLineEndings(System.Text.StringBuilder,System.String)">

@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup Condition="False And '$(Configuration)'=='Release' And '$(TargetFramework)' == 'netstandard2.0'">
+  <PropertyGroup Condition="True And '$(Configuration)'=='Release' And '$(TargetFramework)' == 'netstandard2.0'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
@@ -12,7 +12,7 @@
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
     <Version>6.0.0</Version>
-    <FileVersion>6.0.0.22</FileVersion>
+    <FileVersion>6.0.0.25</FileVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v6.1.0</PackageReleaseNotes>
     <PackageTags>.NET String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode C#</PackageTags>

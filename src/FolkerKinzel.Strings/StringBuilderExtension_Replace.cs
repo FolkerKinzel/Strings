@@ -24,11 +24,11 @@ public static partial class StringBuilderExtension
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="builder"/> oder <paramref name="oldValue"/> ist <c>null</c>.
     /// </exception>
-    /// <exception cref="ArgumentException">Die Länge von <paramref name="oldValue"/> ist <see cref="string.Empty"/>.</exception>
+    /// <exception cref="ArgumentException"><paramref name="oldValue"/> ist <see cref="string.Empty"/>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para><paramref name="startIndex"/> ist kleiner als <c>0</c></para>
     /// <para>- oder -</para>
-    /// <para><paramref name="startIndex"/> gibt eine Zeichenposition außerhalb dieser Instanz an</para>
+    /// <para><paramref name="startIndex"/> gibt eine Zeichenposition außerhalb von <paramref name="builder"/> an</para>
     /// <para>- oder -</para>
     /// <para>durch Verlängerung des Inhalts von <paramref name="builder"/> würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</para>
     /// </exception>
@@ -55,13 +55,12 @@ public static partial class StringBuilderExtension
     /// bleibt durch das Ersetzen unverändert.
     /// </remarks>
     /// 
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> oder <paramref name="oldChar"/> ist <c>null</c>.
+    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.
     /// </exception>
-    /// <exception cref="ArgumentException">Die Länge von <paramref name="oldChar"/> ist <see cref="string.Empty"/>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para><paramref name="startIndex"/> ist kleiner als <c>0</c></para>
     /// <para>- oder -</para>
-    /// <para><paramref name="startIndex"/> gibt eine Zeichenposition außerhalb dieser Instanz an</para>.
+    /// <para><paramref name="startIndex"/> gibt eine Zeichenposition außerhalb von <paramref name="builder"/> an</para>.
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder Replace(this StringBuilder builder, char oldChar, char newChar, int startIndex)
