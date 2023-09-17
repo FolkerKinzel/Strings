@@ -11,7 +11,7 @@ public static partial class StringBuilderExtension
     /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt geändert wird.</param>
     /// <param name="oldValue">Die zu ersetzende Zeichenfolge.</param>
     /// <param name="newValue">Die Zeichenfolge, die <paramref name="oldValue"/> ersetzt, oder <c>null</c>.</param>
-    /// <param name="startIndex">Die Position in dieser Instanz, an der die Teilzeichenfolge beginnt.</param>
+    /// <param name="startIndex">Die Position in <paramref name="builder"/>, an der die Teilzeichenfolge beginnt.</param>
     /// <returns>Ein Verweis auf <paramref name="builder"/>, bei dem alle Instanzen von <paramref name="oldValue"/>
     /// im Bereich von <paramref name="startIndex"/> bis zum Ende von <paramref name="builder"/> durch
     /// <paramref name="newValue"/> ersetzt wurden.</returns>
@@ -43,7 +43,7 @@ public static partial class StringBuilderExtension
     /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt geändert wird.</param>
     /// <param name="oldChar">Das zu ersetzende Zeichen.</param>
     /// <param name="newChar">Das Zeichen, das <paramref name="oldChar"/> ersetzt.</param>
-    /// <param name="startIndex">Die Position in dieser Instanz, an der die Teilzeichenfolge beginnt.</param>
+    /// <param name="startIndex">Die Position in <paramref name="builder"/>, an der die Teilzeichenfolge beginnt.</param>
     /// 
     /// <returns>Ein Verweis auf <paramref name="builder"/>, bei dem <paramref name="oldChar"/>
     /// im Bereich von <paramref name="startIndex"/> bis zum Ende von <paramref name="builder"/> durch

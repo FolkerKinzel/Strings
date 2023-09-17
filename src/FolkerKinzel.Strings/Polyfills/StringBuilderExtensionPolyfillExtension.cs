@@ -25,7 +25,8 @@ public static class StringBuilderExtensionPolyfillExtension
     /// 
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
     /// 
-    /// <remarks>Die Methode ersetzt alle Zeichen mit Ausnahme von nicht reservierten RFC 3986-Zeichen in ihre hexadezimale 
+    /// <remarks>Die Methode ersetzt alle Zeichen in <paramref name="value"/> mit Ausnahme von nicht reservierten RFC 3986-Zeichen 
+    /// durch ihre hexadezimale 
     /// Darstellung. Alle Unicode-Zeichen werden in das UTF-8-Format konvertiert, bevor sie mit Escapezeichen versehen werden.
     /// Bei dieser Methode wird davon ausgegangen, dass in <paramref name="value"/> keine Escapesequenzen enthalten sind.</remarks>
     /// 
