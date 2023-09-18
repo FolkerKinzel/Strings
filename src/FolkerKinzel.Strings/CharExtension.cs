@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using FolkerKinzel.Strings.Properties;
 
@@ -10,14 +11,51 @@ namespace FolkerKinzel.Strings;
 public static class CharExtension
 {
     /// <summary>
+    /// Untersucht, ob sich der Wert von <paramref name="c"/> im Bereich
+    /// von <paramref name="minInclusive"/> bis <paramref name="maxInclusive"/>
+    /// befindet (die Grenzen eingeschlossen).
+    /// </summary>
+    /// <param name="c">Das Zeichen, dessen Wert überprüft wird.</param>
+    /// <param name="minInclusive">Die untere Grenze des zu überprüfenden Bereichs.</param>
+    /// <param name="maxInclusive">Die obere Grenze des zu überprüfenden Bereichs.</param>
+    /// <returns><c>true</c>, wenn der Wert von <paramref name="c"/> innerhalb des 
+    /// angegebenen Bereichs liegt, andernfalls <c>false</c>.</returns>
+    /// <remarks>Die Methode überprüft nicht, ob <paramref name="maxInclusive"/> größer
+    /// oder gleich <paramref name="minInclusive"/> ist. Wenn <paramref name="maxInclusive"/>
+    /// kleiner als <paramref name="minInclusive"/> ist, ist das Verhalten der Methode undefiniert.</remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsBetween(this char c, char minInclusive, char maxInclusive)
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
+        => (c >= minInclusive) && (c <= maxInclusive);
+#else
+        => char.IsBetween(c, minInclusive, maxInclusive);
+#endif
+
+    /// <summary>
     /// Untersucht, ob das Unicode-Zeichen ein ASCII-Kleinbuchstabe ist.
     /// </summary>
     /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
     /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Kleinbuchstabe ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsAsciiLowerCaseLetter(this char c)
-        => c is >= 'a' and <= 'z';
+    [Obsolete("Use is AsciiLetterLower(this char) instead.", false)]
+    [Browsable(false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public static bool IsAsciiLowerCaseLetter(this char c) => c.IsAsciiLetterLower();
+
+    /// <summary>
+    /// Untersucht, ob das Unicode-Zeichen ein ASCII-Kleinbuchstabe ist.
+    /// </summary>
+    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+    /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Kleinbuchstabe ist,
+    /// andernfalls <c>false</c>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAsciiLetterLower(this char c)
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
+        => c.IsBetween('a','z');
+#else
+        => char.IsAsciiLetterLower(c);
+#endif
 
     /// <summary>
     /// Untersucht, ob das Unicode-Zeichen ein ASCII-Großbuchstabe ist.
@@ -26,8 +64,25 @@ public static class CharExtension
     /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsAsciiUpperCaseLetter(this char c)
-        => c is >= 'A' and <= 'Z';
+    [Obsolete("Use is AsciiLetterUpper(this char) instead.", false)]
+    [Browsable(false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public static bool IsAsciiUpperCaseLetter(this char c) => IsAsciiLetterUpper(c);
+        
+
+    /// <summary>
+    /// Untersucht, ob das Unicode-Zeichen ein ASCII-Großbuchstabe ist.
+    /// </summary>
+    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+    /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
+    /// andernfalls <c>false</c>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAsciiLetterUpper(this char c)
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
+        => c.IsBetween('A','Z');
+#else
+        => char.IsAsciiLetterUpper(c);
+#endif
 
     /// <summary>
     /// Untersucht, ob das Unicode-Zeichen ein ASCII-Buchstabe ist.
@@ -36,8 +91,29 @@ public static class CharExtension
     /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Buchstabe ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsAsciiLetter(this char c) =>
-       ((char)(c | 32)).IsAsciiLowerCaseLetter();
+    public static bool IsAsciiLetter(this char c)
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
+        => ((char)(c | 32)).IsAsciiLetterLower();
+#else
+        => char.IsAsciiLetter(c);
+#endif
+
+    /// <summary>
+    /// Untersucht, ob das Unicode-Zeichen als ASCII-Buchstabe [A-Za-z] oder Dezimalziffer [0-9]
+    /// charakterisiert wird.
+    /// </summary>
+    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+    /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Buchstabe [A-Za-z] oder
+    /// eine Dezimalziffer [0-9] ist,
+    /// andernfalls <c>false</c>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAsciiLetterOrDigit(this char c)
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
+        => c.IsAsciiLetter() || c.IsAsciiDigit();
+#else
+        => char.IsAsciiLetterOrDigit(c);
+#endif
+
 
     /// <summary>
     /// Ruft den Wert einer Hexadezimalziffer ab.
@@ -86,7 +162,7 @@ public static class CharExtension
     /// andernfalls <c>false</c>.</returns>
     public static bool TryParseDecimalDigit(this char digit, [NotNullWhen(true)] out int? value)
     {
-        if (digit.IsDecimalDigit())
+        if (digit.IsAsciiDigit())
         {
             value = (int)digit - 48;
             return true;
@@ -156,8 +232,25 @@ public static class CharExtension
     /// <returns><c>true</c> wenn <paramref name="c"/> ein Zeichen des ASCII-Zeichensatzes ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsAscii(this char c) => 128u > c;
+    public static bool IsAscii(this char c)
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0
+        => 128u > c;
+#else
+        => char.IsAscii(c);
+#endif
 
+
+    /// <summary>
+    /// Untersucht, ob das Unicode-Zeichen eine Dezimalziffer (0-9) darstellt.
+    /// </summary>
+    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+    /// <returns><c>true</c>, wenn <paramref name="c"/> eine Dezimalziffer
+    /// darstellt, andernfalls <c>false</c>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [Obsolete("Use IsAsciiDigit(this char) instead.", false)]
+    [Browsable(false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public static bool IsDecimalDigit(this char c) => c.IsAsciiDigit();
 
 
     /// <summary>
@@ -168,7 +261,12 @@ public static class CharExtension
     /// darstellt, andernfalls <c>false</c>.</returns>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0078:Musterabgleich verwenden", Justification = "<Ausstehend>")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsDecimalDigit(this char c) => 47u < c && 58u > c;
+    public static bool IsAsciiDigit(this char c)
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
+        => 47u < c && 58u > c;
+#else
+        => char.IsAsciiDigit(c);
+#endif
 
 
     /// <summary>
@@ -180,6 +278,49 @@ public static class CharExtension
     /// <remarks>Ruft <see cref="Uri.IsHexDigit(char)"/> auf.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsHexDigit(this char character) => Uri.IsHexDigit(character);
+
+
+    /// <summary>
+    /// Untersucht, ob das Unicode-Zeichen eine eine gültige Hexadezimalziffer (0-9, a-f, A-F) ist.
+    /// </summary>
+    /// <param name="character">Das zu überprüfende Unicode-Zeichen.</param>
+    /// <returns><c>true</c>, wenn <paramref name="character"/> eine Hexadezimalziffer
+    /// ist, andernfalls <c>false</c>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAsciiHexDigit(this char c)
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
+        => Uri.IsHexDigit(c);
+#else
+        => char.IsAsciiHexDigit(c);
+#endif
+
+    /// <summary>
+    /// Untersucht, ob das Unicode-Zeichen eine eine Hexadezimalziffer in Kleinschreibung ist [0-9a-f].
+    /// </summary>
+    /// <param name="character">Das zu überprüfende Unicode-Zeichen.</param>
+    /// <returns><c>true</c>, wenn <paramref name="character"/> eine Hexadezimalziffer
+    /// in Kleinschreibung ist [0-9a-f], andernfalls <c>false</c>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAsciiHexDigitLower(this char c)
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
+        => c.IsAsciiHexDigit() && !c.IsAsciiLetterUpper();
+#else
+        => char.IsAsciiHexDigitLower(c);
+#endif
+
+    /// <summary>
+    /// Untersucht, ob das Unicode-Zeichen eine eine Hexadezimalziffer in Großschreibung ist [0-9A-F].
+    /// </summary>
+    /// <param name="character">Das zu überprüfende Unicode-Zeichen.</param>
+    /// <returns><c>true</c>, wenn <paramref name="character"/> eine Hexadezimalziffer
+    /// in Großschreibung ist [0-9A-F], andernfalls <c>false</c>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAsciiHexDigitUpper(this char c)
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
+        => c.IsAsciiHexDigit() && !c.IsAsciiLetterLower();
+#else
+        => char.IsAsciiHexDigitUpper(c);
+#endif
 
 
     /// <summary>

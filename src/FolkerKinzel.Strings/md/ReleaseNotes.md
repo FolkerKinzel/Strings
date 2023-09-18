@@ -1,17 +1,20 @@
-- New static class `UrlEncoding`
-- New enum `Base64ParserOptions`
-
-.
 - New extension methods:
 ```csharp
-StringBuilder Replace(this StringBuilder, string, string?, int);
-StringBuilder Replace(this StringBuilder, char, char, int);
-StringBuilder AppendUrlEncoded(this StringBuilder, ReadOnlySpan<char>);
+bool IsAsciiLetterLower(this char);
+bool IsAsciiLetterUpper(this char);
+bool IsAsciiDigit(this char);
+bool IsAsciiLetterOrDigit(this char);
+bool IsAsciiHexDigit(this char);
+bool IsAsciiHexDigitLower(this char);
+bool IsAsciiHexDigitUpper(this char);
+bool IsBetween(this char, char, char)
 ```
 .
-- New polyfill for the StringBuilder class (.NET Framework 4.5, .NET Standard 2.0):
+- Obsolete extension methods:
 ```csharp
-StringBuilder AppendUrlEncoded(this StringBuilder, string?);
+bool IsAsciiLowerCaseLetter(this char);
+bool IsAsciiUpperCaseLetter(this char);
+bool IsDecimalDigit(this char);
 ```
 
 .
