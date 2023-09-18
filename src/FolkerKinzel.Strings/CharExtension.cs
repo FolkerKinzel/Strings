@@ -259,11 +259,10 @@ public static class CharExtension
     /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
     /// <returns><c>true</c>, wenn <paramref name="c"/> eine Dezimalziffer
     /// darstellt, andernfalls <c>false</c>.</returns>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0078:Musterabgleich verwenden", Justification = "<Ausstehend>")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiDigit(this char c)
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
-        => 47u < c && 58u > c;
+        => c.IsBetween('0', '9');
 #else
         => char.IsAsciiDigit(c);
 #endif
