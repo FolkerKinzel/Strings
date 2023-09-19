@@ -166,6 +166,21 @@
             Erweiterungsmethoden für die <see cref="T:System.Char"/>-Struktur.
             </summary>
         </member>
+        <member name="M:FolkerKinzel.Strings.CharExtension.IsBetween(System.Char,System.Char,System.Char)">
+            <summary>
+            Untersucht, ob sich der Wert von <paramref name="c"/> im Bereich
+            von <paramref name="minInclusive"/> bis <paramref name="maxInclusive"/>
+            befindet (die Grenzen eingeschlossen).
+            </summary>
+            <param name="c">Das Zeichen, dessen Wert überprüft wird.</param>
+            <param name="minInclusive">Die untere Grenze des zu überprüfenden Bereichs.</param>
+            <param name="maxInclusive">Die obere Grenze des zu überprüfenden Bereichs.</param>
+            <returns><c>true</c>, wenn der Wert von <paramref name="c"/> innerhalb des 
+            angegebenen Bereichs liegt, andernfalls <c>false</c>.</returns>
+            <remarks>Die Methode überprüft nicht, ob <paramref name="maxInclusive"/> größer
+            oder gleich <paramref name="minInclusive"/> ist. Wenn <paramref name="maxInclusive"/>
+            kleiner als <paramref name="minInclusive"/> ist, ist das Verhalten der Methode undefiniert.</remarks>
+        </member>
         <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiLowerCaseLetter(System.Char)">
             <summary>
             Untersucht, ob das Unicode-Zeichen ein ASCII-Kleinbuchstabe ist.
@@ -174,12 +189,28 @@
             <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Kleinbuchstabe ist,
             andernfalls <c>false</c>.</returns>
         </member>
+        <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiLetterLower(System.Char)">
+            <summary>
+            Untersucht, ob das Unicode-Zeichen ein ASCII-Kleinbuchstabe ist.
+            </summary>
+            <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+            <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Kleinbuchstabe ist,
+            andernfalls <c>false</c>.</returns>
+        </member>
         <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiUpperCaseLetter(System.Char)">
             <summary>
             Untersucht, ob das Unicode-Zeichen ein ASCII-Großbuchstabe ist.
             </summary>
             <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-            <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
+            <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
+            andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiLetterUpper(System.Char)">
+            <summary>
+            Untersucht, ob das Unicode-Zeichen ein ASCII-Großbuchstabe ist.
+            </summary>
+            <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+            <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
             andernfalls <c>false</c>.</returns>
         </member>
         <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiLetter(System.Char)">
@@ -187,7 +218,17 @@
             Untersucht, ob das Unicode-Zeichen ein ASCII-Buchstabe ist.
             </summary>
             <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-            <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Buchstabe ist,
+            <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Buchstabe ist,
+            andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiLetterOrDigit(System.Char)">
+            <summary>
+            Untersucht, ob das Unicode-Zeichen als ASCII-Buchstabe [A-Za-z] oder Dezimalziffer [0-9]
+            charakterisiert wird.
+            </summary>
+            <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+            <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Buchstabe [A-Za-z] oder
+            eine Dezimalziffer [0-9] ist,
             andernfalls <c>false</c>.</returns>
         </member>
         <member name="M:FolkerKinzel.Strings.CharExtension.ParseHexDigit(System.Char)">
@@ -262,10 +303,18 @@
             Untersucht, ob das Unicode-Zeichen zum ASCII-Zeichensatz gehört.
             </summary>
             <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-            <returns><c>true</c> wenn <paramref name="c"/> ein Zeichen des ASCII-Zeichensatzes ist,
+            <returns><c>true</c>, wenn <paramref name="c"/> ein Zeichen des ASCII-Zeichensatzes ist,
             andernfalls <c>false</c>.</returns>
         </member>
         <member name="M:FolkerKinzel.Strings.CharExtension.IsDecimalDigit(System.Char)">
+            <summary>
+            Untersucht, ob das Unicode-Zeichen eine Dezimalziffer (0-9) darstellt.
+            </summary>
+            <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+            <returns><c>true</c>, wenn <paramref name="c"/> eine Dezimalziffer
+            darstellt, andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiDigit(System.Char)">
             <summary>
             Untersucht, ob das Unicode-Zeichen eine Dezimalziffer (0-9) darstellt.
             </summary>
@@ -281,6 +330,30 @@
             <returns><c>true</c>, wenn <paramref name="character"/> eine Hexadezimalziffer
             ist, andernfalls <c>false</c>.</returns>
             <remarks>Ruft <see cref="M:System.Uri.IsHexDigit(System.Char)"/> auf.</remarks>
+        </member>
+        <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiHexDigit(System.Char)">
+            <summary>
+            Untersucht, ob das Unicode-Zeichen eine eine gültige Hexadezimalziffer (0-9, a-f, A-F) ist.
+            </summary>
+            <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+            <returns><c>true</c>, wenn <paramref name="c"/> eine Hexadezimalziffer
+            ist, andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiHexDigitLower(System.Char)">
+            <summary>
+            Untersucht, ob das Unicode-Zeichen eine eine Hexadezimalziffer in Kleinschreibung ist [0-9a-f].
+            </summary>
+            <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+            <returns><c>true</c>, wenn <paramref name="c"/> eine Hexadezimalziffer
+            in Kleinschreibung ist [0-9a-f], andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.CharExtension.IsAsciiHexDigitUpper(System.Char)">
+            <summary>
+            Untersucht, ob das Unicode-Zeichen eine eine Hexadezimalziffer in Großschreibung ist [0-9A-F].
+            </summary>
+            <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+            <returns><c>true</c>, wenn <paramref name="c"/> eine Hexadezimalziffer
+            in Großschreibung ist [0-9A-F], andernfalls <c>false</c>.</returns>
         </member>
         <member name="M:FolkerKinzel.Strings.CharExtension.IsBinaryDigit(System.Char)">
             <summary>
@@ -317,7 +390,7 @@
             </para>
             <note type="important">
             Zur Unicode-Kategorie "Decimal Digit Number" gehören sehr viel mehr
-            Zeichen als die Ziffern 0-9. Verwenden sie die Methode <see cref="M:FolkerKinzel.Strings.CharExtension.IsDecimalDigit(System.Char)"/>,
+            Zeichen als die Ziffern 0-9. Verwenden sie die Methode <see cref="M:FolkerKinzel.Strings.CharExtension.IsAsciiDigit(System.Char)"/>,
             wenn Sie auf die Zeichen 0-9 prüfen möchten.
             </note>
             </remarks>

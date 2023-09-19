@@ -2,9 +2,20 @@
 
 namespace FolkerKinzel.Strings.Tests;
 
+#pragma warning disable CS0618 // Typ oder Element ist veraltet
+
 [TestClass]
 public class CharExtensionTests
 {
+    [DataTestMethod]
+    [DataRow('2', false)]
+    [DataRow('3', true)]
+    [DataRow('4', true)]
+    [DataRow('5', true)]
+    [DataRow('6', false)]
+    public void IsBetweenTest1(char input, bool expected)
+        => Assert.AreEqual(expected, input.IsBetween('3', '5'));
+
     [TestMethod]
     public void IsDecimalDigitTest1()
     {
@@ -31,6 +42,55 @@ public class CharExtensionTests
         Assert.AreEqual(result, input.TryParseHexDigit(out int? got));
         Assert.AreEqual(expected, got);
     }
+
+    [DataTestMethod]
+    [DataRow('0', true)]
+    [DataRow('9', true)]
+    [DataRow('A', true)]
+    [DataRow('a', true)]
+    [DataRow('F', true)]
+    [DataRow('f', true)]
+    [DataRow('G', false)]
+    [DataRow('g', false)]
+    public void IsAsciiHexDigitTest1(char input, bool expected)
+        => Assert.AreEqual(expected, input.IsAsciiHexDigit());
+
+    [DataTestMethod]
+    [DataRow('0', true)]
+    [DataRow('9', true)]
+    [DataRow('A', true)]
+    [DataRow('a', false)]
+    [DataRow('F', true)]
+    [DataRow('f', false)]
+    [DataRow('G', false)]
+    [DataRow('g', false)]
+    public void IsAsciiHexDigitUpperTest1(char input, bool expected)
+        => Assert.AreEqual(expected, input.IsAsciiHexDigitUpper());
+
+    [DataTestMethod]
+    [DataRow('0', true)]
+    [DataRow('9', true)]
+    [DataRow('A', false)]
+    [DataRow('a', true)]
+    [DataRow('F', false)]
+    [DataRow('f', true)]
+    [DataRow('G', false)]
+    [DataRow('g', false)]
+    public void IsAsciiHexDigitLowerTest1(char input, bool expected)
+        => Assert.AreEqual(expected, input.IsAsciiHexDigitLower());
+
+    [DataTestMethod]
+    [DataRow('0', true)]
+    [DataRow('9', true)]
+    [DataRow('A', true)]
+    [DataRow('a', true)]
+    [DataRow('F', true)]
+    [DataRow('f', true)]
+    [DataRow('G', false)]
+    [DataRow('g', false)]
+    public void IsHexDigitTest1(char input, bool expected)
+        => Assert.AreEqual(expected, input.IsHexDigit());
+
 
     [DataTestMethod]
     [DataRow('0', 0)]
@@ -264,6 +324,7 @@ public class CharExtensionTests
         }
     }
 
+
     [DataTestMethod]
     [DataRow(' ', false)]
     [DataRow('a', false)]
@@ -277,6 +338,7 @@ public class CharExtensionTests
     public void IsNewLineTest(char input, bool expected)
         => Assert.AreEqual(expected, input.IsNewLine());
 
+
     [TestMethod()]
     public void IsAsciiLowerCaseLetterTest()
     {
@@ -285,6 +347,7 @@ public class CharExtensionTests
             Assert.AreEqual(c.IsAscii() && char.IsLetter(c) && char.IsLower(c), c.IsAsciiLowerCaseLetter());
         }
     }
+
 
     [TestMethod()]
     public void IsAsciiUpperCaseLetterTest()
@@ -314,3 +377,4 @@ public class CharExtensionTests
     //    }
     //}
 }
+#pragma warning restore CS0618 // Typ oder Element ist veraltet

@@ -4,10 +4,10 @@ namespace Benchmarks;
 
 public static class CharExtension2
 {
-    public static bool IsAsciiLetter2(this char c) =>
-        ((char)(c | 32)).IsAsciiLowerCaseLetter();
+    public static bool IsAsciiLetter2(this char c) => ((char)(c | 32)).IsAsciiLetterLower();
 
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0066:Switch-Anweisung in Ausdruck konvertieren", Justification = "<Ausstehend>")]
     public static bool IsAsciiLetter3(this char c)
     {
         switch (c)

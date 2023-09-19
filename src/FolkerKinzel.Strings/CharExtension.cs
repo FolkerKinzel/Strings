@@ -47,7 +47,7 @@ public static class CharExtension
     /// Untersucht, ob das Unicode-Zeichen ein ASCII-Kleinbuchstabe ist.
     /// </summary>
     /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Kleinbuchstabe ist,
+    /// <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Kleinbuchstabe ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetterLower(this char c)
@@ -61,7 +61,7 @@ public static class CharExtension
     /// Untersucht, ob das Unicode-Zeichen ein ASCII-Großbuchstabe ist.
     /// </summary>
     /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
+    /// <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Obsolete("Use is AsciiLetterUpper(this char) instead.", false)]
@@ -74,7 +74,7 @@ public static class CharExtension
     /// Untersucht, ob das Unicode-Zeichen ein ASCII-Großbuchstabe ist.
     /// </summary>
     /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
+    /// <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetterUpper(this char c)
@@ -88,7 +88,7 @@ public static class CharExtension
     /// Untersucht, ob das Unicode-Zeichen ein ASCII-Buchstabe ist.
     /// </summary>
     /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Buchstabe ist,
+    /// <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Buchstabe ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetter(this char c)
@@ -103,7 +103,7 @@ public static class CharExtension
     /// charakterisiert wird.
     /// </summary>
     /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Buchstabe [A-Za-z] oder
+    /// <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Buchstabe [A-Za-z] oder
     /// eine Dezimalziffer [0-9] ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -229,7 +229,7 @@ public static class CharExtension
     /// Untersucht, ob das Unicode-Zeichen zum ASCII-Zeichensatz gehört.
     /// </summary>
     /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c> wenn <paramref name="c"/> ein Zeichen des ASCII-Zeichensatzes ist,
+    /// <returns><c>true</c>, wenn <paramref name="c"/> ein Zeichen des ASCII-Zeichensatzes ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAscii(this char c)
@@ -282,8 +282,8 @@ public static class CharExtension
     /// <summary>
     /// Untersucht, ob das Unicode-Zeichen eine eine gültige Hexadezimalziffer (0-9, a-f, A-F) ist.
     /// </summary>
-    /// <param name="character">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="character"/> eine Hexadezimalziffer
+    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+    /// <returns><c>true</c>, wenn <paramref name="c"/> eine Hexadezimalziffer
     /// ist, andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiHexDigit(this char c)
@@ -296,8 +296,8 @@ public static class CharExtension
     /// <summary>
     /// Untersucht, ob das Unicode-Zeichen eine eine Hexadezimalziffer in Kleinschreibung ist [0-9a-f].
     /// </summary>
-    /// <param name="character">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="character"/> eine Hexadezimalziffer
+    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+    /// <returns><c>true</c>, wenn <paramref name="c"/> eine Hexadezimalziffer
     /// in Kleinschreibung ist [0-9a-f], andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiHexDigitLower(this char c)
@@ -310,8 +310,8 @@ public static class CharExtension
     /// <summary>
     /// Untersucht, ob das Unicode-Zeichen eine eine Hexadezimalziffer in Großschreibung ist [0-9A-F].
     /// </summary>
-    /// <param name="character">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="character"/> eine Hexadezimalziffer
+    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
+    /// <returns><c>true</c>, wenn <paramref name="c"/> eine Hexadezimalziffer
     /// in Großschreibung ist [0-9A-F], andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiHexDigitUpper(this char c)
@@ -359,7 +359,7 @@ public static class CharExtension
     /// </para>
     /// <note type="important">
     /// Zur Unicode-Kategorie "Decimal Digit Number" gehören sehr viel mehr
-    /// Zeichen als die Ziffern 0-9. Verwenden sie die Methode <see cref="CharExtension.IsDecimalDigit(char)"/>,
+    /// Zeichen als die Ziffern 0-9. Verwenden sie die Methode <see cref="CharExtension.IsAsciiDigit(char)"/>,
     /// wenn Sie auf die Zeichen 0-9 prüfen möchten.
     /// </note>
     /// </remarks>
