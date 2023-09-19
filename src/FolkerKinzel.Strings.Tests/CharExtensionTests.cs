@@ -368,6 +368,15 @@ public class CharExtensionTests
         }
     }
 
+    [TestMethod()]
+    public void IsAsciiLetterOrDigitTest()
+    {
+        for (char c = char.MinValue; c < char.MaxValue; c++)
+        {
+            Assert.AreEqual(c.IsAscii() && (char.IsLetter(c) || char.IsDigit(c)), c.IsAsciiLetterOrDigit());
+        }
+    }
+
     //[TestMethod()]
     //public void IsAsciiLetter2Test()
     //{
