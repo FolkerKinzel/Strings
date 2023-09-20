@@ -349,7 +349,10 @@ public static class Base64
                                                   ReadOnlySpan<byte> bytes,
                                                   Base64FormattingOptions options)
     {
-        Debug.Assert(builder != null);
+        if (builder is null)
+        {
+            throw new ArgumentNullException(nameof(builder));
+        }
 
         bool insertLineBreaks = options.HasFlag(Base64FormattingOptions.InsertLineBreaks) && !bytes.IsEmpty;
         builder.EnsureCapacity(builder.Length + ComputeNeededCapacity(bytes.Length, insertLineBreaks));

@@ -1,4 +1,5 @@
-﻿using FolkerKinzel.Strings.Intls;
+﻿using System.Text;
+using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
@@ -32,6 +33,19 @@ public static class UrlEncoding
     }
 
     #region Encode
+
+    internal static StringBuilder AppendUrlEncodedTo(StringBuilder builder, ReadOnlySpan<byte> value)
+    {
+        if (builder is null)
+        {
+            throw new ArgumentNullException(nameof(builder));
+        }
+
+        AppendData(builder, value);
+        return builder;
+    }
+
+
     internal static StringBuilder AppendUrlEncodedTo(StringBuilder builder, ReadOnlySpan<char> value)
     {
         if (builder is null)
@@ -39,7 +53,6 @@ public static class UrlEncoding
             throw new ArgumentNullException(nameof(builder));
         }
 
-        _ = builder.EnsureCapacity((int)(builder.Length + value.Length * 2.3));
 
 #if NET45 || NETSTANDARD2_0
         byte[] encoded = Encoding.UTF8.GetBytes(value);
@@ -48,14 +61,21 @@ public static class UrlEncoding
         Span<byte> encoded = length > SHORT_ARRAY ? new byte[length] : stackalloc byte[length];
         Encoding.UTF8.GetBytes(value, encoded);
 #endif
+
+        AppendData(builder, encoded);
+        return builder;
+    }
+
+
+    private static void AppendData(StringBuilder builder, ReadOnlySpan<byte> encoded)
+    {
+        _ = builder.EnsureCapacity((int)(builder.Length + encoded.Length * 2.5));
+
         for (int i = 0; i < encoded.Length; i++)
         {
             builder.AppendCharacter((char)encoded[i]);
         }
-
-        return builder;
     }
-
 
     private static void AppendCharacter(this StringBuilder sb, char c)
     {
@@ -139,6 +159,20 @@ public static class UrlEncoding
                                  bool decodePlusChars,
                                  [NotNullWhen(true)] out string? decoded)
         => TryDecode(value.AsSpan(), decodePlusChars, out decoded);
+
+
+    /// <summary>
+    /// Versucht, einen URL-kodierten <see cref="string"/> als <see cref="byte"/>-Array
+    /// zu dekodieren.
+    /// </summary>
+    /// <param name="value">Der zu dekodierende <see cref="string"/>.</param>
+    /// <param name="bytes">Enthält nach erfolgreicher Beendigung der Methode ein <see cref="byte"/>-Array, das
+    /// den dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
+    /// <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+    /// <remarks>Die Methode dekodiert Pluszeichen ('+', U+002B) als <c>0x20</c>.</remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool TryDecodeToBytes(string? value, [NotNullWhen(true)] out byte[]? bytes)
+        => TryDecodeToBytes(value.AsSpan(), out bytes);
 
 #endif
 
@@ -229,6 +263,33 @@ public static class UrlEncoding
         }
     }
 
+
+    /// <summary>
+    /// Versucht, den URL-kodierten Inhalt einer schreibgeschützten Zeichenspanne als <see cref="byte"/>-Array
+    /// zu dekodieren.
+    /// </summary>
+    /// <param name="value">Die zu dekodierende schreibgeschützte Zeichenspanne.</param>
+    /// <param name="bytes">Enthält nach erfolgreicher Beendigung der Methode ein <see cref="byte"/>-Array, das
+    /// den dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
+    /// <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+    /// <remarks>Die Methode dekodiert Pluszeichen ('+', U+002B) als <c>0x20</c>.</remarks>
+    public static bool TryDecodeToBytes(ReadOnlySpan<char> value, [NotNullWhen(true)] out byte[]? bytes)
+    {
+        Span<byte> decoded = value.Length > SHORT_ARRAY ? new byte[value.Length]
+                                                        : stackalloc byte[value.Length];
+
+        try
+        {
+            bytes = FillBytes(value, true, decoded).ToArray();
+            return true;
+        }
+        catch
+        {
+            bytes = null;
+            return false;
+        }
+    }
+
     /// <summary>
     /// Removes URL encoding from <paramref name="value"/>.
     /// </summary>
@@ -238,11 +299,17 @@ public static class UrlEncoding
     /// <returns></returns>
     private static string UnescapeValueFromUrlEncoding(ReadOnlySpan<char> value, Encoding encoding, bool decodePlusSigns)
     {
-        const byte spaceChar = (byte)' ';
-        const byte plusChar = (byte)'+';
-
         Span<byte> bytes = value.Length > SHORT_ARRAY ? new byte[value.Length]
                                                       : stackalloc byte[value.Length];
+
+        return encoding.GetString(FillBytes(value, decodePlusSigns, bytes));
+    }
+
+
+    private static ReadOnlySpan<byte> FillBytes(ReadOnlySpan<char> value, bool decodePlusSigns, Span<byte> bytes)
+    {
+        const byte spaceChar = (byte)' ';
+        const byte plusChar = (byte)'+';
 
         int byteIndex = 0;
 
@@ -274,7 +341,6 @@ public static class UrlEncoding
             }
         }
 
-        return encoding.GetString(bytes.Slice(0, byteIndex));
+        return bytes.Slice(0, byteIndex);
     }
-
 }

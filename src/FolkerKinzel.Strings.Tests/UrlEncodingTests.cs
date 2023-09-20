@@ -37,6 +37,28 @@ public class UrlEncodingTests
     }
 
     [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void AppendUrlEncodedTest3()
+    {
+        StringBuilder? sb = null;
+        sb!.AppendUrlEncoded(new byte[] {1,2,3});
+    }
+
+    [TestMethod]
+    public void AppendUrlEncodedTest4()
+    {
+        byte[]? input = null;
+        Assert.AreEqual(0, new StringBuilder().AppendUrlEncoded(input!).Length);
+    }
+
+    [TestMethod]
+    public void AppendUrlEncodedTest5()
+    {
+        IEnumerable<byte>? input = null;
+        Assert.AreEqual(0, new StringBuilder().AppendUrlEncoded(input!).Length);
+    }
+
+    [TestMethod]
     public void TryDecodeTest1()
     {
         const int length = 256;
@@ -136,4 +158,48 @@ public class UrlEncodingTests
 
         Assert.AreEqual(input, decoded);
     }
+
+
+    [TestMethod]
+    public void TryDecodeToBytesTest1()
+    {
+        byte[] data = new byte[1024];
+        var rnd = new Random();
+        rnd.NextBytes(data);
+
+        var sb = new StringBuilder();
+        string encoded = sb.AppendUrlEncoded(data).ToString();
+
+        Assert.IsTrue(UrlEncoding.TryDecodeToBytes(encoded, out byte[]? decoded));
+        CollectionAssert.AreEqual(data, decoded);
+    }
+
+    [TestMethod]
+    public void TryDecodeToBytesTest1b()
+    {
+        byte[] data = new byte[1024];
+        var rnd = new Random();
+        rnd.NextBytes(data);
+
+        var sb = new StringBuilder();
+        string encoded = sb.AppendUrlEncoded(data.AsEnumerable()).ToString();
+
+        Assert.IsTrue(UrlEncoding.TryDecodeToBytes(encoded, out byte[]? decoded));
+        CollectionAssert.AreEqual(data, decoded);
+    }
+
+    [TestMethod]
+    public void TryDecodeToBytesTest2()
+    {
+        byte[] data = "IT"u8.ToArray();
+
+        var sb = new StringBuilder();
+        string encoded = sb.AppendUrlEncoded(data).ToString();
+
+        Assert.IsTrue(UrlEncoding.TryDecodeToBytes(encoded, out byte[]? decoded));
+        CollectionAssert.AreEqual(data, decoded);
+    }
+
+    [TestMethod]
+    public void TryDecodeToBytesTest3() => Assert.IsFalse(UrlEncoding.TryDecodeToBytes("äöü", out _));
 }
