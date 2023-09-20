@@ -1,6 +1,18 @@
 ﻿# FolkerKinzel.Strings
 
 ## Roadmap
+### 7.0.1
+- [ ] Remove `IsAsciiLowerCaseLetter(this char)`
+- [ ] Remove `IsAsciiUpperCaseLetter(this char)`
+- [ ] Remove `IsDecimalDigit(this char)`
+- [ ] Remove `IsHexDigit(this char)`
+
+### 7.0.0
+- [ ] Mark `IsAsciiLowerCaseLetter(this char)` as obsolete error
+- [ ] Mark `IsAsciiUpperCaseLetter(this char)` as obsolete error
+- [ ] Mark `IsDecimalDigit(this char)` as obsolete error
+- [ ] Mark `IsHexDigit(this char)` as obsolete error
+
 ### 5.4.0
 - [ ] `StringBuilder.EscapeUri(int start, int length)`
 - [ ] `StringBuilder.UnEscapeUri(int start, int length, string? charSet = null)`

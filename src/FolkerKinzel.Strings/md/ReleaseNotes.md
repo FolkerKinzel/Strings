@@ -1,20 +1,11 @@
 - New extension methods:
 ```csharp
-bool IsAsciiLetterLower(this char);
-bool IsAsciiLetterUpper(this char);
-bool IsAsciiDigit(this char);
-bool IsAsciiLetterOrDigit(this char);
-bool IsAsciiHexDigit(this char);
-bool IsAsciiHexDigitLower(this char);
-bool IsAsciiHexDigitUpper(this char);
-bool IsBetween(this char, char, char)
+
 ```
 .
-- Obsolete extension methods:
+- Obsolete extension method:
 ```csharp
-bool IsAsciiLowerCaseLetter(this char);
-bool IsAsciiUpperCaseLetter(this char);
-bool IsDecimalDigit(this char);
+bool IsHexDigit(this char);
 ```
 
 .

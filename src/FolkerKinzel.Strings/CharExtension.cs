@@ -38,7 +38,7 @@ public static class CharExtension
     /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Kleinbuchstabe ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [Obsolete("Use is AsciiLetterLower(this char) instead.", false)]
+    [Obsolete("Use IsAsciiLetterLower(this char) instead.", false)]
     [Browsable(false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static bool IsAsciiLowerCaseLetter(this char c) => c.IsAsciiLetterLower();
@@ -64,7 +64,7 @@ public static class CharExtension
     /// <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [Obsolete("Use is AsciiLetterUpper(this char) instead.", false)]
+    [Obsolete("Use IsAsciiLetterUpper(this char) instead.", false)]
     [Browsable(false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static bool IsAsciiUpperCaseLetter(this char c) => IsAsciiLetterUpper(c);
@@ -140,7 +140,7 @@ public static class CharExtension
     /// andernfalls <c>false</c>.</returns>
     public static bool TryParseHexDigit(this char digit, [NotNullWhen(true)] out int? value)
     {
-        if (digit.IsHexDigit())
+        if (digit.IsAsciiHexDigit())
         {
             value = Uri.FromHex(digit);
             return true;
@@ -276,6 +276,9 @@ public static class CharExtension
     /// ist, andernfalls <c>false</c>.</returns>
     /// <remarks>Ruft <see cref="Uri.IsHexDigit(char)"/> auf.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [Obsolete("Use IsAsciiHexDigit(this char) instead.", false)]
+    [Browsable(false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static bool IsHexDigit(this char character) => Uri.IsHexDigit(character);
 
 
