@@ -11,39 +11,37 @@
         </member>
         <member name="M:FolkerKinzel.Strings.Base64.Encode(System.Collections.Generic.IEnumerable{System.Byte},System.Base64FormattingOptions)">
             <summary>
-            Konvertiert eine Sammlung von 8-Bit-Ganzzahlen ohne Vorzeichen in die entsprechende mit Base64-Ziffern 
+            Konvertiert eine <see cref="T:System.Byte"/>-Sammlung in die entsprechende mit Base64-Ziffern 
             codierte Zeichenfolgendarstellung. Sie können festlegen, ob im Rückgabewert Zeilenumbrüche eingefügt 
             werden sollen.
             </summary>
-            <param name="bytes">Eine Sammlung von 8-Bit-Ganzzahlen ohne Vorzeichen.</param>
+            <param name="bytes">Eine <see cref="T:System.Byte"/>-Sammlung, die die umzuwandelnden Daten enthält, oder <c>null</c>.</param>
             <param name="options">Einer der Enumerationswerte, die angeben, ob im Rückgabewert Zeilenumbrüche eingefügt 
             werden sollen. Der Standardwert ist 
             <see cref="F:System.Base64FormattingOptions.None"/>.</param>
             <returns>Die Zeichenfolgendarstellung der Elemente in <paramref name="bytes"/> als Base64.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="bytes"/> ist <c>null</c>.</exception>
             <exception cref="T:System.ArgumentException"><paramref name="options"/> ist kein gültiger <see cref="T:System.Base64FormattingOptions"/>-Wert.</exception>
         </member>
         <member name="M:FolkerKinzel.Strings.Base64.Encode(System.Byte[],System.Base64FormattingOptions)">
             <summary>
-            Konvertiert ein Array von 8-Bit-Ganzzahlen ohne Vorzeichen in die entsprechende mit Base64-Ziffern 
+            Konvertiert ein <see cref="T:System.Byte"/>-Array in die entsprechende mit Base64-Ziffern 
             codierte Zeichenfolgendarstellung. Sie können festlegen, ob im Rückgabewert Zeilenumbrüche eingefügt 
             werden sollen.
             </summary>
-            <param name="bytes">Ein Array von 8-Bit-Ganzzahlen ohne Vorzeichen.</param>
+            <param name="bytes">Ein <see cref="T:System.Byte"/>-Array, das die umzuwandelnden Daten enthält, oder <c>null</c>.</param>
             <param name="options">Einer der Enumerationswerte, die angeben, ob im Rückgabewert Zeilenumbrüche eingefügt 
             werden sollen. Der Standardwert ist 
             <see cref="F:System.Base64FormattingOptions.None"/>.</param>
             <returns>Die Zeichenfolgendarstellung der Elemente in <paramref name="bytes"/> als Base64.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="bytes"/> ist <c>null</c>.</exception>
             <exception cref="T:System.ArgumentException"><paramref name="options"/> ist kein gültiger <see cref="T:System.Base64FormattingOptions"/>-Wert.</exception>
         </member>
         <member name="M:FolkerKinzel.Strings.Base64.Encode(System.Byte[],System.Int32,System.Int32,System.Base64FormattingOptions)">
             <summary>
-            Konvertiert eine Teilmenge eines Arrays von 8-Bit-Ganzzahlen ohne Vorzeichen in die entsprechende mit 
+            Konvertiert eine Teilmenge eines <see cref="T:System.Byte"/>-Arrays in die entsprechende mit 
             Base64-Ziffern codierte Zeichenfolgendarstellung. Parameter geben die Teilmenge als Offset im Eingabearray, 
             die Anzahl der zu konvertierenden Bytes sowie ggf. im Rückgabewert einzufügende Zeilenumbrüche an.
             </summary>
-            <param name="bytes">Ein Array von 8-Bit-Ganzzahlen ohne Vorzeichen.</param>
+            <param name="bytes">Ein <see cref="T:System.Byte"/>-Array, das die umzuwandelnden Daten enthält.</param>
             <param name="offset">Ein Offset in <paramref name="bytes"/>.</param>
             <param name="length">Die Anzahl der zu konvertierenden Bytes.</param>
             <param name="options">Einer der Enumerationswerte, die angeben, ob im Rückgabewert Zeilenumbrüche eingefügt werden sollen. 
@@ -61,10 +59,10 @@
         </member>
         <member name="M:FolkerKinzel.Strings.Base64.Encode(System.ReadOnlySpan{System.Byte},System.Base64FormattingOptions)">
             <summary>
-            Konvertiert die 8-Bit-Ganzzahlen ohne Vorzeichen in der angegebenen schreibgeschützten Spanne in eine entsprechende Zeichenfolgendarstellung, 
+            Konvertiert eine schreibgeschützte <see cref="T:System.Byte"/>-Spanne in eine entsprechende Zeichenfolgendarstellung, 
             die mit Base64-Ziffern codiert ist. Sie können optional angeben, ob im Rückgabewert Zeilenumbrüche eingefügt werden sollen.
             </summary>
-            <param name="bytes">Eine schreibgeschützte Spanne von 8-Bit-Ganzzahlen ohne Vorzeichen.</param>
+            <param name="bytes">Eine schreibgeschützte <see cref="T:System.Byte"/>-Spanne, die die umzuwandelnden Daten enthält.</param>
             <param name="options">Einer der Enumerationswerte, die angeben, ob im Rückgabewert Zeilenumbrüche eingefügt werden sollen. Der Standardwert ist 
             <see cref="F:System.Base64FormattingOptions.None"/>.</param>
             <returns>Die Zeichenfolgendarstellung der Elemente in <paramref name="bytes"/> als Base64. Wenn die Länge von <paramref name="bytes"/> 0 ist, 
@@ -85,9 +83,8 @@
             Konvertiert die angegebene Zeichenfolge, die Binärdaten als Base-64-Ziffern codiert, in ein entsprechendes Array 
             von 8-Bit-Ganzzahlen ohne Vorzeichen.
             </summary>
-            <param name="base64">Die zu konvertierende Zeichenfolge.</param>
+            <param name="base64">Die zu konvertierende Zeichenfolge oder <c>null</c>.</param>
             <returns>Ein Array von 8-Bit-Ganzzahlen ohne Vorzeichen, das <paramref name="base64"/> entspricht.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="base64"/> ist <c>null</c>.</exception>
             <exception cref="T:System.FormatException">
             <para>Die Länge von <paramref name="base64"/> bei ignorierten Leerzeichen ist nicht 0 (null) oder ein Vielfaches von 4.</para>
             <para>- oder -</para>
@@ -101,10 +98,9 @@
             Konvertiert die angegebene Zeichenfolge, die Binärdaten als Base-64-Ziffern codiert, in ein entsprechendes Array 
             von 8-Bit-Ganzzahlen ohne Vorzeichen und erlaubt es, Optionen für die Konvertierung anzugeben.
             </summary>
-            <param name="base64">Die zu konvertierende Zeichenfolge.</param>
+            <param name="base64">Die zu konvertierende Zeichenfolge oder <c>null</c>.</param>
             <param name="options">Optionen für die Konvertierung.</param>
             <returns>Ein Array von 8-Bit-Ganzzahlen ohne Vorzeichen, das <paramref name="base64"/> entspricht.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="base64"/> ist <c>null</c>.</exception>
             <exception cref="T:System.FormatException">
             <paramref name="base64"/> lässt sich - abhängig von den mit <paramref name="options"/> angegebenen Konvertierungsoptionen - 
             nicht in ein <see cref="T:System.Byte"/>-Array umwandeln.
@@ -2670,13 +2666,13 @@
             am Ende eines <see cref="T:System.Text.StringBuilder"/>-Objekts an.
             </summary>
             <param name="builder">Der <see cref="T:System.Text.StringBuilder"/>, an den Zeichen angefügt werden.</param>
-            <param name="bytes">Die <see cref="T:System.Byte"/>-Enumeration, die die anzufügenden Daten enthält.</param>
+            <param name="bytes">Die <see cref="T:System.Byte"/>-Enumeration, die die anzufügenden Daten enthält oder <c>null</c>.</param>
             <param name="options">Ein Enumerationswert, der es erlaubt festzulegen, ob in das Base64 automatisch Zeilenumbrüche 
             eingefügt werden sollen.</param>
             <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
             <remarks>Die Methode verwendet eine eigene Base64-Implementierung, die etwas langsamer als die BCL-Methoden
             ist, aber für den Zweck sehr viel weniger Heap-Speicher alloziert.</remarks>
-            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> oder <paramref name="bytes"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
             würde <see cref="P:System.Text.StringBuilder.MaxCapacity"/> überschritten.</exception>
         </member>
@@ -2686,13 +2682,13 @@
             am Ende eines <see cref="T:System.Text.StringBuilder"/>-Objekts an.
             </summary>
             <param name="builder">Der <see cref="T:System.Text.StringBuilder"/>, an den Zeichen angefügt werden.</param>
-            <param name="bytes">Das <see cref="T:System.Byte"/>-Array, das die anzufügenden Daten enthält.</param>
+            <param name="bytes">Das <see cref="T:System.Byte"/>-Array, das die anzufügenden Daten enthält oder <c>null</c>.</param>
             <param name="options">Ein Enumerationswert, der es erlaubt festzulegen, ob in das Base64 automatisch Zeilenumbrüche 
             eingefügt werden sollen.</param>
             <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
             <remarks>Die Methode verwendet eine eigene Base64-Implementierung, die etwas langsamer als die BCL-Methoden
             ist, aber für den Zweck sehr viel weniger Heap-Speicher alloziert.</remarks>
-            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> oder <paramref name="bytes"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
             würde <see cref="P:System.Text.StringBuilder.MaxCapacity"/> überschritten.</exception>
         </member>
@@ -2751,6 +2747,66 @@
             durch ihre hexadezimale 
             Darstellung. Alle Unicode-Zeichen werden in das UTF-8-Format konvertiert, bevor sie mit Escapezeichen versehen werden.
             Bei dieser Methode wird davon ausgegangen, dass in <paramref name="value"/> keine Escapesequenzen enthalten sind.</remarks>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
+            würde <see cref="P:System.Text.StringBuilder.MaxCapacity"/> überschritten.</exception>
+        </member>
+        <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendUrlEncoded(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{System.Byte})">
+            <summary>
+            Fügt den Inhalt einer <see cref="T:System.Byte"/>-Sammlung als URL-codierte Zeichenfolge
+            an das Ende eines <see cref="T:System.Text.StringBuilder"/>-Objekts an.
+            </summary>
+            
+            <param name="builder">Der <see cref="T:System.Text.StringBuilder"/>, an den Zeichen angefügt werden.</param>
+            <param name="value">Die <see cref="T:System.Byte"/>-Sammlung, die die zu kodierenden und anzufügenden Daten 
+            enthält, oder <c>null</c>.</param>
+            
+            <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+            
+            <remarks>Die Methode behandelt alle <see cref="T:System.Byte"/>s in <paramref name="value"/> als 8-Bit-Zeichen und 
+            ersetzt alle diese Zeichen mit Ausnahme von nicht reservierten RFC 3986-Zeichen 
+            durch ihre hexadezimale Darstellung.</remarks>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
+            würde <see cref="P:System.Text.StringBuilder.MaxCapacity"/> überschritten.</exception>
+        </member>
+        <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendUrlEncoded(System.Text.StringBuilder,System.Byte[])">
+            <summary>
+            Fügt den Inhalt eines <see cref="T:System.Byte"/>-Arrays als URL-codierte Zeichenfolge
+            an das Ende eines <see cref="T:System.Text.StringBuilder"/>-Objekts an.
+            </summary>
+            
+            <param name="builder">Der <see cref="T:System.Text.StringBuilder"/>, an den Zeichen angefügt werden.</param>
+            <param name="value">Das <see cref="T:System.Byte"/>-Array, das die zu kodierenden und anzufügenden Daten 
+            enthält, oder <c>null</c>.</param>
+            
+            <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+            
+            <remarks>Die Methode behandelt alle <see cref="T:System.Byte"/>s in <paramref name="value"/> als 8-Bit-Zeichen und 
+            ersetzt alle diese Zeichen mit Ausnahme von nicht reservierten RFC 3986-Zeichen 
+            durch ihre hexadezimale Darstellung.</remarks>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
+            würde <see cref="P:System.Text.StringBuilder.MaxCapacity"/> überschritten.</exception>
+        </member>
+        <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendUrlEncoded(System.Text.StringBuilder,System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Fügt den Inhalt einer schreibgeschützten <see cref="T:System.Byte"/>-Spanne als URL-codierte Zeichenfolge
+            an das Ende eines <see cref="T:System.Text.StringBuilder"/>-Objekts an.
+            </summary>
+            
+            <param name="builder">Der <see cref="T:System.Text.StringBuilder"/>, an den Zeichen angefügt werden.</param>
+            <param name="value">Die schreibgeschützte <see cref="T:System.Byte"/>-Spanne, die die zu kodierenden und anzufügenden Daten 
+            enthält.</param>
+            
+            <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
+            
+            <remarks>Die Methode behandelt alle <see cref="T:System.Byte"/>s in <paramref name="value"/> als 8-Bit-Zeichen und 
+            ersetzt alle diese Zeichen mit Ausnahme von nicht reservierten RFC 3986-Zeichen 
+            durch ihre hexadezimale Darstellung.</remarks>
             
             <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
@@ -4245,7 +4301,7 @@
             Zeichensatzes zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
             dekodiert werden.
             </summary>
-            <param name="value">Der zu dekodierende <see cref="T:System.String"/>.</param>
+            <param name="value">Der zu dekodierende <see cref="T:System.String"/> oder <c>null</c>.</param>
             <param name="encodingWebName">Der standardisierte Internetname des zu verwendenden Zeichensatzes oder <c>null</c>
             bzw. ein leerer <see cref="T:System.String"/> als Ersatz für "utf-8".</param>
             <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
@@ -4260,7 +4316,7 @@
             Codepage zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
             dekodiert werden.
             </summary>
-            <param name="value">Der zu dekodierende <see cref="T:System.String"/>.</param>
+            <param name="value">Der zu dekodierende <see cref="T:System.String"/> oder <c>null</c>.</param>
             <param name="codePage">Die Codepage des zu verwendenden Zeichensatzes.</param>
             <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
             dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
@@ -4274,11 +4330,25 @@
             zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
             dekodiert werden.
             </summary>
-            <param name="value">Der zu dekodierende <see cref="T:System.String"/>.</param>
+            <param name="value">Der zu dekodierende <see cref="T:System.String"/> oder <c>null</c>.</param>
             <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
             dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
             <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="T:System.String"/>, der den
             dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
+            <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecodeToBytes(System.String,System.Boolean,System.Byte[]@)">
+            <summary>
+            Versucht, einen URL-kodierten <see cref="T:System.String"/> als <see cref="T:System.Byte"/>-Array
+            zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als <c>0x20</c> (SPACE ' ')
+            dekodiert werden.
+            </summary>
+            <param name="value">Der zu dekodierende <see cref="T:System.String"/> oder <c>null</c>.</param>
+            <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als <c>0x20</c> (SPACE ' ') zu
+            dekodieren oder <c>false</c>, um Pluszeichen unverändert als <c>0x2B</c> in <paramref name="bytes"/> 
+            zu übertragen.</param>
+            <param name="bytes">Enthält nach erfolgreicher Beendigung der Methode ein <see cref="T:System.Byte"/>-Array, das
+            den dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
             <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
         </member>
         <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.ReadOnlySpan{System.Char},System.String,System.Boolean,System.String@)">
@@ -4321,6 +4391,20 @@
             dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
             <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="T:System.String"/>, der den
             dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
+            <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecodeToBytes(System.ReadOnlySpan{System.Char},System.Boolean,System.Byte[]@)">
+            <summary>
+            Versucht, den URL-kodierten Inhalt einer schreibgeschützten Zeichenspanne als <see cref="T:System.Byte"/>-Array
+            zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als <c>0x20</c> (SPACE ' ')
+            dekodiert werden.
+            </summary>
+            <param name="value">Die zu dekodierende schreibgeschützte Zeichenspanne.</param>
+            <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als <c>0x20</c> (SPACE ' ') zu
+            dekodieren oder <c>false</c>, um Pluszeichen unverändert als <c>0x2B</c> in <paramref name="bytes"/> 
+            zu übertragen.</param>
+            <param name="bytes">Enthält nach erfolgreicher Beendigung der Methode ein <see cref="T:System.Byte"/>-Array, das
+            den dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
             <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
         </member>
         <member name="M:FolkerKinzel.Strings.UrlEncoding.UnescapeValueFromUrlEncoding(System.ReadOnlySpan{System.Char},System.Text.Encoding,System.Boolean)">

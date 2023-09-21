@@ -21,12 +21,10 @@ public class Base64Tests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void GetBytesTest2() => Base64.GetBytes((string?)null!);
+    public void GetBytesTest2() => Assert.AreEqual(0, Base64.GetBytes((string?)null).Length);
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void GetBytesTest3() => Base64.GetBytes((string?)null!, Base64ParserOptions.None);
+    public void GetBytesTest3() => Assert.AreEqual(0, Base64.GetBytes((string?)null, Base64ParserOptions.None).Length);
 
     [DataTestMethod()]
     [DataRow("", "")]
@@ -130,16 +128,14 @@ public class Base64Tests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void EncodeTest1() => Base64.Encode((byte[]?)null!);
+    public void EncodeTest1() => Assert.AreEqual(0, Base64.Encode((byte[]?)null).Length);
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void EncodeTest2() => Base64.Encode((byte[]?)null!, 0, 0);
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void EncodeTest3() => Base64.Encode((IEnumerable<byte>?)null!);
+    public void EncodeTest3() => Assert.AreEqual(0, Base64.Encode((IEnumerable<byte>?)null).Length);
 
     [DataTestMethod()]
     [DataRow("", "")]

@@ -16,7 +16,7 @@ public static partial class StringBuilderExtension
     /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
     /// <remarks>Die Methode verwendet eine eigene Base64-Implementierung, die etwas langsamer als die BCL-Methoden
     /// ist, aber für den Zweck sehr viel weniger Heap-Speicher alloziert.</remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> oder <paramref name="bytes"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
     /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

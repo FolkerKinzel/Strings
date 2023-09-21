@@ -43,7 +43,7 @@ public static partial class StringBuilderExtension
     /// ersetzt alle diese Zeichen mit Ausnahme von nicht reservierten RFC 3986-Zeichen 
     /// durch ihre hexadezimale Darstellung.</remarks>
     /// 
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> oder <paramref name="value"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
     /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -68,7 +68,7 @@ public static partial class StringBuilderExtension
     /// ersetzt alle diese Zeichen mit Ausnahme von nicht reservierten RFC 3986-Zeichen 
     /// durch ihre hexadezimale Darstellung.</remarks>
     /// 
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> oder <paramref name="value"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
     /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

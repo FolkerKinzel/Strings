@@ -8,28 +8,24 @@
       <summary>Static class that provides methods to encode and decode strings in Base64 format.</summary>
     </member>
     <member name="M:FolkerKinzel.Strings.Base64.Encode(System.Collections.Generic.IEnumerable{System.Byte},System.Base64FormattingOptions)">
-      <summary>Converts a collection of Bytes into a corresponding Base64 string. You can determine, whether line breaks are to be inserted into the return value.</summary>
-      <param name="bytes">A collection of Bytes.</param>
+      <summary>Converts a <see cref="T:System.Byte" /> collection to a corresponding Base64-encoded string. You can determine, whether line breaks are to be inserted into the return value.</summary>
+      <param name="bytes">A <see cref="T:System.Byte" /> collection that contains the data to encode, or <c>null</c>.</param>
       <param name="options">One of the enumeration values, which specify whether or not line breaks are to be inserted into the return value. The default is <see cref="F:System.Base64FormattingOptions.None" />.</param>
-      <returns>The string representation of the elements in <paramref name="bytes" /> as Base64.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="bytes" /> is <c>null</c>.</exception>
+      <returns>The Base64-encoded string representation of the elements in <paramref name="bytes" />.</returns>
       <exception cref="T:System.ArgumentException">
         <paramref name="options" /> is not a defined <see cref="T:System.Base64FormattingOptions" /> value.</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.Base64.Encode(System.Byte[],System.Base64FormattingOptions)">
-      <summary>Converts an Array of Bytes into a corresponding Base64 string. You can determine, whether line breaks are to be inserted into the return value.</summary>
-      <param name="bytes">An Array of Bytes.</param>
+      <summary>Converts a <see cref="T:System.Byte" /> array to a corresponding Base64-encoded string. You can determine, whether line breaks are to be inserted into the return value.</summary>
+      <param name="bytes">A <see cref="T:System.Byte" /> array that contains the data to encode, or <c>null</c>.</param>
       <param name="options">One of the enumeration values, which specify whether or not line breaks are to be inserted into the return value. The default is <see cref="F:System.Base64FormattingOptions.None" />.</param>
       <returns>The string representation of the elements in <paramref name="bytes" /> as Base64.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="bytes" /> is <c>null</c>.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="options" /> is not a defined <see cref="T:System.Base64FormattingOptions" /> value.</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.Base64.Encode(System.Byte[],System.Int32,System.Int32,System.Base64FormattingOptions)">
-      <summary>Converts a subset of an Array of Bytes to their equivalent Base64-encoded string representation. Parameters specify the subset as an offset in the input array, the number of bytes to be converted, and whether newlines are to be inserted in the return value.</summary>
-      <param name="bytes">A Byte Array.</param>
+      <summary>Converts a subset of a <see cref="T:System.Byte" /> array to its equivalent Base64-encoded string representation. Parameters specify the subset as an offset in the input array, the number of bytes to be converted, and whether newlines are to be inserted in the return value.</summary>
+      <param name="bytes">A <see cref="T:System.Byte" /> array that contains the data to encode.</param>
       <param name="offset">An offset in <paramref name="bytes" />.</param>
       <param name="length">The number of Bytes that are to be converted.</param>
       <param name="options">One of the enumeration values, which specify whether or not line breaks are to be inserted into the return value. The default is <see cref="F:System.Base64FormattingOptions.None" />.</param>
@@ -51,8 +47,8 @@
         <paramref name="options" /> is not a defined <see cref="T:System.Base64FormattingOptions" /> value.</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.Base64.Encode(System.ReadOnlySpan{System.Byte},System.Base64FormattingOptions)">
-      <summary>Converts a read-only span of Bytes into a corresponding Base64 string. Optional you can determine, whether line breaks are to be inserted into the return value.</summary>
-      <param name="bytes">A read-only span of Bytes.</param>
+      <summary>Converts a read-only <see cref="T:System.Byte" /> span to a corresponding Base64-encoded string. Optional you can determine, whether line breaks are to be inserted into the return value.</summary>
+      <param name="bytes">A read-only <see cref="T:System.Byte" /> span that contains the data to encode.</param>
       <param name="options">One of the enumeration values, which specify whether or not line breaks are to be inserted into the return value. The default is <see cref="F:System.Base64FormattingOptions.None" />.</param>
       <returns>The Base64 string reprensentation of the elements in <paramref name="bytes" />.</returns>
       <remarks>
@@ -66,10 +62,8 @@ In the  .NET-Framework 4.5 and .NET Standard 2.0 versions of the nuget package, 
     </member>
     <member name="M:FolkerKinzel.Strings.Base64.GetBytes(System.String)">
       <summary>Converts the Base64-encoded string into a byte array.</summary>
-      <param name="base64">The string to convert.</param>
+      <param name="base64">The string to convert, or <c>null</c>.</param>
       <returns>A byte array decoded from <paramref name="base64" />.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="base64" /> is <c>null</c>.</exception>
       <exception cref="T:System.FormatException">
         <para>
 The length of <paramref name="base64" /> with ignored white space characters is not zero or a multiple of 4.
@@ -84,11 +78,9 @@ The format of <paramref name="base64" /> is invalid. <paramref name="base64" /> 
     </member>
     <member name="M:FolkerKinzel.Strings.Base64.GetBytes(System.String,FolkerKinzel.Strings.Base64ParserOptions)">
       <summary>Converts a Base64-string into a corresponding byte array and allows to pass options for the conversion.</summary>
-      <param name="base64">The string to convert.</param>
+      <param name="base64">The string to convert, or <c>null</c>.</param>
       <param name="options">Options for the conversion.</param>
       <returns>A byte array decoded from <paramref name="base64" />.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="base64" /> is <c>null</c>.</exception>
       <exception cref="T:System.FormatException">Depending on the conversion options specified with <paramref name="options" />, <paramref name="base64" /> cannot be converted into a <see cref="T:System.Byte" /> array .</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.Base64.GetBytes(System.ReadOnlySpan{System.Char},FolkerKinzel.Strings.Base64ParserOptions)">
@@ -110,18 +102,18 @@ The length of <paramref name="base64" /> with ignored white space characters is 
 - oder -
 </para>
         <para>
-The format of <paramref name="base64" /> is invalid. <paramref name="base64" /> contains a non-base64 character, more than two padding characters, or a non-space character between the padding characters.
+The format of <paramref name="base64" /> is invalid. <paramref name="base64" /> contains a non-Base64 character, more than two padding characters, or a non-space character between the padding characters.
 </para>
       </exception>
     </member>
     <member name="T:FolkerKinzel.Strings.Base64ParserOptions">
-      <summary>Named constants to specify options for the parsing of Base64 encoded strings. The flags can be combined.</summary>
+      <summary>Named constants to specify options for the parsing of Base64-encoded strings. The flags can be combined.</summary>
     </member>
     <member name="F:FolkerKinzel.Strings.Base64ParserOptions.None">
       <summary>None of the flags has been set.</summary>
     </member>
     <member name="F:FolkerKinzel.Strings.Base64ParserOptions.AcceptMissingPadding">
-      <summary>Setting the flag lets the parser automatically add missing padding characters at the end of the Base64 encoded data.</summary>
+      <summary>Setting the flag lets the parser automatically add missing padding characters at the end of the Base64-encoded data.</summary>
     </member>
     <member name="F:FolkerKinzel.Strings.Base64ParserOptions.AcceptBase64Url">
       <summary>Setting the flag lets the parser accept Base64Url too (RFC 4648, chapter 5). (The flag should normally be combined with <see cref="F:FolkerKinzel.Strings.Base64ParserOptions.AcceptMissingPadding" />.)</summary>
@@ -584,7 +576,7 @@ If you use the <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback" /> o
     <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanExtensionPolyfillExtension.LastIndexOf(System.ReadOnlySpan{System.Char},System.String,System.Int32,System.Int32,System.StringComparison)">
       <summary>Specifies the  zero based index position of the last occurrence of a specified string in <paramref name="span" />. The search begins at a specified character position and runs backwards to the beginning of the character span for a specified number of character positions. A parameter specifies the type of comparison to be performed when searching for the specified string.</summary>
       <param name="span">The span to search.</param>
-      <param name="value">The <see cref="T:System.String" /> to search for or <c>null</c>.</param>
+      <param name="value">The <see cref="T:System.String" /> to search for, or <c>null</c>.</param>
       <param name="startIndex">The start index of the search. The search continues from <paramref name="startIndex" /> to the beginning of <paramref name="span" />.</param>
       <param name="count">The number of character positions to examine.</param>
       <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
@@ -624,7 +616,7 @@ If you use the <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback" /> o
     <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanExtensionPolyfillExtension.ContainsAny(System.ReadOnlySpan{System.Char},System.String)">
       <summary>Indicates whether a read-only character span contains one of the Unicode characters that are passed to the method as a string.</summary>
       <param name="span">The read-only span to examine.</param>
-      <param name="values">A string containing the characters to search for or <c>null</c>.</param>
+      <param name="values">A string containing the characters to search for, or <c>null</c>.</param>
       <returns>
         <c>true</c> if one of the characters to be searched for is found in <paramref name="span" />, otherwise <c>false</c>. If <paramref name="span" /> is an empty span or <paramref name="values" /> is <c>null</c> or empty, <c>false</c> is returned.</returns>
       <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
@@ -632,21 +624,21 @@ If you use the <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback" /> o
     <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanExtensionPolyfillExtension.IndexOfAny(System.ReadOnlySpan{System.Char},System.String)">
       <summary>Searches for the zero-based index of the first occurrence of one of the specified Unicode characters.</summary>
       <param name="span">The span to examine.</param>
-      <param name="values">A string that contains the characters to search for or <c>null</c>.</param>
+      <param name="values">A string that contains the characters to search for, or <c>null</c>.</param>
       <returns>The zero-based index of the first occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is <c>null</c> or empty, the method returns -1.</returns>
       <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanExtensionPolyfillExtension.LastIndexOfAny(System.ReadOnlySpan{System.Char},System.String)">
       <summary>Searches for the zero-based index of the last occurrence of one of the specified Unicode characters.</summary>
       <param name="span">The span to examine.</param>
-      <param name="values">A string containing the characters to search for or <c>null</c>.</param>
+      <param name="values">A string containing the characters to search for, or <c>null</c>.</param>
       <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is <c>null</c> or empty, the method returns -1.</returns>
       <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanExtensionPolyfillExtension.LastIndexOfAny(System.ReadOnlySpan{System.Char},System.String,System.Int32,System.Int32)">
       <summary>Returns the zero-based index of the last occurrence of one of the specified characters in <paramref name="span" />. The search begins at a specified character position and runs a specified number of character positions backwards to the beginning of the <paramref name="span" />.</summary>
       <param name="span">The span to search.</param>
-      <param name="values">A string containing the characters to search for or <c>null</c>.</param>
+      <param name="values">A string containing the characters to search for, or <c>null</c>.</param>
       <param name="startIndex">The start index of the search. The search is done backwards to the beginning of <paramref name="span" />.</param>
       <param name="count">The number of character positions to examine.</param>
       <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found.</returns>
@@ -702,7 +694,7 @@ If you use the <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback" /> o
     <member name="M:FolkerKinzel.Strings.Polyfills.ReadOnlySpanPolyfillExtension.LastIndexOf(System.ReadOnlySpan{System.Char},System.String,System.StringComparison)">
       <summary>Specifies the zero-based index of the last occurrence of a specified string in <paramref name="span" />. A parameter specifies the type of search for the specified string.</summary>
       <param name="span">The character span to search.</param>
-      <param name="value">The <see cref="T:System.String" /> to search for or <c>null</c>.</param>
+      <param name="value">The <see cref="T:System.String" /> to search for, or <c>null</c>.</param>
       <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
       <returns>The zero-based index of <paramref name="value" /> if that character sequence is found, or -1 if it is not. If <paramref name="value" /> is <see cref="P:System.String.Empty" /> or <c>null</c>, the last index position in <paramref name="span" /> is returned. In the specific case that <paramref name="span" /> is <see cref="P:System.ReadOnlySpan`1.Empty" />, that is <c>0</c>.</returns>
       <remarks>The behavior of the method is identical to that of <see cref="M:System.String.LastIndexOf(System.String,System.StringComparison)" /> of the respective framework version. This has changed with .NET 5.0: Since then <paramref name="span" />.Length is returned if <paramref name="value" /> is <see cref="P:System.ReadOnlySpan`1.Empty" />.</remarks>
@@ -832,7 +824,7 @@ If you use the <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback" /> o
     <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.LastIndexOf(System.Span{System.Char},System.String,System.StringComparison)">
       <summary>Specifies the zero-based index of the last occurrence of a specified string in <paramref name="span" />. A parameter specifies the type of search for the specified string.</summary>
       <param name="span">The span to search.</param>
-      <param name="value">The <see cref="T:System.String" /> to search for or <c>null</c>.</param>
+      <param name="value">The <see cref="T:System.String" /> to search for, or <c>null</c>.</param>
       <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
       <returns>The zero-based index of <paramref name="value" /> if that string is found, or -1 if it is not.</returns>
       <exception cref="T:System.ArgumentException">
@@ -841,7 +833,7 @@ If you use the <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback" /> o
     <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.LastIndexOf(System.Span{System.Char},System.String,System.Int32,System.Int32,System.StringComparison)">
       <summary>Specifies the  zero based index position of the last occurrence of a specified string in <paramref name="span" />. The search begins at a specified character position and runs backwards to the beginning of the character span for a specified number of character positions. A parameter specifies the type of comparison to be performed when searching for the specified string.</summary>
       <param name="span">The span to search.</param>
-      <param name="value">The <see cref="T:System.String" /> to search for or <c>null</c>.</param>
+      <param name="value">The <see cref="T:System.String" /> to search for, or <c>null</c>.</param>
       <param name="startIndex">The start index of the search. The search continues from <paramref name="startIndex" /> to the beginning of <paramref name="span" />.</param>
       <param name="count">The number of character positions to examine.</param>
       <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
@@ -881,7 +873,7 @@ If you use the <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback" /> o
     <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.ContainsAny(System.Span{System.Char},System.String)">
       <summary>Indicates whether a character span contains one of the Unicode characters that are passed to the method as a string.</summary>
       <param name="span">The span to examine.</param>
-      <param name="values">A string containing the characters to search for or <c>null</c>.</param>
+      <param name="values">A string containing the characters to search for, or <c>null</c>.</param>
       <returns>
         <c>true</c> if <paramref name="span" /> contains one of the characters passed with <paramref name="values" />. If <paramref name="span" /> is empty or <paramref name="values" /> is <c>null</c> or empty, <c>false</c> is returned.</returns>
       <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
@@ -889,21 +881,21 @@ If you use the <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback" /> o
     <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.IndexOfAny(System.Span{System.Char},System.String)">
       <summary>Searches for the zero-based index of the first occurrence of one of the specified Unicode characters.</summary>
       <param name="span">The span to search.</param>
-      <param name="values">A string containing the characters to search for or <c>null</c>.</param>
+      <param name="values">A string containing the characters to search for, or <c>null</c>.</param>
       <returns>The zero-based index of the first occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is <c>null</c> or empty, the method returns -1.</returns>
       <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.IndexOfAny(System.Char[])">String.IndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.LastIndexOfAny(System.Span{System.Char},System.String)">
       <summary>Searches for the zero-based index of the last occurrence of one of the specified Unicode characters.</summary>
       <param name="span">The span to search.</param>
-      <param name="values">A string containing the characters to search for or <c>null</c>.</param>
+      <param name="values">A string containing the characters to search for, or <c>null</c>.</param>
       <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found. If <paramref name="values" /> is <c>null</c> or empty, the method returns -1.</returns>
       <remarks>If the length of <paramref name="values" /> is less than 5, the method uses <see cref="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values" /> is greater, <see cref="M:System.String.LastIndexOfAny(System.Char[])">String.LastIndexOfAny(char[])</see> is used to avoid performance issues.</remarks>
     </member>
     <member name="M:FolkerKinzel.Strings.Polyfills.SpanPolyfillExtension.LastIndexOfAny(System.Span{System.Char},System.String,System.Int32,System.Int32)">
       <summary>Returns the zero-based index of the last occurrence of one of the specified characters in <paramref name="span" />. The search begins at a specified character position and runs a specified number of character positions backwards to the beginning of the <paramref name="span" />.</summary>
       <param name="span">The span to search.</param>
-      <param name="values">A string containing the characters to search for or <c>null</c>.</param>
+      <param name="values">A string containing the characters to search for, or <c>null</c>.</param>
       <param name="startIndex">The start index of the search. The search is done backwards to the beginning of <paramref name="span" />.</param>
       <param name="count">The number of characters positions to examine in <paramref name="span" />.</param>
       <returns>The zero-based index of the last occurrence of one of the specified Unicode characters in <paramref name="span" /> or -1 if none of these characters have been found.</returns>
@@ -936,7 +928,7 @@ If you use the <see cref="T:FolkerKinzel.Strings.DecoderValidationFallback" /> o
     <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderExtensionPolyfillExtension.ReplaceWhiteSpaceWith(System.Text.StringBuilder,System.String,System.Boolean)">
       <summary>Replaces in <paramref name="builder" /> all sequences of white space with <paramref name="replacement" />.</summary>
       <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
-      <param name="replacement">A <see cref="T:System.String" /> that is the replacement for all sequences of white space or <c>null</c> to completely remove any white space.</param>
+      <param name="replacement">A <see cref="T:System.String" /> that is the replacement for all sequences of white space, or <c>null</c> to completely remove any white space.</param>
       <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the replacement. The default value is <c>false</c>.</param>
       <returns>A reference to <paramref name="builder" />.</returns>
       <remarks>
@@ -953,7 +945,7 @@ The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identi
     <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderExtensionPolyfillExtension.ReplaceWhiteSpaceWith(System.Text.StringBuilder,System.String,System.Int32,System.Boolean)">
       <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref name="startIndex" /> and extends to the end of <paramref name="builder" />, all sequences of white space with <paramref name="replacement" />.</summary>
       <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
-      <param name="replacement">A <see cref="T:System.String" /> that is the replacement for all sequences of white space or <c>null</c> to completely remove all white space.</param>
+      <param name="replacement">A <see cref="T:System.String" /> that is the replacement for all sequences of white space, or <c>null</c> to completely remove all white space.</param>
       <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the replacement. The default value is <c>false</c>.</param>
       <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the replacement starts.</param>
       <returns>A reference to <paramref name="builder" />.</returns>
@@ -973,7 +965,7 @@ The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identi
     <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderExtensionPolyfillExtension.ReplaceWhiteSpaceWith(System.Text.StringBuilder,System.String,System.Int32,System.Int32,System.Boolean)">
       <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref name="startIndex" /> and which is <paramref name="count" /> characters long, all sequences of white space with <paramref name="replacement" />.</summary>
       <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
-      <param name="replacement">A <see cref="T:System.String" /> that is the replacement for all sequences of white space or <c>null</c> to completely remove all white space.</param>
+      <param name="replacement">A <see cref="T:System.String" /> that is the replacement for all sequences of white space, or <c>null</c> to completely remove all white space.</param>
       <param name="startIndex">The zero-based index in <paramref name="builder" /> at which the replacement starts.</param>
       <param name="count">The length of the section in which the replacements take place.</param>
       <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the replacement. The default value is <c>false</c>.</param>
@@ -1002,7 +994,7 @@ The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identi
     <member name="M:FolkerKinzel.Strings.Polyfills.StringBuilderExtensionPolyfillExtension.NormalizeNewLinesTo(System.Text.StringBuilder,System.String)">
       <summary>Replaces all newlines in <paramref name="builder" /> with <paramref name="newLine" />.</summary>
       <param name="builder">The <see cref="T:System.Text.StringBuilder" /> whose content is changed.</param>
-      <param name="newLine">A <see cref="T:System.String" /> to replace each newline or <c>null</c> to remove all newlines.</param>
+      <param name="newLine">A <see cref="T:System.String" /> to replace each newline, or <c>null</c> to remove all newlines.</param>
       <returns>A reference to <paramref name="builder" />.</returns>
       <remarks>
         <para>
@@ -1137,7 +1129,7 @@ This method differs from <see cref="M:FolkerKinzel.Strings.StringBuilderExtensio
     <member name="M:FolkerKinzel.Strings.Polyfills.StringExtensionPolyfillExtension.ReplaceWhiteSpaceWith(System.String,System.String,System.Boolean)">
       <summary>Generates a <see cref="T:System.String" /> in which all sequences of white space are replaced by <paramref name="replacement" />.</summary>
       <param name="s">The source <see cref="T:System.String" />.</param>
-      <param name="replacement">A <see cref="T:System.String" />, which replaces the white space or <c>null</c> to remove all white space.</param>
+      <param name="replacement">A <see cref="T:System.String" />, which replaces the white space, or <c>null</c> to remove all white space.</param>
       <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the replacement. The default value is <c>false</c>.</param>
       <returns>A new <see cref="T:System.String" /> in which all sequences of white space are replaced by <paramref name="replacement" />. If <paramref name="s" /> doesn't contain a white space character, <paramref name="s" /> is returned.</returns>
       <remarks>
@@ -1154,7 +1146,7 @@ The method uses <see cref="M:System.Char.IsWhiteSpace(System.Char)" /> to identi
     <member name="M:FolkerKinzel.Strings.Polyfills.StringExtensionPolyfillExtension.NormalizeNewLinesTo(System.String,System.String)">
       <summary>Generates a <see cref="T:System.String" /> in which all newlines are replaced by <paramref name="newLine" />.</summary>
       <param name="s">The source <see cref="T:System.String" />.</param>
-      <param name="newLine">A <see cref="T:System.String" /> that is the replacement for all newlines or <c>null</c> to completely remove all newline characters.</param>
+      <param name="newLine">A <see cref="T:System.String" /> that is the replacement for all newlines, or <c>null</c> to completely remove all newline characters.</param>
       <returns>A new <see cref="T:System.String" /> in which all newlines are replaced by <paramref name="replacement" />. If <paramref name="s" /> doesn't contain a newline character, <paramref name="s" /> is returned.</returns>
       <remarks>
         <para>
@@ -1824,29 +1816,29 @@ Do not use the hashcodes generated by this method for security-critical purposes
       <threadsafety static="true" instance="false" />
     </member>
     <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendBase64(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{System.Byte},System.Base64FormattingOptions)">
-      <summary>Appends the content of a <see cref="T:System.Byte" /> collection as Base64 encoded character sequence to the end of a <see cref="T:System.Text.StringBuilder" />.</summary>
+      <summary>Appends the content of a <see cref="T:System.Byte" /> collection as Base64-encoded character sequence to the end of a <see cref="T:System.Text.StringBuilder" />.</summary>
       <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which the characters are appended.</param>
-      <param name="bytes">The <see cref="T:System.Byte" /> collection that contains the data.</param>
+      <param name="bytes">The <see cref="T:System.Byte" /> collection that contains the data, or <c>null</c>.</param>
       <param name="options">An enumeration value that allows specifying whether line breaks should be automatically inserted into the Base64.</param>
       <returns>A reference to <paramref name="builder" /> after the append operation has completed.</returns>
       <remarks>The method uses it's own Base64 implementation that is a little slower than the BCL methods but allocates much less heap memory.</remarks>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="builder" /> or <paramref name="bytes" /> is <c>null</c>.</exception>
+        <paramref name="builder" /> is <c>null</c>.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">Increasing the capacity of <paramref name="builder" /> would exceed <see cref="P:System.Text.StringBuilder.MaxCapacity" />.</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendBase64(System.Text.StringBuilder,System.Byte[],System.Base64FormattingOptions)">
-      <summary>Appends the content of a <see cref="T:System.Byte" /> array as Base64 encoded character sequence to the end of a <see cref="T:System.Text.StringBuilder" />.</summary>
+      <summary>Appends the content of a <see cref="T:System.Byte" /> array as Base64-encoded character sequence to the end of a <see cref="T:System.Text.StringBuilder" />.</summary>
       <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which the characters are appended.</param>
-      <param name="bytes">The <see cref="T:System.Byte" /> array that contains the data.</param>
+      <param name="bytes">The <see cref="T:System.Byte" /> array that contains the data, or <c>null</c>.</param>
       <param name="options">An enumeration value that allows specifying whether line breaks should be automatically inserted into the Base64.</param>
       <returns>A reference to <paramref name="builder" /> after the append operation has completed.</returns>
       <remarks>The method uses it's own Base64 implementation that is a little slower than the BCL methods but allocates much less heap memory.</remarks>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="builder" /> or <paramref name="bytes" /> is <c>null</c>.</exception>
+        <paramref name="builder" /> is <c>null</c>.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">Increasing the capacity of <paramref name="builder" /> would exceed <see cref="P:System.Text.StringBuilder.MaxCapacity" />.</exception>
     </member>
     <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendBase64(System.Text.StringBuilder,System.ReadOnlySpan{System.Byte},System.Base64FormattingOptions)">
-      <summary>Appends the content of a read-only <see cref="T:System.Byte" /> span as Base64 encoded character sequence to the end of a <see cref="T:System.Text.StringBuilder" />.</summary>
+      <summary>Appends the content of a read-only <see cref="T:System.Byte" /> span as Base64-encoded character sequence to the end of a <see cref="T:System.Text.StringBuilder" />.</summary>
       <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which the characters are appended.</param>
       <param name="bytes">The read-only <see cref="T:System.Byte" /> span that contains the data.</param>
       <param name="options">An enumeration value that allows specifying whether line breaks should be automatically inserted into the Base64.</param>
@@ -1880,6 +1872,36 @@ Do not use the hashcodes generated by this method for security-critical purposes
       <param name="value">The read-only character span that provides the characters that have to be encoded and appended.</param>
       <returns>A reference to <paramref name="builder" /> after the append operation has completed.</returns>
       <remarks>The method replaces all characters in <paramref name="value" /> except unreserved RFC 3986 characters into their hexadecimal representation. All Unicode characters are converted to UTF-8 format before being escaped. This method assumes that there are no escape sequences in <paramref name="value" />.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Increasing the capacity of <paramref name="builder" /> would exceed <see cref="P:System.Text.StringBuilder.MaxCapacity" />.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendUrlEncoded(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{System.Byte})">
+      <summary>Appends the content of a <see cref="T:System.Byte" /> collection as URL-encoded character sequence to the end of a <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which the characters are appended.</param>
+      <param name="value">The <see cref="T:System.Byte" /> collection that contains the data, or <c>null</c>.</param>
+      <returns>A reference to <paramref name="builder" /> after the append operation has completed.</returns>
+      <remarks>The method treats all <see cref="T:System.Byte" />s in <paramref name="value" /> as 8-Bit characters and replaces all of them -  except unreserved RFC 3986 characters - with their hexadecimal representation.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Increasing the capacity of <paramref name="builder" /> would exceed <see cref="P:System.Text.StringBuilder.MaxCapacity" />.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendUrlEncoded(System.Text.StringBuilder,System.Byte[])">
+      <summary>Appends the content of a <see cref="T:System.Byte" /> array as URL-encoded character sequence to the end of a <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which the characters are appended.</param>
+      <param name="value">The <see cref="T:System.Byte" /> array that contains the data, or <c>null</c>.</param>
+      <returns>A reference to <paramref name="builder" /> after the append operation has completed.</returns>
+      <remarks>The method treats all <see cref="T:System.Byte" />s in <paramref name="value" /> as 8-Bit characters and replaces all of them -  except unreserved RFC 3986 characters - with their hexadecimal representation.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Increasing the capacity of <paramref name="builder" /> would exceed <see cref="P:System.Text.StringBuilder.MaxCapacity" />.</exception>
+    </member>
+    <member name="M:FolkerKinzel.Strings.StringBuilderExtension.AppendUrlEncoded(System.Text.StringBuilder,System.ReadOnlySpan{System.Byte})">
+      <summary>Appends the content of a read-only <see cref="T:System.Byte" /> span as URL-encoded character sequence to the end of a <see cref="T:System.Text.StringBuilder" />.</summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which the characters are appended.</param>
+      <param name="value">The read-only <see cref="T:System.Byte" /> span that contains the data.</param>
+      <returns>A reference to <paramref name="builder" /> after the append operation has completed.</returns>
+      <remarks>The method treats all <see cref="T:System.Byte" />s in <paramref name="value" /> as 8-Bit characters and replaces all of them -  except unreserved RFC 3986 characters - with their hexadecimal representation.</remarks>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="builder" /> is <c>null</c>.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">Increasing the capacity of <paramref name="builder" /> would exceed <see cref="P:System.Text.StringBuilder.MaxCapacity" />.</exception>
@@ -3001,8 +3023,8 @@ UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method f
     </member>
     <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.String,System.String,System.Boolean,System.String@)">
       <summary>Tries to decode a URL-encoded <see cref="T:System.String" /> using a specified character set and allows to specify whether or not PLUS characters ('+', U+002B) should be decoded as SPACE characters (' ', U+0020).</summary>
-      <param name="value">The <see cref="T:System.String" /> to decode.</param>
-      <param name="encodingWebName">The standardized web name of the character set to use or <c>null</c> or <see cref="F:System.String.Empty" /> as a replacement for "utf-8".</param>
+      <param name="value">The <see cref="T:System.String" /> to decode, or <c>null</c>.</param>
+      <param name="encodingWebName">The standardized web name of the character set to use, or <c>null</c> or <see cref="F:System.String.Empty" /> as a replacement for "utf-8".</param>
       <param name="decodePlusChars">
         <c>true</c> to decode PLUS characters ('+', U+002B) as SPACE characters (' ', U+0020), or  <c>false</c> to include the PLUS characters unchanged in <paramref name="decoded" />.</param>
       <param name="decoded">After the method completes successfully, contains a <see cref="T:System.String" /> that represents the decoded content of <paramref name="value" />.</param>
@@ -3011,7 +3033,7 @@ UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method f
     </member>
     <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.String,System.Int32,System.Boolean,System.String@)">
       <summary>Tries to decode a URL-encoded <see cref="T:System.String" /> using a specified code page and allows to specify whether or not PLUS characters ('+', U+002B) should be decoded as SPACE characters (' ', U+0020).</summary>
-      <param name="value">The <see cref="T:System.String" /> to decode.</param>
+      <param name="value">The <see cref="T:System.String" /> to decode, or <c>null</c>.</param>
       <param name="codePage">The code page to use.</param>
       <param name="decodePlusChars">
         <c>true</c> to decode PLUS characters ('+', U+002B) as SPACE characters (' ', U+0020), or  <c>false</c> to include the PLUS characters unchanged in <paramref name="decoded" />.</param>
@@ -3021,17 +3043,26 @@ UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method f
     </member>
     <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.String,System.Boolean,System.String@)">
       <summary>Tries to decode a URL-encoded <see cref="T:System.String" /> using the UTF-8 character set and allows to specify whether or not PLUS characters ('+', U+002B) should be decoded as SPACE characters (' ', U+0020).</summary>
-      <param name="value">The <see cref="T:System.String" /> to decode.</param>
+      <param name="value">The <see cref="T:System.String" /> to decode, or <c>null</c>.</param>
       <param name="decodePlusChars">
         <c>true</c> to decode PLUS characters ('+', U+002B) as SPACE characters (' ', U+0020), or  <c>false</c> to include the PLUS characters unchanged in <paramref name="decoded" />.</param>
       <param name="decoded">After the method completes successfully, contains a <see cref="T:System.String" /> that represents the decoded content of <paramref name="value" />.</param>
       <returns>
         <c>true</c> if the decoding was successful, otherwise <c>false</c>.</returns>
     </member>
+    <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecodeToBytes(System.String,System.Boolean,System.Byte[]@)">
+      <summary>Tries to decode a URL-encoded <see cref="T:System.String" /> to a <see cref="T:System.Byte" /> array and allows to specify whether or not PLUS characters ('+', U+002B) should be decoded to <c>0x20</c> (SPACE ' ').</summary>
+      <param name="value">The <see cref="T:System.String" /> to decode, or <c>null</c>.</param>
+      <param name="decodePlusChars">
+        <c>true</c> to decode PLUS characters ('+', U+002B) to <c>0x20</c> (SPACE ' '), or  <c>false</c> to include the PLUS characters unchanged as <c>0x2B</c> in <paramref name="decoded" />.</param>
+      <param name="bytes">After the method completes successfully, contains a <see cref="T:System.Byte" /> array that represents the decoded content of <paramref name="value" />.</param>
+      <returns>
+        <c>true</c> if the decoding was successful, otherwise <c>false</c>.</returns>
+    </member>
     <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.ReadOnlySpan{System.Char},System.String,System.Boolean,System.String@)">
       <summary>Tries to decode a URL-encoded read-only character span using a specified character set and allows to specify whether or not PLUS characters ('+', U+002B) should be decoded as SPACE characters (' ', U+0020).</summary>
       <param name="value">The read-only character span to decode.</param>
-      <param name="encodingWebName">The standardized web name of the character set to use or <c>null</c> or <see cref="F:System.String.Empty" /> as a replacement for "utf-8".</param>
+      <param name="encodingWebName">The standardized web name of the character set to use, or <c>null</c> or <see cref="F:System.String.Empty" /> as a replacement for "utf-8".</param>
       <param name="decodePlusChars">
         <c>true</c> to decode PLUS characters ('+', U+002B) as SPACE characters (' ', U+0020), or  <c>false</c> to include the PLUS characters unchanged in <paramref name="decoded" />.</param>
       <param name="decoded">After the method completes successfully, contains a <see cref="T:System.String" /> that represents the decoded content of <paramref name="value" />.</param>
@@ -3054,6 +3085,15 @@ UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method f
       <param name="decodePlusChars">
         <c>true</c> to decode PLUS characters ('+', U+002B) as SPACE characters (' ', U+0020), or  <c>false</c> to include the PLUS characters unchanged in <paramref name="decoded" />.</param>
       <param name="decoded">After the method completes successfully, contains a <see cref="T:System.String" /> that represents the decoded content of <paramref name="value" />.</param>
+      <returns>
+        <c>true</c> if the decoding was successful, otherwise <c>false</c>.</returns>
+    </member>
+    <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecodeToBytes(System.ReadOnlySpan{System.Char},System.Boolean,System.Byte[]@)">
+      <summary>Tries to decode a URL-encoded read-only character span to a <see cref="T:System.Byte" /> array and allows to specify whether or not PLUS characters ('+', U+002B) should be decoded as <c>0x20</c> (SPACE ' ').</summary>
+      <param name="value">The read-only character span to decode.</param>
+      <param name="decodePlusChars">
+        <c>true</c> to decode PLUS characters ('+', U+002B) to <c>0x20</c> (SPACE ' '), or  <c>false</c> to include the PLUS characters unchanged as <c>0x2B</c> in <paramref name="bytes" />.</param>
+      <param name="bytes">After the method completes successfully, contains a <see cref="T:System.Byte" /> array that represents the decoded content of <paramref name="value" />.</param>
       <returns>
         <c>true</c> if the decoding was successful, otherwise <c>false</c>.</returns>
     </member>

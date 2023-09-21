@@ -170,7 +170,7 @@ public class UrlEncodingTests
         var sb = new StringBuilder();
         string encoded = sb.AppendUrlEncoded(data).ToString();
 
-        Assert.IsTrue(UrlEncoding.TryDecodeToBytes(encoded, out byte[]? decoded));
+        Assert.IsTrue(UrlEncoding.TryDecodeToBytes(encoded, true, out byte[]? decoded));
         CollectionAssert.AreEqual(data, decoded);
     }
 
@@ -184,7 +184,7 @@ public class UrlEncodingTests
         var sb = new StringBuilder();
         string encoded = sb.AppendUrlEncoded(data.AsEnumerable()).ToString();
 
-        Assert.IsTrue(UrlEncoding.TryDecodeToBytes(encoded, out byte[]? decoded));
+        Assert.IsTrue(UrlEncoding.TryDecodeToBytes(encoded, true, out byte[]? decoded));
         CollectionAssert.AreEqual(data, decoded);
     }
 
@@ -196,10 +196,10 @@ public class UrlEncodingTests
         var sb = new StringBuilder();
         string encoded = sb.AppendUrlEncoded(data).ToString();
 
-        Assert.IsTrue(UrlEncoding.TryDecodeToBytes(encoded, out byte[]? decoded));
+        Assert.IsTrue(UrlEncoding.TryDecodeToBytes(encoded, true, out byte[]? decoded));
         CollectionAssert.AreEqual(data, decoded);
     }
 
     [TestMethod]
-    public void TryDecodeToBytesTest3() => Assert.IsFalse(UrlEncoding.TryDecodeToBytes("äöü", out _));
+    public void TryDecodeToBytesTest3() => Assert.IsFalse(UrlEncoding.TryDecodeToBytes("äöü", true, out _));
 }
