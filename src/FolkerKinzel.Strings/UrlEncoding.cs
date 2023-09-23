@@ -10,6 +10,12 @@ public static class UrlEncoding
 {
     private const int SHORT_ARRAY = 256;
 
+    /// <summary>
+    /// Faktor, mit dem die Anzahl der zu kodierenden Bytes multipliziert
+    /// wird, um die Länge der kodierten Ausgabe abzuschätzen.
+    /// </summary>
+    public const double EncodedLengthFactor = 2.5;
+
     private static class TextEncodingHelper
     {
         private const string UTF_8 = "utf-8";
@@ -69,7 +75,7 @@ public static class UrlEncoding
 
     private static void AppendData(StringBuilder builder, ReadOnlySpan<byte> encoded)
     {
-        _ = builder.EnsureCapacity((int)(builder.Length + encoded.Length * 2.5));
+        _ = builder.EnsureCapacity((int)(builder.Length + encoded.Length * EncodedLengthFactor));
 
         for (int i = 0; i < encoded.Length; i++)
         {

@@ -2088,4 +2088,9 @@ The Unicode category "Decimal Digit Number" includes many more characters than t
   <T ID="119711F19BB163F9">&lt;c&gt;true&lt;/c&gt; to decode PLUS characters ('+', U+002B) to &lt;c&gt;0x20&lt;/c&gt; (SPACE ' '), or  &lt;c&gt;false&lt;/c&gt; to include the PLUS characters unchanged as &lt;c&gt;0x2B&lt;/c&gt; in &lt;paramref name="bytes"/&gt;.</T>
   <T ID="D9C04884F5181F74">After the method completes successfully, contains a &lt;see cref="T:System.Byte"/&gt; array that represents the decoded content of &lt;paramref name="value"/&gt;.</T>
   <T ID="9360F42CB05F584C">&lt;c&gt;true&lt;/c&gt; if the decoding was successful, otherwise &lt;c&gt;false&lt;/c&gt;.</T>
+  <T ID="375FBFFC39865691">Calculates the exact output length of Base64-encoded data from the input length of the data to be encoded.</T>
+  <T ID="C16BC7F83B00A309">The number of &lt;see cref="T:System.Byte"/&gt;s to convert to Base64 format.</T>
+  <T ID="4ECB76BF9600945D">The number of characters of the Base64-encoded output when &lt;paramref name="inputLength"/&gt;&amp;#160;&lt;see cref="T:System.Byte"/&gt;s are encoded.</T>
+  <T ID="593F6283B6FCE7D1">Any line breaks that might have to be inserted into the encoded output are not included in the calculation.</T>
+  <T ID="DBF2EB38A074ADAD">Factor by which the number of bytes to be encoded is multiplied to estimate the length of the encoded output.</T>
 </Tsltn>

@@ -7,6 +7,12 @@
     <member name="T:FolkerKinzel.Strings.Base64">
       <summary>Static class that provides methods to encode and decode strings in Base64 format.</summary>
     </member>
+    <member name="M:FolkerKinzel.Strings.Base64.GetEncodedLength(System.Int32)">
+      <summary>Calculates the exact output length of Base64-encoded data from the input length of the data to be encoded.</summary>
+      <param name="inputLength">The number of <see cref="T:System.Byte" />s to convert to Base64 format.</param>
+      <returns>The number of characters of the Base64-encoded output when <paramref name="inputLength" /> <see cref="T:System.Byte" />s are encoded.</returns>
+      <remarks>Any line breaks that might have to be inserted into the encoded output are not included in the calculation.</remarks>
+    </member>
     <member name="M:FolkerKinzel.Strings.Base64.Encode(System.Collections.Generic.IEnumerable{System.Byte},System.Base64FormattingOptions)">
       <summary>Converts a <see cref="T:System.Byte" /> collection to a corresponding Base64-encoded string. You can determine, whether line breaks are to be inserted into the return value.</summary>
       <param name="bytes">A <see cref="T:System.Byte" /> collection that contains the data to encode, or <c>null</c>.</param>
@@ -3020,6 +3026,9 @@ UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method f
     </member>
     <member name="T:FolkerKinzel.Strings.UrlEncoding">
       <summary>Static class that provides methods for handling URL encoding (RFC 3986).</summary>
+    </member>
+    <member name="F:FolkerKinzel.Strings.UrlEncoding.EncodedLengthFactor">
+      <summary>Factor by which the number of bytes to be encoded is multiplied to estimate the length of the encoded output.</summary>
     </member>
     <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.String,System.String,System.Boolean,System.String@)">
       <summary>Tries to decode a URL-encoded <see cref="T:System.String" /> using a specified character set and allows to specify whether or not PLUS characters ('+', U+002B) should be decoded as SPACE characters (' ', U+0020).</summary>

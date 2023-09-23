@@ -23,6 +23,21 @@ public static class Base64
     private const int CHAR_WIDTH = 6;
     private const string URL_ENCODED_PADDING = "%3d";
 
+
+    /// <summary>
+    /// Berechnet die exakte Ausgabelänge Base64-kodierter Daten aus der Eingabelänge
+    /// der zu kodierenden Daten. 
+    /// </summary>
+    /// <param name="inputLength">Die Anzahl der <see cref="byte"/>s, die in das Base64-Format umgewandelt
+    /// werden sollen.</param>
+    /// <returns>Die Anzahl der Zeichen der Base64-kodierten Ausgabe, wenn <paramref name="inputLength"/>
+    /// &#160;<see cref="byte"/>s kodiert werden.</returns>
+    /// <remarks>Evtl. in die kodierte Ausgabe einzufügende Zeilenumbrüche
+    /// werden nicht in die Berechnung einbezogen.</remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int GetEncodedLength(int inputLength) => (int)Math.Ceiling(inputLength / 3.0) << 2;
+    
+
     /// <summary>
     /// Konvertiert eine <see cref="byte"/>-Sammlung in die entsprechende mit Base64-Ziffern 
     /// codierte Zeichenfolgendarstellung. Sie können festlegen, ob im Rückgabewert Zeilenumbrüche eingefügt 
@@ -349,7 +364,7 @@ public static class Base64
         }
 
         bool insertLineBreaks = options.HasFlag(Base64FormattingOptions.InsertLineBreaks) && !bytes.IsEmpty;
-        builder.EnsureCapacity(builder.Length + ComputeNeededCapacity(bytes.Length, insertLineBreaks));
+        builder.EnsureCapacity(builder.Length + GetMaxEncodedLength(bytes.Length, insertLineBreaks));
         int startOfBase64 = builder.Length;
 
         Base64.AppendEncodedTo(builder, bytes);
@@ -362,13 +377,14 @@ public static class Base64
         return builder;
     }
 
-    private static int ComputeNeededCapacity(int dataLength, bool insertLineBreaks)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int GetMaxEncodedLength(int dataLength, bool includeLineBreaks)
     {
-        int capacity = (int)Math.Ceiling(dataLength / 3.0) << 2;
+        int capacity = GetEncodedLength(dataLength);
 
-        if (insertLineBreaks)
+        if (includeLineBreaks)
         {
-            capacity += dataLength / Base64.LINE_LENGTH * Base64.LINE_BREAK.Length;
+            capacity += dataLength * Base64.LINE_BREAK.Length / Base64.LINE_LENGTH + Base64.LINE_LENGTH << 1;
         }
 
         return capacity;
@@ -476,64 +492,4 @@ public static class Base64
             Array.Empty<byte>();
 #endif
 
-
-    //    public static byte[] GetBytes2(ReadOnlySpan<char> base64, Base64ParserOptions options)
-    //    {
-    //        base64 = base64.Trim();
-
-    //        if (base64.IsEmpty)
-    //        {
-    //#if NET45
-    //            return new byte[0];
-    //#else
-    //            return Array.Empty<byte>();
-    //#endif
-    //        }
-
-    //        StringBuilder? sb = null;
-
-    //        if (options.HasFlag(Base64ParserOptions.AcceptBase64Url) && IsBase64Url(base64))
-    //        {
-    //            sb = new StringBuilder();
-    //            sb.EnsureCapacity(base64.Length + 2);
-    //            _ = sb.Append(base64);
-
-    //            base64 = sb.Replace('-', '+').Replace('_', '/').Replace("%3d", "=").Replace("%3D", "=").ToString().AsSpan();
-    //        }
-
-    //        int missingPaddingCount = options.HasFlag(Base64ParserOptions.AcceptMissingPadding) ? GetMissingPaddingCount(base64) : 0;
-
-    //        if (missingPaddingCount != 0)
-    //        {
-    //            sb ??= new StringBuilder(base64.Length + missingPaddingCount);
-
-    //            for (int i = 0; i < missingPaddingCount; i++)
-    //            {
-    //                sb.Append('=');
-    //            }
-
-    //            return Convert.FromBase64String(sb.ToString());
-    //        }
-
-    //        return DoGetBytes(base64);
-
-    //        /////////////////////////////////////////////////////
-
-    //        static int GetMissingPaddingCount(ReadOnlySpan<char> base64)
-    //        {
-    //            int whiteSpaceLength = 0;
-
-    //            for (int i = 0; i < base64.Length; i++)
-    //            {
-    //                if (base64[i] < '!')
-    //                {
-    //                    whiteSpaceLength++;
-    //                }
-    //            }
-
-    //            return ((base64.Length - whiteSpaceLength) % 4) switch { 0 => 0, 2 => 2, 3 => 1, _ => throw new FormatException() };
-    //        }
-
-    //        static bool IsBase64Url(ReadOnlySpan<char> base64) => base64.ContainsAny("-_%".AsSpan());
-    //    }
 }

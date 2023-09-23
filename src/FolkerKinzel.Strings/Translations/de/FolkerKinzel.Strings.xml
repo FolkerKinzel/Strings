@@ -9,6 +9,18 @@
             Statische Klasse, die Methoden zu Verfügung stellt, um Zeichenfolgen im Base64-Format zu enkodieren und zu dekodieren.
             </summary>
         </member>
+        <member name="M:FolkerKinzel.Strings.Base64.GetEncodedLength(System.Int32)">
+            <summary>
+            Berechnet die exakte Ausgabelänge Base64-kodierter Daten aus der Eingabelänge
+            der zu kodierenden Daten. 
+            </summary>
+            <param name="inputLength">Die Anzahl der <see cref="T:System.Byte"/>s, die in das Base64-Format umgewandelt
+            werden sollen.</param>
+            <returns>Die Anzahl der Zeichen der Base64-kodierten Ausgabe, wenn <paramref name="inputLength"/>
+            &#160;<see cref="T:System.Byte"/>s kodiert werden.</returns>
+            <remarks>Evtl. in die kodierte Ausgabe einzufügende Zeilenumbrüche
+            werden nicht in die Berechnung einbezogen.</remarks>
+        </member>
         <member name="M:FolkerKinzel.Strings.Base64.Encode(System.Collections.Generic.IEnumerable{System.Byte},System.Base64FormattingOptions)">
             <summary>
             Konvertiert eine <see cref="T:System.Byte"/>-Sammlung in die entsprechende mit Base64-Ziffern 
@@ -4293,6 +4305,12 @@
         <member name="T:FolkerKinzel.Strings.UrlEncoding">
             <summary>
             Statische Klasse, die Methoden zur Behandlung von URL-Enkodierung (RFC 3986) zur Verfügung stellt.
+            </summary>
+        </member>
+        <member name="F:FolkerKinzel.Strings.UrlEncoding.EncodedLengthFactor">
+            <summary>
+            Faktor, mit dem die Anzahl der zu kodierenden Bytes multipliziert
+            wird, um die Länge der kodierten Ausgabe abzuschätzen.
             </summary>
         </member>
         <member name="M:FolkerKinzel.Strings.UrlEncoding.TryDecode(System.String,System.String,System.Boolean,System.String@)">
