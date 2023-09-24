@@ -23,18 +23,18 @@ public class HexDigitBench
     }
 
 
-    [Benchmark]
-    public bool IsHexDigitTest()
-    {
-        ReadOnlySpan<char> span = TEST.AsSpan();
-        bool result = false;
-        for (int i = 0; i < span.Length; i++)
-        {
-#pragma warning disable CS0618 // Typ oder Element ist veraltet
-            result = span[i].IsHexDigit();
-#pragma warning restore CS0618 // Typ oder Element ist veraltet
-        }
+//    [Benchmark]
+//    public bool IsHexDigitTest()
+//    {
+//        ReadOnlySpan<char> span = TEST.AsSpan();
+//        bool result = false;
+//        for (int i = 0; i < span.Length; i++)
+//        {
+//#pragma warning disable CS0618 // Typ oder Element ist veraltet
+//            result = span[i].IsHexDigit();
+//#pragma warning restore CS0618 // Typ oder Element ist veraltet
+//        }
 
-        return result;
-    }
+//        return result;
+//    }
 }

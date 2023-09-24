@@ -201,11 +201,7 @@ class Program
 
         _ = c.IsAscii();
         _ = c.IsBinaryDigit();
-#pragma warning disable CS0618 // Typ oder Element ist veraltet
-        _ = c.IsDecimalDigit();
-        _ = c.IsAsciiLowerCaseLetter();
-        _ = c.IsAsciiUpperCaseLetter();
-#pragma warning restore CS0618 // Typ oder Element ist veraltet
+
         _ = c.IsAsciiLetter();
         _ = c.IsAsciiLetterLower();
         _ = c.IsAsciiLetterUpper();
@@ -215,9 +211,7 @@ class Program
         _ = c.IsAsciiHexDigit();
         _ = c.IsAsciiHexDigitLower();
         _ = c.IsAsciiHexDigitUpper();
-#pragma warning disable CS0618 // Typ oder Element ist veraltet
-        _ = c.IsHexDigit();
-#pragma warning restore CS0618 // Typ oder Element ist veraltet
+
         _ = c.ParseDecimalDigit();
         _ = c.ParseHexDigit();
         _ = c.IsControl();

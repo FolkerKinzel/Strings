@@ -8,10 +8,10 @@
 - [ ] Remove `IsHexDigit(this char)`
 
 ### 7.0.0
-- [ ] Mark `IsAsciiLowerCaseLetter(this char)` as obsolete error
-- [ ] Mark `IsAsciiUpperCaseLetter(this char)` as obsolete error
-- [ ] Mark `IsDecimalDigit(this char)` as obsolete error
-- [ ] Mark `IsHexDigit(this char)` as obsolete error
+- [x] Mark `IsAsciiLowerCaseLetter(this char)` as obsolete error
+- [x] Mark `IsAsciiUpperCaseLetter(this char)` as obsolete error
+- [x] Mark `IsDecimalDigit(this char)` as obsolete error
+- [x] Mark `IsHexDigit(this char)` as obsolete error
 
 ### 5.4.0
 - [ ] `StringBuilder.EscapeUri(int start, int length)`

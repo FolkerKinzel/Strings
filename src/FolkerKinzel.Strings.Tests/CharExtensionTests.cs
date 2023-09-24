@@ -2,7 +2,6 @@
 
 namespace FolkerKinzel.Strings.Tests;
 
-#pragma warning disable CS0618 // Typ oder Element ist veraltet
 
 [TestClass]
 public class CharExtensionTests
@@ -17,15 +16,15 @@ public class CharExtensionTests
         => Assert.AreEqual(expected, input.IsBetween('3', '5'));
 
     [TestMethod]
-    public void IsDecimalDigitTest1()
+    public void IsAsciiDigitTest1()
     {
         for (int i = 0; i < 10; i++)
         {
-            Assert.IsTrue(i.ToString()[0].IsDecimalDigit());
+            Assert.IsTrue(i.ToString()[0].IsAsciiDigit());
         }
 
-        Assert.IsFalse(((char)((int)'0' - 1)).IsDecimalDigit());
-        Assert.IsFalse(((char)((int)'9' + 1)).IsDecimalDigit());
+        Assert.IsFalse(((char)((int)'0' - 1)).IsAsciiDigit());
+        Assert.IsFalse(((char)((int)'9' + 1)).IsAsciiDigit());
     }
 
     [DataTestMethod]
@@ -89,7 +88,7 @@ public class CharExtensionTests
     [DataRow('G', false)]
     [DataRow('g', false)]
     public void IsHexDigitTest1(char input, bool expected)
-        => Assert.AreEqual(expected, input.IsHexDigit());
+        => Assert.AreEqual(expected, input.IsAsciiHexDigit());
 
 
     [DataTestMethod]
@@ -340,21 +339,21 @@ public class CharExtensionTests
 
 
     [TestMethod()]
-    public void IsAsciiLowerCaseLetterTest()
+    public void IsAsciiLetterLowerTest()
     {
         for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            Assert.AreEqual(c.IsAscii() && char.IsLetter(c) && char.IsLower(c), c.IsAsciiLowerCaseLetter());
+            Assert.AreEqual(c.IsAscii() && char.IsLetter(c) && char.IsLower(c), c.IsAsciiLetterLower());
         }
     }
 
 
     [TestMethod()]
-    public void IsAsciiUpperCaseLetterTest()
+    public void IsAsciiLetterUpperTest()
     {
         for (char c = char.MinValue; c < char.MaxValue; c++)
         {
-            Assert.AreEqual(c.IsAscii() && char.IsLetter(c) && char.IsUpper(c), c.IsAsciiUpperCaseLetter());
+            Assert.AreEqual(c.IsAscii() && char.IsLetter(c) && char.IsUpper(c), c.IsAsciiLetterUpper());
         }
     }
 
@@ -386,4 +385,3 @@ public class CharExtensionTests
     //    }
     //}
 }
-#pragma warning restore CS0618 // Typ oder Element ist veraltet

@@ -38,7 +38,7 @@ public static class CharExtension
     /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Kleinbuchstabe ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [Obsolete("Use IsAsciiLetterLower(this char) instead.", false)]
+    [Obsolete("Use IsAsciiLetterLower(this char) instead.", true)]
     [Browsable(false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static bool IsAsciiLowerCaseLetter(this char c) => c.IsAsciiLetterLower();
@@ -64,7 +64,7 @@ public static class CharExtension
     /// <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
     /// andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [Obsolete("Use IsAsciiLetterUpper(this char) instead.", false)]
+    [Obsolete("Use IsAsciiLetterUpper(this char) instead.", true)]
     [Browsable(false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static bool IsAsciiUpperCaseLetter(this char c) => IsAsciiLetterUpper(c);
@@ -247,7 +247,7 @@ public static class CharExtension
     /// <returns><c>true</c>, wenn <paramref name="c"/> eine Dezimalziffer
     /// darstellt, andernfalls <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [Obsolete("Use IsAsciiDigit(this char) instead.", false)]
+    [Obsolete("Use IsAsciiDigit(this char) instead.", true)]
     [Browsable(false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static bool IsDecimalDigit(this char c) => c.IsAsciiDigit();
@@ -276,7 +276,7 @@ public static class CharExtension
     /// ist, andernfalls <c>false</c>.</returns>
     /// <remarks>Ruft <see cref="Uri.IsHexDigit(char)"/> auf.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [Obsolete("Use IsAsciiHexDigit(this char) instead.", false)]
+    [Obsolete("Use IsAsciiHexDigit(this char) instead.", true)]
     [Browsable(false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static bool IsHexDigit(this char character) => Uri.IsHexDigit(character);
