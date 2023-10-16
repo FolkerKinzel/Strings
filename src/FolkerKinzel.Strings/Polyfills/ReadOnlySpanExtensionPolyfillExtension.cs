@@ -122,7 +122,7 @@ public static class ReadOnlySpanExtensionPolyfillExtension
     /// <param name="values">A string containing the characters to search for, or <c>null</c>.</param>
     /// <param name="startIndex">The start index of the search. The search is done backwards
     /// to the beginning of <paramref name="span" />.</param>
-    /// <param name="count">The number of characters positions to examine in <paramref name="span"
+    /// <param name="count">The number of character positions to examine in <paramref name="span"
     /// />.</param>
     /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
