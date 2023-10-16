@@ -1,17 +1,16 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
-/// <summary>
-/// Erweiterungsmethoden für die <see cref="Encoding"/>-Klasse.
-/// </summary>
+    /// <summary>Extension methods for the <see cref="Encoding" /> class.</summary>
 public static class EncodingExtension
 {
-    /// <summary>
-    /// Kodiert alle Zeichen in der angegebenen schreibgeschützten Zeichenspanne in eine Bytefolge.
-    /// </summary>
-    /// <param name="encoding">Das <see cref="Encoding"/>-Objekt, auf dem die Erweiterungsmethode aufgerufen wird.</param>
-    /// <param name="chars">Die schreibgeschützte Zeichenspanne, die die zu kodierenden Zeichen enthält.</param>
-    /// <returns>Ein Bytearray mit den Ergebnissen der Codierung der angegebenen Zeichen.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="encoding"/> ist <c>null</c>.</exception>
+    /// <summary>Encodes all characters of the read-only character span to a corresponding
+    /// byte sequence.</summary>
+    /// <param name="encoding">The <see cref="Encoding" /> object on which the extension
+    /// method is executed.</param>
+    /// <param name="chars">The read-only character span that provides the characters that
+    /// have to be encoded.</param>
+    /// <returns>A byte array containing the results of the encoding.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="encoding" /> is <c>null</c>.</exception>
     public static byte[] GetBytes(this Encoding encoding, ReadOnlySpan<char> chars)
     {
         if (encoding == null)
@@ -31,15 +30,14 @@ public static class EncodingExtension
     // Don't move this polyfill to the namespace FolkerKinzel.Strings.Polyfills because it polyfills an
     // instance method.
 #if NET45 || NETSTANDARD2_0
-    /// <summary>
-    /// Decodiert alle Bytes in der angegebenen Bytespanne in eine Zeichenfolge.
-    /// </summary>
-    /// <param name="encoding">Das <see cref="Encoding"/>-Objekt, auf dem die Erweiterungsmethode aufgerufen wird.</param>
-    /// <param name="bytes">Eine schreibgeschützte Bytespanne, die in eine Unicode-Zeichenfolge decodiert werden soll.</param>
-    /// <returns>Eine Zeichenfolge, die die decodierten Bytes aus der angegebenen schreibgeschützten Spanne enthält.</returns>
-    /// <exception cref="NullReferenceException"><paramref name="encoding"/> ist <c>null</c>.</exception>
-    /// <remarks>Diese Methode ist ein Polyfill für die entsprechende Instanzmethode neuerer .NET-Versionen. Verwenden Sie
-    /// die Methode ausschließlich in der Erweiterungsmethodensyntax.</remarks>
+    /// <summary>Decodes all bytes in the specified read-only span into a string.</summary>
+    /// <param name="encoding">The <see cref="Encoding" /> object on which the extension
+    /// method is executed.</param>
+    /// <param name="bytes">A read-only byte span that is converted into a string.</param>
+    /// <returns>A string decoded from the specified byte span.</returns>
+    /// <exception cref="NullReferenceException"> <paramref name="encoding" /> is <c>null</c>.</exception>
+    /// <remarks>This method is a polyfill for the instance method of current .NET versions.
+    /// Use this method in the extension method syntax only.</remarks>
     public static string GetString(this Encoding encoding, ReadOnlySpan<byte> bytes) =>
         encoding == null ? throw new NullReferenceException()
                          : encoding.GetString(bytes.ToArray());

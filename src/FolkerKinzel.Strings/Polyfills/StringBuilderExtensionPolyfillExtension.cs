@@ -1,63 +1,55 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
+using System.Security.Principal;
 using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings.Polyfills;
 
-/// <summary>
-/// Erweiterungsmethoden, die als Polyfills für die Erweiterungsmethoden der Klasse <see cref="StringBuilderExtension"/>
-/// dienen.
-/// </summary>
-/// <remarks>
-/// Die Polyfills sind verfügbar für .NET Framework 4.5 und .NET Standard 2.0.
-/// </remarks>
+/// <summary> Extension methods, which act as Polyfills for the extension methods of the 
+/// <see cref="StringBuilderExtension" /> class.</summary>
+/// <remarks>The polyfills are available for .NET Framework 4.5 and .NET Standard 2.0.</remarks>
 public static class StringBuilderExtensionPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET45 || NETSTANDARD2_0
 
-    /// <summary>
-    /// Fügt den Inhalt eines <see cref="string"/>s als URL-codierte Zeichenfolge
-    /// an das Ende eines <see cref="StringBuilder"/>-Objekts an.
-    /// </summary>
-    /// 
-    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
-    /// <param name="value">Der <see cref="string"/>, der die zu kodierenden und anzufügenden Zeichen enthält, oder <c>null</c>.</param>
-    /// 
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <remarks>Die Methode ersetzt alle Zeichen in <paramref name="value"/> mit Ausnahme von nicht reservierten RFC 3986-Zeichen 
-    /// durch ihre hexadezimale 
-    /// Darstellung. Alle Unicode-Zeichen werden in das UTF-8-Format konvertiert, bevor sie mit Escapezeichen versehen werden.
-    /// Bei dieser Methode wird davon ausgegangen, dass in <paramref name="value"/> keine Escapesequenzen enthalten sind.</remarks>
-    /// 
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
-    /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
+    /// <summary>Appends the content of a <see cref="string" /> as URL-encoded character
+    /// sequence to the end of a <see cref="StringBuilder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="value">The <see cref="string" /> containing the characters to encode
+    /// and append, or <c>null</c>.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <remarks>The method replaces all characters in <paramref name="value" /> except unreserved
+    /// RFC 3986 characters into their hexadecimal representation. All Unicode characters
+    /// are converted to UTF-8 format before being escaped. This method assumes that there
+    /// are no escape sequences in <paramref name="value" />.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
+    /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, string? value)
         => UrlEncoding.AppendUrlEncodedTo(builder, value.AsSpan());
 
-    /// <summary>
-    /// Ersetzt in <paramref name="builder"/> alle Sequenzen von Leerzeichen durch <paramref name="replacement"/>.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt bearbeitet wird.</param>
-    /// <param name="replacement">Ein <see cref="string"/>, durch den die Leerzeichen-Sequenzen
-    /// ersetzt werden, oder <c>null</c>, um alle Leerraumzeichen zu entfernen.</param>
-    /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
-    /// Ersetzung auszunehmen. Der Standardwert ist <c>false</c>.</param>
-    /// <returns>Eine Referenz auf <paramref name="builder"/></returns>
+    /// <summary>Replaces in <paramref name="builder" /> all sequences of white space with
+    /// <paramref name="replacement" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
+    /// <param name="replacement">A <see cref="string" /> that is the replacement for all
+    /// sequences of white space, or <c>null</c> to completely remove all white space.</param>
+    /// <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the
+    /// replacement. The default value is <c>false</c>.</param>
+    /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <remarks>
     /// <para>
-    /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)"/> zur Identifizierung von Leerraumzeichen und arbeitet
-    /// damit gründlicher als 
-    /// <see cref="Regex.Replace(string, string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+    /// The method uses <see cref="char.IsWhiteSpace(char)" /> to identify white space characters
+    /// and works more thoroughly with it than <see cref="Regex.Replace(string, string, string)">
+    /// Regex.Replace(string input, @"\s+", string replacement)</see>. 
     /// </para>
-    /// <para>Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
-    /// verwendet.
+    /// <para>
+    /// <see cref="CharExtension.IsNewLine(char)" /> is used to identify newline characters.
     /// </para>
-    /// 
     /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder ReplaceWhiteSpaceWith(
         this StringBuilder builder,
         string? replacement,
@@ -65,32 +57,31 @@ public static class StringBuilderExtensionPolyfillExtension
     => builder is null ? throw new ArgumentNullException(nameof(builder))
                        : builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), 0, builder.Length, skipNewLines);
 
-    /// <summary>
-    /// Ersetzt in einem Abschnitt von <paramref name="builder"/>, der bei <paramref name="startIndex"/> beginnt
-    /// und bis zum Ende von <paramref name="builder"/> reicht, alle Sequenzen von Leerzeichen durch <paramref name="replacement"/>.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt bearbeitet wird.</param>
-    /// <param name="replacement">Ein <see cref="string"/>, durch den die Leerzeichen-Sequenzen
-    /// ersetzt werden, oder <c>null</c>, um alle Leerraumzeichen zu entfernen.</param>
-    /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
-    /// Ersetzung auszunehmen. Der Standardwert ist <c>false</c>.</param>
-    /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem der Abschnitt beginnt,
-    /// in dem die Ersetzungen vorgenommen werden.</param>
-    /// <returns>Eine Referenz auf <paramref name="builder"/></returns>
+    /// <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref
+    /// name="startIndex" /> and extends to the end of <paramref name="builder" />, all sequences
+    /// of white space with <paramref name="replacement" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
+    /// <param name="replacement">A <see cref="string" /> that is the replacement for all
+    /// sequences of white space, or <c>null</c> to completely remove all white space.</param>
+    /// <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the
+    /// replacement. The default value is <c>false</c>.</param>
+    /// <param name="startIndex">The zero-based index in <paramref name="builder" /> at which
+    /// the replacement starts.</param>
+    /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <remarks>
     /// <para>
-    /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)"/> zur Identifizierung von Leerraumzeichen und arbeitet
-    /// damit gründlicher als 
-    /// <see cref="Regex.Replace(string, string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+    /// The method uses <see cref="char.IsWhiteSpace(char)" /> to identify white space characters
+    /// and works more thoroughly with it than <see cref="Regex.Replace(string, string, string)">
+    /// Regex.Replace(string input, @"\s+", string replacement)</see>. 
     /// </para>
-    /// <para>Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
-    /// verwendet.
+    /// <para>
+    /// <see cref="CharExtension.IsNewLine(char)" /> is used to identify newline characters.
     /// </para>
     /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">
-    /// <paramref name="startIndex"/> ist kleiner als 0 oder größer als die Anzahl der Zeichen in <paramref name="builder"/>.
-    /// </exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="startIndex" /> is
+    /// less than zero or greater than the number of characters in <paramref name="builder"
+    /// />.</exception>
     public static StringBuilder ReplaceWhiteSpaceWith(
         this StringBuilder builder,
         string? replacement,
@@ -99,38 +90,41 @@ public static class StringBuilderExtensionPolyfillExtension
     => builder is null ? throw new ArgumentNullException(nameof(builder))
                        : builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), startIndex, builder.Length - startIndex, skipNewLines);
 
-    /// <summary>
-    /// Ersetzt in einem Abschnitt von <paramref name="builder"/>, der bei <paramref name="startIndex"/> beginnt
-    /// und <paramref name="count"/> Zeichen umfasst, alle Sequenzen von Leerzeichen durch <paramref name="replacement"/>.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt bearbeitet wird.</param>
-    /// <param name="replacement">Ein <see cref="string"/>, durch den die Leerzeichen-Sequenzen
-    /// ersetzt werden, oder <c>null</c>, um alle Leerraumzeichen zu entfernen.</param>
-    /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem der Abschnitt beginnt,
-    /// in dem die Ersetzungen vorgenommen werden.</param>
-    /// <param name="count">Die Länge des Abschnitts, in dem Ersetzungen vorgenommen werden.</param>
-    /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
-    /// Ersetzung auszunehmen. Der Standardwert ist <c>false</c>.</param>
-    /// <returns>Eine Referenz auf <paramref name="builder"/></returns>
+    /// <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref
+    /// name="startIndex" /> and which is <paramref name="count" /> characters long, all
+    /// sequences of white space with <paramref name="replacement" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
+    /// <param name="replacement">A <see cref="string" /> that is the replacement for all
+    /// sequences of white space, or <c>null</c> to completely remove all white space.</param>
+    /// <param name="startIndex">The zero-based index in <paramref name="builder" /> at which
+    /// the replacement starts.</param>
+    /// <param name="count">The length of the specified section in <paramref name="builder"
+    /// /> where replacement operations take place.</param>
+    /// <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the
+    /// replacement. The default value is <c>false</c>.</param>
+    /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <remarks>
     /// <para>
-    /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)"/> zur Identifizierung von Leerraumzeichen und arbeitet
-    /// damit gründlicher als 
-    /// <see cref="Regex.Replace(string, string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+    /// The method uses <see cref="char.IsWhiteSpace(char)" /> to identify white space characters
+    /// and works more thoroughly with it than <see cref="Regex.Replace(string, string, string)">
+    /// Regex.Replace(string input, @"\s+", string replacement)</see>. 
     /// </para>
-    /// <para>Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
-    /// verwendet.
+    /// <para>
+    /// <see cref="CharExtension.IsNewLine(char)" /> is used to identify newline characters.
     /// </para>
     /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="startIndex"/> oder <paramref name="count"/> ist kleiner als 0
+    /// <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero
+    /// or larger than the number of characters in <paramref name="builder" />
     /// </para>
-    /// <para>- oder -</para>
     /// <para>
-    /// <paramref name="startIndex"/> + <paramref name="count"/>
-    /// ist größer als die Anzahl der Zeichen in <paramref name="builder"/>.
+    /// - or -
+    /// </para>
+    /// <para>
+    /// <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number
+    /// of characters in <paramref name="builder" />.
     /// </para>
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -143,24 +137,23 @@ public static class StringBuilderExtensionPolyfillExtension
     => builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), startIndex, count, skipNewLines);
 
 
-    /// <summary>
-    /// Ersetzt alle Zeilenumbrüche in <paramref name="builder"/> durch <paramref name="newLine"/>.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
-    /// <param name="newLine">Ein <see cref="string"/>, durch den jeder Zeilenumbruch
-    /// ersetzt wird, oder <c>null</c>, um alle Zeilenumbrüche zu entfernen.</param>
-    /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+    /// <summary>Replaces all newlines in <paramref name="builder" /> with <paramref name="newLine"
+    /// />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
+    /// <param name="newLine">A <see cref="string" /> that is the replacement for all newlines,
+    /// or <c>null</c> to completely remove all newline characters.</param>
+    /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <remarks>
     /// <para>
-    /// Für die Identifizierung von Zeilenwechselzeichen wird <see cref="CharExtension.IsNewLine(char)"/> 
-    /// verwendet. Die Sequenzen CRLF und LFCR werden als ein Zeilenumbruch behandelt.
+    /// <see cref="CharExtension.IsNewLine(char)" /> is used to identify newline characters. The 
+    /// sequences CRLF and LFCR are treated as one line break.
     /// </para>
     /// <note type="caution">
-    /// Diese Methode unterscheidet sich von <see cref="StringBuilderExtension.ReplaceLineEndings(StringBuilder, string?)"/> dahingehend,
-    /// dass sie zusätzlich LFCR-Sequenzen und Vertical Tab (VT: U+000B) als Zeilenwechsel behandelt.
+    /// This method differs from <see cref="StringBuilderExtension.ReplaceLineEndings(StringBuilder,
+    /// string?)" /> in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line break. 
     /// </note>
     /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     [Obsolete("Use ReplaceLineEndings instead.", false)]
     public static StringBuilder NormalizeNewLinesTo(this StringBuilder builder, string? newLine)
         => builder.NormalizeNewLinesTo(newLine.AsSpan());

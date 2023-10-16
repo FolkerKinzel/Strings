@@ -1,26 +1,19 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
-/// <summary>
-/// Benannte Konstanten, um Optionen für das Parsen Base64-kodierter Zeichenfolgen anzugeben.
-/// Die Flags können kombiniert werden.
-/// </summary>
+    /// <summary>Named constants to specify options for the parsing of Base64-encoded strings.
+    /// The flags can be combined.</summary>
 [Flags]
 public enum Base64ParserOptions
 {
-    /// <summary>
-    /// Keines der anderen Flags ist gesetzt.
-    /// </summary>
+    /// <summary>None of the flags has been set.</summary>
     None,
 
-    /// <summary>
-    /// Setzen des Flags bewirkt, dass evtl. fehlende Füllzeichen ('=') am Ende der Base64-Daten vom
-    /// Parser automatisch ergänzt werden.
-    /// </summary>
+    /// <summary>Setting the flag lets the parser automatically add missing padding characters
+    /// at the end of the Base64-encoded data.</summary>
     AcceptMissingPadding,
 
-    /// <summary>
-    /// Setzen des Flags bewirkt, dass Base64Url (RFC 4648, Kapitel 5) vom Parser akzeptiert wird. (Das
-    /// Flag sollte i.d.R. mit <see cref="AcceptMissingPadding"/> kombiniert werden.)
-    /// </summary>
+    /// <summary> Setzen des Flags bewirkt, dass Base64Url (RFC 4648, Kapitel 5) vom Parser
+    /// akzeptiert wird. (Das Flag sollte i.d.R. mit <see cref="AcceptMissingPadding" />
+    /// kombiniert werden.) </summary>
     AcceptBase64Url
 }

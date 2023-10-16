@@ -1,71 +1,62 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
 {
-    /// <summary>
-    /// Gibt den NULL-basierten Index des ersten Vorkommens des angegebenen Zeichens in <paramref name="builder"/> an.
-    /// </summary>
-    /// <param name="builder">Der zu durchsuchende <see cref="StringBuilder"/>.</param>
-    /// <param name="value">Das zu suchende Unicode-Zeichen.</param>
-    /// <returns>Die nullbasierte Indexposition von <paramref name="value"/> ab dem Anfang des <see cref="StringBuilder"/>s,
-    /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
-    /// <remarks>
-    /// Die Methode führt einen Ordinalzeichenvergleich durch.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <summary>Specifies the zero-based index of the first occurrence of the specified
+    /// character in <paramref name="builder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
+    /// <param name="value">The Unicode character to search for.</param>
+    /// <returns>The zero-based index position of <paramref name="value" /> from the beginning
+    /// of the <see cref="StringBuilder" />, if this character was found, otherwise -1.</returns>
+    /// <remarks>The method performs an ordinal character comparison.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static int IndexOf(this StringBuilder builder, char value)
         => builder is null
                 ? throw new ArgumentNullException(nameof(builder))
                 : builder.IndexOf(value, 0, builder.Length);
 
-    /// <summary>
-    /// Gibt den NULL-basierten Index des ersten Vorkommens des angegebenen Zeichens in <paramref name="builder"/> an. 
-    /// Die Suche beginnt an der angegebenen Zeichenposition.
-    /// </summary>
-    /// <param name="builder">Der zu durchsuchende <see cref="StringBuilder"/>.</param>
-    /// <param name="value">Das zu suchende Unicode-Zeichen.</param>
-    /// <param name="startIndex">Die Anfangsposition der Suche.</param>
-    /// <returns>Die nullbasierte Indexposition von <paramref name="value"/> ab dem Anfang des <see cref="StringBuilder"/>s,
-    /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
-    /// <remarks>
-    /// Die Methode führt einen Ordinalzeichenvergleich durch.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/> ist kleiner als 0 oder
-    /// größer als die Anzahl der Zeichen in <paramref name="builder"/>.</exception>
+    /// <summary>Returns the zero-based index of the first occurrence of the specified character
+    /// in <paramref name="builder" />. The search starts at the specified index.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
+    /// <param name="value">The Unicode character to search for.</param>
+    /// <param name="startIndex">The start index of the search.</param>
+    /// <returns>The zero-based index position of <paramref name="value" /> from the beginning
+    /// of the <see cref="StringBuilder" />, if this character was found, otherwise -1.</returns>
+    /// <remarks>The method performs an ordinal character comparison.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="startIndex" /> is
+    /// less than zero or greater than the number of characters in <paramref name="builder"
+    /// />.</exception>
     public static int IndexOf(this StringBuilder builder, char value, int startIndex)
         => builder is null
             ? throw new ArgumentNullException(nameof(builder))
             : builder.IndexOf(value, startIndex, builder.Length - startIndex);
 
 
-    /// <summary>
-    /// Gibt den NULL-basierten Index des ersten Vorkommens des angegebenen Zeichens in <paramref name="builder"/> an. 
-    /// Die Suche beginnt an einer angegebenen Zeichenposition, und es wird eine angegebene Anzahl 
-    /// von Zeichenpositionen überprüft.
-    /// </summary>
-    /// <param name="builder">Der zu durchsuchende <see cref="StringBuilder"/>.</param>
-    /// <param name="value">Das zu suchende Unicode-Zeichen.</param>
-    /// <param name="startIndex">Die Anfangsposition der Suche.</param>
-    /// <param name="count">Die Anzahl der zu überprüfenden Zeichenpositionen.</param>
-    /// <returns>Die nullbasierte Indexposition von <paramref name="value"/> ab dem Anfang des <see cref="StringBuilder"/>s,
-    /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
-    /// <remarks>
-    /// Die Methode führt einen Ordinalzeichenvergleich durch.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <summary>Returns the zero-based index of the first occurrence of the specified character
+    /// in <paramref name="builder" />. The search begins at a specified index and a specified
+    /// number of character positions are checked.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
+    /// <param name="value">The Unicode character to search for.</param>
+    /// <param name="startIndex">The start index of the search.</param>
+    /// <param name="count">The number of character positions to examine.</param>
+    /// <returns>The zero-based index position of <paramref name="value" /> from the beginning
+    /// of the <see cref="StringBuilder" />, if this character was found, otherwise -1.</returns>
+    /// <remarks>The method performs an ordinal character comparison.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="startIndex"/> oder <paramref name="count"/> sind kleiner als 0 oder
-    /// größer als die Anzahl der Zeichen in <paramref name="builder"/>
+    /// <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero
+    /// or larger than the number of characters in <paramref name="builder" />
     /// </para>
     /// <para>
-    /// - oder -
+    /// - or -
     /// </para>
     /// <para>
-    /// <paramref name="startIndex"/> + <paramref name="count"/> ist größer als die Anzahl der Zeichen in
-    /// <paramref name="builder"/>.
-    /// </para></exception>
+    /// <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number
+    /// of characters in <paramref name="builder" />.
+    /// </para>
+    /// </exception>
     public static int IndexOf(this StringBuilder builder, char value, int startIndex, int count)
     {
         if (builder is null)

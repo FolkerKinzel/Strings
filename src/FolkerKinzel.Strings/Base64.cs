@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using FolkerKinzel.Strings;
 using FolkerKinzel.Strings.Intls;
@@ -6,9 +6,8 @@ using FolkerKinzel.Strings.Polyfills;
 
 namespace FolkerKinzel.Strings;
 
-/// <summary>
-/// Statische Klasse, die Methoden zu Verfügung stellt, um Zeichenfolgen im Base64-Format zu enkodieren und zu dekodieren.
-/// </summary>
+    /// <summary>Static class that provides methods to encode and decode strings in Base64
+    /// format.</summary>
 #if !(NET45 || NETSTANDARD2_0)
 [SuppressMessage("Globalization", "CA1303:Literale nicht als lokalisierte Parameter übergeben", Justification = "<Ausstehend>")]
 #endif
@@ -24,31 +23,30 @@ public static class Base64
     private const string URL_ENCODED_PADDING = "%3d";
 
 
-    /// <summary>
-    /// Berechnet die exakte Ausgabelänge Base64-kodierter Daten aus der Eingabelänge
-    /// der zu kodierenden Daten. 
-    /// </summary>
-    /// <param name="inputLength">Die Anzahl der <see cref="byte"/>s, die in das Base64-Format umgewandelt
-    /// werden sollen.</param>
-    /// <returns>Die Anzahl der Zeichen der Base64-kodierten Ausgabe, wenn <paramref name="inputLength"/>
-    /// &#160;<see cref="byte"/>s kodiert werden.</returns>
-    /// <remarks>Evtl. in die kodierte Ausgabe einzufügende Zeilenumbrüche
-    /// werden nicht in die Berechnung einbezogen.</remarks>
+    /// <summary>Calculates the exact output length of Base64-encoded data from the input
+    /// length of the data to be encoded.</summary>
+    /// <param name="inputLength">The number of <see cref="byte" />s to convert to Base64
+    /// format.</param>
+    /// <returns>The number of characters of the Base64-encoded output when <paramref name="inputLength"
+    /// />&#160;<see cref="byte" />s are encoded.</returns>
+    /// <remarks>Any line breaks that might have to be inserted into the encoded output are
+    /// not included in the calculation.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int GetEncodedLength(int inputLength) => (int)Math.Ceiling(inputLength / 3.0) << 2;
     
 
-    /// <summary>
-    /// Konvertiert eine <see cref="byte"/>-Sammlung in die entsprechende mit Base64-Ziffern 
-    /// codierte Zeichenfolgendarstellung. Sie können festlegen, ob im Rückgabewert Zeilenumbrüche eingefügt 
-    /// werden sollen.
-    /// </summary>
-    /// <param name="bytes">Eine <see cref="byte"/>-Sammlung, die die umzuwandelnden Daten enthält, oder <c>null</c>.</param>
-    /// <param name="options">Einer der Enumerationswerte, die angeben, ob im Rückgabewert Zeilenumbrüche eingefügt 
-    /// werden sollen. Der Standardwert ist 
-    /// <see cref="Base64FormattingOptions.None"/>.</param>
-    /// <returns>Die Zeichenfolgendarstellung der Elemente in <paramref name="bytes"/> als Base64.</returns>
-    /// <exception cref="ArgumentException"><paramref name="options"/> ist kein gültiger <see cref="Base64FormattingOptions"/>-Wert.</exception>
+    /// <summary>Converts a <see cref="byte" /> collection to a corresponding Base64-encoded
+    /// string. You can determine, whether line breaks are to be inserted into the return
+    /// value.</summary>
+    /// <param name="bytes">A <see cref="byte" /> collection that contains the data to encode,
+    /// or <c>null</c>.</param>
+    /// <param name="options">One of the enumeration values, which specify whether or not
+    /// line breaks are to be inserted into the return value. The default is <see cref="Base64FormattingOptions.None"
+    /// />.</param>
+    /// <returns>The string representation of the elements in <paramref name="bytes" /> as
+    /// Base64.</returns>
+    /// <exception cref="ArgumentException"> <paramref name="options" /> is not a defined
+    /// <see cref="Base64FormattingOptions" /> value.</exception>
     public static string Encode(IEnumerable<byte>? bytes, Base64FormattingOptions options = Base64FormattingOptions.None)
     {
         bytes ??= _Array.Empty<byte>();
@@ -63,65 +61,76 @@ public static class Base64
         };
     }
 
-    /// <summary>
-    /// Konvertiert ein <see cref="byte"/>-Array in die entsprechende mit Base64-Ziffern 
-    /// codierte Zeichenfolgendarstellung. Sie können festlegen, ob im Rückgabewert Zeilenumbrüche eingefügt 
-    /// werden sollen.
-    /// </summary>
-    /// <param name="bytes">Ein <see cref="byte"/>-Array, das die umzuwandelnden Daten enthält, oder <c>null</c>.</param>
-    /// <param name="options">Einer der Enumerationswerte, die angeben, ob im Rückgabewert Zeilenumbrüche eingefügt 
-    /// werden sollen. Der Standardwert ist 
-    /// <see cref="Base64FormattingOptions.None"/>.</param>
-    /// <returns>Die Zeichenfolgendarstellung der Elemente in <paramref name="bytes"/> als Base64.</returns>
-    /// <exception cref="ArgumentException"><paramref name="options"/> ist kein gültiger <see cref="Base64FormattingOptions"/>-Wert.</exception>
+    /// <summary>Converts a <see cref="byte" /> array to a corresponding Base64-encoded string.
+    /// You can determine, whether line breaks are to be inserted into the return value.</summary>
+    /// <param name="bytes">A <see cref="byte" /> array that contains the data to encode,
+    /// or <c>null</c>.</param>
+    /// <param name="options">One of the enumeration values, which specify whether or not
+    /// line breaks are to be inserted into the return value. The default is <see cref="Base64FormattingOptions.None"
+    /// />.</param>
+    /// <returns>The string representation of the elements in <paramref name="bytes" /> as
+    /// Base64.</returns>
+    /// <exception cref="ArgumentException"> <paramref name="options" /> is not a defined
+    /// <see cref="Base64FormattingOptions" /> value.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Encode(byte[]? bytes, Base64FormattingOptions options = Base64FormattingOptions.None)
         => Convert.ToBase64String(bytes ?? _Array.Empty<byte>(), options);
 
-    /// <summary>
-    /// Konvertiert eine Teilmenge eines <see cref="byte"/>-Arrays in die entsprechende mit 
-    /// Base64-Ziffern codierte Zeichenfolgendarstellung. Parameter geben die Teilmenge als Offset im Eingabearray, 
-    /// die Anzahl der zu konvertierenden Bytes sowie ggf. im Rückgabewert einzufügende Zeilenumbrüche an.
-    /// </summary>
-    /// <param name="bytes">Ein <see cref="byte"/>-Array, das die umzuwandelnden Daten enthält.</param>
-    /// <param name="offset">Ein Offset in <paramref name="bytes"/>.</param>
-    /// <param name="length">Die Anzahl der zu konvertierenden Bytes.</param>
-    /// <param name="options">Einer der Enumerationswerte, die angeben, ob im Rückgabewert Zeilenumbrüche eingefügt werden sollen. 
-    /// Der Standardwert ist 
-    /// <see cref="Base64FormattingOptions.None"/>.</param>
-    /// <returns>Die Zeichenfolgendarstellung von <paramref name="length"/> Bytes aus dem Array <paramref name="bytes"/> ab dem
-    /// Index <paramref name="offset"/> als Base64.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="bytes"/> ist <c>null</c>.</exception>
+    /// <summary>Converts a subset of a <see cref="byte" /> array to its equivalent Base64-encoded
+    /// string representation. Parameters specify the subset as an offset in the input array,
+    /// the number of bytes to be converted, and whether newlines are to be inserted in the
+    /// return value.</summary>
+    /// <param name="bytes">A <see cref="byte" /> array that contains the data to encode.</param>
+    /// <param name="offset">An offset in <paramref name="bytes" />.</param>
+    /// <param name="length">The number of Bytes that are to be converted.</param>
+    /// <param name="options">One of the enumeration values, which specify whether or not
+    /// line breaks are to be inserted into the return value. The default is <see cref="Base64FormattingOptions.None"
+    /// />.</param>
+    /// <returns>The Base64 string representation of <paramref name="length" /> Bytes taken
+    /// from the Array <paramref name="bytes" /> beginning at the index <paramref name="offset"
+    /// />.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="bytes" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
-    /// <para> <paramref name="offset"/> oder <paramref name="length"/> ist ein negativer Wert.</para>
-    /// <para>- oder -</para>
-    /// <para><paramref name="offset"/> plus <paramref name="length"/> ist größer als die Länge von <paramref name="bytes"/>.</para>
+    /// <para>
+    /// <paramref name="offset" /> or <paramref name="length" /> are negative values.
+    /// </para>
+    /// <para>
+    /// - oder -
+    /// </para>
+    /// <para>
+    /// <paramref name="offset" /> plus <paramref name="length" /> is greater than the length
+    /// of <paramref name="bytes" />.
+    /// </para>
     /// </exception>
-    /// <exception cref="ArgumentException"><paramref name="options"/> ist kein gültiger <see cref="Base64FormattingOptions"/>-Wert.</exception>
+    /// <exception cref="ArgumentException"> <paramref name="options" /> is not a defined
+    /// <see cref="Base64FormattingOptions" /> value.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Encode(byte[] bytes, int offset, int length, Base64FormattingOptions options = Base64FormattingOptions.None) =>
         bytes is null ? throw new ArgumentNullException(nameof(bytes))
                       : Convert.ToBase64String(bytes, offset, length, options);
 
 
-    /// <summary>
-    /// Konvertiert eine schreibgeschützte <see cref="byte"/>-Spanne in eine entsprechende Zeichenfolgendarstellung, 
-    /// die mit Base64-Ziffern codiert ist. Sie können optional angeben, ob im Rückgabewert Zeilenumbrüche eingefügt werden sollen.
-    /// </summary>
-    /// <param name="bytes">Eine schreibgeschützte <see cref="byte"/>-Spanne, die die umzuwandelnden Daten enthält.</param>
-    /// <param name="options">Einer der Enumerationswerte, die angeben, ob im Rückgabewert Zeilenumbrüche eingefügt werden sollen. Der Standardwert ist 
-    /// <see cref="Base64FormattingOptions.None"/>.</param>
-    /// <returns>Die Zeichenfolgendarstellung der Elemente in <paramref name="bytes"/> als Base64. Wenn die Länge von <paramref name="bytes"/> 0 ist, 
-    /// wird eine leere Zeichenfolge zurückgegeben.</returns>
+    /// <summary>Converts a read-only <see cref="byte" /> span to a corresponding Base64-encoded
+    /// string. Optional you can determine, whether line breaks are to be inserted into the
+    /// return value.</summary>
+    /// <param name="bytes">A read-only <see cref="byte" /> span that contains the data to
+    /// encode.</param>
+    /// <param name="options">One of the enumeration values, which specify whether or not
+    /// line breaks are to be inserted into the return value. The default is <see cref="Base64FormattingOptions.None"
+    /// />.</param>
+    /// <returns>The Base64 string reprensentation of the elements in <paramref name="bytes"
+    /// />.</returns>
     /// <remarks>
     /// <note type="note">
-    /// Da die Methode in der .NET-Framework 4.5 und .NET Standard 2.0 Version des nuget-Pakets aus <paramref name="bytes"/> ein neues
-    /// Array alloziert, wird empfohlen, aus Performancegründen nach Möglichkeit auf die Überladung 
-    /// <see cref="Encode(byte[], int, int, Base64FormattingOptions)"/> oder <see cref="Encode(byte[], Base64FormattingOptions)"/> zurückzugreifen,
-    /// wenn alte Frameworks unterstützt werden müssen.
+    /// Da die Methode in der .NET-Framework 4.5 und .NET Standard 2.0 Version des nuget-Pakets
+    /// aus <paramref name="bytes" /> ein neues Array alloziert, wird empfohlen, aus Performancegründen
+    /// nach Möglichkeit auf die Überladung <see cref="Encode(byte[], int, int, Base64FormattingOptions)"
+    /// /> oder <see cref="Encode(byte[], Base64FormattingOptions)" /> zurückzugreifen, wenn
+    /// alte Frameworks unterstützt werden müssen.
     /// </note>
     /// </remarks>
-    /// <exception cref="ArgumentException"><paramref name="options"/> ist kein gültiger <see cref="Base64FormattingOptions"/>-Wert.</exception>
+    /// <exception cref="ArgumentException"> <paramref name="options" /> is not a defined
+    /// <see cref="Base64FormattingOptions" /> value.</exception>
     /// <exception cref="OutOfMemoryException">Die Ausgabelänge war größer als <see cref="int.MaxValue">Int32.MaxValue</see>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Encode(ReadOnlySpan<byte> bytes, Base64FormattingOptions options = Base64FormattingOptions.None) =>
@@ -132,49 +141,47 @@ public static class Base64
 #endif
 
 
-    /// <summary>
-    /// Konvertiert die angegebene Zeichenfolge, die Binärdaten als Base-64-Ziffern codiert, in ein entsprechendes Array 
-    /// von 8-Bit-Ganzzahlen ohne Vorzeichen.
-    /// </summary>
-    /// <param name="base64">Die zu konvertierende Zeichenfolge oder <c>null</c>.</param>
-    /// <returns>Ein Array von 8-Bit-Ganzzahlen ohne Vorzeichen, das <paramref name="base64"/> entspricht.</returns>
+    /// <summary>Converts the Base64-encoded string into a byte array.</summary>
+    /// <param name="base64">The string to convert, or <c>null</c>.</param>
+    /// <returns>A byte array decoded from <paramref name="base64" />.</returns>
     /// <exception cref="FormatException">
-    /// <para>Die Länge von <paramref name="base64"/> bei ignorierten Leerzeichen ist nicht 0 (null) oder ein Vielfaches von 4.</para>
-    /// <para>- oder -</para>
-    /// <para>Das Format von <paramref name="base64"/> ist ungültig. <paramref name="base64"/> enthält ein Nicht-Base-64-Zeichen, 
-    /// mehr als zwei Füllzeichen oder in den 
-    /// Füllzeichen ein Zeichen, das kein Leerzeichen ist.</para>
+    /// <para>
+    /// The length of <paramref name="base64" /> with ignored white space characters is not
+    /// zero or a multiple of 4.
+    /// </para>
+    /// <para>
+    /// - oder -
+    /// </para>
+    /// <para>
+    /// The format of <paramref name="base64" /> is invalid. <paramref name="base64" /> contains
+    /// a non-Base64 character, more than two padding characters, or a non-space character
+    /// between the padding characters.
+    /// </para>
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] GetBytes(string? base64) => Convert.FromBase64String(base64 ?? "");
 
 
-    /// <summary>
-    /// Konvertiert die angegebene Zeichenfolge, die Binärdaten als Base-64-Ziffern codiert, in ein entsprechendes Array 
-    /// von 8-Bit-Ganzzahlen ohne Vorzeichen und erlaubt es, Optionen für die Konvertierung anzugeben.
-    /// </summary>
-    /// <param name="base64">Die zu konvertierende Zeichenfolge oder <c>null</c>.</param>
-    /// <param name="options">Optionen für die Konvertierung.</param>
-    /// <returns>Ein Array von 8-Bit-Ganzzahlen ohne Vorzeichen, das <paramref name="base64"/> entspricht.</returns>
-    /// <exception cref="FormatException">
-    /// <paramref name="base64"/> lässt sich - abhängig von den mit <paramref name="options"/> angegebenen Konvertierungsoptionen - 
-    /// nicht in ein <see cref="byte"/>-Array umwandeln.
-    /// </exception>
+    /// <summary>Converts a Base64-string into a corresponding byte array and allows to pass
+    /// options for the conversion.</summary>
+    /// <param name="base64">The string to convert, or <c>null</c>.</param>
+    /// <param name="options">Options for the conversion.</param>
+    /// <returns>A byte array decoded from <paramref name="base64" />.</returns>
+    /// <exception cref="FormatException">Depending on the conversion options specified with
+    /// <paramref name="options" />, <paramref name="base64" /> cannot be converted into
+    /// a <see cref="byte" /> array .</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] GetBytes(string? base64, 
                                   Base64ParserOptions options) => GetBytes(base64.AsSpan(), options);
 
-    /// <summary>
-    /// Konvertiert die angegebene schreibgeschützte Zeichenspanne, die Binärdaten als Base-64-Ziffern codiert, in ein entsprechendes Array 
-    /// von 8-Bit-Ganzzahlen ohne Vorzeichen und erlaubt es, Optionen für die Konvertierung anzugeben.
-    /// </summary>
-    /// <param name="base64">Die zu konvertierende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="options">Optionen für die Konvertierung.</param>
-    /// <returns>Ein Array von 8-Bit-Ganzzahlen ohne Vorzeichen, das <paramref name="base64"/> entspricht.</returns>
-    /// <exception cref="FormatException">
-    /// <paramref name="base64"/> lässt sich - abhängig von den mit <paramref name="options"/> angegebenen Konvertierungsoptionen - 
-    /// nicht in ein <see cref="byte"/>-Array umwandeln.
-    /// </exception>
+    /// <summary>Converts a Base64-encoded read-only character span into a corresponding
+    /// byte array and allows to pass options for the conversion.</summary>
+    /// <param name="base64">The read-only character span to convert.</param>
+    /// <param name="options">Options for the conversion.</param>
+    /// <returns>A byte array decoded from <paramref name="base64" />.</returns>
+    /// <exception cref="FormatException">Depending on the conversion options specified with
+    /// <paramref name="options" />, <paramref name="base64" /> cannot be converted into
+    /// a <see cref="byte" /> array .</exception>
     public static byte[] GetBytes(ReadOnlySpan<char> base64, Base64ParserOptions options)
     {
         base64 = base64.Trim();
@@ -290,18 +297,23 @@ public static class Base64
     }
 
 
-    /// <summary>
-    /// Konvertiert die angegebene schreibgeschützte Zeichenspanne, die Binärdaten als Base-64-Ziffern codiert, in ein entsprechendes Array 
-    /// von 8-Bit-Ganzzahlen ohne Vorzeichen.
-    /// </summary>
-    /// <param name="base64">Die zu konvertierende schreibgeschützte Zeichenspanne.</param>
-    /// <returns>Ein Array von 8-Bit-Ganzzahlen ohne Vorzeichen, das <paramref name="base64"/> entspricht.</returns>
+    /// <summary>Converts a Base64-encoded read-only character span into a corresponding
+    /// byte array.</summary>
+    /// <param name="base64">The read-only character span to convert.</param>
+    /// <returns>A byte array decoded from <paramref name="base64" />.</returns>
     /// <exception cref="FormatException">
-    /// <para>Die Länge von <paramref name="base64"/> bei ignorierten Leerzeichen ist nicht 0 (null) oder ein Vielfaches von 4.</para>
-    /// <para>- oder -</para>
-    /// <para>Das Format von <paramref name="base64"/> ist ungültig. <paramref name="base64"/> enthält ein Nicht-Base-64-Zeichen, 
-    /// mehr als zwei Füllzeichen oder in den 
-    /// Füllzeichen ein Zeichen, das kein Leerzeichen ist.</para>
+    /// <para>
+    /// The length of <paramref name="base64" /> with ignored white space characters is not
+    /// zero or a multiple of 4.
+    /// </para>
+    /// <para>
+    /// - oder -
+    /// </para>
+    /// <para>
+    /// The format of <paramref name="base64" /> is invalid. <paramref name="base64" /> contains
+    /// a non-Base64 character, more than two padding characters, or a non-space character
+    /// between the padding characters.
+    /// </para>
     /// </exception>
     public static byte[] GetBytes(ReadOnlySpan<char> base64)
     {

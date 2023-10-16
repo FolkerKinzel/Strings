@@ -1,37 +1,34 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace FolkerKinzel.Strings.Polyfills;
 
-/// <summary>
-/// Erweiterungsmethoden für die <see cref="StringBuilder"/>-Klasse, die in .NET Framework 4.5 und .NET Standard 2.0 als
-/// Polyfills für Methoden aus aktuellen .NET-Versionen dienen.
-/// </summary>
-/// <remarks>
-/// Die Methoden dieser Klasse sollten ausschließlich in der Erweiterungsmethodensyntax verwendet zu werden, um die 
-/// in moderneren Frameworks vorhandenen Originalmethoden der <see cref="StringBuilder"/>-Klasse zu simulieren. Um dem Verhalten der 
-/// Originalmethoden zu entsprechen, werfen diese Erweiterungsmethoden eine <see cref="NullReferenceException"/>, wenn sie auf 
-/// <c>null</c> aufgerufen werden.
-/// </remarks>
+/// <summary>Extension methods for the <see cref="StringBuilder" /> class, which are
+/// used in .NET Framework 4.5 and .NET Standard 2.0 as polyfills for methods from current
+/// .NET versions.</summary>
+/// <remarks>The methods of this class should only be used in the extension method syntax
+/// to simulate the original methods of the <see cref="string" /> class, which exist
+/// in more modern frameworks. To match the behavior of the original methods, these extension
+/// methods throw a <see cref="NullReferenceException" /> when called on <c>null</c>.</remarks>
 public static class StringBuilderPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET45 || NETSTANDARD2_0
 
-    /// <summary>
-    /// Verkettet die Zeichenfolgen des bereitgestellten Arrays, wobei das angegebene als Trennzeichen zu verwendende Zeichen 
-    /// zwischen den einzelnen Zeichenfolgen verwendet wird, und fügt dann das Ergebnis an <paramref name="builder"/>
-    /// an.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
-    /// <param name="separator">Das Zeichen, das als Trennzeichen verwendet werden soll. <paramref name="separator"/>
-    /// ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values"/> mehr als ein Element enthält.</param>
-    /// <param name="values">Ein Array, das die zu verkettenden Zeichenfolgen enthält, die an <paramref name="builder"/>
-    /// angefügt werden sollen.</param>
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+    /// <summary>Concatenates the strings of the provided array, using the specified char
+    /// separator between each string, then appends the result to <paramref name="builder"
+    /// />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="separator">The character to use as a separator. <paramref name="separator"
+    /// /> is included in the joined strings only if <paramref name="values" /> has more
+    /// than one element.</param>
+    /// <param name="values">An array that contains the strings to concatenate and append
+    /// to <paramref name="builder" />.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
 #if NETSTANDARD2_0
     [ExcludeFromCodeCoverage]
 #endif
@@ -39,20 +36,20 @@ public static class StringBuilderPolyfillExtension
     public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params string?[] values)
         => builder.AppendJoin(stackalloc char[] { separator }, values);
 
-    /// <summary>
-    /// Verkettet die Zeichenfolgendarstellungen der Elemente im bereitgestellten Array von Objekten, wobei das angegebene als 
-    /// Trennzeichen zu verwendende Zeichen zwischen den einzelnen Elementen verwendet wird, und fügt dann das Ergebnis an 
-    /// <paramref name="builder"/> an.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
-    /// <param name="separator">Das Zeichen, das als Trennzeichen verwendet werden soll. <paramref name="separator"/>
-    /// ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values"/> mehr als ein Element enthält.</param>
-    /// <param name="values">Ein Array, das die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder"/>
-    /// angefügt werden soll.</param>
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+    /// <summary>Concatenates the string representations of the elements in the provided
+    /// array of objects, using the specified separator character between each member, then
+    /// appends the result to <paramref name="builder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="separator">The character to use as a separator. <paramref name="separator"
+    /// /> is included in the joined strings only if <paramref name="values" /> has more
+    /// than one element.</param>
+    /// <param name="values">An array that contains the objects whose string representations
+    /// have to be concatenated and appended to <paramref name="builder" />.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
 #if NETSTANDARD2_0
     [ExcludeFromCodeCoverage]
 #endif
@@ -60,21 +57,21 @@ public static class StringBuilderPolyfillExtension
     public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params object?[] values)
         => builder.AppendJoin(stackalloc char[] { separator }, values);
 
-    /// <summary>
-    /// Verkettet die Zeichenfolgendarstellungen der Elemente in der bereitgestellten Sammlung, wobei das angegebene als 
-    /// Trennzeichen zu verwendende Zeichen zwischen den einzelnen Elementen verwendet wird, und fügt dann das Ergebnis an 
-    /// <paramref name="builder"/> an.
-    /// </summary>
-    /// <typeparam name="T">Generischer Typparameter, der den Typ der Elemente in <paramref name="values"/> angibt.</typeparam>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
-    /// <param name="separator">Das Zeichen, das als Trennzeichen verwendet werden soll. <paramref name="separator"/>
-    /// ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values"/> mehr als ein Element enthält.</param>
-    /// <param name="values">Eine Sammlung, die die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder"/>
-    /// angefügt werden soll.</param>
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+    /// <summary>Concatenates the string representations of the elements in the provided
+    /// collection, using the specified separator character between each member, then appends
+    /// the result to <paramref name="builder" />.</summary>
+    /// <typeparam name="T">The type of the members of <paramref name="values" />.</typeparam>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="separator">The character to use as a separator. <paramref name="separator"
+    /// /> is included in the joined strings only if <paramref name="values" /> has more
+    /// than one element.</param>
+    /// <param name="values">A collection that contains the objects whose string representations
+    /// have to be concatenated and appended to <paramref name="builder" />.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
 #if NETSTANDARD2_0
     [ExcludeFromCodeCoverage]
 #endif
@@ -82,20 +79,20 @@ public static class StringBuilderPolyfillExtension
     public static StringBuilder AppendJoin<T>(this StringBuilder builder, char separator, IEnumerable<T> values)
         => builder.AppendJoin(stackalloc char[] { separator }, values);
 
-    /// <summary>
-    /// Verkettet die Zeichenfolgen des bereitgestellten Arrays, wobei das angegebene Trennzeichen 
-    /// zwischen den einzelnen Zeichenfolgen verwendet wird, und fügt dann das Ergebnis an <paramref name="builder"/>
-    /// an.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
-    /// <param name="separator">Die Zeichenfolge, die als Trennzeichen verwendet werden soll. <paramref name="separator"/>
-    /// ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values"/> mehr als ein Element enthält.</param>
-    /// <param name="values">Ein Array, das die zu verkettenden Zeichenfolgen enthält, die an <paramref name="builder"/>
-    /// angefügt werden sollen.</param>
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+    /// <summary>Concatenates the strings in the provided array of objects, using the specified
+    /// separator between each member, then appends the result to <paramref name="builder"
+    /// />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="separator">The string to use as a separator. <paramref name="separator"
+    /// /> is included in the joined strings only if <paramref name="values" /> has more
+    /// than one element.</param>
+    /// <param name="values">An array that contains the strings to concatenate and append
+    /// to <paramref name="builder" />.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
 #if NETSTANDARD2_0
     [ExcludeFromCodeCoverage]
 #endif
@@ -103,20 +100,20 @@ public static class StringBuilderPolyfillExtension
     public static StringBuilder AppendJoin(this StringBuilder builder, string? separator, params string?[] values)
         => builder.AppendJoin(separator.AsSpan(), values);
 
-    /// <summary>
-    /// Verkettet die Zeichenfolgendarstellungen der Elemente im bereitgestellten Array von Objekten, wobei das angegebene
-    /// Trennzeichen zwischen den einzelnen Elementen verwendet wird, und fügt dann das Ergebnis an 
-    /// <paramref name="builder"/> an.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
-    /// <param name="separator">Die Zeichenfolge, die als Trennzeichen verwendet werden soll. <paramref name="separator"/>
-    /// ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values"/> mehr als ein Element enthält.</param>
-    /// <param name="values">Ein Array, das die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder"/>
-    /// angefügt werden soll.</param>
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+    /// <summary>Concatenates the string representations of the elements in the provided
+    /// array of objects, using the specified separator between each member, then appends
+    /// the result to <paramref name="builder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="separator">The string to use as a separator. <paramref name="separator"
+    /// /> is included in the joined strings only if <paramref name="values" /> has more
+    /// than one element.</param>
+    /// <param name="values">An array that contains the objects whose string representations
+    /// have to be concatenated and appended to <paramref name="builder" />.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
 #if NETSTANDARD2_0
     [ExcludeFromCodeCoverage]
 #endif
@@ -125,21 +122,21 @@ public static class StringBuilderPolyfillExtension
         => builder.AppendJoin(separator.AsSpan(), values);
 
 
-    /// <summary>
-    /// Verkettet die Zeichenfolgendarstellungen der Elemente in der bereitgestellten Sammlung, wobei das angegebene
-    /// Trennzeichen zwischen den einzelnen Elementen verwendet wird, und fügt dann das Ergebnis an 
-    /// <paramref name="builder"/> an.
-    /// </summary>
-    /// <typeparam name="T">Generischer Typparameter, der den Typ der Elemente in <paramref name="values"/> angibt.</typeparam>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
-    /// <param name="separator">Die Zeichenfolge, die als Trennzeichen verwendet werden soll. <paramref name="separator"/>
-    /// ist in den verknüpften Zeichenfolgen nur enthalten, wenn <paramref name="values"/> mehr als ein Element enthält.</param>
-    /// <param name="values">Eine Sammlung, die die Objekte enthält, deren zu verkettende Zeichenfolgendarstellung an <paramref name="builder"/>
-    /// angefügt werden soll.</param>
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentNullException"><paramref name="values"/> ist <c>null</c>.</exception>
+    /// <summary>Concatenates the string representations of the elements in the provided
+    /// collection, using the specified separator between each member, then appends the result
+    /// to <paramref name="builder" />.</summary>
+    /// <typeparam name="T">The type of the members of <paramref name="values" />.</typeparam>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="separator">The string to use as a separator. <paramref name="separator"
+    /// /> is included in the joined strings only if <paramref name="values" /> has more
+    /// than one element.</param>
+    /// <param name="values">A collection that contains the objects whose string representations
+    /// have to be concatenated and appended to <paramref name="builder" />.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
 #if NETSTANDARD2_0
     [ExcludeFromCodeCoverage]
 #endif
@@ -182,37 +179,31 @@ public static class StringBuilderPolyfillExtension
         return builder;
     }
 
-    /// <summary>
-    /// Fügt eine Kopie einer Teilzeichenfolge, die aus einem als Argument übergebenen <see cref="StringBuilder"/> stammt, an 
-    /// den vorhandenen Inhalt von <paramref name="builder"/> an.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt geändert wird.</param>
-    /// <param name="value">Der <see cref="StringBuilder"/>, von dessen Inhalt ein Teil kopiert wird.</param>
-    /// <param name="startIndex">Der NULL-basierte Index in <paramref name="value"/>, an dem der zu kopierende
-    /// Abschnitt beginnt.</param>
-    /// <param name="count">Die Anzahl der zu kopierenden Zeichen.</param>
-    /// <returns>Eine Referenz auf <paramref name="builder"/>.</returns>
-    /// 
-    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// 
+    /// <summary>Appends a copy of a sequence of Unicode characters that comes from a <see
+    /// cref="StringBuilder" /> to the existing content of <paramref name="builder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
+    /// <param name="value">The <see cref="StringBuilder" /> from which the characters are
+    /// copied.</param>
+    /// <param name="startIndex">The zero-based index in <paramref name="value" /> at which
+    /// the copy operation starts.</param>
+    /// <param name="count">The number of Unicode characters to copy.</param>
+    /// <returns>A reference to <paramref name="builder" />.</returns>
+    /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="startIndex"/> oder <paramref name="count"/>
-    /// sind kleiner als 0
+    /// <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero
     /// </para>
     /// <para>
-    /// - oder -
+    /// - or -
     /// </para>
     /// <para>
-    /// die Summe <paramref name="startIndex"/> + <paramref name="count"/> ist größer als die Anzahl
-    /// der Zeichen in <paramref name="value"/>.
+    /// <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number
+    /// of characters in <paramref name="value" />.
     /// </para>
     /// </exception>
-    /// 
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="value"/> ist <c>null</c> und <paramref name="startIndex"/> oder <paramref name="count"/>
-    /// haben einen Wert, der größer als 0 ist.
-    /// </exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="value" /> is <c>null</c>
+    /// and the values of <paramref name="startIndex" /> or <paramref name="count" /> are
+    /// greater than zero.</exception>
 #if NETSTANDARD2_0
     [ExcludeFromCodeCoverage]
 #endif
@@ -261,16 +252,16 @@ public static class StringBuilderPolyfillExtension
     }
 
 
-    /// <summary>
-    /// Fügt die Zeichenfolgendarstellung eines festgelegten schreibgeschützten Zeichenspeicherbereichs an einen <see cref="StringBuilder"/> an.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, an den die Zeichen angefügt werden.</param>
-    /// <param name="value">Der anzufügende schreibgeschützte Zeichenspeicherbereich.</param>
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
-    /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
+    /// <summary>Appends the string representation of a specified read-only character span
+    /// to a <see cref="StringBuilder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="value">The read-only character span to append.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
+    /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
 #if NETSTANDARD2_0
     [ExcludeFromCodeCoverage]
 #endif
@@ -290,17 +281,18 @@ public static class StringBuilderPolyfillExtension
         return builder;
     }
 
-    /// <summary>
-    /// Fügt den Inhalt einer schreibgeschützten Zeichenspanne an der angegebenen Zeichenposition in <paramref name="builder"/> ein.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, in den Zeichen eingefügt werden.</param>
-    /// <param name="index">Der nullbasierte Index in <paramref name="builder"/>, an dem die Einfügung beginnt.</param>
-    /// <param name="value">Die einzufügende Zeichenspanne.</param>
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Einfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <exception cref="NullReferenceException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/> ist kleiner als 0 oder größer
-    /// als die Länge von <paramref name="builder"/>.</exception>
+    /// <summary>Inserts the content of a read-only character span at the specified index
+    /// position into <paramref name="builder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> into which the characters
+    /// are inserted.</param>
+    /// <param name="index">The zero-based index in <paramref name="builder" /> at which
+    /// the characters are inserted.</param>
+    /// <param name="value">The character span to insert.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the insert operation is
+    /// completed.</returns>
+    /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="index" /> is less
+    /// than zero or greater than the number of characters in <paramref name="builder" />.</exception>
 #if NETSTANDARD2_0
     [ExcludeFromCodeCoverage]
 #endif

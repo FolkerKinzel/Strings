@@ -1,28 +1,28 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
 public static partial class StringExtension
 {
-    /// <summary>
-    /// Erzeugt einen neuen <see cref="string"/>, in dem alle Zeilenumbrüche
-    /// durch <paramref name="newLine"/> ersetzt sind.
-    /// </summary>
-    /// <param name="s">Der Quellstring.</param>
-    /// <param name="newLine">Eine schreibgeschützte Zeichenspanne, durch deren Inhalt jeder Zeilenumbruch
-    /// ersetzt wird. Wenn eine leere Spanne übergeben wird, werden alle Zeilenumbrüche entfernt.</param>
-    /// <returns>Ein neuer <see cref="string"/>, in dem alle Zeilenumbrüche
-    /// durch <paramref name="newLine"/> ersetzt sind. Wenn <paramref name="s"/> keine Zeilenwechselzeichen
-    /// enthält, wird <paramref name="s"/> unverändert zurückgegeben.</returns>
+    /// <summary>Generates a <see cref="string" /> in which all newlines are replaced by
+    /// <paramref name="newLine" />.</summary>
+    /// <param name="s">The source <see cref="string" />.</param>
+    /// <param name="newLine">A read-only character span that is the replacement for all
+    /// newlines. If an empty span is passed to the parameter, all newline characters will
+    /// be completely removed.</param>
+    /// <returns>A new <see cref="string" /> in which all newlines are replaced by <paramref
+    /// name="replacement" />. If <paramref name="s" /> doesn't contain a newline character,
+    /// <paramref name="s" /> is returned.</returns>
     /// <remarks>
     /// <para>
-    /// Für die Identifizierung von Zeilenwechselzeichen wird <see cref="CharExtension.IsNewLine(char)"/> 
-    /// verwendet. Die Sequenzen CRLF und LFCR werden als ein Zeilenumbruch behandelt.
+    /// Für die Identifizierung von Zeilenwechselzeichen wird <see cref="CharExtension.IsNewLine(char)"
+    /// /> verwendet. Die Sequenzen CRLF und LFCR werden als ein Zeilenumbruch behandelt.
     /// </para>
     /// <note type="caution">
-    /// Diese Methode unterscheidet sich von <see cref="ReplaceLineEndings(string, string)"/> dahingehend,
-    /// dass sie zusätzlich LFCR-Sequenzen und Vertical Tab (VT: U+000B) als Zeilenwechsel behandelt.
+    /// Diese Methode unterscheidet sich von <see cref="ReplaceLineEndings(string, string)"
+    /// /> dahingehend, dass sie zusätzlich LFCR-Sequenzen und Vertical Tab (VT: U+000B)
+    /// als Zeilenwechsel behandelt.
     /// </note>
     /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     [Obsolete("Use ReplaceLineEndings instead.", false)]
     public static string NormalizeNewLinesTo(this string s, ReadOnlySpan<char> newLine)
     {

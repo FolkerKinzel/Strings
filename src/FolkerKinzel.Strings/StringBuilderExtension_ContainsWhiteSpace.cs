@@ -1,69 +1,61 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
 {
-    /// <summary>
-    /// Untersucht, ob der <see cref="StringBuilder"/> Leerraumzeichen enthält.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt untersucht wird.</param>
-    /// <returns><c>true</c>, wenn <paramref name="builder"/> Leerraumzeichen enthält, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)"/> zur Identifizierung von Leerraumzeichen.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <summary>Indicates whether the <see cref="StringBuilder" /> contains white space.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
+    /// <returns> <c>true</c> if <paramref name="builder" /> contains white space, otherwise
+    /// <c>false</c>.</returns>
+    /// <remarks> <see cref="char.IsWhiteSpace(char)" /> is used to identify white space.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static bool ContainsWhiteSpace(this StringBuilder builder)
         => builder is null
                 ? throw new ArgumentNullException(nameof(builder))
                 : builder.ContainsWhiteSpace(0, builder.Length);
 
 
-    /// <summary>
-    /// Untersucht einen Abschnitt des <see cref="StringBuilder"/>s, der bei <paramref name="startIndex"/> beginnt,
-    /// daraufhin, ob er Leerraumzeichen enthält.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt untersucht wird.</param>
-    /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem die Untersuchung
-    /// beginnt.</param>
-    /// <returns><c>true</c>, wenn der Abschnitt in <paramref name="builder"/> Leerraumzeichen enthält, 
-    /// andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)"/> zur Identifizierung von Leerraumzeichen.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/> ist kleiner als 0 oder
-    /// größer als die Anzahl der Zeichen in <paramref name="builder"/>.</exception>
+    /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
+    /// name="startIndex" /> to see whether it contains white space.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
+    /// <param name="startIndex">The zero-based index in <paramref name="builder" /> at which
+    /// the examination begins.</param>
+    /// <returns> <c>true</c> if the specified section in <paramref name="builder" /> contains
+    /// white space, otherwise <c>false</c>.</returns>
+    /// <remarks> <see cref="char.IsWhiteSpace(char)" /> is used to identify white space.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="startIndex" /> is
+    /// less than zero or greater than the number of characters in <paramref name="builder"
+    /// />.</exception>
     public static bool ContainsWhiteSpace(this StringBuilder builder, int startIndex)
         => builder is null
             ? throw new ArgumentNullException(nameof(builder))
             : builder.ContainsWhiteSpace(startIndex, builder.Length - startIndex);
 
 
-    /// <summary>
-    /// Untersucht einen Abschnitt des <see cref="StringBuilder"/>s, der bei <paramref name="startIndex"/> beginnt und
-    /// <paramref name="count"/> Zeichen umfasst, daraufhin, ob dieser Abschnitt Leerraumzeichen enthält.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt untersucht wird.</param>
-    /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem die Untersuchung
-    /// beginnt.</param>
-    /// <param name="count">Die Länge des zu untersuchenden Abschnitts.</param>
-    /// <returns><c>true</c>, wenn der Abschnitt in <paramref name="builder"/> Leerraumzeichen enthält,
-    /// andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)"/> zur Identifizierung von Leerraumzeichen.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
+    /// name="startIndex" /> and includes <paramref name="count" /> characters to determine
+    /// whether this section contains white space.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
+    /// <param name="startIndex">The zero-based index in <paramref name="builder" /> at which
+    /// the examination begins.</param>
+    /// <param name="count">The number of character positions to examine.</param>
+    /// <returns> <c>true</c> if the specified section in <paramref name="builder" /> contains
+    /// white space, otherwise <c>false</c>.</returns>
+    /// <remarks> <see cref="char.IsWhiteSpace(char)" /> is used to identify white space.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="startIndex"/> oder <paramref name="count"/> sind kleiner als 0 oder
-    /// größer als die Anzahl der Zeichen in <paramref name="builder"/>.
+    /// <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero
+    /// or larger than the number of characters in <paramref name="builder" />
     /// </para>
     /// <para>
-    /// - oder -
+    /// - or -
     /// </para>
     /// <para>
-    /// <paramref name="startIndex"/> + <paramref name="count"/> ist größer als die Anzahl der Zeichen in
-    /// <paramref name="builder"/>.
-    /// </para></exception>
+    /// <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number
+    /// of characters in <paramref name="builder" />.
+    /// </para>
+    /// </exception>
     public static bool ContainsWhiteSpace(this StringBuilder builder, int startIndex, int count)
     {
         if (builder is null)

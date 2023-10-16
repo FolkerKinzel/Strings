@@ -1,19 +1,15 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
 {
-    /// <summary>
-    /// Gibt an, ob der Inhalt eines <see cref="StringBuilder"/>s mit dem angegebenen
-    /// Unicode-Zeichen endet.
-    /// </summary>
-    /// <param name="builder">Der zu untersuchende <see cref="StringBuilder"/>.</param>
-    /// <param name="value">Das Zeichen, nach dem gesucht wird.</param>
-    /// <returns><c>true</c>, wenn <paramref name="builder"/> mit <paramref name="value"/>
-    /// endet, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Die Methode führt einen Ordinalzeichenvergleich durch.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <summary>Indicates whether the specified Unicode character matches the end of the
+    /// <see cref="StringBuilder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> whose content is examined.</param>
+    /// <param name="value">The Unicode character to search for.</param>
+    /// <returns> <c>true</c> if <paramref name="value" /> matches the end of <paramref name="builder"
+    /// />; otherwise, <c>false</c>.</returns>
+    /// <remarks>The method performs an ordinal character comparison.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static bool EndsWith(this StringBuilder builder, char value)
      => builder is null ? throw new ArgumentNullException(nameof(builder))
                         : builder.Length != 0 && builder[builder.Length - 1] == value;

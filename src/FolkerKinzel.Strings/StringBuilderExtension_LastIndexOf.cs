@@ -1,75 +1,66 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
 {
-    /// <summary>
-    /// Gibt den NULL-basierten Index des letzten Vorkommens des angegebenen Zeichens in <paramref name="builder"/> an.
-    /// </summary>
-    /// <param name="builder">Der zu durchsuchende <see cref="StringBuilder"/>.</param>
-    /// <param name="value">Das zu suchende Unicode-Zeichen.</param>
-    /// <returns>Die nullbasierte Indexposition des letzten Vorkommens von <paramref name="value"/>,
-    /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
-    /// <remarks>
-    /// Die Methode führt einen Ordinalzeichenvergleich durch.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <summary>Returns the zero-based index of the last occurrence of the specified character
+    /// in <paramref name="builder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
+    /// <param name="value">The Unicode character to search for.</param>
+    /// <returns>The zero-based index of the last occurence of <paramref name="value" />
+    /// if that character is found, or -1 if it's not.</returns>
+    /// <remarks>The method performs an ordinal character comparison.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static int LastIndexOf(this StringBuilder builder, char value)
         => builder is null
                 ? throw new ArgumentNullException(nameof(builder))
                 : builder.LastIndexOf(value, builder.Length - 1, builder.Length);
 
-    /// <summary>
-    /// Gibt den NULL-basierten Index des letzten Vorkommens des angegebenen Zeichens in <paramref name="builder"/> an. 
-    /// Die Suche beginnt an einer angegebenen Zeichenposition und verläuft
-    /// rückwärts zum Anfang des <see cref="StringBuilder"/>s.
-    /// </summary>
-    /// <param name="builder">Der zu durchsuchende <see cref="StringBuilder"/>.</param>
-    /// <param name="value">Das zu suchende Unicode-Zeichen.</param>
-    /// <param name="startIndex">Die Anfangsposition der Suche. Die Suche erfolgt rückwärts zum Anfang 
-    /// von <paramref name="builder"/>.</param>
-    /// <returns>Die nullbasierte Indexposition des letzten Vorkommens von <paramref name="value"/>,
-    /// wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
-    /// <remarks>
-    /// Die Methode führt einen Ordinalzeichenvergleich durch.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException"><paramref name="builder"/> ist nicht leer und 
-    /// <paramref name="startIndex"/> ist kleiner als 0 oder größer 
-    /// oder gleich der Länge von <paramref name="builder"/>.</exception>
+    /// <summary>Returns the zero-based index of the last occurrence of the specified character
+    /// in <paramref name="builder" />. The search begins at a specified character position
+    /// and runs backwards to the beginning of the <see cref="StringBuilder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
+    /// <param name="value">The Unicode character to search for.</param>
+    /// <param name="startIndex">The start index of the search. The search is done backwards
+    /// to the beginning of <paramref name="builder" />.</param>
+    /// <returns>The zero-based index of the last occurence of <paramref name="value" />
+    /// if that character is found, or -1 if it's not.</returns>
+    /// <remarks>The method performs an ordinal character comparison.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="builder" /> is not
+    /// empty and <paramref name="startIndex" /> is less than zero or greater than or equal
+    /// to the length of <paramref name="builder" />.</exception>
     public static int LastIndexOf(this StringBuilder builder, char value, int startIndex)
         => builder is null
             ? throw new ArgumentNullException(nameof(builder))
             : builder.LastIndexOf(value, startIndex, startIndex + 1);
 
 
-    /// <summary>
-    /// Gibt den NULL-basierten Index des letzten Vorkommens des angegebenen Zeichens in <paramref name="builder"/> an. 
-    /// Die Suche beginnt an einer angegebenen Zeichenposition und verläuft für eine angegebene Anzahl von Zeichenpositionen 
-    /// rückwärts zum Anfang des <see cref="StringBuilder"/>s.
-    /// </summary>
-    /// <param name="builder">Der zu durchsuchende <see cref="StringBuilder"/>.</param>
-    /// <param name="value">Das zu suchende Unicode-Zeichen.</param>
-    /// <param name="startIndex">Die Anfangsposition der Suche. Die Suche erfolgt rückwärts zum Anfang 
-    /// von <paramref name="builder"/>.</param>
-    /// <param name="count">Die Anzahl der zu überprüfenden Zeichenpositionen.</param>
-    /// <returns>Die nullbasierte Indexposition des letzten Vorkommens von <paramref name="value"/>,
-    /// innerhalb des zu durchsuchenden Abschnitts wenn dieses Zeichen gefunden wurde, andernfalls -1.</returns>
-    /// <remarks>
-    /// Die Methode führt einen Ordinalzeichenvergleich durch.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <summary>Specifies the zero-based index of the last occurrence of the specified character
+    /// in <paramref name="builder" />. The search begins at a specified index and runs backwards
+    /// for a specified number of character positions to the beginning of the <see cref="StringBuilder"
+    /// />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
+    /// <param name="value">The Unicode character to search for.</param>
+    /// <param name="startIndex">The start index of the search. The search is done backwards
+    /// to the beginning of <paramref name="builder" />.</param>
+    /// <param name="count">The number of character positions to examine.</param>
+    /// <returns>If <paramref name="value" /> was found, the zero-based index position of
+    /// its last occurrence within the section to be searched, otherwise -1.</returns>
+    /// <remarks>The method performs an ordinal character comparison.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="builder"/> ist nicht leer und <paramref name="startIndex"/> ist kleiner als 0 oder größer 
-    /// oder gleich der Länge von <paramref name="builder"/>
+    /// <paramref name="builder" /> is not empty and <paramref name="startIndex" /> is less
+    /// than zero or greater than or equal to the length of <paramref name="builder" />
     /// </para>
     /// <para>
-    /// - oder -
+    /// - or -
     /// </para>
     /// <para>
-    /// <paramref name="builder"/> ist nicht leer und <paramref name="startIndex"/> - <paramref name="count"/> + 1 
-    /// ist kleiner als 0.
-    /// </para></exception>
+    /// <paramref name="builder" /> is not empty and <paramref name="startIndex" /> - <paramref
+    /// name="count" /> + 1 is less than zero.
+    /// </para>
+    /// </exception>
     public static int LastIndexOf(this StringBuilder builder, char value, int startIndex, int count)
     {
         if (builder is null)

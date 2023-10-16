@@ -1,23 +1,16 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
-/// <summary>
-/// Benannte Konstanten, um die Art eines Hashcodes für Zeichenfolgen festzulegen.
-/// </summary>
+    /// <summary>Named constants to specify the type of hashcode for Char sequences.</summary>
 public enum HashType
 {
-    /// <summary>
-    /// Ordinalvergleich der Zeichen.
-    /// </summary>
+    /// <summary>Ordinal comparison of the characters.</summary>
     Ordinal,
 
-    /// <summary>
-    /// Ordinalvergleich der Zeichen ohne Berücksichtigung der Groß- und Kleinschreibung.
-    /// </summary>
+    /// <summary>Ordinal comparison of the characters without taking upper and lower case
+    /// into account.</summary>
     OrdinalIgnoreCase,
 
-    /// <summary>
-    /// Nur Buchstaben und Dezimalziffern werden gehasht. Die Groß- und Kleinschreibung wird nicht berücksichtigt.
-    /// </summary>
+    /// <summary>Only letters and decimal digits are hashed. The case is not considered.</summary>
     AlphaNumericIgnoreCase,
 
     

@@ -1,27 +1,28 @@
-﻿using FolkerKinzel.Strings.Polyfills;
+using FolkerKinzel.Strings.Polyfills;
 
 namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
 {
-    /// <summary>
-    /// Ersetzt alle Zeilenumbrüche in <paramref name="builder"/> durch <paramref name="newLine"/>.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt verändert wird.</param>
-    /// <param name="newLine">Eine schreibgeschützte Zeichenspanne, durch deren Inhalt jeder Zeilenumbruch
-    /// ersetzt wird. Wenn eine leere Spanne übergeben wird, werden alle Zeilenumbrüche entfernt.</param>
-    /// <returns>Ein Verweis auf <paramref name="builder"/>.</returns>
+    /// <summary>Replaces all newlines in <paramref name="builder" /> with <paramref name="newLine"
+    /// />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
+    /// <param name="newLine">A read-only character span that is the replacement for all
+    /// newlines. If an empty span is passed to the parameter, all newline characters will
+    /// be completely removed.</param>
+    /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <remarks>
     /// <para>
-    /// Für die Identifizierung von Zeilenwechselzeichen wird <see cref="CharExtension.IsNewLine(char)"/> 
-    /// verwendet. Die Sequenzen CRLF und LFCR werden als ein Zeilenumbruch behandelt.
+    /// Für die Identifizierung von Zeilenwechselzeichen wird <see cref="CharExtension.IsNewLine(char)"
+    /// /> verwendet. Die Sequenzen CRLF und LFCR werden als ein Zeilenumbruch behandelt.
     /// </para>
     /// <note type="caution">
-    /// Diese Methode unterscheidet sich von <see cref="ReplaceLineEndings(StringBuilder, string?)"/> dahingehend,
-    /// dass sie zusätzlich LFCR-Sequenzen und Vertical Tab (VT: U+000B) als Zeilenwechsel behandelt.
+    /// Diese Methode unterscheidet sich von <see cref="ReplaceLineEndings(StringBuilder,
+    /// string?)" /> dahingehend, dass sie zusätzlich LFCR-Sequenzen und Vertical Tab (VT:
+    /// U+000B) als Zeilenwechsel behandelt.
     /// </note>
     /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     [Obsolete("Use ReplaceLineEndings instead.", false)]
     public static StringBuilder NormalizeNewLinesTo(this StringBuilder builder, ReadOnlySpan<char> newLine)
     {

@@ -1,38 +1,39 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
 public static partial class StringExtension
 {
-    /// <summary>
-    /// Gibt die nullbasierte Indexposition des letzten Vorkommens eines der angegebenen Zeichen 
-    /// in <paramref name="s"/> an. Die Suche beginnt an einer angegebenen Zeichenposition 
-    /// und verläuft für eine angegebene Anzahl von Zeichenpositionen rückwärts zum Anfang der Zeichenfolge.
-    /// </summary>
-    /// <param name="s">Der zu durchsuchende <see cref="string"/>.</param>
-    /// <param name="anyOf">Eine schreibgeschützte Zeichenspanne, die die zu suchenden Zeichen enthält.</param>
-    /// <param name="startIndex">Die Anfangsposition der Suche. Die Suche erfolgt rückwärts zum Anfang 
-    /// von <paramref name="s"/>.</param>
-    /// <param name="count">Die Anzahl der zu überprüfenden Zeichenpositionen.</param>
-    /// <returns>Der nullbasierte Index des letzten Vorkommens eines beliebigen Zeichens aus <paramref name="anyOf"/>
-    /// in <paramref name="s"/> oder -1, wenn keines dieser Zeichen gefunden wurde.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+    /// <summary>Returns the zero-based index position of the last occurrence of one of the
+    /// specified characters in <paramref name="s" />. The search begins at a specified index
+    /// and runs backwards to the beginning of the <see cref="string" /> for a specified
+    /// number of character positions.</summary>
+    /// <param name="s">The <see cref="string" /> to search.</param>
+    /// <param name="anyOf">A read-only character span that contains the characters to search
+    /// for.</param>
+    /// <param name="startIndex">The start index of the search. The search is done backwards
+    /// to the beginning of <paramref name="s" />.</param>
+    /// <param name="count">The number of character positions to examine.</param>
+    /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
+    /// characters in the specified part of <paramref name="s" /> or -1 if none of these
+    /// characters have been found in this area.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="s"/> ist nicht <see cref="string.Empty"/> und <paramref name="startIndex"/> ist kleiner als 0 oder größer 
-    /// oder gleich der Länge von <paramref name="s"/>
+    /// <paramref name="s" /> is not <see cref="string.Empty" /> and <paramref name="startIndex"
+    /// /> is less than zero or greater than or equal to the length of <paramref name="s"
+    /// />
     /// </para>
     /// <para>
-    /// - oder -
+    /// - or -
     /// </para>
     /// <para>
-    /// <paramref name="s"/> ist nicht <see cref="string.Empty"/> und <paramref name="startIndex"/> - <paramref name="count"/> + 1 
-    /// ist kleiner als 0.
+    /// <paramref name="s" /> is not <see cref="string.Empty" /> and <paramref name="startIndex"
+    /// /> - <paramref name="count" /> + 1 is less than zero.
     /// </para>
     /// </exception>
-    /// <remarks>
-    /// Wenn die Länge von <paramref name="anyOf"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})"/>. Ist die Länge von <paramref name="anyOf"/>
-    /// größer, wird <see cref="string.LastIndexOfAny(char[])"/> verwendet.
-    /// </remarks>
+    /// <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses
+    /// MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)
+    /// for the comparison. If the length of <paramref name="values" /> is greater, <see
+    /// cref="string.LastIndexOfAny(char[])" /> is used.</remarks>
     public static int LastIndexOfAny(this string s, ReadOnlySpan<char> anyOf, int startIndex, int count)
     {
         if (s is null)

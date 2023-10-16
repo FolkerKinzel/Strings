@@ -1,14 +1,12 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
 public static partial class ReadOnlySpanExtension
 {
-    /// <summary>
-    /// Untersucht, ob die schreibgeschützte Zeichenspanne ausschließlich Unicode-Zeichen enthält,
-    /// die zum ASCII-Zeichensatz gehören.
-    /// </summary>
-    /// <param name="span">Eine schreibgeschützte Spanne von Unicode-Zeichen.</param>
-    /// <returns><c>false</c>, wenn <paramref name="span"/> ein Unicode-Zeichen enthält, das nicht zum 
-    /// ASCII-Zeichensatz gehört, andernfalls <c>true</c>.</returns>
+    /// <summary>Checks whether the read-only character span contains only Unicode characters
+    /// that belong to the ASCII character set.</summary>
+    /// <param name="span">A read-only span of Unicode characters.</param>
+    /// <returns> <c>false</c> if <paramref name="span" /> contains a Unicode character,
+    /// which doesn't belong to the ASCII character set, otherwise <c>true</c>.</returns>
     public static bool IsAscii(this ReadOnlySpan<char> span)
     {
         for (int i = 0; i < span.Length; ++i)

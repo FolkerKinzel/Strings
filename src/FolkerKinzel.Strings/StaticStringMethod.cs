@@ -1,31 +1,31 @@
-﻿using System.Buffers;
+using System.Buffers;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace FolkerKinzel.Strings;
 
-/// <summary>
-/// Simuliert statische Methoden der <see cref="string"/>-Klasse für .NET-Versionen, in denen diese nicht verfügbar sind, und leitet die Methodenaufrufe
-/// in .NET-Versionen, in denen die Methoden verfügbar sind, an die BCL-Methoden weiter.
-/// </summary>
+    /// <summary>Simulates static methods of the <see cref="string" /> class for .NET versions
+    /// in which they are not available, and forwards the method calls in .NET versions in
+    /// which the methods are available directly to the BCL methods.</summary>
 public static class StaticStringMethod
 {
 
 #if NET45 || NETSTANDARD2_0
-    /// <summary>
-    /// Erstellt eine neue Zeichenfolge mit einer bestimmten Länge und initialisiert sie nach der Erstellung unter Verwendung des angegebenen Rückrufs.
-    /// </summary>
-    /// <typeparam name="TState">Der Typ des Elements, das an <paramref name="action"/> übergeben werden soll.</typeparam>
-    /// <param name="length">Die Länge des zu erstellenden <see cref="string"/>s.</param>
-    /// <param name="state">Das an <paramref name="action"/> zu übergebende Element.</param>
-    /// <param name="action">Ein Rückruf zum Initialisieren der Zeichenfolge.</param>
-    /// <returns>Der erstellte <see cref="string"/>.</returns>
-    /// <remarks>Die Methode simuliert die statische Methode String.Create&lt;TState&gt;(int, TState, SpanAction&lt;char,TState&gt;).
-    /// In neueren .NET-Versionen wird der Aufruf direkt an die vorhandene Methode der <see cref="string"/>-Klasse weitergeleitet. In 
-    /// .NET Framework und .NET Standard 2.0 ermöglicht die Simulation zumindest bei der Erstellung kurzer <see cref="string"/>s, mit 
-    /// nur einer Heap-Allokation auszukommen.</remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="action"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException"><paramref name="length"/> ist negativ.</exception>
+    /// <summary>Creates a new string with a specified length and, once created, initializes
+    /// it using the specified callback.</summary>
+    /// <typeparam name="TState">The type of the element to be passed to <paramref name="action"
+    /// />.</typeparam>
+    /// <param name="length">The length of the <see cref="string" /> to be created.</param>
+    /// <param name="state">The element to be passed to <paramref name="action" />.</param>
+    /// <param name="action">A callback to initialize the string.</param>
+    /// <returns>The <see cref="string" /> created.</returns>
+    /// <remarks>The method simulates the static method String.Create&lt;TState&gt;(int,
+    /// TState, SpanAction&lt;char,TState&gt;). In newer .NET versions, the call is forwarded
+    /// directly to the existing method of the <see cref="string" /> class. In .NET Framework
+    /// and .NET Standard 2.0, the simulation makes it possible, when creating short <see
+    /// cref="string" />s, to have only one heap allocation.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="action" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="length" /> is negative.</exception>
     public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
     {
         if (action == null)
@@ -43,20 +43,21 @@ public static class StaticStringMethod
         return span.ToString();
     }
 #else
-    /// <summary>
-    /// Erstellt eine neue Zeichenfolge mit einer bestimmten Länge und initialisiert sie nach der Erstellung unter Verwendung des angegebenen Rückrufs.
-    /// </summary>
-    /// <typeparam name="TState">Der Typ des Elements, das an <paramref name="action"/> übergeben werden soll.</typeparam>
+    /// <summary>Creates a new string with a specified length and, once created, initializes
+    /// it using the specified callback.</summary>
+    /// <typeparam name="TState">The type of the element to be passed to <paramref name="action"
+    /// />.</typeparam>
     /// <param name="length">Die Länge der zu erstellenden Zeichenfolge.</param>
-    /// <param name="state">Das an <paramref name="action"/> zu übergebende Element.</param>
-    /// <param name="action">Ein Rückruf zum Initialisieren der Zeichenfolge.</param>
+    /// <param name="state">The element to be passed to <paramref name="action" />.</param>
+    /// <param name="action">A callback to initialize the string.</param>
     /// <returns>Die erstellte Zeichenfolge.</returns>
-    /// <remarks>Die Methode simuliert die statische Methode String.Create&lt;TState&gt;(int, TState, SpanAction&lt;char,TState&gt;).
-    /// In neueren .NET-Versionen wird der Aufruf direkt an die vorhandene Methode der <see cref="string"/>-Klasse weitergeleitet. In 
-    /// .NET Framework und .NET Standard 2.0 ermöglicht die Simulation zumindest bei der Erstellung kurzer <see cref="string"/>s, mit 
-    /// nur einer Heap-Allokation auszukommen.</remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="action"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException"><paramref name="length"/> ist negativ.</exception>
+    /// <remarks>The method simulates the static method String.Create&lt;TState&gt;(int,
+    /// TState, SpanAction&lt;char,TState&gt;). In newer .NET versions, the call is forwarded
+    /// directly to the existing method of the <see cref="string" /> class. In .NET Framework
+    /// and .NET Standard 2.0, the simulation makes it possible, when creating short <see
+    /// cref="string" />s, to have only one heap allocation.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="action" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="length" /> is negative.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
         => string.Create(length, state, action);
@@ -65,52 +66,50 @@ public static class StaticStringMethod
 
 #if NET5_0_OR_GREATER
 
-    /// <summary>
-    /// Verkettet die Zeichenfolgendarstellung von vier angegebenen schreibgeschützten Zeichenspannen.
-    /// </summary>
-    /// <param name="str0">Die erste zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="str2">Die dritte zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="str3">Die vierte zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/>, 
-    /// <paramref name="str1"/>, <paramref name="str2"/> und <paramref name="str3"/>.</returns>
+    /// <summary>Concatenates the string representations of four specified read-only character
+    /// spans.</summary>
+    /// <param name="str0">The first read-only character span to concatenate.</param>
+    /// <param name="str1">The first read-only character span to concatenate.</param>
+    /// <param name="str2">The third read-only character span to concatenate.</param>
+    /// <param name="str3">The fourth read-only character span to concatenate.</param>
+    /// <returns>The concatenated string representations of the values of <paramref name="str0"
+    /// />, <paramref name="str1" />, <paramref name="str2" /> and <paramref name="str3"
+    /// />.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2, ReadOnlySpan<char> str3)
         => string.Concat(str0, str1, str2, str3);
 
-    /// <summary>
-    /// Verkettet die Zeichenfolgendarstellung von drei angegebenen schreibgeschützten Zeichenspannen.
-    /// </summary>
-    /// <param name="str0">Die erste zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="str2">Die dritte zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/>, 
-    /// <paramref name="str1"/> und <paramref name="str2"/>.</returns>
+    /// <summary>Concatenates the string representations of three specified read-only character
+    /// spans.</summary>
+    /// <param name="str0">The first read-only character span to concatenate.</param>
+    /// <param name="str1">The first read-only character span to concatenate.</param>
+    /// <param name="str2">The third read-only character span to concatenate.</param>
+    /// <returns>The concatenated string representations of the values of <paramref name="str0"
+    /// />, <paramref name="str1" /> and <paramref name="str2" />.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
         => string.Concat(str0, str1, str2);
 
-    /// <summary>
-    /// Verkettet die Zeichenfolgendarstellung von zwei angegebenen schreibgeschützten Zeichenspannen.
-    /// </summary>
-    /// <param name="str0">Die erste zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/> und
-    /// <paramref name="str1"/>.</returns>
+    /// <summary>Concatenates the string representations of two specified read-only character
+    /// spans.</summary>
+    /// <param name="str0">The first read-only character span to concatenate.</param>
+    /// <param name="str1">The first read-only character span to concatenate.</param>
+    /// <returns>The concatenated string representations of the values of <paramref name="str0"
+    /// /> and <paramref name="str1" />.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
         => string.Concat(str0, str1);
 
 #else
-    /// <summary>
-    /// Verkettet die Zeichenfolgendarstellung von vier angegebenen schreibgeschützten Zeichenspannen.
-    /// </summary>
-    /// <param name="str0">Die erste zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="str2">Die dritte zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="str3">Die vierte zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/>, 
-    /// <paramref name="str1"/>, <paramref name="str2"/> und <paramref name="str3"/>.</returns>
+    /// <summary>Concatenates the string representations of four specified read-only character
+    /// spans.</summary>
+    /// <param name="str0">The first read-only character span to concatenate.</param>
+    /// <param name="str1">The first read-only character span to concatenate.</param>
+    /// <param name="str2">The third read-only character span to concatenate.</param>
+    /// <param name="str3">The fourth read-only character span to concatenate.</param>
+    /// <returns>The concatenated string representations of the values of <paramref name="str0"
+    /// />, <paramref name="str1" />, <paramref name="str2" /> and <paramref name="str3"
+    /// />.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2, ReadOnlySpan<char> str3)
     {
@@ -128,14 +127,13 @@ public static class StaticStringMethod
         return span.ToString();
     }
 
-    /// <summary>
-    /// Verkettet die Zeichenfolgendarstellung von drei angegebenen schreibgeschützten Zeichenspannen.
-    /// </summary>
-    /// <param name="str0">Die erste zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="str2">Die dritte zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/>, 
-    /// <paramref name="str1"/> und <paramref name="str2"/>.</returns>
+    /// <summary>Concatenates the string representations of three specified read-only character
+    /// spans.</summary>
+    /// <param name="str0">The first read-only character span to concatenate.</param>
+    /// <param name="str1">The first read-only character span to concatenate.</param>
+    /// <param name="str2">The third read-only character span to concatenate.</param>
+    /// <returns>The concatenated string representations of the values of <paramref name="str0"
+    /// />, <paramref name="str1" /> and <paramref name="str2" />.</returns>
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
     {
         int length = str0.Length + str1.Length + str2.Length;
@@ -150,13 +148,12 @@ public static class StaticStringMethod
         return span.ToString();
     }
 
-    /// <summary>
-    /// Verkettet die Zeichenfolgendarstellung von zwei angegebenen schreibgeschützten Zeichenspannen.
-    /// </summary>
-    /// <param name="str0">Die erste zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="str1">Die zweite zu verkettende schreibgeschützte Zeichenspanne.</param>
-    /// <returns>Die verketteten Zeichenfolgendarstellungen der Werte von <paramref name="str0"/> und
-    /// <paramref name="str1"/>.</returns>
+    /// <summary>Concatenates the string representations of two specified read-only character
+    /// spans.</summary>
+    /// <param name="str0">The first read-only character span to concatenate.</param>
+    /// <param name="str1">The first read-only character span to concatenate.</param>
+    /// <returns>The concatenated string representations of the values of <paramref name="str0"
+    /// /> and <paramref name="str1" />.</returns>
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
     {
         int length = str0.Length + str1.Length;

@@ -1,31 +1,34 @@
-﻿using FolkerKinzel.Strings.Intls;
+using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
 
-/// <summary>
-/// Erweiterungsmethoden für die <see cref="Stream"/>-Klasse.
-/// </summary>
+    /// <summary>Extension methods for the <see cref="Stream" /> class.</summary>
 public static class StreamExtension
 {
-    /// <summary>
-    /// Testet, ob der angegebene Abschnitt von <paramref name="stream"/>, der sich von der aktuellen <see cref="Stream.Position"/>
-    /// über mindestens <paramref name="count"/> Zeichen erstreckt, UTF-8-Text ist. Die Methode bezieht das Byte-Order-Mark (BOM)
-    /// in die Prüfung ein.
-    /// </summary>
-    /// <param name="stream">Der zu testende <see cref="Stream"/>.</param>
-    /// <param name="count">Die Anzahl der mindestens zu überprüfenden Buchstaben. Wenn dem Parameter eine negative Zahl übergeben 
-    /// wird oder wenn <paramref name="count"/> größer ist als die
-    /// Länge der Daten in <paramref name="stream"/>, wird <paramref name="stream"/> von der aktuellen <see cref="Stream.Position"/> 
-    /// bis zu seinem Ende (EOF) überprüft. Wird dem Parameter <c>0</c> übergeben, überprüft die Methode nur das Byte-Order-Mark (BOM).</param>
-    /// <param name="leaveOpen"><c>false</c>, damit die Methode <paramref name="stream"/> schließt, andernfalls <c>true</c>.</param>
-    /// <returns><c>true</c>, wenn der in <paramref name="stream"/> überprüfte Abschnitt UTF-8-Text darstellt, andernfalls <c>false</c>.
-    /// Wenn die Methode ein UTF-8-BOM findet, wird in jedem Fall <c>true</c> zurückgegeben. Wenn <paramref name="count"/>&#160;<c>0</c> ist 
-    /// und kein UTF-8-BOM gefunden wird, wird <c>false</c> zurückgegeben.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream"/> ist <c>null</c>.</exception>
-    /// <exception cref="IOException">E/A Fehler.</exception>
-    /// <exception cref="ObjectDisposedException"><paramref name="stream"/> war bereits geschlossen.</exception>
-    /// <exception cref="NotSupportedException"><paramref name="stream"/> unterstützt keine Lesevorgänge oder keinen wahlfreien Zugriff.</exception>
+    /// <summary>Tests whether the specified section of <paramref name="stream" /> that extends
+    /// at least <paramref name="count" /> decoded characters from the current <see cref="Stream.Position"
+    /// /> is UTF-8 text. The method includes the byte order mark (BOM) in the check.</summary>
+    /// <param name="stream">The <see cref="Stream" /> to test.</param>
+    /// <param name="count">The minimum number of characters to check. If <paramref name="count"
+    /// /> is larger than <paramref name="stream" /> has data, <paramref name="stream" />
+    /// is examined beginning from the current <see cref="Stream.Position" /> until EOF.
+    /// If the parameter is passed a negative number or if <paramref name="count" /> is greater
+    /// than the length of the data in <paramref name="stream" />, <paramref name="stream"
+    /// /> is checked from the current position until EOF. If <c>0</c> is passed to the parameter,
+    /// the method only checks the byte order mark (BOM).</param>
+    /// <param name="leaveOpen"> <c>true</c> to leave the stream open after the method has
+    /// finished; otherwise, <c>false</c>.</param>
+    /// <returns> <c>true</c> if the checked stream section represents UTF-8 text, <c>false</c>
+    /// otherwise. In any case, if the method finds a UTF-8 BOM, it returns <c>true</c>.
+    /// If <paramref name="count" /> is <c>0</c> and no UTF-8 BOM is found, <c>false</c>
+    /// is returned.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="stream" /> is <c>null</c>.</exception>
+    /// <exception cref="IOException">I/O error.</exception>
+    /// <exception cref="ObjectDisposedException"> <paramref name="stream" /> was already
+    /// closed.</exception>
+    /// <exception cref="NotSupportedException"> <paramref name="stream" /> doesn't support
+    /// read and seek operations.</exception>
     public static bool IsUtf8(this Stream stream, int count = FileInfoExtension.ISUTF8_COUNT, bool leaveOpen = false)
     {
         var validator = new Utf8Validator();
@@ -33,22 +36,26 @@ public static class StreamExtension
     }
 
 
-    /// <summary>
-    /// Testet, ob der angegebene Abschnitt von <paramref name="stream"/>, der sich von der aktuellen <see cref="Stream.Position"/>
-    /// über mindestens <paramref name="count"/> Zeichen erstreckt, gültiges UTF-8 darstellt.
-    /// </summary>
-    /// <param name="stream">Der zu testende <see cref="Stream"/>.</param>
-    /// <param name="count">Die Anzahl der mindestens zu überprüfenden Buchstaben. Wenn dem Parameter eine negative Zahl übergeben 
-    /// wird (Default) oder wenn <paramref name="count"/> größer ist als die
-    /// Länge der Daten in <paramref name="stream"/>, wird <paramref name="stream"/> von der aktuellen <see cref="Stream.Position"/> 
-    /// bis zu seinem Ende (EOF) überprüft. Der Wert <c>0</c> ist nicht erlaubt.</param>
-    /// <param name="leaveOpen"><c>false</c>, damit die Methode <paramref name="stream"/> schließt, andernfalls <c>true</c>.</param>
-    /// <returns><c>true</c>, wenn der in <paramref name="stream"/> überprüfte Abschnitt gültiges UTF-8 darstellt, andernfalls <c>false</c>.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="stream"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> ist <c>0</c>.</exception>
-    /// <exception cref="IOException">E/A Fehler.</exception>
-    /// <exception cref="ObjectDisposedException"><paramref name="stream"/> war bereits geschlossen.</exception>
-    /// <exception cref="NotSupportedException"><paramref name="stream"/> unterstützt keine Lesevorgänge.</exception>
+    /// <summary>Tests whether the byte sequence of <paramref name="stream" /> that starts
+    /// with the current <see cref="Stream.Position" /> and is at least <paramref name="count"
+    /// /> characters long is valid UTF-8.</summary>
+    /// <param name="stream">The <see cref="Stream" /> to test.</param>
+    /// <param name="count">The minimum number of characters to check. If a negative number
+    /// is passed to the parameter (default) or if <paramref name="count" /> is greater than
+    /// the length of the data in <paramref name="stream" />, <paramref name="stream" />
+    /// is checked beginning from its current <see cref="Stream.Position" /> until EOF. The
+    /// value <c>0</c> is not allowed.</param>
+    /// <param name="leaveOpen"> <c>true</c> to leave the stream open after the method has
+    /// finished; otherwise, <c>false</c>.</param>
+    /// <returns> <c>true</c> if the checked stream section represents valid UTF-8, <c>false</c>
+    /// otherwise.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="stream" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="count" /> is <c>0</c>.</exception>
+    /// <exception cref="IOException">I/O error.</exception>
+    /// <exception cref="ObjectDisposedException"> <paramref name="stream" /> was already
+    /// closed.</exception>
+    /// <exception cref="NotSupportedException"> <paramref name="stream" /> doesn't support
+    /// read operations.</exception>
     public static bool IsUtf8Valid(this Stream stream, int count = FileInfoExtension.ISUTF8VALID_COUNT, bool leaveOpen = false)
     {
         var validator = new Utf8Validator();

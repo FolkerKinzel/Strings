@@ -1,19 +1,15 @@
-﻿using System.Text;
+using System.Text;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-/// <summary>
-/// Statische Klasse, die Methoden zur Behandlung von URL-Enkodierung (RFC 3986) zur Verfügung stellt.
-/// </summary>
+    /// <summary>Static class that provides methods for handling URL encoding (RFC 3986).</summary>
 public static class UrlEncoding
 {
     private const int SHORT_ARRAY = 256;
 
-    /// <summary>
-    /// Faktor, mit dem die Anzahl der zu kodierenden Bytes multipliziert
-    /// wird, um die Länge der kodierten Ausgabe abzuschätzen.
-    /// </summary>
+    /// <summary>Factor by which the number of bytes to be encoded is multiplied to estimate
+    /// the length of the encoded output.</summary>
     public const double EncodedLengthFactor = 2.5;
 
     private static class TextEncodingHelper
@@ -108,19 +104,18 @@ public static class UrlEncoding
 
 #if NET45 || NETSTANDARD2_0
 
-    /// <summary>
-    /// Versucht, einen URL-kodierten <see cref="string"/> unter Verwendung eines angegebenen
-    /// Zeichensatzes zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
-    /// dekodiert werden.
-    /// </summary>
-    /// <param name="value">Der zu dekodierende <see cref="string"/> oder <c>null</c>.</param>
-    /// <param name="encodingWebName">Der standardisierte Internetname des zu verwendenden Zeichensatzes oder <c>null</c>
-    /// bzw. ein leerer <see cref="string"/> als Ersatz für "utf-8".</param>
-    /// <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
-    /// dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
-    /// <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="string"/>, der den
-    /// dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
-    /// <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+    /// <summary>Tries to decode a URL-encoded <see cref="string" /> using a specified character
+    /// set and allows to specify whether or not PLUS characters ('+', U+002B) should be
+    /// decoded as SPACE characters (' ', U+0020).</summary>
+    /// <param name="value">The <see cref="string" /> to decode, or <c>null</c>.</param>
+    /// <param name="encodingWebName">The standardized web name of the character set to use,
+    /// or <c>null</c> or <see cref="string.Empty" /> as a replacement for "utf-8".</param>
+    /// <param name="decodePlusChars"> <c>true</c> to decode PLUS characters ('+', U+002B)
+    /// as SPACE characters (' ', U+0020), or <c>false</c> to include the PLUS characters
+    /// unchanged in <paramref name="decoded" />.</param>
+    /// <param name="decoded">After the method completes successfully, contains a <see cref="string"
+    /// /> that represents the decoded content of <paramref name="value" />.</param>
+    /// <returns> <c>true</c> if the decoding was successful, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool TryDecode(string? value,
                                  string? encodingWebName,
@@ -129,18 +124,17 @@ public static class UrlEncoding
         => TryDecode(value.AsSpan(), encodingWebName, decodePlusChars, out decoded);
 
 
-    /// <summary>
-    /// Versucht, einen URL-kodierten <see cref="string"/> unter Verwendung einer angegebenen
-    /// Codepage zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
-    /// dekodiert werden.
-    /// </summary>
-    /// <param name="value">Der zu dekodierende <see cref="string"/> oder <c>null</c>.</param>
-    /// <param name="codePage">Die Codepage des zu verwendenden Zeichensatzes.</param>
-    /// <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
-    /// dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
-    /// <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="string"/>, der den
-    /// dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
-    /// <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+    /// <summary>Tries to decode a URL-encoded <see cref="string" /> using a specified code
+    /// page and allows to specify whether or not PLUS characters ('+', U+002B) should be
+    /// decoded as SPACE characters (' ', U+0020).</summary>
+    /// <param name="value">The <see cref="string" /> to decode, or <c>null</c>.</param>
+    /// <param name="codePage">The code page to use.</param>
+    /// <param name="decodePlusChars"> <c>true</c> to decode PLUS characters ('+', U+002B)
+    /// as SPACE characters (' ', U+0020), or <c>false</c> to include the PLUS characters
+    /// unchanged in <paramref name="decoded" />.</param>
+    /// <param name="decoded">After the method completes successfully, contains a <see cref="string"
+    /// /> that represents the decoded content of <paramref name="value" />.</param>
+    /// <returns> <c>true</c> if the decoding was successful, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool TryDecode(string? value,
                                  int codePage,
@@ -149,17 +143,16 @@ public static class UrlEncoding
         => TryDecode(value.AsSpan(), codePage, decodePlusChars, out decoded);
 
 
-    /// <summary>
-    /// Versucht, einen URL-kodierten <see cref="string"/> unter Verwendung des UTF-8-Zeichensatzes
-    /// zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
-    /// dekodiert werden.
-    /// </summary>
-    /// <param name="value">Der zu dekodierende <see cref="string"/> oder <c>null</c>.</param>
-    /// <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
-    /// dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
-    /// <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="string"/>, der den
-    /// dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
-    /// <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+    /// <summary>Tries to decode a URL-encoded <see cref="string" /> using the UTF-8 character
+    /// set and allows to specify whether or not PLUS characters ('+', U+002B) should be
+    /// decoded as SPACE characters (' ', U+0020).</summary>
+    /// <param name="value">The <see cref="string" /> to decode, or <c>null</c>.</param>
+    /// <param name="decodePlusChars"> <c>true</c> to decode PLUS characters ('+', U+002B)
+    /// as SPACE characters (' ', U+0020), or <c>false</c> to include the PLUS characters
+    /// unchanged in <paramref name="decoded" />.</param>
+    /// <param name="decoded">After the method completes successfully, contains a <see cref="string"
+    /// /> that represents the decoded content of <paramref name="value" />.</param>
+    /// <returns> <c>true</c> if the decoding was successful, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool TryDecode(string? value,
                                  bool decodePlusChars,
@@ -167,18 +160,16 @@ public static class UrlEncoding
         => TryDecode(value.AsSpan(), decodePlusChars, out decoded);
 
 
-    /// <summary>
-    /// Versucht, einen URL-kodierten <see cref="string"/> als <see cref="byte"/>-Array
-    /// zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als <c>0x20</c> (SPACE ' ')
-    /// dekodiert werden.
-    /// </summary>
-    /// <param name="value">Der zu dekodierende <see cref="string"/> oder <c>null</c>.</param>
-    /// <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als <c>0x20</c> (SPACE ' ') zu
-    /// dekodieren oder <c>false</c>, um Pluszeichen unverändert als <c>0x2B</c> in <paramref name="bytes"/> 
-    /// zu übertragen.</param>
-    /// <param name="bytes">Enthält nach erfolgreicher Beendigung der Methode ein <see cref="byte"/>-Array, das
-    /// den dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
-    /// <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+    /// <summary>Tries to decode a URL-encoded <see cref="string" /> to a <see cref="byte"
+    /// /> array and allows to specify whether or not PLUS characters ('+', U+002B) should
+    /// be decoded to <c>0x20</c> (SPACE ' ').</summary>
+    /// <param name="value">The <see cref="string" /> to decode, or <c>null</c>.</param>
+    /// <param name="decodePlusChars"> <c>true</c> to decode PLUS characters ('+', U+002B)
+    /// to <c>0x20</c> (SPACE ' '), or <c>false</c> to include the PLUS characters unchanged
+    /// as <c>0x2B</c> in <paramref name="bytes" />.</param>
+    /// <param name="bytes">After the method completes successfully, contains a <see cref="byte"
+    /// /> array that represents the decoded content of <paramref name="value" />.</param>
+    /// <returns> <c>true</c> if the decoding was successful, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool TryDecodeToBytes(string? value,
                                         bool decodePlusChars,
@@ -187,19 +178,18 @@ public static class UrlEncoding
 
 #endif
 
-    /// <summary>
-    /// Versucht, den URL-kodierten Inhalt einer schreibgeschützten Zeichenspanne unter Verwendung eines angegebenen
-    /// Zeichensatzes zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
-    /// dekodiert werden.
-    /// </summary>
-    /// <param name="value">Die zu dekodierende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="encodingWebName">Der standardisierte Internetname des zu verwendenden Zeichensatzes oder <c>null</c>
-    /// bzw. ein leerer <see cref="string"/> als Ersatz für "utf-8".</param>
-    /// <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
-    /// dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
-    /// <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="string"/>, der den
-    /// dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
-    /// <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+    /// <summary>Tries to decode a URL-encoded read-only character span using a specified
+    /// character set and allows to specify whether or not PLUS characters ('+', U+002B)
+    /// should be decoded as SPACE characters (' ', U+0020).</summary>
+    /// <param name="value">The read-only character span to decode.</param>
+    /// <param name="encodingWebName">The standardized web name of the character set to use,
+    /// or <c>null</c> or <see cref="string.Empty" /> as a replacement for "utf-8".</param>
+    /// <param name="decodePlusChars"> <c>true</c> to decode PLUS characters ('+', U+002B)
+    /// as SPACE characters (' ', U+0020), or <c>false</c> to include the PLUS characters
+    /// unchanged in <paramref name="decoded" />.</param>
+    /// <param name="decoded">After the method completes successfully, contains a <see cref="string"
+    /// /> that represents the decoded content of <paramref name="value" />.</param>
+    /// <returns> <c>true</c> if the decoding was successful, otherwise <c>false</c>.</returns>
     public static bool TryDecode(ReadOnlySpan<char> value,
                                  string? encodingWebName,
                                  bool decodePlusChars,
@@ -218,18 +208,17 @@ public static class UrlEncoding
     }
 
 
-    /// <summary>
-    /// Versucht, den URL-kodierten Inhalt einer schreibgeschützten Zeichenspanne unter Verwendung einer angegebenen
-    /// Codepage zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
-    /// dekodiert werden.
-    /// </summary>
-    /// <param name="value">Die zu dekodierende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="codePage">Die Codepage des zu verwendenden Zeichensatzes.</param>
-    /// <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
-    /// dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
-    /// <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="string"/>, der den
-    /// dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
-    /// <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+    /// <summary>Tries to decode a URL-encoded read-only character span using a specified
+    /// code page and allows to specify whether or not PLUS characters ('+', U+002B) should
+    /// be decoded as SPACE characters (' ', U+0020).</summary>
+    /// <param name="value">The read-only character span to decode.</param>
+    /// <param name="codePage">The code page to use.</param>
+    /// <param name="decodePlusChars"> <c>true</c> to decode PLUS characters ('+', U+002B)
+    /// as SPACE characters (' ', U+0020), or <c>false</c> to include the PLUS characters
+    /// unchanged in <paramref name="decoded" />.</param>
+    /// <param name="decoded">After the method completes successfully, contains a <see cref="string"
+    /// /> that represents the decoded content of <paramref name="value" />.</param>
+    /// <returns> <c>true</c> if the decoding was successful, otherwise <c>false</c>.</returns>
     public static bool TryDecode(ReadOnlySpan<char> value,
                                  int codePage,
                                  bool decodePlusChars,
@@ -247,17 +236,16 @@ public static class UrlEncoding
         }
     }
 
-    /// <summary>
-    /// Versucht, den URL-kodierten Inhalt einer schreibgeschützten Zeichenspanne unter Verwendung des UTF-8-Zeichensatzes
-    /// zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020)
-    /// dekodiert werden.
-    /// </summary>
-    /// <param name="value">Die zu dekodierende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als Leerzeichen (' ', U+0020) zu
-    /// dekodieren oder <c>false</c>, um Pluszeichen unverändert in <paramref name="decoded"/> zu übertragen.</param>
-    /// <param name="decoded">Enthält nach erfolgreicher Beendigung der Methode einen <see cref="string"/>, der den
-    /// dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
-    /// <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+    /// <summary>Tries to decode a URL-encoded read-only character span using the UTF-8 character
+    /// set and allows to specify whether or not PLUS characters ('+', U+002B) should be
+    /// decoded as SPACE characters (' ', U+0020).</summary>
+    /// <param name="value">The read-only character span to decode.</param>
+    /// <param name="decodePlusChars"> <c>true</c> to decode PLUS characters ('+', U+002B)
+    /// as SPACE characters (' ', U+0020), or <c>false</c> to include the PLUS characters
+    /// unchanged in <paramref name="decoded" />.</param>
+    /// <param name="decoded">After the method completes successfully, contains a <see cref="string"
+    /// /> that represents the decoded content of <paramref name="value" />.</param>
+    /// <returns> <c>true</c> if the decoding was successful, otherwise <c>false</c>.</returns>
     public static bool TryDecode(ReadOnlySpan<char> value,
                                  bool decodePlusChars,
                                  [NotNullWhen(true)] out string? decoded)
@@ -275,18 +263,16 @@ public static class UrlEncoding
     }
 
 
-    /// <summary>
-    /// Versucht, den URL-kodierten Inhalt einer schreibgeschützten Zeichenspanne als <see cref="byte"/>-Array
-    /// zu dekodieren und erlaubt es anzugeben, ob Pluszeichen ('+', U+002B) als <c>0x20</c> (SPACE ' ')
-    /// dekodiert werden.
-    /// </summary>
-    /// <param name="value">Die zu dekodierende schreibgeschützte Zeichenspanne.</param>
-    /// <param name="decodePlusChars"><c>true</c>, um Pluszeichen ('+', U+002B) als <c>0x20</c> (SPACE ' ') zu
-    /// dekodieren oder <c>false</c>, um Pluszeichen unverändert als <c>0x2B</c> in <paramref name="bytes"/> 
-    /// zu übertragen.</param>
-    /// <param name="bytes">Enthält nach erfolgreicher Beendigung der Methode ein <see cref="byte"/>-Array, das
-    /// den dekodierten Inhalt von <paramref name="value"/> repräsentiert.</param>
-    /// <returns><c>true</c>, wenn die Dekodierung erfolgreich war, andernfalls <c>false</c>.</returns>
+    /// <summary>Tries to decode a URL-encoded read-only character span to a <see cref="byte"
+    /// /> array and allows to specify whether or not PLUS characters ('+', U+002B) should
+    /// be decoded as <c>0x20</c> (SPACE ' ').</summary>
+    /// <param name="value">The read-only character span to decode.</param>
+    /// <param name="decodePlusChars"> <c>true</c> to decode PLUS characters ('+', U+002B)
+    /// to <c>0x20</c> (SPACE ' '), or <c>false</c> to include the PLUS characters unchanged
+    /// as <c>0x2B</c> in <paramref name="bytes" />.</param>
+    /// <param name="bytes">After the method completes successfully, contains a <see cref="byte"
+    /// /> array that represents the decoded content of <paramref name="value" />.</param>
+    /// <returns> <c>true</c> if the decoding was successful, otherwise <c>false</c>.</returns>
     public static bool TryDecodeToBytes(ReadOnlySpan<char> value,
                                         bool decodePlusChars,
                                         [NotNullWhen(true)] out byte[]? bytes)
@@ -306,13 +292,11 @@ public static class UrlEncoding
         }
     }
 
-    /// <summary>
-    /// Removes URL encoding from <paramref name="value"/>.
-    /// </summary>
-    /// <param name="value"></param>
-    /// <param name="encoding"></param>
-    /// <param name="decodePlusSigns"></param>
-    /// <returns></returns>
+    /// <summary />
+    /// <param name="value" />
+    /// <param name="encoding" />
+    /// <param name="decodePlusSigns" />
+    /// <returns />
     private static string UnescapeValueFromUrlEncoding(ReadOnlySpan<char> value, Encoding encoding, bool decodePlusSigns)
     {
         Span<byte> bytes = value.Length > SHORT_ARRAY ? new byte[value.Length]

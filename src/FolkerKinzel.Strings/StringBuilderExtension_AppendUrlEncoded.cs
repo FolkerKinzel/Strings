@@ -1,51 +1,44 @@
-﻿using FolkerKinzel.Strings.Intls;
+using FolkerKinzel.Strings.Intls;
 using FolkerKinzel.Strings.Polyfills;
 
 namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
 {
-    /// <summary>
-    /// Fügt den Inhalt einer schreibgeschützten Zeichenspanne als URL-codierte Zeichenfolge
-    /// an das Ende eines <see cref="StringBuilder"/>-Objekts an.
-    /// </summary>
-    /// 
-    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
-    /// <param name="value">Die schreibgeschützte Zeichenspanne, die die zu kodierenden und anzufügenden Zeichen enthält.</param>
-    /// 
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <remarks>Die Methode ersetzt alle Zeichen in <paramref name="value"/> mit Ausnahme von nicht reservierten RFC 3986-Zeichen 
-    /// durch ihre hexadezimale 
-    /// Darstellung. Alle Unicode-Zeichen werden in das UTF-8-Format konvertiert, bevor sie mit Escapezeichen versehen werden.
-    /// Bei dieser Methode wird davon ausgegangen, dass in <paramref name="value"/> keine Escapesequenzen enthalten sind.</remarks>
-    /// 
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
-    /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
+    /// <summary>Appends the content of a read-only character span as URL-encoded string
+    /// to the end of a <see cref="StringBuilder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="value">The read-only character span that provides the characters that
+    /// have to be encoded and appended.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <remarks>The method replaces all characters in <paramref name="value" /> except unreserved
+    /// RFC 3986 characters into their hexadecimal representation. All Unicode characters
+    /// are converted to UTF-8 format before being escaped. This method assumes that there
+    /// are no escape sequences in <paramref name="value" />.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
+    /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, ReadOnlySpan<char> value)
         => UrlEncoding.AppendUrlEncodedTo(builder, value);
 
 
-    /// <summary>
-    /// Fügt den Inhalt einer <see cref="byte"/>-Sammlung als URL-codierte Zeichenfolge
-    /// an das Ende eines <see cref="StringBuilder"/>-Objekts an.
-    /// </summary>
-    /// 
-    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
-    /// <param name="value">Die <see cref="byte"/>-Sammlung, die die zu kodierenden und anzufügenden Daten 
-    /// enthält, oder <c>null</c>.</param>
-    /// 
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <remarks>Die Methode behandelt alle <see cref="byte"/>s in <paramref name="value"/> als 8-Bit-Zeichen und 
-    /// ersetzt alle diese Zeichen mit Ausnahme von nicht reservierten RFC 3986-Zeichen 
-    /// durch ihre hexadezimale Darstellung.</remarks>
-    /// 
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
-    /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
+    /// <summary>Appends the content of a <see cref="byte" /> collection as URL-encoded character
+    /// sequence to the end of a <see cref="StringBuilder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="value">The <see cref="byte" /> collection that contains the data, or
+    /// <c>null</c>.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <remarks>The method treats all <see cref="byte" />s in <paramref name="value" />
+    /// as 8-Bit characters and replaces all of them - except unreserved RFC 3986 characters
+    /// - with their hexadecimal representation.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
+    /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, IEnumerable<byte>? value)
         => value is null
@@ -53,47 +46,37 @@ public static partial class StringBuilderExtension
                : builder.AppendUrlEncoded(CollectionConverter.AsReadOnlySpan(value));
 
 
-    /// <summary>
-    /// Fügt den Inhalt eines <see cref="byte"/>-Arrays als URL-codierte Zeichenfolge
-    /// an das Ende eines <see cref="StringBuilder"/>-Objekts an.
-    /// </summary>
-    /// 
-    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
-    /// <param name="value">Das <see cref="byte"/>-Array, das die zu kodierenden und anzufügenden Daten 
-    /// enthält, oder <c>null</c>.</param>
-    /// 
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <remarks>Die Methode behandelt alle <see cref="byte"/>s in <paramref name="value"/> als 8-Bit-Zeichen und 
-    /// ersetzt alle diese Zeichen mit Ausnahme von nicht reservierten RFC 3986-Zeichen 
-    /// durch ihre hexadezimale Darstellung.</remarks>
-    /// 
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
-    /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
+    /// <summary>Appends the content of a <see cref="byte" /> array as URL-encoded character
+    /// sequence to the end of a <see cref="StringBuilder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="value">The <see cref="byte" /> array that contains the data, or <c>null</c>.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <remarks>The method treats all <see cref="byte" />s in <paramref name="value" />
+    /// as 8-Bit characters and replaces all of them - except unreserved RFC 3986 characters
+    /// - with their hexadecimal representation.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
+    /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, byte[]? value)
         => UrlEncoding.AppendUrlEncodedTo(builder, value.AsSpan());
 
 
-    /// <summary>
-    /// Fügt den Inhalt einer schreibgeschützten <see cref="byte"/>-Spanne als URL-codierte Zeichenfolge
-    /// an das Ende eines <see cref="StringBuilder"/>-Objekts an.
-    /// </summary>
-    /// 
-    /// <param name="builder">Der <see cref="StringBuilder"/>, an den Zeichen angefügt werden.</param>
-    /// <param name="value">Die schreibgeschützte <see cref="byte"/>-Spanne, die die zu kodierenden und anzufügenden Daten 
-    /// enthält.</param>
-    /// 
-    /// <returns>Ein Verweis auf <paramref name="builder"/>, nachdem der Anfügevorgang abgeschlossen wurde.</returns>
-    /// 
-    /// <remarks>Die Methode behandelt alle <see cref="byte"/>s in <paramref name="value"/> als 8-Bit-Zeichen und 
-    /// ersetzt alle diese Zeichen mit Ausnahme von nicht reservierten RFC 3986-Zeichen 
-    /// durch ihre hexadezimale Darstellung.</remarks>
-    /// 
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Bei der Erhöhung der Kapazität von <paramref name="builder"/>
-    /// würde <see cref="StringBuilder.MaxCapacity"/> überschritten.</exception>
+    /// <summary>Appends the content of a read-only <see cref="byte" /> span as URL-encoded
+    /// character sequence to the end of a <see cref="StringBuilder" />.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="value">The read-only <see cref="byte" /> span that contains the data.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <remarks>The method treats all <see cref="byte" />s in <paramref name="value" />
+    /// as 8-Bit characters and replaces all of them - except unreserved RFC 3986 characters
+    /// - with their hexadecimal representation.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
+    /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, ReadOnlySpan<byte> value)
         => UrlEncoding.AppendUrlEncodedTo(builder, value);

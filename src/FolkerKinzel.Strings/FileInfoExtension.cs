@@ -1,10 +1,8 @@
-﻿using System.IO;
+using System.IO;
 
 namespace FolkerKinzel.Strings;
 
-/// <summary>
-/// Erweiterungsmethoden für die <see cref="FileInfo"/>-Klasse.
-/// </summary>
+    /// <summary> Erweiterungsmethoden für die <see cref="FileInfo" />-Klasse. </summary>
 public static class FileInfoExtension
 {
     internal const int ISUTF8_COUNT = 255;
@@ -15,41 +13,41 @@ public static class FileInfoExtension
     private const int BUFSIZE_FACTOR = 4;
 
 
-    /// <summary>
-    /// Testet, ob der Abschnitt der durch <paramref name="fileInfo"/> angegebenen Datei, der sich vom Dateianfang über mindestens
-    /// <paramref name="count"/> Zeichen erstreckt, UTF-8-Text ist. Die Methode bezieht das Byte-Order-Mark (BOM)
-    /// in die Prüfung ein.
-    /// </summary>
-    /// <param name="fileInfo">Ein <see cref="FileInfo"/>-Objekt, das auf die zu überprüfende Datei verweist.</param>
-    /// <param name="count">Die Anzahl der mindestens zu überprüfenden Buchstaben. Wenn dem Parameter eine negative Zahl übergeben 
-    /// wird oder wenn <paramref name="count"/> größer ist als die
-    /// Länge der Daten in der angegebenen Datei, wird die gesamte Datei überprüft. Wird dem Parameter <c>0</c> übergeben, überprüft 
-    /// die Methode nur das Byte-Order-Mark (BOM).</param>
-    /// 
-    /// <returns><c>true</c>, wenn der überprüfte Dateiabschnitt UTF-8-Text darstellt, andernfalls <c>false</c>.
-    /// Wenn die Methode ein UTF-8-BOM findet, wird in jedem Fall <c>true</c> zurückgegeben. Wenn <paramref name="count"/>&#160;<c>0</c> ist 
-    /// und kein UTF-8-BOM gefunden wird, wird <c>false</c> zurückgegeben.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="fileInfo"/> ist <c>null</c>.</exception>
-    /// <exception cref="IOException">E/A Fehler.</exception>
+    /// <summary>Tests whether the portion of the file specified by <paramref name="fileInfo"
+    /// /> that extends at least <paramref name="count" /> characters from the beginning
+    /// of the file is UTF-8 text. The method includes the byte order mark (BOM) in the check.</summary>
+    /// <param name="fileInfo">Ein <see cref="FileInfo" />-Objekt, das auf die zu überprüfende
+    /// Datei verweist.</param>
+    /// <param name="count">The minimum number of characters to check. If the parameter is
+    /// passed a negative number or if <paramref name="count" /> is greater than the length
+    /// of the data in the specified file, the entire file is checked. If <c>0</c> is passed
+    /// to the parameter, the method only checks the byte order mark (BOM).</param>
+    /// <returns> <c>true</c> if the checked file section represents UTF-8 text, <c>false</c>
+    /// otherwise. In any case, if the method finds a UTF-8 BOM, it returns <c>true</c>.
+    /// If <paramref name="count" /> is <c>0</c> and no UTF-8 BOM is found, <c>false</c>
+    /// is returned.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="fileInfo" /> is <c>null</c>.</exception>
+    /// <exception cref="IOException">I/O error.</exception>
     public static bool IsUtf8(this FileInfo fileInfo, int count = ISUTF8_COUNT)
     {
         using FileStream stream = InitFileStream(fileInfo, count);
         return stream.IsUtf8(count, false);
     }
 
-    /// <summary>
-    /// Testet, ob der Abschnitt der durch <paramref name="fileInfo"/> angegebenen Datei, der sich vom Dateianfang über mindestens
-    /// <paramref name="count"/> Zeichen erstreckt, gültiges UTF-8 darstellt.
-    /// </summary>
-    /// 
-    /// <param name="fileInfo">Ein <see cref="FileInfo"/>-Objekt, das auf die zu überprüfende Datei verweist.</param>
-    /// <param name="count">Die Anzahl der mindestens zu überprüfenden Buchstaben. Wenn dem Parameter eine negative Zahl übergeben 
-    /// wird (Default) oder wenn <paramref name="count"/> größer ist als die
-    /// Länge der Daten in der angegebenen Datei, wird die gesamte Datei überprüft. Der Wert <c>0</c> ist nicht erlaubt.</param>
-    /// <returns><c>true</c>, wenn der überprüfte Dateiabschnitt gültiges UTF-8 darstellt, andernfalls <c>false</c>.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="fileInfo"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> ist <c>0</c>.</exception>
-    /// <exception cref="IOException">E/A Fehler.</exception>
+    /// <summary>Tests whether the portion of the file specified by <paramref name="fileInfo"
+    /// /> that extends at least <paramref name="count" /> characters from the beginning
+    /// of the file represents valid UTF-8.</summary>
+    /// <param name="fileInfo">Ein <see cref="FileInfo" />-Objekt, das auf die zu überprüfende
+    /// Datei verweist.</param>
+    /// <param name="count">The minimum number of characters to check. If a negative number
+    /// is passed to the parameter (default) or if <paramref name="count" /> is greater than
+    /// the length of the data in the specified file, the entire file is checked. The value
+    /// <c>0</c> is not allowed.</param>
+    /// <returns> <c>true</c> if the checked file section represents valid UTF-8, <c>false</c>
+    /// otherwise.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="fileInfo" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="count" /> is <c>0</c>.</exception>
+    /// <exception cref="IOException">I/O error.</exception>
     public static bool IsUtf8Valid(this FileInfo fileInfo, int count = ISUTF8VALID_COUNT)
     {
         using FileStream stream = InitFileStream(fileInfo, count);

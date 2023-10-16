@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -8,44 +8,38 @@ using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings;
 
-/// <summary>
-/// Kapselt Methoden, die das Erzeugen geeigneter Instanzen der <see cref="Encoding"/>-Klasse unterstützen.
-/// </summary>
+    /// <summary>Encapsulates methods that support creating appropriate instances of the
+    /// <see cref="Encoding" /> class.</summary>
 public static class TextEncodingConverter
 {
     internal const int UTF_8 = 65001;
     private const int CODEPAGE_MIN = 1;
     private const int CODEPAGE_MAX = 65535;
 
-    /// <summary>
-    /// Gibt für den angegebenen Bezeichner eines Zeichensatzes ein entsprechendes <see cref="Encoding"/>-Objekt
-    /// zurück.
-    /// </summary>
-    /// 
-    /// <param name="encodingWebName">Der Bezeichner des Zeichensatzes.</param>
-    /// <param name="throwOnInvalidWebName">Geben Sie <c>true</c> an, damit die Methode
-    /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="encodingWebName"/> nicht übersetzt werden konnte.</param>
-    /// 
-    /// <returns>Ein <see cref="Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
-    /// entspricht. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung <see cref="Encoding.UTF8"/> zurückgegeben.
-    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidWebName"/> aufgerufen wird, wird
-    /// in diesem Fall eine <see cref="ArgumentException"/> geworfen.</returns>
-    /// 
+    /// <summary>Returns a corresponding <see cref="Encoding" /> object for the specified
+    /// identifier of a character set.</summary>
+    /// <param name="encodingWebName">The identifier of the character set.</param>
+    /// <param name="throwOnInvalidWebName">Pass <c>true</c> to have the method throw an
+    /// <see cref="ArgumentException" /> if <paramref name="encodingWebName" /> could not
+    /// be converted.</param>
+    /// <returns>An <see cref="Encoding" /> object that corresponds to the specified character
+    /// set identifier. If no match is found, <see cref="Encoding.UTF8" /> is returned by
+    /// default. If the method is called with <c>true</c> as an argument for the <paramref
+    /// name="throwOnInvalidWebName" /> parameter, an <see cref="ArgumentException" /> will
+    /// be thrown instead.</returns>
     /// <remarks>
     /// <para>
-    /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
-    /// Die Methode überschreibt diese Standardeinstellung.
+    /// .NET Standard and .NET 5.0 or later only recognize a small number of character sets
+    /// by default. The method overrides this default.
     /// </para>
     /// <para>
-    /// Die Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/> des erzeugten
-    /// <see cref="Encoding"/>-Objekts sind auf ReplacementFallback eingestellt.
+    /// The properties <see cref="Encoding.EncoderFallback" /> and <see cref="Encoding.DecoderFallback"
+    /// /> of the generated <see cref="Encoding" /> object are set to ReplacementFallback.
     /// </para>
     /// </remarks>
-    /// 
-    /// <exception cref="ArgumentException">
-    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Eine Ausnahme wird nur dann geworfen, wenn
-    /// für den optionalen Parameter <paramref name="throwOnInvalidWebName"/>&#160;<c>true</c> übergeben wurde.
-    /// </exception>
+    /// <exception cref="ArgumentException"> <paramref name="encodingWebName" /> could not
+    /// be mapped to a <see cref="Encoding" /> object. An exception is only thrown if the
+    /// optional parameter <paramref name="throwOnInvalidWebName" /> is <c>true</c>.</exception>
     public static Encoding GetEncoding(string? encodingWebName, bool throwOnInvalidWebName = false)
     {
         return throwOnInvalidWebName
@@ -58,39 +52,32 @@ public static class TextEncodingConverter
     }
 
 
-    /// <summary>
-    /// Gibt für den angegebenen Bezeichner eines Zeichensatzes ein entsprechendes <see cref="Encoding"/>-Objekt
-    /// zurück, dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
-    /// auf die gewünschten Werte eingestellt sind.
-    /// </summary>
-    /// 
-    /// <param name="encodingWebName">Der Bezeichner des Zeichensatzes.</param>
-    /// <param name="encoderFallback">Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
-    /// falls ein Zeichen mit dem <see cref="Encoding"/>-Objekt nicht enkodiert werden kann.</param>
-    /// <param name="decoderFallback">
-    /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
-    /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
-    /// <param name="throwOnInvalidWebName">Geben Sie <c>true</c> an, damit die Methode
-    /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="encodingWebName"/> nicht übersetzt werden konnte.</param>
-    /// 
-    /// <returns>Ein <see cref="Encoding"/>-Objekt, das dem angegebenen Bezeichner des Zeichensatzes
-    /// entspricht und dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
-    /// auf die gewünschten Werte eingestellt sind. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung 
-    /// ein entsprechendes <see cref="Encoding"/>-Objekt für UTF-8 zurückgegeben.
-    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidWebName"/> aufgerufen wird, wird
-    /// in diesem Fall eine <see cref="ArgumentException"/> geworfen.</returns>
-    /// 
-    /// <remarks>
-    /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
-    /// Die Methode überschreibt diese Standardeinstellung.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="encoderFallback"/> oder <paramref name="decoderFallback"/> ist <c>null</c>.
-    /// </exception>
-    /// <exception cref="ArgumentException">
-    /// <paramref name="encodingWebName"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
-    /// für den optionalen Parameter <paramref name="throwOnInvalidWebName"/>&#160;<c>true</c> übergeben wurde.
-    /// </exception>
+    /// <summary>Returns a corresponding <see cref="Encoding" /> object for the specified
+    /// identifier of a character set, whose properties <see cref="Encoding.EncoderFallback"
+    /// /> and <see cref="Encoding.DecoderFallback" /> are set to the desired values.</summary>
+    /// <param name="encodingWebName">The identifier of the character set.</param>
+    /// <param name="encoderFallback">An object that provides an error handling mechanism
+    /// if a character cannot be encoded with the <see cref="Encoding" /> object.</param>
+    /// <param name="decoderFallback">An object that provides an error handling mechanism
+    /// if a <see cref="byte" /> sequence cannot be decoded with the <see cref="Encoding"
+    /// /> object .</param>
+    /// <param name="throwOnInvalidWebName">Pass <c>true</c> to have the method throw an
+    /// <see cref="ArgumentException" /> if <paramref name="encodingWebName" /> could not
+    /// be converted.</param>
+    /// <returns>An <see cref="Encoding" /> object that corresponds to the specified identifier
+    /// of a character set and whose properties <see cref="Encoding.EncoderFallback" /> and
+    /// <see cref="Encoding.DecoderFallback" /> are set to the desired values. If no match
+    /// is found, a corresponding <see cref="P:System.Text.Encoding" /> object for UTF-8
+    /// is returned by default. If the method is called with <c>true</c> as an argument for
+    /// the <paramref name="throwOnInvalidWebName" /> parameter, an <see cref="ArgumentException"
+    /// /> will be thrown instead.</returns>
+    /// <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number
+    /// of character sets. The method overrides this default setting.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="encoderFallback" /> or <paramref
+    /// name="decoderFallback" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentException"> <paramref name="encodingWebName" /> could not
+    /// be mapped to a <see cref="Encoding" /> object. An exception is only thrown if the
+    /// optional parameter <paramref name="throwOnInvalidWebName" /> is <c>true</c>.</exception>
     public static Encoding GetEncoding(string? encodingWebName,
                                        EncoderFallback encoderFallback,
                                        DecoderFallback decoderFallback,
@@ -108,49 +95,39 @@ public static class TextEncodingConverter
     }
 
 
-    /// <summary>
-    /// Gibt für die angegebene Nummer einer Codepage ein entsprechendes <see cref="Encoding"/>-Objekt
-    /// zurück.
-    /// </summary>
+    /// <summary>Returns a corresponding <see cref="Encoding" /> object for the specified
+    /// code page number.</summary>
     /// <param name="codePage">
     /// <para>
-    /// Die Nummer der Codepage.
+    /// The code page number.
     /// </para>
     /// <note type="caution">
-    /// <c>0</c> wird als ungültiges Argument behandelt. Das Verhalten unterscheidet sich damit von dem der
-    /// <see cref="Encoding"/>-Klasse.
+    /// <c>0</c> is treated as an invalid argument. This behavior is different from that
+    /// of the <see cref="Encoding" /> class.
     /// </note>
     /// </param>
-    /// <param name="throwOnInvalidCodePage">Geben Sie <c>true</c> an, damit die Methode
-    /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="codePage"/> nicht übersetzt werden konnte.</param>
-    /// 
-    /// <returns>
-    /// Ein <see cref="Encoding"/>-Objekt, das der angegebenen Nummer der Codepage
-    /// entspricht. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung <see cref="Encoding.UTF8"/> zurückgegeben.
-    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidCodePage"/> aufgerufen wird, wird
-    /// in diesem Fall eine <see cref="ArgumentException"/> geworfen.
-    /// </returns>
-    /// 
+    /// <param name="throwOnInvalidCodePage">Pass <c>true</c> to have the method throw an
+    /// <see cref="ArgumentException" /> if <paramref name="codePage" /> could not be converted.</param>
+    /// <returns>An <see cref="Encoding" /> object that corresponds to the specified code
+    /// page number. If no match is found, <see cref="Encoding.UTF8" /> is returned by default.
+    /// If the method is called with <c>true</c> as an argument for the <paramref name="throwOnInvalidCodePage"
+    /// /> parameter, an <see cref="ArgumentException" /> will be thrown instead.</returns>
     /// <remarks>
     /// <para>
-    /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
-    /// Die Methode überschreibt diese Standardeinstellung.
+    /// .NET Standard and .NET 5.0 or later only recognize a small number of character sets
+    /// by default. The method overrides this default.
     /// </para>
     /// <para>
-    /// Die Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/> des erzeugten
-    /// <see cref="Encoding"/>-Objekts sind auf ReplacementFallback eingestellt.
+    /// The properties <see cref="Encoding.EncoderFallback" /> and <see cref="Encoding.DecoderFallback"
+    /// /> of the generated <see cref="Encoding" /> object are set to ReplacementFallback.
     /// </para>
     /// </remarks>
-    /// 
-    /// <exception cref="ArgumentOutOfRangeException">
-    /// <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Diese Ausnahme wird nur dann geworfen, wenn
-    /// für den optionalen Parameter <paramref name="throwOnInvalidCodePage"/>&#160;<c>true</c> übergeben wurde.
-    /// </exception>
-    /// <exception cref="ArgumentException">
-    /// <paramref name="codePage"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
-    /// für den optionalen Parameter <paramref name="throwOnInvalidCodePage"/>&#160;<c>true</c> übergeben wurde.
-    /// </exception>
-    /// 
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="codePage" /> is less
+    /// than 1 or greater than 65535. This exception is only thrown if the optional parameter
+    /// <paramref name="throwOnInvalidCodePage" /> is <c>true</c>.</exception>
+    /// <exception cref="ArgumentException"> <paramref name="codePage" /> could not be mapped
+    /// to a <see cref="Encoding" /> object. This exception is only thrown if the optional
+    /// parameter <paramref name="throwOnInvalidCodePage" /> is <c>true</c>.</exception>
     public static Encoding GetEncoding(int codePage, bool throwOnInvalidCodePage = false)
     {
         return throwOnInvalidCodePage
@@ -162,52 +139,42 @@ public static class TextEncodingConverter
                 : Encoding.UTF8;
     }
 
-    /// <summary>
-    /// Gibt für die angegebene Nummer einer Codepage ein entsprechendes <see cref="Encoding"/>-Objekt
-    /// zurück, dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
-    /// auf die gewünschten Werte eingestellt sind.
-    /// </summary>
-    /// 
+    /// <summary>Returns a corresponding <see cref="Encoding" /> object for a specified code
+    /// page number, whose properties <see cref="Encoding.EncoderFallback" /> and <see cref="Encoding.DecoderFallback"
+    /// /> are set to the desired values.</summary>
     /// <param name="codePage">
     /// <para>
-    /// Die Nummer der Codepage.
+    /// The code page number.
     /// </para>
     /// <note type="caution">
-    /// <c>0</c> wird als ungültiges Argument behandelt. Das Verhalten unterscheidet sich damit von
-    /// dem der <see cref="Encoding"/>-Klasse.
-    /// </note></param>
-    /// 
-    /// <param name="encoderFallback">Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
-    /// falls ein Zeichen mit dem <see cref="Encoding"/>-Objekt nicht enkodiert werden kann.</param>
-    /// <param name="decoderFallback">
-    /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
-    /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
-    /// <param name="throwOnInvalidCodePage">Geben Sie <c>true</c> an, damit die Methode
-    /// eine <see cref="ArgumentException"/> wirft, falls <paramref name="codePage"/> nicht übersetzt werden konnte.</param>
-    ///  
-    /// <returns>Ein <see cref="Encoding"/>-Objekt, das der angegebenen Nummer der Codepage
-    /// entspricht und dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
-    /// auf die gewünschten Werte eingestellt sind. Falls keine Entsprechung gefunden wurde, wird in der Standardeinstellung 
-    /// ein entsprechendes <see cref="Encoding"/>-Objekt für UTF-8 zurückgegeben.
-    /// Wenn die Methode mit <c>true</c> als Argument für den Parameter <paramref name="throwOnInvalidCodePage"/> aufgerufen wird, wird
-    /// in diesem Fall eine <see cref="ArgumentException"/> geworfen.</returns>
-    /// 
-    /// <remarks>
-    /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
-    /// Die Methode überschreibt diese Standardeinstellung.
-    /// </remarks>
-    /// 
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="encoderFallback"/> oder <paramref name="decoderFallback"/> ist <c>null</c>.
-    /// </exception>
-    /// <exception cref="ArgumentOutOfRangeException">
-    /// <paramref name="codePage"/> ist kleiner als 1 oder größer als 65535. Diese Ausnahme wird nur dann geworfen, wenn
-    /// für den optionalen Parameter <paramref name="throwOnInvalidCodePage"/>&#160;<c>true</c> übergeben wurde.
-    /// </exception>
-    /// <exception cref="ArgumentException">
-    /// <paramref name="codePage"/> konnte keinem <see cref="Encoding"/>-Objekt zugeordnet werden. Diese Ausnahme wird nur dann geworfen, wenn
-    /// für den optionalen Parameter <paramref name="throwOnInvalidCodePage"/>&#160;<c>true</c> übergeben wurde.
-    /// </exception>
+    /// <c>0</c> is treated as an invalid argument. This behavior is different from that
+    /// of the <see cref="Encoding" /> class.
+    /// </note>
+    /// </param>
+    /// <param name="encoderFallback">An object that provides an error handling mechanism
+    /// if a character cannot be encoded with the <see cref="Encoding" /> object.</param>
+    /// <param name="decoderFallback">An object that provides an error handling mechanism
+    /// if a <see cref="byte" /> sequence cannot be decoded with the <see cref="Encoding"
+    /// /> object .</param>
+    /// <param name="throwOnInvalidCodePage">Pass <c>true</c> to have the method throw an
+    /// <see cref="ArgumentException" /> if <paramref name="codePage" /> could not be converted.</param>
+    /// <returns>An <see cref="Encoding" /> object that corresponds to the specified code
+    /// page number and whose properties <see cref="Encoding.EncoderFallback" /> and <see
+    /// cref="Encoding.DecoderFallback" /> are set to the desired values. If no match is
+    /// found, a corresponding <see cref="P:System.Text.Encoding" /> object for UTF-8 is
+    /// returned by default. If the method is called with <c>true</c> as an argument for
+    /// the <paramref name="throwOnInvalidCodePage" /> parameter, an <see cref="ArgumentException"
+    /// /> will be thrown instead.</returns>
+    /// <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number
+    /// of character sets. The method overrides this default setting.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="encoderFallback" /> or <paramref
+    /// name="decoderFallback" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="codePage" /> is less
+    /// than 1 or greater than 65535. This exception is only thrown if the optional parameter
+    /// <paramref name="throwOnInvalidCodePage" /> is <c>true</c>.</exception>
+    /// <exception cref="ArgumentException"> <paramref name="codePage" /> could not be mapped
+    /// to a <see cref="Encoding" /> object. This exception is only thrown if the optional
+    /// parameter <paramref name="throwOnInvalidCodePage" /> is <c>true</c>.</exception>
     public static Encoding GetEncoding(int codePage,
                                        EncoderFallback encoderFallback,
                                        DecoderFallback decoderFallback,
@@ -225,26 +192,21 @@ public static class TextEncodingConverter
     }
 
 
-    /// <summary>
-    /// Versucht, für den angegebenen Bezeichner eines Zeichensatzes ein entsprechendes <see cref="Encoding"/>-Objekt
-    /// zurückzugeben.
-    /// </summary>
-    /// 
-    /// <param name="encodingWebName">Der Bezeichner des Zeichensatzes.</param>
-    /// <param name="encoding">Enthält nach dem erfolgreichen Beenden der Methode ein <see cref="Encoding"/>-Objekt, 
-    /// das dem angegebenen Bezeichner des Zeichensatzes entspricht, andernfalls <c>null</c>. Der Parameter wird 
-    /// uninitialisiert übergeben.</param>
-    /// 
-    /// <returns><c>true</c>, wenn die Konvertierung erfolgreich war, andernfalls <c>false</c>.</returns>
-    /// 
+    /// <summary>Tries to return a corresponding <see cref="Encoding" /> object for the specified
+    /// identifier of a character set.</summary>
+    /// <param name="encodingWebName">The identifier of the character set.</param>
+    /// <param name="encoding">When this method returns <c>true</c>, contains an <see cref="Encoding"
+    /// /> object that matches the specified identifier of a character set, <c>null</c> otherwise.
+    /// This parameter is passed uninitialized.</param>
+    /// <returns> <c>true</c> if the conversion was successful, <c>false</c> otherwise.</returns>
     /// <remarks>
     /// <para>
-    /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
-    /// Die Methode überschreibt diese Standardeinstellung.
+    /// .NET Standard and .NET 5.0 or later only recognize a small number of character sets
+    /// by default. The method overrides this default.
     /// </para>
     /// <para>
-    /// Die Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/> des erzeugten
-    /// <see cref="Encoding"/>-Objekts sind auf ReplacementFallback eingestellt.
+    /// The properties <see cref="Encoding.EncoderFallback" /> and <see cref="Encoding.DecoderFallback"
+    /// /> of the generated <see cref="Encoding" /> object are set to ReplacementFallback.
     /// </para>
     /// </remarks>
     public static bool TryGetEncoding(string? encodingWebName, [NotNullWhen(true)] out Encoding? encoding)
@@ -253,33 +215,25 @@ public static class TextEncodingConverter
         return !IsWebNameEmpty(encodingWebName) && BuildEncoding(encodingWebName, null, null, ref encoding, out _);
     }
 
-    /// <summary>
-    /// Versucht, für den angegebenen Bezeichner eines Zeichensatzes ein entsprechendes <see cref="Encoding"/>-Objekt
-    /// zurückzugeben, dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
-    /// auf die gewünschten Werte eingestellt sind.
-    /// </summary>
-    /// 
-    /// <param name="encodingWebName">Der Bezeichner des Zeichensatzes.</param>
-    /// <param name="encoderFallback">Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
-    /// falls ein Zeichen mit dem <see cref="Encoding"/>-Objekt nicht enkodiert werden kann.</param>
-    /// <param name="decoderFallback">
-    /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
-    /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
-    /// <param name="encoding">Enthält nach dem erfolgreichen Beenden der Methode ein <see cref="Encoding"/>-Objekt, 
-    /// das dem angegebenen Bezeichner des Zeichensatzes entspricht und dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> 
-    /// und <see cref="Encoding.DecoderFallback"/> auf die gewünschten Werte eingestellt sind, andernfalls <c>null</c>. Der Parameter wird 
-    /// uninitialisiert übergeben.</param>
-    /// 
-    /// <returns><c>true</c>, wenn die Konvertierung erfolgreich war, andernfalls <c>false</c>.</returns>
-    /// 
-    /// <remarks>
-    /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
-    /// Die Methode überschreibt diese Standardeinstellung.
-    /// </remarks>
-    /// 
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="encoderFallback"/> oder <paramref name="decoderFallback"/> ist <c>null</c>.
-    /// </exception>
+    /// <summary>Tries to return a corresponding <see cref="Encoding" /> object for the specified
+    /// identifier of a character set, whose properties <see cref="Encoding.EncoderFallback"
+    /// /> and <see cref="Encoding.DecoderFallback" /> are set to the desired values.</summary>
+    /// <param name="encodingWebName">The identifier of the character set.</param>
+    /// <param name="encoderFallback">An object that provides an error handling mechanism
+    /// if a character cannot be encoded with the <see cref="Encoding" /> object.</param>
+    /// <param name="decoderFallback">An object that provides an error handling mechanism
+    /// if a <see cref="byte" /> sequence cannot be decoded with the <see cref="Encoding"
+    /// /> object .</param>
+    /// <param name="encoding">When this method returns <c>true</c>, contains an <see cref="Encoding"
+    /// /> object that matches the specified identifier of a character set and whose properties
+    /// <see cref="Encoding.EncoderFallback" /> und <see cref="Encoding.DecoderFallback"
+    /// /> are set to the desired values, <c>null</c> otherwise. This parameter is passed
+    /// uninitialized.</param>
+    /// <returns> <c>true</c> if the conversion was successful, <c>false</c> otherwise.</returns>
+    /// <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number
+    /// of character sets. The method overrides this default setting.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="encoderFallback" /> or <paramref
+    /// name="decoderFallback" /> is <c>null</c>.</exception>
     public static bool TryGetEncoding(string? encodingWebName,
                                       EncoderFallback encoderFallback,
                                       DecoderFallback decoderFallback,
@@ -291,33 +245,29 @@ public static class TextEncodingConverter
 
 
 
-    /// <summary>
-    /// Versucht, für die angegebene Nummer einer Codepage ein entsprechendes <see cref="Encoding"/>-Objekt
-    /// zurückzugeben.
-    /// </summary>
-    /// 
+    /// <summary>Tries to return a corresponding <see cref="Encoding" /> object for the specified
+    /// code page number.</summary>
     /// <param name="codePage">
     /// <para>
-    /// Die Nummer der Codepage.
+    /// The code page number.
     /// </para>
     /// <note type="caution">
-    /// <c>0</c> wird als ungültiges Argument behandelt. Das Verhalten unterscheidet sich damit von
-    /// dem der <see cref="Encoding"/>-Klasse.
-    /// </note></param>
-    /// <param name="encoding">Enthält nach dem erfolgreichen Beenden der Methode ein <see cref="Encoding"/>-Objekt, 
-    /// das der angegebenen Nummer der Codepage entspricht, andernfalls <c>null</c>. Der Parameter wird 
-    /// uninitialisiert übergeben.</param>
-    /// 
-    /// <returns><c>true</c>, wenn die Konvertierung erfolgreich war, andernfalls <c>false</c>.</returns>
-    /// 
+    /// <c>0</c> is treated as an invalid argument. This behavior is different from that
+    /// of the <see cref="Encoding" /> class.
+    /// </note>
+    /// </param>
+    /// <param name="encoding">When this method returns <c>true</c>, contains an <see cref="Encoding"
+    /// /> object that matches the specified code page number, <c>null</c> otherwise. This
+    /// parameter is passed uninitialized.</param>
+    /// <returns> <c>true</c> if the conversion was successful, <c>false</c> otherwise.</returns>
     /// <remarks>
     /// <para>
-    /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
-    /// Die Methode überschreibt diese Standardeinstellung.
+    /// .NET Standard and .NET 5.0 or later only recognize a small number of character sets
+    /// by default. The method overrides this default.
     /// </para>
     /// <para>
-    /// Die Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/> des erzeugten
-    /// <see cref="Encoding"/>-Objekts sind auf ReplacementFallback eingestellt.
+    /// The properties <see cref="Encoding.EncoderFallback" /> and <see cref="Encoding.DecoderFallback"
+    /// /> of the generated <see cref="Encoding" /> object are set to ReplacementFallback.
     /// </para>
     /// </remarks>
     public static bool TryGetEncoding(int codePage, [NotNullWhen(true)] out Encoding? encoding)
@@ -326,41 +276,32 @@ public static class TextEncodingConverter
         return !CodepageOutOfRange(codePage) && BuildEncoding(codePage, null, null, ref encoding, out _);
     }
 
-    /// <summary>
-    /// Versucht, für die angegebene Nummer einer Codepage ein entsprechendes <see cref="Encoding"/>-Objekt
-    /// zurückzugeben, dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> und <see cref="Encoding.DecoderFallback"/>
-    /// auf die gewünschten Werte eingestellt sind.
-    /// </summary>
-    /// 
+    /// <summary>Tries to return a corresponding <see cref="Encoding" /> object for the specified
+    /// code page number, whose properties <see cref="Encoding.EncoderFallback" /> and <see
+    /// cref="Encoding.DecoderFallback" /> are set to the desired values.</summary>
     /// <param name="codePage">
     /// <para>
-    /// Die Nummer der Codepage.
+    /// The code page number.
     /// </para>
     /// <note type="caution">
-    /// <c>0</c> wird als ungültiges Argument behandelt. Das Verhalten unterscheidet sich damit von
-    /// dem der <see cref="Encoding"/>-Klasse.
-    /// </note></param>
-    /// 
-    /// <param name="encoderFallback">Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
-    /// falls ein Zeichen mit dem <see cref="Encoding"/>-Objekt nicht enkodiert werden kann.</param>
-    /// <param name="decoderFallback">
-    /// Ein Objekt, das einen Fehlerbehandlungsmechanismus zur Verfügung stellt,
-    /// falls eine <see cref="byte"/>-Sequenz mit dem <see cref="Encoding"/>-Objekt nicht dekodiert werden kann.</param>
-    /// <param name="encoding">Enthält nach dem erfolgreichen Beenden der Methode ein <see cref="Encoding"/>-Objekt, 
-    /// das der angegebenen Nummer der Codepage entspricht und dessen Eigenschaften <see cref="Encoding.EncoderFallback"/> 
-    /// und <see cref="Encoding.DecoderFallback"/> auf die gewünschten Werte eingestellt sind, andernfalls <c>null</c>. Der Parameter wird 
-    /// uninitialisiert übergeben.</param>
-    /// 
-    /// <returns><c>true</c>, wenn die Konvertierung erfolgreich war, andernfalls <c>false</c>.</returns>
-    /// 
-    /// <remarks>
-    /// .NET Standard und .NET 5.0 oder höher erkennen in der Standardeinstellung nur eine geringe Anzahl von Zeichensätzen.
-    /// Die Methode überschreibt diese Standardeinstellung.
-    /// </remarks>
-    /// 
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="encoderFallback"/> oder <paramref name="decoderFallback"/> ist <c>null</c>.
-    /// </exception>
+    /// <c>0</c> is treated as an invalid argument. This behavior is different from that
+    /// of the <see cref="Encoding" /> class.
+    /// </note>
+    /// </param>
+    /// <param name="encoderFallback">An object that provides an error handling mechanism
+    /// if a character cannot be encoded with the <see cref="Encoding" /> object.</param>
+    /// <param name="decoderFallback">An object that provides an error handling mechanism
+    /// if a <see cref="byte" /> sequence cannot be decoded with the <see cref="Encoding"
+    /// /> object .</param>
+    /// <param name="encoding">When this method returns <c>true</c>, contains an <see cref="Encoding"
+    /// /> object that matches the specified code page number and whose properties <see cref="Encoding.EncoderFallback"
+    /// /> und <see cref="Encoding.DecoderFallback" /> are set to the desired values, <c>null</c>
+    /// otherwise. This parameter is passed uninitialized.</param>
+    /// <returns> <c>true</c> if the conversion was successful, <c>false</c> otherwise.</returns>
+    /// <remarks>.NET Standard and .NET 5.0 or higher recognize by default only a small number
+    /// of character sets. The method overrides this default setting.</remarks>
+    /// <exception cref="ArgumentNullException"> <paramref name="encoderFallback" /> or <paramref
+    /// name="decoderFallback" /> is <c>null</c>.</exception>
     public static bool TryGetEncoding(int codePage,
                                        EncoderFallback encoderFallback,
                                        DecoderFallback decoderFallback,
@@ -540,32 +481,42 @@ public static class TextEncodingConverter
     #endregion
     #endregion
 
-    /// <summary>
-    /// Untersucht eine schreibgeschützte <see cref="byte"/>-Spanne, die den Inhalt
-    /// einer Textdatei darstellt, daraufhin, ob
-    /// sie mit einem Byte Order Mark (BOM) beginnt und gibt eine geeignete Codepage
-    /// zurück. (Das Fallback-Value ist 65001 für UTF-8.)
-    /// </summary>
-    /// <param name="data">Die zu untersuchende Spanne.</param>
-    /// <param name="bomLength">Enthält nach Beendigung der Methode die Länge des gefundenen BOM oder 0, wenn kein BOM
-    /// gefunden wurde. Der Parameter wird uninitialisiert übergeben.</param>
-    /// <returns>Eine geeignete Codepage für <paramref name="data"/> oder die Codepage
-    /// für UTF-8 (65001), falls die Codepage nicht aus <paramref name="data"/> ermittelt
-    /// werden konnte.</returns>
-    /// <remarks>
-    /// Die Methode erkennt die Byte Order Marks für die folgenden Zeichensätze:
+    /// <summary>Examines a read-only <see cref="byte" /> span, that represents the contents
+    /// of a text file, to see if it starts with a Byte Order Mark (BOM), and returns an
+    /// appropriate code page. (The fallback value is 65001 for UTF-8.)</summary>
+    /// <param name="data">The span to examine.</param>
+    /// <param name="bomLength">When the method returns, it contains the length of the BOM
+    /// found or zero if no BOM was found. The parameter is passed uninitialized.</param>
+    /// <returns>An appropriate code page for <paramref name="data" /> or the code page for
+    /// UTF-8 (65001) if the code page could not be determined from <paramref name="data"
+    /// />.</returns>
+    /// <remarks>The method recognizes the Byte Order Marks for the following character sets:
     /// <list type="bullet">
-    /// <item>UTF-8</item>
-    /// <item>UTF-16LE</item>
-    /// <item>UTF-16BE</item>
-    /// <item>UTF-32LE</item>
-    /// <item>UTF-32BE</item>
-    /// <item>UTF-7</item>
-    /// <item>GB18030</item>
+    /// <item>
+    /// UTF-8
+    /// </item>
+    /// <item>
+    /// UTF-16LE
+    /// </item>
+    /// <item>
+    /// UTF-16BE
+    /// </item>
+    /// <item>
+    /// UTF-32LE
+    /// </item>
+    /// <item>
+    /// UTF-32BE
+    /// </item>
+    /// <item>
+    /// UTF-7
+    /// </item>
+    /// <item>
+    /// GB18030
+    /// </item>
     /// </list>
     /// <para>
-    /// UTF-16LE, UTF-16BE, UTF-32LE und UTF-32BE können von der Methode u.U. auch dann aus den
-    /// Daten erkannt werden, wenn kein Byte Order Mark vorliegt.
+    /// UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method from
+    /// the data if there is no Byte Order Mark.
     /// </para>
     /// </remarks>
     public static int GetCodePage(ReadOnlySpan<byte> data, out int bomLength)

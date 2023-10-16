@@ -1,12 +1,11 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
 public static partial class ReadOnlySpanExtension
 {
-    /// <summary>
-    /// Gibt die Länge zurück, die die schreibgeschützte Zeichenspanne ohne nachgestellten Leerraum hätte.
-    /// </summary>
-    /// <param name="span">Die zu untersuchende Zeichenspanne.</param>
-    /// <returns>Die Länge, die <paramref name="span"/> ohne nachgestellten Leerraum hätte.</returns>
+    /// <summary>Returns the length that the read-only span would have without trailing white
+    /// space.</summary>
+    /// <param name="span">The span to examine.</param>
+    /// <returns>The length that the span would have without trailing white space.</returns>
     public static int GetTrimmedLength(this ReadOnlySpan<char> span)
     {
         int length = span.Length;

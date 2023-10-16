@@ -1,18 +1,18 @@
-﻿using FolkerKinzel.Strings.Polyfills;
+using FolkerKinzel.Strings.Polyfills;
 
 namespace FolkerKinzel.Strings;
 
 public static partial class StringExtension
 {
-    /// <summary>
-    /// Erzeugt einen <see cref="string"/>, aus dem alle nachgestellten Vorkommen der Zeichen in der angegebenen Spanne entfernt sind.
-    /// </summary>
-    /// <param name="s">Die zu untersuchende Zeichenfolge.</param>
-    /// <param name="trimChars">Eine Spanne mit den zu entfernenden Unicode-Zeichen. Wenn <paramref name="trimChars"/> eine leere Spanne ist,
-    /// werden stattdessen Leerzeichen entfernt.</param>
-    /// <returns>Die resultierende Zeichenfolge, nachdem alle im <paramref name="trimChars"/>-Parameter übergebenen Zeichen am Ende der 
-    /// Zeichenfolge entfernt wurden. </returns>
-    /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+    /// <summary>Generates a <see cref="string" /> from which all trailing occurrences of
+    /// the characters in the specified Span are removed.</summary>
+    /// <param name="s">The <see cref="string" /> to search.</param>
+    /// <param name="trimChars">A Span of Unicode characters to remove. If <paramref name="trimChars"
+    /// /> is an empty Span, Unicode white-space characters are removed instead.</param>
+    /// <returns>The resulting <see cref="string" /> after removing all characters passed
+    /// in the <paramref name="trimChars" /> parameter from the end of the <see cref="string"
+    /// />.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     public static string TrimEnd(this string s, ReadOnlySpan<char> trimChars)
     {
         if (s is null)

@@ -1,58 +1,53 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
 {
-    /// <summary>
-    /// Wandelt den gesamten Inhalt eines <see cref="StringBuilder"/>s in Großbuchstaben um und verwendet
-    /// dabei die Regeln der invarianten Kultur.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt bearbeitet wird.</param>
-    /// <returns>Eine Referenz auf <paramref name="builder"/>.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <summary>Converts the entire content of a <see cref="StringBuilder" /> to uppercase
+    /// letters using the rules of the invariant culture.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
+    /// <returns>A reference to <paramref name="builder" />.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder ToUpperInvariant(this StringBuilder builder)
         => builder is null ? throw new ArgumentNullException(nameof(builder))
                            : builder.ToUpperInvariant(0, builder.Length);
 
-    /// <summary>
-    /// Wandelt den Inhalt eines <see cref="StringBuilder"/>s beginnend bei <paramref name="startIndex"/>
-    /// in Großbuchstaben um und verwendet
-    /// dabei die Regeln der invarianten Kultur.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt bearbeitet wird.</param>
-    /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem die Umwandlung
-    /// beginnt.</param>
-    /// <returns>Eine Referenz auf <paramref name="builder"/>.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/> ist kleiner als 0 oder
-    /// größer als die Anzahl der Zeichen in <paramref name="builder"/>.</exception>
+    /// <summary>Converts the content of a <see cref="StringBuilder" /> starting with <paramref
+    /// name="startIndex" /> into uppercase letters and uses the rules of the invariant culture.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
+    /// <param name="startIndex">The zero-based index in <paramref name="builder" /> at which
+    /// the conversion starts.</param>
+    /// <returns>A reference to <paramref name="builder" />.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="startIndex" /> is
+    /// less than zero or greater than the number of characters in <paramref name="builder"
+    /// />.</exception>
     public static StringBuilder ToUpperInvariant(this StringBuilder builder, int startIndex)
         => builder is null ? throw new ArgumentNullException(nameof(builder))
                            : builder.ToUpperInvariant(startIndex, builder.Length - startIndex);
 
 
-    /// <summary>
-    /// Wandelt den Inhalt eines Abschnitts in <see cref="StringBuilder"/>, der bei <paramref name="startIndex"/>
-    /// beginnt und <paramref name="count"/> Zeichen umfasst, in Großbuchstaben um und verwendet
-    /// dabei die Regeln der invarianten Kultur.
-    /// </summary>
-    /// <param name="builder">Der <see cref="StringBuilder"/>, dessen Inhalt bearbeitet wird.</param>
-    /// <param name="startIndex">Der nullbasierte Index in <paramref name="builder"/>, an dem die Umwandlung
-    /// beginnt.</param>
-    /// <param name="count">Die Anzahl der zu bearbeitenden Zeichen.</param>
-    /// <returns>Eine Referenz auf <paramref name="builder"/>.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> ist <c>null</c>.</exception>
+    /// <summary>Converts the content of a section in <see cref="StringBuilder" /> that begins
+    /// at <paramref name="startIndex" /> and includes <paramref name="count" /> characters
+    /// to uppercase using the rules of the invariant culture.</summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
+    /// <param name="startIndex">The zero-based index in <paramref name="builder" /> at which
+    /// the conversion starts.</param>
+    /// <param name="count">The number of characters to convert.</param>
+    /// <returns>A reference to <paramref name="builder" />.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="startIndex"/> oder <paramref name="count"/> sind kleiner als 0 oder
-    /// größer als die Anzahl der Zeichen in <paramref name="builder"/>
+    /// <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero
+    /// or larger than the number of characters in <paramref name="builder" />
     /// </para>
     /// <para>
-    /// - oder -
+    /// - or -
     /// </para>
     /// <para>
-    /// <paramref name="startIndex"/> + <paramref name="count"/> ist größer als die Anzahl der Zeichen in
-    /// <paramref name="builder"/>.
-    /// </para></exception>
+    /// <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number
+    /// of characters in <paramref name="builder" />.
+    /// </para>
+    /// </exception>
     public static StringBuilder ToUpperInvariant(this StringBuilder builder, int startIndex, int count)
     {
         if (builder is null)

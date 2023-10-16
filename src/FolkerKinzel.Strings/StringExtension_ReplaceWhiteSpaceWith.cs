@@ -1,32 +1,32 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
 public static partial class StringExtension
 {
-    /// <summary>
-    /// Erzeugt einen neuen <see cref="string"/>, in dem alle Sequenzen von Leerzeichen in <paramref name="s"/> durch 
-    /// <paramref name="replacement"/> ersetzt sind.
-    /// </summary>
-    /// <param name="s">Der Quell-<see cref="string"/>.</param>
-    /// <param name="replacement">Eine schreibgeschützte Zeichenspanne, durch deren Inhalt die Leerzeichen-Sequenzen
-    /// ersetzt werden.</param>
-    /// <param name="skipNewLines">Übergeben Sie <c>true</c>, um Zeilenumbruchzeichen von der 
-    /// Ersetzung auszunehmen. Der Standardwert ist <c>false</c>.</param>
-    /// <returns>Ein neuer <see cref="string"/>, in in dem alle Sequenzen von Leerzeichen in <paramref name="s"/> durch 
-    /// <paramref name="replacement"/> ersetzt sind. Wenn <paramref name="s"/> kein Leerzeichen enthält, wird <paramref name="s"/>
-    /// zurückgegeben.</returns>
+    /// <summary>Generates a <see cref="string" /> in which all sequences of white space
+    /// are replaced by <paramref name="replacement" />.</summary>
+    /// <param name="s">The source <see cref="string" />.</param>
+    /// <param name="replacement">A read-only character span that is the replacement for
+    /// all white space sequences. If an empty span is passed to the parameter, each white
+    /// space will be completely removed.</param>
+    /// <param name="skipNewLines">Pass <c>true</c> to exclude newline characters from the
+    /// replacement. The default value is <c>false</c>.</param>
+    /// <returns>A new <see cref="string" /> in which all sequences of white space are replaced
+    /// by <paramref name="replacement" />. If <paramref name="s" /> doesn't contain a white
+    /// space character, <paramref name="s" /> is returned.</returns>
     /// <remarks>
     /// <para>
-    /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)"/> zur Identifizierung von Leerraumzeichen und arbeitet
-    /// damit gründlicher als 
-    /// <see cref="Regex.Replace(string, string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+    /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)" /> zur Identifizierung
+    /// von Leerraumzeichen und arbeitet damit gründlicher als <see cref="Regex.Replace(string,
+    /// string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
     /// </para>
-    /// <para>(Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"/>
-    /// verwendet.)
+    /// <para>
+    /// (Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"
+    /// /> verwendet.)
     /// </para>
     /// </remarks>
-    /// <exception cref="ArgumentNullException"><paramref name="s"/> ist <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     public static string ReplaceWhiteSpaceWith(
         this string s,
         ReadOnlySpan<char> replacement,

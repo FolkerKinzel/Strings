@@ -1,28 +1,22 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings;
 
-/// <summary>
-/// Erweiterungsmethoden für die <see cref="char"/>-Struktur.
-/// </summary>
+    /// <summary>Extension methods for the <see cref="char" /> structure.</summary>
 public static class CharExtension
 {
-    /// <summary>
-    /// Untersucht, ob sich der Wert von <paramref name="c"/> im Bereich
-    /// von <paramref name="minInclusive"/> bis <paramref name="maxInclusive"/>
-    /// befindet (die Grenzen eingeschlossen).
-    /// </summary>
-    /// <param name="c">Das Zeichen, dessen Wert überprüft wird.</param>
-    /// <param name="minInclusive">Die untere Grenze des zu überprüfenden Bereichs.</param>
-    /// <param name="maxInclusive">Die obere Grenze des zu überprüfenden Bereichs.</param>
-    /// <returns><c>true</c>, wenn der Wert von <paramref name="c"/> innerhalb des 
-    /// angegebenen Bereichs liegt, andernfalls <c>false</c>.</returns>
-    /// <remarks>Die Methode überprüft nicht, ob <paramref name="maxInclusive"/> größer
-    /// oder gleich <paramref name="minInclusive"/> ist. Wenn <paramref name="maxInclusive"/>
-    /// kleiner als <paramref name="minInclusive"/> ist, ist das Verhalten der Methode undefiniert.</remarks>
+    /// <summary>Indicates whether a character is within the specified inclusive range.</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <param name="minInclusive">The lower bound, inclusive.</param>
+    /// <param name="maxInclusive">The upper bound, inclusive.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is within the specified range; otherwise,
+    /// false.</returns>
+    /// <remarks>The method does not validate that <paramref name="maxInclusive" /> is greater
+    /// than or equal to <paramref name="minInclusive" />. If <paramref name="maxInclusive"
+    /// /> is less than <paramref name="minInclusive" />, the behavior is undefined.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsBetween(this char c, char minInclusive, char maxInclusive)
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
@@ -31,24 +25,20 @@ public static class CharExtension
         => char.IsBetween(c, minInclusive, maxInclusive);
 #endif
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen ein ASCII-Kleinbuchstabe ist.
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c> wenn <paramref name="c"/> ein ASCII-Kleinbuchstabe ist,
-    /// andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether a character is categorized as a lowercase ASCII letter.</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is a lowercase ASCII letter; otherwise
+    /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Obsolete("Use IsAsciiLetterLower(this char) instead.", true)]
     [Browsable(false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static bool IsAsciiLowerCaseLetter(this char c) => c.IsAsciiLetterLower();
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen ein ASCII-Kleinbuchstabe ist.
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Kleinbuchstabe ist,
-    /// andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether a character is categorized as a lowercase ASCII letter.</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is a lowercase ASCII letter; otherwise
+    /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetterLower(this char c)
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
@@ -57,12 +47,10 @@ public static class CharExtension
         => char.IsAsciiLetterLower(c);
 #endif
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen ein ASCII-Großbuchstabe ist.
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
-    /// andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether a character is categorized as an uppercase ASCII letter.</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is an uppercase ASCII letter; otherwise
+    /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Obsolete("Use IsAsciiLetterUpper(this char) instead.", true)]
     [Browsable(false)]
@@ -70,12 +58,10 @@ public static class CharExtension
     public static bool IsAsciiUpperCaseLetter(this char c) => IsAsciiLetterUpper(c);
         
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen ein ASCII-Großbuchstabe ist.
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Großbuchstabe ist,
-    /// andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether a character is categorized as an uppercase ASCII letter.</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is an uppercase ASCII letter; otherwise
+    /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetterUpper(this char c)
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
@@ -84,12 +70,9 @@ public static class CharExtension
         => char.IsAsciiLetterUpper(c);
 #endif
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen ein ASCII-Buchstabe ist.
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Buchstabe ist,
-    /// andernfalls <c>false</c>.</returns>
+    /// <summary>Examines whether the Unicode character is an ASCII letter.</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is an ASCII letter, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetter(this char c)
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
@@ -98,14 +81,11 @@ public static class CharExtension
         => char.IsAsciiLetter(c);
 #endif
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als ASCII-Buchstabe [A-Za-z] oder Dezimalziffer [0-9]
-    /// charakterisiert wird.
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> ein ASCII-Buchstabe [A-Za-z] oder
-    /// eine Dezimalziffer [0-9] ist,
-    /// andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether a character is categorized as an ASCII letter [A-Za-z]
+    /// or digit [0-9].</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is an ASCII letter or digit, otherwise
+    /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetterOrDigit(this char c)
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
@@ -115,29 +95,24 @@ public static class CharExtension
 #endif
 
 
-    /// <summary>
-    /// Ruft den Wert einer Hexadezimalziffer ab.
-    /// </summary>
-    /// <param name="digit">Die zu konvertierende Hexadezimalziffer (0-9, a-f, A-F).</param>
-    /// <returns>Eine Zahl von 0 bis 15, die der angegebenen Hexadezimalziffer entspricht.</returns>
-    /// <remarks>Ruft <see cref="Uri.FromHex(char)"/> auf.</remarks>
-    /// <exception cref="ArgumentException">
-    /// <paramref name="digit"/> ist keine gültige Hexadezimalziffer (0-9, a-f, A-F).
-    /// </exception>
+    /// <summary>Gets the value of a hexadecimal digit.</summary>
+    /// <param name="digit">The hexadecimal digit to convert (0-9, a-f, A-F).</param>
+    /// <returns>A number from 0 to 15 that corresponds to the specified hexadecimal digit.</returns>
+    /// <remarks>Ruft <see cref="Uri.FromHex(char)" /> auf.</remarks>
+    /// <exception cref="ArgumentException"> <paramref name="digit" /> is not a valid hexadecimal
+    /// digit (0-9, a-f, A-F).</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ParseHexDigit(this char digit)
         => Uri.FromHex(digit);
 
-    /// <summary>
-    /// Versucht, ein Zeichen als Hexadezimalziffer zu interpretieren und den Wert, den 
-    /// diese Hexadezimalziffer darstellt, zurückzugeben.
-    /// </summary>
-    /// <param name="digit">Das zu analysierende Zeichen.</param>
-    /// <param name="value">Enthält nach der erfolgreichen Beendigung der Methode den Wert,
-    /// den <paramref name="digit"/> als Hexadezimalziffer
-    /// darstellt, andernfalls <c>null</c>. Der Parameter wird uninitialisiert übergeben.</param>
-    /// <returns><c>true</c>, wenn <paramref name="digit"/> eine Hexadezimalziffer darstellt,
-    /// andernfalls <c>false</c>.</returns>
+    /// <summary>Tries to interpret a character as a hexadecimal digit and to return the
+    /// value that this hexadecimal digit represents.</summary>
+    /// <param name="digit">The Unicode character to analyze.</param>
+    /// <param name="value">After the method has been successfully completed, it contains
+    /// the value that <paramref name="digit" /> represents as a hexadecimal digit, otherwise
+    /// <c>null</c>. The parameter is passed uninitialized.</param>
+    /// <returns> <c>true</c> if <paramref name="digit" /> represents a hexadecimal digit,
+    /// otherwise <c>false</c>.</returns>
     public static bool TryParseHexDigit(this char digit, [NotNullWhen(true)] out int? value)
     {
         if (digit.IsAsciiHexDigit())
@@ -150,16 +125,14 @@ public static class CharExtension
         return false;
     }
 
-    /// <summary>
-    /// Versucht, ein Zeichen als Dezimalziffer (0-9) zu interpretieren und den Wert, den 
-    /// diese Dezimalziffer darstellt, zurückzugeben.
-    /// </summary>
-    /// <param name="digit">Das zu analysierende Zeichen.</param>
-    /// <param name="value">Enthält nach der erfolgreichen Beendigung der Methode den Wert,
-    /// den <paramref name="digit"/> als Dezimalziffer
-    /// darstellt, andernfalls <c>null</c>. Der Parameter wird uninitialisiert übergeben.</param>
-    /// <returns><c>true</c>, wenn <paramref name="digit"/> eine Dezimalziffer darstellt,
-    /// andernfalls <c>false</c>.</returns>
+    /// <summary>Tries to interpret a character as a decimal digit (0-9) and to return the
+    /// value that this decimal digit represents.</summary>
+    /// <param name="digit">The Unicode character to analyze.</param>
+    /// <param name="value">After the method has been successfully completed, it contains
+    /// the value that <paramref name="digit" /> represents as a decimal digit, otherwise
+    /// <c>null</c>. The parameter is passed uninitialized.</param>
+    /// <returns> <c>true</c> if <paramref name="digit" /> represents a decimal digit, otherwise
+    /// <c>false</c>.</returns>
     public static bool TryParseDecimalDigit(this char digit, [NotNullWhen(true)] out int? value)
     {
         if (digit.IsAsciiDigit())
@@ -173,16 +146,14 @@ public static class CharExtension
     }
 
 
-    /// <summary>
-    /// Versucht, ein Zeichen als Binärziffer (0 oder 1) zu interpretieren und den Wert, den 
-    /// diese Dezimalziffer darstellt, zurückzugeben.
-    /// </summary>
-    /// <param name="digit">Das zu analysierende Zeichen.</param>
-    /// <param name="value">Enthält nach der erfolgreichen Beendigung der Methode den Wert,
-    /// den <paramref name="digit"/> als Binärziffer
-    /// darstellt, andernfalls <c>null</c>. Der Parameter wird uninitialisiert übergeben.</param>
-    /// <returns><c>true</c>, wenn <paramref name="digit"/> eine Binärziffer darstellt,
-    /// andernfalls <c>false</c>.</returns>
+    /// <summary>Tries to interpret a character as a binary digit (0 or 1) and to return
+    /// the value that this binary digit represents.</summary>
+    /// <param name="digit">The Unicode character to analyze.</param>
+    /// <param name="value">After the method has been successfully completed, it contains
+    /// the value that <paramref name="digit" /> represents as a binary digit, otherwise
+    /// <c>null</c>. The parameter is passed uninitialized.</param>
+    /// <returns> <c>true</c> if <paramref name="digit" /> represents a binary digit, otherwise
+    /// <c>false</c>.</returns>
     public static bool TryParseBinaryDigit(this char digit, [NotNullWhen(true)] out int? value)
     {
         if (digit.IsBinaryDigit())
@@ -195,14 +166,11 @@ public static class CharExtension
         return false;
     }
 
-    /// <summary>
-    /// Ruft den Wert einer Binärziffer ab.
-    /// </summary>
-    /// <param name="digit">Die zu konvertierende Binärziffer (0 oder 1).</param>
-    /// <returns>Eine Zahl, die der angegebenen Binärziffer entspricht.</returns>
-    /// <exception cref="ArgumentException">
-    /// <paramref name="digit"/> ist keine gültige Binärziffer (0 oder 1).
-    /// </exception>
+    /// <summary>Gets the value of a binary digit.</summary>
+    /// <param name="digit">The binary digit to convert (0 or 1).</param>
+    /// <returns>A number that corresponds to the specified binary digit.</returns>
+    /// <exception cref="ArgumentException"> <paramref name="digit" /> is not a valid binary
+    /// digit (0 or 1).</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ParseBinaryDigit(this char digit)
         => TryParseBinaryDigit(digit, out int? value)
@@ -210,14 +178,11 @@ public static class CharExtension
             : throw new ArgumentException(string.Format(Res.NoBinaryDigit, nameof(digit)), nameof(digit));
 
 
-    /// <summary>
-    /// Ruft den Wert einer Dezimalziffer ab.
-    /// </summary>
-    /// <param name="digit">Die zu konvertierende Dezimalziffer (0-9).</param>
-    /// <returns>Eine Zahl von 0 bis 9, die der angegebenen Dezimalziffer entspricht.</returns>
-    /// <exception cref="ArgumentException">
-    /// <paramref name="digit"/> ist keine gültige Dezimalziffer (0-9).
-    /// </exception>
+    /// <summary>Gets the value of a decimal digit (0-9).</summary>
+    /// <param name="digit">The decimal digit to convert (0-9).</param>
+    /// <returns>A number from 0 to 9 that corresponds to the specified decimal digit.</returns>
+    /// <exception cref="ArgumentException"> <paramref name="digit" /> is not a valid decimal
+    /// digit (0-9).</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ParseDecimalDigit(this char digit)
         => TryParseDecimalDigit(digit, out int? value)
@@ -225,12 +190,10 @@ public static class CharExtension
             : throw new ArgumentException(string.Format(Res.NoDecimalDigit, nameof(digit)), nameof(digit));
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen zum ASCII-Zeichensatz gehört.
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> ein Zeichen des ASCII-Zeichensatzes ist,
-    /// andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether the Unicode character belongs to the ASCII character set.</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is part of the ASCII character set,
+    /// otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAscii(this char c)
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0
@@ -240,12 +203,9 @@ public static class CharExtension
 #endif
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen eine Dezimalziffer (0-9) darstellt.
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> eine Dezimalziffer
-    /// darstellt, andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether a character is categorized as an ASCII digit [0-9].</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is an ASCII digit, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Obsolete("Use IsAsciiDigit(this char) instead.", true)]
     [Browsable(false)]
@@ -253,12 +213,9 @@ public static class CharExtension
     public static bool IsDecimalDigit(this char c) => c.IsAsciiDigit();
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen eine Dezimalziffer (0-9) darstellt.
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> eine Dezimalziffer
-    /// darstellt, andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether a character is categorized as an ASCII digit [0-9].</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is an ASCII digit, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiDigit(this char c)
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
@@ -268,13 +225,12 @@ public static class CharExtension
 #endif
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen eine eine gültige Hexadezimalziffer (0-9, a-f, A-F) ist.
-    /// </summary>
-    /// <param name="character">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="character"/> eine Hexadezimalziffer
-    /// ist, andernfalls <c>false</c>.</returns>
-    /// <remarks>Ruft <see cref="Uri.IsHexDigit(char)"/> auf.</remarks>
+    /// <summary>Indicates whether a character is categorized as an ASCII hexademical digit
+    /// [0-9a-fA-F].</summary>
+    /// <param name="character">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="character" /> represents a hexadecimal digit,
+    /// otherwise <c>false</c>.</returns>
+    /// <remarks>Ruft <see cref="Uri.IsHexDigit(char)" /> auf.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Obsolete("Use IsAsciiHexDigit(this char) instead.", true)]
     [Browsable(false)]
@@ -282,12 +238,11 @@ public static class CharExtension
     public static bool IsHexDigit(this char character) => Uri.IsHexDigit(character);
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen eine eine gültige Hexadezimalziffer (0-9, a-f, A-F) ist.
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> eine Hexadezimalziffer
-    /// ist, andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether a character is categorized as an ASCII hexademical digit
+    /// [0-9a-fA-F].</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is a hexadecimal digit; otherwise
+    /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiHexDigit(this char c)
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
@@ -296,12 +251,11 @@ public static class CharExtension
         => char.IsAsciiHexDigit(c);
 #endif
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen eine eine Hexadezimalziffer in Kleinschreibung ist [0-9a-f].
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> eine Hexadezimalziffer
-    /// in Kleinschreibung ist [0-9a-f], andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether a character is categorized as an ASCII lower-case hexademical
+    /// digit [0-9a-f].</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is a lower-case hexadecimal digit;
+    /// otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiHexDigitLower(this char c)
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
@@ -310,12 +264,11 @@ public static class CharExtension
         => char.IsAsciiHexDigitLower(c);
 #endif
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen eine eine Hexadezimalziffer in Großschreibung ist [0-9A-F].
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> eine Hexadezimalziffer
-    /// in Großschreibung ist [0-9A-F], andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether a character is categorized as an ASCII upper-case hexadecimal
+    /// digit [0-9A-F].</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is an upper-case hexadecimal digit;
+    /// otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiHexDigitUpper(this char c)
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
@@ -325,251 +278,197 @@ public static class CharExtension
 #endif
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen eine Binärziffer (0 oder 1) darstellt.
-    /// </summary>
-    /// <param name="c">Das zu überprüfende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> eine Binärziffer
-    /// darstellt, andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether the Unicode character is a binary digit (0 or 1).</summary>
+    /// <param name="c">The character to evaluate.</param>
+    /// <returns> <c>true</c> if <paramref name="digit" /> represents a binary digit, otherwise
+    /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsBinaryDigit(this char c) => c is '0' or '1';
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als Steuerzeichen kategorisiert wird.
-    /// </summary>
-    /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> als Steuerzeichen
-    /// kategorisiert wird, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsControl(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character is categorized as a control character.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a control character,
+    /// otherwise <c>false</c>.</returns>
+    /// <remarks> Ruft <see cref="char.IsControl(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsControl(this char c) => char.IsControl(c);
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als Mitglied der Unicode-Kategorie
-    /// "Decimal Digit Number" kategorisiert wird.
-    /// </summary>
-    /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> als
-    /// Mitglied der Unicode-Kategorie
-    /// "Decimal Digit Number"
-    /// kategorisiert wird, andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether the Unicode character is categorized as a member of the
+    /// Unicode category "Decimal Digit Number".</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c>, if <paramref name="c" /> is categorized as a member of the
+    /// Unicode category "Decimal Digit Number", otherwise <c>false</c>.</returns>
     /// <remarks>
     /// <para>
-    /// Ruft die Methode <see cref="char.IsDigit(char)"/> auf.
+    /// Ruft die Methode <see cref="char.IsDigit(char)" /> auf.
     /// </para>
     /// <note type="important">
-    /// Zur Unicode-Kategorie "Decimal Digit Number" gehören sehr viel mehr
-    /// Zeichen als die Ziffern 0-9. Verwenden sie die Methode <see cref="CharExtension.IsAsciiDigit(char)"/>,
-    /// wenn Sie auf die Zeichen 0-9 prüfen möchten.
+    /// Zur Unicode-Kategorie "Decimal Digit Number" gehören sehr viel mehr Zeichen als die
+    /// Ziffern 0-9. Verwenden sie die Methode <see cref="CharExtension.IsAsciiDigit(char)"
+    /// />, wenn Sie auf die Zeichen 0-9 prüfen möchten.
     /// </note>
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsDigit(this char c) => char.IsDigit(c);
 
-    /// <summary>
-    /// Untersucht, ob <paramref name="c"/> ein hohes Ersatzzeichen ist.
-    /// </summary>
-    /// <param name="c">Die auszuwertende <see cref="char"/>-Instanz.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> ein hohes 
-    /// Ersatzzeichen ist, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsHighSurrogate(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character is a high surrogate.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is a high surrogate, otherwise <c>false</c>.</returns>
+    /// <remarks> Ruft <see cref="char.IsHighSurrogate(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsHighSurrogate(this char c) => char.IsHighSurrogate(c);
 
 
-    /// <summary>
-    /// Untersucht, ob <paramref name="c"/> ein niedriges Ersatzzeichen ist.
-    /// </summary>
-    /// <param name="c">Die auszuwertende <see cref="char"/>-Instanz.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> ein niedriges 
-    /// Ersatzzeichen ist, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsLowSurrogate(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character is a low surrogate.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is a low surrogate, otherwise <c>false</c>.</returns>
+    /// <remarks> Ruft <see cref="char.IsLowSurrogate(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsLowSurrogate(this char c) => char.IsLowSurrogate(c);
 
 
-    /// <summary>
-    /// Untersucht, ob <paramref name="c"/> über eine Ersatzzeichencodeeinheit verfügt.
-    /// </summary>
-    /// <param name="c">Die auszuwertende <see cref="char"/>-Instanz.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> über eine Ersatzzeichencodeeinheit 
-    /// verfügt, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsSurrogate(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character has a surrogate code unit.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> has a surrogate code unit, otherwise
+    /// <c>false</c>.</returns>
+    /// <remarks> Ruft <see cref="char.IsSurrogate(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsSurrogate(this char c) => char.IsSurrogate(c);
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als Unicode-Buchstabe kategorisiert wird.
-    /// </summary>
-    /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> als Unicode-Buchstabe
-    /// kategorisiert wird, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsLetter(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character is categorized as a Unicode letter.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a Unicode letter,
+    /// otherwise <c>false</c>.</returns>
+    /// <remarks> Ruft <see cref="char.IsLetter(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsLetter(this char c) => char.IsLetter(c);
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als Buchstabe oder Dezimalzahl kategorisiert wird.
-    /// </summary>
-    /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> als Buchstabe oder Dezimalzahl
-    /// kategorisiert wird, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsLetterOrDigit(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character is categorized as a Unicode letter
+    /// or decimal digit.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a Unicode letter
+    /// or decimal digit, otherwise <c>false</c>.</returns>
+    /// <remarks> Ruft <see cref="char.IsLetterOrDigit(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsLetterOrDigit(this char c) => char.IsLetterOrDigit(c);
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als Kleinbuchstabe kategorisiert wird.
-    /// </summary>
-    /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> als Kleinbuchstabe
-    /// kategorisiert wird, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsLower(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character is categorized as a lowercase letter.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a lowercase letter,
+    /// otherwise <c>false</c>.</returns>
+    /// <remarks> Ruft <see cref="char.IsLower(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsLower(this char c) => char.IsLower(c);
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als Großbuchstabe kategorisiert wird.
-    /// </summary>
-    /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> als Großbuchstabe
-    /// kategorisiert wird, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsUpper(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character is categorized as a uppercase letter.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a uppercase letter,
+    /// otherwise <c>false</c>.</returns>
+    /// <remarks> Ruft <see cref="char.IsUpper(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsUpper(this char c) => char.IsUpper(c);
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als Zahl kategorisiert wird.
-    /// </summary>
-    /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> als Zahl
-    /// kategorisiert wird, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsNumber(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character is categorized as a number.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a number, otherwise
+    /// <c>false</c>.</returns>
+    /// <remarks> Ruft <see cref="char.IsNumber(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsNumber(this char c) => char.IsNumber(c);
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als Satzzeichen kategorisiert wird.
-    /// </summary>
-    /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> als Satzzeichen 
-    /// kategorisiert wird, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsPunctuation(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character is categorized as a punctuation
+    /// mark.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a punctuation mark,
+    /// otherwise <c>false</c>.</returns>
+    /// <remarks> Ruft <see cref="char.IsPunctuation(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsPunctuation(this char c) => char.IsPunctuation(c);
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als Trennzeichen kategorisiert wird.
-    /// </summary>
-    /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> als Trennzeichen 
-    /// kategorisiert wird, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsSeparator(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character is categorized as a separator character.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a separator character,
+    /// otherwise <c>false</c>.</returns>
+    /// <remarks> Ruft <see cref="char.IsSeparator(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsSeparator(this char c) => char.IsSeparator(c);
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als Symbolzeichen kategorisiert wird.
-    /// </summary>
-    /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> als Symbolzeichen 
-    /// kategorisiert wird, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsSymbol(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character is categorized as a symbol character.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a symbol character,
+    /// otherwise <c>false</c>.</returns>
+    /// <remarks> Ruft <see cref="char.IsSymbol(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsSymbol(this char c) => char.IsSymbol(c);
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als Leerzeichen kategorisiert wird.
-    /// </summary>
-    /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> als Leerzeichen 
-    /// kategorisiert wird, andernfalls <c>false</c>.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.IsWhiteSpace(char)"/> auf.
-    /// </remarks>
+    /// <summary>Indicates whether the Unicode character is categorized as white space.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is categorized as white space, otherwise
+    /// <c>false</c>.</returns>
+    /// <remarks>Calls <see cref="char.IsWhiteSpace(char)" />.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsWhiteSpace(this char c) => char.IsWhiteSpace(c);
 
-    /// <summary>
-    /// Konvertiert den Wert eines Unicode-Zeichens in dessen Entsprechung 
-    /// in Kleinbuchstaben unter Verwendung der Regeln der invarianten Kultur für Groß- und Kleinschreibung.
-    /// </summary>
-    /// <param name="c">Das zu konvertierende Unicode-Zeichen.</param>
-    /// <returns>Die Entsprechung des <paramref name="c"/>-Parameters in Kleinbuchstaben oder 
-    /// der unveränderte Wert von <paramref name="c"/>, wenn <paramref name="c"/> bereits aus Kleinbuchstaben 
-    /// besteht oder kein alphabetischer Wert ist.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.ToLowerInvariant(char)"/> auf.
-    /// </remarks>
+    /// <summary>Converts the value of a Unicode character to its lowercase equivalent using
+    /// the casing rules of the invariant culture.</summary>
+    /// <param name="c">The Unicode character to convert.</param>
+    /// <returns>The lowercase equivalent of the <paramref name="c" /> parameter, or the
+    /// unchanged value of <paramref name="c" />, if <paramref name="c" /> is already lowercase
+    /// or not alphabetic.</returns>
+    /// <remarks> Ruft <see cref="char.ToLowerInvariant(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static char ToLowerInvariant(this char c) => char.ToLowerInvariant(c);
 
 
-    /// <summary>
-    /// Konvertiert den Wert eines Unicode-Zeichens in dessen Entsprechung 
-    /// in Großbuchstaben unter Verwendung der Regeln der invarianten Kultur für Groß- und Kleinschreibung.
-    /// </summary>
-    /// <param name="c">Das zu konvertierende Unicode-Zeichen.</param>
-    /// <returns>Die Entsprechung des <paramref name="c"/>-Parameters in Großbuchstaben oder 
-    /// der unveränderte Wert von <paramref name="c"/>, wenn <paramref name="c"/> bereits aus Großbuchstaben 
-    /// besteht oder kein alphabetischer Wert ist.</returns>
-    /// <remarks>
-    /// Ruft <see cref="char.ToUpperInvariant(char)"/> auf.
-    /// </remarks>
+    /// <summary>Converts the value of a Unicode character to its uppercase equivalent using
+    /// the casing rules of the invariant culture.</summary>
+    /// <param name="c">The Unicode character to convert.</param>
+    /// <returns>The uppercase equivalent of the <paramref name="c" /> parameter, or the
+    /// unchanged value of <paramref name="c" />, if <paramref name="c" /> is already uppercase
+    /// or not alphabetic.</returns>
+    /// <remarks> Ruft <see cref="char.ToUpperInvariant(char)" /> auf. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static char ToUpperInvariant(this char c) => char.ToUpperInvariant(c);
 
 
-    /// <summary>
-    /// Untersucht, ob das Unicode-Zeichen als Zeilenwechselzeichen kategorisiert wird.
-    /// </summary>
-    /// <param name="c">Das auszuwertende Unicode-Zeichen.</param>
-    /// <returns><c>true</c>, wenn <paramref name="c"/> als Zeilenwechselzeichen
-    /// kategorisiert wird, andernfalls <c>false</c>.</returns>
+    /// <summary>Indicates whether the Unicode character is categorized as a newline character.</summary>
+    /// <param name="c">The Unicode character to examine.</param>
+    /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a newline character,
+    /// otherwise <c>false</c>.</returns>
     /// <remarks>
     /// <para>
-    /// Als Zeilenwechselzeichen werden die folgenden Zeichen erkannt:
+    /// The following characters are recognized as newline characters:
     /// </para>
     /// <list type="bullet">
-    /// <item>CR: Carriage Return (U+000D)</item>
-    /// <item>LF: Line Feed      (U+000A)</item>
-    /// <item>VT: Vertical Tab        (U+000B)</item>
-    /// <item>FF: Form Feed           (U+000C)</item>
-    /// <item>NEL: Next Line          (U+0085)</item>
-    /// <item>LS: Line Separator      (U+2028)</item>
-    /// <item>PS: Paragraph Separator (U+2029)</item>
+    /// <item>
+    /// CR: Carriage Return (U+000D)
+    /// </item>
+    /// <item>
+    /// LF: Line Feed (U+000A)
+    /// </item>
+    /// <item>
+    /// VT: Vertical Tab (U+000B)
+    /// </item>
+    /// <item>
+    /// FF: Form Feed (U+000C)
+    /// </item>
+    /// <item>
+    /// NEL: Next Line (U+0085)
+    /// </item>
+    /// <item>
+    /// LS: Line Separator (U+2028)
+    /// </item>
+    /// <item>
+    /// PS: Paragraph Separator (U+2029)
+    /// </item>
     /// </list>
     /// </remarks>
     [SuppressMessage("Style", "IDE0066:Switch-Anweisung in Ausdruck konvertieren", Justification = "<Ausstehend>")]

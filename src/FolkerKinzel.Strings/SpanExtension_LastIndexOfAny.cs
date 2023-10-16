@@ -1,55 +1,58 @@
-﻿namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings;
 
 public static partial class SpanExtension
 {
-    /// <summary>
-    /// Sucht nach dem NULL-basierten Index des letzten Vorkommens eines der angegebenen Unicode-Zeichen.
-    /// </summary>
-    /// <param name="span">Die zu untersuchende Spanne.</param>
-    /// <param name="values">Eine schreibgeschützte Zeichenspanne, die die zu suchenden Zeichen enthält.</param>
-    /// <returns>Der NULL-basierte Index des letzten Vorkommens eines beliebigen Zeichens aus <paramref name="values"/>
-    /// in <paramref name="span"/> oder -1, wenn keines der Zeichen gefunden wurde. Wenn <paramref name="values"/> eine
-    /// leere Spanne ist, wird -1 zurückgegeben</returns>
-    /// <remarks>
-    /// Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T}, ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
-    /// Ist die Länge von <paramref name="values"/>
-    /// größer, wird - um Performanceprobleme zu vermeiden - <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see> verwendet.
-    /// </remarks>
+    /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
+    /// Unicode characters.</summary>
+    /// <param name="span">The span to examine.</param>
+    /// <param name="values">A read-only character span that contains the characters to search
+    /// for.</param>
+    /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
+    /// characters in <paramref name="span" /> or -1 if none of these characters have been
+    /// found. If <paramref name="values" /> is an empty span, the method returns -1.</returns>
+    /// <remarks> Wenn die Länge von <paramref name="values" /> kleiner als 5 ist, verwendet
+    /// die Methode für den Vergleich <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T},
+    /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
+    /// ReadOnlySpan&lt;T&gt;)</see>. Ist die Länge von <paramref name="values" /> größer,
+    /// wird - um Performanceprobleme zu vermeiden - <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
+    /// verwendet. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(this Span<char> span, ReadOnlySpan<char> values)
     => ((ReadOnlySpan<char>)span).LastIndexOfAny(values);
 
 
-    /// <summary>
-    /// Gibt die nullbasierte Indexposition des letzten Vorkommens eines der angegebenen Zeichen 
-    /// in <paramref name="span"/> an. Die Suche beginnt an einer angegebenen Zeichenposition 
-    /// und verläuft für eine angegebene Anzahl von Zeichenpositionen rückwärts zum Anfang der Zeichenfolge.
-    /// </summary>
-    /// <param name="span">Die zu durchsuchende Zeichenspanne.</param>
-    /// <param name="values">Eine schreibgeschützte Zeichenspanne, die die zu suchenden Zeichen enthält.</param>
-    /// <param name="startIndex">Die Anfangsposition der Suche. Die Suche erfolgt rückwärts zum Anfang 
-    /// von <paramref name="span"/>.</param>
-    /// <param name="count">Die Anzahl der zu überprüfenden Zeichenpositionen in <paramref name="span"/>.</param>
-    /// <returns>Der nullbasierte Index des letzten Vorkommens eines beliebigen Zeichens aus <paramref name="values"/>
-    /// in <paramref name="span"/> oder -1, wenn keines dieser Zeichen gefunden wurde.</returns>
-    /// <remarks>
-    /// Wenn die Länge von <paramref name="values"/> kleiner als 5 ist, verwendet die Methode für den Vergleich 
-    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T}, ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>.
-    /// Ist die Länge von <paramref name="values"/>
-    /// größer, wird - um Performanceprobleme zu vermeiden - <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see> verwendet.
-    /// </remarks>
+    /// <summary>Returns the zero-based index of the last occurrence of one of the specified
+    /// characters in <paramref name="span" />. The search begins at a specified character
+    /// position and runs a specified number of character positions backwards to the beginning
+    /// of the <paramref name="span" />.</summary>
+    /// <param name="span">The span to search.</param>
+    /// <param name="values">A read-only character span that contains the characters to search
+    /// for.</param>
+    /// <param name="startIndex">The start index of the search. The search is done backwards
+    /// to the beginning of <paramref name="span" />.</param>
+    /// <param name="count">The number of characters positions to examine in <paramref name="span"
+    /// />.</param>
+    /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
+    /// characters in <paramref name="span" /> or -1 if none of these characters have been
+    /// found.</returns>
+    /// <remarks> Wenn die Länge von <paramref name="values" /> kleiner als 5 ist, verwendet
+    /// die Methode für den Vergleich <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T},
+    /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
+    /// ReadOnlySpan&lt;T&gt;)</see>. Ist die Länge von <paramref name="values" /> größer,
+    /// wird - um Performanceprobleme zu vermeiden - <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
+    /// verwendet. </remarks>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="span"/> ist nicht <see cref="Span{T}.Empty"/> und <paramref name="startIndex"/> ist 
-    /// kleiner als 0 oder größer oder gleich der Länge von <paramref name="span"/>
+    /// <paramref name="span" /> is not <see cref="Span{T}.Empty" /> and <paramref name="startIndex"
+    /// /> is less than zero or greater than or equal to the length of <paramref name="span"
+    /// />
     /// </para>
     /// <para>
-    /// - oder -
+    /// - or -
     /// </para>
     /// <para>
-    /// <paramref name="span"/> ist nicht <see cref="Span{T}.Empty"/> und <paramref name="startIndex"/> - <paramref name="count"/> + 1 
-    /// ist kleiner als 0.
+    /// <paramref name="span" /> is not <see cref="Span{T}.Empty" /> and <paramref name="startIndex"
+    /// /> - <paramref name="count" /> + 1 is less than zero.
     /// </para>
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
