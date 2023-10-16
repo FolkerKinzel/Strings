@@ -16,7 +16,7 @@ public static partial class StringExtension
     /// <returns>Der Hashcode.</returns>
     /// <remarks>
     /// <para>
-    /// Die Methode <see cref="string.GetHashCode()">String.GetHashCode()</see> gibt aus Sicherheitsgründen bei jedem Programmlauf 
+    /// Die Methode <see cref="string.GetHashCode">String.GetHashCode()</see> gibt aus Sicherheitsgründen bei jedem Programmlauf 
     /// einen unterschiedlichen
     /// Hashcode für eine identische Zeichenfolge zurück. Abgesehen davon, dass auch der Hash-Algorithmus von 
     /// <see cref="string.GetHashCode()">String.GetHashCode()</see> in unterschiedlichen Frameworkversionen unterschiedlich sein könnte, 
