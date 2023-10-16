@@ -10,12 +10,14 @@ public static partial class ReadOnlySpanExtension
     /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found. If <paramref name="values" /> is an empty span, the method returns -1.</returns>
-    /// <remarks> Wenn die Länge von <paramref name="values" /> kleiner als 5 ist, verwendet
-    /// die Methode für den Vergleich <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T},
+    /// 
+    /// <remarks>
+    /// If the length of <paramref name="values" /> is less than 5, the method uses
+    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T},
     /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
-    /// ReadOnlySpan&lt;T&gt;)</see>. Ist die Länge von <paramref name="values" /> größer,
-    /// wird - um Performanceprobleme zu vermeiden - <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
-    /// verwendet. </remarks>
+    /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
+    /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
+    /// is used to avoid performance issues.</remarks>
     public static int LastIndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
     {
         // string.LastIndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
@@ -43,12 +45,12 @@ public static partial class ReadOnlySpanExtension
     /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found.</returns>
-    /// <remarks> Wenn die Länge von <paramref name="values" /> kleiner als 5 ist, verwendet
-    /// die Methode für den Vergleich <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T},
+    /// <remarks> If the length of <paramref name="values" /> is less than 5, the method uses
+    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T},
     /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
-    /// ReadOnlySpan&lt;T&gt;)</see>. Ist die Länge von <paramref name="values" /> größer,
-    /// wird - um Performanceprobleme zu vermeiden - <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
-    /// verwendet. </remarks>
+    /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
+    /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
+    /// is used to avoid performance issues. </remarks>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
     /// <paramref name="span" /> is not <see cref="ReadOnlySpan{T}.Empty" /> and <paramref
@@ -87,6 +89,5 @@ public static partial class ReadOnlySpanExtension
 
         return span.ToString().LastIndexOfAny(values.ToArray(), startIndex, count);
     }
-
 
 }

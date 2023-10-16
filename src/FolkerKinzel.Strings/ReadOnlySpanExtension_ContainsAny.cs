@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-
 namespace FolkerKinzel.Strings;
 
 public static partial class ReadOnlySpanExtension
@@ -13,7 +11,8 @@ public static partial class ReadOnlySpanExtension
     /// passed with <paramref name="values" />. If <paramref name="span" /> or <paramref
     /// name="values" /> are empty, <c>false</c> is returned.</returns>
     /// <remarks>If the length of <paramref name="values" /> is less than 5, the method uses
-    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
+    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">
+    /// MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
     /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
     /// /> is greater, <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see>
     /// is used to avoid performance issues.</remarks>
@@ -29,8 +28,9 @@ public static partial class ReadOnlySpanExtension
     /// <param name="value1">The second character to search for.</param>
     /// <returns> <c>true</c> if one of the characters to be searched for is found in the
     /// span, otherwise <c>false</c>.</returns>
-    /// <remarks> Für den Vergleich wird <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T},
-    /// T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)</see> verwendet.
+    /// <remarks> <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T},
+    /// T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)</see> 
+    /// is used for the comparison.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1)
@@ -44,9 +44,9 @@ public static partial class ReadOnlySpanExtension
     /// <param name="value2">The third character to search for.</param>
     /// <returns> <c>true</c> if one of the characters to be searched for is found in the
     /// span, otherwise <c>false</c>.</returns>
-    /// <remarks> Für den Vergleich wird <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T},
-    /// T, T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T)</see>
-    /// verwendet. </remarks>
+    /// <remarks> <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T},
+    /// T, T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T) </see>
+    /// is used for the comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1, char value2)
         => span.IndexOfAny(value0, value1, value2) != -1;

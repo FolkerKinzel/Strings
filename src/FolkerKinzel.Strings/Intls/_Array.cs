@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace FolkerKinzel.Strings.Intls;
 
 [SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>")]

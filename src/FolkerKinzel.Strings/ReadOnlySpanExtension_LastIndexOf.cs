@@ -55,7 +55,11 @@ public static partial class ReadOnlySpanExtension
     /// </exception>
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
-    public static int LastIndexOf(this ReadOnlySpan<char> span, ReadOnlySpan<char> value, int startIndex, int count, StringComparison comparisonType)
+    public static int LastIndexOf(this ReadOnlySpan<char> span,
+                                  ReadOnlySpan<char> value,
+                                  int startIndex,
+                                  int count,
+                                  StringComparison comparisonType)
     {
 TryAgain:
 
@@ -89,6 +93,5 @@ TryAgain:
         int matchIndex = span.Slice(startIndex, count).LastIndexOf(value, comparisonType);
         return matchIndex == -1 ? -1 : matchIndex + startIndex;
     }
-
 
 }

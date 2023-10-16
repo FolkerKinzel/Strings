@@ -1,14 +1,9 @@
-using System;
-using System.CodeDom;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Text;
 using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings.Intls;
 
-    /// <summary>Provides methods to examine data in order to see whether it is UTF-8 text.</summary>
+/// <summary>Provides methods to examine data in order to see whether it is UTF-8 text.</summary>
 internal sealed class Utf8Validator
 {
     private const int CODEPAGE_UTF8 = 65001;
@@ -129,7 +124,7 @@ internal sealed class Utf8Validator
 
 
     private static long InitCount(int count) =>
-        count < 0 ? long.MaxValue 
-                  : count == 0 ? throw new ArgumentOutOfRangeException(nameof(count), Res.ZeroNotAllowed) 
+        count < 0 ? long.MaxValue
+                  : count == 0 ? throw new ArgumentOutOfRangeException(nameof(count), Res.ZeroNotAllowed)
                                : count;
 }

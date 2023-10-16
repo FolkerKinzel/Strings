@@ -1,11 +1,9 @@
-using System.Runtime.CompilerServices;
-
 namespace FolkerKinzel.Strings;
 
 public static partial class ReadOnlySpanExtension
 {
-    /// <summary>Indicates whether a read-only character span begins with the specified Unicode
-    /// character.</summary>
+    /// <summary>Indicates whether a read-only character span begins with the 
+    /// specified Unicode character.</summary>
     /// <param name="span">The span to examine.</param>
     /// <param name="value">The Unicode character to search for.</param>
     /// <returns> <c>true</c> if <paramref name="span" /> starts with <paramref name="value"

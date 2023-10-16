@@ -1,11 +1,11 @@
 namespace FolkerKinzel.Strings.Polyfills;
 
-    /// <summary>Extension methods for the <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see>
-    /// structure, which are used in .NET Framework 4.5, .NET Standard 2.0 and .NET Standard
-    /// 2.1 as polyfills for methods from current .NET versions.</summary>
-    /// <remarks>The methods of this class should only be used in the extension method syntax
-    /// to simulate the methods of the <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see>
-    /// structure, which exist in more modern frameworks.</remarks>
+/// <summary>Extension methods for the <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see>
+/// struct, which are used in .NET Framework 4.5, .NET Standard 2.0 and .NET Standard
+/// 2.1 as polyfills for methods from current .NET versions.</summary>
+/// <remarks>The methods of this class should only be used in the extension method syntax
+/// to simulate the methods of the <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see>
+/// struct, which exist in more modern frameworks.</remarks>
 public static class ReadOnlyMemoryPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 5.0 and above have an empty class!

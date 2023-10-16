@@ -2,53 +2,52 @@ using System.ComponentModel;
 
 namespace FolkerKinzel.Strings;
 
-    /// <summary> Stellt einen als Fallback bezeichneten Fehlerbehandlungsmechanismus für
-    /// eine codierte Eingabebytefolge bereit, die nicht in ein Ausgabezeichen konvertiert
-    /// werden kann. Das Fallback gibt ein Ersatzzeichen (⬜) anstelle einer decodierten Eingabebytefolge
-    /// aus und informiert in seiner Eigenschaft <see cref="HasError" /> darüber, ob ein
-    /// Fehler aufgetreten ist. </summary>
-    /// <remarks>
-    /// <para>
-    /// Verwenden Sie <see cref="DecoderValidationFallback" />-Objekte in den Methoden
-    /// </para>
-    /// <list type="bullet">
-    /// <item>
-    /// <see cref="Encoding.GetEncoding(int, EncoderFallback, DecoderFallback)"> Encoding.GetEncoding(int,
-    /// EncoderFallback, DecoderFallback)</see>,
-    /// </item>
-    /// <item>
-    /// <see cref="Encoding.GetEncoding(string, EncoderFallback, DecoderFallback)"> Encoding.GetEncoding(string,
-    /// EncoderFallback, DecoderFallback)</see> oder
-    /// </item>
-    /// <item>
-    /// <see cref="TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback,
-    /// bool)"> TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback,
-    /// bool)</see> und
-    /// </item>
-    /// <item>
-    /// <see cref="TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback,
-    /// bool)"> TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback,
-    /// bool)</see>.
-    /// </item>
-    /// </list>
-    /// <para>
-    /// Das <see cref="DecoderValidationFallback" />-Objekt wird dabei als <see cref="DecoderFallback"
-    /// />-Objekt übergeben.
-    /// </para>
-    /// <para>
-    /// Die <see cref="DecoderValidationFallback" />-Klasse verhält sich wie die Klasse <see
-    /// cref="DecoderReplacementFallback" />, mit dem Unterschied, dass sie in ihrer Eigenschaft
-    /// <see cref="HasError" /> nach Benutzung darüber informiert, ob ein Fehler aufgetreten
-    /// ist. Zur Auswertung der Eigenschaft, sollten Sie eine Referenz auf das <see cref="DecoderValidationFallback"
-    /// />-Objekt behalten oder den Rückgabewert der Eigenschaft <see cref="Encoding.DecoderFallback">Encoding.DecoderFallback</see>
-    /// in den Typ <see cref="DecoderValidationFallback" /> casten.
-    /// </para>
-    /// <para>
-    /// Wenn Sie das <see cref="DecoderValidationFallback" />-Objekt mehrfach verwenden,
-    /// können sie die Eigenschaft <see cref="HasError" /> mit der Methode <see cref="Reset"
-    /// /> zurücksetzen.
-    /// </para>
-    /// </remarks>
+/// <summary> 
+/// Provides a failure-handling mechanism, called a fallback, for an encoded input byte
+/// sequence that cannot be converted to an output character. The fallback emits a replacement
+/// character (⬜) instead of a decoded input byte sequence and informs in its property
+/// <see cref="HasError" /> whether an error has occurred.</summary>
+/// <remarks>
+/// <para>
+/// Use <see cref="DecoderValidationFallback" /> objects with the methods 
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <see cref="Encoding.GetEncoding(int, EncoderFallback, DecoderFallback)"> Encoding.GetEncoding(int,
+/// EncoderFallback, DecoderFallback)</see>,
+/// </item>
+/// <item>
+/// <see cref="Encoding.GetEncoding(string, EncoderFallback, DecoderFallback)"> Encoding.GetEncoding(string,
+/// EncoderFallback, DecoderFallback)</see> or
+/// </item>
+/// <item>
+/// <see cref="TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback,
+/// bool)"> TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback,
+/// bool)</see> and
+/// </item>
+/// <item>
+/// <see cref="TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback,
+/// bool)"> TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback,
+/// bool)</see>.
+/// </item>
+/// </list>
+/// <para>
+/// The <see cref="DecoderValidationFallback" /> object is passed as a <see cref="DecoderFallback"
+/// /> object.
+/// </para>
+/// <para>
+/// The <see cref="DecoderValidationFallback" /> class behaves like the <see
+/// cref="DecoderReplacementFallback" /> class, except that it informs after use in its 
+/// <see cref="HasError" /> property whether an error has occurred. To evaluate the property, You 
+/// should keep a reference to the <see cref="DecoderValidationFallback" /> object or cast the 
+/// return value of the <see cref="Encoding.DecoderFallback">Encoding.DecoderFallback</see>
+/// property to the Type <see cref="DecoderValidationFallback" />.
+/// </para>
+/// <para>
+/// When using the <see cref="DecoderValidationFallback" /> object multiple times, the <see cref="Reset"
+/// /> method can be called to reset the <see cref="HasError" /> property.
+/// </para>
+/// </remarks>
 public sealed class DecoderValidationFallback : DecoderFallback
 {
     private readonly ValidatorFallbackBuffer _buffer = new();
@@ -57,8 +56,9 @@ public sealed class DecoderValidationFallback : DecoderFallback
     /// <value> <c>true</c> if an error occurred, <c>false</c> otherwise.</value>
     public bool HasError => _buffer.HasError;
 
-    /// <summary> Setzt die Eigenschaft <see cref="HasError" /> auf ihren Ausgangswert <c>false</c>
-    /// zurück. </summary>
+    /// <summary> 
+    /// Resets the <see cref="HasError" /> property to its initial value <c>false</c>.
+    /// </summary>
     public void Reset() => _buffer.ResetError();
 
     /// <inheritdoc />

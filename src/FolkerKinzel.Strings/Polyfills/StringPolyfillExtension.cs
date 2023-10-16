@@ -1,7 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-
 namespace FolkerKinzel.Strings.Polyfills;
 
 /// <summary>Extension methods for the <see cref="string" /> class, which are used in
@@ -50,7 +46,8 @@ public static partial class StringPolyfillExtension
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool Contains(this string s, string value, StringComparison comparisonType)
+    public static bool Contains(
+        this string s, string value, StringComparison comparisonType)
         => s.IndexOf(value, comparisonType) != -1;
 
 
@@ -81,7 +78,8 @@ public static partial class StringPolyfillExtension
     /// that are delimited by <paramref name="separator" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string[] Split(this string s, char separator, StringSplitOptions options = StringSplitOptions.None)
+    public static string[] Split(
+        this string s, char separator, StringSplitOptions options = StringSplitOptions.None)
         => s.Split(new char[] { separator }, options);
 
     /// <summary>Splits a <see cref="string" /> into a maximum number of substrings based
@@ -98,7 +96,8 @@ public static partial class StringPolyfillExtension
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="count" /> is negative.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string[] Split(this string s, char separator, int count, StringSplitOptions options = StringSplitOptions.None)
+    public static string[] Split(
+        this string s, char separator, int count, StringSplitOptions options = StringSplitOptions.None)
         => s.Split(new char[] { separator }, count, options);
 
 
@@ -115,7 +114,8 @@ public static partial class StringPolyfillExtension
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="count" /> is negative.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string[] Split(this string s, string? separator, int count, StringSplitOptions options = System.StringSplitOptions.None)
+    public static string[] Split(
+        this string s, string? separator, int count, StringSplitOptions options = System.StringSplitOptions.None)
         => s is null
             ? throw new NullReferenceException()
             : count < 0
@@ -142,7 +142,8 @@ public static partial class StringPolyfillExtension
     /// that are delimited by <paramref name="separator" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string[] Split(this string s, string? separator, StringSplitOptions options = System.StringSplitOptions.None)
+    public static string[] Split(
+        this string s, string? separator, StringSplitOptions options = System.StringSplitOptions.None)
          => s is null
             ? throw new NullReferenceException()
                 : (s.Length == 0 && 
@@ -211,7 +212,8 @@ public static partial class StringPolyfillExtension
     /// /> enumeration.
     /// </para>
     /// </exception>
-    public static string Replace(this string s, string oldValue, string? newValue, StringComparison comparisonType)
+    public static string Replace(
+        this string s, string oldValue, string? newValue, StringComparison comparisonType)
     {
         if (comparisonType == StringComparison.Ordinal)
         {
@@ -230,7 +232,8 @@ public static partial class StringPolyfillExtension
 
         if (oldValue.Length == 0)
         {
-            throw new ArgumentException(string.Format("{0} is an empty String.", nameof(oldValue)), nameof(oldValue));
+            throw new ArgumentException(string.Format("{0} is an empty String.", nameof(oldValue)),
+                                        nameof(oldValue));
         }
 
         if (s.Length < oldValue.Length)
@@ -243,7 +246,8 @@ public static partial class StringPolyfillExtension
             newValue = string.Empty;
         }
 
-        var builder = new StringBuilder(newValue.Length > oldValue.Length ? s.Length + s.Length / 2 : s.Length);
+        var builder = new StringBuilder(
+                          newValue.Length > oldValue.Length ? s.Length + s.Length / 2 : s.Length);
         _ = builder.Append(s);
 
         int idx = s.Length;
@@ -260,7 +264,6 @@ public static partial class StringPolyfillExtension
 
         return builder.ToString();
     }
-
 
 #endif
 }

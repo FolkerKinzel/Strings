@@ -1,10 +1,9 @@
 using System.Security.Cryptography;
-using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings;
 
-    /// <summary>Extension methods for the <see cref="Span{T}">Span&lt;Char&gt;</see> struct</summary>
-    /// <threadsafety static="true" instance="false" />
+/// <summary>Extension methods for the <see cref="Span{T}">Span&lt;Char&gt;</see> struct</summary>
+/// <threadsafety static="true" instance="false" />
 public static partial class SpanExtension
 {
     /// <summary>Generates the same <see cref="int" /> hash code for an identical string

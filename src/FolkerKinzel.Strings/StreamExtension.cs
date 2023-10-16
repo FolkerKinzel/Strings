@@ -3,7 +3,7 @@ using FolkerKinzel.Strings.Intls;
 namespace FolkerKinzel.Strings;
 
 
-    /// <summary>Extension methods for the <see cref="Stream" /> class.</summary>
+/// <summary>Extension methods for the <see cref="Stream" /> class.</summary>
 public static class StreamExtension
 {
     /// <summary>Tests whether the specified section of <paramref name="stream" /> that extends

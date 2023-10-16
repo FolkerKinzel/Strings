@@ -1,6 +1,6 @@
 namespace FolkerKinzel.Strings;
 
-    /// <summary>Named constants to specify the type of hashcode for Char sequences.</summary>
+/// <summary>Named constants to specify the type of hashcode for Char sequences.</summary>
 public enum HashType
 {
     /// <summary>Ordinal comparison of the characters.</summary>
@@ -12,6 +12,4 @@ public enum HashType
 
     /// <summary>Only letters and decimal digits are hashed. The case is not considered.</summary>
     AlphaNumericIgnoreCase,
-
-    
 }

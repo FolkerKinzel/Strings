@@ -4,7 +4,7 @@ public static partial class ReadOnlySpanExtension
 {
     /// <summary>Returns the length that the read-only span would have without trailing white
     /// space.</summary>
-    /// <param name="span">The span to examine.</param>
+    /// <param name="span">The read-only span to examine.</param>
     /// <returns>The length that the span would have without trailing white space.</returns>
     public static int GetTrimmedLength(this ReadOnlySpan<char> span)
     {
@@ -23,8 +23,5 @@ public static partial class ReadOnlySpanExtension
         }
         return length;
     }
-
-
-
 
 }

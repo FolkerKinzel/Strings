@@ -1,15 +1,11 @@
-using System;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Xml.Linq;
 using FolkerKinzel.Strings.Polyfills;
 using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings;
 
-    /// <summary>Encapsulates methods that support creating appropriate instances of the
-    /// <see cref="Encoding" /> class.</summary>
+/// <summary>Encapsulates methods that support creating appropriate instances of the
+/// <see cref="Encoding" /> class.</summary>
 public static class TextEncodingConverter
 {
     internal const int UTF_8 = 65001;
@@ -90,7 +86,7 @@ public static class TextEncodingConverter
                 ? encoding
                 : throw exception
             : TryGetEncodingInternal(encodingWebName, encoderFallback, decoderFallback, out encoding)
-                ? encoding 
+                ? encoding
                 : CreateFallBack(encoderFallback, decoderFallback);
     }
 
@@ -135,7 +131,7 @@ public static class TextEncodingConverter
                 ? encoding
                 : throw exception
             : TryGetEncoding(codePage, out encoding)
-                ? encoding 
+                ? encoding
                 : Encoding.UTF8;
     }
 
@@ -187,7 +183,7 @@ public static class TextEncodingConverter
                ? encoding
                : throw exception
            : TryGetEncodingInternal(codePage, encoderFallback, decoderFallback, out encoding)
-                ? encoding 
+                ? encoding
                 : CreateFallBack(encoderFallback, decoderFallback);
     }
 
@@ -335,7 +331,7 @@ public static class TextEncodingConverter
         return !CodepageOutOfRange(codePage) && BuildEncoding(codePage, encoderFallback, decoderFallback, ref encoding, out _);
     }
 
-    
+
 
     private static bool TryGetEncodingInternal(int codePage,
                                        EncoderFallback? encoderFallback,
@@ -379,7 +375,7 @@ public static class TextEncodingConverter
         return true;
     }
 
-    
+
 
     private static bool TryGetEncodingInternal(string? encodingWebName,
                                                EncoderFallback? encoderFallback,

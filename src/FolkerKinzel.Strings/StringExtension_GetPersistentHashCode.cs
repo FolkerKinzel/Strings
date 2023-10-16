@@ -2,8 +2,8 @@ using System.Security.Cryptography;
 
 namespace FolkerKinzel.Strings;
 
-    /// <summary>Extension methods for the <see cref="string" /> class.</summary>
-    /// <threadsafety static="true" instance="false" />
+/// <summary>Extension methods for the <see cref="string" /> class.</summary>
+/// <threadsafety static="true" instance="false" />
 public static partial class StringExtension
 {
     /// <summary>Generates the same <see cref="int" /> hash code for an identical string

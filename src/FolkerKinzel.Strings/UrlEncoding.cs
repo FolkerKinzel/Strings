@@ -1,9 +1,6 @@
-using System.Text;
-using FolkerKinzel.Strings.Intls;
-
 namespace FolkerKinzel.Strings;
 
-    /// <summary>Static class that provides methods for handling URL encoding (RFC 3986).</summary>
+/// <summary>Static class that provides methods for handling URL encoding (RFC 3986).</summary>
 public static class UrlEncoding
 {
     private const int SHORT_ARRAY = 256;

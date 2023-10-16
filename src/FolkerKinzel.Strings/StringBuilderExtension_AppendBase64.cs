@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
@@ -45,7 +44,7 @@ public static partial class StringBuilderExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendBase64(this StringBuilder builder,
                                              byte[]? bytes,
-                                             Base64FormattingOptions options = Base64FormattingOptions.None) 
+                                             Base64FormattingOptions options = Base64FormattingOptions.None)
         => Base64.AppendEncodedTo(builder, bytes.AsSpan(), options);
 
 
@@ -68,5 +67,5 @@ public static partial class StringBuilderExtension
                                              ReadOnlySpan<byte> bytes,
                                              Base64FormattingOptions options = Base64FormattingOptions.None)
         => Base64.AppendEncodedTo(builder, bytes, options);
-    
+
 }

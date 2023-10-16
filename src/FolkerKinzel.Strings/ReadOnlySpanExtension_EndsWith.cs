@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-
 namespace FolkerKinzel.Strings;
 
 public static partial class ReadOnlySpanExtension
@@ -14,6 +12,4 @@ public static partial class ReadOnlySpanExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool EndsWith(this ReadOnlySpan<char> span, char value)
      => !span.IsEmpty && span[span.Length - 1] == value;
-
-
 }

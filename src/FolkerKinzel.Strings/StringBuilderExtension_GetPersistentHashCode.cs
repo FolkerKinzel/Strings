@@ -3,8 +3,8 @@ using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings;
 
-    /// <summary>Extension methods for the <see cref="StringBuilder" /> class.</summary>
-    /// <threadsafety static="true" instance="false" />
+/// <summary>Extension methods for the <see cref="StringBuilder" /> class.</summary>
+/// <threadsafety static="true" instance="false" />
 public static partial class StringBuilderExtension
 {
     /// <summary>Generates the same <see cref="int" /> hash code for an identical string

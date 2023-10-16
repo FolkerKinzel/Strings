@@ -1,9 +1,7 @@
-using System.Runtime.CompilerServices;
-
 namespace FolkerKinzel.Strings.Polyfills;
 
-    /// <summary>Extension methods, which act as Polyfills for the extension methods of the
-    /// class <see cref="ReadOnlySpanExtension" />.</summary>
+/// <summary>Extension methods, which act as Polyfills for the extension methods of the
+/// <see cref="ReadOnlySpanExtension" /> class.</summary>
 public static class ReadOnlySpanExtensionPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 5.0 have an empty class!
@@ -152,6 +150,6 @@ public static class ReadOnlySpanExtensionPolyfillExtension
     /// </exception>
     public static int LastIndexOfAny(this ReadOnlySpan<char> span, string? values, int startIndex, int count)
         => span.LastIndexOfAny(values.AsSpan(), startIndex, count);
-#endif
 
+#endif
 }

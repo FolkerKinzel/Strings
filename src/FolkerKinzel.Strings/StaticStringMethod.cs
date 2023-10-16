@@ -1,12 +1,10 @@
 using System.Buffers;
-using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace FolkerKinzel.Strings;
 
-    /// <summary>Simulates static methods of the <see cref="string" /> class for .NET versions
-    /// in which they are not available, and forwards the method calls in .NET versions in
-    /// which the methods are available directly to the BCL methods.</summary>
+/// <summary>Simulates static methods of the <see cref="string" /> class for .NET versions
+/// in which they are not available, and forwards the method calls in .NET versions in
+/// which the methods are available directly to the BCL methods.</summary>
 public static class StaticStringMethod
 {
 

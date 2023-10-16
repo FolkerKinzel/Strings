@@ -73,7 +73,7 @@ public static partial class SpanExtension
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOf(this Span<char> span, ReadOnlySpan<char> value, int startIndex, int count, StringComparison comparisonType)
-    => ((ReadOnlySpan<char>) span).LastIndexOf(value, startIndex, count, comparisonType);
+    => ((ReadOnlySpan<char>)span).LastIndexOf(value, startIndex, count, comparisonType);
 
 
 }

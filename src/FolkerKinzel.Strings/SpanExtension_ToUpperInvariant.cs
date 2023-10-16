@@ -1,6 +1,3 @@
-using System.Globalization;
-using System.Runtime.CompilerServices;
-
 namespace FolkerKinzel.Strings;
 
 public static partial class SpanExtension

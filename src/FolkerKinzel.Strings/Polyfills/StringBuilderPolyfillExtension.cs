@@ -1,6 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-
 namespace FolkerKinzel.Strings.Polyfills;
 
 /// <summary>Extension methods for the <see cref="StringBuilder" /> class, which are
@@ -15,9 +12,9 @@ public static class StringBuilderPolyfillExtension
     // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET45 || NETSTANDARD2_0
 
-    /// <summary>Concatenates the strings of the provided array, using the specified char
-    /// separator between each string, then appends the result to <paramref name="builder"
-    /// />.</summary>
+    /// <summary>Concatenates the <see cref="string"/>s of the provided array, using the specified 
+    /// <see cref="char"/> separator between each <see cref="string"/>, then appends the result to 
+    /// <paramref name="builder" />.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
     /// appended.</param>
     /// <param name="separator">The character to use as a separator. <paramref name="separator"
@@ -33,7 +30,8 @@ public static class StringBuilderPolyfillExtension
     [ExcludeFromCodeCoverage]
 #endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params string?[] values)
+    public static StringBuilder AppendJoin(
+        this StringBuilder builder, char separator, params string?[] values)
         => builder.AppendJoin(stackalloc char[] { separator }, values);
 
     /// <summary>Concatenates the string representations of the elements in the provided
@@ -54,7 +52,8 @@ public static class StringBuilderPolyfillExtension
     [ExcludeFromCodeCoverage]
 #endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static StringBuilder AppendJoin(this StringBuilder builder, char separator, params object?[] values)
+    public static StringBuilder AppendJoin(
+        this StringBuilder builder, char separator, params object?[] values)
         => builder.AppendJoin(stackalloc char[] { separator }, values);
 
     /// <summary>Concatenates the string representations of the elements in the provided
@@ -76,12 +75,13 @@ public static class StringBuilderPolyfillExtension
     [ExcludeFromCodeCoverage]
 #endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static StringBuilder AppendJoin<T>(this StringBuilder builder, char separator, IEnumerable<T> values)
+    public static StringBuilder AppendJoin<T>(
+        this StringBuilder builder, char separator, IEnumerable<T> values)
         => builder.AppendJoin(stackalloc char[] { separator }, values);
 
-    /// <summary>Concatenates the strings in the provided array of objects, using the specified
-    /// separator between each member, then appends the result to <paramref name="builder"
-    /// />.</summary>
+    /// <summary>Concatenates the <see cref="string"/>s in the provided array of objects, 
+    /// using the specified separator between each member, then appends the result to 
+    /// <paramref name="builder" />.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
     /// appended.</param>
     /// <param name="separator">The string to use as a separator. <paramref name="separator"
@@ -97,7 +97,8 @@ public static class StringBuilderPolyfillExtension
     [ExcludeFromCodeCoverage]
 #endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static StringBuilder AppendJoin(this StringBuilder builder, string? separator, params string?[] values)
+    public static StringBuilder AppendJoin(
+        this StringBuilder builder, string? separator, params string?[] values)
         => builder.AppendJoin(separator.AsSpan(), values);
 
     /// <summary>Concatenates the string representations of the elements in the provided
@@ -118,7 +119,8 @@ public static class StringBuilderPolyfillExtension
     [ExcludeFromCodeCoverage]
 #endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static StringBuilder AppendJoin(this StringBuilder builder, string? separator, params object?[] values)
+    public static StringBuilder AppendJoin(
+        this StringBuilder builder, string? separator, params object?[] values)
         => builder.AppendJoin(separator.AsSpan(), values);
 
 
@@ -141,14 +143,16 @@ public static class StringBuilderPolyfillExtension
     [ExcludeFromCodeCoverage]
 #endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static StringBuilder AppendJoin<T>(this StringBuilder builder, string? separator, IEnumerable<T> values)
+    public static StringBuilder AppendJoin<T>(
+        this StringBuilder builder, string? separator, IEnumerable<T> values)
         => builder.AppendJoin(separator.AsSpan(), values);
 
 
 #if NETSTANDARD2_0
     [ExcludeFromCodeCoverage]
 #endif
-    private static StringBuilder AppendJoin<T>(this StringBuilder builder, ReadOnlySpan<char> separator, IEnumerable<T> values)
+    private static StringBuilder AppendJoin<T>(
+        this StringBuilder builder, ReadOnlySpan<char> separator, IEnumerable<T> values)
     {
         if (builder is null)
         {
@@ -207,7 +211,8 @@ public static class StringBuilderPolyfillExtension
 #if NETSTANDARD2_0
     [ExcludeFromCodeCoverage]
 #endif
-    public static StringBuilder Append(this StringBuilder builder, StringBuilder? value, int startIndex, int count)
+    public static StringBuilder Append(
+        this StringBuilder builder, StringBuilder? value, int startIndex, int count)
     {
         if (builder is null)
         {
@@ -226,7 +231,9 @@ public static class StringBuilderPolyfillExtension
 
         if (value is null)
         {
-            return startIndex == 0 && count == 0 ? builder : throw new ArgumentNullException(nameof(value));
+            return startIndex == 0 && 
+                   count == 0 ? builder 
+                              : throw new ArgumentNullException(nameof(value));
         }
 
         if (count == 0)
@@ -296,7 +303,8 @@ public static class StringBuilderPolyfillExtension
 #if NETSTANDARD2_0
     [ExcludeFromCodeCoverage]
 #endif
-    public static StringBuilder Insert(this StringBuilder builder, int index, ReadOnlySpan<char> value)
+    public static StringBuilder Insert(
+        this StringBuilder builder, int index, ReadOnlySpan<char> value)
     {
         if (builder is null)
         {

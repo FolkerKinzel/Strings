@@ -1,10 +1,10 @@
 namespace FolkerKinzel.Strings.Polyfills;
 
-/// <summary>Extension methods for the <see cref="Span{T}">Span&lt;Char&gt;</see> structure
+/// <summary>Extension methods for the <see cref="Span{T}">Span&lt;Char&gt;</see> struct
 /// used in the .NET Framework 4.5, .NET Standard 2.0, and .NET Standard 2.1 as polyfills
 /// for methods from current .NET versions.</summary>
 /// <remarks>The methods of this class should only be used in the extension method syntax
-/// to simulate the methods of the <see cref="Span{T}">Span&lt;Char&gt;</see> structure,
+/// to simulate the methods of the <see cref="Span{T}">Span&lt;Char&gt;</see> struct,
 /// which exist in current frameworks.</remarks>
 public static class SpanPolyfillExtension
 {
@@ -54,7 +54,8 @@ public static class SpanPolyfillExtension
     /// /> and <paramref name="other" /> are compared.</param>
     /// <returns> <c>true</c> if identical, <c>false</c> otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool Equals(this Span<char> span, string? other, StringComparison comparisonType)
+    public static bool Equals(
+        this Span<char> span, string? other, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).Equals(other.AsSpan(), comparisonType);
 
 
@@ -67,7 +68,8 @@ public static class SpanPolyfillExtension
     /// /> and <paramref name="other" /> are compared.</param>
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool Contains(this Span<char> span, string? value, StringComparison comparisonType)
+    public static bool Contains(
+        this Span<char> span, string? value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).Contains(value.AsSpan(), comparisonType);
 
 
@@ -100,7 +102,8 @@ public static class SpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool StartsWith(this Span<char> span, string? value, StringComparison comparisonType)
+    public static bool StartsWith(
+        this Span<char> span, string? value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).StartsWith(value.AsSpan(), comparisonType);
 
 
@@ -131,7 +134,8 @@ public static class SpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool EndsWith(this Span<char> span, string? value, StringComparison comparisonType)
+    public static bool EndsWith(
+        this Span<char> span, string? value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).EndsWith(value.AsSpan(), comparisonType);
 
     /// <summary>Specifies the zero-based index of the last occurrence of a specified string
@@ -146,7 +150,8 @@ public static class SpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOf(this Span<char> span, string? value, StringComparison comparisonType)
+    public static int LastIndexOf(
+        this Span<char> span, string? value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).LastIndexOf(value.AsSpan(), comparisonType);
 
     /// <summary>Specifies the zero based index position of the last occurrence of a specified
@@ -201,8 +206,15 @@ public static class SpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOf(this Span<char> span, string? value, int startIndex, int count, StringComparison comparisonType)
-        => ((ReadOnlySpan<char>)span).LastIndexOf(value.AsSpan(), startIndex, count, comparisonType);
+    public static int LastIndexOf(this Span<char> span,
+                                  string? value,
+                                  int startIndex,
+                                  int count,
+                                  StringComparison comparisonType)
+        => ((ReadOnlySpan<char>)span).LastIndexOf(value.AsSpan(),
+                                                  startIndex,
+                                                  count,
+                                                  comparisonType);
 
 
     /// <summary>Indicates whether a character span contains one of the Unicode characters
@@ -213,7 +225,8 @@ public static class SpanPolyfillExtension
     /// passed with <paramref name="values" />. If <paramref name="span" /> is empty or <paramref
     /// name="values" /> is <c>null</c> or empty, <c>false</c> is returned.</returns>
     /// <remarks>If the length of <paramref name="values" /> is less than 5, the method uses
-    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
+    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, 
+    /// ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
     /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
     /// /> is greater, <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see>
     /// is used to avoid performance issues.</remarks>
@@ -230,7 +243,8 @@ public static class SpanPolyfillExtension
     /// found. If <paramref name="values" /> is <c>null</c> or empty, the method returns
     /// -1.</returns>
     /// <remarks>If the length of <paramref name="values" /> is less than 5, the method uses
-    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
+    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, 
+    /// ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
     /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
     /// /> is greater, <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see>
     /// is used to avoid performance issues.</remarks>
@@ -247,7 +261,8 @@ public static class SpanPolyfillExtension
     /// found. If <paramref name="values" /> is <c>null</c> or empty, the method returns
     /// -1.</returns>
     /// <remarks>If the length of <paramref name="values" /> is less than 5, the method uses
-    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
+    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(ReadOnlySpan{T}, 
+    /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
     /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
     /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
     /// is used to avoid performance issues.</remarks>
@@ -269,7 +284,8 @@ public static class SpanPolyfillExtension
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found.</returns>
     /// <remarks>If the length of <paramref name="values" /> is less than 5, the method uses
-    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
+    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(ReadOnlySpan{T}, 
+    /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
     /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
     /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
     /// is used to avoid performance issues.</remarks>
@@ -287,7 +303,8 @@ public static class SpanPolyfillExtension
     /// /> - <paramref name="count" /> + 1 is less than zero.
     /// </para>
     /// </exception>
-    public static int LastIndexOfAny(this Span<char> span, string? values, int startIndex, int count)
+    public static int LastIndexOfAny(
+        this Span<char> span, string? values, int startIndex, int count)
         => ((ReadOnlySpan<char>)span).LastIndexOfAny(values.AsSpan(), startIndex, count);
 
 #endif

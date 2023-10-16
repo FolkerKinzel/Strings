@@ -1,8 +1,6 @@
-using System.IO;
-
 namespace FolkerKinzel.Strings;
 
-    /// <summary> Erweiterungsmethoden für die <see cref="FileInfo" />-Klasse. </summary>
+/// <summary> Extension methods for the <see cref="FileInfo" /> class. </summary>
 public static class FileInfoExtension
 {
     internal const int ISUTF8_COUNT = 255;
@@ -16,8 +14,7 @@ public static class FileInfoExtension
     /// <summary>Tests whether the portion of the file specified by <paramref name="fileInfo"
     /// /> that extends at least <paramref name="count" /> characters from the beginning
     /// of the file is UTF-8 text. The method includes the byte order mark (BOM) in the check.</summary>
-    /// <param name="fileInfo">Ein <see cref="FileInfo" />-Objekt, das auf die zu überprüfende
-    /// Datei verweist.</param>
+    /// <param name="fileInfo">A <see cref="FileInfo" /> object that references the file to check.</param>
     /// <param name="count">The minimum number of characters to check. If the parameter is
     /// passed a negative number or if <paramref name="count" /> is greater than the length
     /// of the data in the specified file, the entire file is checked. If <c>0</c> is passed
@@ -37,8 +34,8 @@ public static class FileInfoExtension
     /// <summary>Tests whether the portion of the file specified by <paramref name="fileInfo"
     /// /> that extends at least <paramref name="count" /> characters from the beginning
     /// of the file represents valid UTF-8.</summary>
-    /// <param name="fileInfo">Ein <see cref="FileInfo" />-Objekt, das auf die zu überprüfende
-    /// Datei verweist.</param>
+    /// <param name="fileInfo">A <see cref="FileInfo" /> object that references the file to 
+    /// check.</param>
     /// <param name="count">The minimum number of characters to check. If a negative number
     /// is passed to the parameter (default) or if <paramref name="count" /> is greater than
     /// the length of the data in the specified file, the entire file is checked. The value
@@ -54,7 +51,7 @@ public static class FileInfoExtension
         return stream.IsUtf8Valid(count, false);
     }
 
-    
+
 
     private static FileStream InitFileStream(FileInfo fileInfo, int count)
     {

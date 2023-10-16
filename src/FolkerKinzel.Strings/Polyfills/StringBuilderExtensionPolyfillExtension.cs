@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-using System.Security.Principal;
 using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings.Polyfills;
@@ -55,7 +53,10 @@ public static class StringBuilderExtensionPolyfillExtension
         string? replacement,
         bool skipNewLines = false)
     => builder is null ? throw new ArgumentNullException(nameof(builder))
-                       : builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), 0, builder.Length, skipNewLines);
+                       : builder.ReplaceWhiteSpaceWith(replacement.AsSpan(),
+                                                       0,
+                                                       builder.Length,
+                                                       skipNewLines);
 
     /// <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref
     /// name="startIndex" /> and extends to the end of <paramref name="builder" />, all sequences
@@ -88,7 +89,10 @@ public static class StringBuilderExtensionPolyfillExtension
         int startIndex,
         bool skipNewLines = false)
     => builder is null ? throw new ArgumentNullException(nameof(builder))
-                       : builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), startIndex, builder.Length - startIndex, skipNewLines);
+                       : builder.ReplaceWhiteSpaceWith(replacement.AsSpan(),
+                                                       startIndex,
+                                                       builder.Length - startIndex,
+                                                       skipNewLines);
 
     /// <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref
     /// name="startIndex" /> and which is <paramref name="count" /> characters long, all

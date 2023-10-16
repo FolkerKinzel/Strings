@@ -1,14 +1,12 @@
-using System.Runtime.CompilerServices;
-
 namespace FolkerKinzel.Strings.Polyfills;
 
 
-    /// <summary>Extension methods for the <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>
-    /// structure, which are used in .NET Framework 4.5, .NET Standard 2.0 and .NET Standard
-    /// 2.1 as polyfills for methods from current .NET versions.</summary>
-    /// <remarks>The methods of this class should only be used in the extension method syntax
-    /// to simulate the methods of the <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>
-    /// structure, which exist in more modern frameworks.</remarks>
+/// <summary>Extension methods for the <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>
+/// struct, which are used in .NET Framework 4.5, .NET Standard 2.0 and .NET Standard
+/// 2.1 as polyfills for methods from current .NET versions.</summary>
+/// <remarks>The methods of this class should only be used in the extension method syntax
+/// to simulate the methods of the <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>
+/// struct, which exist in more modern frameworks.</remarks>
 public static class ReadOnlySpanPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
@@ -43,21 +41,13 @@ public static class ReadOnlySpanPolyfillExtension
     /// </remarks>
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:In bedingten Ausdruck konvertieren", Justification = "<Ausstehend>")]
-    public static int LastIndexOf(this ReadOnlySpan<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
-    {
-        if (value.IsEmpty)
-        {
-            return span.IsEmpty ? 0 : span.Length - 1;
-        }
-
-        if (comparisonType == StringComparison.Ordinal)
-        {
-            return span.LastIndexOf(value);
-        }
-
-        return span.ToString().LastIndexOf(value.ToString(), comparisonType);
-    }
+    public static int LastIndexOf(
+        this ReadOnlySpan<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
+        => value.IsEmpty
+            ? span.IsEmpty ? 0 : span.Length - 1
+            : comparisonType == StringComparison.Ordinal
+                ? span.LastIndexOf(value)
+                : span.ToString().LastIndexOf(value.ToString(), comparisonType);
 #endif
 
 
@@ -72,8 +62,9 @@ public static class ReadOnlySpanPolyfillExtension
     /// /> and <paramref name="other" /> are compared.</param>
     /// <returns> <c>true</c> if identical, <c>false</c> otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool Equals(this ReadOnlySpan<char> span, string? other, StringComparison comparisonType) =>
-        span.Equals(other.AsSpan(), comparisonType);
+    public static bool Equals(
+        this ReadOnlySpan<char> span, string? other, StringComparison comparisonType) 
+        => span.Equals(other.AsSpan(), comparisonType);
 
 
     /// <summary>Indicates whether a specified value occurs within a read-only character
@@ -85,7 +76,8 @@ public static class ReadOnlySpanPolyfillExtension
     /// /> and <paramref name="other" /> are compared.</param>
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool Contains(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
+    public static bool Contains(
+        this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
         => span.Contains(value.AsSpan(), comparisonType);
 
 
@@ -109,7 +101,8 @@ public static class ReadOnlySpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOf(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
+    public static int LastIndexOf(
+        this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
         => span.LastIndexOf(value.AsSpan(), comparisonType);
 
     /// <summary>Indicates whether a read-only span of characters starts with the specified
@@ -140,7 +133,8 @@ public static class ReadOnlySpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool StartsWith(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
+    public static bool StartsWith(
+        this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
         => span.StartsWith(value.AsSpan(), comparisonType);
 
 
@@ -172,10 +166,9 @@ public static class ReadOnlySpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool EndsWith(this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
+    public static bool EndsWith(
+        this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
         => span.EndsWith(value.AsSpan(), comparisonType);
 
-
 #endif
-
 }
