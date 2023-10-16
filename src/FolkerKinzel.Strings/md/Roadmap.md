@@ -2,10 +2,11 @@
 
 ## Roadmap
 ### 7.0.1
-- [ ] Remove `IsAsciiLowerCaseLetter(this char)`
-- [ ] Remove `IsAsciiUpperCaseLetter(this char)`
-- [ ] Remove `IsDecimalDigit(this char)`
-- [ ] Remove `IsHexDigit(this char)`
+- [x] Remove `IsAsciiLowerCaseLetter(this char)`
+- [x] Remove `IsAsciiUpperCaseLetter(this char)`
+- [x] Remove `IsDecimalDigit(this char)`
+- [x] Remove `IsHexDigit(this char)`
+- [ ] Remove German resource files
 
 ### 7.0.0
 - [x] Mark `IsAsciiLowerCaseLetter(this char)` as obsolete error
