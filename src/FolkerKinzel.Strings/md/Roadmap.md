@@ -6,7 +6,7 @@
 - [x] Remove `IsAsciiUpperCaseLetter(this char)`
 - [x] Remove `IsDecimalDigit(this char)`
 - [x] Remove `IsHexDigit(this char)`
-- [ ] Remove German resource files
+- [x] Remove German resource files
 
 ### 7.0.0
 - [x] Mark `IsAsciiLowerCaseLetter(this char)` as obsolete error
