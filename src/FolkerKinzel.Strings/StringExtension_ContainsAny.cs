@@ -9,8 +9,9 @@ public static partial class StringExtension
     /// <param name="value1">The second character to search for.</param>
     /// <returns> <c>true</c> if one of the characters to be searched for is found, otherwise
     /// <c>false</c>.</returns>
-    /// <remarks> Für den Vergleich wird <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T},
-    /// T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)</see> verwendet.
+    /// <remarks> <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T},
+    /// T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)</see> 
+    /// is used for the comparison.
     /// </remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     public static bool ContainsAny(this string s, char value0, char value1)
@@ -25,9 +26,9 @@ public static partial class StringExtension
     /// <param name="value2">The third character to search for.</param>
     /// <returns> <c>true</c> if one of the characters to be searched for is found, otherwise
     /// <c>false</c>.</returns>
-    /// <remarks> Für den Vergleich wird <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T},
+    /// <remarks> <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T},
     /// T, T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T)</see>
-    /// verwendet. </remarks>
+    /// is used for the comparison.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     public static bool ContainsAny(this string s, char value0, char value1, char value2)
         => s is null ? throw new ArgumentNullException(nameof(s))
@@ -42,7 +43,8 @@ public static partial class StringExtension
     /// name="s" />, otherwise <c>false</c>. If <paramref name="s" /> or <paramref name="anyOf"
     /// /> have the length zero, <c>false</c> is returned.</returns>
     /// <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses
-    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
+    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, 
+    /// ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
     /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="anyOf"
     /// /> is greater, <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see>
     /// is used.</remarks>

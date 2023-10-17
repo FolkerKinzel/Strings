@@ -37,13 +37,13 @@ public static partial class StringExtension
     /// </para>
     /// </remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
-    /// <exception cref="ArgumentException"> <paramref name="hashType" /> ist kein definierter
-    /// Wert der <see cref="HashType" />-Enum.</exception>
+    /// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
+    /// value of the <see cref="HashType" /> enum.</exception>
     /// <example>
     /// <code language="cs" source="..\Examples\Example.cs" />
     /// </example>
     public static int GetPersistentHashCode(this string s, HashType hashType)
-        => s is null ? throw new ArgumentNullException(nameof(s)) : s.AsSpan().GetPersistentHashCode(hashType);
-
+        => s is null ? throw new ArgumentNullException(nameof(s)) 
+                     : s.AsSpan().GetPersistentHashCode(hashType);
 
 }

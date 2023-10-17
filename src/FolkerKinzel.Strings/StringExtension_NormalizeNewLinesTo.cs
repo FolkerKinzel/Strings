@@ -13,13 +13,13 @@ public static partial class StringExtension
     /// <paramref name="s" /> is returned.</returns>
     /// <remarks>
     /// <para>
-    /// Für die Identifizierung von Zeilenwechselzeichen wird <see cref="CharExtension.IsNewLine(char)"
-    /// /> verwendet. Die Sequenzen CRLF und LFCR werden als ein Zeilenumbruch behandelt.
+    /// <see cref="CharExtension.IsNewLine(char)" /> is used to identify newline characters. The 
+    /// sequences CRLF and LFCR are treated as one line break.
     /// </para>
     /// <note type="caution">
-    /// Diese Methode unterscheidet sich von <see cref="ReplaceLineEndings(string, string)"
-    /// /> dahingehend, dass sie zusätzlich LFCR-Sequenzen und Vertical Tab (VT: U+000B)
-    /// als Zeilenwechsel behandelt.
+    /// This method differs from <see cref="StringExtension.ReplaceLineEndings(string,
+    /// string)" /> in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line 
+    /// break. 
     /// </note>
     /// </remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
@@ -39,6 +39,5 @@ public static partial class StringExtension
         var sb = new StringBuilder(s.Length + s.Length / 2);
         return sb.Append(s).NormalizeNewLinesTo(newLine).ToString();
     }
-
 
 }

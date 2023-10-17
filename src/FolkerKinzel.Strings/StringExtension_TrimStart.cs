@@ -5,13 +5,14 @@ namespace FolkerKinzel.Strings;
 public static partial class StringExtension
 {
     /// <summary>Generates a <see cref="string" /> from which all leading occurrences of
-    /// the characters in the specified Span are removed.</summary>
-    /// <param name="s">The <see cref="string" /> to search.</param>
-    /// <param name="trimChars">A Span of Unicode characters to remove. If <paramref name="trimChars"
-    /// /> is an empty Span, Unicode white-space characters are removed instead.</param>
+    /// the characters in the specified read-only span are removed.</summary>
+    /// <param name="s">The <see cref="string" /> to change.</param>
+    /// <param name="trimChars">A read-only span of Unicode characters to remove. If 
+    /// <paramref name="trimChars" /> is an empty Span, Unicode white-space characters are 
+    /// removed instead.</param>
     /// <returns>The resulting <see cref="string" /> after removing all characters passed
-    /// in the <paramref name="trimChars" /> parameter from the beginning of the <see cref="string"
-    /// />.</returns>
+    /// in the <paramref name="trimChars" /> parameter from the beginning of the 
+    /// <see cref="string" />.</returns>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     public static string TrimStart(this string s, ReadOnlySpan<char> trimChars)
     {
@@ -34,7 +35,8 @@ public static partial class StringExtension
                 : span.ToString();
     }
 
-    private static ReadOnlySpan<char> DoTrimStart(this ReadOnlySpan<char> span, ReadOnlySpan<char> trimChars)
+    private static ReadOnlySpan<char> DoTrimStart(
+        this ReadOnlySpan<char> span, ReadOnlySpan<char> trimChars)
     {
         int length = span.Length;
 

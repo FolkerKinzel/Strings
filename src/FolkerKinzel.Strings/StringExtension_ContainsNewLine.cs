@@ -8,5 +8,7 @@ public static partial class StringExtension
     /// <remarks> <see cref="CharExtension.IsNewLine(char)" /> is used for the comparison.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     public static bool ContainsNewLine(this string s)
-        => s is null ? throw new ArgumentNullException(nameof(s)) : s.AsSpan().ContainsNewLine();
+        => s is null ? throw new ArgumentNullException(nameof(s)) 
+                     : s.AsSpan().ContainsNewLine();
+
 }

@@ -14,10 +14,11 @@ public static class UrlEncoding
         private const string UTF_8 = "utf-8";
 
         internal static Encoding InitThrowing(string? charSetName)
-        => TextEncodingConverter.GetEncoding(string.IsNullOrEmpty(charSetName) ? UTF_8 : charSetName,
-                                            EncoderFallback.ExceptionFallback,
-                                            DecoderFallback.ExceptionFallback,
-                                            true);
+        => TextEncodingConverter.GetEncoding(
+                   string.IsNullOrEmpty(charSetName) ? UTF_8 : charSetName,
+                   EncoderFallback.ExceptionFallback,
+                   DecoderFallback.ExceptionFallback,
+                   true);
 
         internal static Encoding InitThrowing(int codePage)
         => TextEncodingConverter.GetEncoding(codePage,
@@ -33,7 +34,8 @@ public static class UrlEncoding
 
     #region Encode
 
-    internal static StringBuilder AppendUrlEncodedTo(StringBuilder builder, ReadOnlySpan<byte> value)
+    internal static StringBuilder AppendUrlEncodedTo(StringBuilder builder,
+                                                     ReadOnlySpan<byte> value)
     {
         if (builder is null)
         {
@@ -76,6 +78,7 @@ public static class UrlEncoding
         }
     }
 
+
     private static void AppendCharacter(this StringBuilder sb, char c)
     {
         if (MustEncode(c))
@@ -88,14 +91,16 @@ public static class UrlEncoding
         }
     }
 
+
     private static void AppendHexEncoded(this StringBuilder sb, char c)
         => _ = sb.Append('%').Append(ToHexDigit(c >> 4)).Append(ToHexDigit(c & 0x0F));
 
-    private static char ToHexDigit(int i) =>
-        (char)(i < 10 ? i + '0' : i + 'A' - 10);
 
-    private static bool MustEncode(char c) =>
-         !(c.IsAsciiLetterOrDigit() || c is '.' or '-' or '_' or '~');
+    private static char ToHexDigit(int i)
+        => (char)(i < 10 ? i + '0' : i + 'A' - 10);
+
+    private static bool MustEncode(char c)
+        => !(c.IsAsciiLetterOrDigit() || c is '.' or '-' or '_' or '~');
 
     #endregion
 
@@ -194,7 +199,9 @@ public static class UrlEncoding
     {
         try
         {
-            decoded = UnescapeValueFromUrlEncoding(value, TextEncodingHelper.InitThrowing(encodingWebName), decodePlusChars);
+            decoded = UnescapeValueFromUrlEncoding(value,
+                                                   TextEncodingHelper.InitThrowing(encodingWebName),
+                                                   decodePlusChars);
             return true;
         }
         catch
@@ -203,7 +210,6 @@ public static class UrlEncoding
             return false;
         }
     }
-
 
     /// <summary>Tries to decode a URL-encoded read-only character span using a specified
     /// code page and allows to specify whether or not PLUS characters ('+', U+002B) should
@@ -223,7 +229,9 @@ public static class UrlEncoding
     {
         try
         {
-            decoded = UnescapeValueFromUrlEncoding(value, TextEncodingHelper.InitThrowing(codePage), decodePlusChars);
+            decoded = UnescapeValueFromUrlEncoding(value,
+                                                   TextEncodingHelper.InitThrowing(codePage),
+                                                   decodePlusChars);
             return true;
         }
         catch
@@ -249,7 +257,9 @@ public static class UrlEncoding
     {
         try
         {
-            decoded = UnescapeValueFromUrlEncoding(value, TextEncodingHelper.InitThrowingUtf8(), decodePlusChars);
+            decoded = UnescapeValueFromUrlEncoding(value,
+                                                   TextEncodingHelper.InitThrowingUtf8(),
+                                                   decodePlusChars);
             return true;
         }
         catch
@@ -258,7 +268,6 @@ public static class UrlEncoding
             return false;
         }
     }
-
 
     /// <summary>Tries to decode a URL-encoded read-only character span to a <see cref="byte"
     /// /> array and allows to specify whether or not PLUS characters ('+', U+002B) should
@@ -294,7 +303,9 @@ public static class UrlEncoding
     /// <param name="encoding" />
     /// <param name="decodePlusSigns" />
     /// <returns />
-    private static string UnescapeValueFromUrlEncoding(ReadOnlySpan<char> value, Encoding encoding, bool decodePlusSigns)
+    private static string UnescapeValueFromUrlEncoding(ReadOnlySpan<char> value,
+                                                       Encoding encoding,
+                                                       bool decodePlusSigns)
     {
         Span<byte> bytes = value.Length > SHORT_ARRAY ? new byte[value.Length]
                                                       : stackalloc byte[value.Length];
@@ -303,7 +314,9 @@ public static class UrlEncoding
     }
 
 
-    private static ReadOnlySpan<byte> FillBytes(ReadOnlySpan<char> value, bool decodePlusSigns, Span<byte> bytes)
+    private static ReadOnlySpan<byte> FillBytes(ReadOnlySpan<char> value,
+                                                bool decodePlusSigns,
+                                                Span<byte> bytes)
     {
         const byte spaceChar = (byte)' ';
         const byte plusChar = (byte)'+';
@@ -340,4 +353,5 @@ public static class UrlEncoding
 
         return bytes.Slice(0, byteIndex);
     }
+
 }

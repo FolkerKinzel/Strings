@@ -39,14 +39,14 @@ public static class TextEncodingConverter
     public static Encoding GetEncoding(string? encodingWebName, bool throwOnInvalidWebName = false)
     {
         return throwOnInvalidWebName
-            ? TryGetEncodingInternal(encodingWebName, null, null, out Encoding? encoding, out Exception? exception)
+            ? TryGetEncodingInternal(
+                encodingWebName, null, null, out Encoding? encoding, out Exception? exception)
                 ? encoding
                 : throw exception
             : TryGetEncoding(encodingWebName, out encoding)
                 ? encoding
                 : Encoding.UTF8;
     }
-
 
     /// <summary>Returns a corresponding <see cref="Encoding" /> object for the specified
     /// identifier of a character set, whose properties <see cref="Encoding.EncoderFallback"
@@ -82,14 +82,18 @@ public static class TextEncodingConverter
         ThrowOnEncoderAndDecoderFallbackNull(encoderFallback, decoderFallback);
 
         return throwOnInvalidWebName
-            ? TryGetEncodingInternal(encodingWebName, encoderFallback, decoderFallback, out Encoding? encoding, out Exception? exception)
+            ? TryGetEncodingInternal(encodingWebName,
+                                     encoderFallback,
+                                     decoderFallback,
+                                     out Encoding? encoding,
+                                     out Exception? exception)
                 ? encoding
                 : throw exception
-            : TryGetEncodingInternal(encodingWebName, encoderFallback, decoderFallback, out encoding)
+            : TryGetEncodingInternal(
+                encodingWebName, encoderFallback, decoderFallback, out encoding)
                 ? encoding
                 : CreateFallBack(encoderFallback, decoderFallback);
     }
-
 
     /// <summary>Returns a corresponding <see cref="Encoding" /> object for the specified
     /// code page number.</summary>
@@ -127,7 +131,8 @@ public static class TextEncodingConverter
     public static Encoding GetEncoding(int codePage, bool throwOnInvalidCodePage = false)
     {
         return throwOnInvalidCodePage
-            ? TryGetEncodingInternal(codePage, null, null, out Encoding? encoding, out Exception? exception)
+            ? TryGetEncodingInternal(
+                codePage, null, null, out Encoding? encoding, out Exception? exception)
                 ? encoding
                 : throw exception
             : TryGetEncoding(codePage, out encoding)
@@ -136,8 +141,8 @@ public static class TextEncodingConverter
     }
 
     /// <summary>Returns a corresponding <see cref="Encoding" /> object for a specified code
-    /// page number, whose properties <see cref="Encoding.EncoderFallback" /> and <see cref="Encoding.DecoderFallback"
-    /// /> are set to the desired values.</summary>
+    /// page number, whose properties <see cref="Encoding.EncoderFallback" /> and 
+    /// <see cref="Encoding.DecoderFallback" /> are set to the desired values.</summary>
     /// <param name="codePage">
     /// <para>
     /// The code page number.
@@ -179,14 +184,18 @@ public static class TextEncodingConverter
         ThrowOnEncoderAndDecoderFallbackNull(encoderFallback, decoderFallback);
 
         return throwOnInvalidCodePage
-           ? TryGetEncodingInternal(codePage, encoderFallback, decoderFallback, out Encoding? encoding, out Exception? exception)
+           ? TryGetEncodingInternal(codePage,
+                                    encoderFallback,
+                                    decoderFallback,
+                                    out Encoding? encoding,
+                                    out Exception? exception)
                ? encoding
                : throw exception
-           : TryGetEncodingInternal(codePage, encoderFallback, decoderFallback, out encoding)
+           : TryGetEncodingInternal(
+               codePage, encoderFallback, decoderFallback, out encoding)
                 ? encoding
                 : CreateFallBack(encoderFallback, decoderFallback);
     }
-
 
     /// <summary>Tries to return a corresponding <see cref="Encoding" /> object for the specified
     /// identifier of a character set.</summary>
@@ -208,7 +217,8 @@ public static class TextEncodingConverter
     public static bool TryGetEncoding(string? encodingWebName, [NotNullWhen(true)] out Encoding? encoding)
     {
         encoding = null;
-        return !IsWebNameEmpty(encodingWebName) && BuildEncoding(encodingWebName, null, null, ref encoding, out _);
+        return !IsWebNameEmpty(encodingWebName) && 
+                BuildEncoding(encodingWebName, null, null, ref encoding, out _);
     }
 
     /// <summary>Tries to return a corresponding <see cref="Encoding" /> object for the specified
@@ -236,10 +246,11 @@ public static class TextEncodingConverter
                                       [NotNullWhen(true)] out Encoding? encoding)
     {
         ThrowOnEncoderAndDecoderFallbackNull(encoderFallback, decoderFallback);
-        return TryGetEncodingInternal(encodingWebName, encoderFallback, decoderFallback, out encoding);
+        return TryGetEncodingInternal(encodingWebName,
+                                      encoderFallback,
+                                      decoderFallback,
+                                      out encoding);
     }
-
-
 
     /// <summary>Tries to return a corresponding <see cref="Encoding" /> object for the specified
     /// code page number.</summary>
@@ -320,6 +331,7 @@ public static class TextEncodingConverter
         return !IsWebNameEmpty(encodingWebName) && BuildEncoding(encodingWebName, encoderFallback, decoderFallback, ref encoding, out _);
     }
 
+
     private static bool TryGetEncodingInternal(int codePage,
                                                EncoderFallback encoderFallback,
                                                DecoderFallback decoderFallback,
@@ -330,7 +342,6 @@ public static class TextEncodingConverter
         encoding = null;
         return !CodepageOutOfRange(codePage) && BuildEncoding(codePage, encoderFallback, decoderFallback, ref encoding, out _);
     }
-
 
 
     private static bool TryGetEncodingInternal(int codePage,
@@ -347,8 +358,10 @@ public static class TextEncodingConverter
             return false;
         }
 
-        return BuildEncoding(codePage, encoderFallback, decoderFallback, ref encoding, out exception);
+        return BuildEncoding(
+            codePage, encoderFallback, decoderFallback, ref encoding, out exception);
     }
+
 
     private static bool BuildEncoding(int codePage,
                                       EncoderFallback? encoderFallback,
@@ -363,7 +376,9 @@ public static class TextEncodingConverter
         try
         {
             encoding = encoderFallback is null ? Encoding.GetEncoding(codePage)
-                                               : Encoding.GetEncoding(codePage, encoderFallback, decoderFallback!);
+                                               : Encoding.GetEncoding(codePage,
+                                                                      encoderFallback,
+                                                                      decoderFallback!);
         }
         catch (Exception e)
         {
@@ -374,7 +389,6 @@ public static class TextEncodingConverter
         exception = null;
         return true;
     }
-
 
 
     private static bool TryGetEncodingInternal(string? encodingWebName,
@@ -391,7 +405,8 @@ public static class TextEncodingConverter
             return false;
         }
 
-        return BuildEncoding(encodingWebName, encoderFallback, decoderFallback, ref encoding, out exception);
+        return BuildEncoding(
+            encodingWebName, encoderFallback, decoderFallback, ref encoding, out exception);
     }
 
     private static bool BuildEncoding(string encodingWebName,
@@ -407,7 +422,9 @@ public static class TextEncodingConverter
         try
         {
             encoding = encoderFallback is null ? Encoding.GetEncoding(encodingWebName)
-                                               : Encoding.GetEncoding(encodingWebName, encoderFallback, decoderFallback!);
+                                               : Encoding.GetEncoding(encodingWebName,
+                                                                      encoderFallback,
+                                                                      decoderFallback!);
         }
         catch (Exception e)
         {
@@ -419,7 +436,9 @@ public static class TextEncodingConverter
         return true;
     }
 
-    private static void ThrowOnEncoderAndDecoderFallbackNull(EncoderFallback encoderFallback, DecoderFallback decoderFallback)
+
+    private static void ThrowOnEncoderAndDecoderFallbackNull(EncoderFallback encoderFallback,
+                                                             DecoderFallback decoderFallback)
     {
         if (encoderFallback is null)
         {
@@ -432,30 +451,35 @@ public static class TextEncodingConverter
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static bool IsWebNameEmpty([NotNullWhen(false)] string? encodingWebName) => string.IsNullOrWhiteSpace(encodingWebName);
-
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string PrepareEncodingName(string name) => name.Replace(" ", "", StringComparison.Ordinal);
+    private static bool IsWebNameEmpty([NotNullWhen(false)] string? encodingWebName) 
+        => string.IsNullOrWhiteSpace(encodingWebName);
 
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static bool CodepageOutOfRange(int codePage) => codePage is < CODEPAGE_MIN or > CODEPAGE_MAX;
+    private static string PrepareEncodingName(string name)
+        => name.Replace(" ", "", StringComparison.Ordinal);
 
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static Encoding CreateFallBack(EncoderFallback encoderFallback, DecoderFallback decoderFallback) =>
-        Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
+    private static bool CodepageOutOfRange(int codePage)
+        => codePage is < CODEPAGE_MIN or > CODEPAGE_MAX;
+
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static Encoding CreateFallBack(EncoderFallback encoderFallback,
+                                           DecoderFallback decoderFallback) 
+        => Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
 
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static void EnableAnsiEncodings()
     {
 #if NETSTANDARD2_0_OR_GREATER || NET5_0_OR_GREATER
-#pragma warning disable IDE0022 // Ausdruckskörper für Methode verwenden
+#pragma warning disable IDE0022 // Use expression body for method
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-#pragma warning restore IDE0022 // Ausdruckskörper für Methode verwenden
+#pragma warning restore IDE0022 // Use expression body for method
 #endif
     }
 
@@ -463,7 +487,8 @@ public static class TextEncodingConverter
 
     [Conditional("DEBUG")]
     [ExcludeFromCodeCoverage]
-    private static void AssertEncoderAndDecoderFallbackNotNull(EncoderFallback encoderFallback, DecoderFallback decoderFallback)
+    private static void AssertEncoderAndDecoderFallbackNotNull(EncoderFallback encoderFallback,
+                                                               DecoderFallback decoderFallback)
     {
         Debug.Assert(encoderFallback != null);
         Debug.Assert(decoderFallback != null);
@@ -471,8 +496,10 @@ public static class TextEncodingConverter
 
     [Conditional("DEBUG")]
     [ExcludeFromCodeCoverage]
-    private static void AssertEncoderAndDecoderFallbackBothNullOrBothNotNull(EncoderFallback? encoderFallback, DecoderFallback? decoderFallback) =>
-        Debug.Assert((encoderFallback is null && decoderFallback is null) || (encoderFallback is not null && decoderFallback is not null));
+    private static void AssertEncoderAndDecoderFallbackBothNullOrBothNotNull(EncoderFallback? encoderFallback,
+                                                                             DecoderFallback? decoderFallback)
+        => Debug.Assert((encoderFallback is null && decoderFallback is null) || 
+                     (encoderFallback is not null && decoderFallback is not null));
 
     #endregion
     #endregion
@@ -544,7 +571,8 @@ public static class TextEncodingConverter
                 return GB18030;
             }
 
-            if (data[0] == 0x2B && data[1] == 0x2F && data[2] == 0x76 && (data[3] == 0x38 || data[3] == 0x39 || data[3] == 0x2B || data[3] == 0x2F))
+            if (data[0] == 0x2B && data[1] == 0x2F && data[2] == 0x76 && 
+               (data[3] == 0x38 || data[3] == 0x39 || data[3] == 0x2B || data[3] == 0x2F))
             {
                 bomLength = 4;
                 return UTF7;
@@ -599,7 +627,5 @@ public static class TextEncodingConverter
         bomLength = 0;
         return UTF_8;
     }
-
-
 
 }

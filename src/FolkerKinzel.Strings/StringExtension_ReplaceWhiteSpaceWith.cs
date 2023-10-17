@@ -17,13 +17,12 @@ public static partial class StringExtension
     /// space character, <paramref name="s" /> is returned.</returns>
     /// <remarks>
     /// <para>
-    /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)" /> zur Identifizierung
-    /// von Leerraumzeichen und arbeitet damit gründlicher als <see cref="Regex.Replace(string,
-    /// string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+    /// The method uses <see cref="char.IsWhiteSpace(char)" /> to identify white space characters
+    /// and works more thoroughly with it than <see cref="Regex.Replace(string, string, string)">
+    /// Regex.Replace(string input, @"\s+", string replacement)</see>. 
     /// </para>
     /// <para>
-    /// (Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"
-    /// /> verwendet.)
+    /// <see cref="CharExtension.IsNewLine(char)" /> is used to identify newline characters.
     /// </para>
     /// </remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
@@ -43,9 +42,9 @@ public static partial class StringExtension
         }
 
         var sb = new StringBuilder(s.Length + s.Length / 2);
-        return sb.Append(s).ReplaceWhiteSpaceWith(replacement, 0, sb.Length, skipNewLines).ToString();
+        return sb.Append(s)
+                 .ReplaceWhiteSpaceWith(replacement, 0, sb.Length, skipNewLines)
+                 .ToString();
     }
-
-
 
 }

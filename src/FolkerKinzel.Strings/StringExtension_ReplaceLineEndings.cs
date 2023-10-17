@@ -5,19 +5,18 @@ public static partial class StringExtension
     // This is a polyfill, but it should NOT be in the namespace FolkerKinzel.Strings.Polyfills
     // to be available for .NET Core 3.1:
 #if NET5_0 || NETSTANDARD || NET45
-
-    /// <summary>Replaces all newlines in <paramref name="s" /> with <see cref="Environment.NewLine"
-    /// />.</summary>
+    /// <summary>Replaces all newlines in <paramref name="s" /> with 
+    /// <see cref="Environment.NewLine" />.</summary>
     /// <param name="s">The source <see cref="string" />.</param>
-    /// <returns>A <see cref="string" /> whose contents match the content of <paramref name="s"
-    /// />, but with all newline sequences replaced with <see cref="Environment.NewLine"
-    /// />.</returns>
+    /// <returns>A <see cref="string" /> whose contents match the content of 
+    /// <paramref name="s" />, but with all newline sequences replaced with 
+    /// <see cref="Environment.NewLine" />.</returns>
     /// <remarks>
     /// <para>
     /// This is a polyfill for the .NET 6.0 method String.ReplaceLineEndings(). The method
-    /// should therefore only be used in the extension method syntax. It throws a <see cref="NullReferenceException"
-    /// /> if <paramref name="s" /> is <c>null</c> in order to show identical behavior to
-    /// the original .NET method.
+    /// should therefore only be used in the extension method syntax. It throws a 
+    /// <see cref="NullReferenceException" /> if <paramref name="s" /> is <c>null</c> in order 
+    /// to show identical behavior to the original .NET method.
     /// </para>
     /// <para>
     /// The method searches for all newline sequences within <paramref name="s" /> and canonicalizes
@@ -62,16 +61,15 @@ public static partial class StringExtension
     public static string ReplaceLineEndings(this string s)
         => s.ReplaceLineEndings(Environment.NewLine);
 
-
-    /// <summary>Replaces all newlines in <paramref name="s" /> with <paramref name="replacementText"
-    /// />.</summary>
+    /// <summary>Replaces all newlines in <paramref name="s" /> with 
+    /// <paramref name="replacementText" />.</summary>
     /// <param name="s">The source <see cref="string" />.</param>
-    /// <param name="replacementText">The text to use as replacement. If <paramref name="replacementText"
-    /// /> is <see cref="string.Empty" />, all newline sequences within <paramref name="s"
-    /// /> will be removed.</param>
-    /// <returns>A <see cref="string" /> whose contents match the content of <paramref name="s"
-    /// />, but with all newline sequences replaced with <paramref name="replacementText"
-    /// />.</returns>
+    /// <param name="replacementText">The text to use as replacement. If 
+    /// <paramref name="replacementText" /> is <see cref="string.Empty" />, all newline 
+    /// sequences within <paramref name="s" /> will be removed.</param>
+    /// <returns>A <see cref="string" /> whose contents match the content of 
+    /// <paramref name="s" />, but with all newline sequences replaced with 
+    /// <paramref name="replacementText" />.</returns>
     /// <remarks>
     /// <para>
     /// This is a polyfill for the .NET 6.0 method String.ReplaceLineEndings(String). The
@@ -80,8 +78,8 @@ public static partial class StringExtension
     /// order to show identical behavior to the original .NET method.
     /// </para>
     /// <para>
-    /// The method searches for all newline sequences within <paramref name="s" /> and canonicalizes
-    /// them to match <paramref name="replacementText" />.
+    /// The method searches for all newline sequences within <paramref name="s" /> and 
+    /// canonicalizes them to match <paramref name="replacementText" />.
     /// </para>
     /// <para>
     /// The list of recognized newline sequences is:
@@ -115,7 +113,8 @@ public static partial class StringExtension
     /// </para>
     /// </remarks>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-    /// <exception cref="ArgumentNullException"> <paramref name="replacementText" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="replacementText" /> is <c>null</c>.
+    /// </exception>
     public static string ReplaceLineEndings(this string s, string replacementText)
     {
         if (s is null)

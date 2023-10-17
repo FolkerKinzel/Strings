@@ -63,4 +63,5 @@ public static partial class StringExtension
 
         return s.LastIndexOfAny(anyOf.ToArray(), startIndex, count);
     }
+
 }
