@@ -23,8 +23,8 @@ public static partial class SpanExtension
     /// <returns> <c>true</c> if <paramref name="span" /> ends with <paramref name="value"
     /// />, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool EndsWith(this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
+    public static bool EndsWith(
+        this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).EndsWith(value, comparisonType);
-
 
 }

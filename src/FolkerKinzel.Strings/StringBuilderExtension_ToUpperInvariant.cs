@@ -48,7 +48,8 @@ public static partial class StringBuilderExtension
     /// of characters in <paramref name="builder" />.
     /// </para>
     /// </exception>
-    public static StringBuilder ToUpperInvariant(this StringBuilder builder, int startIndex, int count)
+    public static StringBuilder ToUpperInvariant(
+        this StringBuilder builder, int startIndex, int count)
     {
         if (builder is null)
         {
@@ -72,7 +73,5 @@ public static partial class StringBuilderExtension
 
         return builder;
     }
-
-
 
 }

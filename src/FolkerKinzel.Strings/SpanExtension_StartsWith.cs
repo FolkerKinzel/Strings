@@ -25,5 +25,4 @@ public static partial class SpanExtension
     public static bool StartsWith(this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).StartsWith(value, comparisonType);
 
-
 }

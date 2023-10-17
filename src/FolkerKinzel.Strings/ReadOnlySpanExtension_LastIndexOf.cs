@@ -49,12 +49,12 @@ public static partial class ReadOnlySpanExtension
     /// - or -
     /// </para>
     /// <para>
-    /// <paramref name="span" /> is <see cref="ReadOnlySpan{T}.Empty" />, and <paramref name="startIndex"
-    /// /> is less than -1 or greater than 0.
+    /// <paramref name="span" /> is <see cref="ReadOnlySpan{T}.Empty" />, and 
+    /// <paramref name="startIndex" /> is less than -1 or greater than 0.
     /// </para>
     /// </exception>
-    /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
-    /// defined value of the <see cref="StringComparison" /> enum.</exception>
+    /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not 
+    /// a defined value of the <see cref="StringComparison" /> enum.</exception>
     public static int LastIndexOf(this ReadOnlySpan<char> span,
                                   ReadOnlySpan<char> value,
                                   int startIndex,

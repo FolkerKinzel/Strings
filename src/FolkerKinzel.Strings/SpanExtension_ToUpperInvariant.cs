@@ -2,8 +2,8 @@ namespace FolkerKinzel.Strings;
 
 public static partial class SpanExtension
 {
-    /// <summary>Converts the letters that <paramref name="span" /> references to uppercase
-    /// letters using the rules of the invariant culture.</summary>
+    /// <summary>Converts the letters that <paramref name="span" /> references 
+    /// to uppercase letters using the rules of the invariant culture.</summary>
     /// <param name="span">The span whose content is changed.</param>
     /// <returns>A copy of <paramref name="span" />.</returns>
     public static Span<char> ToUpperInvariant(this Span<char> span)
@@ -25,6 +25,5 @@ public static partial class SpanExtension
     //        span[i] = char.ToUpper(c, culture);
     //    }
     //}
-
 
 }

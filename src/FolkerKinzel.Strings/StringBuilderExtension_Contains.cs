@@ -2,31 +2,35 @@ namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
 {
-    /// <summary>Indicates whether a specified Unicode character is found in a <see cref="StringBuilder"
-    /// />.</summary>
+    /// <summary>Indicates whether a specified Unicode character is found in a 
+    /// <see cref="StringBuilder" />.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
     /// <param name="value">The Unicode character to search for.</param>
-    /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
+    /// <returns> <c>true</c> if <paramref name="value" /> has been found, 
+    /// <c>false</c> otherwise.</returns>
     /// <remarks>The method performs an ordinal character comparison.</remarks>
-    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is 
+    /// <c>null</c>.</exception>
     public static bool Contains(this StringBuilder builder, char value)
-        => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.IndexOf(value) != -1;
+        => builder is null ? throw new ArgumentNullException(nameof(builder)) 
+                           : builder.IndexOf(value) != -1;
 
 
-    /// <summary>Indicates whether a specified Unicode character is found in a <see cref="StringBuilder"
-    /// />. The search starts at the specified index.</summary>
+    /// <summary>Indicates whether a specified Unicode character is found in a 
+    /// <see cref="StringBuilder" />. The search starts at the specified index.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
     /// <param name="value">The Unicode character to search for.</param>
     /// <param name="startIndex">The start index of the search.</param>
-    /// <returns> <c>true</c> if <paramref name="value" /> is found, or <c>false</c> if it's
-    /// not.</returns>
+    /// <returns> <c>true</c> if <paramref name="value" /> is found, or <c>false</c> if 
+    /// it's not.</returns>
     /// <remarks>The method performs an ordinal character comparison.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="startIndex" /> is
-    /// less than zero or greater than the number of characters in <paramref name="builder"
-    /// />.</exception>
+    /// less than zero or greater than the number of characters in 
+    /// <paramref name="builder" />.</exception>
     public static bool Contains(this StringBuilder builder, char value, int startIndex)
-        => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.IndexOf(value, startIndex) != -1;
+        => builder is null ? throw new ArgumentNullException(nameof(builder)) 
+                           : builder.IndexOf(value, startIndex) != -1;
 
 
     /// <summary>Indicates whether a specified Unicode character is found in a <see cref="StringBuilder"
@@ -54,6 +58,7 @@ public static partial class StringBuilderExtension
     /// </para>
     /// </exception>
     public static bool Contains(this StringBuilder builder, char value, int startIndex, int count)
-       => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.IndexOf(value, startIndex, count) != -1;
+       => builder is null ? throw new ArgumentNullException(nameof(builder)) 
+                          : builder.IndexOf(value, startIndex, count) != -1;
 
 }

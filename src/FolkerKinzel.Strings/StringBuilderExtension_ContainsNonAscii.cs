@@ -44,7 +44,8 @@ public static partial class StringBuilderExtension
     /// <returns> <c>true</c> if the specified section in <paramref name="builder" /> contains
     /// a Unicode character, which doesn't belong to the ASCII character set; otherwise,
     /// <c>false</c>.</returns>
-    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.
+    /// </exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
     /// <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero
@@ -84,6 +85,5 @@ public static partial class StringBuilderExtension
         }
         return false;
     }
-
 
 }

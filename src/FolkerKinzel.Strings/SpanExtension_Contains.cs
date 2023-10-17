@@ -10,8 +10,8 @@ public static partial class SpanExtension
     /// /> and <paramref name="other" /> are compared.</param>
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool Contains(this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
+    public static bool Contains(
+        this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).Contains(value, comparisonType);
-
 
 }

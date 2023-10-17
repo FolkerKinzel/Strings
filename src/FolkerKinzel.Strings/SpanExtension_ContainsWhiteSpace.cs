@@ -10,4 +10,5 @@ public static partial class SpanExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsWhiteSpace(this Span<char> span)
     => ((ReadOnlySpan<char>)span).ContainsWhiteSpace();
+
 }

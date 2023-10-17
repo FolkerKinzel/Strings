@@ -16,13 +16,12 @@ public static partial class StringBuilderExtension
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <remarks>
     /// <para>
-    /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)" /> zur Identifizierung
-    /// von Leerraumzeichen und arbeitet damit gründlicher als <see cref="Regex.Replace(string,
-    /// string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+    /// The method uses <see cref="char.IsWhiteSpace(char)" /> to identify white space characters
+    /// and works more thoroughly with it than <see cref="Regex.Replace(string, string, string)">
+    /// Regex.Replace(string input, @"\s+", string replacement)</see>. 
     /// </para>
     /// <para>
-    /// (Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"
-    /// /> verwendet.)
+    /// <see cref="CharExtension.IsNewLine(char)" /> is used to identify newline characters.
     /// </para>
     /// </remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
@@ -47,13 +46,12 @@ public static partial class StringBuilderExtension
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <remarks>
     /// <para>
-    /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)" /> zur Identifizierung
-    /// von Leerraumzeichen und arbeitet damit gründlicher als <see cref="Regex.Replace(string,
-    /// string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+    /// The method uses <see cref="char.IsWhiteSpace(char)" /> to identify white space characters
+    /// and works more thoroughly with it than <see cref="Regex.Replace(string, string, string)">
+    /// Regex.Replace(string input, @"\s+", string replacement)</see>. 
     /// </para>
     /// <para>
-    /// (Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"
-    /// /> verwendet.)
+    /// <see cref="CharExtension.IsNewLine(char)" /> is used to identify newline characters.
     /// </para>
     /// </remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
@@ -66,7 +64,10 @@ public static partial class StringBuilderExtension
         int startIndex,
         bool skipNewLines = false)
     => builder is null ? throw new ArgumentNullException(nameof(builder))
-                       : builder.ReplaceWhiteSpaceWith(replacement, startIndex, builder.Length - startIndex, skipNewLines);
+                       : builder.ReplaceWhiteSpaceWith(replacement,
+                                                       startIndex,
+                                                       builder.Length - startIndex,
+                                                       skipNewLines);
 
     /// <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref
     /// name="startIndex" /> and which is <paramref name="count" /> characters long, all
@@ -84,13 +85,12 @@ public static partial class StringBuilderExtension
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <remarks>
     /// <para>
-    /// Die Methode verwendet <see cref="char.IsWhiteSpace(char)" /> zur Identifizierung
-    /// von Leerraumzeichen und arbeitet damit gründlicher als <see cref="Regex.Replace(string,
-    /// string, string)">Regex.Replace(string input, @"\s+", string replacement)</see>.
+    /// The method uses <see cref="char.IsWhiteSpace(char)" /> to identify white space characters
+    /// and works more thoroughly with it than <see cref="Regex.Replace(string, string, string)">
+    /// Regex.Replace(string input, @"\s+", string replacement)</see>. 
     /// </para>
     /// <para>
-    /// (Zur Identifizierung von Zeilenumbruchzeichen wird <see cref="CharExtension.IsNewLine(char)"
-    /// /> verwendet.)
+    /// <see cref="CharExtension.IsNewLine(char)" /> is used to identify newline characters.
     /// </para>
     /// </remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
@@ -107,12 +107,11 @@ public static partial class StringBuilderExtension
     /// of characters in <paramref name="builder" />.
     /// </para>
     /// </exception>
-    public static StringBuilder ReplaceWhiteSpaceWith(
-        this StringBuilder builder,
-        ReadOnlySpan<char> replacement,
-        int startIndex,
-        int count,
-        bool skipNewLines = false)
+    public static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder builder,
+                                                      ReadOnlySpan<char> replacement,
+                                                      int startIndex,
+                                                      int count,
+                                                      bool skipNewLines = false)
     {
         if (builder is null)
         {

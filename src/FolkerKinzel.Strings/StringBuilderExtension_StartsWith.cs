@@ -13,4 +13,5 @@ public static partial class StringBuilderExtension
     public static bool StartsWith(this StringBuilder builder, char value)
      => builder is null ? throw new ArgumentNullException(nameof(builder))
                         : builder.Length != 0 && builder[0] == value;
+
 }

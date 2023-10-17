@@ -2,11 +2,12 @@ namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
 {
-    /// <summary>Replaces all newlines in <paramref name="builder" /> with <paramref name="newLine"
-    /// />.</summary>
+    /// <summary>Replaces all newlines in <paramref name="builder" /> with 
+    /// <paramref name="newLine" />.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
-    /// <param name="replacementText">The text to use as replacement. If <paramref name="replacementText"
-    /// /> is <c>null</c> or <see cref="string.Empty" />, all newlines will be removed.</param>
+    /// <param name="replacementText">The text to use as replacement. If 
+    /// <paramref name="replacementText" /> is <c>null</c> or <see cref="string.Empty" />, all 
+    /// newlines will be removed.</param>
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <remarks>
     /// <para>
@@ -45,7 +46,10 @@ public static partial class StringBuilderExtension
         => builder is null ? throw new ArgumentNullException(nameof(builder))
                            : ReplaceLineEndings(builder, replacementText, 0);
 
-    internal static StringBuilder ReplaceLineEndings(this StringBuilder builder, string? replacementText, int startIndex)
+
+    internal static StringBuilder ReplaceLineEndings(this StringBuilder builder,
+                                                     string? replacementText,
+                                                     int startIndex)
     {
         bool nFound = false;
 
@@ -97,4 +101,5 @@ public static partial class StringBuilderExtension
 
         return builder;
     }
+
 }

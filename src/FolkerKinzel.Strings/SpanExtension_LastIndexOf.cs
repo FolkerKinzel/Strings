@@ -15,9 +15,9 @@ public static partial class SpanExtension
     /// this character sequence was found, or -1 if it was not found or <paramref name="span"
     /// /> is empty.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOf(this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
+    public static int LastIndexOf(
+        this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).LastIndexOf(value, comparisonType);
-
 
 
     /// <summary>Specifies the zero based index position of the last occurrence of a specified
@@ -72,8 +72,11 @@ public static partial class SpanExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOf(this Span<char> span, ReadOnlySpan<char> value, int startIndex, int count, StringComparison comparisonType)
+    public static int LastIndexOf(this Span<char> span,
+                                  ReadOnlySpan<char> value,
+                                  int startIndex,
+                                  int count,
+                                  StringComparison comparisonType)
     => ((ReadOnlySpan<char>)span).LastIndexOf(value, startIndex, count, comparisonType);
-
 
 }

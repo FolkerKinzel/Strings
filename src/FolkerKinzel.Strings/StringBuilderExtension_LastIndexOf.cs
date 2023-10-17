@@ -9,7 +9,8 @@ public static partial class StringBuilderExtension
     /// <returns>The zero-based index of the last occurence of <paramref name="value" />
     /// if that character is found, or -1 if it's not.</returns>
     /// <remarks>The method performs an ordinal character comparison.</remarks>
-    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.
+    /// </exception>
     public static int LastIndexOf(this StringBuilder builder, char value)
         => builder is null
                 ? throw new ArgumentNullException(nameof(builder))
@@ -25,7 +26,8 @@ public static partial class StringBuilderExtension
     /// <returns>The zero-based index of the last occurence of <paramref name="value" />
     /// if that character is found, or -1 if it's not.</returns>
     /// <remarks>The method performs an ordinal character comparison.</remarks>
-    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.
+    /// </exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="builder" /> is not
     /// empty and <paramref name="startIndex" /> is less than zero or greater than or equal
     /// to the length of <paramref name="builder" />.</exception>
@@ -37,8 +39,8 @@ public static partial class StringBuilderExtension
 
     /// <summary>Specifies the zero-based index of the last occurrence of the specified character
     /// in <paramref name="builder" />. The search begins at a specified index and runs backwards
-    /// for a specified number of character positions to the beginning of the <see cref="StringBuilder"
-    /// />.</summary>
+    /// for a specified number of character positions to the beginning of the 
+    /// <see cref="StringBuilder" />.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
     /// <param name="value">The Unicode character to search for.</param>
     /// <param name="startIndex">The start index of the search. The search is done backwards
@@ -47,7 +49,8 @@ public static partial class StringBuilderExtension
     /// <returns>If <paramref name="value" /> was found, the zero-based index position of
     /// its last occurrence within the section to be searched, otherwise -1.</returns>
     /// <remarks>The method performs an ordinal character comparison.</remarks>
-    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.
+    /// </exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
     /// <paramref name="builder" /> is not empty and <paramref name="startIndex" /> is less
@@ -61,7 +64,8 @@ public static partial class StringBuilderExtension
     /// name="count" /> + 1 is less than zero.
     /// </para>
     /// </exception>
-    public static int LastIndexOf(this StringBuilder builder, char value, int startIndex, int count)
+    public static int LastIndexOf(
+        this StringBuilder builder, char value, int startIndex, int count)
     {
         if (builder is null)
         {
@@ -91,6 +95,8 @@ public static partial class StringBuilderExtension
                 return i;
             }
         }
+
         return -1;
     }
+
 }

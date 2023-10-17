@@ -38,8 +38,8 @@ public static partial class StringBuilderExtension
     /// </para>
     /// </remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
-    /// <exception cref="ArgumentException"> <paramref name="hashType" /> ist kein definierter
-    /// Wert der <see cref="HashType" />-Enum.</exception>
+    /// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
+    /// value of the <see cref="HashType" /> enum.</exception>
     /// <example>
     /// <code language="cs" source="..\Examples\Example.cs" />
     /// </example>
@@ -55,8 +55,6 @@ public static partial class StringBuilderExtension
                 _ => throw new ArgumentException(Res.UndefinedEnumValue, nameof(hashType))
             });
     }
-
-
 
     #region private Methods
 

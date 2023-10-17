@@ -24,8 +24,8 @@ public static partial class StringBuilderExtension
     /// <remarks> <see cref="char.IsWhiteSpace(char)" /> is used to identify white space.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="startIndex" /> is
-    /// less than zero or greater than the number of characters in <paramref name="builder"
-    /// />.</exception>
+    /// less than zero or greater than the number of characters in 
+    /// <paramref name="builder" />.</exception>
     public static bool ContainsWhiteSpace(this StringBuilder builder, int startIndex)
         => builder is null
             ? throw new ArgumentNullException(nameof(builder))
@@ -80,8 +80,8 @@ public static partial class StringBuilderExtension
                 return true;
             }
         }
+
         return false;
     }
-
 
 }

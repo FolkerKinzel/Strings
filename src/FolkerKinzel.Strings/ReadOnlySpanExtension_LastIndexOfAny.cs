@@ -20,8 +20,10 @@ public static partial class ReadOnlySpanExtension
     /// is used to avoid performance issues.</remarks>
     public static int LastIndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
     {
-        // string.LastIndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
-        // MemoryExtensions.LastIndexOfAny returns 0 if the span with the characters to search for is empty.
+        // string.LastIndexOfAny returns -1 if anyOf is an empty array (although MSDN says it
+        // would return 0).
+        // MemoryExtensions.LastIndexOfAny returns 0 if the span with the characters to search
+        // for is empty.
         // This makes it consistent:
         return span.IsEmpty || values.IsEmpty
             ? -1
@@ -65,10 +67,15 @@ public static partial class ReadOnlySpanExtension
     /// name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
     /// </para>
     /// </exception>
-    public static int LastIndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values, int startIndex, int count)
+    public static int LastIndexOfAny(this ReadOnlySpan<char> span,
+                                     ReadOnlySpan<char> values,
+                                     int startIndex,
+                                     int count)
     {
-        // string.LastIndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
-        // MemoryExtensions.LastIndexOfAny returns 0 if the span with the characters to search for is empty.
+        // string.LastIndexOfAny returns -1 if anyOf is an empty array (although MSDN says it
+        // would return 0).
+        // MemoryExtensions.LastIndexOfAny returns 0 if the span with the characters to search
+        // for is empty.
         // This makes it consistent:
         if (count == 0 || values.IsEmpty)
         {
@@ -77,13 +84,14 @@ public static partial class ReadOnlySpanExtension
 
         if (values.Length <= 5)
         {
-            // MemoryExtensions.LastIndexOfAny throws ArgumentOutOfRangeExceptions even if s is ""
-            // string.LastIndexOfAny does not.
+            // MemoryExtensions.LastIndexOfAny() throws ArgumentOutOfRangeException even if
+            // s is "". string.LastIndexOfAny() does not.
             if (span.Length == 0)
             {
                 return -1;
             }
-            int matchIndex = MemoryExtensions.LastIndexOfAny(span.Slice(startIndex - count + 1, count), values);
+            int matchIndex = MemoryExtensions.LastIndexOfAny(span.Slice(startIndex - count + 1, count),
+                                                             values);
             return matchIndex == -1 ? -1 : matchIndex + startIndex - count + 1;
         }
 

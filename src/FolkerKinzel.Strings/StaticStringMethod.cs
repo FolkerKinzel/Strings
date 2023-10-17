@@ -7,10 +7,8 @@ namespace FolkerKinzel.Strings;
 /// which the methods are available directly to the BCL methods.</summary>
 public static class StaticStringMethod
 {
-
-#if NET45 || NETSTANDARD2_0
-    /// <summary>Creates a new string with a specified length and, once created, initializes
-    /// it using the specified callback.</summary>
+    /// <summary>Creates a new <see cref="string"/> with a specified length and, once created, 
+    /// initializes it using the specified callback.</summary>
     /// <typeparam name="TState">The type of the element to be passed to <paramref name="action"
     /// />.</typeparam>
     /// <param name="length">The length of the <see cref="string" /> to be created.</param>
@@ -24,6 +22,7 @@ public static class StaticStringMethod
     /// cref="string" />s, to have only one heap allocation.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="action" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="length" /> is negative.</exception>
+#if NET45 || NETSTANDARD2_0
     public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
     {
         if (action == null)
@@ -41,22 +40,22 @@ public static class StaticStringMethod
         return span.ToString();
     }
 #else
-    /// <summary>Creates a new string with a specified length and, once created, initializes
-    /// it using the specified callback.</summary>
-    /// <typeparam name="TState">The type of the element to be passed to <paramref name="action"
-    /// />.</typeparam>
-    /// <param name="length">Die Länge der zu erstellenden Zeichenfolge.</param>
-    /// <param name="state">The element to be passed to <paramref name="action" />.</param>
-    /// <param name="action">A callback to initialize the string.</param>
-    /// <returns>Die erstellte Zeichenfolge.</returns>
-    /// <remarks>The method simulates the static method String.Create&lt;TState&gt;(int,
-    /// TState, SpanAction&lt;char,TState&gt;). In newer .NET versions, the call is forwarded
-    /// directly to the existing method of the <see cref="string" /> class. In .NET Framework
-    /// and .NET Standard 2.0, the simulation makes it possible, when creating short <see
-    /// cref="string" />s, to have only one heap allocation.</remarks>
-    /// <exception cref="ArgumentNullException"> <paramref name="action" /> is <c>null</c>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="length" /> is negative.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    ///// <summary>Creates a new <see cref="string"/> with a specified length and, once created, 
+    ///// initializes it using the specified callback.</summary>
+    ///// <typeparam name="TState">The type of the element to be passed to <paramref name="action"
+    ///// />.</typeparam>
+    ///// <param name="length">The length of the <see cref="string" /> to be created.</param>
+    ///// <param name="state">The element to be passed to <paramref name="action" />.</param>
+    ///// <param name="action">A callback to initialize the string.</param>
+    ///// <returns>The <see cref="string" /> created.</returns>
+    ///// <remarks>The method simulates the static method String.Create&lt;TState&gt;(int,
+    ///// TState, SpanAction&lt;char,TState&gt;). In newer .NET versions, the call is forwarded
+    ///// directly to the existing method of the <see cref="string" /> class. In .NET Framework
+    ///// and .NET Standard 2.0, the simulation makes it possible, when creating short <see
+    ///// cref="string" />s, to have only one heap allocation.</remarks>
+    ///// <exception cref="ArgumentNullException"> <paramref name="action" /> is <c>null</c>.</exception>
+    ///// <exception cref="ArgumentOutOfRangeException"> <paramref name="length" /> is negative.</exception>
+    //[MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
         => string.Create(length, state, action);
 

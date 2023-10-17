@@ -18,9 +18,10 @@ public static partial class ReadOnlySpanExtension
     /// is used to avoid performance issues.</remarks>
     public static int IndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
     {
-        // string.IndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
-        // MemoryExtensions.IndexOfAny returns 0 if the span with the characters to search for is empty.
-        // This makes it consistent:
+        // string.IndexOfAny returns -1 if anyOf is an empty array (although MSDN says it
+        // would return 0).
+        // MemoryExtensions.IndexOfAny returns 0 if the span with the characters to search
+        // for is empty. This makes it consistent:
         return span.IsEmpty || values.IsEmpty
             ? -1
             : values.Length > 5 && span.Length > 2

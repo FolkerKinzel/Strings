@@ -36,8 +36,8 @@ public static partial class SpanExtension
     /// (such as hashing passwords)!
     /// </para>
     /// </remarks>
-    /// <exception cref="ArgumentException"> <paramref name="hashType" /> ist kein definierter
-    /// Wert der <see cref="HashType" />-Enum.</exception>
+    /// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
+    /// value of the <see cref="HashType" /> enum.</exception>
     /// <example>
     /// <code language="cs" source="..\Examples\Example.cs" />
     /// </example>

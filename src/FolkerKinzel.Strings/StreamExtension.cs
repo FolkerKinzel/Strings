@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-
 /// <summary>Extension methods for the <see cref="Stream" /> class.</summary>
 public static class StreamExtension
 {
@@ -29,7 +28,9 @@ public static class StreamExtension
     /// closed.</exception>
     /// <exception cref="NotSupportedException"> <paramref name="stream" /> doesn't support
     /// read and seek operations.</exception>
-    public static bool IsUtf8(this Stream stream, int count = FileInfoExtension.ISUTF8_COUNT, bool leaveOpen = false)
+    public static bool IsUtf8(this Stream stream,
+                              int count = FileInfoExtension.ISUTF8_COUNT,
+                              bool leaveOpen = false)
     {
         var validator = new Utf8Validator();
         return validator.IsUtf8(stream, count, leaveOpen);
@@ -56,7 +57,9 @@ public static class StreamExtension
     /// closed.</exception>
     /// <exception cref="NotSupportedException"> <paramref name="stream" /> doesn't support
     /// read operations.</exception>
-    public static bool IsUtf8Valid(this Stream stream, int count = FileInfoExtension.ISUTF8VALID_COUNT, bool leaveOpen = false)
+    public static bool IsUtf8Valid(this Stream stream,
+                                   int count = FileInfoExtension.ISUTF8VALID_COUNT,
+                                   bool leaveOpen = false)
     {
         var validator = new Utf8Validator();
         return validator.IsUtf8Valid(stream, count, leaveOpen);
