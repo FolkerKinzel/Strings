@@ -4,7 +4,7 @@ public static partial class StringExtension
 {
     // This is a polyfill, but it should NOT be in the namespace FolkerKinzel.Strings.Polyfills
     // to be available for .NET Core 3.1:
-#if NET5_0 || NETSTANDARD || NET45
+#if NET5_0 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET45
     /// <summary>Replaces all newlines in <paramref name="s" /> with 
     /// <see cref="Environment.NewLine" />.</summary>
     /// <param name="s">The source <see cref="string" />.</param>

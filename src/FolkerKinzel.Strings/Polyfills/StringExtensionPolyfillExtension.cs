@@ -44,7 +44,7 @@ public static class StringExtensionPolyfillExtension
     /// <param name="newLine">A <see cref="string" /> that is the replacement for all newlines,
     /// or <c>null</c> to completely remove all newline characters.</param>
     /// <returns>A new <see cref="string" /> in which all newlines are replaced by <paramref
-    /// name="replacement" />. If <paramref name="s" /> doesn't contain a newline character,
+    /// name="newLine" />. If <paramref name="s" /> doesn't contain a newline character,
     /// <paramref name="s" /> is returned.</returns>
     /// <remarks>
     /// <para>

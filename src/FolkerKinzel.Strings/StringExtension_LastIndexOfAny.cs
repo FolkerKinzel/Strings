@@ -32,7 +32,7 @@ public static partial class StringExtension
     /// </exception>
     /// <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses
     /// MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)
-    /// for the comparison. If the length of <paramref name="values" /> is greater, <see
+    /// for the comparison. If the length of <paramref name="anyOf" /> is greater, <see
     /// cref="string.LastIndexOfAny(char[])" /> is used.</remarks>
     public static int LastIndexOfAny(this string s, ReadOnlySpan<char> anyOf, int startIndex, int count)
     {

@@ -28,7 +28,8 @@
     </TransformComponentArguments>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\FolkerKinzel.Strings\FolkerKinzel.Strings.csproj" />
-      <DocumentationSource sourceFile="..\FolkerKinzel.Strings\Translations\en\FolkerKinzel.Strings.xml" />
+      <DocumentationSource sourceFile="..\FolkerKinzel.Strings\bin\Release\netstandard2.0\FolkerKinzel.Strings.xml" />
+      <DocumentationSource sourceFile="..\FolkerKinzel.Strings\bin\Release\netstandard2.0\FolkerKinzel.Strings.dll" />
     </DocumentationSources>
     <HelpTitle>FolkerKinzel.Strings</HelpTitle>
     <HelpFileVersion>1.0.0.0</HelpFileVersion>

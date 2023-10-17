@@ -65,7 +65,7 @@ public static class SpanPolyfillExtension
     /// <param name="value">The value to seek within the source span. <paramref name="value"
     /// /> can be <c>null</c>.</param>
     /// <param name="comparisonType">An enumeration value that determines how <paramref name="span"
-    /// /> and <paramref name="other" /> are compared.</param>
+    /// /> and <paramref name="value" /> are compared.</param>
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(

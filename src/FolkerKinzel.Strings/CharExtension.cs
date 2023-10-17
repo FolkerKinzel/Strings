@@ -232,7 +232,7 @@ public static class CharExtension
 
     /// <summary>Indicates whether the Unicode character is a binary digit (0 or 1).</summary>
     /// <param name="c">The character to evaluate.</param>
-    /// <returns> <c>true</c> if <paramref name="digit" /> represents a binary digit, otherwise
+    /// <returns> <c>true</c> if <paramref name="c" /> represents a binary digit, otherwise
     /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsBinaryDigit(this char c) => c is '0' or '1';
@@ -257,7 +257,7 @@ public static class CharExtension
     /// </para>
     /// <note type="tip">
     /// The Unicode category "Decimal Digit Number" includes many more characters than the 
-    /// digits 0-9. Use the method <see cref="CharExtension.IsAsciiDigit(char)" if you want 
+    /// digits 0-9. Use the method <see cref="CharExtension.IsAsciiDigit(char)" /> if you want 
     /// to check for the characters 0-9. 
     /// </note>
     /// </remarks>

@@ -73,7 +73,7 @@ public static class ReadOnlySpanPolyfillExtension
     /// <param name="value">The value to seek within the source span. <paramref name="value"
     /// /> can be <c>null</c>.</param>
     /// <param name="comparisonType">An enumeration value that determines how <paramref name="span"
-    /// /> and <paramref name="other" /> are compared.</param>
+    /// /> and <paramref name="value" /> are compared.</param>
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(
@@ -138,7 +138,7 @@ public static class ReadOnlySpanPolyfillExtension
         => span.StartsWith(value.AsSpan(), comparisonType);
 
 
-    /// <summary>Indicates whether <paramref name="s" /> ends with the specified <see cref="string"
+    /// <summary>Indicates whether <paramref name="span" /> ends with the specified <see cref="string"
     /// />.</summary>
     /// <param name="span">The source span.</param>
     /// <param name="value">The <see cref="string" /> to compare with the end of the source

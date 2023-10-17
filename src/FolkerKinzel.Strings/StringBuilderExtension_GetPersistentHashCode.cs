@@ -14,11 +14,11 @@ public static partial class StringBuilderExtension
     /// <returns>The hashcode.</returns>
     /// <remarks>
     /// <para>
-    /// The method <see cref="string.GetHashCode">String.GetHashCode()</see> returns a different
+    /// The method <see cref="string.GetHashCode()">String.GetHashCode()</see> returns a different
     /// hash code for an identical string with each program run for security reasons. Apart
-    /// from the fact that the hash algorithm of <see cref="string.GetHashCode">String.GetHashCode()</see>
+    /// from the fact that the hash algorithm of <see cref="string.GetHashCode()">String.GetHashCode()</see>
     /// could be different in different framework versions, it makes no sense to use the
-    /// return value of <see cref="string.GetHashCode" /> for reuse. The alternatives, e.g.
+    /// return value of <see cref="string.GetHashCode()" /> for reuse. The alternatives, e.g.
     /// <see cref="MD5" /> or <see cref="SHA256" />, use more storage space and are slower.
     /// This method offers a slim alternative that is suitable for hashing very short strings
     /// that are not used in a security-critical context.

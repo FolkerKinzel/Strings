@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace FolkerKinzel.Strings;
 
 /// <summary>Static class that provides methods for handling URL encoding (RFC 3986).</summary>
@@ -339,9 +341,11 @@ public static class UrlEncoding
                     continue;
                 case '%':
 #if NET45 || NETSTANDARD2_0
-                    bytes[byteIndex++] = byte.Parse(value.Slice(i + 1, 2).ToString(), System.Globalization.NumberStyles.AllowHexSpecifier);
+                    bytes[byteIndex++] = byte.Parse(value.Slice(i + 1, 2).ToString(), 
+                                                    NumberStyles.AllowHexSpecifier);
 #else
-                    bytes[byteIndex++] = byte.Parse(value.Slice(i + 1, 2), System.Globalization.NumberStyles.AllowHexSpecifier);
+                    bytes[byteIndex++] = byte.Parse(value.Slice(i + 1, 2), 
+                                                    NumberStyles.AllowHexSpecifier);
 #endif
                     i += 2;
                     continue;

@@ -34,7 +34,7 @@ public static partial class StringExtension
     /// </para>
     /// <para>
     /// <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number
-    /// of characters in <paramref name="value" />.
+    /// of characters in <paramref name="s" />.
     /// </para>
     /// </exception>
     public static int IndexOfAny(

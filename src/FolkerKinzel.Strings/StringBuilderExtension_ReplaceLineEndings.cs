@@ -3,7 +3,7 @@ namespace FolkerKinzel.Strings;
 public static partial class StringBuilderExtension
 {
     /// <summary>Replaces all newlines in <paramref name="builder" /> with 
-    /// <paramref name="newLine" />.</summary>
+    /// <paramref name="replacementText" />.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
     /// <param name="replacementText">The text to use as replacement. If 
     /// <paramref name="replacementText" /> is <c>null</c> or <see cref="string.Empty" />, all 

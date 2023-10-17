@@ -7,7 +7,7 @@ public static partial class SpanExtension
     /// <param name="span">The source span.</param>
     /// <param name="value">The character sequence to search for.</param>
     /// <param name="comparisonType">An enumeration value that determines how <paramref name="span"
-    /// /> and <paramref name="other" /> are compared.</param>
+    /// /> and <paramref name="value" /> are compared.</param>
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(

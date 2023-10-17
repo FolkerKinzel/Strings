@@ -1,7 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup Condition="False And '$(Configuration)'=='Release' And '$(TargetFramework)' == 'netstandard2.0'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net5.0;net6.0;net7.0;netstandard2.1;net45</TargetFrameworks>
     <LangVersion>11.0</LangVersion>
@@ -11,10 +8,10 @@
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>7.0.0</Version>
-    <FileVersion>7.0.0.7</FileVersion>
+    <Version>7.0.1</Version>
+    <FileVersion>7.0.1.2</FileVersion>
     <AssemblyVersion>7.0.0.0</AssemblyVersion>
-    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v7.0.0</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v7.0.1</PackageReleaseNotes>
     <PackageTags>.NET String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode C#</PackageTags>
     <Description>
       .NET library that contains extension methods and helper classes for character-based data types.
@@ -32,6 +29,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
@@ -110,58 +108,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Res.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Translations\en\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net7.0</PackagePath>
-    </None>
-    <None Include="Translations\en\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net6.0</PackagePath>
-    </None>
-    <None Include="Translations\en\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net5.0</PackagePath>
-    </None>
-    <None Include="Translations\en\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net45</PackagePath>
-    </None>
-    <None Include="Translations\en\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\netstandard2.0</PackagePath>
-    </None>
-    <None Include="Translations\en\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\netstandard2.1</PackagePath>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Translations\de\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net7.0\de</PackagePath>
-    </None>
-    <None Include="Translations\de\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net6.0\de</PackagePath>
-    </None>
-    <None Include="Translations\de\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net5.0\de</PackagePath>
-    </None>
-    <None Include="Translations\de\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\net45\de</PackagePath>
-    </None>
-    <None Include="Translations\de\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\netstandard2.0\de</PackagePath>
-    </None>
-    <None Include="Translations\de\FolkerKinzel.Strings.xml">
-      <Pack>True</Pack>
-      <PackagePath>lib\netstandard2.1\de</PackagePath>
-    </None>
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="if $(ConfigurationName) == Release if '$(TargetFramework)' == 'net6.0' dotnet $(SolutionDir)IncVersion\IncVersion.dll $(ProjectDir)$(ProjectFileName) --revision" />

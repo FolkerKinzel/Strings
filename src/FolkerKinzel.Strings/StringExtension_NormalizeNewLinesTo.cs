@@ -9,7 +9,7 @@ public static partial class StringExtension
     /// newlines. If an empty span is passed to the parameter, all newline characters will
     /// be completely removed.</param>
     /// <returns>A new <see cref="string" /> in which all newlines are replaced by <paramref
-    /// name="replacement" />. If <paramref name="s" /> doesn't contain a newline character,
+    /// name="newLine" />. If <paramref name="s" /> doesn't contain a newline character,
     /// <paramref name="s" /> is returned.</returns>
     /// <remarks>
     /// <para>
@@ -17,8 +17,8 @@ public static partial class StringExtension
     /// sequences CRLF and LFCR are treated as one line break.
     /// </para>
     /// <note type="caution">
-    /// This method differs from <see cref="StringExtension.ReplaceLineEndings(string,
-    /// string)" /> in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line 
+    /// This method differs from StringExtension.ReplaceLineEndings(string, string)
+    /// in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line 
     /// break. 
     /// </note>
     /// </remarks>
