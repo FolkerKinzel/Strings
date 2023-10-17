@@ -63,8 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="tmp.xml" />
-    <None Remove="Translations\de\FolkerKinzel.Strings.xml" />
-    <None Remove="Translations\FolkerKinzel.Strings.en.tsltn" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
