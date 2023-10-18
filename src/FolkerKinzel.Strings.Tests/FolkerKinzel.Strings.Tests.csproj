@@ -8,6 +8,7 @@
 		<IsPackable>false</IsPackable>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+    <NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>
 
 	<ItemGroup>

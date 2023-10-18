@@ -36,8 +36,8 @@ public static class UrlEncoding
 
     #region Encode
 
-    internal static StringBuilder AppendUrlEncodedTo(StringBuilder builder,
-                                                     ReadOnlySpan<byte> value)
+    internal static StringBuilder AppendEncodedTo(StringBuilder builder,
+                                                  ReadOnlySpan<byte> value)
     {
         if (builder is null)
         {
@@ -49,7 +49,7 @@ public static class UrlEncoding
     }
 
 
-    internal static StringBuilder AppendUrlEncodedTo(StringBuilder builder, ReadOnlySpan<char> value)
+    internal static StringBuilder AppendEncodedTo(StringBuilder builder, ReadOnlySpan<char> value)
     {
         if (builder is null)
         {

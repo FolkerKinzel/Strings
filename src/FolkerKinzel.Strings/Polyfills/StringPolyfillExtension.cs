@@ -241,10 +241,7 @@ public static partial class StringPolyfillExtension
             return s;
         }
 
-        if (newValue is null)
-        {
-            newValue = string.Empty;
-        }
+        newValue ??= string.Empty;
 
         var builder = new StringBuilder(
                           newValue.Length > oldValue.Length ? s.Length + s.Length / 2 : s.Length);

@@ -27,7 +27,7 @@ public static class StringBuilderExtensionPolyfillExtension
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, string? value)
-        => UrlEncoding.AppendUrlEncodedTo(builder, value.AsSpan());
+        => UrlEncoding.AppendEncodedTo(builder, value.AsSpan());
 
     /// <summary>Replaces in <paramref name="builder" /> all sequences of white space with
     /// <paramref name="replacement" />.</summary>

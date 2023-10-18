@@ -284,7 +284,7 @@ public class StringBuilderExtensionTests
     public void IndexOfTest1() => Assert.AreEqual(1, new StringBuilder("testen").IndexOf('e'));
 
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void IndexOfTest2()
     {
@@ -314,7 +314,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(1, new StringBuilder(input).IndexOf('e', 0, input.Length));
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void IndexOfTest5()
     {
@@ -322,7 +322,7 @@ public class StringBuilderExtensionTests
         _ = sb!.IndexOf('e', 0);
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void IndexOfTest6()
     {
@@ -330,13 +330,13 @@ public class StringBuilderExtensionTests
         _ = sb!.IndexOf('e', 0, 0);
     }
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     [DataRow(-1)]
     [DataRow(4711)]
     public void IndexOfTest7(int startIndex) => _ = new StringBuilder().IndexOf('e', startIndex);
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [DataRow(-1, -1)]
     [DataRow(0, -1)]
     [DataRow(0, 4711)]
@@ -396,7 +396,7 @@ public class StringBuilderExtensionTests
         Assert.IsTrue(new StringBuilder(input).Contains('e', 0, input.Length));
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void ContainsTest8()
     {
@@ -404,7 +404,7 @@ public class StringBuilderExtensionTests
         _ = sb!.Contains('e', 0);
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void ContainsTest9()
     {
@@ -412,13 +412,13 @@ public class StringBuilderExtensionTests
         _ = sb!.Contains('e', 0, 0);
     }
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     [DataRow(-1)]
     [DataRow(4711)]
     public void ContainsTest10(int startIndex) => _ = new StringBuilder().Contains('e', startIndex);
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [DataRow(-1, -1)]
     [DataRow(0, -1)]
     [DataRow(0, 4711)]
@@ -614,7 +614,7 @@ public class StringBuilderExtensionTests
     public void ContainsNonAsciiTest1(string? input, bool expected)
         => Assert.AreEqual(expected, new StringBuilder(input).ContainsNonAscii());
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void ContainsNonAsciiTest2()
     {
@@ -651,7 +651,7 @@ public class StringBuilderExtensionTests
         Assert.IsFalse(sb.ContainsNonAscii(2, 5));
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void ContainsNonAsciiTest5()
     {
@@ -659,7 +659,7 @@ public class StringBuilderExtensionTests
         _ = sb!.ContainsNonAscii(0);
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void ContainsNonAsciiTest6()
     {
@@ -667,27 +667,27 @@ public class StringBuilderExtensionTests
         _ = sb!.ContainsNonAscii(0, 0);
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void ContainsNonAsciiTest7() => _ = new StringBuilder().ContainsNonAscii(-1);
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void ContainsNonAsciiTest8() => _ = new StringBuilder().ContainsNonAscii(-1, -1);
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void ContainsNonAsciiTest11() => _ = new StringBuilder().ContainsNonAscii(0, -1);
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void ContainsNonAsciiTest9() => _ = new StringBuilder().ContainsNonAscii(4711);
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void ContainsNonAsciiTest10() => _ = new StringBuilder().ContainsNonAscii(0, 4711);
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void GetPersistentHashCodeTest1()
     {
@@ -696,7 +696,7 @@ public class StringBuilderExtensionTests
     }
 
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void GetPersistentHashCodeTest2()
     {
@@ -704,7 +704,7 @@ public class StringBuilderExtensionTests
         _ = sb.GetPersistentHashCode((HashType)4711);
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void GetPersistentHashCodeTest6()
     {
         const string s = "Hallo, dies ist Text.";
@@ -716,7 +716,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(hash1, hash3);
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void GetPersistentHashCodeTest7()
     {
         const string s = "Hallo, dies ist Text.";
@@ -728,7 +728,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(hash1, hash3);
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void GetPersistentHashCodeTest8()
     {
         const string s = "Hallo, dies ist Text.";
@@ -740,8 +740,18 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(hash1, hash3);
     }
 
+    [TestMethod]
+    public void GetPersistentHashCodeTest9()
+    {
+        const string s = "ä";
+        int hash1 = s.GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
+        int hash2 = new StringBuilder(s).GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
 
-    [DataTestMethod()]
+        Assert.AreEqual(hash1, hash2);
+    }
+
+
+    [DataTestMethod]
     [DataRow("    Test    ")]
     public void TrimTest1(string input)
     {
@@ -749,7 +759,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.Trim(), sb.Trim().ToString());
     }
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [DataRow("    Test    ", ' ')]
     public void TrimTest2(string input, char trimChar)
     {
@@ -758,7 +768,7 @@ public class StringBuilderExtensionTests
     }
 
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimTest3()
     {
         char[] trimChars = new char[] { '\"', '\'' };
@@ -768,7 +778,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.Trim(trimChars), sb.Trim(trimChars).ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimTest4()
     {
@@ -778,7 +788,7 @@ public class StringBuilderExtensionTests
         _ = sb!.Trim(trimChars);
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimTest5()
     {
@@ -786,7 +796,7 @@ public class StringBuilderExtensionTests
         _ = sb!.Trim(' ');
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimTest6()
     {
@@ -794,7 +804,7 @@ public class StringBuilderExtensionTests
         _ = sb!.Trim();
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimTest7()
     {
         string input = "  Test   ";
@@ -803,7 +813,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.Trim(null), sb.Trim(null).ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimTest8()
     {
 #if NET45
@@ -818,7 +828,7 @@ public class StringBuilderExtensionTests
     }
 
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimTest9()
     {
         char[] trimChars = new char[] { '\"', '\'' };
@@ -828,7 +838,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.Trim(trimChars), sb.Trim(trimChars.AsSpan()).ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimTest10()
     {
@@ -838,7 +848,7 @@ public class StringBuilderExtensionTests
         _ = sb!.Trim(trimChars.AsSpan());
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimTest11()
     {
 #if NET45
@@ -853,7 +863,7 @@ public class StringBuilderExtensionTests
     }
 
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [DataRow("    Test    ")]
     public void TrimStartTest1(string input)
     {
@@ -861,7 +871,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.TrimStart(), sb.TrimStart().ToString());
     }
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [DataRow("    Test    ", ' ')]
     public void TrimStartTest2(string input, char trimChar)
     {
@@ -870,7 +880,7 @@ public class StringBuilderExtensionTests
     }
 
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimStartTest3()
     {
         char[] trimChars = new char[] { '\"', '\'' };
@@ -880,7 +890,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.TrimStart(trimChars), sb.TrimStart(trimChars).ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimStartTest4()
     {
@@ -890,7 +900,7 @@ public class StringBuilderExtensionTests
         _ = sb!.TrimStart(trimChars);
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimStartTest5()
     {
@@ -898,7 +908,7 @@ public class StringBuilderExtensionTests
         _ = sb!.TrimStart(' ');
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimStartTest6()
     {
@@ -906,7 +916,7 @@ public class StringBuilderExtensionTests
         _ = sb!.TrimStart();
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimStartTest7()
     {
         string test = "    ";
@@ -914,7 +924,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(test.TrimStart(), sb.TrimStart().ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimStartTest8()
     {
         string test = "xxxxx";
@@ -922,7 +932,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(test.TrimStart('x'), sb.TrimStart('x').ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimStartTest9()
     {
         string test = "xyyx";
@@ -931,7 +941,7 @@ public class StringBuilderExtensionTests
     }
 
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimStartTest10()
     {
         string input = "  Test   ";
@@ -940,7 +950,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.TrimStart(null), sb.TrimStart(null).ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimStartTest11()
     {
 #if NET45
@@ -954,7 +964,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.TrimStart(trimChars), sb.TrimStart(trimChars).ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimStartTest12()
     {
         char[] trimChars = new char[] { '\"', '\'' };
@@ -964,7 +974,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.TrimStart(trimChars), sb.TrimStart(trimChars.AsSpan()).ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimStartTest13()
     {
@@ -974,7 +984,7 @@ public class StringBuilderExtensionTests
         _ = sb!.TrimStart(trimChars.AsSpan());
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimStartTest14()
     {
 #if NET45
@@ -989,7 +999,7 @@ public class StringBuilderExtensionTests
     }
 
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [DataRow("    Test    ")]
     public void TrimEndTest1(string input)
     {
@@ -997,7 +1007,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.TrimEnd(), sb.TrimEnd().ToString());
     }
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [DataRow("    Test    ", ' ')]
     public void TrimEndTest2(string input, char trimChar)
     {
@@ -1006,7 +1016,7 @@ public class StringBuilderExtensionTests
     }
 
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimEndTest3()
     {
         char[] trimChars = new char[] { '\"', '\'' };
@@ -1016,7 +1026,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.TrimEnd(trimChars), sb.TrimEnd(trimChars).ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimEndTest4()
     {
@@ -1026,7 +1036,7 @@ public class StringBuilderExtensionTests
         _ = sb!.TrimEnd(trimChars);
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimEndTest5()
     {
@@ -1034,7 +1044,7 @@ public class StringBuilderExtensionTests
         _ = sb!.TrimEnd(' ');
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimEndTest6()
     {
@@ -1042,7 +1052,7 @@ public class StringBuilderExtensionTests
         _ = sb!.TrimEnd();
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimEndTest7()
     {
         string input = "  Test   ";
@@ -1051,7 +1061,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.TrimEnd(null), sb.TrimEnd(null).ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimEndTest8()
     {
 #if NET45
@@ -1065,7 +1075,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.TrimEnd(trimChars), sb.TrimEnd(trimChars).ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimEndTest9()
     {
         char[] trimChars = new char[] { '\"', '\'' };
@@ -1075,7 +1085,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(input.TrimEnd(trimChars), sb.TrimEnd(trimChars.AsSpan()).ToString());
     }
 
-    [TestMethod()]
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimEndTest10()
     {
@@ -1085,7 +1095,7 @@ public class StringBuilderExtensionTests
         _ = sb!.TrimEnd(trimChars.AsSpan());
     }
 
-    [TestMethod()]
+    [TestMethod]
     public void TrimEndTest11()
     {
 #if NET45
@@ -1187,13 +1197,13 @@ public class StringBuilderExtensionTests
     public void ContainsNewLineTest6(string input, int startIndex, int count, bool expexted) => Assert.AreEqual(expexted, new StringBuilder(input).ContainsNewLine(startIndex, count));
 
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     [DataRow(-1)]
     [DataRow(4711)]
     public void ContainsNewLineTest7(int startIndex) => _ = new StringBuilder().ContainsNewLine(startIndex);
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [DataRow(-1, -1)]
     [DataRow(0, -1)]
     [DataRow(0, 4711)]
@@ -1260,13 +1270,13 @@ public class StringBuilderExtensionTests
     public void ContainsWhiteSpaceTest6(string input, int startIndex, int count, bool expexted) => Assert.AreEqual(expexted, new StringBuilder(input).ContainsWhiteSpace(startIndex, count));
 
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     [DataRow(-1)]
     [DataRow(4711)]
     public void ContainsWhiteSpaceTest7(int startIndex) => _ = new StringBuilder().ContainsWhiteSpace(startIndex);
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [DataRow(-1, -1)]
     [DataRow(0, -1)]
     [DataRow(0, 4711)]
@@ -1275,7 +1285,7 @@ public class StringBuilderExtensionTests
 
 
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [DataRow("", "")]
     [DataRow("f", "Zg==")]
     [DataRow("fo", "Zm8=")]
@@ -1290,7 +1300,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(expected, builder.ToString());
     }
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [DataRow("", "")]
     [DataRow("f", "Zg==")]
     [DataRow("fo", "Zm8=")]
@@ -1305,7 +1315,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(expected, builder.ToString());
     }
 
-    [DataTestMethod()]
+    [DataTestMethod]
     [DataRow("", "")]
     [DataRow("f", "Zg==")]
     [DataRow("fo", "Zm8=")]
@@ -1375,4 +1385,14 @@ public class StringBuilderExtensionTests
 
     [TestMethod]
     public void AppendBase64Test9() => Assert.AreEqual(0, new StringBuilder().AppendBase64((IEnumerable<byte>?)null).Length);
+
+
+    [TestMethod]
+    public void AppendUrlEncodedTest1()
+    {
+        const string s = "äöü";
+        StringBuilder sb = new StringBuilder().AppendUrlEncoded(s.AsSpan());
+
+        Assert.AreEqual(Uri.EscapeDataString(s), sb.ToString());
+    }
 }

@@ -21,7 +21,7 @@ public static partial class StringBuilderExtension
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, ReadOnlySpan<char> value)
-        => UrlEncoding.AppendUrlEncodedTo(builder, value);
+        => UrlEncoding.AppendEncodedTo(builder, value);
 
 
     /// <summary>Appends the content of a <see cref="byte" /> collection as URL-encoded character
@@ -60,7 +60,7 @@ public static partial class StringBuilderExtension
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, byte[]? value)
-        => UrlEncoding.AppendUrlEncodedTo(builder, value.AsSpan());
+        => UrlEncoding.AppendEncodedTo(builder, value.AsSpan());
 
 
     /// <summary>Appends the content of a read-only <see cref="byte" /> span as URL-encoded
@@ -78,6 +78,6 @@ public static partial class StringBuilderExtension
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, ReadOnlySpan<byte> value)
-        => UrlEncoding.AppendUrlEncodedTo(builder, value);
+        => UrlEncoding.AppendEncodedTo(builder, value);
 
 }
