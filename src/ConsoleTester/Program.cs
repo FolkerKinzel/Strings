@@ -117,11 +117,20 @@ class Program
 
         _ = test.ContainsWhiteSpace();
 
-        _ = test.ContainsAny(new char[0]);
         _ = test.ContainsAny(test.AsSpan());
+        _ = test.ContainsAny(new char[0]);
         _ = test.ContainsAny('t', 's');
         _ = test.ContainsAny('t', 'e', 's');
         _ = test.IndexOfAny(test.AsSpan(), 0, 0);
+        _ = test.IndexOfAny(test);
+        _ = test.IndexOfAny(test, 0);
+        _ = test.IndexOfAny(test, 0, 0);
+        _ = test.ContainsAny(test);
+        _ = test.LastIndexOfAny(test, 0, 0);
+        _ = test.LastIndexOfAny(test, 0);
+        _ = test.LastIndexOfAny(test);
+
+
         _ = test.LastIndexOfAny(test.AsSpan(), 0, 0);
 
         _ = sb.Contains('e');
