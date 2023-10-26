@@ -13,7 +13,8 @@ public static partial class StringExtension
     /// <param name="count">The number of characters positions to examine in <paramref name="s"
     /// />.</param>
     /// <returns>The zero-based index of the first occurrence of one of the specified Unicode
-    /// characters in <paramref name="s" /> or -1 if none of these characters have been found.
+    /// characters in the specified part of <paramref name="s" /> or -1 if none of these characters 
+    /// have been found in this area.
     /// If <paramref name="anyOf" /> is an empty span, the method returns -1.</returns>
     /// <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses
     /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, 
@@ -21,8 +22,7 @@ public static partial class StringExtension
     /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="anyOf"
     /// /> is greater, <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see>
     /// is used.</remarks>
-    /// <exception cref="ArgumentNullException"> <paramref name="s" /> or <paramref name="anyOf"
-    /// /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
     /// <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero
@@ -69,7 +69,8 @@ public static partial class StringExtension
     /// <param name="startIndex">The zero-based index in <paramref name="s" /> at which the
     /// search starts.</param>
     /// <returns>The zero-based index of the first occurrence of one of the specified Unicode
-    /// characters in <paramref name="s" /> or -1 if none of these characters have been found.
+    /// characters in the specified part of <paramref name="s" /> or -1 if none of these characters 
+    /// have been found in this area.
     /// If <paramref name="anyOf" /> is an empty span, the method returns -1.</returns>
     /// <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses
     /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, 
@@ -77,8 +78,7 @@ public static partial class StringExtension
     /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="anyOf"
     /// /> is greater, <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see>
     /// is used.</remarks>
-    /// <exception cref="ArgumentNullException"> <paramref name="s" /> or <paramref name="anyOf"
-    /// /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="startIndex" /> is not a valid index in <paramref name="s"/>.
     /// </exception>
@@ -100,8 +100,7 @@ public static partial class StringExtension
     /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="anyOf"
     /// /> is greater, <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see>
     /// is used.</remarks>
-    /// <exception cref="ArgumentNullException"> <paramref name="s" /> or <paramref name="anyOf"
-    /// /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this string s, ReadOnlySpan<char> anyOf)
         => s.IndexOfAny(anyOf, 0, s?.Length ?? throw new ArgumentNullException(nameof(s)));

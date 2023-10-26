@@ -100,8 +100,8 @@ public static partial class StringExtension
     /// <param name="anyOf">A read-only character span that contains the characters to search
     /// for.</param>
     /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
-    /// characters in the specified part of <paramref name="s" /> or -1 if none of these
-    /// characters have been found in this area.</returns>
+    /// characters in <paramref name="s" /> or -1 if none of these
+    /// characters have been found.</returns>
     /// <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses
     /// MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)
     /// for the comparison. If the length of <paramref name="anyOf" /> is greater, <see
