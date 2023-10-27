@@ -305,26 +305,10 @@ public static class StringBuilderPolyfillExtension
 #endif
     public static StringBuilder Insert(
         this StringBuilder builder, int index, ReadOnlySpan<char> value)
-    {
-        if (builder is null)
-        {
-            throw new NullReferenceException();
-        }
-
-        if (index < 0 || index > builder.Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(index));
-        }
-
-        _ = builder.EnsureCapacity(builder.Length + value.Length);
-
-        for (int i = value.Length - 1; i >= 0; i--)
-        {
-            _ = builder.Insert(index, value[i]);
-        }
-
-        return builder;
-    }
+        => builder.Insert(index, value.ToString());
+    
+    // Don't call StringBuilder.Insert(int, char) multiple times here because StringBuilder will allocate new
+    // memory with each call
 
 #endif
 }

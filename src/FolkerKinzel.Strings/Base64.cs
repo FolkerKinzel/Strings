@@ -22,7 +22,6 @@ public static class Base64
     private const int CHAR_WIDTH = 6;
     private const string URL_ENCODED_PADDING = "%3d";
 
-
     /// <summary>Calculates the exact output length of Base64-encoded data from the input
     /// length of the data to be encoded.</summary>
     /// <param name="inputLength">The number of <see cref="byte" />s to convert to Base64
@@ -34,7 +33,6 @@ public static class Base64
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int GetEncodedLength(int inputLength) 
         => (int)Math.Ceiling(inputLength / 3.0) << 2;
-
 
     /// <summary>Converts a <see cref="byte" /> collection to a corresponding Base64-encoded
     /// string. You can determine, whether line breaks are to be inserted into the return
@@ -309,7 +307,6 @@ public static class Base64
         }
     }
 
-
     /// <summary>Converts a Base64-encoded read-only character span into a corresponding
     /// <see cref="byte"/> array.</summary>
     /// <param name="base64">The read-only character span to convert.</param>
@@ -378,7 +375,6 @@ public static class Base64
     }
 #endif
 
-
     internal static StringBuilder AppendEncodedTo(StringBuilder builder,
                                                   ReadOnlySpan<byte> bytes,
                                                   Base64FormattingOptions options)
@@ -388,31 +384,19 @@ public static class Base64
             throw new ArgumentNullException(nameof(builder));
         }
 
-        bool insertLineBreaks = options.HasFlag(Base64FormattingOptions.InsertLineBreaks) && !bytes.IsEmpty;
-        builder.EnsureCapacity(builder.Length + GetMaxEncodedLength(bytes.Length, insertLineBreaks));
+        // Don't put in any effort to compute the needed capacity of the line breaks
+        // because StringBuilder will allocate NEW memory each time you call Insert()
+        builder.EnsureCapacity(builder.Length + GetEncodedLength(bytes.Length));
         int startOfBase64 = builder.Length;
 
         Base64.AppendEncodedTo(builder, bytes);
 
-        if (insertLineBreaks)
+        if (options.HasFlag(Base64FormattingOptions.InsertLineBreaks) && !bytes.IsEmpty)
         {
             InsertLineBreaks(builder, startOfBase64);
         }
 
         return builder;
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static int GetMaxEncodedLength(int dataLength, bool includeLineBreaks)
-    {
-        int capacity = GetEncodedLength(dataLength);
-
-        if (includeLineBreaks)
-        {
-            capacity += dataLength * Base64.LINE_BREAK.Length / Base64.LINE_LENGTH + Base64.LINE_LENGTH << 1;
-        }
-
-        return capacity;
     }
 
     private static void InsertLineBreaks(StringBuilder builder, int startOfBase64)
@@ -429,15 +413,14 @@ public static class Base64
             startOfBase64 += Base64.LINE_BREAK.Length;
         }
 
-
         int nextLineStart = startOfBase64 + Base64.LINE_LENGTH;
+
         while (nextLineStart < builder.Length)
         {
             builder.Insert(nextLineStart, Base64.LINE_BREAK);
             nextLineStart += Base64.LINE_BREAK.Length + Base64.LINE_LENGTH;
         }
     }
-
 
     private static void AppendEncodedTo(StringBuilder sb, ReadOnlySpan<byte> data)
     {
@@ -455,7 +438,6 @@ public static class Base64
             AppendFinalBlock(sb, data, paddingLength, finalPartLength);
         }
     }
-
 
     private static void AppendChunks2(StringBuilder sb, ReadOnlySpan<byte> data, int finalPartLength)
     {
@@ -481,7 +463,6 @@ public static class Base64
             counter += CHUNK_LENGTH;
         }
     }
-
 
     private static void AppendFinalBlock(StringBuilder sb, ReadOnlySpan<byte> data, int paddingLength, int finalPartLength)
     {
