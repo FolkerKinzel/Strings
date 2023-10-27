@@ -210,6 +210,38 @@ public class StringExtensionTests
         Assert.AreEqual(expected, test.IndexOfAny(needles.AsSpan(), 1, test.Length - 1));
     }
 
+    [DataTestMethod]
+    [DataRow("ts", 2)]
+    [DataRow("0123456789ts", 2)]
+    [DataRow("", -1)]
+    [DataRow("xy", -1)]
+    [DataRow("qwxyza0123456789", -1)]
+    public void IndexOfAnyTest7b(string needles, int expected)
+    {
+        const string test = "test";
+
+        //int i = "".LastIndexOfAny(new char[0]);
+        //i = MemoryExtensions.LastIndexOfAny(test.AsSpan(), ReadOnlySpan<char>.Empty);
+
+        Assert.AreEqual(expected, test.IndexOfAny(needles.AsSpan(), 1));
+    }
+
+    [DataTestMethod]
+    [DataRow("ts", 0)]
+    [DataRow("0123456789ts", 0)]
+    [DataRow("", -1)]
+    [DataRow("xy", -1)]
+    [DataRow("qwxyza0123456789", -1)]
+    public void IndexOfAnyTest7c(string needles, int expected)
+    {
+        const string test = "test";
+
+        //int i = "".LastIndexOfAny(new char[0]);
+        //i = MemoryExtensions.LastIndexOfAny(test.AsSpan(), ReadOnlySpan<char>.Empty);
+
+        Assert.AreEqual(expected, test.IndexOfAny(needles.AsSpan()));
+    }
+
     [TestMethod]
     public void IndexOfAnyTest8()
     {
@@ -218,11 +250,41 @@ public class StringExtensionTests
     }
 
     [TestMethod]
+    public void IndexOfAnyTest8b()
+    {
+        const string test = "test";
+        Assert.AreEqual(-1, "".IndexOfAny(test.AsSpan(), 0));
+    }
+
+    [TestMethod]
+    public void IndexOfAnyTest8c()
+    {
+        const string test = "test";
+        Assert.AreEqual(-1, "".IndexOfAny(test.AsSpan()));
+    }
+
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void IndexOfAnyTest9()
     {
         const string? test = null;
         _ = test!.IndexOfAny(ReadOnlySpan<char>.Empty, 0, 0);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void IndexOfAnyTest9b()
+    {
+        const string? test = null;
+        _ = test!.IndexOfAny(ReadOnlySpan<char>.Empty, 0);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void IndexOfAnyTest9c()
+    {
+        const string? test = null;
+        _ = test!.IndexOfAny(ReadOnlySpan<char>.Empty);
     }
 
     [DataTestMethod]
@@ -241,6 +303,38 @@ public class StringExtensionTests
         Assert.AreEqual(expected, test.LastIndexOfAny(needles.AsSpan(), test.Length - 2, 3));
     }
 
+    [DataTestMethod]
+    [DataRow("ef", 4)]
+    [DataRow("0123456789ef", 4)]
+    [DataRow("", -1)]
+    [DataRow("xy", -1)]
+    [DataRow("qwxyza0123456789", -1)]
+    public void LastIndexOfAnyTest7b(string needles, int expected)
+    {
+        const string test = "testen";
+
+        //int i = "".LastIndexOfAny(new char[0]);
+        //i = MemoryExtensions.LastIndexOfAny(test.AsSpan(), ReadOnlySpan<char>.Empty);
+
+        Assert.AreEqual(expected, test.LastIndexOfAny(needles.AsSpan(), test.Length - 2));
+    }
+
+    [DataTestMethod]
+    [DataRow("ef", 4)]
+    [DataRow("0123456789ef", 4)]
+    [DataRow("", -1)]
+    [DataRow("xy", -1)]
+    [DataRow("qwxyza0123456789", -1)]
+    public void LastIndexOfAnyTest7c(string needles, int expected)
+    {
+        const string test = "testen";
+
+        //int i = "".LastIndexOfAny(new char[0]);
+        //i = MemoryExtensions.LastIndexOfAny(test.AsSpan(), ReadOnlySpan<char>.Empty);
+
+        Assert.AreEqual(expected, test.LastIndexOfAny(needles.AsSpan()));
+    }
+
     [TestMethod]
     public void LastIndexOfAnyTest8()
     {
@@ -249,11 +343,41 @@ public class StringExtensionTests
     }
 
     [TestMethod]
+    public void LastIndexOfAnyTest8b()
+    {
+        const string test = "test";
+        Assert.AreEqual(-1, "".LastIndexOfAny(test.AsSpan(), 0));
+    }
+
+    [TestMethod]
+    public void LastIndexOfAnyTest8c()
+    {
+        const string test = "test";
+        Assert.AreEqual(-1, "".LastIndexOfAny(test.AsSpan()));
+    }
+
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LastIndexOfAnyTest9()
     {
         const string? test = null;
         _ = test!.LastIndexOfAny(ReadOnlySpan<char>.Empty, 0, 0);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void LastIndexOfAnyTest9b()
+    {
+        const string? test = null;
+        _ = test!.LastIndexOfAny(ReadOnlySpan<char>.Empty, 0);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void LastIndexOfAnyTest9c()
+    {
+        const string? test = null;
+        _ = test!.LastIndexOfAny(ReadOnlySpan<char>.Empty);
     }
 
     [DataTestMethod]
@@ -275,11 +399,37 @@ public class StringExtensionTests
     [DataRow(0, 2)]
     [DataRow(-2, 2)]
     [DataRow(2, -2)]
+    public void LastIndexOfAnyTest10b(int index, int count)
+    {
+        ReadOnlySpan<char> needles = "testganzlang".AsSpan();
+
+        _ = "".LastIndexOfAny(needles, index);
+    }
+
+    [DataTestMethod]
+    [DataRow(-1, 0)]
+    [DataRow(0, -1)]
+    [DataRow(0, 2)]
+    [DataRow(-2, 2)]
+    [DataRow(2, -2)]
     public void LastIndexOfAnyTest11(int index, int count)
     {
         ReadOnlySpan<char> needles = "t".AsSpan();
 
         _ = "".LastIndexOfAny(needles, index, count);
+    }
+
+    [DataTestMethod]
+    [DataRow(-1)]
+    [DataRow(0)]
+    [DataRow(0)]
+    [DataRow(-2)]
+    [DataRow(2)]
+    public void LastIndexOfAnyTest11b(int index)
+    {
+        ReadOnlySpan<char> needles = "t".AsSpan();
+
+        _ = "".LastIndexOfAny(needles, index);
     }
 
     [DataTestMethod]
@@ -296,6 +446,16 @@ public class StringExtensionTests
     }
 
     [DataTestMethod]
+    [DataRow(-2)]
+    [DataRow(2)]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void LastIndexOfAnyTest16b(int index)
+    {
+        ReadOnlySpan<char> needles = "testganzlang".AsSpan();
+        _ = "t".LastIndexOfAny(needles, index);
+    }
+
+    [DataTestMethod]
     //[DataRow(-1, 0)]
     [DataRow(0, -1)]
     [DataRow(0, 2)]
@@ -306,6 +466,16 @@ public class StringExtensionTests
     {
         ReadOnlySpan<char> needles = "t".AsSpan();
         _ = "t".LastIndexOfAny(needles, index, count);
+    }
+
+    [DataTestMethod]
+    [DataRow(-2)]
+    [DataRow(2)]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void LastIndexOfAnyTest17b(int index)
+    {
+        ReadOnlySpan<char> needles = "t".AsSpan();
+        _ = "t".LastIndexOfAny(needles, index);
     }
 
     [DataTestMethod]
