@@ -1,12 +1,12 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace FolkerKinzel.Strings;
 
 /// <summary> 
 /// Provides a failure-handling mechanism, called a fallback, for an encoded input byte
 /// sequence that cannot be converted to an output character. The fallback emits a replacement
-/// character (⬜) instead of a decoded input byte sequence and informs in its property
-/// <see cref="HasError" /> whether an error has occurred.</summary>
+/// character � (U+FFFD, "REPLACEMENT CHARACTER") instead of a decoded input byte sequence 
+/// and informs in its property <see cref="HasError" /> whether an error has occurred.</summary>
 /// <remarks>
 /// <para>
 /// Use <see cref="DecoderValidationFallback" /> objects with the methods 
@@ -92,7 +92,7 @@ public sealed class DecoderValidationFallback : DecoderFallback
 
         public override char GetNextChar()
         {
-            char result = _finished ? '\0' : '\u2B1C';
+            char result = _finished ? '\0' : '\uFFFD';
             _finished = true;
             return result;
         }
