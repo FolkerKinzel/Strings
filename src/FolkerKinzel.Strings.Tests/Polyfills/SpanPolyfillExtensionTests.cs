@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.Strings.Polyfills.Tests;
+﻿namespace FolkerKinzel.Strings.Polyfills.Tests;
 
 [TestClass()]
 public class SpanPolyfillExtensionTests
@@ -11,7 +9,7 @@ public class SpanPolyfillExtensionTests
     [DataRow("abc", 'B')]
     [DataRow("abc", 'b')]
     [DataRow("ABC", 'b')]
-    public void ContainsTest1(string input, char c) 
+    public void ContainsTest1(string input, char c)
         => Assert.AreEqual(input.AsSpan().Contains(c), input.ToArray().AsSpan().Contains(c));
 
     [DataTestMethod]
@@ -183,6 +181,14 @@ public class SpanPolyfillExtensionTests
     public void EndsWithTest2(string input, string end)
        => Assert.AreEqual(input.AsSpan().EndsWith(end.AsSpan()),
                           input.ToCharArray().AsSpan().EndsWith(end));
+
+    [DataTestMethod]
+    [DataRow("", "abc", StringComparison.Ordinal)]
+    [DataRow("abc", "bc", StringComparison.Ordinal)]
+    [DataRow("abc", "BC", StringComparison.OrdinalIgnoreCase)]
+    public void IndexOfTest1(string input, string end, StringComparison comp)
+       => Assert.AreEqual(input.AsSpan().IndexOf(end.AsSpan(), comp),
+                          input.ToCharArray().AsSpan().IndexOf(end, comp));
 
 
 

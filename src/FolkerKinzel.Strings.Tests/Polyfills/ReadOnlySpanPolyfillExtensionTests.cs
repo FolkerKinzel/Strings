@@ -155,6 +155,14 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
         Assert.AreEqual(test.LastIndexOf("", comp), test.AsSpan().LastIndexOf("", comp));
     }
 
+    [DataTestMethod]
+    [DataRow("", "abc", StringComparison.Ordinal)]
+    [DataRow("abc", "bc", StringComparison.Ordinal)]
+    [DataRow("abc", "BC", StringComparison.OrdinalIgnoreCase)]
+    public void IndexOfTest1(string input, string end, StringComparison comp)
+       => Assert.AreEqual(input.AsSpan().IndexOf(end.AsSpan(), comp),
+                          input.AsSpan().IndexOf(end, comp));
+
     //[DataTestMethod()]
     //[DataRow(StringComparison.Ordinal)]
     //[DataRow(StringComparison.CurrentCulture)]

@@ -62,6 +62,7 @@ bool ContainsAny(this ReadOnlySpan<char>, string?);
 int IndexOfAny(this ReadOnlySpan<char>, string?);
 int LastIndexOfAny(this ReadOnlySpan<char>, string?);
 int LastIndexOfAny(this ReadOnlySpan<char>, string?, int, int);
+int IndexOf(this ReadOnlySpan<char>, string?, StringComparison);
 ```
 .
 ### Polyfills for the Span&lt;Char&gt; struct (.NET Framework 4.5, .NET Standard 2.0, .NET Standard 2.1)
@@ -76,18 +77,19 @@ public static Span<char> TrimEnd(this Span<char>);
 ### Polyfills for the Span&lt;Char&gt; struct (.NET Framework 4.5, .NET Standard 2.0)
 
 ```csharp
-    public static bool Equals(this Span<char>, string?, StringComparison);
-    public static bool Contains(this Span<char>, string?, StringComparison);
-    public static int LastIndexOf(this Span<char>, string?, StringComparison);
-    public static bool StartsWith(this Span<char>, string?);
-    public static bool StartsWith(this Span<char>, string?, StringComparison);
-    public static bool EndsWith(this Span<char>, string?);
-    public static bool EndsWith(this Span<char>, string?, StringComparison);
-    public static int LastIndexOf(this Span<char>, string?, int, int, StringComparison);
-    public static bool ContainsAny(this Span<char>, string?);
-    public static int IndexOfAny(this Span<char>, string?);
-    public static int LastIndexOfAny(this Span<char>, string?);
-    public static int LastIndexOfAny(this Span<char>, string?, int, int);
+bool Equals(this Span<char>, string?, StringComparison);
+bool Contains(this Span<char>, string?, StringComparison);
+int LastIndexOf(this Span<char>, string?, StringComparison);
+bool StartsWith(this Span<char>, string?);
+bool StartsWith(this Span<char>, string?, StringComparison);
+bool EndsWith(this Span<char>, string?);
+bool EndsWith(this Span<char>, string?, StringComparison);
+int LastIndexOf(this Span<char>, string?, int, int, StringComparison);
+bool ContainsAny(this Span<char>, string?);
+int IndexOfAny(this Span<char>, string?);
+int LastIndexOfAny(this Span<char>, string?);
+int LastIndexOfAny(this Span<char>, string?, int, int);
+int IndexOf(this Span<char>, string?, StringComparison);
 ```
 .
 

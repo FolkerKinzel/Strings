@@ -250,4 +250,12 @@ public class SpanExtensionTests
        => Assert.AreEqual(input.AsSpan().Equals(comparison.AsSpan(), StringComparison.OrdinalIgnoreCase),
                           input.ToCharArray().AsSpan().Equals(comparison.AsSpan(), StringComparison.OrdinalIgnoreCase));
 
+    [DataTestMethod]
+    [DataRow("", "abc", StringComparison.Ordinal)]
+    [DataRow("abc", "bc", StringComparison.Ordinal)]
+    [DataRow("abc", "BC", StringComparison.OrdinalIgnoreCase)]
+    public void IndexOfTest1(string input, string end, StringComparison comp)
+       => Assert.AreEqual(input.AsSpan().IndexOf(end.AsSpan(), comp),
+                          input.ToCharArray().AsSpan().IndexOf(end.AsSpan(), comp));
+
 }

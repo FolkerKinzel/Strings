@@ -146,6 +146,12 @@ namespace LibraryTesters
             _ = roSpan.EndsWith('t');
             _ = roSpan.Contains('e');
             _ = span.Contains('e');
+            _ = roSpan.IndexOf("bla", StringComparison.Ordinal);
+            _ = roSpan.Contains("bla", StringComparison.Ordinal);
+
+            _ = span.IndexOf("bla", StringComparison.Ordinal);
+            _ = span.Contains("bla", StringComparison.Ordinal);
+
 
             _ = span.ContainsAny('e', 'f');
             _ = span.ContainsAny('e', 'f', 'g');

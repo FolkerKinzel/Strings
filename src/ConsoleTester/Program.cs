@@ -207,6 +207,12 @@ class Program
         _ = span.LastIndexOfAny(roSpan, roSpan.Length - 1, roSpan.Length);
         _ = span.LastIndexOfAny("abc", roSpan.Length - 1, roSpan.Length);
 
+        _ = roSpan.IndexOf("bla", StringComparison.Ordinal);
+        _ = roSpan.Contains("bla", StringComparison.Ordinal);
+
+        _ = span.IndexOf("bla", StringComparison.Ordinal);
+        _ = span.Contains("bla", StringComparison.Ordinal);
+
 
         _ = c.IsAscii();
         _ = c.IsBinaryDigit();
