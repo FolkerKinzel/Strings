@@ -6,7 +6,7 @@ internal static class _ArgumentNullException
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static void ThrowIfNull([NotNull] object? argument, string paramName)
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0
-     => _ = argument ?? throw new ArgumentNullException(paramName);
+    { if (argument is null) { throw new ArgumentNullException(paramName); } }
 #else
         => ArgumentNullException.ThrowIfNull(argument, paramName);
 #endif
