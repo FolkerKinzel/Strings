@@ -602,6 +602,7 @@ public class StringBuilderExtensionTests
     [DataRow("%", true)]
     [DataRow("test", false)]
     [DataRow("", false)]
+    [SuppressMessage("Style", "IDE0302:Simplify collection initialization", Justification = "<Pending>")]
     public void ContainsAnyTest1(string s, bool expected)
         => Assert.AreEqual(expected, s.AsSpan().ContainsAny(stackalloc char[] { '%', '@' }));
 
@@ -771,7 +772,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void TrimTest3()
     {
-        char[] trimChars = new char[] { '\"', '\'' };
+        char[] trimChars = ['\"', '\''];
         string input = "\'\"Test\'\"";
 
         var sb = new StringBuilder(input);
@@ -782,7 +783,7 @@ public class StringBuilderExtensionTests
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimTest4()
     {
-        char[] trimChars = new char[] { '\"', '\'' };
+        char[] trimChars = ['\"', '\''];
 
         StringBuilder? sb = null;
         _ = sb!.Trim(trimChars);
@@ -816,11 +817,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void TrimTest8()
     {
-#if NET45
-        char[] trimChars = new char[0];
-#else
-        char[] trimChars = Array.Empty<char>();
-#endif
+        char[] trimChars = [];
         string input = "   Test   ";
 
         var sb = new StringBuilder(input);
@@ -831,7 +828,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void TrimTest9()
     {
-        char[] trimChars = new char[] { '\"', '\'' };
+        char[] trimChars = ['\"', '\''];
         string input = "\'\"Test\'\"";
 
         var sb = new StringBuilder(input);
@@ -842,7 +839,7 @@ public class StringBuilderExtensionTests
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimTest10()
     {
-        char[] trimChars = new char[] { '\"', '\'' };
+        char[] trimChars = ['\"', '\''];
 
         StringBuilder? sb = null;
         _ = sb!.Trim(trimChars.AsSpan());
@@ -851,11 +848,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void TrimTest11()
     {
-#if NET45
-        char[] trimChars = new char[0];
-#else
-        char[] trimChars = Array.Empty<char>();
-#endif
+        char[] trimChars = [];
         string input = "   Test   ";
 
         var sb = new StringBuilder(input);
@@ -883,7 +876,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void TrimStartTest3()
     {
-        char[] trimChars = new char[] { '\"', '\'' };
+        char[] trimChars = ['\"', '\''];
         string input = "\'\"Test\'\"";
 
         var sb = new StringBuilder(input);
@@ -894,7 +887,7 @@ public class StringBuilderExtensionTests
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimStartTest4()
     {
-        char[] trimChars = new char[] { '\"', '\'' };
+        char[] trimChars = ['\"', '\''];
 
         StringBuilder? sb = null;
         _ = sb!.TrimStart(trimChars);
@@ -953,11 +946,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void TrimStartTest11()
     {
-#if NET45
-        char[] trimChars = new char[0];
-#else
-        char[] trimChars = Array.Empty<char>();
-#endif
+        char[] trimChars = [];
         string input = "   Test   ";
 
         var sb = new StringBuilder(input);
@@ -967,7 +956,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void TrimStartTest12()
     {
-        char[] trimChars = new char[] { '\"', '\'' };
+        char[] trimChars = ['\"', '\''];
         string input = "\'\"Test\'\"";
 
         var sb = new StringBuilder(input);
@@ -978,7 +967,7 @@ public class StringBuilderExtensionTests
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimStartTest13()
     {
-        char[] trimChars = new char[] { '\"', '\'' };
+        char[] trimChars = ['\"', '\''];
 
         StringBuilder? sb = null;
         _ = sb!.TrimStart(trimChars.AsSpan());
@@ -987,11 +976,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void TrimStartTest14()
     {
-#if NET45
-        char[] trimChars = new char[0];
-#else
-        char[] trimChars = Array.Empty<char>();
-#endif
+        char[] trimChars = [];
         string input = "   Test   ";
 
         var sb = new StringBuilder(input);
@@ -1019,7 +1004,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void TrimEndTest3()
     {
-        char[] trimChars = new char[] { '\"', '\'' };
+        char[] trimChars = ['\"', '\''];
         string input = "\'\"Test\'\"";
 
         var sb = new StringBuilder(input);
@@ -1030,7 +1015,7 @@ public class StringBuilderExtensionTests
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimEndTest4()
     {
-        char[] trimChars = new char[] { '\"', '\'' };
+        char[] trimChars = ['\"', '\''];
 
         StringBuilder? sb = null;
         _ = sb!.TrimEnd(trimChars);
@@ -1064,11 +1049,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void TrimEndTest8()
     {
-#if NET45
-        char[] trimChars = new char[0];
-#else
-        char[] trimChars = Array.Empty<char>();
-#endif
+        char[] trimChars = [];
         string input = "   Test   ";
 
         var sb = new StringBuilder(input);
@@ -1078,7 +1059,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void TrimEndTest9()
     {
-        char[] trimChars = new char[] { '\"', '\'' };
+        char[] trimChars = ['\"', '\''];
         string input = "\'\"Test\'\"";
 
         var sb = new StringBuilder(input);
@@ -1089,7 +1070,7 @@ public class StringBuilderExtensionTests
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimEndTest10()
     {
-        char[] trimChars = new char[] { '\"', '\'' };
+        char[] trimChars = ['\"', '\''];
 
         StringBuilder? sb = null;
         _ = sb!.TrimEnd(trimChars.AsSpan());
@@ -1098,11 +1079,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void TrimEndTest11()
     {
-#if NET45
-        char[] trimChars = new char[0];
-#else
-        char[] trimChars = Array.Empty<char>();
-#endif
+        char[] trimChars = [];
         string input = "   Test   ";
 
         var sb = new StringBuilder(input);
@@ -1344,6 +1321,7 @@ public class StringBuilderExtensionTests
 
 
     [TestMethod]
+    [SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
     public void AppendBase64Test4()
     {
         StringBuilder builder = new StringBuilder().AppendBase64(ReadOnlySpan<byte>.Empty, Base64FormattingOptions.InsertLineBreaks);

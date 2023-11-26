@@ -244,12 +244,12 @@ public class StringExtensionPolyfillTests
     }
 
     [DataTestMethod]
-    [DataRow(-1, 0)]
-    [DataRow(0, -1)]
-    [DataRow(0, 2)]
-    [DataRow(-2, 2)]
-    [DataRow(2, -2)]
-    public void LastIndexOfAnyTest10b(int index, int count)
+    [DataRow(-1)]
+    [DataRow(0)]
+    [DataRow(0)]
+    [DataRow(-2)]
+    [DataRow(2)]
+    public void LastIndexOfAnyTest10b(int index)
     {
         string needles = "testganzlang";
 

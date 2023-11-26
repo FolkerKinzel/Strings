@@ -343,7 +343,7 @@ public class TextEncodingConverterTests
     public void GetCodePageTest2()
     {
         const int GB18030 = 54936;
-        byte[] preamble = new byte[] { 0x84, 0x31, 0x95, 0x33 };
+        byte[] preamble = [0x84, 0x31, 0x95, 0x33];
         byte[] bytes = TextEncodingConverter.GetEncoding(GB18030).GetBytes("test");
 
         byte[] test = new byte[preamble.Length + bytes.Length];
@@ -358,7 +358,7 @@ public class TextEncodingConverterTests
     public void GetCodePageTest3()
     {
         const int UTF7 = 65000;
-        byte[] preamble = new byte[] { 0x2B, 0x2F, 0x76, 0x38 };
+        byte[] preamble = [0x2B, 0x2F, 0x76, 0x38];
         byte[] bytes = TextEncodingConverter.GetEncoding(UTF7).GetBytes("test");
 
         byte[] test = new byte[preamble.Length + bytes.Length];
@@ -373,7 +373,7 @@ public class TextEncodingConverterTests
     public void GetCodePageTest4()
     {
         const int UTF7 = 65000;
-        byte[] preamble = new byte[] { 0x2B, 0x2F, 0x76, 0x39 };
+        byte[] preamble = [0x2B, 0x2F, 0x76, 0x39];
         byte[] bytes = TextEncodingConverter.GetEncoding(UTF7).GetBytes("test");
 
         byte[] test = new byte[preamble.Length + bytes.Length];
@@ -388,7 +388,7 @@ public class TextEncodingConverterTests
     public void GetCodePageTest5()
     {
         const int UTF7 = 65000;
-        byte[] preamble = new byte[] { 0x2B, 0x2F, 0x76, 0x2B };
+        byte[] preamble = [0x2B, 0x2F, 0x76, 0x2B];
         byte[] bytes = TextEncodingConverter.GetEncoding(UTF7).GetBytes("test");
 
         byte[] test = new byte[preamble.Length + bytes.Length];
@@ -403,7 +403,7 @@ public class TextEncodingConverterTests
     public void GetCodePageTest6()
     {
         const int UTF7 = 65000;
-        byte[] preamble = new byte[] { 0x2B, 0x2F, 0x76, 0x2F };
+        byte[] preamble = [0x2B, 0x2F, 0x76, 0x2F];
         byte[] bytes = TextEncodingConverter.GetEncoding(UTF7).GetBytes("test");
 
         byte[] test = new byte[preamble.Length + bytes.Length];

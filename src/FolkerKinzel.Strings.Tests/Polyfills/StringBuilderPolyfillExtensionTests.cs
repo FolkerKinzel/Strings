@@ -435,6 +435,7 @@ public class StringBuilderPolyfillExtensionTests
 
     [TestMethod]
     [ExpectedException(typeof(NullReferenceException))]
+    [SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
     public void InsertTest2()
     {
         StringBuilder? sb = null;
@@ -443,6 +444,7 @@ public class StringBuilderPolyfillExtensionTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    [SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
     public void InsertTest3()
     {
         var sb = new StringBuilder();
@@ -451,6 +453,7 @@ public class StringBuilderPolyfillExtensionTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    [SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
     public void InsertTest4()
     {
         var sb = new StringBuilder();
@@ -584,6 +587,7 @@ public class StringBuilderPolyfillExtensionTests
 
     [TestMethod]
     [ExpectedException(typeof(NullReferenceException))]
+    [SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
     public void AppendTest2()
     {
         StringBuilder? sb = null;

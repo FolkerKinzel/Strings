@@ -143,6 +143,7 @@ public class StringExtensionTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
+    [SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
     public void ContainsAnyTest5()
     {
         string? s = null;
@@ -151,6 +152,7 @@ public class StringExtensionTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
+    [SuppressMessage("Performance", "CA1861:Avoid constant arrays as arguments", Justification = "<Pending>")]
     public void ContainsAnyTest6()
     {
         string? s = null;
@@ -394,12 +396,12 @@ public class StringExtensionTests
     }
 
     [DataTestMethod]
-    [DataRow(-1, 0)]
-    [DataRow(0, -1)]
-    [DataRow(0, 2)]
-    [DataRow(-2, 2)]
-    [DataRow(2, -2)]
-    public void LastIndexOfAnyTest10b(int index, int count)
+    [DataRow(-1)]
+    [DataRow(0)]
+    [DataRow(0)]
+    [DataRow(-2)]
+    [DataRow(2)]
+    public void LastIndexOfAnyTest10b(int index)
     {
         ReadOnlySpan<char> needles = "testganzlang".AsSpan();
 
@@ -598,7 +600,7 @@ public class StringExtensionTests
     [TestMethod]
     public void TrimTest1()
     {
-        char[] trimChars = new char[] { '\'', '\"' };
+        char[] trimChars = ['\'', '\"'];
 
         string test = "\"\'Test\'\"";
 
@@ -616,7 +618,7 @@ public class StringExtensionTests
     [TestMethod]
     public void TrimTest3()
     {
-        char[] trimChars = new char[] { '\'', '\"' };
+        char[] trimChars = ['\'', '\"'];
         string test = "\"\'\'\"";
         Assert.AreEqual(test.Trim(trimChars), test.Trim(trimChars.AsSpan()));
     }
@@ -641,7 +643,7 @@ public class StringExtensionTests
     [TestMethod]
     public void TrimTest6()
     {
-        char[] trimChars = new char[] { '\'', '\"' };
+        char[] trimChars = ['\'', '\"'];
 
         string test = "Test";
         Assert.AreEqual(test.Trim(trimChars), test.Trim(trimChars.AsSpan()));
@@ -650,7 +652,7 @@ public class StringExtensionTests
     [TestMethod]
     public void TrimStartTest1()
     {
-        char[] trimChars = new char[] { '\'', '\"' };
+        char[] trimChars = ['\'', '\"'];
 
         string test = "\"\'Test\'\"";
 
@@ -668,7 +670,7 @@ public class StringExtensionTests
     [TestMethod]
     public void TrimStartTest3()
     {
-        char[] trimChars = new char[] { '\'', '\"' };
+        char[] trimChars = ['\'', '\"'];
         string test = "\"\'\'\"";
         Assert.AreEqual(test.TrimStart(trimChars), test.TrimStart(trimChars.AsSpan()));
     }
@@ -693,7 +695,7 @@ public class StringExtensionTests
     [TestMethod]
     public void TrimStartTest6()
     {
-        char[] trimChars = new char[] { '\'', '\"' };
+        char[] trimChars = ['\'', '\"'];
 
         string test = "Test";
         Assert.AreEqual(test.TrimStart(trimChars), test.TrimStart(trimChars.AsSpan()));
@@ -702,7 +704,7 @@ public class StringExtensionTests
     [TestMethod]
     public void TrimEndTest1()
     {
-        char[] trimChars = new char[] { '\'', '\"' };
+        char[] trimChars = ['\'', '\"'];
 
         string test = "\"\'Test\'\"";
 
@@ -720,7 +722,7 @@ public class StringExtensionTests
     [TestMethod]
     public void TrimEndTest3()
     {
-        char[] trimChars = new char[] { '\'', '\"' };
+        char[] trimChars = ['\'', '\"'];
         string test = "\"\'\'\"";
         Assert.AreEqual(test.TrimEnd(trimChars), test.TrimEnd(trimChars.AsSpan()));
     }
@@ -745,7 +747,7 @@ public class StringExtensionTests
     [TestMethod]
     public void TrimEndTest6()
     {
-        char[] trimChars = new char[] { '\'', '\"' };
+        char[] trimChars = ['\'', '\"'];
 
         string test = "Test\"";
         Assert.AreEqual(test.TrimEnd(trimChars), test.TrimEnd(trimChars.AsSpan()));
@@ -755,7 +757,7 @@ public class StringExtensionTests
     public void TrimEndTest7()
     {
         const string test = "test";
-        char[] trimChars = new char[] { '\'', '\"' };
+        char[] trimChars = ['\'', '\"'];
 
         Assert.AreSame(test.TrimEnd(trimChars), test.TrimEnd(trimChars.AsSpan()));
     }

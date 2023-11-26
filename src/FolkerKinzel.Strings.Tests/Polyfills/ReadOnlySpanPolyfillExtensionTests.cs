@@ -98,6 +98,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataTestMethod()]
     [DataRow(StringComparison.Ordinal)]
     [DataRow(StringComparison.CurrentCulture)]
+    [SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
     public void LastIndexOfTest1(StringComparison comp)
     {
         const string test = "test";

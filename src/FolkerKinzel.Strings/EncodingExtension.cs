@@ -1,3 +1,5 @@
+using FolkerKinzel.Strings.Intls;
+
 namespace FolkerKinzel.Strings;
 
 /// <summary>Extension methods for the <see cref="Encoding" /> class.</summary>
@@ -13,10 +15,8 @@ public static class EncodingExtension
     /// <exception cref="ArgumentNullException"> <paramref name="encoding" /> is <c>null</c>.</exception>
     public static byte[] GetBytes(this Encoding encoding, ReadOnlySpan<char> chars)
     {
-        if (encoding == null)
-        {
-            throw new ArgumentNullException(nameof(encoding));
-        }
+        _ArgumentNullException.ThrowIfNull(encoding, nameof(encoding));
+
 #if NET45 || NETSTANDARD2_0
         return encoding.GetBytes(chars.ToArray());
 #else

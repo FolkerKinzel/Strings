@@ -18,7 +18,7 @@ public class DecoderValidationFallbackTests
         Assert.IsFalse(fb.HasError);
         
         var enc = Encoding.GetEncoding("UTF-8", EncoderFallback.ReplacementFallback, fb);
-        using var stream = new MemoryStream(new byte[] { 129, 142, 210, 184});
+        using var stream = new MemoryStream([129, 142, 210, 184]);
         using var reader = new StreamReader(stream, enc, false);
         string s = reader.ReadToEnd();
         Assert.IsTrue(fb.HasError);
