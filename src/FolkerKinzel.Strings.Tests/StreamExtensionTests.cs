@@ -5,9 +5,9 @@ namespace FolkerKinzel.Strings.Tests;
 [TestClass]
 public class StreamExtensionTests
 {
-    private readonly byte[] _validUtf8 = new byte[] { 17, 4, 42 };
-    private readonly byte[] _noUtf8 = new byte[] { 129, 142, 210, 184 };
-    private readonly byte[] _bom = new byte[] { 0xEF, 0xBB, 0xBF };
+    private readonly byte[] _validUtf8 = [17, 4, 42];
+    private readonly byte[] _noUtf8 = [129, 142, 210, 184];
+    private readonly byte[] _bom = [0xEF, 0xBB, 0xBF];
 
 
     [TestMethod]
@@ -29,7 +29,7 @@ public class StreamExtensionTests
     [TestMethod]
     public void IsUtf8Test3()
     {
-        using var str = new MemoryStream(_validUtf8.Concat(_validUtf8).ToArray());
+        using var str = new MemoryStream([.. _validUtf8, .. _validUtf8]);
         Assert.IsFalse(str.IsUtf8(count: 0, leaveOpen: true));
         str.Position = 0;
         Assert.IsTrue(str.IsUtf8());
@@ -65,7 +65,7 @@ public class StreamExtensionTests
     {
         var list = new List<byte>(_validUtf8);
         list.AddRange(_noUtf8);
-        using var stream = new MemoryStream(list.ToArray());
+        using var stream = new MemoryStream([.. list]);
         Assert.IsFalse(stream.IsUtf8());
     }
 

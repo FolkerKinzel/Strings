@@ -1,7 +1,8 @@
 namespace FolkerKinzel.Strings.Intls;
 
-[SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>")]
-internal class _Array
+
+[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+internal static class _Array
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static T[] Empty<T>()

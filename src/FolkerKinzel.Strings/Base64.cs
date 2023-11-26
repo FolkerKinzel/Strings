@@ -75,7 +75,7 @@ public static class Base64
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Encode(byte[]? bytes,
                                 Base64FormattingOptions options = Base64FormattingOptions.None)
-        => Convert.ToBase64String(bytes ?? _Array.Empty<byte>(), options);
+        => Convert.ToBase64String(bytes ?? [], options);
 
     /// <summary>Converts a subset of a <see cref="byte" /> array to its equivalent Base64-encoded
     /// string representation. Parameters specify the subset as an offset in the input array,
@@ -379,10 +379,7 @@ public static class Base64
                                                   ReadOnlySpan<byte> bytes,
                                                   Base64FormattingOptions options)
     {
-        if (builder is null)
-        {
-            throw new ArgumentNullException(nameof(builder));
-        }
+        _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
         // Don't put in any effort to compute the needed capacity of the line breaks
         // because StringBuilder will allocate NEW memory each time you call Insert()

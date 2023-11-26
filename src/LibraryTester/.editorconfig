@@ -48,10 +48,10 @@ dotnet_style_require_accessibility_modifiers = for_non_interface_members:suggest
 #Style - Modifier preferences
 
 #when this rule is set to a list of modifiers, prefer the specified ordering.
-csharp_preferred_modifier_order = public,static:suggestion
+csharp_preferred_modifier_order = suggestion
 
-# CA1303: Literale nicht als lokalisierte Parameter übergeben
+# CA1303: Literale nicht als lokalisierte Parameter Ã¼bergeben
 dotnet_diagnostic.CA1303.severity = none
 
-# CA1825: Arrayzuordnungen mit einer Länge von null vermeiden
+# CA1825: Arrayzuordnungen mit einer LÃ¤nge von null vermeiden
 dotnet_diagnostic.CA1825.severity = none

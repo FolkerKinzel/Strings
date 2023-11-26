@@ -12,11 +12,13 @@ namespace LibraryTesters
 {
     public static class Test
     {
+        private static readonly char[] _array = ['x'];
+
         public static void Method()
         {
             string test = "Test";
             var roSpan = test.AsSpan();
-            var span = new char[] {'x'}.AsSpan();
+            var span = _array.AsSpan();
 
             char c = 'e';
             byte[] bytes = new byte[1];
@@ -90,7 +92,7 @@ namespace LibraryTesters
             _ = sb.ToLowerInvariant(0);
             _ = sb.ToLowerInvariant(0, 0);
 
-            _ = test.AsSpan().ContainsAny(ReadOnlySpan<char>.Empty);
+            _ = test.AsSpan().ContainsAny([]);
             _ = test.AsSpan().ContainsAny("abc");
 
 

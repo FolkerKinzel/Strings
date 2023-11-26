@@ -9,14 +9,11 @@ public class InsertBench
 {
     private const string CONTENT = "123456789abcdefghijklmnopqrstuvwxyz";
     private const int INDEX = 1;
-    private StringBuilder builder = new StringBuilder(CONTENT);
+    private StringBuilder _builder = new(CONTENT);
     private const string TO_INSERT = "abcdefghijklmnopqrstuvwxyz";
 
     [IterationSetup]
-    public void SetupData()
-    {
-        builder = new StringBuilder(CONTENT);
-    }
+    public void SetupData() => _builder = new StringBuilder(CONTENT);
 
 
     [Benchmark]
@@ -31,14 +28,12 @@ public class InsertBench
 
         for (int i = value.Length - 1; i >= 0; i--)
         {
-            _ = builder.Insert(INDEX, value[i]);
+            _ = _builder.Insert(INDEX, value[i]);
         }
 
-        return builder;
+        return _builder;
     }
 
-    private StringBuilder Insert2(ReadOnlySpan<char> value)
-    {
-        return builder.Insert(INDEX, value.ToString());
-    }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1830:Prefer strongly-typed Append and Insert method overloads on StringBuilder", Justification = "<Pending>")]
+    private StringBuilder Insert2(ReadOnlySpan<char> value) => _builder.Insert(INDEX, value.ToString());
 }

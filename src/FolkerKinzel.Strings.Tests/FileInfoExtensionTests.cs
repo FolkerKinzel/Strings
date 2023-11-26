@@ -9,7 +9,7 @@ public class FileInfoExtensionTests
     [NotNull]
     public TestContext? TestContext { get; set; }
 
-    private readonly byte[] _invalidUtf8WithValidBom = new byte[] { 0xEF, 0xBB, 0xBF, 0xFF, 0xFF };
+    private readonly byte[] _invalidUtf8WithValidBom = [0xEF, 0xBB, 0xBF, 0xFF, 0xFF];
 
     [TestMethod]
     public void IsUtf8Test1()

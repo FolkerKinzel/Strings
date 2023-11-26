@@ -125,7 +125,7 @@ public static partial class StringPolyfillExtension
 #if NET45
                         new string[0]
 #else
-                        Array.Empty<string>()
+                        []
 #endif
                       : string.IsNullOrEmpty(separator) ? new string[] { s } 
                                                         : s.Split(new string[] { separator }, count, options);
@@ -148,11 +148,11 @@ public static partial class StringPolyfillExtension
             ? throw new NullReferenceException()
                 : (s.Length == 0 && 
                    (options & StringSplitOptions.RemoveEmptyEntries) == StringSplitOptions.RemoveEmptyEntries)
-                        ? 
+                        ?
 #if NET45
                           new string[0]
 #else
-                          Array.Empty<string>()
+                          []
 #endif
                         : string.IsNullOrEmpty(separator) ? new string[] { s } 
                                                           : s.Split(new string[] { separator }, options);

@@ -1,3 +1,4 @@
+using FolkerKinzel.Strings.Intls;
 using FolkerKinzel.Strings.Polyfills;
 
 namespace FolkerKinzel.Strings;
@@ -16,10 +17,7 @@ public static partial class StringExtension
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     public static string TrimStart(this string s, ReadOnlySpan<char> trimChars)
     {
-        if (s is null)
-        {
-            throw new ArgumentNullException(nameof(s));
-        }
+        _ArgumentNullException.ThrowIfNull(s, nameof(s));
 
         if (trimChars.Length == 0)
         {
@@ -52,6 +50,6 @@ public static partial class StringExtension
             }
         }
 
-        return ReadOnlySpan<char>.Empty;
+        return [];
     }
 }

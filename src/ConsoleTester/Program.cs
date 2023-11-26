@@ -29,7 +29,7 @@ class Program
         var sb1 = new StringBuilder();
         var sb2 = new StringBuilder(test);
         ReadOnlySpan<char> roSpan = test.AsSpan();
-        Span<char> span = new char[] {'x'}.AsSpan();
+        Span<char> span = ['x'];
 
         _ = sb1.Append(sb2, -17, sb2.Length);
 
@@ -102,7 +102,7 @@ class Program
         _ = sb.ToLowerInvariant(0);
         _ = sb.ToLowerInvariant(0, 0);
 
-        _ = roSpan.ContainsAny(ReadOnlySpan<char>.Empty);
+        _ = roSpan.ContainsAny([]);
         _ = roSpan.ContainsAny("xy");
 
 

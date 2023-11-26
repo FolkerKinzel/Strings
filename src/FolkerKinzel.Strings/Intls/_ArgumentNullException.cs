@@ -1,0 +1,13 @@
+﻿namespace FolkerKinzel.Strings.Intls;
+
+[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+internal static class _ArgumentNullException
+{
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal static void ThrowIfNull([NotNull] object? argument, string paramName)
+#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0
+     => _ = argument ?? throw new ArgumentNullException(paramName);
+#else
+        => ArgumentNullException.ThrowIfNull(argument, paramName);
+#endif
+}
