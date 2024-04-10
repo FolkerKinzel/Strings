@@ -164,22 +164,40 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
        => Assert.AreEqual(input.AsSpan().IndexOf(end.AsSpan(), comp),
                           input.AsSpan().IndexOf(end, comp));
 
-    //[DataTestMethod()]
-    //[DataRow(StringComparison.Ordinal)]
-    //[DataRow(StringComparison.CurrentCulture)]
-    //public void IndexOfTest1(StringComparison comp)
-    //{
-    //    const string test = "test";
-    //    Assert.AreEqual(test.Length, test.AsSpan().IndexOf(ReadOnlySpan<char>.Empty, comp));
-    //}
+    [DataTestMethod]
+    [DataRow("abc", "abcd")]
+    [DataRow("abc", "")]
+    [DataRow("abc", null)]
+    [DataRow("abc", "ba")]
+    [DataRow("abc", "xy")]
+    public void TrimStartTest1(string? input, string? trimChars)
+    {
+        ReadOnlySpan<char> span = input.AsSpan();
+        Assert.AreEqual(span.TrimStart(trimChars.AsSpan()).ToString(), span.TrimStart(trimChars).ToString());
+    }
 
+    [DataTestMethod]
+    [DataRow("abc", "abcd")]
+    [DataRow("abc", "")]
+    [DataRow("abc", null)]
+    [DataRow("abc", "ba")]
+    [DataRow("abc", "xy")]
+    public void TrimEndTest1(string? input, string? trimChars)
+    {
+        ReadOnlySpan<char> span = input.AsSpan();
+        Assert.AreEqual(span.TrimEnd(trimChars.AsSpan()).ToString(), span.TrimEnd(trimChars).ToString());
+    }
 
-    //[DataTestMethod()]
-    //[DataRow(StringComparison.Ordinal)]
-    //[DataRow(StringComparison.CurrentCulture)]
-    //public void IndexOfTest2(StringComparison comp)
-    //{
-    //    const string test = "test";
-    //    Assert.AreEqual(1, test.AsSpan().IndexOf("est".AsSpan(), comp));
-    //}
+    [DataTestMethod]
+    [DataRow("abc", "abcd")]
+    [DataRow("abc", "")]
+    [DataRow("abc", null)]
+    [DataRow("abc", "ba")]
+    [DataRow("abc", "xy")]
+    [DataRow("abcab", "ba")]
+    public void TrimTest1(string? input, string? trimChars)
+    {
+        ReadOnlySpan<char> span = input.AsSpan();
+        Assert.AreEqual(span.Trim(trimChars.AsSpan()).ToString(), span.Trim(trimChars).ToString());
+    }
 }

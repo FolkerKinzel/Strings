@@ -8,10 +8,10 @@
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>7.2.0</Version>
-    <FileVersion>7.2.0.11</FileVersion>
+    <Version>7.3.0</Version>
+    <FileVersion>7.3.0.3</FileVersion>
     <AssemblyVersion>7.0.0.0</AssemblyVersion>
-    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v7.2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v7.3.0</PackageReleaseNotes>
     <PackageTags>.NET String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode C#</PackageTags>
     <Description>
       .NET library that contains extension methods and helper classes for character-based data types.
