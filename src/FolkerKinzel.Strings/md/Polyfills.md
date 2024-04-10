@@ -63,6 +63,9 @@ int IndexOfAny(this ReadOnlySpan<char>, string?);
 int LastIndexOfAny(this ReadOnlySpan<char>, string?);
 int LastIndexOfAny(this ReadOnlySpan<char>, string?, int, int);
 int IndexOf(this ReadOnlySpan<char>, string?, StringComparison);
+ReadOnlySpan<char> Trim(this ReadOnlySpan<char>, string?);
+ReadOnlySpan<char> TrimStart(this ReadOnlySpan<char>, string?);
+ReadOnlySpan<char> TrimEnd(this ReadOnlySpan<char>, string?);
 ```
 .
 ### Polyfills for the Span&lt;Char&gt; struct (.NET Framework 4.5, .NET Standard 2.0, .NET Standard 2.1)

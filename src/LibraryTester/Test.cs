@@ -267,6 +267,24 @@ namespace LibraryTesters
             _ = span.TrimEnd();
             _ = span.IsWhiteSpace();
 
+            _ = roSpan.Trim('a');
+            //_ = span.Trim('a');
+
+            _ = roSpan.TrimStart('a');
+            //_ = span.TrimStart('a');
+
+            _ = roSpan.TrimEnd('a');
+            //_ = span.TrimEnd('a');
+
+            _ = roSpan.Trim("abc");
+            //_ = span.Trim("abc");
+
+            _ = roSpan.TrimStart("abc");
+            //_ = span.TrimStart("abc");
+
+            _ = roSpan.TrimEnd("abc");
+            //_ = span.TrimEnd("abc");
+
             const string Abc = "ABC";
             _ = StaticStringMethod.Create<string>(Abc.Length, Abc, (chars, str) => str.AsSpan().CopyTo(chars));
 
