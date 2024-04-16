@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net48;net5.0;net6.0;net7.0;net8.0;netcoreapp3.1</TargetFrameworks>
+		<TargetFrameworks>net48;net8.0</TargetFrameworks>
 		<LangVersion>12.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -14,8 +14,8 @@
 	<ItemGroup>
 		<Using Remove="System.Net.Http" />
 		<Using Include="System.Text" />
-    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting"/>
-    <Using Include="System.Diagnostics.CodeAnalysis"/>
+    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+    <Using Include="System.Diagnostics.CodeAnalysis" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Remove="reports\**" />
@@ -28,14 +28,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="coverlet.msbuild" Version="6.0.0">
+		<PackageReference Include="coverlet.msbuild" Version="6.0.2">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-		<PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
-		<PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
-		<PackageReference Include="coverlet.collector" Version="6.0.0">
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="3.3.1" />
+		<PackageReference Include="MSTest.TestFramework" Version="3.3.1" />
+		<PackageReference Include="coverlet.collector" Version="6.0.2">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

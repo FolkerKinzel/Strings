@@ -154,7 +154,7 @@ public static partial class StringPolyfillExtension
 #else
                           []
 #endif
-                        : string.IsNullOrEmpty(separator) ? new string[] { s } 
+                        : string.IsNullOrEmpty(separator) ? [s] 
                                                           : s.Split(new string[] { separator }, options);
 
 
