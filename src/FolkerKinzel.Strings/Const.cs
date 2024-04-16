@@ -2,5 +2,7 @@ namespace FolkerKinzel.Strings;
 
 internal static class Const
 {
-    internal const int ShortString = 128;
+    // According to the internal constant System.String.StackallockCharBufferSizeLimit
+    // from the .NET sources
+    internal const int ShortString = 256;
 }

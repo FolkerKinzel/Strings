@@ -203,7 +203,21 @@ public class Base64Tests
     }
 
 
+    [TestMethod]
+    public void GetEncodedLengthTest1()
+    {
+        for (int i = 0; i < 10000; i++)
+        {
+            Assert.AreEqual(GetEncodedLength(i), Base64.GetEncodedLength(i));
+        }
 
+        static int GetEncodedLength(int inputLength)
+        => (int)Math.Ceiling(inputLength / 3.0) << 2;
+    }
+
+    [TestMethod]
+    public void GetEncodedLengthTest2() => Base64.GetEncodedLength(-42);
+    
 
 
     //[TestMethod()]

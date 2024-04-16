@@ -32,7 +32,7 @@ public static class Base64
     /// not included in the calculation.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int GetEncodedLength(int inputLength) 
-        => (int)Math.Ceiling(inputLength / 3.0) << 2;
+        => ((inputLength + 2) / 3) * 4;
 
     /// <summary>Converts a <see cref="byte" /> collection to a corresponding Base64-encoded
     /// string. You can determine, whether line breaks are to be inserted into the return
