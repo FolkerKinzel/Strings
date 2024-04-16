@@ -36,7 +36,6 @@ public static class StreamExtension
         return validator.IsUtf8(stream, count, leaveOpen);
     }
 
-
     /// <summary>Tests whether the byte sequence of <paramref name="stream" /> that starts
     /// with the current <see cref="Stream.Position" /> and is at least <paramref name="count"
     /// /> characters long is valid UTF-8.</summary>

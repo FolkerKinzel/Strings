@@ -19,5 +19,4 @@ public static partial class SpanExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this Span<char> span, ReadOnlySpan<char> values)
     => ((ReadOnlySpan<char>)span).IndexOfAny(values);
-
 }

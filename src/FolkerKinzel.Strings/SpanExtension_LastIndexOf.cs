@@ -1,5 +1,3 @@
-using FolkerKinzel.Strings.Polyfills;
-
 namespace FolkerKinzel.Strings;
 
 public static partial class SpanExtension
@@ -18,7 +16,6 @@ public static partial class SpanExtension
     public static int LastIndexOf(
         this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).LastIndexOf(value, comparisonType);
-
 
     /// <summary>Specifies the zero based index position of the last occurrence of a specified
     /// character sequence in <paramref name="span" />. The search begins at a specified

@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net5.0;net6.0;net7.0;net8.0;netstandard2.1;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0;netstandard2.1;net45</TargetFrameworks>
     <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -54,6 +54,7 @@
     <Compile Remove="Base64Decoder.cs" />
     <Compile Remove="EncodingPolyfillExtension.cs" />
     <Compile Remove="Intls\Base64_OBSOLETE.cs" />
+    <Compile Remove="Intls\_Array.cs" />
     <Compile Remove="PolyfillSpanAction.cs" />
     <Compile Remove="ReadOnlySpanExtension_Obsolete.cs" />
     <Compile Remove="StringBuilderExtension_Insert.cs" />

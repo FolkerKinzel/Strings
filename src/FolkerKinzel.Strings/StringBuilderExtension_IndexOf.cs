@@ -32,7 +32,6 @@ public static partial class StringBuilderExtension
             ? throw new ArgumentNullException(nameof(builder))
             : builder.IndexOf(value, startIndex, builder.Length - startIndex);
 
-
     /// <summary>Returns the zero-based index of the first occurrence of the specified character
     /// in <paramref name="builder" />. The search begins at a specified index and a specified
     /// number of character positions are checked.</summary>

@@ -8,7 +8,7 @@ internal static class _Array
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static T[] Empty<T>()
 #if NET45
-        => new T[0];
+        => [];
 #else
 #pragma warning disable IDE0301 // Simplify collection initialization
         => Array.Empty<T>();

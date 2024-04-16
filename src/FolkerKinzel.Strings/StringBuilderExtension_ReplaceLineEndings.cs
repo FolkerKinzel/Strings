@@ -46,7 +46,6 @@ public static partial class StringBuilderExtension
         => builder is null ? throw new ArgumentNullException(nameof(builder))
                            : ReplaceLineEndings(builder, replacementText, 0);
 
-
     internal static StringBuilder ReplaceLineEndings(this StringBuilder builder,
                                                      string? replacementText,
                                                      int startIndex)

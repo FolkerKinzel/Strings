@@ -1,5 +1,3 @@
-using FolkerKinzel.Strings.Polyfills;
-
 namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
@@ -12,7 +10,6 @@ public static partial class StringBuilderExtension
     public static StringBuilder TrimEnd(this StringBuilder builder)
         => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.DoTrimEnd();
 
-
     /// <summary>Removes all the trailing white-space characters from <paramref name="builder"/>.
     /// </summary>
     /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
@@ -21,7 +18,6 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder TrimEnd(this StringBuilder builder, char trimChar)
         => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.DoTrimEnd(trimChar);
-
 
     /// <summary>Removes all the trailing occurrences of a set of characters specified in
     /// an array from <paramref name="builder"/>.</summary>
@@ -40,7 +36,6 @@ public static partial class StringBuilderExtension
                 : builder.DoTrimEnd(trimChars);
     }
 
-
     /// <summary>Removes all trailing occurrences of a set of characters specified in a read-only 
     /// span from <paramref name="builder"/>.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
@@ -57,7 +52,6 @@ public static partial class StringBuilderExtension
                 ? builder.DoTrimEnd()
                 : builder.DoTrimEnd(trimChars);
     }
-
 
     private static StringBuilder DoTrimEnd(this StringBuilder stringBuilder)
     {
@@ -79,7 +73,6 @@ public static partial class StringBuilderExtension
         return stringBuilder;
     }
 
-
     private static StringBuilder DoTrimEnd(this StringBuilder stringBuilder, char trimChar)
     {
         int length = stringBuilder.Length;
@@ -99,7 +92,6 @@ public static partial class StringBuilderExtension
         stringBuilder.Length = length;
         return stringBuilder;
     }
-
 
     private static StringBuilder DoTrimEnd(
         this StringBuilder stringBuilder, ReadOnlySpan<char> trimChars)

@@ -1,4 +1,4 @@
-namespace FolkerKinzel.Strings.Polyfills;
+namespace FolkerKinzel.Strings;
 
 
 /// <summary>Extension methods for the <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>
@@ -19,8 +19,6 @@ public static class ReadOnlySpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(this ReadOnlySpan<char> span, char value)
         => span.IndexOf(value) != -1;
-
-
 
     /// <summary>Specifies the zero-based index of the last occurrence of a specified string
     /// in <paramref name="span" />. A parameter specifies the type of search for the specified
@@ -50,7 +48,6 @@ public static class ReadOnlySpanPolyfillExtension
                 : span.ToString().LastIndexOf(value.ToString(), comparisonType);
 #endif
 
-
 #if NET45 || NETSTANDARD2_0
 
     /// <summary>Determines whether this <paramref name="span" /> and the specified other
@@ -66,7 +63,6 @@ public static class ReadOnlySpanPolyfillExtension
         this ReadOnlySpan<char> span, string? other, StringComparison comparisonType) 
         => span.Equals(other.AsSpan(), comparisonType);
 
-
     /// <summary>Indicates whether a specified value occurs within a read-only character
     /// span.</summary>
     /// <param name="span">The source span.</param>
@@ -79,7 +75,6 @@ public static class ReadOnlySpanPolyfillExtension
     public static bool Contains(
         this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
         => span.Contains(value.AsSpan(), comparisonType);
-
 
     /// <summary>Specifies the zero-based index of the last occurrence of a specified string
     /// in <paramref name="span" />. A parameter specifies the type of search for the specified
@@ -136,7 +131,6 @@ public static class ReadOnlySpanPolyfillExtension
     public static bool StartsWith(
         this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
         => span.StartsWith(value.AsSpan(), comparisonType);
-
 
     /// <summary>Indicates whether <paramref name="span" /> ends with the specified <see cref="string"
     /// />.</summary>

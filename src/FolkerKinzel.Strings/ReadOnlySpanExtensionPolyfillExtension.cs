@@ -1,4 +1,4 @@
-namespace FolkerKinzel.Strings.Polyfills;
+namespace FolkerKinzel.Strings;
 
 /// <summary>Extension methods, which act as Polyfills for the extension methods of the
 /// <see cref="ReadOnlySpanExtension" /> class.</summary>
@@ -60,7 +60,6 @@ public static class ReadOnlySpanExtensionPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOf(this ReadOnlySpan<char> span, string? value, int startIndex, int count, StringComparison comparisonType)
         => span.LastIndexOf(value.AsSpan(), startIndex, count, comparisonType);
-
 
     /// <summary>Indicates whether a read-only character span contains one of the Unicode
     /// characters that are passed to the method as a string.</summary>

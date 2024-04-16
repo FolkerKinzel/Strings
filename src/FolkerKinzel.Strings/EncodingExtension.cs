@@ -27,8 +27,7 @@ public static class EncodingExtension
 #endif
     }
 
-    // Don't move this polyfill to the namespace FolkerKinzel.Strings.Polyfills because it polyfills an
-    // instance method.
+    
 #if NET45 || NETSTANDARD2_0
     /// <summary>Decodes all bytes in the specified read-only span into a <see cref="string"/>.</summary>
     /// <param name="encoding">The <see cref="Encoding" /> object on which the extension

@@ -12,7 +12,6 @@ public static partial class SpanExtension
     public static bool EndsWith(this Span<char> span, char value)
      => ((ReadOnlySpan<char>)span).EndsWith(value);
 
-
     /// <summary>Indicates whether <paramref name="span" /> ends with <paramref name="value"
     /// /> when compared using a specified <see cref="StringComparison" /> value.</summary>
     /// <param name="span">The span to examine.</param>

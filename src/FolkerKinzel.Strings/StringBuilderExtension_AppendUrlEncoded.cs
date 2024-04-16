@@ -23,7 +23,6 @@ public static partial class StringBuilderExtension
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, ReadOnlySpan<char> value)
         => UrlEncoding.AppendEncodedTo(builder, value);
 
-
     /// <summary>Appends the content of a <see cref="byte" /> collection as URL-encoded character
     /// sequence to the end of a <see cref="StringBuilder" />.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
@@ -44,7 +43,6 @@ public static partial class StringBuilderExtension
                ? builder
                : builder.AppendUrlEncoded(CollectionConverter.AsReadOnlySpan(value));
 
-
     /// <summary>Appends the content of a <see cref="byte" /> array as URL-encoded character
     /// sequence to the end of a <see cref="StringBuilder" />.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
@@ -61,7 +59,6 @@ public static partial class StringBuilderExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, byte[]? value)
         => UrlEncoding.AppendEncodedTo(builder, value.AsSpan());
-
 
     /// <summary>Appends the content of a read-only <see cref="byte" /> span as URL-encoded
     /// character sequence to the end of a <see cref="StringBuilder" />.</summary>

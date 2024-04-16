@@ -14,7 +14,6 @@ public static partial class StringBuilderExtension
                 ? throw new ArgumentNullException(nameof(builder))
                 : builder.ContainsNewLine(0, builder.Length);
 
-
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> to see whether it contains a newline character.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
@@ -32,7 +31,6 @@ public static partial class StringBuilderExtension
         => builder is null
             ? throw new ArgumentNullException(nameof(builder))
             : builder.ContainsNewLine(startIndex, builder.Length - startIndex);
-
 
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> and includes <paramref name="count" /> characters to determine

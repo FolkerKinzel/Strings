@@ -2,13 +2,12 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using FolkerKinzel.Strings;
 using FolkerKinzel.Strings.Intls;
-using FolkerKinzel.Strings.Polyfills;
 
 namespace FolkerKinzel.Strings;
 
 /// <summary>Static class that provides methods to encode and decode strings in Base64
 /// format.</summary>
-#if !(NET45 || NETSTANDARD2_0)
+#if !(NET45 || NETSTANDARD2_0 || NETCOREAPP3_1 || NETSTANDARD2_1)
 [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification = "<Pending>")]
 #endif
 public static class Base64
@@ -49,7 +48,7 @@ public static class Base64
     public static string Encode(IEnumerable<byte>? bytes,
                                 Base64FormattingOptions options = Base64FormattingOptions.None)
     {
-        bytes ??= _Array.Empty<byte>();
+        bytes ??= [];
 
         return bytes switch
         {
@@ -195,7 +194,7 @@ public static class Base64
 
         if (base64.IsEmpty)
         {
-            return GetEmptyByteArray();
+            return [];
         }
 
         char[]? arr = null;
@@ -328,7 +327,7 @@ public static class Base64
     public static byte[] GetBytes(ReadOnlySpan<char> base64)
     {
         base64 = base64.Trim();
-        return base64.IsEmpty ? GetEmptyByteArray() : DoGetBytes(base64);
+        return base64.IsEmpty ? [] : DoGetBytes(base64);
     }
 
     private static byte[] DoGetBytes(ReadOnlySpan<char> base64)
@@ -487,12 +486,12 @@ public static class Base64
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static byte[] GetEmptyByteArray() =>
-#if NET45
-            new byte[0];
-#else
-            Array.Empty<byte>();
-#endif
+//    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//    private static byte[] GetEmptyByteArray() =>
+//#if NET45
+//            new byte[0];
+//#else
+//            Array.Empty<byte>();
+//#endif
 
 }

@@ -5,17 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using FolkerKinzel.Strings;
-using FolkerKinzel.Strings.Polyfills;
 
 namespace Benchmarks;
 
 [MemoryDiagnoser]
 public class ReplaceLineEndingsBench
 {
-    public ReplaceLineEndingsBench()
-    {
-        this.TestString = Properties.Resources.ReplaceLineEndingsTest;
-    }
+    public ReplaceLineEndingsBench() => this.TestString = Properties.Resources.ReplaceLineEndingsTest;
 
     public string TestString { get; }
 

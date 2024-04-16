@@ -1,4 +1,5 @@
 using System.Globalization;
+using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
@@ -39,10 +40,7 @@ public static class UrlEncoding
     internal static StringBuilder AppendEncodedTo(StringBuilder builder,
                                                   ReadOnlySpan<byte> value)
     {
-        if (builder is null)
-        {
-            throw new ArgumentNullException(nameof(builder));
-        }
+        _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
         AppendData(builder, value);
         return builder;
@@ -51,11 +49,7 @@ public static class UrlEncoding
 
     internal static StringBuilder AppendEncodedTo(StringBuilder builder, ReadOnlySpan<char> value)
     {
-        if (builder is null)
-        {
-            throw new ArgumentNullException(nameof(builder));
-        }
-
+        _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
 #if NET45 || NETSTANDARD2_0
         byte[] encoded = Encoding.UTF8.GetBytes(value);

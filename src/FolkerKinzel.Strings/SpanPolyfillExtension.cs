@@ -1,4 +1,4 @@
-namespace FolkerKinzel.Strings.Polyfills;
+namespace FolkerKinzel.Strings;
 
 /// <summary>Extension methods for the <see cref="Span{T}">Span&lt;Char&gt;</see> struct
 /// used in the .NET Framework 4.5, .NET Standard 2.0, and .NET Standard 2.1 as polyfills
@@ -27,7 +27,6 @@ public static class SpanPolyfillExtension
     /// <returns>The sliced span.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Span<char> Trim(this Span<char> span) => span.TrimStart().TrimEnd();
-
 
     /// <summary>Removes all leading white space characters from a character span.</summary>
     /// <param name="span">The source span from which the characters are removed.</param>
@@ -58,7 +57,6 @@ public static class SpanPolyfillExtension
         this Span<char> span, string? other, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).Equals(other.AsSpan(), comparisonType);
 
-
     /// <summary>Indicates whether a specified value occurs within a character span when
     /// compared using a specified <see cref="StringComparison" /> value.</summary>
     /// <param name="span">The source span.</param>
@@ -71,9 +69,6 @@ public static class SpanPolyfillExtension
     public static bool Contains(
         this Span<char> span, string? value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).Contains(value.AsSpan(), comparisonType);
-
-
-
 
     /// <summary>Indicates whether a read-only character span begins with a specified <see
     /// cref="string" />.</summary>
@@ -105,7 +100,6 @@ public static class SpanPolyfillExtension
     public static bool StartsWith(
         this Span<char> span, string? value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).StartsWith(value.AsSpan(), comparisonType);
-
 
     /// <summary>Indicates whether a character span ends with the specified <see cref="string"
     /// />.</summary>
@@ -215,7 +209,6 @@ public static class SpanPolyfillExtension
                                                   startIndex,
                                                   count,
                                                   comparisonType);
-
 
     /// <summary>Indicates whether a character span contains one of the Unicode characters
     /// that are passed to the method as a string.</summary>

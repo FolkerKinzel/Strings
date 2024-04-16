@@ -25,7 +25,6 @@ public static partial class StringBuilderExtension
         => builder is null ? throw new ArgumentNullException(nameof(builder))
                            : builder.ToUpperInvariant(startIndex, builder.Length - startIndex);
 
-
     /// <summary>Converts the content of a section in <see cref="StringBuilder" /> that begins
     /// at <paramref name="startIndex" /> and includes <paramref name="count" /> characters
     /// to uppercase using the rules of the invariant culture.</summary>

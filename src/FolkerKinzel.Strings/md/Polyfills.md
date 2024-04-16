@@ -2,7 +2,7 @@
 
 ## List of Polyfill Extension Methods 
 (Refers to the latest nuget version)
-### Polyfills for the String class (.NET 5.0, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.5)
+### Polyfills for the String class (.NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.5)
 ```csharp
 string ReplaceLineEndings(this string);
 string ReplaceLineEndings(this string, string);

@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using FolkerKinzel.Strings.Polyfills;
+using FolkerKinzel.Strings.Intls;
 using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings;
@@ -436,19 +436,12 @@ public static class TextEncodingConverter
         return true;
     }
 
-
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static void ThrowOnEncoderAndDecoderFallbackNull(EncoderFallback encoderFallback,
                                                              DecoderFallback decoderFallback)
     {
-        if (encoderFallback is null)
-        {
-            throw new ArgumentNullException(nameof(encoderFallback));
-        }
-
-        if (decoderFallback is null)
-        {
-            throw new ArgumentNullException(nameof(decoderFallback));
-        }
+            _ArgumentNullException.ThrowIfNull(encoderFallback, nameof(encoderFallback));
+            _ArgumentNullException.ThrowIfNull(decoderFallback, nameof(decoderFallback));
     }
 
 
@@ -476,7 +469,7 @@ public static class TextEncodingConverter
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static void EnableAnsiEncodings()
     {
-#if NETSTANDARD2_0_OR_GREATER || NET5_0_OR_GREATER
+#if NETSTANDARD2_0_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #pragma warning disable IDE0022 // Use expression body for method
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 #pragma warning restore IDE0022 // Use expression body for method

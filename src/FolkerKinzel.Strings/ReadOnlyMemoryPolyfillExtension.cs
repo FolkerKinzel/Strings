@@ -1,4 +1,4 @@
-namespace FolkerKinzel.Strings.Polyfills;
+namespace FolkerKinzel.Strings;
 
 /// <summary>Extension methods for the <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see>
 /// struct, which are used in .NET Framework 4.5, .NET Standard 2.0 and .NET Standard
@@ -8,7 +8,7 @@ namespace FolkerKinzel.Strings.Polyfills;
 /// struct, which exist in more modern frameworks.</remarks>
 public static class ReadOnlyMemoryPolyfillExtension
 {
-    // Place this preprocessor directive inside the class to let .NET 5.0 and above have an empty class!
+    // Place this preprocessor directive inside the class to let .NET Core 3.1 and above have an empty class!
 #if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
 
     /// <summary>Removes all leading and trailing white space characters from a read-only

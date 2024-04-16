@@ -48,7 +48,6 @@ public static partial class StringBuilderExtension
         => builder?.Replace(oldValue, newValue, startIndex, builder.Length - startIndex) 
                   ?? throw new ArgumentNullException(nameof(builder));
 
-
     /// <summary>Replaces, within a substring of <paramref name="builder" />, all occurrences
     /// of a specified character with another specified character.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>

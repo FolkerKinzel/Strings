@@ -26,7 +26,6 @@ public static partial class StringBuilderExtension
         => bytes is null ? builder
                          : Base64.AppendEncodedTo(builder, CollectionConverter.AsReadOnlySpan(bytes), options);
 
-
     /// <summary>Appends the content of a <see cref="byte" /> array as Base64-encoded character
     /// sequence to the end of a <see cref="StringBuilder" />.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
@@ -46,7 +45,6 @@ public static partial class StringBuilderExtension
                                              byte[]? bytes,
                                              Base64FormattingOptions options = Base64FormattingOptions.None)
         => Base64.AppendEncodedTo(builder, bytes.AsSpan(), options);
-
 
     /// <summary>Appends the content of a read-only <see cref="byte" /> span as Base64-encoded
     /// character sequence to the end of a <see cref="StringBuilder" />.</summary>

@@ -4,10 +4,6 @@ using System.Linq;
 using System.Text;
 using FolkerKinzel.Strings;
 
-#if !NETCOREAPP3_1
-using FolkerKinzel.Strings.Polyfills;
-#endif
-
 namespace LibraryTesters
 {
     public static class Test

@@ -1,5 +1,3 @@
-using FolkerKinzel.Strings.Polyfills;
-
 namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
@@ -17,7 +15,6 @@ public static partial class StringBuilderExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendLine(this StringBuilder builder, ReadOnlySpan<char> value)
         => builder.Append(value).AppendLine();
-
 
     /// <summary>Appends a copy of the specified read-only character memory region followed
     /// by the standard line terminator to the end of a <see cref="StringBuilder" /> object.</summary>

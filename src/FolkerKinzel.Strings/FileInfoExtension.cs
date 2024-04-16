@@ -10,7 +10,6 @@ public static class FileInfoExtension
     private const int MAX_BUFSIZE = 4096;
     private const int BUFSIZE_FACTOR = 4;
 
-
     /// <summary>Tests whether the portion of the file specified by <paramref name="fileInfo"
     /// /> that extends at least <paramref name="count" /> characters from the beginning
     /// of the file is UTF-8 text. The method includes the byte order mark (BOM) in the check.</summary>
@@ -51,8 +50,6 @@ public static class FileInfoExtension
         return stream.IsUtf8Valid(count, false);
     }
 
-
-
     private static FileStream InitFileStream(FileInfo fileInfo, int count)
     {
         return new FileStream(GetPath(fileInfo),
@@ -74,7 +71,4 @@ public static class FileInfoExtension
             return bufsize;
         }
     }
-
-
-
 }

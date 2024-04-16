@@ -13,7 +13,6 @@ public static partial class StringBuilderExtension
                 ? throw new ArgumentNullException(nameof(builder))
                 : builder.ContainsNonAscii(0, builder.Length);
 
-
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> to see whether it contains Unicode characters that do not belong
     /// to the ASCII character set .</summary>
@@ -31,7 +30,6 @@ public static partial class StringBuilderExtension
         => builder is null
             ? throw new ArgumentNullException(nameof(builder))
             : builder.ContainsNonAscii(startIndex, builder.Length - startIndex);
-
 
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> and includes <paramref name="count" /> characters to determine

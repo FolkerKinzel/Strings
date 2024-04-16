@@ -81,7 +81,6 @@ public static partial class StringBuilderExtension
         }
     }
 
-
     private static int GetHashCodeOrdinalIgnoreCase(StringBuilder sb)
     {
         unchecked
@@ -102,7 +101,6 @@ public static partial class StringBuilderExtension
             return hash1 + (hash2 * 1566083941);
         }
     }
-
 
     private static int GetHashCodeAlphaNumericIgnoreCase(StringBuilder sb)
     {

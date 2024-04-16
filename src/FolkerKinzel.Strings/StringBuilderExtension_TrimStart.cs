@@ -1,5 +1,3 @@
-using FolkerKinzel.Strings.Polyfills;
-
 namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
@@ -51,7 +49,6 @@ public static partial class StringBuilderExtension
                 ? builder.DoTrimStart()
                 : builder.DoTrimStart(trimChars);
 
-
     private static StringBuilder DoTrimStart(this StringBuilder stringBuilder)
     {
         int length = stringBuilder.Length;
@@ -71,7 +68,6 @@ public static partial class StringBuilderExtension
         return stringBuilder.Clear();
     }
 
-
     private static StringBuilder DoTrimStart(this StringBuilder stringBuilder, char trimChar)
     {
         int length = stringBuilder.Length;
@@ -90,7 +86,6 @@ public static partial class StringBuilderExtension
 
         return stringBuilder.Clear();
     }
-
 
     private static StringBuilder DoTrimStart(this StringBuilder stringBuilder, ReadOnlySpan<char> trimChars)
     {

@@ -36,7 +36,6 @@ public static partial class StringBuilderExtension
             ? throw new ArgumentNullException(nameof(builder))
             : builder.LastIndexOf(value, startIndex, startIndex + 1);
 
-
     /// <summary>Specifies the zero-based index of the last occurrence of the specified character
     /// in <paramref name="builder" />. The search begins at a specified index and runs backwards
     /// for a specified number of character positions to the beginning of the 

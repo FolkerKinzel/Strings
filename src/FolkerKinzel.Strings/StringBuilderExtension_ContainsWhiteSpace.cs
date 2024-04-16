@@ -13,7 +13,6 @@ public static partial class StringBuilderExtension
                 ? throw new ArgumentNullException(nameof(builder))
                 : builder.ContainsWhiteSpace(0, builder.Length);
 
-
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> to see whether it contains white space.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
@@ -30,7 +29,6 @@ public static partial class StringBuilderExtension
         => builder is null
             ? throw new ArgumentNullException(nameof(builder))
             : builder.ContainsWhiteSpace(startIndex, builder.Length - startIndex);
-
 
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> and includes <paramref name="count" /> characters to determine

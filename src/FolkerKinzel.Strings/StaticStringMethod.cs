@@ -61,7 +61,7 @@ public static class StaticStringMethod
 
 #endif
 
-#if NET5_0_OR_GREATER
+#if NETCOREAPP3_1_OR_GREATER
 
     /// <summary>Concatenates the string representations of four specified read-only character
     /// spans.</summary>

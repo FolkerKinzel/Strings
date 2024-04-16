@@ -9,8 +9,4 @@ public static partial class SpanExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int GetTrimmedLength(this Span<char> span)
     => ((ReadOnlySpan<char>)span).GetTrimmedLength();
-
-
-
-
 }

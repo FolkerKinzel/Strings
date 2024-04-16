@@ -16,23 +16,6 @@ this library.
 - Extension methods that return identical `Int32` hashcodes for identical `Char` sequences each time the program runs. These hashcodes are a slim alternative to larger hash algorithms, which is suitable for hashing short strings that are not used in a security-critical context.
 - Useful helpers to work with character sets and encodings.
 
-
-
-## Namespaces:
-```csharp
-// Publish this namespace to have useful extension methods
-// that enrich the existing methods of your runtime:
-using FolkerKinzel.Strings;
-
-// Publish this namespace for .NET Framework or .NET Standard
-// build targets to have polyfills for .NET 6.0 methods.
-// (It's not recommended to publish this namespace for 
-// .NET Core 3.1 build targets, because some of the polyfills might produce
-// conflicts with extension methods from System.MemoryExtensions.)
-#if !NETCOREAPP3_1
-using FolkerKinzel.Strings.Polyfills;
-#endif
-```
 .
 
 [Version History](https://github.com/FolkerKinzel/Strings/releases)

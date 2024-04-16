@@ -2,7 +2,6 @@ namespace FolkerKinzel.Strings;
 
 public static partial class SpanExtension
 {
-
     /// <summary>Determines whether this <paramref name="span" /> and 
     /// <paramref name="other" /> have the same characters when compared 
     /// using the specified <paramref name="comparisonType" /> option.</summary>

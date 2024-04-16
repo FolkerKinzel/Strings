@@ -20,7 +20,6 @@ public static partial class SpanExtension
     public static bool ContainsAny(this Span<char> span, ReadOnlySpan<char> values)
         => ((ReadOnlySpan<char>)span).ContainsAny(values);
 
-
     /// <summary>Indicates whether a character span contains one of the two characters that
     /// are passed to the method as arguments.</summary>
     /// <param name="span">The span to examine.</param>
@@ -52,6 +51,5 @@ public static partial class SpanExtension
     public static bool ContainsAny(
         this Span<char> span, char value0, char value1, char value2)
         => span.IndexOfAny(value0, value1, value2) != -1;
-
 
 }

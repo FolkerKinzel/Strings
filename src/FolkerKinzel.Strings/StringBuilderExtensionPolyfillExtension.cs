@@ -1,13 +1,13 @@
 using System.Text.RegularExpressions;
 
-namespace FolkerKinzel.Strings.Polyfills;
+namespace FolkerKinzel.Strings;
 
 /// <summary> Extension methods, which act as Polyfills for the extension methods of the 
 /// <see cref="StringBuilderExtension" /> class.</summary>
 /// <remarks>The polyfills are available for .NET Framework 4.5 and .NET Standard 2.0.</remarks>
 public static class StringBuilderExtensionPolyfillExtension
 {
-    // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
+    // Place this preprocessor directive inside the class to let .NET Core 3.1 and above have an empty class!
 #if NET45 || NETSTANDARD2_0
 
     /// <summary>Appends the content of a <see cref="string" /> as URL-encoded character
@@ -139,7 +139,6 @@ public static class StringBuilderExtensionPolyfillExtension
         int count,
         bool skipNewLines = false)
     => builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), startIndex, count, skipNewLines);
-
 
     /// <summary>Replaces all newlines in <paramref name="builder" /> with <paramref name="newLine"
     /// />.</summary>

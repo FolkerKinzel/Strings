@@ -15,7 +15,6 @@ public static partial class StringBuilderExtension
         => builder is null ? throw new ArgumentNullException(nameof(builder)) 
                            : builder.IndexOf(value) != -1;
 
-
     /// <summary>Indicates whether a specified Unicode character is found in a 
     /// <see cref="StringBuilder" />. The search starts at the specified index.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> to search.</param>
@@ -31,7 +30,6 @@ public static partial class StringBuilderExtension
     public static bool Contains(this StringBuilder builder, char value, int startIndex)
         => builder is null ? throw new ArgumentNullException(nameof(builder)) 
                            : builder.IndexOf(value, startIndex) != -1;
-
 
     /// <summary>Indicates whether a specified Unicode character is found in a <see cref="StringBuilder"
     /// />. The search begins at a specified index and a specified number of character positions

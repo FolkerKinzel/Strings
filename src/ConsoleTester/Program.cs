@@ -7,10 +7,6 @@ using System.Text;
 using Baz;
 using FolkerKinzel.Strings;
 
-#if !NETCOREAPP3_1
-using FolkerKinzel.Strings.Polyfills;
-#endif
-
 namespace LibraryTesters;
 
 class Program
@@ -18,8 +14,6 @@ class Program
     static void Main()
     {
         //Console.WriteLine(Uri.HexEscape('e'));
-
-        
 
         string test = "Test";
         char c = 'e';
@@ -32,7 +26,6 @@ class Program
         Span<char> span = ['x'];
 
         _ = sb1.Append(sb2, -17, sb2.Length);
-        
 
         _ = test.Trim(stackalloc char[] { ',', ';' });
         _ = test.TrimStart(stackalloc char[] { ',', ';' });
@@ -298,8 +291,6 @@ class Program
 
         _ = roSpan.Equals("USA", StringComparison.Ordinal);
         _ = span.Equals("USA", StringComparison.Ordinal);
-
-
 
         //_ = sb.AppendLine(test.AsMemory());
         //_ = sb.AppendLine(test.AsSpan());

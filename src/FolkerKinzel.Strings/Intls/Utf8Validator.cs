@@ -44,10 +44,8 @@ internal sealed class Utf8Validator
     [SuppressMessage("Style", "IDE0078:Musterabgleich verwenden (kann Codebedeutung ändern)", Justification = "<Ausstehend>")]
     public bool IsUtf8(Stream stream, int count, bool leaveOpen)
     {
-        if (stream is null)
-        {
-            throw new ArgumentNullException(nameof(stream));
-        }
+        _ArgumentNullException.ThrowIfNull(stream, nameof(stream));
+
         _fallback.Reset();
         long position = stream.Position;
 
