@@ -5,9 +5,9 @@ namespace FolkerKinzel.Strings.Polyfills;
 /// versions.</summary>
 /// <remarks>To match the behavior of the original methods, these extension methods throw
 /// a <see cref="NullReferenceException" /> when called on a <c>null</c> string.</remarks>
-#if NETSTANDARD2_0
-[ExcludeFromCodeCoverage]
-#endif
+//#if NETSTANDARD2_0
+//[ExcludeFromCodeCoverage]
+//#endif
 public static partial class StringPolyfillExtension
 {
 #if NET45 || NETSTANDARD2_0
@@ -127,7 +127,7 @@ public static partial class StringPolyfillExtension
 #else
                         []
 #endif
-                      : string.IsNullOrEmpty(separator) ? new string[] { s } 
+                      : string.IsNullOrEmpty(separator) ? [s] 
                                                         : s.Split(new string[] { separator }, count, options);
 
 

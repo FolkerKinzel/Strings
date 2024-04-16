@@ -91,7 +91,7 @@ public class StaticStringMethodTests
     [DataRow("One", "Two")]
     [DataRow("", "Two")]
     [DataRow("One", "")]
-    [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "Another veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.")]
+    [DataRow("Veryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy veryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiing.", "Another veryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy veryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiing.")]
     [DataRow("", "Another veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.")]
     [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "")]
     [DataRow("", "")]

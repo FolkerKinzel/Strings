@@ -26,9 +26,9 @@ public static class StringBuilderPolyfillExtension
     /// completed.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
-#if NETSTANDARD2_0
-    [ExcludeFromCodeCoverage]
-#endif
+//#if NETSTANDARD2_0
+//    [ExcludeFromCodeCoverage]
+//#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin(
         this StringBuilder builder, char separator, params string?[] values)
@@ -48,9 +48,9 @@ public static class StringBuilderPolyfillExtension
     /// completed.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
-#if NETSTANDARD2_0
-    [ExcludeFromCodeCoverage]
-#endif
+//#if NETSTANDARD2_0
+//    [ExcludeFromCodeCoverage]
+//#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin(
         this StringBuilder builder, char separator, params object?[] values)
@@ -71,9 +71,9 @@ public static class StringBuilderPolyfillExtension
     /// completed.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
-#if NETSTANDARD2_0
-    [ExcludeFromCodeCoverage]
-#endif
+//#if NETSTANDARD2_0
+//    [ExcludeFromCodeCoverage]
+//#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin<T>(
         this StringBuilder builder, char separator, IEnumerable<T> values)
@@ -93,9 +93,9 @@ public static class StringBuilderPolyfillExtension
     /// completed.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
-#if NETSTANDARD2_0
-    [ExcludeFromCodeCoverage]
-#endif
+//#if NETSTANDARD2_0
+//    [ExcludeFromCodeCoverage]
+//#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin(
         this StringBuilder builder, string? separator, params string?[] values)
@@ -115,9 +115,9 @@ public static class StringBuilderPolyfillExtension
     /// completed.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
-#if NETSTANDARD2_0
-    [ExcludeFromCodeCoverage]
-#endif
+//#if NETSTANDARD2_0
+//    [ExcludeFromCodeCoverage]
+//#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin(
         this StringBuilder builder, string? separator, params object?[] values)
@@ -139,18 +139,18 @@ public static class StringBuilderPolyfillExtension
     /// completed.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
-#if NETSTANDARD2_0
-    [ExcludeFromCodeCoverage]
-#endif
+//#if NETSTANDARD2_0
+//    [ExcludeFromCodeCoverage]
+//#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin<T>(
         this StringBuilder builder, string? separator, IEnumerable<T> values)
         => builder.AppendJoin(separator.AsSpan(), values);
 
 
-#if NETSTANDARD2_0
-    [ExcludeFromCodeCoverage]
-#endif
+//#if NETSTANDARD2_0
+//    [ExcludeFromCodeCoverage]
+//#endif
     private static StringBuilder AppendJoin<T>(
         this StringBuilder builder, ReadOnlySpan<char> separator, IEnumerable<T> values)
     {
@@ -208,9 +208,9 @@ public static class StringBuilderPolyfillExtension
     /// <exception cref="ArgumentNullException"> <paramref name="value" /> is <c>null</c>
     /// and the values of <paramref name="startIndex" /> or <paramref name="count" /> are
     /// greater than zero.</exception>
-#if NETSTANDARD2_0
-    [ExcludeFromCodeCoverage]
-#endif
+//#if NETSTANDARD2_0
+//    [ExcludeFromCodeCoverage]
+//#endif
     public static StringBuilder Append(
         this StringBuilder builder, StringBuilder? value, int startIndex, int count)
     {
@@ -269,9 +269,9 @@ public static class StringBuilderPolyfillExtension
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
-#if NETSTANDARD2_0
-    [ExcludeFromCodeCoverage]
-#endif
+//#if NETSTANDARD2_0
+//    [ExcludeFromCodeCoverage]
+//#endif
     public static StringBuilder Append(this StringBuilder builder, ReadOnlySpan<char> value)
     {
         if (builder is null)
@@ -300,9 +300,9 @@ public static class StringBuilderPolyfillExtension
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="index" /> is less
     /// than zero or greater than the number of characters in <paramref name="builder" />.</exception>
-#if NETSTANDARD2_0
-    [ExcludeFromCodeCoverage]
-#endif
+//#if NETSTANDARD2_0
+    //[ExcludeFromCodeCoverage]
+//#endif
     public static StringBuilder Insert(
         this StringBuilder builder, int index, ReadOnlySpan<char> value)
         => builder.Insert(index, value.ToString());
@@ -311,4 +311,6 @@ public static class StringBuilderPolyfillExtension
     // memory with each call
 
 #endif
+
+
 }

@@ -32,6 +32,7 @@ class Program
         Span<char> span = ['x'];
 
         _ = sb1.Append(sb2, -17, sb2.Length);
+        
 
         _ = test.Trim(stackalloc char[] { ',', ';' });
         _ = test.TrimStart(stackalloc char[] { ',', ';' });
