@@ -1,3 +1,5 @@
+using FolkerKinzel.Strings.Intls;
+
 namespace FolkerKinzel.Strings;
 
 public static partial class StringExtension
@@ -38,10 +40,7 @@ public static partial class StringExtension
     public static int IndexOfAny(
         this string s, ReadOnlySpan<char> anyOf, int startIndex, int count)
     {
-        if (s is null)
-        {
-            throw new ArgumentNullException(nameof(s));
-        }
+        _ArgumentNullException.ThrowIfNull(s, nameof(s));
 
         // string.IndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
         // MemoryExtensions.IndexOfAny returns 0 if the span with the characters to search for is empty.

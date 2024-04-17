@@ -8,5 +8,4 @@ public static partial class SpanExtension
     /// <returns> <c>false</c> if <paramref name="span" /> contains a Unicode character,
     /// which doesn't belong to the ASCII character set, otherwise <c>true</c>.</returns>
     public static bool IsAscii(this Span<char> span) => ((ReadOnlySpan<char>)span).IsAscii();
-
 }

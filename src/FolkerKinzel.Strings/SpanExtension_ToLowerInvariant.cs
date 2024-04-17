@@ -26,5 +26,4 @@ public static partial class SpanExtension
     //        span[i] = char.ToLower(c, culture);
     //    }
     //}
-
 }

@@ -10,7 +10,7 @@ namespace FolkerKinzel.Strings;
 public static class ReadOnlySpanPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
     /// <summary>Indicates whether a read-only character span contains the Unicode character
     /// that is passed to the method as argument.</summary>
     /// <param name="span">The span to search.</param>
@@ -48,7 +48,7 @@ public static class ReadOnlySpanPolyfillExtension
                 : span.ToString().LastIndexOf(value.ToString(), comparisonType);
 #endif
 
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
 
     /// <summary>Determines whether this <paramref name="span" /> and the specified other
     /// <paramref name="other" />&#160;<see cref="string" /> have the same characters when

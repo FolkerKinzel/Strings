@@ -1,3 +1,5 @@
+using FolkerKinzel.Strings.Intls;
+
 namespace FolkerKinzel.Strings;
 
 /// <summary>Extension methods for the <see cref="string" /> class, which are used
@@ -6,7 +8,8 @@ namespace FolkerKinzel.Strings;
 /// a <see cref="NullReferenceException" /> when called on a <c>null</c> string.</remarks>
 public static partial class StringPolyfillExtension
 {
-#if NET5_0 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET45 || NETCOREAPP3_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 ||  NETCOREAPP3_1 || NET5_0 
+
     /// <summary>Replaces all newlines in <paramref name="s" /> with 
     /// <see cref="Environment.NewLine" />.</summary>
     /// <param name="s">The source <see cref="string" />.</param>
@@ -124,10 +127,7 @@ public static partial class StringPolyfillExtension
             throw new NullReferenceException();
         }
 
-        if (replacementText is null)
-        {
-            throw new ArgumentNullException(nameof(replacementText));
-        }
+        _ArgumentNullException.ThrowIfNull(replacementText, nameof(replacementText));
 
         for (int i = 0; i < s.Length; i++)
         {
@@ -153,7 +153,7 @@ public static partial class StringPolyfillExtension
 #endif
 
 
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
 
     /// <summary>Returns a value indicating whether a specified character occurs within this
     /// <see cref="string" />, using the specified comparison rules.</summary>
@@ -192,7 +192,6 @@ public static partial class StringPolyfillExtension
     public static bool Contains(
         this string s, string value, StringComparison comparisonType)
         => s.IndexOf(value, comparisonType) != -1;
-
 
     /// <summary>Returns the zero-based index of the first occurrence of the specified Unicode
     /// character in this <see cref="string" />. A parameter specifies the type of search
@@ -264,14 +263,10 @@ public static partial class StringPolyfillExtension
             : count < 0
                 ? throw new ArgumentOutOfRangeException(nameof(count))
                 : count == 0 || (s.Length == 0 && (options & StringSplitOptions.RemoveEmptyEntries) == StringSplitOptions.RemoveEmptyEntries)
-                     ?
-#if NET45
-                        new string[0]
-#else
-                        []
-#endif
-                      : string.IsNullOrEmpty(separator) ? [s] 
-                                                        : s.Split(new string[] { separator }, count, options);
+                     ? []
+                     : string.IsNullOrEmpty(separator)
+                         ? [s]
+                         : s.Split(new string[] { separator }, count, options);
 
 
     /// <summary>Splits a <see cref="string" /> into substrings based on the provided separator,
@@ -289,17 +284,12 @@ public static partial class StringPolyfillExtension
         this string s, string? separator, StringSplitOptions options = System.StringSplitOptions.None)
          => s is null
             ? throw new NullReferenceException()
-                : (s.Length == 0 && 
+                : (s.Length == 0 &&
                    (options & StringSplitOptions.RemoveEmptyEntries) == StringSplitOptions.RemoveEmptyEntries)
-                        ?
-#if NET45
-                          new string[0]
-#else
-                          []
-#endif
-                        : string.IsNullOrEmpty(separator) ? [s] 
-                                                          : s.Split(new string[] { separator }, options);
-
+                        ? []
+                        : string.IsNullOrEmpty(separator)
+                            ? [s]
+                            : s.Split(new string[] { separator }, options);
 
     /// <summary>Indicates whether <paramref name="s" /> starts with the specified character.</summary>
     /// <param name="s">The <see cref="string" /> to search.</param>
@@ -313,7 +303,6 @@ public static partial class StringPolyfillExtension
         => s is null ? throw new NullReferenceException()
                      : s.AsSpan().StartsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
 
-
     /// <summary>Indicates whether the end of <paramref name="s" /> matches the specified
     /// character.</summary>
     /// <param name="s">The <see cref="string" /> to search.</param>
@@ -326,7 +315,6 @@ public static partial class StringPolyfillExtension
     public static bool EndsWith(this string s, char value)
         => s is null ? throw new NullReferenceException()
                      : s.AsSpan().EndsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
-
 
     /// <summary>Returns a new <see cref="string" /> in which all occurrences of a specified
     /// <see cref="string" /> in the current <see cref="string" /> are replaced with another
@@ -368,10 +356,7 @@ public static partial class StringPolyfillExtension
             throw new NullReferenceException();
         }
 
-        if (oldValue is null)
-        {
-            throw new ArgumentNullException(nameof(oldValue));
-        }
+        _ArgumentNullException.ThrowIfNull(oldValue, nameof(oldValue));
 
         if (oldValue.Length == 0)
         {

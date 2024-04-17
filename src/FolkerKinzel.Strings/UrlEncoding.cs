@@ -51,7 +51,7 @@ public static class UrlEncoding
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
         byte[] encoded = Encoding.UTF8.GetBytes(value);
 #else
         int length = Encoding.UTF8.GetByteCount(value);
@@ -87,10 +87,8 @@ public static class UrlEncoding
         }
     }
 
-
     private static void AppendHexEncoded(this StringBuilder sb, char c)
         => _ = sb.Append('%').Append(ToHexDigit(c >> 4)).Append(ToHexDigit(c & 0x0F));
-
 
     private static char ToHexDigit(int i)
         => (char)(i < 10 ? i + '0' : i + 'A' - 10);
@@ -100,7 +98,7 @@ public static class UrlEncoding
 
     #endregion
 
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
 
     /// <summary>Tries to decode a URL-encoded <see cref="string" /> using a specified character
     /// set and allows to specify whether or not PLUS characters ('+', U+002B) should be
@@ -334,7 +332,7 @@ public static class UrlEncoding
                     bytes[byteIndex++] = decodePlusSigns ? spaceChar : plusChar;
                     continue;
                 case '%':
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
                     bytes[byteIndex++] = byte.Parse(value.Slice(i + 1, 2).ToString(), 
                                                     NumberStyles.AllowHexSpecifier);
 #else

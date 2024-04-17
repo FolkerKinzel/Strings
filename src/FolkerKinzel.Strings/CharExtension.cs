@@ -17,7 +17,7 @@ public static class CharExtension
     /// /> is less than <paramref name="minInclusive" />, the behavior is undefined.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsBetween(this char c, char minInclusive, char maxInclusive)
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0 || NETCOREAPP3_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => (c >= minInclusive) && (c <= maxInclusive);
 #else
         => char.IsBetween(c, minInclusive, maxInclusive);
@@ -29,7 +29,7 @@ public static class CharExtension
     /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetterLower(this char c)
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0 || NETCOREAPP3_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => c.IsBetween('a', 'z');
 #else
         => char.IsAsciiLetterLower(c);
@@ -41,7 +41,7 @@ public static class CharExtension
     /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetterUpper(this char c)
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0 || NETCOREAPP3_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => c.IsBetween('A', 'Z');
 #else
         => char.IsAsciiLetterUpper(c);
@@ -52,7 +52,7 @@ public static class CharExtension
     /// <returns> <c>true</c> if <paramref name="c" /> is an ASCII letter, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetter(this char c)
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0 || NETCOREAPP3_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => ((char)(c | 32)).IsAsciiLetterLower();
 #else
         => char.IsAsciiLetter(c);
@@ -65,7 +65,7 @@ public static class CharExtension
     /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetterOrDigit(this char c)
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0 || NETCOREAPP3_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => c.IsAsciiLetter() || c.IsAsciiDigit();
 #else
         => char.IsAsciiLetterOrDigit(c);
@@ -121,7 +121,6 @@ public static class CharExtension
         return false;
     }
 
-
     /// <summary>Tries to interpret a character as a binary digit (0 or 1) and to return
     /// the value that this binary digit represents.</summary>
     /// <param name="digit">The Unicode character to analyze.</param>
@@ -167,14 +166,13 @@ public static class CharExtension
             : throw new ArgumentException(
                 string.Format(Res.NoDecimalDigit, nameof(digit)), nameof(digit));
 
-
     /// <summary>Indicates whether the Unicode character belongs to the ASCII character set.</summary>
     /// <param name="c">The character to evaluate.</param>
     /// <returns> <c>true</c> if <paramref name="c" /> is part of the ASCII character set,
     /// otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAscii(this char c)
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NETCOREAPP3_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 
         => 128u > c;
 #else
         => char.IsAscii(c);
@@ -185,7 +183,7 @@ public static class CharExtension
     /// <returns> <c>true</c> if <paramref name="c" /> is an ASCII digit, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiDigit(this char c)
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0 || NETCOREAPP3_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => c.IsBetween('0', '9');
 #else
         => char.IsAsciiDigit(c);
@@ -198,7 +196,7 @@ public static class CharExtension
     /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiHexDigit(this char c)
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0 || NETCOREAPP3_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => Uri.IsHexDigit(c);
 #else
         => char.IsAsciiHexDigit(c);
@@ -211,7 +209,7 @@ public static class CharExtension
     /// otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiHexDigitLower(this char c)
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0 || NETCOREAPP3_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => c.IsAsciiHexDigit() && !c.IsAsciiLetterUpper();
 #else
         => char.IsAsciiHexDigitLower(c);
@@ -224,7 +222,7 @@ public static class CharExtension
     /// otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiHexDigitUpper(this char c)
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0 || NETCOREAPP3_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => c.IsAsciiHexDigit() && !c.IsAsciiLetterLower();
 #else
         => char.IsAsciiHexDigitUpper(c);
@@ -244,7 +242,6 @@ public static class CharExtension
     /// <remarks> Calls <see cref="char.IsControl(char)" />. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsControl(this char c) => char.IsControl(c);
-
 
     /// <summary>Indicates whether the Unicode character is categorized as a member of the
     /// Unicode category "Decimal Digit Number".</summary>
@@ -271,14 +268,12 @@ public static class CharExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsHighSurrogate(this char c) => char.IsHighSurrogate(c);
 
-
     /// <summary>Indicates whether the Unicode character is a low surrogate.</summary>
     /// <param name="c">The Unicode character to examine.</param>
     /// <returns> <c>true</c> if <paramref name="c" /> is a low surrogate, otherwise <c>false</c>.</returns>
     /// <remarks> Calls <see cref="char.IsLowSurrogate(char)" />. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsLowSurrogate(this char c) => char.IsLowSurrogate(c);
-
 
     /// <summary>Indicates whether the Unicode character has a surrogate code unit.</summary>
     /// <param name="c">The Unicode character to examine.</param>
@@ -288,7 +283,6 @@ public static class CharExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsSurrogate(this char c) => char.IsSurrogate(c);
 
-
     /// <summary>Indicates whether the Unicode character is categorized as a Unicode letter.</summary>
     /// <param name="c">The Unicode character to examine.</param>
     /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a Unicode letter,
@@ -296,7 +290,6 @@ public static class CharExtension
     /// <remarks> Calls <see cref="char.IsLetter(char)" />. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsLetter(this char c) => char.IsLetter(c);
-
 
     /// <summary>Indicates whether the Unicode character is categorized as a Unicode letter
     /// or decimal digit.</summary>
@@ -307,7 +300,6 @@ public static class CharExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsLetterOrDigit(this char c) => char.IsLetterOrDigit(c);
 
-
     /// <summary>Indicates whether the Unicode character is categorized as a lowercase letter.</summary>
     /// <param name="c">The Unicode character to examine.</param>
     /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a lowercase letter,
@@ -316,7 +308,6 @@ public static class CharExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsLower(this char c) => char.IsLower(c);
 
-
     /// <summary>Indicates whether the Unicode character is categorized as a uppercase letter.</summary>
     /// <param name="c">The Unicode character to examine.</param>
     /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a uppercase letter,
@@ -324,7 +315,6 @@ public static class CharExtension
     /// <remarks> Calls <see cref="char.IsUpper(char)" />. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsUpper(this char c) => char.IsUpper(c);
-
 
     /// <summary>Indicates whether the Unicode character is categorized as a number.</summary>
     /// <param name="c">The Unicode character to examine.</param>
@@ -343,7 +333,6 @@ public static class CharExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsPunctuation(this char c) => char.IsPunctuation(c);
 
-
     /// <summary>Indicates whether the Unicode character is categorized as a separator character.</summary>
     /// <param name="c">The Unicode character to examine.</param>
     /// <returns> <c>true</c> if <paramref name="c" /> is categorized as a separator character,
@@ -359,7 +348,6 @@ public static class CharExtension
     /// <remarks> Calls <see cref="char.IsSymbol(char)" />. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsSymbol(this char c) => char.IsSymbol(c);
-
 
     /// <summary>Indicates whether the Unicode character is categorized as white space.</summary>
     /// <param name="c">The Unicode character to examine.</param>
@@ -379,7 +367,6 @@ public static class CharExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static char ToLowerInvariant(this char c) => char.ToLowerInvariant(c);
 
-
     /// <summary>Converts the value of a Unicode character to its uppercase equivalent using
     /// the casing rules of the invariant culture.</summary>
     /// <param name="c">The Unicode character to convert.</param>
@@ -389,7 +376,6 @@ public static class CharExtension
     /// <remarks> Calls <see cref="char.ToUpperInvariant(char)" />. </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static char ToUpperInvariant(this char c) => char.ToUpperInvariant(c);
-
 
     /// <summary>Indicates whether the Unicode character is categorized as a newline character.</summary>
     /// <param name="c">The Unicode character to examine.</param>
@@ -423,7 +409,8 @@ public static class CharExtension
     /// </item>
     /// </list>
     /// </remarks>
-    [SuppressMessage("Style", "IDE0066:Convert switch statement to expression", Justification = "<Pending>")]
+    [SuppressMessage("Style", "IDE0066:Convert switch statement to expression", 
+        Justification = "More readable")]
     public static bool IsNewLine(this char c)
     {
         switch (c)
@@ -440,5 +427,4 @@ public static class CharExtension
                 return false;
         }
     }
-
 }

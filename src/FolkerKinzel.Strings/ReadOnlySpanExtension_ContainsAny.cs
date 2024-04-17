@@ -20,7 +20,6 @@ public static partial class ReadOnlySpanExtension
     public static bool ContainsAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
         => !values.IsEmpty && span.IndexOfAny(values) != -1;
 
-
     /// <summary>Indicates whether a read-only character span contains one of the two characters
     /// that are passed to the method as arguments.</summary>
     /// <param name="span">The span to examine.</param>
@@ -50,6 +49,4 @@ public static partial class ReadOnlySpanExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1, char value2)
         => span.IndexOfAny(value0, value1, value2) != -1;
-
-
 }

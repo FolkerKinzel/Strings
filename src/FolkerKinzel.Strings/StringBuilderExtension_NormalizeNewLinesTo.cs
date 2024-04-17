@@ -1,3 +1,5 @@
+using FolkerKinzel.Strings.Intls;
+
 namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
@@ -23,10 +25,7 @@ public static partial class StringBuilderExtension
     [Obsolete("Use ReplaceLineEndings instead.", false)]
     public static StringBuilder NormalizeNewLinesTo(this StringBuilder builder, ReadOnlySpan<char> newLine)
     {
-        if (builder is null)
-        {
-            throw new ArgumentNullException(nameof(builder));
-        }
+        _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
         bool skipR = false, skipN = false;
         for (int i = builder.Length - 1; i >= 0; i--)

@@ -29,5 +29,4 @@ public static partial class StringBuilderExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendLine(this StringBuilder builder, ReadOnlyMemory<char> value)
         => builder.Append(value.Span).AppendLine();
-
 }

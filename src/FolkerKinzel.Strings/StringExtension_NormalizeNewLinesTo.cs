@@ -1,3 +1,5 @@
+using FolkerKinzel.Strings.Intls;
+
 namespace FolkerKinzel.Strings;
 
 public static partial class StringExtension
@@ -26,10 +28,7 @@ public static partial class StringExtension
     [Obsolete("Use ReplaceLineEndings instead.", false)]
     public static string NormalizeNewLinesTo(this string s, ReadOnlySpan<char> newLine)
     {
-        if (s is null)
-        {
-            throw new ArgumentNullException(nameof(s));
-        }
+        _ArgumentNullException.ThrowIfNull(s, nameof(s));
 
         if (!s.ContainsNewLine())
         {

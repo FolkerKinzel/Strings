@@ -19,5 +19,4 @@ public static partial class ReadOnlySpanExtension
 
         return span.Length;
     }
-
 }

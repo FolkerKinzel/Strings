@@ -12,5 +12,4 @@ public static partial class ReadOnlySpanExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool StartsWith(this ReadOnlySpan<char> span, char value)
      => !span.IsEmpty && span[0] == value;
-
 }

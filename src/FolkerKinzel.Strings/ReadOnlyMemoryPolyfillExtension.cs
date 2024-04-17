@@ -9,7 +9,7 @@ namespace FolkerKinzel.Strings;
 public static class ReadOnlyMemoryPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET Core 3.1 and above have an empty class!
-#if NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
 
     /// <summary>Removes all leading and trailing white space characters from a read-only
     /// character memory region.</summary>

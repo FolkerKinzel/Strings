@@ -25,5 +25,4 @@ public static partial class SpanExtension
     //        span[i] = char.ToUpper(c, culture);
     //    }
     //}
-
 }

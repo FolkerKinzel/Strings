@@ -28,5 +28,4 @@ public static partial class ReadOnlySpanExtension
                 ? span.ToString().IndexOfAny(values.ToArray())
                 : MemoryExtensions.IndexOfAny(span, values);
     }
-
 }

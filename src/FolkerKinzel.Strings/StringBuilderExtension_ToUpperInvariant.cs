@@ -1,3 +1,5 @@
+using FolkerKinzel.Strings.Intls;
+
 namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
@@ -50,10 +52,7 @@ public static partial class StringBuilderExtension
     public static StringBuilder ToUpperInvariant(
         this StringBuilder builder, int startIndex, int count)
     {
-        if (builder is null)
-        {
-            throw new ArgumentNullException(nameof(builder));
-        }
+        _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
         if (startIndex < 0 || startIndex > builder.Length)
         {

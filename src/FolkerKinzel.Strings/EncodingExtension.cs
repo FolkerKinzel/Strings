@@ -17,7 +17,7 @@ public static class EncodingExtension
     {
         _ArgumentNullException.ThrowIfNull(encoding, nameof(encoding));
 
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
         return encoding.GetBytes(chars.ToArray());
 #else
         byte[] bytes = new byte[encoding.GetByteCount(chars)];
@@ -28,7 +28,7 @@ public static class EncodingExtension
     }
 
     
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
     /// <summary>Decodes all bytes in the specified read-only span into a <see cref="string"/>.</summary>
     /// <param name="encoding">The <see cref="Encoding" /> object on which the extension
     /// method is executed.</param>

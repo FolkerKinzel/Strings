@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
@@ -31,10 +32,7 @@ public static partial class StringExtension
         ReadOnlySpan<char> replacement,
         bool skipNewLines = false)
     {
-        if (s is null)
-        {
-            throw new ArgumentNullException(nameof(s));
-        }
+        _ArgumentNullException.ThrowIfNull(s, nameof(s));
 
         if (!s.ContainsWhiteSpace())
         {
@@ -46,5 +44,4 @@ public static partial class StringExtension
                  .ReplaceWhiteSpaceWith(replacement, 0, sb.Length, skipNewLines)
                  .ToString();
     }
-
 }

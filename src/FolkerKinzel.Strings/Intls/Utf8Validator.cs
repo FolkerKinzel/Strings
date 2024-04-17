@@ -14,12 +14,10 @@ internal sealed class Utf8Validator
 
     private bool HasError => _fallback.HasError;
 
-
     /// <summary>ctor</summary>
-    public Utf8Validator() => _encoding = Encoding.GetEncoding(CODEPAGE_UTF8,
+    internal Utf8Validator() => _encoding = Encoding.GetEncoding(CODEPAGE_UTF8,
                                                               EncoderFallback.ReplacementFallback,
                                                               _fallback);
-
 
     /// <summary>Tests whether the byte sequence of <paramref name="stream" /> that starts
     /// with the current <see cref="Stream.Position" /> and is at least <paramref name="count"
@@ -41,8 +39,9 @@ internal sealed class Utf8Validator
     /// <exception cref="ObjectDisposedException"> <paramref name="stream" /> was already
     /// closed.</exception>
     /// <exception cref="NotSupportedException" />
-    [SuppressMessage("Style", "IDE0078:Musterabgleich verwenden (kann Codebedeutung ändern)", Justification = "<Ausstehend>")]
-    public bool IsUtf8(Stream stream, int count, bool leaveOpen)
+    [SuppressMessage("Style", "IDE0078:Use pattern matching (may change code meaning)",
+        Justification = "More readable without.")]
+    internal bool IsUtf8(Stream stream, int count, bool leaveOpen)
     {
         _ArgumentNullException.ThrowIfNull(stream, nameof(stream));
 
@@ -70,7 +69,6 @@ internal sealed class Utf8Validator
             stream.ReadByte() == 0xBF;
     }
 
-
     /// <summary />
     /// <param name="stream">The <see cref="Stream" /> to examine.</param>
     /// <param name="count">The number of characters to examine from the <paramref name="stream"
@@ -88,7 +86,7 @@ internal sealed class Utf8Validator
     /// <exception cref="ObjectDisposedException"> <paramref name="stream" /> was already
     /// closed.</exception>
     /// <exception cref="NotSupportedException"> <paramref name="stream" /> is not readable.</exception>
-    public bool IsUtf8Valid(Stream stream, int count, bool leaveOpen)
+    internal bool IsUtf8Valid(Stream stream, int count, bool leaveOpen)
     {
         _ = stream ?? throw new ArgumentNullException(nameof(stream));
         return DoIsValidUtf8(stream, InitCount(count), leaveOpen);
@@ -113,13 +111,11 @@ internal sealed class Utf8Validator
         return !HasError;
     }
 
-
     private StreamReader InitStreamReader(Stream stream, bool leaveOpen)
     {
         return new(stream, _encoding, bufferSize: 128, detectEncodingFromByteOrderMarks: false,
              leaveOpen: leaveOpen);
     }
-
 
     private static long InitCount(int count) =>
         count < 0 ? long.MaxValue

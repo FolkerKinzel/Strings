@@ -5,7 +5,7 @@ namespace FolkerKinzel.Strings;
 public static class ReadOnlySpanExtensionPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 5.0 have an empty class!
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
     /// <summary>Specifies the zero based index position of the last occurrence of a specified
     /// string in <paramref name="span" />. The search begins at a specified character position
     /// and runs backwards to the beginning of the character span for a specified number

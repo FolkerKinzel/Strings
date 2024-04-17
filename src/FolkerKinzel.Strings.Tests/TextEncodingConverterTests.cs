@@ -426,49 +426,6 @@ public class TextEncodingConverterTests
     {
         Encoding enc = TextEncodingConverter.GetEncoding(codePage);
 
-        /* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net5.0)"
-        Vor:
-                    const string test = "test";
-
-                    var bytes = enc.GetBytes(test);
-        Nach:
-                    const string test = "test";
-
-                    var bytes = enc.GetBytes(test);
-        */
-
-        /* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (net45)"
-        Vor:
-                    const string test = "test";
-
-                    var bytes = enc.GetBytes(test);
-        Nach:
-                    const string test = "test";
-
-                    var bytes = enc.GetBytes(test);
-        */
-
-        /* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp2.1)"
-        Vor:
-                    const string test = "test";
-
-                    var bytes = enc.GetBytes(test);
-        Nach:
-                    const string test = "test";
-
-                    var bytes = enc.GetBytes(test);
-        */
-
-        /* Nicht gemergte Änderung aus Projekt "FolkerKinzel.Strings.Tests (netcoreapp3.1)"
-        Vor:
-                    const string test = "test";
-
-                    var bytes = enc.GetBytes(test);
-        Nach:
-                    const string test = "test";
-
-                    var bytes = enc.GetBytes(test);
-        */
         const string test = "test";
 
         var bytes = enc.GetBytes(test);

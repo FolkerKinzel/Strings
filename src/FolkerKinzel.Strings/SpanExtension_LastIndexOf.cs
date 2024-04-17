@@ -75,5 +75,4 @@ public static partial class SpanExtension
                                   int count,
                                   StringComparison comparisonType)
     => ((ReadOnlySpan<char>)span).LastIndexOf(value, startIndex, count, comparisonType);
-
 }

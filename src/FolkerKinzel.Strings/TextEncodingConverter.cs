@@ -331,7 +331,6 @@ public static class TextEncodingConverter
         return !IsWebNameEmpty(encodingWebName) && BuildEncoding(encodingWebName, encoderFallback, decoderFallback, ref encoding, out _);
     }
 
-
     private static bool TryGetEncodingInternal(int codePage,
                                                EncoderFallback encoderFallback,
                                                DecoderFallback decoderFallback,
@@ -342,7 +341,6 @@ public static class TextEncodingConverter
         encoding = null;
         return !CodepageOutOfRange(codePage) && BuildEncoding(codePage, encoderFallback, decoderFallback, ref encoding, out _);
     }
-
 
     private static bool TryGetEncodingInternal(int codePage,
                                        EncoderFallback? encoderFallback,
@@ -361,7 +359,6 @@ public static class TextEncodingConverter
         return BuildEncoding(
             codePage, encoderFallback, decoderFallback, ref encoding, out exception);
     }
-
 
     private static bool BuildEncoding(int codePage,
                                       EncoderFallback? encoderFallback,
@@ -389,7 +386,6 @@ public static class TextEncodingConverter
         exception = null;
         return true;
     }
-
 
     private static bool TryGetEncodingInternal(string? encodingWebName,
                                                EncoderFallback? encoderFallback,
@@ -449,22 +445,18 @@ public static class TextEncodingConverter
     private static bool IsWebNameEmpty([NotNullWhen(false)] string? encodingWebName) 
         => string.IsNullOrWhiteSpace(encodingWebName);
 
-
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static string PrepareEncodingName(string name)
         => name.Replace(" ", "", StringComparison.Ordinal);
-
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool CodepageOutOfRange(int codePage)
         => codePage is < CODEPAGE_MIN or > CODEPAGE_MAX;
 
-
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Encoding CreateFallBack(EncoderFallback encoderFallback,
                                            DecoderFallback decoderFallback) 
         => Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
-
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static void EnableAnsiEncodings()

@@ -8,7 +8,7 @@ namespace FolkerKinzel.Strings;
 public static class StringBuilderExtensionPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET Core 3.1 and above have an empty class!
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
 
     /// <summary>Appends the content of a <see cref="string" /> as URL-encoded character
     /// sequence to the end of a <see cref="StringBuilder" />.</summary>

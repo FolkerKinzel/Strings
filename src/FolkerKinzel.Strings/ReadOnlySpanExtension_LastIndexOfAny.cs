@@ -32,7 +32,6 @@ public static partial class ReadOnlySpanExtension
                 : MemoryExtensions.LastIndexOfAny(span, values);
     }
 
-
     /// <summary>Returns the zero-based index of the last occurrence of one of the specified
     /// characters in <paramref name="span" />. The search begins at a specified character
     /// position and runs a specified number of character positions backwards to the beginning
@@ -97,5 +96,4 @@ public static partial class ReadOnlySpanExtension
 
         return span.ToString().LastIndexOfAny(values.ToArray(), startIndex, count);
     }
-
 }

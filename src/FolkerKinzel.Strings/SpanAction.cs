@@ -1,6 +1,6 @@
 namespace FolkerKinzel.Strings;
 
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
 
     /// <summary>Polyfill for the delegate System.Buffers.SpanAction&lt;T,TArg&gt;.</summary>
     /// <typeparam name="T">The type of the objects in the span.</typeparam>

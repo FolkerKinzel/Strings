@@ -91,5 +91,4 @@ TryAgain:
         int matchIndex = span.Slice(startIndex, count).LastIndexOf(value, comparisonType);
         return matchIndex == -1 ? -1 : matchIndex + startIndex;
     }
-
 }

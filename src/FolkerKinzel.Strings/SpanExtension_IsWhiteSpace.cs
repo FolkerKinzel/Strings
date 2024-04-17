@@ -8,5 +8,4 @@ public static partial class SpanExtension
     /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsWhiteSpace(this Span<char> span) => ((ReadOnlySpan<char>)span).IsWhiteSpace();
-
 }

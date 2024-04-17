@@ -14,5 +14,4 @@ public static partial class SpanExtension
     public static bool Equals(
         this Span<char> span, ReadOnlySpan<char> other, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).Equals(other, comparisonType);
-
 }

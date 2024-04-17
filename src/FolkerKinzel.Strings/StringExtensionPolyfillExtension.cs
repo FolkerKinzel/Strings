@@ -8,7 +8,7 @@ namespace FolkerKinzel.Strings;
 public static class StringExtensionPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 5.0 and above have an empty class!
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
     /// <summary>Generates a <see cref="string" /> in which all sequences of white space
     /// are replaced by <paramref name="replacement" />.</summary>
     /// <param name="s">The source <see cref="string" />.</param>
@@ -51,8 +51,8 @@ public static class StringExtensionPolyfillExtension
     /// sequences CRLF and LFCR are treated as one line break.
     /// </para>
     /// <note type="caution">
-    /// This method differs from <see cref="StringExtension.ReplaceLineEndings(string,
-    /// string)" /> in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line break. 
+    /// This method differs from <see cref="StringPolyfillExtension.ReplaceLineEndings(string, string)" /> 
+    /// in that it also treats LFCR sequences and vertical tab (VT: U+000B ) as a line break. 
     /// </note>
     /// </remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>

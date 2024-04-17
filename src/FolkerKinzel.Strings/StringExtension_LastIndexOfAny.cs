@@ -1,4 +1,5 @@
 using System;
+using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
@@ -38,10 +39,7 @@ public static partial class StringExtension
     /// </exception>
     public static int LastIndexOfAny(this string s, ReadOnlySpan<char> anyOf, int startIndex, int count)
     {
-        if (s is null)
-        {
-            throw new ArgumentNullException(nameof(s));
-        }
+        _ArgumentNullException.ThrowIfNull(s, nameof(s));
 
         // string.LastIndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
         // MemoryExtensions.LastIndexOfAny returns 0 if the span with the characters to search for is empty.
@@ -110,7 +108,7 @@ public static partial class StringExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(this string s, ReadOnlySpan<char> anyOf)
     {
-        return s is null ? throw new ArgumentNullException(nameof(s)) 
+        return s is null ? throw new ArgumentNullException(nameof(s))
                          : s.LastIndexOfAny(anyOf, s.Length - 1, s.Length);
     }
 }

@@ -18,5 +18,4 @@ public static partial class ReadOnlySpanExtension
         }
         return true;
     }
-
 }

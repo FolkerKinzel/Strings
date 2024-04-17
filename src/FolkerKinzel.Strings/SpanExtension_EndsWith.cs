@@ -25,5 +25,4 @@ public static partial class SpanExtension
     public static bool EndsWith(
         this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).EndsWith(value, comparisonType);
-
 }

@@ -7,7 +7,7 @@ namespace FolkerKinzel.Strings;
 
 /// <summary>Static class that provides methods to encode and decode strings in Base64
 /// format.</summary>
-#if !(NET45 || NETSTANDARD2_0 || NETCOREAPP3_1 || NETSTANDARD2_1)
+#if !(NET461 || NETSTANDARD2_0  || NETSTANDARD2_1 || NETCOREAPP3_1)
 [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification = "<Pending>")]
 #endif
 public static class Base64
@@ -138,7 +138,7 @@ public static class Base64
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Encode(ReadOnlySpan<byte> bytes,
                                 Base64FormattingOptions options = Base64FormattingOptions.None)
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
        => Convert.ToBase64String(bytes.ToArray(), options);
 #else
        => Convert.ToBase64String(bytes, options);
@@ -334,7 +334,7 @@ public static class Base64
     {
         Debug.Assert(!base64.IsWhiteSpace());
 
-#if NET45 || NETSTANDARD2_0
+#if NET461 || NETSTANDARD2_0
         return Convert.FromBase64String(base64.ToString());
 #else
         int outputSize = ComputeMaxOutputSize(base64);
@@ -348,7 +348,7 @@ public static class Base64
     }
 
 
-#if !(NET45 || NETSTANDARD2_0)
+#if !(NET461 || NETSTANDARD2_0)
     private static int ComputeMaxOutputSize(ReadOnlySpan<char> base64)
     {
         int outLength = (base64.Length >> 2) * 3;
@@ -485,13 +485,4 @@ public static class Base64
             sb.Append('=');
         }
     }
-
-//    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-//    private static byte[] GetEmptyByteArray() =>
-//#if NET45
-//            new byte[0];
-//#else
-//            Array.Empty<byte>();
-//#endif
-
 }
