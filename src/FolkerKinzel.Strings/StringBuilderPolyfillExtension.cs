@@ -133,11 +133,7 @@ public static class StringBuilderPolyfillExtension
     private static StringBuilder AppendJoin<T>(
         this StringBuilder builder, ReadOnlySpan<char> separator, IEnumerable<T> values)
     {
-        if (builder is null)
-        {
-            throw new NullReferenceException();
-        }
-
+        _NullReferenceException.ThrowIfNull(builder, nameof(builder));
         _ArgumentNullException.ThrowIfNull(values, nameof(values));
 
         using (IEnumerator<T> en = values.GetEnumerator())
@@ -188,10 +184,7 @@ public static class StringBuilderPolyfillExtension
     public static StringBuilder Append(
         this StringBuilder builder, StringBuilder? value, int startIndex, int count)
     {
-        if (builder is null)
-        {
-            throw new NullReferenceException();
-        }
+        _NullReferenceException.ThrowIfNull(builder, nameof(builder));
 
         if (startIndex < 0)
         {
@@ -244,10 +237,7 @@ public static class StringBuilderPolyfillExtension
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     public static StringBuilder Append(this StringBuilder builder, ReadOnlySpan<char> value)
     {
-        if (builder is null)
-        {
-            throw new NullReferenceException();
-        }
+        _NullReferenceException.ThrowIfNull(builder, nameof(builder));
 
         _ = builder.EnsureCapacity(builder.Length + value.Length);
 

@@ -122,11 +122,7 @@ public static partial class StringPolyfillExtension
     /// </exception>
     public static string ReplaceLineEndings(this string s, string replacementText)
     {
-        if (s is null)
-        {
-            throw new NullReferenceException();
-        }
-
+        _NullReferenceException.ThrowIfNull(s, nameof(s));
         _ArgumentNullException.ThrowIfNull(replacementText, nameof(replacementText));
 
         for (int i = 0; i < s.Length; i++)
@@ -351,11 +347,7 @@ public static partial class StringPolyfillExtension
             return s.Replace(oldValue, newValue);
         }
 
-        if (s is null)
-        {
-            throw new NullReferenceException();
-        }
-
+        _NullReferenceException.ThrowIfNull(s, nameof(s));
         _ArgumentNullException.ThrowIfNull(oldValue, nameof(oldValue));
 
         if (oldValue.Length == 0)

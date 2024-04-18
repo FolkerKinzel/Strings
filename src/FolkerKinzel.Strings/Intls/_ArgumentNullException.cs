@@ -1,6 +1,7 @@
 ﻿namespace FolkerKinzel.Strings.Intls;
 
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+[SuppressMessage("Style", "IDE1006:Naming Styles",
+    Justification = "Show as polyfill")]
 internal static class _ArgumentNullException
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
