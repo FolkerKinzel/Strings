@@ -14,17 +14,19 @@ public static partial class StringBuilderPolyfillExtension
     // Place this preprocessor directive inside the class to let .NET Core 3.1 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
-    /// <summary>
-    /// Appends a copy of a sequence of Unicode characters that comes from a <see
-    /// cref="StringBuilder" />
-    /// to the existing content of <paramref name="builder" />..
-    /// </summary>
-    /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
-    /// <param name="value">The <see cref="StringBuilder"/> to append.</param>
-    /// <returns>A reference to <paramref name="builder" />.</returns>
-    public static StringBuilder Append (this StringBuilder builder, StringBuilder? value)
-        => value is null ? builder ?? throw new NullReferenceException(nameof(builder))
-                         : builder.Append(value, 0, value.Length);
+    // This doesn't bind! StringBuilder.Append(object?) is called instead:
+
+    ///// <summary>
+    ///// Appends a copy of a sequence of Unicode characters that comes from a <see
+    ///// cref="StringBuilder" />
+    ///// to the existing content of <paramref name="builder" />..
+    ///// </summary>
+    ///// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
+    ///// <param name="value">The <see cref="StringBuilder"/> to append.</param>
+    ///// <returns>A reference to <paramref name="builder" />.</returns>
+    //public static StringBuilder Append (this StringBuilder builder, StringBuilder? value)
+    //    => value is null ? builder ?? throw new NullReferenceException(nameof(builder))
+    //                     : builder.Append(value, 0, value.Length);
 
     /// <summary>Appends a copy of a sequence of Unicode characters that comes from a <see
     /// cref="StringBuilder" /> to the existing content of <paramref name="builder" />.</summary>

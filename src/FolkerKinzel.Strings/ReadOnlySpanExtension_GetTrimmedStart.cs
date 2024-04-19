@@ -19,4 +19,25 @@ public static partial class ReadOnlySpanExtension
 
         return span.Length;
     }
+
+    /// <summary>Returns the index of the first character in the 
+    /// read-only span that is not equal to <paramref name="trimChar"/>.</summary>
+    /// <param name="span">The read-only span to examine.</param>
+    /// <param name="trimChar">The <see cref="char"/> to remove from the beginning of <paramref name="span"/>.</param>
+    /// <returns>The index of the first first character in the 
+    /// read-only span that is not equal to <paramref name="trimChar"/>. If the
+    /// span is empty or consists only of <paramref name="trimChar"/>s, <c>0</c> is returned.</returns>
+    /// <remarks>The method performs an ordinal character comparison.</remarks>
+    public static int GetTrimmedStart(this ReadOnlySpan<char> span, char trimChar)
+    {
+        for (int i = 0; i < span.Length; i++)
+        {
+            if (trimChar != span[i])
+            {
+                return i;
+            }
+        }
+
+        return span.Length;
+    }
 }

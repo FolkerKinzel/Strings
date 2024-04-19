@@ -266,13 +266,13 @@ namespace LibraryTesters
             _ = span.IsWhiteSpace();
 
             _ = roSpan.Trim('a');
-            //_ = span.Trim('a');
+            _ = span.Trim('a');
 
             _ = roSpan.TrimStart('a');
-            //_ = span.TrimStart('a');
+            _ = span.TrimStart('a');
 
             _ = roSpan.TrimEnd('a');
-            //_ = span.TrimEnd('a');
+            _ = span.TrimEnd('a');
 
             _ = roSpan.Trim("abc");
             //_ = span.Trim("abc");

@@ -571,24 +571,24 @@ public class StringBuilderPolyfillExtensionTests
         _ = sb1!.Append(sb2, 4711, 1);
     }
 
-    [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
-    public void AppendStringBuilderTest13()
-    {
-        StringBuilder? sb1 = null;
-        var sb2 = new StringBuilder();
+    //[TestMethod]
+    //[ExpectedException(typeof(NullReferenceException))]
+    //public void AppendStringBuilderTest13()
+    //{
+    //    StringBuilder? sb1 = null;
+    //    var sb2 = new StringBuilder();
 
-        _ = sb1!.Append(sb2);
-    }
+    //    _ = sb1!.Append(sb2);
+    //}
 
-    [TestMethod]
-    public void AppendStringBuilderTest14()
-    {
-        StringBuilder? sb1 = new StringBuilder();
-        var sb2 = new StringBuilder("abc");
+    //[TestMethod]
+    //public void AppendStringBuilderTest14()
+    //{
+    //    StringBuilder? sb1 = new StringBuilder();
+    //    var sb2 = new StringBuilder("abc");
 
-        _ = sb1.Append(sb2);
-    }
+    //    _ = sb1.Append(sb2);
+    //}
 
     [TestMethod()]
     public void AppendTest1()
