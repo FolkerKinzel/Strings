@@ -18,7 +18,10 @@ public static class EncodingExtension
         _ArgumentNullException.ThrowIfNull(encoding, nameof(encoding));
 
 #if NET461 || NETSTANDARD2_0
-        return encoding.GetBytes(chars.ToArray());
+        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(chars.Length);
+        Span<char> buffer = shared.Value;
+        _ = chars.TryCopyTo(buffer);
+        return encoding.GetBytes(shared.Value, 0, chars.Length);
 #else
         byte[] bytes = new byte[encoding.GetByteCount(chars)];
 
@@ -27,7 +30,7 @@ public static class EncodingExtension
 #endif
     }
 
-    
+
 #if NET461 || NETSTANDARD2_0
     /// <summary>Decodes all bytes in the specified read-only span into a <see cref="string"/>.</summary>
     /// <param name="encoding">The <see cref="Encoding" /> object on which the extension
@@ -37,8 +40,14 @@ public static class EncodingExtension
     /// <exception cref="NullReferenceException"> <paramref name="encoding" /> is <c>null</c>.</exception>
     /// <remarks>This method is a polyfill for the instance method of current .NET versions.
     /// Use this method in the extension method syntax only.</remarks>
-    public static string GetString(this Encoding encoding, ReadOnlySpan<byte> bytes) =>
-        encoding == null ? throw new NullReferenceException()
-                         : encoding.GetString(bytes.ToArray());
+    public static string GetString(this Encoding encoding, ReadOnlySpan<byte> bytes)
+    {
+        _NullReferenceException.ThrowIfNull(encoding, nameof(encoding));
+
+        using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(bytes.Length);
+        Span<byte> buffer = shared.Value; 
+        _ = bytes.TryCopyTo(buffer);
+        return encoding.GetString(shared.Value, 0, bytes.Length);
+    }
 #endif
 }

@@ -1,11 +1,11 @@
-﻿- EncodingExtension.GetString
-- EncodingExtension.GetBytes
+﻿- [x] EncodingExtension.GetString
+- [x] EncodingExtension.GetBytes
 
-- Base64.Encode(ReadOnlySpan&lt;byte&gt; ...)
-- Base64.GetBytes(ReadOnlySpan<char> ...)
-- Base64.AppendEncodedTo(StringBuilder)
+- [ ] Base64.Encode(ReadOnlySpan&lt;byte&gt; ...)
+- [ ] Base64.GetBytes(ReadOnlySpan<char> ...)
+- [ ] Base64.AppendEncodedTo(StringBuilder)
 
-- StaticStringMethod.Create
-- StaticStringMethod.Concat
+- [x] StaticStringMethod.Create
+- [ ] StaticStringMethod.Concat
 
-- UrlEncoding.AppendEncodedTo
+- [ ] UrlEncoding.AppendEncodedTo

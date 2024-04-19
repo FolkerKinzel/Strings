@@ -1,4 +1,5 @@
 using System.Buffers;
+using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
@@ -25,19 +26,27 @@ public static class StaticStringMethod
 #if NET461 || NETSTANDARD2_0
     public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
     {
-        if (action == null)
-        {
-            throw new ArgumentNullException(nameof(action));
-        }
+        _ArgumentNullException.ThrowIfNull(action, nameof(action));
 
         if (length <= 0)
         {
             return length == 0 ? string.Empty : throw new ArgumentOutOfRangeException(nameof(length));
         }
 
-        Span<char> span = length > Const.ShortString ? new char[length] : stackalloc char[length];
-        action(span, state);
-        return span.ToString();
+        if (length > Const.ShortString)
+        {
+            using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
+            Span<char> span = shared.Value;
+            span = span.Slice(0, length);
+            action(span, state);
+            return span.ToString();
+        }
+        else
+        {
+            Span<char> span = stackalloc char[length];
+            action(span, state);
+            return span.ToString();
+        }
     }
 #else
     ///// <summary>Creates a new <see cref="string"/> with a specified length and, once created, 
