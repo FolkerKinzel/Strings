@@ -2,6 +2,7 @@
 
 ## List of Polyfill Extension Methods 
 (Refers to the latest nuget version)
+
 ### Polyfills for the String class (.NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.5)
 ```csharp
 string ReplaceLineEndings(this string);
@@ -72,9 +73,12 @@ ReadOnlySpan<char> TrimEnd(this ReadOnlySpan<char>, string?);
 
 ```csharp
 bool Contains(this ReadOnlySpan<char>, char);
-public static Span<char> Trim(this Span<char>);
-public static Span<char> TrimStart(this Span<char>);
-public static Span<char> TrimEnd(this Span<char>);
+Span<char> Trim(this Span<char>);
+Span<char> TrimStart(this Span<char>);
+Span<char> TrimEnd(this Span<char>);
+Span<char> Trim(this Span<char>, char);
+Span<char> TrimStart(this Span<char>, char);
+Span<char> TrimEnd(this Span<char>, char);
 ```
 .
 ### Polyfills for the Span&lt;Char&gt; struct (.NET Framework 4.5, .NET Standard 2.0)
@@ -119,6 +123,12 @@ StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, bool);
 StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, int, bool);
 StringBuilder AppendUrlEncoded(this StringBuilder, string?);
 ```
+.
+### Polyfills for the StringBuilder class (.NET Framework 4.5, .NET Standard 2.0, .NET Standard 2.1)
+```csharp
+StringBuilder Append(this StringBuilder, ReadOnlyMemory<char>);
+```
+
 .
 ### Polyfills for the Encoding class (.NET Framework 4.5, .NET Standard 2.0)
 ```csharp
