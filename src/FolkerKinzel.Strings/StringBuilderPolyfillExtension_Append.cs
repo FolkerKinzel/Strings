@@ -122,21 +122,23 @@ public static partial class StringBuilderPolyfillExtension
 
 #endif
 
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+    // This doesn't bind! StringBuilder.Append(object?) is called instead:
 
-    /// <summary>
-    /// Appends the string representation of a specified read-only character memory region to 
-    /// a <see cref="StringBuilder" />.
-    /// </summary>
-    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
-    /// appended.</param>
-    /// <param name="value">The read-only character memory region to append.</param>
-    /// <returns>A reference to <paramref name="builder" /> after the append operation has
-    /// completed.</returns>
-    /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
-    public static StringBuilder Append(this StringBuilder builder, ReadOnlyMemory<char> value)
-        => builder.Append(value.Span);
+    //#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
 
-#endif
+    //    /// <summary>
+    //    /// Appends the string representation of a specified read-only character memory region to 
+    //    /// a <see cref="StringBuilder" />.
+    //    /// </summary>
+    //    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    //    /// appended.</param>
+    //    /// <param name="value">The read-only character memory region to append.</param>
+    //    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    //    /// completed.</returns>
+    //    /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    //    public static StringBuilder Append(this StringBuilder builder, ReadOnlyMemory<char> value)
+    //        => builder.Append(value.Span);
+
+    //#endif
 
 }

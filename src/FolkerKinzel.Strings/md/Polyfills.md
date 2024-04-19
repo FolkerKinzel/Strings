@@ -123,11 +123,6 @@ StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, bool);
 StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, int, bool);
 StringBuilder AppendUrlEncoded(this StringBuilder, string?);
 ```
-.
-### Polyfills for the StringBuilder class (.NET Framework 4.5, .NET Standard 2.0, .NET Standard 2.1)
-```csharp
-StringBuilder Append(this StringBuilder, ReadOnlyMemory<char>);
-```
 
 .
 ### Polyfills for the Encoding class (.NET Framework 4.5, .NET Standard 2.0)

@@ -606,10 +606,11 @@ public class StringBuilderPolyfillExtensionTests
 
     [TestMethod]
     [ExpectedException(typeof(NullReferenceException))]
-    [SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
     public void AppendTest2()
     {
         StringBuilder? sb = null;
         _ = sb!.Append(ReadOnlySpan<char>.Empty);
     }
+
+    
 }
