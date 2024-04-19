@@ -125,6 +125,8 @@ namespace LibraryTesters
             _ = sb.LastIndexOf('e', 0, 0);
 
             _ = sb.Append(sb, 0, 0);
+            _ = sb.Append(test.AsMemory());
+            _ = sb.Append(sb);
 
             _ = roSpan.ContainsAny(roSpan);
             _ = roSpan.ContainsAny("abc");

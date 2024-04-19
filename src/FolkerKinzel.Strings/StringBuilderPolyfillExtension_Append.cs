@@ -14,6 +14,18 @@ public static partial class StringBuilderPolyfillExtension
     // Place this preprocessor directive inside the class to let .NET Core 3.1 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
+    /// <summary>
+    /// Appends a copy of a sequence of Unicode characters that comes from a <see
+    /// cref="StringBuilder" />
+    /// to the existing content of <paramref name="builder" />..
+    /// </summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
+    /// <param name="value">The <see cref="StringBuilder"/> to append.</param>
+    /// <returns>A reference to <paramref name="builder" />.</returns>
+    public static StringBuilder Append (this StringBuilder builder, StringBuilder? value)
+        => value is null ? builder ?? throw new NullReferenceException(nameof(builder))
+                         : builder.Append(value, 0, value.Length);
+
     /// <summary>Appends a copy of a sequence of Unicode characters that comes from a <see
     /// cref="StringBuilder" /> to the existing content of <paramref name="builder" />.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
@@ -105,6 +117,23 @@ public static partial class StringBuilderPolyfillExtension
         }
         return builder;
     }
+
+#endif
+
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+
+    /// <summary>
+    /// Appends the string representation of a specified read-only character memory region to 
+    /// a <see cref="StringBuilder" />.
+    /// </summary>
+    /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are
+    /// appended.</param>
+    /// <param name="value">The read-only character memory region to append.</param>
+    /// <returns>A reference to <paramref name="builder" /> after the append operation has
+    /// completed.</returns>
+    /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    public static StringBuilder Append(this StringBuilder builder, ReadOnlyMemory<char> value)
+        => builder.Append(value.Span);
 
 #endif
 
