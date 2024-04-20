@@ -60,8 +60,7 @@ public static class UrlEncoding
         if (length > SHORT_ARRAY)
         {
             using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
-            Span<byte>  encoded = shared.Value;
-            encoded = encoded.Slice(0, length);
+            Span<byte> encoded = shared.Value.AsSpan(0, length);
             Encoding.UTF8.GetBytes(value, encoded);
             AppendData(builder, encoded);
         }
@@ -289,12 +288,20 @@ public static class UrlEncoding
                                         bool decodePlusChars,
                                         [NotNullWhen(true)] out byte[]? bytes)
     {
-        Span<byte> decoded = value.Length > SHORT_ARRAY ? new byte[value.Length]
-                                                        : stackalloc byte[value.Length];
-
         try
         {
-            bytes = FillBytes(value, decodePlusChars, decoded).ToArray();
+            if (value.Length > SHORT_ARRAY)
+            {
+                using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(value.Length);
+                bytes = FillBytes(value, decodePlusChars, shared.Value.AsSpan(0, value.Length))
+                       .ToArray();
+            }
+            else
+            {
+                bytes = FillBytes(value, decodePlusChars, stackalloc byte[value.Length])
+                        .ToArray();
+            }
+
             return true;
         }
         catch
@@ -304,22 +311,23 @@ public static class UrlEncoding
         }
     }
 
-    /// <summary />
-    /// <param name="value" />
-    /// <param name="encoding" />
-    /// <param name="decodePlusSigns" />
-    /// <returns />
     private static string UnescapeValueFromUrlEncoding(ReadOnlySpan<char> value,
                                                        Encoding encoding,
                                                        bool decodePlusSigns)
     {
-        Span<byte> bytes = value.Length > SHORT_ARRAY ? new byte[value.Length]
-                                                      : stackalloc byte[value.Length];
-
-        return encoding.GetString(FillBytes(value, decodePlusSigns, bytes));
+        if (value.Length > SHORT_ARRAY)
+        {
+            using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(value.Length);
+            return encoding.GetString(FillBytes(value, decodePlusSigns, shared.Value.AsSpan(0, value.Length)));
+        }
+        else
+        {
+            return encoding.GetString(FillBytes(value, decodePlusSigns, stackalloc byte[value.Length]));
+        }
     }
 
-
+    /// <exception cref="FormatException"></exception>
+    /// <exception cref="ArgumentException"></exception>
     private static ReadOnlySpan<byte> FillBytes(ReadOnlySpan<char> value,
                                                 bool decodePlusSigns,
                                                 Span<byte> bytes)
@@ -335,7 +343,7 @@ public static class UrlEncoding
 
             if (c > 127)
             {
-                throw new EncoderFallbackException();
+                throw new FormatException();
             }
 
             switch (c)
@@ -345,10 +353,9 @@ public static class UrlEncoding
                     continue;
                 case '%':
 #if NET461 || NETSTANDARD2_0
-                    bytes[byteIndex++] = byte.Parse(value.Slice(i + 1, 2).ToString(), 
-                                                    NumberStyles.AllowHexSpecifier);
+                    bytes[byteIndex++] = _Byte.ParseHex(value.Slice(i + 1, 2));
 #else
-                    bytes[byteIndex++] = byte.Parse(value.Slice(i + 1, 2), 
+                    bytes[byteIndex++] = byte.Parse(value.Slice(i + 1, 2),
                                                     NumberStyles.AllowHexSpecifier);
 #endif
                     i += 2;

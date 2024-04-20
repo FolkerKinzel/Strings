@@ -217,8 +217,6 @@ public class Base64Tests
 
     [TestMethod]
     public void GetEncodedLengthTest2() => Base64.GetEncodedLength(-42);
-    
-
 
     //[TestMethod()]
     //public void FrameworkTest()

@@ -36,8 +36,7 @@ public static class StaticStringMethod
         if (length > Const.ShortString)
         {
             using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
-            Span<char> span = shared.Value;
-            span = span.Slice(0, length);
+            Span<char> span = shared.Value.AsSpan(0, length);
             action(span, state);
             return span.ToString();
         }
@@ -124,10 +123,7 @@ public static class StaticStringMethod
         if (length > Const.ShortString)
         {
             using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
-            Span<char> span = shared.Value;
-            span = span.Slice(0, length);
-
-            return DoConcat(span, str0, str1, str2, str3);
+            return DoConcat(shared.Value.AsSpan(0, length), str0, str1, str2, str3);
         }
         else
         {

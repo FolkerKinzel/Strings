@@ -9,3 +9,5 @@
 - [x] StaticStringMethod.Concat
 
 - [x] UrlEncoding.AppendEncodedTo
+- [x] UrlEncoding.UnescapeValueFromUrlEncoding
+- [x] UrlEncoding.TryDecodeToBytes
