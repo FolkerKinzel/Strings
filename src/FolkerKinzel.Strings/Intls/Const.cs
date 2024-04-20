@@ -1,4 +1,4 @@
-namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings.Intls;
 
 internal static class Const
 {

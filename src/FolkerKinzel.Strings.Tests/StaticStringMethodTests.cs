@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FolkerKinzel.Strings.Intls;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
 
