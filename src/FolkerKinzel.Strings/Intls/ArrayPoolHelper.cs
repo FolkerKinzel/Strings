@@ -1,11 +1,9 @@
 ﻿using System.Buffers;
 
-namespace FolkerKinzel.Strings;
+namespace FolkerKinzel.Strings.Intls;
 
-public static class ArrayPoolHelper
+internal static class ArrayPoolHelper
 {
-    public static bool ClearReturnedArrays { get; set; }
-
     internal static SharedArray<T> Rent<T>(int minimumLength) => new(minimumLength);
 
     internal readonly struct SharedArray<T> : IDisposable
@@ -15,6 +13,6 @@ public static class ArrayPoolHelper
 
         internal T[] Value { get; }
 
-        public void Dispose() => ArrayPool<T>.Shared.Return(Value, ClearReturnedArrays);
+        public void Dispose() => ArrayPool<T>.Shared.Return(Value, Confidentiality.Confidential);
     }
 }

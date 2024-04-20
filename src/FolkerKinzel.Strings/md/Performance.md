@@ -6,6 +6,6 @@
 - [ ] Base64.AppendEncodedTo(StringBuilder)
 
 - [x] StaticStringMethod.Create
-- [ ] StaticStringMethod.Concat
+- [x] StaticStringMethod.Concat
 
-- [ ] UrlEncoding.AppendEncodedTo
+- [x] UrlEncoding.AppendEncodedTo

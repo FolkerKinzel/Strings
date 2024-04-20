@@ -53,13 +53,25 @@ public static class UrlEncoding
 
 #if NET461 || NETSTANDARD2_0
         byte[] encoded = Encoding.UTF8.GetBytes(value);
+        AppendData(builder, encoded);
 #else
         int length = Encoding.UTF8.GetByteCount(value);
-        Span<byte> encoded = length > SHORT_ARRAY ? new byte[length] : stackalloc byte[length];
-        Encoding.UTF8.GetBytes(value, encoded);
-#endif
 
-        AppendData(builder, encoded);
+        if (length > SHORT_ARRAY)
+        {
+            using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
+            Span<byte>  encoded = shared.Value;
+            encoded = encoded.Slice(0, length);
+            Encoding.UTF8.GetBytes(value, encoded);
+            AppendData(builder, encoded);
+        }
+        else
+        {
+            Span<byte> encoded = stackalloc byte[length];
+            Encoding.UTF8.GetBytes(value, encoded);
+            AppendData(builder, encoded);
+        }
+#endif
         return builder;
     }
 

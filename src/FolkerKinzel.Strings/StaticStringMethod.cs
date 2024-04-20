@@ -120,17 +120,32 @@ public static class StaticStringMethod
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2, ReadOnlySpan<char> str3)
     {
         int length = str0.Length + str1.Length + str2.Length + str3.Length;
-        Span<char> span = length > Const.ShortString ? new char[length] : stackalloc char[length];
 
-        str0.CopyTo(span);
-        Span<char> spanPart = span.Slice(str0.Length);
-        str1.CopyTo(spanPart);
-        spanPart = spanPart.Slice(str1.Length);
-        str2.CopyTo(spanPart);
-        spanPart = spanPart.Slice(str2.Length);
-        str3.CopyTo(spanPart);
+        if (length > Const.ShortString)
+        {
+            using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
+            Span<char> span = shared.Value;
+            span = span.Slice(0, length);
 
-        return span.ToString();
+            return DoConcat(span, str0, str1, str2, str3);
+        }
+        else
+        {
+            return DoConcat(stackalloc char[length], str0, str1, str2, str3);
+        }
+
+        static string DoConcat(Span<char> span, ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2, ReadOnlySpan<char> str3)
+        {
+            str0.CopyTo(span);
+            Span<char> spanPart = span.Slice(str0.Length);
+            _ = str1.TryCopyTo(spanPart);
+            spanPart = spanPart.Slice(str1.Length);
+            _ = str2.TryCopyTo(spanPart);
+            spanPart = spanPart.Slice(str2.Length);
+            _ = str3.TryCopyTo(spanPart);
+
+            return span.ToString();
+        }
     }
 
     /// <summary>Concatenates the string representations of three specified read-only character
@@ -140,19 +155,9 @@ public static class StaticStringMethod
     /// <param name="str2">The third read-only character span to concatenate.</param>
     /// <returns>The concatenated string representations of the values of <paramref name="str0"
     /// />, <paramref name="str1" /> and <paramref name="str2" />.</returns>
+    [MethodImpl (MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
-    {
-        int length = str0.Length + str1.Length + str2.Length;
-        Span<char> span = length > Const.ShortString ? new char[length] : stackalloc char[length];
-
-        str0.CopyTo(span);
-        Span<char> spanPart = span.Slice(str0.Length);
-        str1.CopyTo(spanPart);
-        spanPart = spanPart.Slice(str1.Length);
-        str2.CopyTo(spanPart);
-
-        return span.ToString();
-    }
+        => Concat(str0, str1, str2, []);
 
     /// <summary>Concatenates the string representations of two specified read-only character
     /// spans.</summary>
@@ -160,17 +165,9 @@ public static class StaticStringMethod
     /// <param name="str1">The first read-only character span to concatenate.</param>
     /// <returns>The concatenated string representations of the values of <paramref name="str0"
     /// /> and <paramref name="str1" />.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
-    {
-        int length = str0.Length + str1.Length;
-        Span<char> span = length > Const.ShortString ? new char[length] : stackalloc char[length];
-
-        str0.CopyTo(span);
-        Span<char> spanPart = span.Slice(str0.Length);
-        str1.CopyTo(spanPart);
-
-        return span.ToString();
-    }
-
+        => Concat(str0, str1, [], []);
+    
 #endif
 }
