@@ -6,7 +6,6 @@ namespace FolkerKinzel.Strings;
 /// <summary>Static class that provides methods for handling URL encoding (RFC 3986).</summary>
 public static class UrlEncoding
 {
-    private const int SHORT_BYTE_ARRAY = 2 * Const.ShortString;
 
     /// <summary>Factor by which the number of bytes to be encoded is multiplied to estimate
     /// the length of the encoded output.</summary>
@@ -57,7 +56,7 @@ public static class UrlEncoding
 #else
         int length = Encoding.UTF8.GetByteCount(value);
 
-        if (length > SHORT_BYTE_ARRAY)
+        if (length > Const.StackallocByteThreshold)
         {
             using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
             Span<byte> encoded = shared.Value.AsSpan(0, length);
@@ -290,7 +289,7 @@ public static class UrlEncoding
     {
         try
         {
-            if (value.Length > SHORT_BYTE_ARRAY)
+            if (value.Length > Const.StackallocByteThreshold)
             {
                 using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(value.Length);
                 bytes = FillBytes(value, decodePlusChars, shared.Value.AsSpan(0, value.Length))
@@ -315,7 +314,7 @@ public static class UrlEncoding
                                                        Encoding encoding,
                                                        bool decodePlusSigns)
     {
-        if (value.Length > SHORT_BYTE_ARRAY)
+        if (value.Length > Const.StackallocByteThreshold)
         {
             using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(value.Length);
             return encoding.GetString(FillBytes(value, decodePlusSigns, shared.Value.AsSpan(0, value.Length)));

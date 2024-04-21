@@ -33,7 +33,7 @@ public class StaticStringMethodTests
     [TestMethod()]
     public void CreateTest5()
     {
-        const int length = Const.ShortString + 5;
+        const int length = Const.StackallocCharThreshold + 5;
         Assert.AreEqual(new string('x', length), StaticStringMethod.Create(length, "",
             (span, tState) =>
             {
@@ -47,7 +47,7 @@ public class StaticStringMethodTests
     [TestMethod()]
     public void CreateTest6()
     {
-        const int length = Const.ShortString;
+        const int length = Const.StackallocCharThreshold;
         Assert.AreEqual(new string('x', length), StaticStringMethod.Create(length, "",
             (span, tState) =>
             {

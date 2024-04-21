@@ -33,7 +33,7 @@ public static class StaticStringMethod
             return length == 0 ? string.Empty : throw new ArgumentOutOfRangeException(nameof(length));
         }
 
-        if (length > Const.ShortString)
+        if (length > Const.StackallocCharThreshold)
         {
             using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
             Span<char> span = shared.Value.AsSpan(0, length);
@@ -120,7 +120,7 @@ public static class StaticStringMethod
     {
         int length = str0.Length + str1.Length + str2.Length + str3.Length;
 
-        if (length > Const.ShortString)
+        if (length > Const.StackallocCharThreshold)
         {
             using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
             return DoConcat(shared.Value.AsSpan(0, length), str0, str1, str2, str3);
