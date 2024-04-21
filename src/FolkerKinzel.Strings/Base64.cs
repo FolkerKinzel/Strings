@@ -403,7 +403,7 @@ public static class Base64
     }
 #endif
 
-    internal static StringBuilder AppendEncodedTo2(StringBuilder builder,
+    internal static StringBuilder AppendEncodedTo(StringBuilder builder,
                                                   ReadOnlySpan<byte> bytes,
                                                   Base64FormattingOptions options)
     {

@@ -53,10 +53,10 @@ public class Base64Bench
 
 
     [Benchmark]
-    public StringBuilder AppendLibrary() => Base64.AppendEncodedTo2(new StringBuilder(), _arr, Base64FormattingOptions.None);
+    public StringBuilder AppendLibrary() => Base64.AppendEncodedTo(new StringBuilder(), _arr, Base64FormattingOptions.None);
 
     [Benchmark]
-    public StringBuilder AppendLibraryLineBreaks() => Base64.AppendEncodedTo2(new StringBuilder(), _arr, Base64FormattingOptions.InsertLineBreaks);
+    public StringBuilder AppendLibraryLineBreaks() => Base64.AppendEncodedTo(new StringBuilder(), _arr, Base64FormattingOptions.InsertLineBreaks);
 
     //[Benchmark]
     //public StringBuilder AppendNew() => AppendEncodedTo(new StringBuilder(), _arr, Base64FormattingOptions.None);
