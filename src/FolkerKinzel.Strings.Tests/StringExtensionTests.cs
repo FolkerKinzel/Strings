@@ -1,5 +1,4 @@
-﻿using FolkerKinzel.Strings.Polyfills;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
 

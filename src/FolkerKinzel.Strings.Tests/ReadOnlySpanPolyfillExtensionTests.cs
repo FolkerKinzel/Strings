@@ -1,7 +1,8 @@
 ﻿using System.Globalization;
+using FolkerKinzel.Strings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FolkerKinzel.Strings.Polyfills.Tests;
+namespace FolkerKinzel.Strings.Tests;
 
 
 [TestClass()]
@@ -93,7 +94,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
         => Assert.AreEqual(expected, input.AsSpan().EndsWith(test));
 
 
-    
+
 
     [DataTestMethod()]
     [DataRow(StringComparison.Ordinal)]

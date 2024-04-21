@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FolkerKinzel.Strings.Polyfills.Tests;
+namespace FolkerKinzel.Strings.Tests;
 
 [TestClass()]
 public class StringPolyfillExtensionTests : IDisposable
@@ -19,7 +19,7 @@ public class StringPolyfillExtensionTests : IDisposable
         Thread.CurrentThread.CurrentCulture = _culture;
         GC.SuppressFinalize(this);
     }
-    
+
 
     [DataTestMethod()]
     [DataRow("Test", 'e', StringComparison.Ordinal, true)]

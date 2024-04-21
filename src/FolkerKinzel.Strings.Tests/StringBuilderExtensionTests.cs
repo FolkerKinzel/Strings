@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using FolkerKinzel.Strings.Polyfills;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
@@ -1349,10 +1348,15 @@ public class StringBuilderExtensionTests
         Assert.IsTrue(builder.Contains('\n'));
     }
 
-    [TestMethod]
-    public void AppendBase64Test8()
+    [DataTestMethod]
+    [DataRow(48)]
+    [DataRow(50)]
+    [DataRow(57)]
+    [DataRow(58)]
+    [DataRow(200)]
+    public void AppendBase64Test8(int length)
     {
-        byte[] bytes = new byte[200];
+        byte[] bytes = new byte[length];
         new Random().NextBytes(bytes);
 
         Assert.AreEqual(
@@ -1369,6 +1373,15 @@ public class StringBuilderExtensionTests
     public void AppendUrlEncodedTest1()
     {
         const string s = "äöü";
+        StringBuilder sb = new StringBuilder().AppendUrlEncoded(s.AsSpan());
+
+        Assert.AreEqual(Uri.EscapeDataString(s), sb.ToString());
+    }
+
+    [TestMethod]
+    public void AppendUrlEncodedTest2()
+    {
+        string s = new('ä', 1000);
         StringBuilder sb = new StringBuilder().AppendUrlEncoded(s.AsSpan());
 
         Assert.AreEqual(Uri.EscapeDataString(s), sb.ToString());

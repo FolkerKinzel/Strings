@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FolkerKinzel.Strings.Polyfills.Tests;
+namespace FolkerKinzel.Strings.Tests;
 
 [TestClass()]
 public class StringBuilderPolyfillExtensionTests
-{ 
+{
     [TestMethod]
     public void AppendJoinTestA1()
     {
@@ -17,7 +17,7 @@ public class StringBuilderPolyfillExtensionTests
     [TestMethod]
     public void AppendJoinTestA2()
     {
-        var input = new string?[] {null};
+        var input = new string?[] { null };
         char separator = ',';
 
         Assert.AreEqual("", new StringBuilder().AppendJoin(separator, input).ToString());
@@ -472,6 +472,17 @@ public class StringBuilderPolyfillExtensionTests
     }
 
     [TestMethod]
+    [ExpectedException(typeof(NullReferenceException))]
+    public void AppendStringBuilderTest2b()
+    {
+        const string test = "test";
+        StringBuilder? sb1 = null;
+        var sb2 = new StringBuilder(test);
+
+        sb1!.Append(sb2, 0, sb2.Length);
+    }
+
+    [TestMethod]
     public void AppendStringBuilderTest12()
     {
         const string test = "test";
@@ -612,5 +623,5 @@ public class StringBuilderPolyfillExtensionTests
         _ = sb!.Append(ReadOnlySpan<char>.Empty);
     }
 
-    
+
 }

@@ -1,9 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-#if !NETCOREAPP3_1
-using FolkerKinzel.Strings.Polyfills;
-#endif
-
 namespace FolkerKinzel.Strings.Tests;
 
 

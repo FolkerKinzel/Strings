@@ -1,8 +1,4 @@
-﻿#if !NETCOREAPP3_1
-using FolkerKinzel.Strings.Polyfills;
-#endif
-
-using System;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;

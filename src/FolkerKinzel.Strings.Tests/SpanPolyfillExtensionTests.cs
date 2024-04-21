@@ -1,4 +1,6 @@
-﻿namespace FolkerKinzel.Strings.Polyfills.Tests;
+﻿using FolkerKinzel.Strings;
+
+namespace FolkerKinzel.Strings.Tests;
 
 [TestClass()]
 public class SpanPolyfillExtensionTests
@@ -58,7 +60,7 @@ public class SpanPolyfillExtensionTests
     public void TrimEndTest1(string input)
         => Assert.AreEqual(input.AsSpan().TrimEnd().ToString(), input.ToArray().AsSpan().TrimEnd().ToString());
 
-    
+
 
     [DataTestMethod]
     [DataRow("", "")]

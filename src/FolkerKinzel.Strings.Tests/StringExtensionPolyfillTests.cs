@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FolkerKinzel.Strings.Polyfills.Tests;
+namespace FolkerKinzel.Strings.Tests;
 
 [TestClass()]
 public class StringExtensionPolyfillTests

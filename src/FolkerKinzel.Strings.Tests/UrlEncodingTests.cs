@@ -1,10 +1,4 @@
-﻿#if !NETCOREAPP3_1
-using FolkerKinzel.Strings.Polyfills;
-#endif
-using System.Net;
-
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Net;
 
 namespace FolkerKinzel.Strings.Tests;
 
@@ -41,7 +35,7 @@ public class UrlEncodingTests
     public void AppendUrlEncodedTest3()
     {
         StringBuilder? sb = null;
-        sb!.AppendUrlEncoded(new byte[] {1,2,3});
+        sb!.AppendUrlEncoded(new byte[] { 1, 2, 3 });
     }
 
     [TestMethod]

@@ -1,8 +1,7 @@
 ﻿using FolkerKinzel.Strings;
-using FolkerKinzel.Strings.Polyfills;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FolkerKinzel.Strings.Polyfills.Tests;
+namespace FolkerKinzel.Strings.Tests;
 
 [TestClass()]
 public class ReadOnlyMemoryPolyfillExtensionTests
