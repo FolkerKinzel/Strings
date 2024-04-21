@@ -215,8 +215,11 @@ public class Base64Tests
         => (int)Math.Ceiling(inputLength / 3.0) << 2;
     }
 
-    [TestMethod]
-    public void GetEncodedLengthTest2() => Base64.GetEncodedLength(-42);
+    [DataTestMethod]
+    [DataRow(-42)]
+    [DataRow(int.MaxValue)]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void GetEncodedLengthTest2(int length) => Base64.GetEncodedLength(length);
 
     //[TestMethod()]
     //public void FrameworkTest()

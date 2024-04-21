@@ -14,6 +14,7 @@ public static class Base64
 {
     private const string LINE_BREAK = "\r\n";
     private const int LINE_LENGTH = 76;
+    private const int MAXIMUM_ENCODE_LENGTH = (int.MaxValue / 4) * 3;
 
     private const string IDX = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     private const int CHAR_MASK = 0b11_1111;
@@ -23,15 +24,19 @@ public static class Base64
 
     /// <summary>Calculates the exact output length of Base64-encoded data from the input
     /// length of the data to be encoded.</summary>
-    /// <param name="inputLength">The number of <see cref="byte" />s to convert to Base64
+    /// <param name="length">The number of <see cref="byte" />s to convert to Base64
     /// format.</param>
     /// <returns>The number of characters of the Base64-encoded output when 
-    /// <paramref name="inputLength" />&#160;<see cref="byte" />s are encoded.</returns>
+    /// <paramref name="length" />&#160;<see cref="byte" />s are encoded.</returns>
     /// <remarks>Any line breaks that might have to be inserted into the encoded output are
     /// not included in the calculation.</remarks>
+    /// <exception cref="ArgumentOutOfRangeException"><paramref name="length"/> is less than <c>0</c> or 
+    /// as large that the return value would be greater than <see cref="int.MaxValue">Int32.MaxValue</see>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int GetEncodedLength(int inputLength) 
-        => ((inputLength + 2) / 3) << 2;
+    public static int GetEncodedLength(int length)
+        => (uint)length > MAXIMUM_ENCODE_LENGTH
+            ? throw new ArgumentOutOfRangeException(nameof(length))
+            : ((length + 2) / 3) << 2;
 
     /// <summary>Converts a <see cref="byte" /> collection to a corresponding Base64-encoded
     /// string. You can determine, whether line breaks are to be inserted into the return
@@ -165,7 +170,6 @@ public static class Base64
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] GetBytes(string? base64) => Convert.FromBase64String(base64 ?? "");
-
 
     /// <summary>Converts a Base64-string into a corresponding <see cref="byte"/> array and 
     /// allows to pass options for the conversion.</summary>
@@ -323,6 +327,7 @@ public static class Base64
     /// a non-Base64 character, more than two padding characters, or a non-space character
     /// between the padding characters.
     /// </para>
+    ///
     /// </exception>
     public static byte[] GetBytes(ReadOnlySpan<char> base64)
     {
