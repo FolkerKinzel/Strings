@@ -6,6 +6,31 @@ namespace FolkerKinzel.Strings.Tests;
 [TestClass]
 public class Base64Tests
 {
+    [TestMethod]
+    public void TestTest()
+    {
+        const string LINE_BREAK = "\r\n";
+
+        List<(int, int)> capacities = new();
+
+
+        for (int i = 0; i < 1000;  i++) 
+        {
+            int length = Base64.GetEncodedLength(i);
+            int capacity1 = length;
+            capacity1 += (capacity1 / 76) * LINE_BREAK.Length;
+
+            int capacity2 = length;
+            capacity2 += capacity2 / 38;
+
+            if(capacity1 != capacity2) 
+            {
+                capacities.Add((capacity1, capacity2));
+            }
+        }
+        
+    }
+
     [DataTestMethod()]
     [DataRow("", "")]
     [DataRow("f", "Zg==")]

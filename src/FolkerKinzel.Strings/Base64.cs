@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using FolkerKinzel.Strings;
@@ -144,7 +145,13 @@ public static class Base64
     public static string Encode(ReadOnlySpan<byte> bytes,
                                 Base64FormattingOptions options = Base64FormattingOptions.None)
 #if NET461 || NETSTANDARD2_0
-       => Convert.ToBase64String(bytes.ToArray(), options);
+    { 
+       int length = bytes.Length;
+       using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
+       var arr = shared.Value;
+       _ = bytes.TryCopyTo(arr);
+       return Convert.ToBase64String(arr, 0, length, options);
+    }
 #else
        => Convert.ToBase64String(bytes, options);
 #endif
@@ -194,6 +201,8 @@ public static class Base64
     /// a <see cref="byte" /> array .</exception>
     public static byte[] GetBytes(ReadOnlySpan<char> base64, Base64ParserOptions options)
     {
+        const int paddingPlaceholder = 2;
+
         base64 = base64.Trim();
 
         if (base64.IsEmpty)
@@ -202,42 +211,56 @@ public static class Base64
         }
 
         char[]? arr = null;
-        Span<char> contentSpan = default;
 
-        if (options.HasFlag(Base64ParserOptions.AcceptBase64Url) && IsBase64Url(base64))
+        try
         {
-            arr = new char[base64.Length + 2];
-            contentSpan = arr.AsSpan(0, base64.Length);
-            base64.CopyTo(contentSpan);
+            Span<char> contentSpan = default;
 
-            int urlEncodedPaddingCount = ReplaceUrlEncodedPadding(arr, ref contentSpan);
-            ReplaceBase64UrlChars(contentSpan, urlEncodedPaddingCount);
-            base64 = contentSpan;
-        }
-
-        int missingPaddingCount = options.HasFlag(Base64ParserOptions.AcceptMissingPadding) 
-                                            ? GetMissingPaddingCount(base64) 
-                                            : 0;
-
-        if (missingPaddingCount != 0)
-        {
-            if (arr is null)
+            if (options.HasFlag(Base64ParserOptions.AcceptBase64Url) && IsBase64Url(base64))
             {
-                arr = new char[base64.Length + missingPaddingCount];
-                contentSpan = arr.AsSpan();
-                base64.CopyTo(contentSpan);
-            }
-            else
-            {
-                Debug.Assert(arr.Length >= contentSpan.Length + missingPaddingCount);
-                contentSpan = arr.AsSpan(0, contentSpan.Length + missingPaddingCount);
+                int length = base64.Length;
+                arr = ArrayPool<char>.Shared.Rent(length + paddingPlaceholder);
+                contentSpan = arr.AsSpan(0, length);
+                _ = base64.TryCopyTo(contentSpan);
+
+                int urlEncodedPaddingCount = ReplaceUrlEncodedPadding(ref contentSpan);
+                ReplaceBase64UrlChars(contentSpan.Slice(0, contentSpan.Length - urlEncodedPaddingCount));
+                base64 = contentSpan;
             }
 
-            ApplyPadding(contentSpan, missingPaddingCount);
-            base64 = contentSpan;
+            int missingPaddingCount = options.HasFlag(Base64ParserOptions.AcceptMissingPadding)
+                                                ? GetMissingPaddingCount(base64)
+                                                : 0;
+
+            if (missingPaddingCount != 0)
+            {
+                if (arr is null)
+                {
+                    int length = base64.Length + missingPaddingCount;
+                    arr = ArrayPool<char>.Shared.Rent(length);
+                    contentSpan = arr.AsSpan(0, length);
+                    _ = base64.TryCopyTo(contentSpan);
+                }
+                else
+                {
+                    Debug.Assert(arr.Length >= contentSpan.Length + missingPaddingCount);
+                    contentSpan = arr.AsSpan(0, contentSpan.Length + missingPaddingCount);
+                }
+
+                ApplyPadding(contentSpan, missingPaddingCount);
+                base64 = contentSpan;
+            }
+        
+            return DoGetBytes(base64);
+        }
+        finally
+        {
+            if(arr != null)
+            {
+                ArrayPool<char>.Shared.Return(arr, Confidentiality.Confidential);
+            }
         }
 
-        return DoGetBytes(base64);
 
         /////////////////////////////////////////////////////
 
@@ -262,31 +285,32 @@ public static class Base64
                                StringComparison.OrdinalIgnoreCase) || base64.ContainsAny("-_");
 
 
-        static int ReplaceUrlEncodedPadding(char[]? arr, ref Span<char> span)
+        static int ReplaceUrlEncodedPadding(ref Span<char> span)
         {
             int urlEncodedPaddingCount = 0;
 
+            ReadOnlySpan<char> tmp = span;
+
             // This is based on the assumption that Base64Url contains no white space -
             // neither URL-encoded nor unencoded.
-            while (span.EndsWith(URL_ENCODED_PADDING, StringComparison.OrdinalIgnoreCase))
+            while (tmp.EndsWith(URL_ENCODED_PADDING, StringComparison.OrdinalIgnoreCase))
             {
-                span = span.Slice(0, span.Length - 3);
+                tmp = tmp.Slice(0, tmp.Length - 3);
                 urlEncodedPaddingCount++;
             }
 
             if (urlEncodedPaddingCount != 0)
             {
-                span = arr.AsSpan(0, span.Length + urlEncodedPaddingCount);
+                span = span.Slice(0, tmp.Length + urlEncodedPaddingCount);
                 ApplyPadding(span, urlEncodedPaddingCount);
             }
 
             return urlEncodedPaddingCount;
         }
 
-        static void ReplaceBase64UrlChars(Span<char> span, int urlEncodedPaddingCount)
+        static void ReplaceBase64UrlChars(Span<char> span)
         {
-            int replacementLength = span.Length - urlEncodedPaddingCount;
-            for (int i = 0; i < replacementLength; i++)
+            for (int i = 0; i < span.Length; i++)
             {
                 char c = span[i];
 
@@ -379,27 +403,6 @@ public static class Base64
     }
 #endif
 
-    //internal static StringBuilder AppendEncodedTo(StringBuilder builder,
-    //                                              ReadOnlySpan<byte> bytes,
-    //                                              Base64FormattingOptions options)
-    //{
-    //    _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
-
-    //    // Don't put in any effort to compute the needed capacity of the line breaks
-    //    // because StringBuilder will allocate NEW memory each time you call Insert()
-    //    builder.EnsureCapacity(builder.Length + GetEncodedLength(bytes.Length));
-    //    int startOfBase64 = builder.Length;
-
-    //    Base64.AppendEncodedTo(builder, bytes);
-
-    //    if (options.HasFlag(Base64FormattingOptions.InsertLineBreaks) && !bytes.IsEmpty)
-    //    {
-    //        InsertLineBreaks(builder, startOfBase64);
-    //    }
-
-    //    return builder;
-    //}
-
     internal static StringBuilder AppendEncodedTo2(StringBuilder builder,
                                                   ReadOnlySpan<byte> bytes,
                                                   Base64FormattingOptions options)
@@ -415,7 +418,13 @@ public static class Base64
         {
             bool insertNewLineAtStart = builder.Length != 0 && !builder[builder.Length - 1].IsNewLine();
             int capacity = Base64.GetEncodedLength(bytes.Length);
-            capacity += (capacity / LINE_LENGTH) * LINE_BREAK.Length + (insertNewLineAtStart ? Environment.NewLine.Length : 0);
+
+            // The following is quite the same as:
+            // capacity += (capacity / LINE_LENGTH) * LINE_BREAK.Length + (insertNewLineAtStart ? Environment.NewLine.Length : 0);
+            // with the difference that it saves on one multiplication.
+            // As a result it allocates in some cases one more char than needed, but
+            // StringBuilder.EnsureCapacity allocates always more than requested:
+            capacity += capacity / 38 + (insertNewLineAtStart ? Environment.NewLine.Length : 0);
             _ = builder.EnsureCapacity(builder.Length + capacity);
 
             if (insertNewLineAtStart)
@@ -428,7 +437,7 @@ public static class Base64
         else
         {
             _ = builder.EnsureCapacity(builder.Length + Base64.GetEncodedLength(bytes.Length));
-            AppendChunks2(builder, bytes, finalPartLength);
+            AppendChunks(builder, bytes, finalPartLength);
         }
 
         if (finalPartLength > 0)
@@ -478,49 +487,8 @@ Repeat:
         goto Repeat;
     }
 
-    //private static void InsertLineBreaks(StringBuilder builder, int startOfBase64)
-    //{
-    //    int currentLineStartIndex = builder.LastIndexOf('\n', startOfBase64) + 1;
-
-    //    if (startOfBase64 - currentLineStartIndex < Base64.LINE_LENGTH)
-    //    {
-    //        startOfBase64 = currentLineStartIndex;
-    //    }
-    //    else
-    //    {
-    //        builder.Insert(startOfBase64, Base64.LINE_BREAK);
-    //        startOfBase64 += Base64.LINE_BREAK.Length;
-    //    }
-
-    //    int nextLineStart = startOfBase64 + Base64.LINE_LENGTH;
-
-    //    while (nextLineStart < builder.Length)
-    //    {
-    //        builder.Insert(nextLineStart, Base64.LINE_BREAK);
-    //        nextLineStart += Base64.LINE_BREAK.Length + Base64.LINE_LENGTH;
-    //    }
-    //}
-
-    //private static void AppendEncodedTo(StringBuilder sb, ReadOnlySpan<byte> data)
-    //{
-    //    Debug.Assert(sb != null);
-
-    //    // paddingLength may be 3, but finalPartLength is 0 then and no 
-    //    // padding will be added:
-    //    int paddingLength = CHUNK_LENGTH - data.Length % CHUNK_LENGTH;
-    //    int finalPartLength = CHUNK_LENGTH - paddingLength;
-
-    //    AppendChunks2(sb, data, finalPartLength);
-
-    //    if (finalPartLength > 0)
-    //    {
-    //        AppendFinalBlock(sb, data, paddingLength, finalPartLength);
-    //    }
-    //}
-
-    
-
-    private static void AppendChunks2(StringBuilder sb, ReadOnlySpan<byte> data, int finalPartLength)
+ 
+    private static void AppendChunks(StringBuilder sb, ReadOnlySpan<byte> data, int finalPartLength)
     {
         if (data.Length < CHUNK_LENGTH)
         {
@@ -555,7 +523,7 @@ Repeat:
             dataHolder |= data[data.Length - (finalPartLength - j)];
         }
 
-        dataHolder <<= paddingLength * 2;
+        dataHolder <<= paddingLength << 1;
 
         int remainingDataLength = 4 - paddingLength;
 

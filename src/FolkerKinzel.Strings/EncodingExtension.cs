@@ -18,10 +18,11 @@ public static class EncodingExtension
         _ArgumentNullException.ThrowIfNull(encoding, nameof(encoding));
 
 #if NET461 || NETSTANDARD2_0
-        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(chars.Length);
-        Span<char> buffer = shared.Value;
-        _ = chars.TryCopyTo(buffer);
-        return encoding.GetBytes(shared.Value, 0, chars.Length);
+        int length = chars.Length;
+        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
+        var arr = shared.Value;
+        _ = chars.TryCopyTo(arr);
+        return encoding.GetBytes(arr, 0, length);
 #else
         byte[] bytes = new byte[encoding.GetByteCount(chars)];
 
@@ -44,10 +45,11 @@ public static class EncodingExtension
     {
         _NullReferenceException.ThrowIfNull(encoding, nameof(encoding));
 
-        using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(bytes.Length);
-        Span<byte> buffer = shared.Value; 
-        _ = bytes.TryCopyTo(buffer);
-        return encoding.GetString(shared.Value, 0, bytes.Length);
+        int length = bytes.Length;
+        using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
+        var arr = shared.Value;
+        _ = bytes.TryCopyTo(arr);
+        return encoding.GetString(arr, 0, length);
     }
 #endif
 }
