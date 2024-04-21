@@ -8,9 +8,14 @@ methods from System.MemoryExtensions in .NET Core 3.1 projects. The namespace al
 publish this namespace in other projects and lost the chance to use the polyfills. Having a .NET Core 3.1 DLL
 as part of the nuget package is much more elegant: Only one namespace (`FolkerKinzel.Strings`) is needed to use the
 whole package.
-- Performance: Raises the maximum allowed stackalloc size for Char to 256 (according to the internal constant 
-`System.String.StackallockCharBufferSizeLimit`) from the .NET sources.
+- **Breaking Change:** The .NET Framework 4.5 support has ended. A .NET Framework 4.6.1 DLL is part of the nuget package instead.
+- Performance: Raised the maximum allowed stackalloc size for Char to 256 (according to the internal constant 
+`System.String.StackallockCharBufferSizeLimit`) from the .NET sources and for Byte to 512.
 - Performance: Faster algorithm for `Base64.GetEncodedLength(int)` (taken from `System.Buffers.Text.Base64`).
+- Performance: Faster and more memory efficient algorithm for StringBuilder.AppendBase64 when options is
+Base64FormattingOptions.InsertLineBreaks
+- Performance: Higher memory efficiency in polyfills by using ArrayPool&lt;T&gt;.Shared. For security-critical 
+applications the new class `Confidentiality` allows to control whether shared arrays are emptied when returned.
 
 - New extension methods:
 ```csharp
