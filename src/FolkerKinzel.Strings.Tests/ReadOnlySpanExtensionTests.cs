@@ -63,8 +63,6 @@ public class ReadOnlySpanExtensionTests
         Assert.AreEqual(-1, "".AsSpan().LastIndexOfAny(test.AsSpan(), 0, 0));
     }
 
-
-
     [DataTestMethod]
     [DataRow(-1, 0)]
     [DataRow(0, -1)]
@@ -123,6 +121,12 @@ public class ReadOnlySpanExtensionTests
         _ = "t".AsSpan().LastIndexOfAny(needles, index, count);
     }
 
+    //[TestMethod]
+    //public void MyTestMethod()
+    //{
+    //    int result = new char[] {'t'}.AsSpan().IndexOfAny("".AsSpan());
+    //}
+
 
     [DataTestMethod]
     [DataRow("t", "abcdefghi", -1)]
@@ -148,7 +152,14 @@ public class ReadOnlySpanExtensionTests
         => Assert.AreEqual(expectedIndex, testStr.AsSpan().IndexOfAny(needles));
 
     [TestMethod]
-    public void ContainsAnyTest1() => Assert.IsFalse("test".AsSpan().ContainsAny([]));
+    public void ContainsAnyTest1() => Assert.IsFalse("t".AsSpan().ContainsAny([]));
+
+    //[TestMethod]
+    //public void TestTest()
+    //{
+    //    var idx = MemoryExtensions.IndexOfAny(new char[] { 'a' }, "".AsSpan());
+    //}
+
 
     [DataTestMethod]
     [DataRow("test", 0)]

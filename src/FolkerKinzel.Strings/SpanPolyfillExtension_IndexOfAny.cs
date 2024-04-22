@@ -21,7 +21,7 @@ public static partial class SpanPolyfillExtension
     /// is used to avoid performance issues.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this Span<char> span, string? values)
-        => ((ReadOnlySpan<char>)span).IndexOfAny(values.AsSpan());
+        => span.IndexOfAny(values.AsSpan());
 
 #endif
 }

@@ -1,5 +1,7 @@
 namespace FolkerKinzel.Strings;
 
+/// <summary>Extension methods, which act as Polyfills for the extension methods of the
+/// <see cref="ReadOnlySpanExtension" /> class.</summary>
 public static partial class ReadOnlySpanExtensionPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 5.0 have an empty class!

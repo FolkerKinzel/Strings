@@ -23,5 +23,5 @@ public static partial class SpanExtension
     /// />, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool StartsWith(this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
-        => ((ReadOnlySpan<char>)span).StartsWith(value, comparisonType);
+        => MemoryExtensions.StartsWith(span, value, comparisonType);
 }
