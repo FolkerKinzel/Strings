@@ -84,7 +84,7 @@ public static partial class ReadOnlySpanExtension
         if (values.Length <= 5)
         {
             // MemoryExtensions.LastIndexOfAny() throws ArgumentOutOfRangeException even if
-            // s is "". string.LastIndexOfAny() does not.
+            // span is "". string.LastIndexOfAny() does not.
             if (span.Length == 0)
             {
                 return -1;

@@ -15,8 +15,9 @@ class Program
         //_ = BenchmarkRunner.Run<ToArrayVsToStringBench>();
         //_ = BenchmarkRunner.Run<HexDigitBench>();
         //_ = BenchmarkRunner.Run<InsertBench>();
-        _ = BenchmarkRunner.Run<Base64Bench>();
+        //_ = BenchmarkRunner.Run<Base64Bench>();
         //_ = BenchmarkRunner.Run<StackAllockBench>();
+        _ = BenchmarkRunner.Run<SearchValuesBench>();
         //Base64Bench.Test2();
 
 

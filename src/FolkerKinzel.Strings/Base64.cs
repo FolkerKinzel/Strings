@@ -216,7 +216,7 @@ public static class Base64
         {
             Span<char> contentSpan = default;
 
-            if (options.HasFlag(Base64ParserOptions.AcceptBase64Url) && IsBase64Url(base64))
+            if (options.HasFlag(Base64ParserOptions.AcceptBase64Url) && IsBase64Url(base64, out int replacementStartIndex))
             {
                 int length = base64.Length;
                 arr = ArrayPool<char>.Shared.Rent(length + paddingPlaceholder);
@@ -224,7 +224,8 @@ public static class Base64
                 _ = base64.TryCopyTo(contentSpan);
 
                 int urlEncodedPaddingCount = ReplaceUrlEncodedPadding(ref contentSpan);
-                ReplaceBase64UrlChars(contentSpan.Slice(0, contentSpan.Length - urlEncodedPaddingCount));
+                ReplaceBase64UrlChars(contentSpan.Slice(replacementStartIndex, 
+                                                        contentSpan.Length - urlEncodedPaddingCount - replacementStartIndex));
                 base64 = contentSpan;
             }
 
@@ -280,10 +281,18 @@ public static class Base64
                    switch { 0 => 0, 2 => 2, 3 => 1, _ => throw new FormatException() };
         }
 
-        static bool IsBase64Url(ReadOnlySpan<char> base64)
-            => base64.EndsWith(URL_ENCODED_PADDING,
-                               StringComparison.OrdinalIgnoreCase) || base64.ContainsAny("-_");
+        static bool IsBase64Url(ReadOnlySpan<char> base64, out int foundIndex)
+        {
+            // Look for the start of a URL-encoded padding char ("%3d"):
+            if (base64.Length > 3 && base64[base64.Length - 3] == '%')
+            {
+                foundIndex = 0;
+                return true;
+            }
 
+            foundIndex = base64.IndexOfAny("-_");
+            return foundIndex != -1;
+        }
 
         static int ReplaceUrlEncodedPadding(ref Span<char> span)
         {
