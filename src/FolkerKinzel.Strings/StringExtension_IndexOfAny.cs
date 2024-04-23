@@ -1,3 +1,4 @@
+using System;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
@@ -18,12 +19,9 @@ public static partial class StringExtension
     /// characters in the specified part of <paramref name="s" /> or -1 if none of these characters 
     /// have been found in this area.
     /// If <paramref name="anyOf" /> is an empty span, the method returns -1.</returns>
-    /// <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses
-    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, 
+    /// <remarks><see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, 
     /// ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
-    /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="anyOf"
-    /// /> is greater, <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see>
-    /// is used.</remarks>
+    /// ReadOnlySpan&lt;T&gt;)</see> is used for the comparison.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
@@ -50,13 +48,8 @@ public static partial class StringExtension
             return -1;
         }
 
-        if (anyOf.Length <= 5)
-        {
-            int matchIndex = MemoryExtensions.IndexOfAny(s.AsSpan(startIndex, count), anyOf);
-            return matchIndex == -1 ? -1 : matchIndex + startIndex;
-        }
-
-        return s.IndexOfAny(anyOf.ToArray(), startIndex, count);
+        int matchIndex = s.AsSpan(startIndex, count).IndexOfAny(anyOf);
+        return matchIndex == -1 ? -1 : matchIndex + startIndex;
     }
 
     /// <summary>Returns the zero-based index of the first occurrence of one of the the specified

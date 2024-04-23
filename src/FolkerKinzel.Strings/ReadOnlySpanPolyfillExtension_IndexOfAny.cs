@@ -16,13 +16,9 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// found. If <paramref name="values" /> is an empty span, the method returns <c>-1</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
-    {
-        // The nuget package System.Memory has a bug: It returns 0 if the span with the characters
-        // to search for is empty. The BCL returns -1 in this case. This makes it consistent:
-        return values.IsEmpty
-            ? -1
-            : MemoryExtensions.IndexOfAny(span, values);
-    }
+         // The nuget package System.Memory has a bug: It returns 0 if the span with the characters
+         // to search for is empty. The BCL returns -1 in this case. This makes it consistent:
+         => values.IsEmpty ? -1 : MemoryExtensions.IndexOfAny(span, values);
 
     /// <summary>Searches for the zero-based index of the first occurrence of one of the
     /// specified Unicode characters.</summary>
@@ -34,6 +30,9 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <c>0</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this ReadOnlySpan<char> span, string? values)
+        // Don't address MemoryExtensions here directly because the library method
+        // polyfills a bug in the nuget package System.Memory for .NET Framework and
+        // .NET Standard 2.0
         => span.IndexOfAny(values.AsSpan());
 
 #endif

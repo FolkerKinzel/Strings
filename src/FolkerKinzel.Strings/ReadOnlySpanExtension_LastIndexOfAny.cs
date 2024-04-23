@@ -2,36 +2,6 @@ namespace FolkerKinzel.Strings;
 
 public static partial class ReadOnlySpanExtension
 {
-    /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
-    /// Unicode characters.</summary>
-    /// <param name="span">The span to examine.</param>
-    /// <param name="values">A read-only character span that contains the characters to search
-    /// for.</param>
-    /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
-    /// characters in <paramref name="span" /> or -1 if none of these characters have been
-    /// found. If <paramref name="values" /> is an empty span, the method returns -1.</returns>
-    /// 
-    /// <remarks>
-    /// If the length of <paramref name="values" /> is less than 5, the method uses
-    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T},
-    /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
-    /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
-    /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
-    /// is used to avoid performance issues.</remarks>
-    public static int LastIndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
-    {
-        // string.LastIndexOfAny returns -1 if anyOf is an empty array (although MSDN says it
-        // would return 0).
-        // MemoryExtensions.LastIndexOfAny returns 0 if the span with the characters to search
-        // for is empty.
-        // This makes it consistent:
-        return span.IsEmpty || values.IsEmpty
-            ? -1
-            : values.Length > 5 && span.Length > 2
-                ? span.ToString().LastIndexOfAny(values.ToArray())
-                : MemoryExtensions.LastIndexOfAny(span, values);
-    }
-
     /// <summary>Returns the zero-based index of the last occurrence of one of the specified
     /// characters in <paramref name="span" />. The search begins at a specified character
     /// position and runs a specified number of character positions backwards to the beginning
@@ -46,54 +16,38 @@ public static partial class ReadOnlySpanExtension
     /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found.</returns>
-    /// <remarks> If the length of <paramref name="values" /> is less than 5, the method uses
-    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T},
+    /// <remarks><see cref="MemoryExtensions.LastIndexOfAny{T}(ReadOnlySpan{T},
     /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
-    /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
-    /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
-    /// is used to avoid performance issues. </remarks>
+    /// ReadOnlySpan&lt;T&gt;)</see> is used for the comparison.</remarks>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="span" /> is not <see cref="ReadOnlySpan{T}.Empty" /> and <paramref
-    /// name="startIndex" /> is less than zero or greater than or equal to the length of
+    /// <paramref name="span"/> is not <see cref="ReadOnlySpan{T}.Empty"/> and <paramref name="count"/>
+    /// is not <c>0</c> and
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <paramref name="startIndex" /> is less than zero or greater than or equal to the length of
     /// <paramref name="span" />
-    /// </para>
-    /// <para>
+    /// </item>
+    /// <item>
     /// - or -
-    /// </para>
-    /// <para>
-    /// <paramref name="span" /> is not <see cref="ReadOnlySpan{T}.Empty" /> and <paramref
-    /// name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
-    /// </para>
+    /// </item>
+    /// <item>
+    /// <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
+    /// </item>
+    /// </list>
     /// </exception>
     public static int LastIndexOfAny(this ReadOnlySpan<char> span,
                                      ReadOnlySpan<char> values,
                                      int startIndex,
                                      int count)
     {
-        // string.LastIndexOfAny returns -1 if anyOf is an empty array (although MSDN says it
-        // would return 0).
-        // MemoryExtensions.LastIndexOfAny returns 0 if the span with the characters to search
-        // for is empty.
-        // This makes it consistent:
-        if (count == 0 || values.IsEmpty)
+        if (count == 0 || span.Length == 0)
         {
             return -1;
         }
 
-        if (values.Length <= 5)
-        {
-            // MemoryExtensions.LastIndexOfAny() throws ArgumentOutOfRangeException even if
-            // span is "". string.LastIndexOfAny() does not.
-            if (span.Length == 0)
-            {
-                return -1;
-            }
-            int matchIndex = MemoryExtensions.LastIndexOfAny(span.Slice(startIndex - count + 1, count),
-                                                             values);
-            return matchIndex == -1 ? -1 : matchIndex + startIndex - count + 1;
-        }
-
-        return span.ToString().LastIndexOfAny(values.ToArray(), startIndex, count);
+        int matchIndex = span.Slice(startIndex - count + 1, count).LastIndexOfAny(values);
+        return matchIndex == -1 ? -1 : matchIndex + startIndex - count + 1;
     }
 }

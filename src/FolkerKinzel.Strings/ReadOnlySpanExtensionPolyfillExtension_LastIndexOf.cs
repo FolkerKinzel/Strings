@@ -1,7 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-/// <summary>Extension methods, which act as Polyfills for the extension methods of the
-/// <see cref="ReadOnlySpanExtension" /> class.</summary>
 public static partial class ReadOnlySpanExtensionPolyfillExtension
 {
     // Place this preprocessor directive inside the class to let .NET 5.0 have an empty class!
@@ -58,10 +56,11 @@ public static partial class ReadOnlySpanExtensionPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOf(this ReadOnlySpan<char> span, string? value, int startIndex, int count, StringComparison comparisonType)
+    public static int LastIndexOf(this ReadOnlySpan<char> span,
+                                  string? value,
+                                  int startIndex,
+                                  int count,
+                                  StringComparison comparisonType)
         => span.LastIndexOf(value.AsSpan(), startIndex, count, comparisonType);
-
- 
-
 #endif
 }

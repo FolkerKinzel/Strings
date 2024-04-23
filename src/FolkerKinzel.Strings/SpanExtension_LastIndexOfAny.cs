@@ -2,26 +2,6 @@ namespace FolkerKinzel.Strings;
 
 public static partial class SpanExtension
 {
-    /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
-    /// Unicode characters.</summary>
-    /// <param name="span">The span to examine.</param>
-    /// <param name="values">A read-only character span that contains the characters to search
-    /// for.</param>
-    /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
-    /// characters in <paramref name="span" /> or -1 if none of these characters have been
-    /// found. If <paramref name="values" /> is an empty span, the method returns -1.</returns>
-    /// <remarks> 
-    /// If the length of <paramref name="values" /> is less than 5, the method uses
-    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T},
-    /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(Span&lt;T&gt;,
-    /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
-    /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
-    /// is used to avoid performance issues. 
-    /// </remarks>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOfAny(this Span<char> span, ReadOnlySpan<char> values)
-        => ((ReadOnlySpan<char>)span).LastIndexOfAny(values);
-
     /// <summary>Returns the zero-based index of the last occurrence of one of the specified
     /// characters in <paramref name="span" />. The search begins at a specified character
     /// position and runs a specified number of character positions backwards to the beginning
@@ -37,12 +17,9 @@ public static partial class SpanExtension
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found.</returns>
     /// <remarks> 
-    /// If the length of <paramref name="values" /> is less than 5, the method uses
     /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T},
     /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(Span&lt;T&gt;,
-    /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
-    /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
-    /// is used to avoid performance issues. 
+    /// ReadOnlySpan&lt;T&gt;)</see> is used for the comparison.
     /// </remarks>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>

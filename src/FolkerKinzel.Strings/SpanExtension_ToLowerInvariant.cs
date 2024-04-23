@@ -7,7 +7,7 @@ public static partial class SpanExtension
     /// lowercase letters using the rules of the invariant culture.</summary>
     /// <param name="span">The span whose content is changed.</param>
     /// <returns>A copy of <paramref name="span" />.</returns>
-    public static ReadOnlySpan<char> ToLowerInvariant(this Span<char> span)
+    public static Span<char> ToLowerInvariant(this Span<char> span)
     {
         for (int i = 0; i < span.Length; i++)
         {

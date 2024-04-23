@@ -18,10 +18,8 @@ public static partial class StringExtension
     /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
     /// characters in the specified part of <paramref name="s" /> or -1 if none of these
     /// characters have been found in this area.</returns>
-    /// <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses
-    /// MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)
-    /// for the comparison. If the length of <paramref name="anyOf" /> is greater, <see
-    /// cref="string.LastIndexOfAny(char[])" /> is used.</remarks>
+    /// <remarks>MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)
+    /// is used for the comparison.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
@@ -49,19 +47,14 @@ public static partial class StringExtension
             return -1;
         }
 
-        if (anyOf.Length <= 5)
+        // MemoryExtensions.LastIndexOfAny throws ArgumentOutOfRangeExceptions even if s is ""
+        // string.LastIndexOfAny does not.
+        if (s.Length == 0)
         {
-            // MemoryExtensions.LastIndexOfAny throws ArgumentOutOfRangeExceptions even if s is ""
-            // string.LastIndexOfAny does not.
-            if (s.Length == 0)
-            {
-                return -1;
-            }
-            int matchIndex = MemoryExtensions.LastIndexOfAny(s.AsSpan(startIndex - count + 1, count), anyOf);
-            return matchIndex == -1 ? -1 : matchIndex + startIndex - count + 1;
+            return -1;
         }
-
-        return s.LastIndexOfAny(anyOf.ToArray(), startIndex, count);
+        int matchIndex = s.AsSpan(startIndex - count + 1, count).LastIndexOfAny(anyOf);
+        return matchIndex == -1 ? -1 : matchIndex + startIndex - count + 1;
     }
 
     /// <summary>Returns the zero-based index position of the last occurrence of one of the
@@ -100,10 +93,8 @@ public static partial class StringExtension
     /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
     /// characters in <paramref name="s" /> or -1 if none of these
     /// characters have been found.</returns>
-    /// <remarks>If the length of <paramref name="anyOf" /> is less than 5, the method uses
-    /// MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)
-    /// for the comparison. If the length of <paramref name="anyOf" /> is greater, <see
-    /// cref="string.LastIndexOfAny(char[])" /> is used.</remarks>
+    /// <remarks>MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)
+    /// is used for the comparison.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(this string s, ReadOnlySpan<char> anyOf)

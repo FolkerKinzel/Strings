@@ -17,6 +17,9 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
+        // Don't address MemoryExtensions here explicitely because the library method
+        // polyfills a bug in the nuget package System.Memory for .NET Framework and
+        // .NET Standard 2.0
         => span.IndexOfAny(values) != -1;
 
     /// <summary>Indicates whether a read-only character span contains one of the two characters
