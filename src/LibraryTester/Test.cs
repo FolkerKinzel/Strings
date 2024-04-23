@@ -10,6 +10,8 @@ namespace LibraryTesters
     {
         private static readonly char[] _array = ['x'];
 
+        public static int TestMethod() => MemoryExtensions.LastIndexOfAny("t".AsSpan(), "".AsSpan());
+
         public static void Method()
         {
             string test = "Test";

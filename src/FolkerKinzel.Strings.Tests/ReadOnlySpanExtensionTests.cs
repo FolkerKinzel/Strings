@@ -157,7 +157,7 @@ public class ReadOnlySpanExtensionTests
     //[TestMethod]
     //public void TestTest()
     //{
-    //    var idx = MemoryExtensions.IndexOfAny(new char[] { 'a' }, "".AsSpan());
+    //    var idx = ReadOnlySpanExtension.Test();
     //}
 
 
