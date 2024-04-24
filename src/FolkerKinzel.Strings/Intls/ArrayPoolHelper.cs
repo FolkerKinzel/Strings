@@ -13,6 +13,6 @@ internal static class ArrayPoolHelper
 
         internal T[] Value { get; }
 
-        public void Dispose() => ArrayPool<T>.Shared.Return(Value, Confidentiality.Confidential);
+        public void Dispose() => ArrayPool<T>.Shared.Return(Value, Confidentiality.IsConfidential);
     }
 }

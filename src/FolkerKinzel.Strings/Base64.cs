@@ -258,7 +258,7 @@ public static class Base64
         {
             if(arr != null)
             {
-                ArrayPool<char>.Shared.Return(arr, Confidentiality.Confidential);
+                ArrayPool<char>.Shared.Return(arr, Confidentiality.IsConfidential);
             }
         }
 

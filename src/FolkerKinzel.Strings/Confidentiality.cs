@@ -27,5 +27,5 @@ public static class Confidentiality
     /// This property is not thread-safe.
     /// </note>
     /// </remarks>
-    public static bool Confidential { get; set; }
+    public static bool IsConfidential { get; set; }
 }
