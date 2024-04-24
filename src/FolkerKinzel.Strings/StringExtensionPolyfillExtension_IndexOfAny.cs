@@ -2,11 +2,10 @@ using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
-public static partial class StringExtensionPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 5.0 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
+public static partial class StringExtensionPolyfillExtension
+{
     /// <summary>Returns the zero-based index of the first occurrence of one of the the specified
     /// characters in <paramref name="s" />. The search begins at a specified index and a
     /// specified number of character positions are checked.</summary>
@@ -90,6 +89,6 @@ public static partial class StringExtensionPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this string s, string? anyOf)
         => s.IndexOfAny(anyOf.AsSpan(), 0, s?.Length ?? throw new ArgumentNullException(nameof(s)));
+}
 
 #endif
-}

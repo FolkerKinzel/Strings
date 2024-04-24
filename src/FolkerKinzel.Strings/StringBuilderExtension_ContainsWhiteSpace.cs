@@ -80,5 +80,4 @@ public static partial class StringBuilderExtension
 
         return false;
     }
-
 }

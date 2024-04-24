@@ -2,10 +2,10 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-public static partial class StringPolyfillExtension
-{
 #if NET461 || NETSTANDARD2_0
 
+public static partial class StringPolyfillExtension
+{
     /// <summary>Splits a <see cref="string" /> into substrings based on a specified delimiting
     /// character and, optionally, options.</summary>
     /// <param name="s">The <see cref="string" /> to split.</param>
@@ -88,6 +88,7 @@ public static partial class StringPolyfillExtension
                             ? [s]
                             : s.Split(new string[] { separator }, options);
 
-#endif
 }
+
+#endif
 

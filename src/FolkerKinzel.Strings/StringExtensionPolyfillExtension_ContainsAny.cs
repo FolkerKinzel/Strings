@@ -2,14 +2,13 @@ using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
+#if NET461 || NETSTANDARD2_0
+
 /// <summary> Extension methods, which act as Polyfills for the extension methods of the 
 /// <see cref="StringExtension" /> class.</summary>
 /// <remarks>The polyfills are available for .NET Framework 4.5 and .NET Standard 2.0.</remarks>
 public static partial class StringExtensionPolyfillExtension
 {
-    // Place this preprocessor directive inside the class to let .NET 5.0 and above have an empty class!
-#if NET461 || NETSTANDARD2_0
-
     /// <summary>Indicates whether a <see cref="string" /> contains one of the Unicode characters
     /// that are passed to the method in a read-only span.</summary>
     /// <param name="s">The <see cref="string" /> to search.</param>
@@ -28,6 +27,7 @@ public static partial class StringExtensionPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this string s, string? anyOf)
         => s.ContainsAny(anyOf.AsSpan());
+}
 
 #endif
-}
+

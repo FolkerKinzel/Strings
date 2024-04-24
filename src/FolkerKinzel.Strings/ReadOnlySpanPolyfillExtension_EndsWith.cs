@@ -1,10 +1,9 @@
 namespace FolkerKinzel.Strings;
 
-public static partial class ReadOnlySpanPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
+public static partial class ReadOnlySpanPolyfillExtension
+{
     /// <summary>Indicates whether <paramref name="span" /> ends with the specified <see cref="string"
     /// />.</summary>
     /// <param name="span">The source span.</param>
@@ -36,6 +35,6 @@ public static partial class ReadOnlySpanPolyfillExtension
     public static bool EndsWith(
         this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
         => span.EndsWith(value.AsSpan(), comparisonType);
+}
 
 #endif
-}

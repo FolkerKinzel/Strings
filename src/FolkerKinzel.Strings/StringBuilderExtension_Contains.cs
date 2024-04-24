@@ -58,5 +58,4 @@ public static partial class StringBuilderExtension
     public static bool Contains(this StringBuilder builder, char value, int startIndex, int count)
        => builder is null ? throw new ArgumentNullException(nameof(builder)) 
                           : builder.IndexOf(value, startIndex, count) != -1;
-
 }

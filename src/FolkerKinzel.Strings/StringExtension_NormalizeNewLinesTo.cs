@@ -38,5 +38,4 @@ public static partial class StringExtension
         var sb = new StringBuilder(s.Length + s.Length / 2);
         return sb.Append(s).NormalizeNewLinesTo(newLine).ToString();
     }
-
 }

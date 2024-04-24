@@ -1,10 +1,9 @@
 namespace FolkerKinzel.Strings;
 
-public static partial class ReadOnlySpanExtensionPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 5.0 have an empty class!
 #if NET461 || NETSTANDARD2_0
 
+public static partial class ReadOnlySpanExtensionPolyfillExtension
+{
     /// <summary>Returns the zero-based index of the last occurrence of one of the specified
     /// characters in <paramref name="span" />. The search begins at a specified character
     /// position and runs a specified number of character positions backwards to the beginning
@@ -27,20 +26,24 @@ public static partial class ReadOnlySpanExtensionPolyfillExtension
     /// is used to avoid performance issues.</remarks>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="span" /> is not <see cref="ReadOnlySpan{T}.Empty" /> and <paramref
-    /// name="startIndex" /> is less than zero or greater than or equal to the length of
+    /// <paramref name="span"/> is not <see cref="ReadOnlySpan{T}.Empty"/> and <paramref name="count"/>
+    /// is not <c>0</c> and
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <paramref name="startIndex" /> is less than zero or greater than or equal to the length of
     /// <paramref name="span" />
-    /// </para>
-    /// <para>
+    /// </item>
+    /// <item>
     /// - or -
-    /// </para>
-    /// <para>
-    /// <paramref name="span" /> is not <see cref="ReadOnlySpan{T}.Empty" /> and <paramref
-    /// name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
-    /// </para>
+    /// </item>
+    /// <item>
+    /// <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
+    /// </item>
+    /// </list>
     /// </exception>
     public static int LastIndexOfAny(this ReadOnlySpan<char> span, string? values, int startIndex, int count)
         => span.LastIndexOfAny(values.AsSpan(), startIndex, count);
+}
 
 #endif
-}

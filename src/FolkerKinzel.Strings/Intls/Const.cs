@@ -7,5 +7,4 @@ internal static class Const
     internal const int StackallocCharThreshold = 256;
 
     internal const int StackallocByteThreshold = 2 * Const.StackallocCharThreshold;
-
 }

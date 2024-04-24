@@ -31,8 +31,8 @@ public static class EncodingExtension
 #endif
     }
 
-
 #if NET461 || NETSTANDARD2_0
+
     /// <summary>Decodes all bytes in the specified read-only span into a <see cref="string"/>.</summary>
     /// <param name="encoding">The <see cref="Encoding" /> object on which the extension
     /// method is executed.</param>
@@ -51,5 +51,6 @@ public static class EncodingExtension
         _ = bytes.TryCopyTo(arr);
         return encoding.GetString(arr, 0, length);
     }
+
 #endif
 }

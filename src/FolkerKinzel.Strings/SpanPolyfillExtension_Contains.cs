@@ -1,16 +1,9 @@
 namespace FolkerKinzel.Strings;
 
-/// <summary>Extension methods for the <see cref="Span{T}">Span&lt;Char&gt;</see> struct
-/// used in the .NET Framework 4.5, .NET Standard 2.0, and .NET Standard 2.1 as polyfills
-/// for methods from current .NET versions.</summary>
-/// <remarks>The methods of this class should only be used in the extension method syntax
-/// to simulate the methods of the <see cref="Span{T}">Span&lt;Char&gt;</see> struct,
-/// which exist in current frameworks.</remarks>
-public static partial class SpanPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
 
+public static partial class SpanPolyfillExtension
+{
     /// <summary>Indicates whether a character span contains a specified Unicode character.</summary>
     /// <param name="span">The span to search.</param>
     /// <param name="value">The Unicode character to search for.</param>
@@ -20,8 +13,6 @@ public static partial class SpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(this Span<char> span, char value)
         => span.IndexOf(value) != -1;
-
-#endif
 
 #if NET461 || NETSTANDARD2_0
 
@@ -40,3 +31,5 @@ public static partial class SpanPolyfillExtension
 
 #endif
 }
+
+#endif

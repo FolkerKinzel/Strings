@@ -76,5 +76,4 @@ public static partial class StringBuilderExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, ReadOnlySpan<byte> value)
         => UrlEncoding.AppendEncodedTo(builder, value);
-
 }

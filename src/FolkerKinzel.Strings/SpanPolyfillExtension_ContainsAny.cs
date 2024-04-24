@@ -1,9 +1,9 @@
 namespace FolkerKinzel.Strings;
 
+#if !NET8_0_OR_GREATER
+
 public static partial class SpanPolyfillExtension
 {
-    // Place this preprocessor directive inside the class to let .NET 8.0 and above have an empty class!
-#if !NET8_0_OR_GREATER
     /// <summary>Indicates whether a character span contains one of the Unicode characters
     /// that are passed to the method as a read-only character span.</summary>
     /// <param name="span">The span to examine.</param>
@@ -50,8 +50,6 @@ public static partial class SpanPolyfillExtension
     public static bool ContainsAny(
         this Span<char> span, char value0, char value1, char value2)
         => span.IndexOfAny(value0, value1, value2) != -1;
-#endif
-
 
 #if NET461 || NETSTANDARD2_0
 
@@ -71,3 +69,5 @@ public static partial class SpanPolyfillExtension
 
 #endif
 }
+
+#endif

@@ -11,5 +11,4 @@ public static partial class StringExtension
     public static bool IsAscii(this string s)
         => s is null ? throw new ArgumentNullException(nameof(s)) 
                      : s.AsSpan().IsAscii();
-
 }

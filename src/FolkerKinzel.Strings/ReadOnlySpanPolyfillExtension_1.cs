@@ -1,5 +1,6 @@
 namespace FolkerKinzel.Strings;
 
+#if !NET8_0_OR_GREATER
 
 /// <summary>Extension methods for the <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>
 /// struct, which are used as polyfills for methods from current .NET versions.</summary>
@@ -7,3 +8,5 @@ namespace FolkerKinzel.Strings;
 /// to simulate the methods of the <see cref="ReadOnlySpan{T}">ReadOnlySpan&lt;Char&gt;</see>
 /// struct, which exist in more modern frameworks.</remarks>
 public static partial class ReadOnlySpanPolyfillExtension { }
+
+#endif

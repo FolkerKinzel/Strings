@@ -2,10 +2,10 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-public static partial class StringPolyfillExtension
-{
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 ||  NETCOREAPP3_1 || NET5_0 
 
+public static partial class StringPolyfillExtension
+{
     /// <summary>Replaces all newlines in <paramref name="s" /> with 
     /// <see cref="Environment.NewLine" />.</summary>
     /// <param name="s">The source <see cref="string" />.</param>
@@ -141,10 +141,8 @@ public static partial class StringPolyfillExtension
 
         return s;
     }
+}
 
 #endif
 
-
-
-}
 

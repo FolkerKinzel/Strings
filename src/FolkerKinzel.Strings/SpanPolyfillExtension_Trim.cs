@@ -1,10 +1,9 @@
 namespace FolkerKinzel.Strings;
 
-public static partial class SpanPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
 
+public static partial class SpanPolyfillExtension
+{
     /// <summary>Removes all leading and trailing white space characters from a character
     /// span.</summary>
     /// <param name="span">The source span from which the characters are removed.</param>
@@ -53,7 +52,6 @@ public static partial class SpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Span<char> TrimEnd(this Span<char> span, char trimElement)
         => span.Slice(0, span.GetTrimmedLength(trimElement));
+}
 
 #endif
-
-}

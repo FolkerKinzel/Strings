@@ -2,11 +2,10 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-public static partial class StringBuilderPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET Core 3.1 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
+public static partial class StringBuilderPolyfillExtension
+{
     /// <summary>Concatenates the <see cref="string"/>s of the provided array, using the specified 
     /// <see cref="char"/> separator between each <see cref="string"/>, then appends the result to 
     /// <paramref name="builder" />.</summary>
@@ -148,7 +147,6 @@ public static partial class StringBuilderPolyfillExtension
         }
         return builder;
     }
+}
 
 #endif
-
-}

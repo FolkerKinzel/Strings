@@ -2,13 +2,10 @@ using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
-/// <summary> Extension methods, which act as Polyfills for the extension methods of the 
-/// <see cref="StringBuilderExtension" /> class.</summary>
-/// <remarks>The polyfills are available for .NET Framework 4.5 and .NET Standard 2.0.</remarks>
+#if NET461 || NETSTANDARD2_0
+
 public static partial class StringBuilderExtensionPolyfillExtension
 {
-    // Place this preprocessor directive inside the class to let .NET Core 3.1 and above have an empty class!
-#if NET461 || NETSTANDARD2_0
 
     /// <summary>Appends the content of a <see cref="string" /> as URL-encoded character
     /// sequence to the end of a <see cref="StringBuilder" />.</summary>
@@ -28,6 +25,7 @@ public static partial class StringBuilderExtensionPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, string? value)
         => UrlEncoding.AppendEncodedTo(builder, value.AsSpan());
+}
 
 #endif
-}
+

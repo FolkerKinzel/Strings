@@ -65,5 +65,4 @@ public static partial class StringBuilderExtension
                                              ReadOnlySpan<byte> bytes,
                                              Base64FormattingOptions options = Base64FormattingOptions.None)
         => Base64.AppendEncodedTo(builder, bytes, options);
-
 }

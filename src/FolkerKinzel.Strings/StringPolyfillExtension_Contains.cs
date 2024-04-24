@@ -2,14 +2,10 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-/// <summary>Extension methods for the <see cref="string" /> class, which are used
-/// as polyfills for methods from current .NET versions.</summary>
-/// <remarks>To match the behavior of the original methods, these extension methods throw
-/// a <see cref="NullReferenceException" /> when called on a <c>null</c> string.</remarks>
-public static partial class StringPolyfillExtension
-{
 #if NET461 || NETSTANDARD2_0
 
+public static partial class StringPolyfillExtension
+{
     /// <summary>Returns a value indicating whether a specified character occurs within this
     /// <see cref="string" />, using the specified comparison rules.</summary>
     /// <param name="s">The <see cref="string" /> to search.</param>
@@ -47,7 +43,7 @@ public static partial class StringPolyfillExtension
     public static bool Contains(
         this string s, string value, StringComparison comparisonType)
         => s.IndexOf(value, comparisonType) != -1;
+}
 
 #endif
-}
 

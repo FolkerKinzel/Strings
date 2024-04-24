@@ -17,23 +17,27 @@ public static partial class SpanExtension
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found.</returns>
     /// <remarks> 
-    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T},
-    /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(Span&lt;T&gt;,
+    /// <see cref="MemoryExtensions.LastIndexOfAny{T}(ReadOnlySpan{T},
+    /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
     /// ReadOnlySpan&lt;T&gt;)</see> is used for the comparison.
     /// </remarks>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="span" /> is not <see cref="Span{T}.Empty" /> and <paramref name="startIndex"
-    /// /> is less than zero or greater than or equal to the length of <paramref name="span"
-    /// />
+    /// <paramref name="span"/> is not <see cref="Span{T}.Empty"/> and <paramref name="count"/>
+    /// is not <c>0</c> and
     /// </para>
-    /// <para>
+    /// <list type="bullet">
+    /// <item>
+    /// <paramref name="startIndex" /> is less than zero or greater than or equal to the length of
+    /// <paramref name="span" />
+    /// </item>
+    /// <item>
     /// - or -
-    /// </para>
-    /// <para>
-    /// <paramref name="span" /> is not <see cref="Span{T}.Empty" /> and <paramref name="startIndex"
-    /// /> - <paramref name="count" /> + 1 is less than zero.
-    /// </para>
+    /// </item>
+    /// <item>
+    /// <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
+    /// </item>
+    /// </list>
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(

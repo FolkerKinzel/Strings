@@ -1,10 +1,9 @@
 namespace FolkerKinzel.Strings;
 
-public static partial class SpanPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
+public static partial class SpanPolyfillExtension
+{
     /// <summary>Specifies the zero-based index of the last occurrence of a specified string
     /// in <paramref name="span" />. A parameter specifies the type of search for the specified
     /// string.</summary>
@@ -82,6 +81,6 @@ public static partial class SpanPolyfillExtension
                                                   startIndex,
                                                   count,
                                                   comparisonType);
+}
 
 #endif
-}

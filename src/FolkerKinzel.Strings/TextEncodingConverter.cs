@@ -612,5 +612,4 @@ public static class TextEncodingConverter
         bomLength = 0;
         return UTF_8;
     }
-
 }

@@ -1,11 +1,9 @@
 namespace FolkerKinzel.Strings;
 
+#if NET461 || NETSTANDARD2_0
 
 public static partial class ReadOnlySpanPolyfillExtension
 {
-    // Place this preprocessor directive inside the class to let newer versions have an empty class!
-#if NET461 || NETSTANDARD2_0
-
     /// <summary>Searches for the zero-based index of the first occurrence of one of the
     /// specified Unicode characters.</summary>
     /// <param name="span">The read-only span to examine.</param>
@@ -34,6 +32,6 @@ public static partial class ReadOnlySpanPolyfillExtension
         // polyfills a bug in the nuget package System.Memory for .NET Framework and
         // .NET Standard 2.0
         => span.IndexOfAny(values.AsSpan());
+}
 
 #endif
-}

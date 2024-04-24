@@ -113,5 +113,4 @@ public static partial class StringBuilderExtension
         stringBuilder.Length = length;
         return stringBuilder;
     }
-
 }

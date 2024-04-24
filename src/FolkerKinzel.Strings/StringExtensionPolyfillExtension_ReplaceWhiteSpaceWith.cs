@@ -2,11 +2,10 @@ using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
-public static partial class StringExtensionPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 5.0 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
+public static partial class StringExtensionPolyfillExtension
+{
     /// <summary>Generates a <see cref="string" /> in which all sequences of white space
     /// are replaced by <paramref name="replacement" />.</summary>
     /// <param name="s">The source <see cref="string" />.</param>
@@ -34,6 +33,6 @@ public static partial class StringExtensionPolyfillExtension
         string? replacement,
         bool skipNewLines = false)
         => s.ReplaceWhiteSpaceWith(replacement.AsSpan(), skipNewLines);
+}
 
 #endif
-}

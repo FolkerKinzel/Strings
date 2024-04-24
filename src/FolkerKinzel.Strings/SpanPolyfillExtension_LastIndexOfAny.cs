@@ -1,10 +1,9 @@
 namespace FolkerKinzel.Strings;
 
-public static partial class SpanPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
+public static partial class SpanPolyfillExtension
+{
     /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
     /// Unicode characters.</summary>
     /// <param name="span">The span to examine.</param>
@@ -61,7 +60,7 @@ public static partial class SpanPolyfillExtension
     /// ReadOnlySpan&lt;T&gt;)</see> is used for the comparison.</remarks>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="span"/> is not <see cref="ReadOnlySpan{T}.Empty"/> and <paramref name="count"/>
+    /// <paramref name="span"/> is not <see cref="Span{T}.Empty"/> and <paramref name="count"/>
     /// is not <c>0</c> and
     /// </para>
     /// <list type="bullet">
@@ -80,6 +79,6 @@ public static partial class SpanPolyfillExtension
     public static int LastIndexOfAny(
         this Span<char> span, string? values, int startIndex, int count)
         => ((ReadOnlySpan<char>)span).LastIndexOfAny(values.AsSpan(), startIndex, count);
+}
 
 #endif
-}

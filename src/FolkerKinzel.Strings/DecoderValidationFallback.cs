@@ -17,35 +17,32 @@ namespace FolkerKinzel.Strings;
 /// EncoderFallback, DecoderFallback)</see>,
 /// </item>
 /// <item>
-/// <see cref="Encoding.GetEncoding(string, EncoderFallback, DecoderFallback)"> Encoding.GetEncoding(string,
-/// EncoderFallback, DecoderFallback)</see> or
+/// <see cref="Encoding.GetEncoding(string, EncoderFallback, DecoderFallback)"> 
+/// Encoding.GetEncoding(string, EncoderFallback, DecoderFallback)</see> or
 /// </item>
 /// <item>
-/// <see cref="TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback,
-/// bool)"> TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback,
-/// bool)</see> and
+/// <see cref="TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback, bool)">
+/// TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback, bool)</see> and
 /// </item>
 /// <item>
-/// <see cref="TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback,
-/// bool)"> TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback,
-/// bool)</see>.
+/// <see cref="TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback, bool)">
+/// TextEncodingConverter.GetEncoding(int, EncoderFallback, DecoderFallback, bool)</see>.
 /// </item>
 /// </list>
 /// <para>
-/// The <see cref="DecoderValidationFallback" /> object is passed as a <see cref="DecoderFallback"
-/// /> object.
+/// The <see cref="DecoderValidationFallback" /> object is passed as a <see cref="DecoderFallback" /> 
+/// object.
 /// </para>
 /// <para>
-/// The <see cref="DecoderValidationFallback" /> class behaves like the <see
-/// cref="DecoderReplacementFallback" /> class, except that it informs after use in its 
-/// <see cref="HasError" /> property whether an error has occurred. To evaluate the property, You 
-/// should keep a reference to the <see cref="DecoderValidationFallback" /> object or cast the 
-/// return value of the <see cref="Encoding.DecoderFallback">Encoding.DecoderFallback</see>
+/// The <see cref="DecoderValidationFallback" /> class behaves like the <see cref="DecoderReplacementFallback" /> 
+/// class, except that it informs after use in its  <see cref="HasError" /> property whether an error has 
+/// occurred. To evaluate the property, You should keep a reference to the <see cref="DecoderValidationFallback" /> 
+/// object or cast the return value of the <see cref="Encoding.DecoderFallback">Encoding.DecoderFallback</see>
 /// property to the Type <see cref="DecoderValidationFallback" />.
 /// </para>
 /// <para>
-/// When using the <see cref="DecoderValidationFallback" /> object multiple times, the <see cref="Reset"
-/// /> method can be called to reset the <see cref="HasError" /> property.
+/// When using the <see cref="DecoderValidationFallback" /> object multiple times, the <see cref="Reset" /> 
+/// method can be called to reset the <see cref="HasError" /> property.
 /// </para>
 /// </remarks>
 public sealed class DecoderValidationFallback : DecoderFallback

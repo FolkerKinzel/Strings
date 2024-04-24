@@ -66,5 +66,4 @@ public static partial class StringExtension
     public static bool ContainsAny(this string s, char[] anyOf)
         => s is null ? throw new ArgumentNullException(nameof(s))
                      : s.IndexOfAny(anyOf) != -1 && anyOf.Length != 0;
-
 }

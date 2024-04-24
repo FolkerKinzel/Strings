@@ -6,7 +6,6 @@ namespace FolkerKinzel.Strings;
 /// <summary>Static class that provides methods for handling URL encoding (RFC 3986).</summary>
 public static class UrlEncoding
 {
-
     /// <summary>Factor by which the number of bytes to be encoded is multiplied to estimate
     /// the length of the encoded output.</summary>
     public const double EncodedLengthFactor = 2.5;
@@ -367,5 +366,4 @@ public static class UrlEncoding
 
         return bytes.Slice(0, byteIndex);
     }
-
 }

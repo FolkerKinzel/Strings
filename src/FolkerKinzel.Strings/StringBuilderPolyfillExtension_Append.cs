@@ -2,32 +2,10 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-/// <summary>Extension methods for the <see cref="StringBuilder" /> class, which are
-/// used in .NET Framework 4.5 and .NET Standard 2.0 as polyfills for methods from current
-/// .NET versions.</summary>
-/// <remarks>The methods of this class should only be used in the extension method syntax
-/// to simulate the original methods of the <see cref="string" /> class, which exist
-/// in more modern frameworks. To match the behavior of the original methods, these extension
-/// methods throw a <see cref="NullReferenceException" /> when called on <c>null</c>.</remarks>
-public static partial class StringBuilderPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET Core 3.1 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
-    // This doesn't bind! StringBuilder.Append(object?) is called instead:
-
-    ///// <summary>
-    ///// Appends a copy of a sequence of Unicode characters that comes from a <see
-    ///// cref="StringBuilder" />
-    ///// to the existing content of <paramref name="builder" />..
-    ///// </summary>
-    ///// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
-    ///// <param name="value">The <see cref="StringBuilder"/> to append.</param>
-    ///// <returns>A reference to <paramref name="builder" />.</returns>
-    //public static StringBuilder Append (this StringBuilder builder, StringBuilder? value)
-    //    => value is null ? builder ?? throw new NullReferenceException(nameof(builder))
-    //                     : builder.Append(value, 0, value.Length);
-
+public static partial class StringBuilderPolyfillExtension
+{
     /// <summary>Appends a copy of a sequence of Unicode characters that comes from a <see
     /// cref="StringBuilder" /> to the existing content of <paramref name="builder" />.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
@@ -120,7 +98,19 @@ public static partial class StringBuilderPolyfillExtension
         return builder;
     }
 
-#endif
+    // This doesn't bind! StringBuilder.Append(object?) is called instead:
+
+    ///// <summary>
+    ///// Appends a copy of a sequence of Unicode characters that comes from a <see
+    ///// cref="StringBuilder" />
+    ///// to the existing content of <paramref name="builder" />..
+    ///// </summary>
+    ///// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
+    ///// <param name="value">The <see cref="StringBuilder"/> to append.</param>
+    ///// <returns>A reference to <paramref name="builder" />.</returns>
+    //public static StringBuilder Append (this StringBuilder builder, StringBuilder? value)
+    //    => value is null ? builder ?? throw new NullReferenceException(nameof(builder))
+    //                     : builder.Append(value, 0, value.Length);
 
     // This doesn't bind! StringBuilder.Append(object?) is called instead:
 
@@ -142,3 +132,5 @@ public static partial class StringBuilderPolyfillExtension
     //#endif
 
 }
+
+#endif

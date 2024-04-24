@@ -1,10 +1,9 @@
 namespace FolkerKinzel.Strings;
 
-public static partial class ReadOnlySpanPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
+public static partial class ReadOnlySpanPolyfillExtension
+{
     /// <summary>
     /// Removes all leading and trailing occurrences of a set of characters specified in a <see cref="string"/>
     /// from a read-only character span.
@@ -49,6 +48,6 @@ public static partial class ReadOnlySpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static ReadOnlySpan<char> TrimEnd(this ReadOnlySpan<char> span, string? trimChars)
         => span.TrimEnd(trimChars.AsSpan());
+}
 
 #endif
-}

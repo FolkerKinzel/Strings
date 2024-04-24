@@ -1,7 +1,5 @@
 using System.Buffers;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
-using FolkerKinzel.Strings;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
@@ -9,7 +7,8 @@ namespace FolkerKinzel.Strings;
 /// <summary>Static class that provides methods to encode and decode strings in Base64
 /// format.</summary>
 #if !(NET461 || NETSTANDARD2_0  || NETSTANDARD2_1 || NETCOREAPP3_1)
-[SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification = "<Pending>")]
+[SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters",
+    Justification = "Base64 characters are not localizable.")]
 #endif
 public static class Base64
 {
@@ -31,8 +30,9 @@ public static class Base64
     /// <paramref name="length" />&#160;<see cref="byte" />s are encoded.</returns>
     /// <remarks>Any line breaks that might have to be inserted into the encoded output are
     /// not included in the calculation.</remarks>
-    /// <exception cref="ArgumentOutOfRangeException"><paramref name="length"/> is less than <c>0</c> or 
-    /// as large that the return value would be greater than <see cref="int.MaxValue">Int32.MaxValue</see>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"><paramref name="length"/> is less than <c>0</c> 
+    /// or as large that the return value would be greater than 
+    /// <see cref="int.MaxValue">Int32.MaxValue</see>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int GetEncodedLength(int length)
         => (uint)length > MAXIMUM_ENCODE_LENGTH
@@ -45,8 +45,8 @@ public static class Base64
     /// <param name="bytes">A <see cref="byte" /> collection that contains the data to encode,
     /// or <c>null</c>.</param>
     /// <param name="options">One of the enumeration values, which specify whether or not
-    /// line breaks are to be inserted into the return value. The default is <see cref="Base64FormattingOptions.None"
-    /// />.</param>
+    /// line breaks are to be inserted into the return value. The default is 
+    /// <see cref="Base64FormattingOptions.None" />.</param>
     /// <returns>The string representation of the elements in <paramref name="bytes" /> as
     /// Base64.</returns>
     /// <exception cref="ArgumentException"> <paramref name="options" /> is not a defined
@@ -118,7 +118,6 @@ public static class Base64
         => bytes is null ? throw new ArgumentNullException(nameof(bytes))
                          : Convert.ToBase64String(bytes, offset, length, options);
 
-
     /// <summary>Converts a read-only <see cref="byte" /> span to a corresponding Base64-encoded
     /// string. Optional you can determine, whether line breaks are to be inserted into the
     /// return value.</summary>
@@ -156,7 +155,6 @@ public static class Base64
        => Convert.ToBase64String(bytes, options);
 #endif
 
-
     /// <summary>Converts the Base64-encoded <see cref="string"/> into a <see cref="byte"/> 
     /// array.</summary>
     /// <param name="base64">The string to convert, or <c>null</c>.</param>
@@ -188,7 +186,7 @@ public static class Base64
     /// a <see cref="byte" /> array .</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] GetBytes(string? base64,
-                                  Base64ParserOptions options) 
+                                  Base64ParserOptions options)
         => GetBytes(base64.AsSpan(), options);
 
     /// <summary>Converts a Base64-encoded read-only character span into a corresponding
@@ -224,7 +222,7 @@ public static class Base64
                 _ = base64.TryCopyTo(contentSpan);
 
                 int urlEncodedPaddingCount = ReplaceUrlEncodedPadding(ref contentSpan);
-                ReplaceBase64UrlChars(contentSpan.Slice(replacementStartIndex, 
+                ReplaceBase64UrlChars(contentSpan.Slice(replacementStartIndex,
                                                         contentSpan.Length - urlEncodedPaddingCount - replacementStartIndex));
                 base64 = contentSpan;
             }
@@ -251,17 +249,16 @@ public static class Base64
                 ApplyPadding(contentSpan, missingPaddingCount);
                 base64 = contentSpan;
             }
-        
+
             return DoGetBytes(base64);
         }
         finally
         {
-            if(arr != null)
+            if (arr != null)
             {
                 ArrayPool<char>.Shared.Return(arr, Confidentiality.IsConfidential);
             }
         }
-
 
         /////////////////////////////////////////////////////
 
@@ -277,8 +274,9 @@ public static class Base64
                 }
             }
 
-            return ((base64.Length - whiteSpaceLength) % 4) 
-                   switch { 0 => 0, 2 => 2, 3 => 1, _ => throw new FormatException() };
+            return ((base64.Length - whiteSpaceLength) % 4)
+                   switch
+            { 0 => 0, 2 => 2, 3 => 1, _ => throw new FormatException() };
         }
 
         static bool IsBase64Url(ReadOnlySpan<char> base64, out int foundIndex)
@@ -376,7 +374,6 @@ public static class Base64
         return Convert.FromBase64String(base64.ToString());
 #else
         int outputSize = ComputeMaxOutputSize(base64);
-
         byte[] output = new byte[outputSize];
 
         return Convert.TryFromBase64Chars(base64, output, out outputSize)
@@ -384,7 +381,6 @@ public static class Base64
             : throw new FormatException();
 #endif
     }
-
 
 #if !(NET461 || NETSTANDARD2_0)
     private static int ComputeMaxOutputSize(ReadOnlySpan<char> base64)
@@ -496,7 +492,6 @@ Repeat:
         goto Repeat;
     }
 
- 
     private static void AppendChunks(StringBuilder sb, ReadOnlySpan<byte> data, int finalPartLength)
     {
         if (data.Length < CHUNK_LENGTH)

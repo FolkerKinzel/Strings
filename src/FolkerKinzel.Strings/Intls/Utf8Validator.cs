@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings.Intls;

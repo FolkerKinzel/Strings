@@ -1,5 +1,7 @@
 namespace FolkerKinzel.Strings;
 
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+
 /// <summary>Extension methods for the <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see>
 /// struct, which are used in .NET Framework 4.5, .NET Standard 2.0 and .NET Standard
 /// 2.1 as polyfills for methods from current .NET versions.</summary>
@@ -8,9 +10,6 @@ namespace FolkerKinzel.Strings;
 /// struct, which exist in more modern frameworks.</remarks>
 public static class ReadOnlyMemoryPolyfillExtension
 {
-    // Place this preprocessor directive inside the class to let .NET Core 3.1 and above have an empty class!
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
-
     /// <summary>Removes all leading and trailing white space characters from a read-only
     /// character memory region.</summary>
     /// <param name="memory">The source memory from which the characters are removed.</param>
@@ -36,6 +35,6 @@ public static class ReadOnlyMemoryPolyfillExtension
     /// <returns>The trimmed character memory region.</returns>
     public static ReadOnlyMemory<char> TrimEnd(this ReadOnlyMemory<char> memory)
         => memory.Slice(0, memory.Span.GetTrimmedLength());
+}
 
 #endif
-}

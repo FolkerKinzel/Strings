@@ -81,5 +81,4 @@ public static partial class StringBuilderExtension
                                         int startIndex)
         => builder?.Replace(oldChar, newChar, startIndex, builder.Length - startIndex) 
                   ?? throw new ArgumentNullException(nameof(builder));
-
 }

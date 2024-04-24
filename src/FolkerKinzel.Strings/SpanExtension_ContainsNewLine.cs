@@ -10,5 +10,4 @@ public static partial class SpanExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsNewLine(this Span<char> span)
     => ((ReadOnlySpan<char>)span).ContainsNewLine();
-
 }

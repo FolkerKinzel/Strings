@@ -105,5 +105,4 @@ public static partial class StringBuilderExtension
 
         return stringBuilder.Clear();
     }
-
 }

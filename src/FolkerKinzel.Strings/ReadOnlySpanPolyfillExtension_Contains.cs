@@ -1,10 +1,9 @@
 namespace FolkerKinzel.Strings;
 
-public static partial class ReadOnlySpanPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
 
+public static partial class ReadOnlySpanPolyfillExtension
+{
     /// <summary>Indicates whether a read-only character span contains the Unicode character
     /// that is passed to the method as argument.</summary>
     /// <param name="span">The span to search.</param>
@@ -13,8 +12,6 @@ public static partial class ReadOnlySpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(this ReadOnlySpan<char> span, char value)
         => span.IndexOf(value) != -1;
-
-#endif
 
 #if NET461 || NETSTANDARD2_0
 
@@ -33,3 +30,5 @@ public static partial class ReadOnlySpanPolyfillExtension
 
 #endif
 }
+
+#endif

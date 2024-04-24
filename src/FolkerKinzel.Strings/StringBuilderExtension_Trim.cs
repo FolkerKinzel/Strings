@@ -49,5 +49,4 @@ public static partial class StringBuilderExtension
            : trimChars.Length == 0
                ? builder.DoTrimEnd().DoTrimStart()
                : builder.DoTrimEnd(trimChars).DoTrimStart(trimChars);
-
 }

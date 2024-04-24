@@ -2,11 +2,10 @@ using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
-public static partial class StringExtensionPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 5.0 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
+public static partial class StringExtensionPolyfillExtension
+{
     /// <summary>Generates a <see cref="string" /> in which all newlines are replaced by
     /// <paramref name="newLine" />.</summary>
     /// <param name="s">The source <see cref="string" />.</param>
@@ -30,6 +29,6 @@ public static partial class StringExtensionPolyfillExtension
     [Obsolete("Use ReplaceLineEndings instead.", false)]
     public static string NormalizeNewLinesTo(this string s, string? newLine)
         => s.NormalizeNewLinesTo(newLine.AsSpan());
+}
 
 #endif
-}

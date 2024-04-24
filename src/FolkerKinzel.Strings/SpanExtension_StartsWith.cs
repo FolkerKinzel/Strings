@@ -22,6 +22,8 @@ public static partial class SpanExtension
     /// <returns> <c>true</c> if <paramref name="span" /> starts with <paramref name="value"
     /// />, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool StartsWith(this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
+    public static bool StartsWith(this Span<char> span,
+                                  ReadOnlySpan<char> value,
+                                  StringComparison comparisonType)
         => MemoryExtensions.StartsWith(span, value, comparisonType);
 }

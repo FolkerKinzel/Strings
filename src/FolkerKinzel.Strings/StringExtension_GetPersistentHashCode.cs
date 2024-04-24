@@ -2,8 +2,6 @@ using System.Security.Cryptography;
 
 namespace FolkerKinzel.Strings;
 
-/// <summary>Extension methods for the <see cref="string" /> class.</summary>
-/// <threadsafety static="true" instance="false" />
 public static partial class StringExtension
 {
     /// <summary>Generates the same <see cref="int" /> hash code for an identical string
@@ -45,5 +43,4 @@ public static partial class StringExtension
     public static int GetPersistentHashCode(this string s, HashType hashType)
         => s is null ? throw new ArgumentNullException(nameof(s)) 
                      : s.AsSpan().GetPersistentHashCode(hashType);
-
 }

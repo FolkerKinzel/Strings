@@ -2,10 +2,10 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-public static partial class StringPolyfillExtension
-{
 #if NET461 || NETSTANDARD2_0
 
+public static partial class StringPolyfillExtension
+{
     /// <summary>Returns a new <see cref="string" /> in which all occurrences of a specified
     /// <see cref="string" /> in the current <see cref="string" /> are replaced with another
     /// specified <see cref="string" />, using the provided comparison type.</summary>
@@ -75,7 +75,7 @@ public static partial class StringPolyfillExtension
 
         return builder.ToString();
     }
+}
 
 #endif
-}
 

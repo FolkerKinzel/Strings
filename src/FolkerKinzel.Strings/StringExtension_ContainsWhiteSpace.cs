@@ -10,5 +10,4 @@ public static partial class StringExtension
     public static bool ContainsWhiteSpace(this string s)
         => s is null ? throw new ArgumentNullException(nameof(s)) 
                      : s.AsSpan().ContainsWhiteSpace();
-
 }

@@ -150,5 +150,4 @@ public static partial class StringBuilderExtension
 
         return builder;
     }
-
 }

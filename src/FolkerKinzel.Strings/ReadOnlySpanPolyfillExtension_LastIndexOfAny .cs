@@ -1,9 +1,9 @@
 namespace FolkerKinzel.Strings;
 
-public static partial class ReadOnlySpanPolyfillExtension
-{
 #if NET461 || NETSTANDARD2_0
 
+public static partial class ReadOnlySpanPolyfillExtension
+{
     /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
     /// Unicode characters.</summary>
     /// <param name="span">The span to examine.</param>
@@ -43,5 +43,6 @@ public static partial class ReadOnlySpanPolyfillExtension
         // polyfills a bug in the nuget package System.Memory for .NET Framework and
         // .NET Standard 2.0
         => span.LastIndexOfAny(values.AsSpan());
-#endif
 }
+
+#endif

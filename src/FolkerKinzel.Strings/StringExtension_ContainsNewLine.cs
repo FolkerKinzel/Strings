@@ -10,5 +10,4 @@ public static partial class StringExtension
     public static bool ContainsNewLine(this string s)
         => s is null ? throw new ArgumentNullException(nameof(s)) 
                      : s.AsSpan().ContainsNewLine();
-
 }

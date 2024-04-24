@@ -2,10 +2,10 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-public static partial class StringPolyfillExtension
-{
 #if NET461 || NETSTANDARD2_0
 
+public static partial class StringPolyfillExtension
+{
     /// <summary>Indicates whether the end of <paramref name="s" /> matches the specified
     /// character.</summary>
     /// <param name="s">The <see cref="string" /> to search.</param>
@@ -18,7 +18,7 @@ public static partial class StringPolyfillExtension
     public static bool EndsWith(this string s, char value)
         => s is null ? throw new NullReferenceException()
                      : s.AsSpan().EndsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
+}
 
 #endif
-}
 

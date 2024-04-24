@@ -2,10 +2,10 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-public static partial class StringPolyfillExtension
-{
 #if NET461 || NETSTANDARD2_0
 
+public static partial class StringPolyfillExtension
+{
     /// <summary>Returns the zero-based index of the first occurrence of the specified Unicode
     /// character in this <see cref="string" />. A parameter specifies the type of search
     /// to use for the specified character.</summary>
@@ -21,7 +21,7 @@ public static partial class StringPolyfillExtension
     public static int IndexOf(this string s, char value, StringComparison comparisonType)
         => s is null ? throw new NullReferenceException()
                      : s.AsSpan().IndexOf(stackalloc[] { value }, comparisonType);
+}
 
 #endif
-}
 

@@ -3,7 +3,7 @@ using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings;
 
-/// <summary>Extension methods for the <see cref="char" /> structure.</summary>
+/// <summary>Extension methods for the <see cref="char" /> struct.</summary>
 public static class CharExtension
 {
     /// <summary>Indicates whether a character is within the specified inclusive range.</summary>
@@ -152,7 +152,6 @@ public static class CharExtension
             ? value.Value
             : throw new ArgumentException(
                 string.Format(Res.NoBinaryDigit, nameof(digit)), nameof(digit));
-
 
     /// <summary>Gets the value of a decimal digit (0-9).</summary>
     /// <param name="digit">The decimal digit to convert (0-9).</param>

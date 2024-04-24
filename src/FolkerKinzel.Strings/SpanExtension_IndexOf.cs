@@ -16,5 +16,4 @@ public static partial class SpanExtension
     public static int IndexOf(
         this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
         => MemoryExtensions.IndexOf(span, value, comparisonType);
-
 }

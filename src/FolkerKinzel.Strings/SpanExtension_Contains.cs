@@ -13,5 +13,4 @@ public static partial class SpanExtension
     public static bool Contains(
         this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
         => MemoryExtensions.Contains(span, value, comparisonType);
-
 }

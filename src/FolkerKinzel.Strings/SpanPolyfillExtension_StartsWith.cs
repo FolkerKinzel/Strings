@@ -1,10 +1,9 @@
 namespace FolkerKinzel.Strings;
 
-public static partial class SpanPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 6.0 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
+public static partial class SpanPolyfillExtension
+{
     /// <summary>Indicates whether a read-only character span begins with a specified <see
     /// cref="string" />.</summary>
     /// <param name="span">The source span.</param>
@@ -35,6 +34,6 @@ public static partial class SpanPolyfillExtension
     public static bool StartsWith(
         this Span<char> span, string? value, StringComparison comparisonType)
         => ((ReadOnlySpan<char>)span).StartsWith(value.AsSpan(), comparisonType);
+}
 
 #endif
-}

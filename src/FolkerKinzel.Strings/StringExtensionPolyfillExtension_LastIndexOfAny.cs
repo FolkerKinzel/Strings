@@ -2,11 +2,10 @@ using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
-public static partial class StringExtensionPolyfillExtension
-{
-    // Place this preprocessor directive inside the class to let .NET 5.0 and above have an empty class!
 #if NET461 || NETSTANDARD2_0
 
+public static partial class StringExtensionPolyfillExtension
+{
     /// <summary>Returns the zero-based index position of the last occurrence of one of the
     /// specified characters in <paramref name="s" />. The search begins at a specified index
     /// and runs backwards to the beginning of the <see cref="string" /> for a specified
@@ -90,6 +89,6 @@ public static partial class StringExtensionPolyfillExtension
         return s is null ? throw new ArgumentNullException(nameof(s))
                          : s.LastIndexOfAny(anyOf.AsSpan(), s.Length - 1, s.Length);
     }
+}
 
 #endif
-}

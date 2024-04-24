@@ -106,6 +106,7 @@ public static class StaticStringMethod
         => string.Concat(str0, str1);
 
 #else
+
     /// <summary>Concatenates the string representations of four specified read-only character
     /// spans.</summary>
     /// <param name="str0">The first read-only character span to concatenate.</param>
@@ -151,7 +152,7 @@ public static class StaticStringMethod
     /// <param name="str2">The third read-only character span to concatenate.</param>
     /// <returns>The concatenated string representations of the values of <paramref name="str0"
     /// />, <paramref name="str1" /> and <paramref name="str2" />.</returns>
-    [MethodImpl (MethodImplOptions.AggressiveInlining)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
         => Concat(str0, str1, str2, []);
 
@@ -164,6 +165,6 @@ public static class StaticStringMethod
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
         => Concat(str0, str1, [], []);
-    
+
 #endif
 }
