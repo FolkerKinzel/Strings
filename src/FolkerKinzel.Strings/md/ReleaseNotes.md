@@ -11,6 +11,7 @@ whole package.
 - **Breaking Change:** The .NET Framework 4.5 support has ended. A .NET Framework 4.6.1 DLL is part of the nuget package instead.
 - **Breaking Change:** Removed the obsolete method `StringBuilder.NormalizeNewLinesTo`.
 - **Breaking Change:** Removed the obsolete method `String.NormalizeNewLinesTo`.
+- Deterministic build
 - Performance: Raised the maximum allowed stackalloc size for Char to 256 (according to the internal constant 
 `System.String.StackallockCharBufferSizeLimit`) from the .NET sources and for Byte to 512.
 - Performance: Faster algorithm for `Base64.GetEncodedLength(int)` (taken from `System.Buffers.Text.Base64`).

@@ -51,25 +51,25 @@ public class StringBuilderExtensionsPolyfillTests
     }
 
 
-#pragma warning disable CS0618 // Typ oder Element ist veraltet
-    [TestMethod]
-    public void NormalizeNewLinesToTest1()
-       => Assert.AreEqual("\t Test   * text  ", new StringBuilder("\t Test   \r\n text  ").NormalizeNewLinesTo("*").ToString());
+//#pragma warning disable CS0618 // Typ oder Element ist veraltet
+//    [TestMethod]
+//    public void NormalizeNewLinesToTest1()
+//       => Assert.AreEqual("\t Test   * text  ", new StringBuilder("\t Test   \r\n text  ").NormalizeNewLinesTo("*").ToString());
 
 
-    [TestMethod]
-    public void NormalizeNewLinesToTest2()
-        => Assert.AreEqual("\t Test   * text  ", new StringBuilder("\t Test   \r\n text  ").NormalizeNewLinesTo("*").ToString());
+//    [TestMethod]
+//    public void NormalizeNewLinesToTest2()
+//        => Assert.AreEqual("\t Test   * text  ", new StringBuilder("\t Test   \r\n text  ").NormalizeNewLinesTo("*").ToString());
 
 
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void NormalizeNewLinesToTest3()
-    {
-        StringBuilder? s = null;
-        _ = s!.NormalizeNewLinesTo("*");
-    }
+//    [TestMethod]
+//    [ExpectedException(typeof(ArgumentNullException))]
+//    public void NormalizeNewLinesToTest3()
+//    {
+//        StringBuilder? s = null;
+//        _ = s!.NormalizeNewLinesTo("*");
+//    }
 
-#pragma warning restore CS0618 // Typ oder Element ist veraltet
+//#pragma warning restore CS0618 // Typ oder Element ist veraltet
 
 }

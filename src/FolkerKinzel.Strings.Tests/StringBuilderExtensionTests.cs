@@ -97,41 +97,41 @@ public class StringBuilderExtensionTests
         Assert.AreEqual("Hi", output);
     }
 
-#pragma warning disable CS0618 // Typ oder Element ist veraltet
+//#pragma warning disable CS0618 // Typ oder Element ist veraltet
 
-    [TestMethod]
-    public void NormalizeNewLinesToTest1()
-    {
-        const string input = "1\r\n\n\r2\r3\n\n4\r\n5\u000B6\u000C7\u00858\u20289\u2029";
-        const string expected = "1**2*3**4*5*6*7*8*9*";
+//    [TestMethod]
+//    public void NormalizeNewLinesToTest1()
+//    {
+//        const string input = "1\r\n\n\r2\r3\n\n4\r\n5\u000B6\u000C7\u00858\u20289\u2029";
+//        const string expected = "1**2*3**4*5*6*7*8*9*";
 
-        var sb = new StringBuilder(input);
+//        var sb = new StringBuilder(input);
 
-        string output = sb.NormalizeNewLinesTo("*").ToString();
-        Assert.AreEqual(expected, output);
-    }
+//        string output = sb.NormalizeNewLinesTo("*").ToString();
+//        Assert.AreEqual(expected, output);
+//    }
 
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void NormalizeNewLinesToTest2()
-    {
-        StringBuilder? sb = null;
-        _ = sb!.NormalizeNewLinesTo("*");
-    }
+//    [TestMethod]
+//    [ExpectedException(typeof(ArgumentNullException))]
+//    public void NormalizeNewLinesToTest2()
+//    {
+//        StringBuilder? sb = null;
+//        _ = sb!.NormalizeNewLinesTo("*");
+//    }
 
-    [TestMethod]
-    public void NormalizeNewLinesToTest3()
-    {
-        const string input = "\n1\r\n\n\r2\r3\u0085\n4\r\n";
-        const string expected = "*1**2*3**4*";
+//    [TestMethod]
+//    public void NormalizeNewLinesToTest3()
+//    {
+//        const string input = "\n1\r\n\n\r2\r3\u0085\n4\r\n";
+//        const string expected = "*1**2*3**4*";
 
-        var sb = new StringBuilder(input);
+//        var sb = new StringBuilder(input);
 
-        string output = sb.NormalizeNewLinesTo("*").ToString();
-        Assert.AreEqual(expected, output);
-    }
+//        string output = sb.NormalizeNewLinesTo("*").ToString();
+//        Assert.AreEqual(expected, output);
+//    }
 
-#pragma warning restore CS0618 // Typ oder Element ist veraltet
+//#pragma warning restore CS0618 // Typ oder Element ist veraltet
 
 
     [TestMethod]

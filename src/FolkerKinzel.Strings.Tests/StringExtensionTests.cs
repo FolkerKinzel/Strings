@@ -68,34 +68,34 @@ public class StringExtensionTests
     [DataRow("Hi\u2029Folker")]
     public void ReplaceLineEndingsTest7(string input) => Assert.AreEqual("Hi*Folker", input.ReplaceLineEndings("*"));
 
-#pragma warning disable CS0618 // Typ oder Element ist veraltet
+//#pragma warning disable CS0618 // Typ oder Element ist veraltet
 
-    [TestMethod]
-    public void NormalizeNewLinesToTest1()
-    {
-        const string input = "1\r\n\n\r2\r3\n\n4\r\n5\u000B6\u000C7\u00858\u20289\u2029";
-        const string expected = "1**2*3**4*5*6*7*8*9*";
+//    [TestMethod]
+//    public void NormalizeNewLinesToTest1()
+//    {
+//        const string input = "1\r\n\n\r2\r3\n\n4\r\n5\u000B6\u000C7\u00858\u20289\u2029";
+//        const string expected = "1**2*3**4*5*6*7*8*9*";
 
-        string output = input.NormalizeNewLinesTo("*");
-        Assert.AreEqual(expected, output);
-    }
+//        string output = input.NormalizeNewLinesTo("*");
+//        Assert.AreEqual(expected, output);
+//    }
 
 
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void NormalizeNewLinesToTest3()
-    {
-        string? s = null;
-        _ = s!.NormalizeNewLinesTo("*".AsSpan());
-    }
+//    [TestMethod]
+//    [ExpectedException(typeof(ArgumentNullException))]
+//    public void NormalizeNewLinesToTest3()
+//    {
+//        string? s = null;
+//        _ = s!.NormalizeNewLinesTo("*".AsSpan());
+//    }
 
-    [TestMethod]
-    public void NormalizeNewLinesToTest4()
-    {
-        const string test = "test";
-        Assert.AreSame(test, test.NormalizeNewLinesTo("blub".AsSpan()));
-    }
-#pragma warning restore CS0618 // Typ oder Element ist veraltet
+//    [TestMethod]
+//    public void NormalizeNewLinesToTest4()
+//    {
+//        const string test = "test";
+//        Assert.AreSame(test, test.NormalizeNewLinesTo("blub".AsSpan()));
+//    }
+//#pragma warning restore CS0618 // Typ oder Element ist veraltet
 
 
     [DataTestMethod]

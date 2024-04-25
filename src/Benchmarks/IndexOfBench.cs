@@ -11,7 +11,7 @@ namespace Benchmarks;
 [MemoryDiagnoser]
 public class IndexOfBench
 {
-    private StringBuilder _builder = new(new string('a', 200));
+    private readonly StringBuilder _builder = new(new string('a', 200));
 
     [Benchmark]
     public int IndexOfLibrary() => _builder.IndexOf('z');

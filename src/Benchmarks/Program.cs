@@ -6,7 +6,6 @@ namespace Benchmarks;
 class Program
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Nicht verwendete Parameter entfernen", Justification = "<Ausstehend>")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022:Blocktextkörper für Methode verwenden", Justification = "<Ausstehend>")]
     static void Main(string[] args) =>
         // new InsertBench().Test1();
         //var val = new IsAsciiLetterBench();
