@@ -66,12 +66,16 @@
     <Compile Remove="ReadOnlySpanPolyfillExtension.cs" />
     <Compile Remove="SpanPolyfillExtension.cs" />
     <Compile Remove="StringBuilderExtensionPolyfillExtension.cs" />
+    <Compile Remove="StringBuilderExtensionPolyfillExtension_NormalizeNewLinesTo.cs" />
     <Compile Remove="StringBuilderExtension_Insert.cs" />
+    <Compile Remove="StringBuilderExtension_NormalizeNewLinesTo.cs" />
     <Compile Remove="StringBuilderExtension_Obsolete.cs" />
     <Compile Remove="StringBuilderPolyfillExtension.cs" />
     <Compile Remove="StringCreator.cs" />
     <Compile Remove="StringExtensionPolyfillExtension.cs" />
+    <Compile Remove="StringExtensionPolyfillExtension_NormalizeNewLinesTo.cs" />
     <Compile Remove="StringExtension_LastIndexOf.cs" />
+    <Compile Remove="StringExtension_NormalizeNewLinesTo.cs" />
     <Compile Remove="StringExtension_Obsolete.cs" />
     <Compile Remove="StringPolyfillExtension.cs" />
   </ItemGroup>

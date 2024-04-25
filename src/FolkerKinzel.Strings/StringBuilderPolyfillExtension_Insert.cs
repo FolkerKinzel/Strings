@@ -21,7 +21,11 @@ public static partial class StringBuilderPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder Insert(
         this StringBuilder builder, int index, ReadOnlySpan<char> value)
-        => builder.Insert(index, value.ToString());
+    {
+        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(value.Length);
+        _ = value.TryCopyTo(shared.Value);
+        return builder.Insert(index, shared.Value, 0, value.Length);
+    }
 
     // Don't call StringBuilder.Insert(int, char) multiple times here because StringBuilder will allocate new
     // memory with each call

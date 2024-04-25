@@ -9,6 +9,8 @@ publish this namespace in other projects and lost the chance to use the polyfill
 as part of the nuget package is much more elegant: Only one namespace (`FolkerKinzel.Strings`) is needed to use the
 whole package.
 - **Breaking Change:** The .NET Framework 4.5 support has ended. A .NET Framework 4.6.1 DLL is part of the nuget package instead.
+- **Breaking Change:** Removed the obsolete method `StringBuilder.NormalizeNewLinesTo`.
+- **Breaking Change:** Removed the obsolete method `String.NormalizeNewLinesTo`.
 - Performance: Raised the maximum allowed stackalloc size for Char to 256 (according to the internal constant 
 `System.String.StackallockCharBufferSizeLimit`) from the .NET sources and for Byte to 512.
 - Performance: Faster algorithm for `Base64.GetEncodedLength(int)` (taken from `System.Buffers.Text.Base64`).
