@@ -73,6 +73,7 @@ TryAgain:
                 // allowed for this and tried to fix up the parameters, so we'll continue to do so for compat.
 
                 startIndex--;
+
                 if (count > 0)
                 {
                     count--;
