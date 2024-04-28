@@ -3,13 +3,13 @@
 ## List of Polyfill Extension Methods 
 (Refers to the latest nuget version)
 
-### Polyfills for the String class (.NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.5)
+### Polyfills for the String class (.NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 string ReplaceLineEndings(this string);
 string ReplaceLineEndings(this string, string);
 ```
 &nbsp;
-### Polyfills for the String class (.NET Standard 2.0, .NET Framework 4.5)
+### Polyfills for the String class (.NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 bool Contains(this string, char);
 bool Contains(this string, char, StringComparison );
@@ -27,7 +27,10 @@ int IndexOfAny(this string, string?, int);
 int IndexOfAny(this string, string?);
 int LastIndexOfAny(this string, string?, int);
 int LastIndexOfAny(this string, string?);
-bool ContainsAny(this s, string?);
+bool ContainsAny(this string, string?);
+string Trim(this string, string?);
+string TrimEnd(this string, string?);
+string TrimStart(this string, string?);
 ```
 &nbsp;
 ### Polyfills for Static Methods of the String class
@@ -38,12 +41,12 @@ static string StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>);
 static string StaticStringMethod.Create<TState>(int, TState, SpanAction<char, TState>);
 ```
 &nbsp;
-### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET Framework 4.5, .NET Standard 2.0, .NET Standard 2.1)
+### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 bool Contains(this ReadOnlySpan<char>, char);
 ```
 &nbsp;
-### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET Framework 4.5, .NET Standard 2.0)
+### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 bool Contains(this ReadOnlySpan<char>, string?, StringComparison);
 bool EndsWith(this ReadOnlySpan<char>, string?);
@@ -63,7 +66,7 @@ ReadOnlySpan<char> TrimStart(this ReadOnlySpan<char>, string?);
 ReadOnlySpan<char> TrimEnd(this ReadOnlySpan<char>, string?);
 ```
 &nbsp;
-### Polyfills for the Span&lt;Char&gt; struct (.NET Framework 4.5, .NET Standard 2.0, .NET Standard 2.1)
+### Polyfills for the Span&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 bool Contains(this ReadOnlySpan<char>, char);
 Span<char> Trim(this Span<char>);
@@ -74,7 +77,7 @@ Span<char> TrimStart(this Span<char>, char);
 Span<char> TrimEnd(this Span<char>, char);
 ```
 &nbsp;
-### Polyfills for the Span&lt;Char&gt; struct (.NET Framework 4.5, .NET Standard 2.0)
+### Polyfills for the Span&lt;Char&gt; struct (.NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 bool Equals(this Span<char>, string?, StringComparison);
 bool Contains(this Span<char>, string?, StringComparison);
@@ -91,14 +94,14 @@ int LastIndexOfAny(this Span<char>, string?, int, int);
 int IndexOf(this Span<char>, string?, StringComparison);
 ```
 &nbsp;
-### Polyfills for the ReadOnlyMemory&lt;Char&gt; struct (.NET Framework 4.5, .NET Standard 2.0, .NET Standard 2.1)
+### Polyfills for the ReadOnlyMemory&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 ReadOnlyMemory<char> Trim(this ReadOnlyMemory<char>);
 ReadOnlyMemory<char> TrimEnd(this ReadOnlyMemory<char>);
 ReadOnlyMemory<char> TrimStart(this ReadOnlyMemory<char>);
 ```
 &nbsp;
-### Polyfills for the StringBuilder class (.NET Framework 4.5, .NET Standard 2.0)
+### Polyfills for the StringBuilder class (.NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 StringBuilder Append(this StringBuilder, ReadOnlySpan<char>);
 StringBuilder Append(this StringBuilder, StringBuilder?, int, int);
@@ -115,7 +118,7 @@ StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, int, bool)
 StringBuilder AppendUrlEncoded(this StringBuilder, string?);
 ```
 &nbsp;
-### Polyfills for the Encoding class (.NET Framework 4.5, .NET Standard 2.0)
+### Polyfills for the Encoding class (.NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 string GetString(this Encoding encoding, ReadOnlySpan<byte> bytes);
 ```
