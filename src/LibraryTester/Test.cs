@@ -10,6 +10,8 @@ namespace LibraryTesters
     {
         private static readonly char[] _array = ['x'];
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0301:Simplify collection initialization",
+            Justification = "Be sure targetting the right overload")]
         public static void TestMethod()
         {
             char[] arr = ['x'];

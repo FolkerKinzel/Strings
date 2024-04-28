@@ -12,6 +12,8 @@ Console.WriteLine("Test Program:");
 Console.WriteLine();
 TestMethod();
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0301:Simplify collection initialization",
+            Justification = "Be sure targetting the right overload")]
 static void TestMethod()
 {
     char[] arr = ['x'];

@@ -28,8 +28,8 @@
     </TransformComponentArguments>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\FolkerKinzel.Strings\FolkerKinzel.Strings.csproj" />
-      <DocumentationSource sourceFile="..\FolkerKinzel.Strings\bin\Release\netstandard2.0\FolkerKinzel.Strings.xml" />
       <DocumentationSource sourceFile="..\FolkerKinzel.Strings\bin\Release\netstandard2.0\FolkerKinzel.Strings.dll" />
+      <DocumentationSource sourceFile="..\FolkerKinzel.Strings\bin\Release\netstandard2.0\FolkerKinzel.Strings.xml" />
     </DocumentationSources>
     <HelpTitle>FolkerKinzel.Strings</HelpTitle>
     <HelpFileVersion>1.0.0.0</HelpFileVersion>
@@ -42,7 +42,8 @@
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="FolkerKinzel.Strings" isDocumented="True">Contains classes that provide extension methods for String, Char, StringBuilder and ReadOnlySpan&amp;lt;Char&amp;gt;.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="FolkerKinzel (Group)" isGroup="True" isDocumented="True">Root namespace for software from Folker Kinzel.</NamespaceSummaryItem></NamespaceSummaries>
+      <NamespaceSummaryItem name="FolkerKinzel (Group)" isGroup="True" isDocumented="True">Root namespace for software from Folker Kinzel.</NamespaceSummaryItem>
+    </NamespaceSummaries>
     <CopyrightText>Copyright &amp;#169%3b 2020 Folker Kinzel</CopyrightText>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>
     <SyntaxFilters>Standard</SyntaxFilters>

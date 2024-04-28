@@ -153,6 +153,10 @@ public class Base64Tests
     }
 
     [TestMethod]
+    [ExpectedException(typeof(FormatException))]
+    public void GetBytesTest14() => _ = Base64.GetBytes("%3d", Base64ParserOptions.AcceptBase64Url);
+
+    [TestMethod]
     public void EncodeTest1() => Assert.AreEqual(0, Base64.Encode((byte[]?)null).Length);
 
     [TestMethod]

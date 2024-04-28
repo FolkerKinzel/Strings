@@ -152,7 +152,7 @@ public class ReadOnlySpanExtensionTests
         => Assert.AreEqual(expectedIndex, testStr.AsSpan().IndexOfAny(needles));
 
     [TestMethod]
-    public void ContainsAnyTest1() => Assert.IsFalse("t".AsSpan().ContainsAny([]));
+    public void ContainsAnyTest1() => Assert.IsFalse("t".AsSpan().ContainsAny(""));
 
     //[TestMethod]
     //public void TestTest()

@@ -611,7 +611,7 @@ public class StringExtensionTests
     {
         string test = "  Test  ";
 
-        Assert.AreEqual(test.Trim(null), test.Trim(ReadOnlySpan<char>.Empty));
+        Assert.AreEqual(test.Trim(null), test.Trim(""));
     }
 
     [TestMethod]
@@ -627,7 +627,7 @@ public class StringExtensionTests
     public void TrimTest4()
     {
         string test = "    ";
-        Assert.AreEqual(test.Trim(null), test.Trim(ReadOnlySpan<char>.Empty));
+        Assert.AreEqual(test.Trim(null), test.Trim(""));
     }
 
 
@@ -636,7 +636,7 @@ public class StringExtensionTests
     public void TrimTest5()
     {
         string? test = null;
-        _ = test!.Trim(ReadOnlySpan<char>.Empty);
+        _ = test!.Trim("");
     }
 
     [TestMethod]
@@ -663,7 +663,7 @@ public class StringExtensionTests
     {
         string test = "  Test  ";
 
-        Assert.AreEqual(test.TrimStart(null), test.TrimStart(ReadOnlySpan<char>.Empty));
+        Assert.AreEqual(test.TrimStart(null), test.TrimStart(""));
     }
 
     [TestMethod]
@@ -679,7 +679,7 @@ public class StringExtensionTests
     public void TrimStartTest4()
     {
         string test = "    ";
-        Assert.AreEqual(test.TrimStart(null), test.TrimStart(ReadOnlySpan<char>.Empty));
+        Assert.AreEqual(test.TrimStart(null), test.TrimStart(""));
     }
 
 
@@ -688,7 +688,7 @@ public class StringExtensionTests
     public void TrimStartTest5()
     {
         string? test = null;
-        _ = test!.TrimStart(ReadOnlySpan<char>.Empty);
+        _ = test!.TrimStart("");
     }
 
     [TestMethod]
@@ -715,7 +715,7 @@ public class StringExtensionTests
     {
         string test = "  Test  ";
 
-        Assert.AreEqual(test.TrimEnd(null), test.TrimEnd(ReadOnlySpan<char>.Empty));
+        Assert.AreEqual(test.TrimEnd(null), test.TrimEnd(""));
     }
 
     [TestMethod]
@@ -731,7 +731,7 @@ public class StringExtensionTests
     public void TrimEndTest4()
     {
         string test = "    ";
-        Assert.AreEqual(test.TrimEnd(null), test.TrimEnd(ReadOnlySpan<char>.Empty));
+        Assert.AreEqual(test.TrimEnd(null), test.TrimEnd(""));
     }
 
 
@@ -740,7 +740,7 @@ public class StringExtensionTests
     public void TrimEndTest5()
     {
         string? test = null;
-        _ = test!.TrimEnd(ReadOnlySpan<char>.Empty);
+        _ = test!.TrimEnd("");
     }
 
     [TestMethod]
