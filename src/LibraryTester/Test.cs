@@ -55,6 +55,10 @@ namespace LibraryTesters
             _ = test.TrimStart(stackalloc char[] { ',', ';' });
             _ = test.TrimEnd(stackalloc char[] { ',', ';' });
 
+            _ = test.Trim(test);
+            _ = test.TrimStart(test);
+            _ = test.TrimEnd(test);
+
             _ = test.Contains('e');
 
             _ = test.AsSpan().Contains('e');

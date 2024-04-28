@@ -39,14 +39,8 @@ public static partial class StringExtension
     {
         _ArgumentNullException.ThrowIfNull(s, nameof(s));
 
-        // string.IndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
-        // MemoryExtensions.IndexOfAny returns 0 if the span with the characters to search for is empty.
-        // This makes it consistent:
-        if (count == 0 || anyOf.IsEmpty)
-        {
-            return -1;
-        }
-
+        // Don't address System.MemoryExtensions here directly: The nuget package System.MemoryExtensions
+        // used for NETSTANDARD2_0 and NET461 has a bug. The library polyfills the bug:
         int matchIndex = s.AsSpan(startIndex, count).IndexOfAny(anyOf);
         return matchIndex == -1 ? -1 : matchIndex + startIndex;
     }

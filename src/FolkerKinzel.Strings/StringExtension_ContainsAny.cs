@@ -51,7 +51,7 @@ public static partial class StringExtension
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     public static bool ContainsAny(this string s, ReadOnlySpan<char> anyOf)
         => s is null ? throw new ArgumentNullException(nameof(s))
-                     : !anyOf.IsEmpty && s.IndexOfAny(anyOf, 0, s.Length) != -1;
+                     : s.IndexOfAny(anyOf, 0, s.Length) != -1;
 
     /// <summary>Indicates whether a <see cref="string" /> contains one of the Unicode characters
     /// that are passed to the method as an array.</summary>
@@ -65,5 +65,5 @@ public static partial class StringExtension
     /// /> is <c>null</c>.</exception>
     public static bool ContainsAny(this string s, char[] anyOf)
         => s is null ? throw new ArgumentNullException(nameof(s))
-                     : s.IndexOfAny(anyOf) != -1 && anyOf.Length != 0;
+                     : s.IndexOfAny(anyOf) != -1;
 }

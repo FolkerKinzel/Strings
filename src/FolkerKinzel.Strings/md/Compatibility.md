@@ -3,18 +3,18 @@
 
 |                           | .NET 8.0 | .NET CORE 3.1 | .NET STandard 2.1 | .NET Standard 2.0 | .NET 461 |
 |:---						|:---:     |:---:          |:---:              |:---:              |:---:     |
-|Needles empty              |   -1     |       -1      |         -1        |        -1         |          |
-|String empty               |   -1     |       -1      |         -1        |        -1         |          |
-|Needles + String<br/>empty |   -1     |       -1      |         -1        |        -1         |          |
+|Needles empty              |   -1     |       -1      |         -1        |        -1         |   -1     |
+|String empty               |   -1     |       -1      |         -1        |        -1         |   -1     |
+|Needles + String<br/>empty |   -1     |       -1      |         -1        |        -1         |   -1     |
 
 &nbsp;
 ## String.LastIndexOfAny(Char[])
 
 |                           | .NET 8.0 | .NET CORE 3.1 | .NET STandard 2.1 | .NET Standard 2.0 | .NET 461 |
 |:---						|:---:     |:---:          |:---:              |:---:              |:---:     |
-|Needles empty              |   -1     |       -1      |          -1       |        -1         |          |
-|String empty               |   -1     |       -1      |          -1       |        -1         |          |
-|Needles + String<br/>empty |   -1     |       -1      |          -1       |        -1         |          |
+|Needles empty              |   -1     |       -1      |          -1       |        -1         |    -1    |
+|String empty               |   -1     |       -1      |          -1       |        -1         |    -1    |
+|Needles + String<br/>empty |   -1     |       -1      |          -1       |        -1         |    -1    |
 
 &nbsp;
 ## ReadOnlySpan&lt;Char&gt;.IndexOfAny(ReadOnlySpan&lt;Char&gt;)

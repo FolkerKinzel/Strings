@@ -38,21 +38,17 @@ public static partial class StringExtension
     {
         _ArgumentNullException.ThrowIfNull(s, nameof(s));
 
-        // string.LastIndexOfAny returns -1 if anyOf is an empty array (although MSDN says it would return 0).
-        // MemoryExtensions.LastIndexOfAny returns 0 if the span with the characters to search for is empty.
-        // This makes it consistent:
-        if (count == 0 || anyOf.IsEmpty)
-        {
-            return -1;
-        }
-
-        // MemoryExtensions.LastIndexOfAny throws ArgumentOutOfRangeExceptions even if s is ""
+        // MemoryExtensions.AsSpan(int, int) throws ArgumentOutOfRangeExceptions even if s is "" -
         // string.LastIndexOfAny does not.
         if (s.Length == 0)
         {
             return -1;
         }
+
+        // Don't address System.MemoryExtensions here directly: The nuget package System.MemoryExtensions
+        // used for NETSTANDARD2_0 and NET461 has a bug. The library polyfills the bug:
         int matchIndex = s.AsSpan(startIndex - count + 1, count).LastIndexOfAny(anyOf);
+
         return matchIndex == -1 ? -1 : matchIndex + startIndex - count + 1;
     }
 
@@ -97,8 +93,8 @@ public static partial class StringExtension
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(this string s, ReadOnlySpan<char> anyOf)
-    {
-        return s is null ? throw new ArgumentNullException(nameof(s))
-                         : s.LastIndexOfAny(anyOf, s.Length - 1, s.Length);
-    }
+        => s is null ? throw new ArgumentNullException(nameof(s))
+           // Don't address System.MemoryExtensions here directly: The nuget package System.MemoryExtensions
+           // used for NETSTANDARD2_0 and NET461 has a bug. The library polyfills the bug:
+                     : s.AsSpan().LastIndexOfAny(anyOf);
 }

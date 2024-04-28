@@ -8,7 +8,7 @@ public static partial class StringExtension
     /// the characters in the specified read-only span are removed.</summary>
     /// <param name="s">The <see cref="string" /> to change.</param>
     /// <param name="trimChars">A read-only span of Unicode characters to remove. If 
-    /// <paramref name="trimChars" /> is an empty Span, Unicode white-space characters are 
+    /// <paramref name="trimChars" /> is an empty span, Unicode white-space characters are 
     /// removed instead.</param>
     /// <returns>The resulting <see cref="string" /> after removing all characters passed
     /// in the <paramref name="trimChars" /> parameter from the beginning of the 
