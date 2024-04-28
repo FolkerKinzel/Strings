@@ -12,9 +12,9 @@ Very high code coverage of the unit tests (100% line and branch) and the consist
 - Extension methods that return identical `Int32` hashcodes for identical `Char` sequences each time the program runs. These hashcodes are a slim alternative to larger hash algorithms, which is suitable for hashing short strings that are not used in a security-critical context.
 - Useful helpers to work with character sets and encodings.
 
-.
+&nbsp;
 
-- [Version History](https://github.com/FolkerKinzel/Strings/releases)
+[Version History](https://github.com/FolkerKinzel/Strings/releases)
 
 
 
