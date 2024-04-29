@@ -601,9 +601,8 @@ public class StringBuilderExtensionTests
     [DataRow("%", true)]
     [DataRow("test", false)]
     [DataRow("", false)]
-    [SuppressMessage("Style", "IDE0302:Simplify collection initialization", Justification = "<Pending>")]
     public void ContainsAnyTest1(string s, bool expected)
-        => Assert.AreEqual(expected, s.AsSpan().ContainsAny(stackalloc char[] { '%', '@' }));
+        => Assert.AreEqual(expected, s.AsSpan().ContainsAny("%@"));
 
 
     [DataTestMethod]
@@ -810,7 +809,7 @@ public class StringBuilderExtensionTests
         string input = "  Test   ";
 
         var sb = new StringBuilder(input);
-        Assert.AreEqual(input.Trim(null), sb.Trim(null).ToString());
+        Assert.AreEqual(input.Trim(null), sb.Trim("").ToString());
     }
 
     [TestMethod]
@@ -939,7 +938,7 @@ public class StringBuilderExtensionTests
         string input = "  Test   ";
 
         var sb = new StringBuilder(input);
-        Assert.AreEqual(input.TrimStart(null), sb.TrimStart(null).ToString());
+        Assert.AreEqual(input.TrimStart(null), sb.TrimStart("").ToString());
     }
 
     [TestMethod]
@@ -1042,7 +1041,7 @@ public class StringBuilderExtensionTests
         string input = "  Test   ";
 
         var sb = new StringBuilder(input);
-        Assert.AreEqual(input.TrimEnd(null), sb.TrimEnd(null).ToString());
+        Assert.AreEqual(input.TrimEnd(null), sb.TrimEnd("").ToString());
     }
 
     [TestMethod]

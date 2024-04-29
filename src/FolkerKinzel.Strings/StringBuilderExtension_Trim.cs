@@ -37,10 +37,10 @@ public static partial class StringBuilderExtension
                : builder.DoTrimEnd(trimChars).DoTrimStart(trimChars);
 
     /// <summary>Removes all leading and trailing occurrences of a set of characters specified
-    /// in a Span from <paramref name="builder"/>.</summary>
+    /// in a read-only span from <paramref name="builder"/>.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
-    /// <param name="trimChars">A Span of Unicode characters to remove. If <paramref name="trimChars"
-    /// /> is an empty Span, Unicode white-space characters are removed instead.</param>
+    /// <param name="trimChars">A read-only span of Unicode characters to remove. If <paramref name="trimChars"
+    /// /> is an empty span, Unicode white-space characters are removed instead.</param>
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder Trim(this StringBuilder builder, ReadOnlySpan<char> trimChars)

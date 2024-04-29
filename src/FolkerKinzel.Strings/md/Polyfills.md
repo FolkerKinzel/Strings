@@ -116,6 +116,9 @@ StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, bool);
 StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, bool);
 StringBuilder ReplaceWhiteSpaceWith(this StringBuilder, string?, int, int, bool);
 StringBuilder AppendUrlEncoded(this StringBuilder, string?);
+StringBuilder Trim(this StringBuilder, string?);
+StringBuilder TrimEnd(this StringBuilder, string?);
+StringBuilder TrimStart(this StringBuilder, string?);
 ```
 &nbsp;
 ### Polyfills for the Encoding class (.NET Standard 2.0, .NET Framework 4.6.1)
