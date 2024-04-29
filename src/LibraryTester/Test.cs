@@ -165,6 +165,10 @@ namespace LibraryTesters
             _ = sb.Append(test.AsMemory());
             _ = sb.Append(sb);
 
+            _ = sb.Trim("ab");
+            _ = sb.TrimStart("ab");
+            _ = sb.TrimEnd("ab");
+
             _ = roSpan.ContainsAny(roSpan);
             _ = roSpan.ContainsAny("abc");
 

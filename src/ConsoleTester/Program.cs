@@ -296,6 +296,10 @@ class Program
         _ = roSpan.Equals("USA", StringComparison.Ordinal);
         _ = span.Equals("USA", StringComparison.Ordinal);
 
+        _ = sb.Trim("ab");
+        _ = sb.TrimStart("ab");
+        _ = sb.TrimEnd("ab");
+
         //_ = sb.AppendLine(test.AsMemory());
         //_ = sb.AppendLine(test.AsSpan());
 
