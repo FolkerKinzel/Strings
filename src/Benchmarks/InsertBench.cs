@@ -34,6 +34,8 @@ public class InsertBench
         return _builder;
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1830:Prefer strongly-typed Append and Insert method overloads on StringBuilder", Justification = "<Pending>")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance",
+        "CA1830:Prefer strongly-typed Append and Insert method overloads on StringBuilder",
+        Justification = "<Pending>")]
     private StringBuilder Insert2(ReadOnlySpan<char> value) => _builder.Insert(INDEX, value.ToString());
 }

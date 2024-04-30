@@ -79,6 +79,7 @@ public static partial class StringBuilderExtension
                 return i;
             }
         }
+
         return -1;
     }
 }
