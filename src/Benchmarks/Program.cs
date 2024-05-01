@@ -20,7 +20,8 @@ class Program
     //_ = BenchmarkRunner.Run<IndexOfBench>();
     //_ = BenchmarkRunner.Run<LastIndexOfBench>();
     //_ = BenchmarkRunner.Run<PersistentHashCodeBench>();
-    _ = BenchmarkRunner.Run<ContainsNewLineBench>();
+    //_ = BenchmarkRunner.Run<ContainsNewLineBench>();
+    _ = BenchmarkRunner.Run<ToUpperInvariantBench>();
 
     //new IndexOfBench().IndexOfSpanBounds();
     // new LastIndexOfBench().LastIndexOfSpanBounds();
