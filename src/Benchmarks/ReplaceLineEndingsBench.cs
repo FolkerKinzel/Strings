@@ -34,4 +34,13 @@ public class ReplaceLineEndingsBench
 
     [Benchmark]
     public string BenchString2() => TestString.ReplaceLineEndings("\n");
+
+
+    private static int ComputeMaxCapacity(int sourceLength, int replacementLength)
+        => sourceLength * Math.Max(1, replacementLength);
+
+    //private static int ReplaceLineEndings(ReadOnlySpan<char> source, ReadOnlySpan<char> replacement, Span<char> destination)
+    //{
+
+    //}
 }

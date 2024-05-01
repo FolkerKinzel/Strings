@@ -20,7 +20,7 @@ public static class EncodingExtension
 #if NET461 || NETSTANDARD2_0
         int length = chars.Length;
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
-        var arr = shared.Value;
+        var arr = shared.Array;
         _ = chars.TryCopyTo(arr);
         return encoding.GetBytes(arr, 0, length);
 #else
@@ -47,7 +47,7 @@ public static class EncodingExtension
 
         int length = bytes.Length;
         using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
-        var arr = shared.Value;
+        var arr = shared.Array;
         _ = bytes.TryCopyTo(arr);
         return encoding.GetString(arr, 0, length);
     }

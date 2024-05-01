@@ -23,7 +23,7 @@ public class StackAllockBench
     {
         const int length = 256;
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
-        Span<char> span = shared.Value.AsSpan(0, length);
+        Span<char> span = shared.Array.AsSpan(0, length);
         return span.Length;
     }
 
@@ -40,7 +40,7 @@ public class StackAllockBench
     {
         const int length = 512;
         using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
-        Span<byte> span = shared.Value.AsSpan(0, length);
+        Span<byte> span = shared.Array.AsSpan(0, length);
         return span.Length;
     }
 }

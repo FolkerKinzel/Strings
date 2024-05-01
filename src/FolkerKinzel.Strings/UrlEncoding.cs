@@ -58,7 +58,7 @@ public static class UrlEncoding
         if (length > Const.StackallocByteThreshold)
         {
             using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
-            Span<byte> encoded = shared.Value.AsSpan(0, length);
+            Span<byte> encoded = shared.Array.AsSpan(0, length);
             Encoding.UTF8.GetBytes(value, encoded);
             AppendData(builder, encoded);
         }
@@ -291,7 +291,7 @@ public static class UrlEncoding
             if (value.Length > Const.StackallocByteThreshold)
             {
                 using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(value.Length);
-                bytes = FillBytes(value, decodePlusChars, shared.Value.AsSpan(0, value.Length))
+                bytes = FillBytes(value, decodePlusChars, shared.Array.AsSpan(0, value.Length))
                        .ToArray();
             }
             else
@@ -316,7 +316,7 @@ public static class UrlEncoding
         if (value.Length > Const.StackallocByteThreshold)
         {
             using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(value.Length);
-            return encoding.GetString(FillBytes(value, decodePlusSigns, shared.Value.AsSpan(0, value.Length)));
+            return encoding.GetString(FillBytes(value, decodePlusSigns, shared.Array.AsSpan(0, value.Length)));
         }
         else
         {

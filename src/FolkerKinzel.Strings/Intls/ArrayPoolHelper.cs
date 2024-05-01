@@ -9,10 +9,10 @@ internal static class ArrayPoolHelper
     internal readonly struct SharedArray<T> : IDisposable
     {
         internal SharedArray(int minimumLength)
-            => Value = ArrayPool<T>.Shared.Rent(minimumLength);
+            => Array = ArrayPool<T>.Shared.Rent(minimumLength);
 
-        internal T[] Value { get; }
+        internal T[] Array { get; }
 
-        public void Dispose() => ArrayPool<T>.Shared.Return(Value, Confidentiality.IsConfidential);
+        public void Dispose() => ArrayPool<T>.Shared.Return(Array, Confidentiality.IsConfidential);
     }
 }

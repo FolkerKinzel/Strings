@@ -43,8 +43,8 @@ public class PersistentHashCodeBench
     private static int GetPersistentHashCode(StringBuilder sb, HashType hashType)
     {
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(sb.Length);
-        sb.CopyTo(0, shared.Value, 0, sb.Length);
-        return ((ReadOnlySpan<char>)shared.Value.AsSpan(0, sb.Length)).GetPersistentHashCode(hashType);
+        sb.CopyTo(0, shared.Array, 0, sb.Length);
+        return ((ReadOnlySpan<char>)shared.Array.AsSpan(0, sb.Length)).GetPersistentHashCode(hashType);
     }
 
     private static int GetPersistentHashCode2(StringBuilder sb, HashType hashType)

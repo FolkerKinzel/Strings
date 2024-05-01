@@ -36,7 +36,7 @@ public static class StaticStringMethod
         if (length > Const.StackallocCharThreshold)
         {
             using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
-            Span<char> span = shared.Value.AsSpan(0, length);
+            Span<char> span = shared.Array.AsSpan(0, length);
             action(span, state);
             return span.ToString();
         }
@@ -124,7 +124,7 @@ public static class StaticStringMethod
         if (length > Const.StackallocCharThreshold)
         {
             using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
-            return DoConcat(shared.Value.AsSpan(0, length), str0, str1, str2, str3);
+            return DoConcat(shared.Array.AsSpan(0, length), str0, str1, str2, str3);
         }
         else
         {

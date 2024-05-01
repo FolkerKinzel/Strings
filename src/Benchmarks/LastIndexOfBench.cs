@@ -39,8 +39,8 @@ public class LastIndexOfBench
         }
 
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(sb.Length);
-        sb.CopyTo(0, shared.Value, sb.Length);
-        return shared.Value.AsSpan(0, sb.Length).LastIndexOf(c);
+        sb.CopyTo(0, shared.Array, sb.Length);
+        return shared.Array.AsSpan(0, sb.Length).LastIndexOf(c);
     }
 
     private static int LastIndexOfPolyfillBounds(StringBuilder sb, char c, int startIndex, int count)
@@ -56,8 +56,8 @@ public class LastIndexOfBench
         }
 
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
-        sb.CopyTo(startIndex + 1 - count, shared.Value, count);
-        return shared.Value.AsSpan(0, count).LastIndexOf(c);
+        sb.CopyTo(startIndex + 1 - count, shared.Array, count);
+        return shared.Array.AsSpan(0, count).LastIndexOf(c);
     }
 
     private static int LastIndexOf(StringBuilder sb, char c)

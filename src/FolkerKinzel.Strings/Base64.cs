@@ -147,7 +147,7 @@ public static class Base64
     { 
        int length = bytes.Length;
        using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
-       var arr = shared.Value;
+       var arr = shared.Array;
        _ = bytes.TryCopyTo(arr);
        return Convert.ToBase64String(arr, 0, length, options);
     }

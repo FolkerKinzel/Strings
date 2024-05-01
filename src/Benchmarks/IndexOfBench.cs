@@ -45,8 +45,8 @@ public class IndexOfBench
         }
 
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(sb.Length);
-        sb.CopyTo(0, shared.Value, sb.Length);
-        return shared.Value.AsSpan(0, sb.Length).IndexOf(c);
+        sb.CopyTo(0, shared.Array, sb.Length);
+        return shared.Array.AsSpan(0, sb.Length).IndexOf(c);
     }
 
     private static int IndexOfPolyfillBounds(StringBuilder sb, char c, int startIndex, int count)
@@ -57,8 +57,8 @@ public class IndexOfBench
         }
 
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
-        sb.CopyTo(startIndex, shared.Value, count);
-        return shared.Value.AsSpan(0, count).IndexOf(c);
+        sb.CopyTo(startIndex, shared.Array, count);
+        return shared.Array.AsSpan(0, count).IndexOf(c);
     }
 
     //private static int IndexOf(StringBuilder sb, char c)
