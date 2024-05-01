@@ -20,9 +20,10 @@ class Program
     //_ = BenchmarkRunner.Run<IndexOfBench>();
     //_ = BenchmarkRunner.Run<LastIndexOfBench>();
     //_ = BenchmarkRunner.Run<PersistentHashCodeBench>();
+    _ = BenchmarkRunner.Run<ContainsNewLineBench>();
 
-    new IndexOfBench().IndexOfSpanBounds();
-    // new LastIndexOfBench().LastIndexOfChunks();
+    //new IndexOfBench().IndexOfSpanBounds();
+    // new LastIndexOfBench().LastIndexOfSpanBounds();
     // new PersistentHashCodeBench().StringBuilderHashChunks();
 
     //Base64Bench.Test2();

@@ -13,7 +13,7 @@ namespace Benchmarks;
 [MemoryDiagnoser]
 public class LastIndexOfBench
 {
-    private readonly StringBuilder _builder = new(new string('a', 200));
+    private readonly StringBuilder _builder = new StringBuilder(new string('a', 100)).Append(new string('a', 100));
 
     [Benchmark]
     public int LastIndexOfLibrary() => _builder.LastIndexOf('z');
@@ -24,6 +24,11 @@ public class LastIndexOfBench
     [Benchmark]
     public int LastIndexOfArray() => LastIndexOfPolyfill(_builder, 'z');
 
+    [Benchmark]
+    public int LastIndexOfSpanBounds() => LastIndexOfSpanBounds(_builder, 'z', _builder.Length, _builder.Length);
+
+    [Benchmark]
+    public int LastIndexOfArrayBounds() => LastIndexOfPolyfillBounds(_builder, 'z', _builder.Length, _builder.Length);
 
 
     private static int LastIndexOfPolyfill(StringBuilder sb, char c)
@@ -38,7 +43,22 @@ public class LastIndexOfBench
         return shared.Value.AsSpan(0, sb.Length).LastIndexOf(c);
     }
 
+    private static int LastIndexOfPolyfillBounds(StringBuilder sb, char c, int startIndex, int count)
+    {
+        if (count == 0)
+        {
+            return -1;
+        }
 
+        if (startIndex == sb.Length)
+        {
+            --startIndex;
+        }
+
+        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
+        sb.CopyTo(startIndex + 1 - count, shared.Value, count);
+        return shared.Value.AsSpan(0, count).LastIndexOf(c);
+    }
 
     private static int LastIndexOf(StringBuilder sb, char c)
     {
@@ -54,6 +74,36 @@ public class LastIndexOfBench
             }
 
             pos = chunkStart - 1;
+        }
+
+        return -1;
+    }
+
+    private static int LastIndexOfSpanBounds(StringBuilder sb, char c, int startIndex, int count)
+    {
+        if (startIndex == sb.Length)
+        {
+            --startIndex;
+        }
+
+        while (ChunkProvider.TryGetChunk(sb, startIndex, out int chunkStart, out ReadOnlySpan<char> span))
+        {
+            int evaluatedLength = startIndex + 1 - chunkStart;
+            span = span.Slice(0, evaluatedLength);
+            int idx = span.LastIndexOf(c);
+
+            if (evaluatedLength >= count)
+            {
+                return idx == -1 ? -1 : chunkStart + idx;
+            }
+
+            if (idx != -1)
+            {
+                return chunkStart + idx;
+            }
+
+            startIndex -= evaluatedLength;
+            count -= evaluatedLength;
         }
 
         return -1;

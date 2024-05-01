@@ -1,6 +1,22 @@
 ﻿# FolkerKinzel.Strings
 
 ## Roadmap
+### 8.1.0
+- [ ] Refactor ReadOnlySpanExtension.ContainsNewLine to use ReadOnlySpan.ContainsAny or SearchValues
+- [ ] Refactor StringBuilderExtension.ContainsNewLine to use ReadOnlySpan.ContainsNewLine
+- [ ] Refactor StringBuilderExtension.IndexOf
+- [ ] Refactor StringBuilderExtension.LastIndexOf
+- [ ] Refactor StringBuilderExtension.GetPersistentHashCode to use the ReadOnlySpan method
+- [ ] Refactor StringBuilderExtension.ContainsWhiteSpace to use the ReadOnlySpan method
+- [ ] Refactor StringBuilderExtension.ContainsNonAscii to use the ReadOnlySpan.IsAscii method
+- [ ] Refactor StringBuilderExtension.ReplaceLineEndings
+- [ ] Refactor StringBuilderExtension.ReplaceWhiteSpaceWith
+- [ ] Refactor StringBuilderExtension.ToLowerInvariant
+- [ ] Refactor StringBuilderExtension.ToUpperInvariant
+- [ ] Refactor StringBuilderExtension.Trim
+- [ ] Refactor StringBuilderExtension.TrimStart
+- [ ] Refactor StringBuilderExtension.TrimEnd
+
 ### 7.0.1
 - [x] Remove `IsAsciiLowerCaseLetter(this char)`
 - [x] Remove `IsAsciiUpperCaseLetter(this char)`

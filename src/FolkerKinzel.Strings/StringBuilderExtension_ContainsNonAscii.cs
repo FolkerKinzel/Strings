@@ -80,6 +80,7 @@ public static partial class StringBuilderExtension
                 return true;
             }
         }
+
         return false;
     }
 }

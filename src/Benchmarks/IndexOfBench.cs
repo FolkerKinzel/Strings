@@ -120,13 +120,13 @@ public class IndexOfBench
             ReadOnlySpan<char> span = chunk.Span;
             int idx;
 
-            if (evaluatedLength <= count)
+            if (evaluatedLength >= count)
             {
                 span = span.Slice(spanStart, count);
 
                 idx = span.IndexOf(c);
 
-                return idx != -1 ? pos + idx : -1;
+                return idx == -1 ? -1 : pos + idx;
             }
 
             span = span.Slice(spanStart);
