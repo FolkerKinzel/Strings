@@ -16,6 +16,8 @@
 - [ ] Refactor StringBuilderExtension.Trim
 - [ ] Refactor StringBuilderExtension.TrimStart
 - [ ] Refactor StringBuilderExtension.TrimEnd
+- [ ] Refactor StringPolyfillExtension.ReplaceLineEndings
+- [ ] Refactor.StringExtension.ReplaceWhiteSpaceWith
 
 ### 7.0.1
 - [x] Remove `IsAsciiLowerCaseLetter(this char)`
