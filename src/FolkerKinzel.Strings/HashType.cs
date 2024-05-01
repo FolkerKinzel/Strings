@@ -4,12 +4,12 @@ namespace FolkerKinzel.Strings;
 public enum HashType
 {
     /// <summary>Ordinal comparison of the characters.</summary>
-    Ordinal,
+    Ordinal = 1,
 
     /// <summary>Ordinal comparison of the characters without taking upper and lower case
     /// into account.</summary>
-    OrdinalIgnoreCase,
+    OrdinalIgnoreCase = 2,
 
     /// <summary>Only letters and decimal digits are hashed. The case is not considered.</summary>
-    AlphaNumericIgnoreCase,
+    AlphaNumericIgnoreCase = 3,
 }

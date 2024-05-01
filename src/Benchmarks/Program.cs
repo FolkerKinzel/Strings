@@ -18,10 +18,12 @@ class Program
     //_ = BenchmarkRunner.Run<StackAllockBench>();
     //_ = BenchmarkRunner.Run<SearchValuesBench>();
     //_ = BenchmarkRunner.Run<IndexOfBench>();
-    _ = BenchmarkRunner.Run<LastIndexOfBench>();
+    //_ = BenchmarkRunner.Run<LastIndexOfBench>();
+    //_ = BenchmarkRunner.Run<PersistentHashCodeBench>();
 
-    //new IndexOfBench().IndexOfEnumerator();
+    new IndexOfBench().IndexOfSpanBounds();
     // new LastIndexOfBench().LastIndexOfChunks();
+    // new PersistentHashCodeBench().StringBuilderHashChunks();
 
     //Base64Bench.Test2();
 

@@ -12,13 +12,13 @@ namespace Benchmarks;
 [MemoryDiagnoser]
 public class IndexOfBench
 {
-    private readonly StringBuilder _builder = new(new string('a', 200));
+    private readonly StringBuilder _builder = new StringBuilder(new string('a', 100)).Append(new string('a', 100));
 
     [Benchmark]
     public int IndexOfLibrary() => _builder.IndexOf('z');
 
-    [Benchmark]
-    public int IndexOfChunks() => IndexOf(_builder, 'z');
+    //[Benchmark]
+    //public int IndexOfChunks() => IndexOf(_builder, 'z');
 
     //[Benchmark]
     //public int IndexOfEnumerator() => IndexOfWithEnumerator(_builder, 'z');
@@ -28,6 +28,12 @@ public class IndexOfBench
 
     [Benchmark]
     public int IndexOfArray() => IndexOfPolyfill(_builder, 'z');
+
+    [Benchmark]
+    public int IndexOfSpanBounds() => IndexOfSpanBounds(_builder, 'z', 0, _builder.Length);
+
+    [Benchmark]
+    public int IndexOfArrayBounds() => IndexOfPolyfillBounds(_builder, 'z', 0, _builder.Length);
 
 
 
@@ -43,15 +49,25 @@ public class IndexOfBench
         return shared.Value.AsSpan(0, sb.Length).IndexOf(c);
     }
 
+    private static int IndexOfPolyfillBounds(StringBuilder sb, char c, int startIndex, int count)
+    {
+        if (count == 0)
+        {
+            return -1;
+        }
 
-    //private static int IndexOfWithEnumerator(StringBuilder sb, char c)
+        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
+        sb.CopyTo(startIndex, shared.Value, count);
+        return shared.Value.AsSpan(0, count).IndexOf(c);
+    }
+
+    //private static int IndexOf(StringBuilder sb, char c)
     //{
     //    int pos = 0;
-    //    StringBuilder.ChunkEnumerator enumerator = sb.GetChunks();
 
-    //    while (enumerator.MoveNext()) 
+    //    foreach (ReadOnlyMemory<char> chunk in sb.GetChunks())
     //    {
-    //        ReadOnlySpan<char> span = enumerator.Current.Span;
+    //        ReadOnlySpan<char> span = chunk.Span;
 
     //        for (int i = 0; i < span.Length; i++)
     //        {
@@ -66,28 +82,6 @@ public class IndexOfBench
 
     //    return -1;
     //}
-
-    private static int IndexOf(StringBuilder sb, char c)
-    {
-        int pos = 0;
-
-        foreach (ReadOnlyMemory<char> chunk in sb.GetChunks())
-        {
-            ReadOnlySpan<char> span = chunk.Span;
-
-            for (int i = 0; i < span.Length; i++)
-            {
-                if (span[i] == c)
-                {
-                    return pos + i;
-                }
-            }
-
-            pos += span.Length;
-        }
-
-        return -1;
-    }
 
     private static int IndexOfSpan(StringBuilder sb, char c)
     {
@@ -104,6 +98,49 @@ public class IndexOfBench
             }
 
             pos += span.Length;
+        }
+
+        return -1;
+    }
+
+    private static int IndexOfSpanBounds(StringBuilder sb, char c, int startIndex, int count)
+    {
+        int pos = 0;
+
+        foreach (ReadOnlyMemory<char> chunk in sb.GetChunks())
+        {
+            if(startIndex >= chunk.Length + pos)
+            {
+                pos += chunk.Length;
+                continue;
+            }
+
+            int spanStart = startIndex - pos;
+            int evaluatedLength = chunk.Length - spanStart;
+            ReadOnlySpan<char> span = chunk.Span;
+            int idx;
+
+            if (evaluatedLength <= count)
+            {
+                span = span.Slice(spanStart, count);
+
+                idx = span.IndexOf(c);
+
+                return idx != -1 ? pos + idx : -1;
+            }
+
+            span = span.Slice(spanStart);
+
+            idx = span.IndexOf(c);
+
+            if (idx != -1)
+            {
+                return pos + idx;
+            }
+           
+            pos += chunk.Length;
+            count -= evaluatedLength;
+            startIndex = pos;
         }
 
         return -1;
