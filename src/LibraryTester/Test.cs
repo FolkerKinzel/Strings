@@ -129,11 +129,11 @@ namespace LibraryTesters
             _ = test.AsSpan().ContainsAny("abc");
 
 
-            _ = test.AsSpan().GetTrimmedLength();
-            _ = span.GetTrimmedLength();
+            //_ = test.AsSpan().GetTrimmedLength();
+            //_ = span.GetTrimmedLength();
 
-            _ = test.AsSpan().GetTrimmedStart();
-            _ = span.GetTrimmedStart();
+            //_ = test.AsSpan().GetTrimmedStart();
+            //_ = span.GetTrimmedStart();
 
             _ = test.ContainsWhiteSpace();
 

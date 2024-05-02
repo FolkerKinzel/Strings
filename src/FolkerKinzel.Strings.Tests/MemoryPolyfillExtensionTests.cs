@@ -3,13 +3,13 @@
 namespace FolkerKinzel.Strings.Tests;
 
 [TestClass()]
-public class ReadOnlyMemoryPolyfillExtensionTests
+public class MemoryPolyfillExtensionTests
 {
     [TestMethod()]
     public void TrimTest()
     {
         string test = "  Test ";
-        ReadOnlyMemory<char> memory = test.AsMemory();
+        Memory<char> memory = test.ToCharArray().AsMemory();
         Assert.AreEqual(test.Trim(), memory.Trim().ToString());
     }
 
@@ -17,7 +17,7 @@ public class ReadOnlyMemoryPolyfillExtensionTests
     public void TrimStartTest()
     {
         string test = "  Test ";
-        ReadOnlyMemory<char> memory = test.AsMemory();
+        Memory<char> memory = test.ToCharArray().AsMemory();
         Assert.AreEqual(test.TrimStart(), memory.TrimStart().ToString());
     }
 
@@ -25,7 +25,7 @@ public class ReadOnlyMemoryPolyfillExtensionTests
     public void TrimEndTest()
     {
         string test = "  Test ";
-        ReadOnlyMemory<char> memory = test.AsMemory();
+        Memory<char> memory = test.ToCharArray().AsMemory();
         Assert.AreEqual(test.TrimEnd(), memory.TrimEnd().ToString());
     }
 }

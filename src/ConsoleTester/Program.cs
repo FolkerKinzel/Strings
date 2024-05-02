@@ -104,11 +104,11 @@ class Program
         _ = roSpan.ContainsAny("xy");
 
 
-        _ = roSpan.GetTrimmedLength();
-        _ = span.GetTrimmedLength();
+        //_ = roSpan.GetTrimmedLength();
+        //_ = span.GetTrimmedLength();
 
-        _ = roSpan.GetTrimmedStart();
-        _ = span.GetTrimmedStart();
+        //_ = roSpan.GetTrimmedStart();
+        //_ = span.GetTrimmedStart();
 
         _ = roSpan.Trim('a');
         //_ = span.Trim('a');

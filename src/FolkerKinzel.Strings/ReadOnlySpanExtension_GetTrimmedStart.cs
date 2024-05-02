@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace FolkerKinzel.Strings;
 
 public static partial class ReadOnlySpanExtension
@@ -28,16 +30,12 @@ public static partial class ReadOnlySpanExtension
     /// read-only span that is not equal to <paramref name="trimChar"/>. If the
     /// span is empty or consists only of <paramref name="trimChar"/>s, <c>0</c> is returned.</returns>
     /// <remarks>The method performs an ordinal character comparison.</remarks>
+    [Obsolete("Use IndexOfAnyExcept instead.", false)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static int GetTrimmedStart(this ReadOnlySpan<char> span, char trimChar)
     {
-        for (int i = 0; i < span.Length; i++)
-        {
-            if (trimChar != span[i])
-            {
-                return i;
-            }
-        }
-
-        return span.Length;
+        int idx = span.IndexOfAnyExcept(trimChar);
+        return idx == -1 ? span.Length : idx;
     }
 }

@@ -24,7 +24,7 @@ public class PersistentHashCodeBench
     [Benchmark]
     public int SpanHashStruct()
     {
-        var hash = new PersistentHashCode(HashType.Ordinal);
+        var hash = new PersistentStringHash(HashType.Ordinal);
         hash.Append(_s);
         return hash.Hash;
     }
@@ -49,7 +49,7 @@ public class PersistentHashCodeBench
 
     private static int GetPersistentHashCode2(StringBuilder sb, HashType hashType)
     {
-        var hash = new PersistentHashCode(hashType);
+        var hash = new PersistentStringHash(hashType);
 
         foreach (ReadOnlyMemory<char> memory in sb.GetChunks())
         {

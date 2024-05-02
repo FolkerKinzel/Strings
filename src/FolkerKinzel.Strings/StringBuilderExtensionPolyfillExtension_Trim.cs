@@ -19,7 +19,6 @@ public static partial class StringBuilderExtensionPolyfillExtension
     /// <summary>Removes all trailing occurrences of a set of characters specified in a 
     /// <see cref="string"/> from <paramref name="builder"/>.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
-    /// <param name="trimChars">A read-only span of Unicode characters to remove. If 
     /// <param name="trimChars">A <see cref="string"/> that contains the Unicode characters to remove. If 
     /// <paramref name="trimChars" /> is an empty string, Unicode white-space characters are removed 
     /// instead.</param>

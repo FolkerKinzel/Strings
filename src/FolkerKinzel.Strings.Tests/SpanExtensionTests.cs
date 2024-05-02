@@ -56,22 +56,22 @@ public class SpanExtensionTests
     public void IndexOfAnyTest1()
         => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().IndexOfAny("1b2".AsSpan()));
 
-    [DataTestMethod]
-    [DataRow("")]
-    [DataRow("abc")]
-    [DataRow("  abc")]
-    [DataRow("  abc   ")]
-    public void GetTrimmedStartTest1(string input)
-        => Assert.AreEqual(input.AsSpan().GetTrimmedStart(), input.ToCharArray().AsSpan().GetTrimmedStart());
+    //[DataTestMethod]
+    //[DataRow("")]
+    //[DataRow("abc")]
+    //[DataRow("  abc")]
+    //[DataRow("  abc   ")]
+    //public void GetTrimmedStartTest1(string input)
+    //    => Assert.AreEqual(input.AsSpan().GetTrimmedStart(), input.ToCharArray().AsSpan().GetTrimmedStart());
 
 
-    [DataTestMethod]
-    [DataRow("")]
-    [DataRow("abc")]
-    [DataRow("  abc")]
-    [DataRow("  abc   ")]
-    public void GetTrimmedLengthTest1(string input)
-       => Assert.AreEqual(input.AsSpan().GetTrimmedLength(), input.ToCharArray().AsSpan().GetTrimmedLength());
+    //[DataTestMethod]
+    //[DataRow("")]
+    //[DataRow("abc")]
+    //[DataRow("  abc")]
+    //[DataRow("  abc   ")]
+    //public void GetTrimmedLengthTest1(string input)
+    //   => Assert.AreEqual(input.AsSpan().GetTrimmedLength(), input.ToCharArray().AsSpan().GetTrimmedLength());
 
     [DataTestMethod]
     [DataRow("")]

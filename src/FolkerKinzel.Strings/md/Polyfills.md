@@ -41,6 +41,19 @@ static string StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>);
 static string StaticStringMethod.Create<TState>(int, TState, SpanAction<char, TState>);
 ```
 &nbsp;
+### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+```csharp
+bool ContainsAny(this ReadOnlySpan<char>, ReadOnlySpan<char>);
+bool ContainsAny(this ReadOnlySpan<char>, char, char);
+bool ContainsAny(this ReadOnlySpan<char>, char, char, char);
+```
+&nbsp;
+### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+```csharp
+int IndexOfAnyExcept(this ReadOnlySpan<char>, char);
+int LastIndexOfAnyExcept(this ReadOnlySpan<char>, char);
+```
+&nbsp;
 ### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 bool Contains(this ReadOnlySpan<char>, char);
@@ -64,6 +77,19 @@ int IndexOf(this ReadOnlySpan<char>, string?, StringComparison);
 ReadOnlySpan<char> Trim(this ReadOnlySpan<char>, string?);
 ReadOnlySpan<char> TrimStart(this ReadOnlySpan<char>, string?);
 ReadOnlySpan<char> TrimEnd(this ReadOnlySpan<char>, string?);
+```
+&nbsp;
+### Polyfills for the Span&lt;Char&gt; struct (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+```csharp
+bool ContainsAny(this Span<char>, ReadOnlySpan<char>);
+bool ContainsAny(this Span<char>, char, char);
+bool ContainsAny(this Span<char>, char, char, char);
+```
+&nbsp;
+### Polyfills for the Span&lt;Char&gt; struct (.NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+```csharp
+int IndexOfAnyExcept(this Span<char>, char);
+int LastIndexOfAnyExcept(this Span<char>, char);
 ```
 &nbsp;
 ### Polyfills for the Span&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
@@ -99,6 +125,13 @@ int IndexOf(this Span<char>, string?, StringComparison);
 ReadOnlyMemory<char> Trim(this ReadOnlyMemory<char>);
 ReadOnlyMemory<char> TrimEnd(this ReadOnlyMemory<char>);
 ReadOnlyMemory<char> TrimStart(this ReadOnlyMemory<char>);
+```
+&nbsp;
+### Polyfills for the Memory&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+```csharp
+Memory<char> Trim(this Memory<char>);
+Memory<char> TrimEnd(this Memory<char>);
+Memory<char> TrimStart(this Memory<char>);
 ```
 &nbsp;
 ### Polyfills for the StringBuilder class (.NET Standard 2.0, .NET Framework 4.6.1)

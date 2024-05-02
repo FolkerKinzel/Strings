@@ -2,35 +2,35 @@ namespace FolkerKinzel.Strings;
 
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
 
-/// <summary>Extension methods for the <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see>
+/// <summary>Extension methods for the <see cref="Memory{T}">Memory&lt;Char&gt;</see>
 /// struct, which are used in .NET Framework 4.6.1, .NET Standard 2.0 and .NET Standard
 /// 2.1 as polyfills for methods from current .NET versions.</summary>
 /// <remarks>The methods of this class should only be used in the extension method syntax
-/// to simulate the methods of the <see cref="ReadOnlyMemory{T}">ReadOnlyMemory&lt;Char&gt;</see>
+/// to simulate the methods of the <see cref="Memory{T}">Memory&lt;Char&gt;</see>
 /// struct, which exist in more modern frameworks.</remarks>
-public static class ReadOnlyMemoryPolyfillExtension
+public static class MemoryPolyfillExtension
 {
-    /// <summary>Removes all leading and trailing white space characters from a read-only
+    /// <summary>Removes all leading and trailing white space characters from
     /// character memory region.</summary>
     /// <param name="memory">The source memory from which the characters are removed.</param>
     /// <returns>The trimmed character memory region.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static ReadOnlyMemory<char> Trim(this ReadOnlyMemory<char> memory)
+    public static Memory<char> Trim(this Memory<char> memory)
         => memory.TrimStart().TrimEnd();
 
-    /// <summary>Removes all leading white space characters from a read-only character memory
+    /// <summary>Removes all leading white space characters from a character memory
     /// region.</summary>
     /// <param name="memory">The source memory from which the characters are removed.</param>
     /// <returns>The trimmed character memory region.</returns>
-    public static ReadOnlyMemory<char> TrimStart(this ReadOnlyMemory<char> memory)
-        => memory.Slice(memory.Length - memory.Span.TrimStart().Length);
+    public static Memory<char> TrimStart(this Memory<char> memory)
+        => memory.Slice(memory.Length - ((ReadOnlySpan<char>)memory.Span).TrimStart().Length);
 
-    /// <summary>Removes all trailing white space characters from a read-only character memory
+    /// <summary>Removes all trailing white space characters from a character memory
     /// region.</summary>
     /// <param name="memory">The source memory from which the characters are removed.</param>
     /// <returns>The trimmed character memory region.</returns>
-    public static ReadOnlyMemory<char> TrimEnd(this ReadOnlyMemory<char> memory)
-        => memory.Slice(0, memory.Span.TrimEnd().Length);
+    public static Memory<char> TrimEnd(this Memory<char> memory)
+        => memory.Slice(0, ((ReadOnlySpan<char>)memory.Span).TrimEnd().Length);
 }
 
 #endif

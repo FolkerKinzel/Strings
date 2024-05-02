@@ -22,6 +22,22 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
         GC.SuppressFinalize(this);
     }
 
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("   ", -1)]
+    [DataRow("a", 0)]
+    [DataRow(" a ", 1)]
+    public void IndexOfAnyExceptTest1(string input, int expected)
+        => Assert.AreEqual(expected, input.AsSpan().IndexOfAnyExcept(' '));
+
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("   ", -1)]
+    [DataRow("a", 0)]
+    [DataRow(" a ", 1)]
+    public void LastIndexOfAnyExceptTest1(string input, int expected)
+        => Assert.AreEqual(expected, input.AsSpan().LastIndexOfAnyExcept(' '));
+
     [DataTestMethod]
     [DataRow("", null, true)]
     [DataRow("", "", true)]

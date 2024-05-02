@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+using System.Text;
 using FolkerKinzel.Strings;
+using FolkerKinzel.Strings.Intls;
 using FolkerKinzel.Strings.Properties;
 
 namespace Benchmarks;
 
-internal struct PersistentHashCode(HashType hashType)
+internal struct PersistentStringHash(HashType hashType)
 {
     private readonly HashType _hashType = hashType switch
     {
@@ -45,6 +48,49 @@ internal struct PersistentHashCode(HashType hashType)
                 break;
             default:
                 throw new InvalidOperationException("Don't instantiate this struct with the default constructor!");
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Append(StringBuilder builder)
+        => DoAppend(builder, 0, builder?.Length ?? throw new ArgumentNullException(nameof(builder)));
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Append(StringBuilder builder, int startIndex)
+        => DoAppend(builder, startIndex, builder?.Length - startIndex ?? throw new ArgumentNullException(nameof(builder)));
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Append(StringBuilder builder, int startIndex, int count)
+    {
+        _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+        DoAppend(builder, startIndex, count);
+    }
+
+    private void DoAppend(StringBuilder builder, int startIndex, int count)
+    { 
+        if(startIndex < 0 || (startIndex + count) > builder.Length)
+        {
+            throw new ArgumentOutOfRangeException();
+        }
+
+        if(count == 0) { return; }
+
+        int pos = 0;
+
+        foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
+        {
+            if(startIndex < pos + chunk.Length)
+            {
+                int spanStart = startIndex - pos;
+                ReadOnlySpan<char> span = chunk.Span.Slice(spanStart, Math.Min(chunk.Length - spanStart, count));
+                count -= span.Length;
+                Append(span);
+
+                if(count == 0)
+                {
+                    return; 
+                }
+            }
         }
     }
 

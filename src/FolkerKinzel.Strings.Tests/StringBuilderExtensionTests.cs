@@ -591,10 +591,10 @@ public class StringBuilderExtensionTests
         _ = sb.ToUpperInvariant();
     }
 
-    [DataTestMethod]
-    [DataRow("   ")]
-    [DataRow("")]
-    public void GetTrimmedStartTest1(string s) => Assert.AreEqual(s.Length, s.AsSpan().GetTrimmedStart());
+    //[DataTestMethod]
+    //[DataRow("   ")]
+    //[DataRow("")]
+    //public void GetTrimmedStartTest1(string s) => Assert.AreEqual(s.Length, s.AsSpan().GetTrimmedStart());
 
     [DataTestMethod]
     [DataRow("ab@c%", true)]

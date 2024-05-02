@@ -5,6 +5,22 @@ namespace FolkerKinzel.Strings.Tests;
 [TestClass()]
 public class SpanPolyfillExtensionTests
 {
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("   ", -1)]
+    [DataRow("a", 0)]
+    [DataRow(" a ", 1)]
+    public void IndexOfAnyExceptTest1(string input, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().IndexOfAnyExcept(' '));
+
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("   ", -1)]
+    [DataRow("a", 0)]
+    [DataRow(" a ", 1)]
+    public void LastIndexOfAnyExceptTest1(string input, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().LastIndexOfAnyExcept(' '));
+
     [DataTestMethod]
     [DataRow("", 'x')]
     [DataRow("abc", 'x')]

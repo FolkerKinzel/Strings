@@ -14,16 +14,14 @@ public static partial class SpanPolyfillExtension
     /// <summary>Removes all leading white space characters from a character span.</summary>
     /// <param name="span">The source span from which the characters are removed.</param>
     /// <returns>The sliced span.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Span<char> TrimStart(this Span<char> span)
-        => span.Slice(span.GetTrimmedStart());
+        => span.Slice(span.Length - ((ReadOnlySpan<char>)span).TrimStart().Length);
 
     /// <summary>Removes all trailing white space characters from a character span.</summary>
     /// <param name="span">The source span from which the characters are removed.</param>
     /// <returns>The sliced span.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Span<char> TrimEnd(this Span<char> span)
-        => span.Slice(0, span.GetTrimmedLength());
+        => span.Slice(0, ((ReadOnlySpan<char>)span).TrimEnd().Length);
 
     /// <summary>Removes all leading and trailing occurrences of <paramref name="trimElement"/> from a character
     /// span.</summary>
@@ -40,18 +38,16 @@ public static partial class SpanPolyfillExtension
     /// <param name="trimElement">The specified <see cref="char"/> to look for and remove.</param>
     /// <returns>The sliced span.</returns>
     /// <remarks>The method performs an ordinal character comparison.</remarks>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Span<char> TrimStart(this Span<char> span, char trimElement)
-        => span.Slice(span.GetTrimmedStart(trimElement));
+        => span.Slice(span.Length - ((ReadOnlySpan<char>)span).TrimStart(trimElement).Length);
 
     /// <summary>Removes all trailing occurrences of <paramref name="trimElement"/> from a character span.</summary>
     /// <param name="span">The source span from which the characters are removed.</param>
     /// <param name="trimElement">The specified <see cref="char"/> to look for and remove.</param>
     /// <returns>The sliced span.</returns>
     /// <remarks>The method performs an ordinal character comparison.</remarks>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Span<char> TrimEnd(this Span<char> span, char trimElement)
-        => span.Slice(0, span.GetTrimmedLength(trimElement));
+        => span.Slice(0, ((ReadOnlySpan<char>)span).TrimEnd(trimElement).Length);
 }
 
 #endif
