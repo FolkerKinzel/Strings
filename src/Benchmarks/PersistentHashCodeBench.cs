@@ -37,7 +37,12 @@ public class PersistentHashCodeBench
 
 
     [Benchmark]
-    public int StringBuilderHashChunks() => GetPersistentHashCode2(_builder, HashType.Ordinal);
+    public int StringBuilderHashChunks()
+    {
+        var hash = new PersistentStringHash(HashType.Ordinal);
+        hash.Append(_builder);
+        return hash.Hash;
+    }
 
 
     private static int GetPersistentHashCode(StringBuilder sb, HashType hashType)
@@ -47,17 +52,17 @@ public class PersistentHashCodeBench
         return ((ReadOnlySpan<char>)shared.Array.AsSpan(0, sb.Length)).GetPersistentHashCode(hashType);
     }
 
-    private static int GetPersistentHashCode2(StringBuilder sb, HashType hashType)
-    {
-        var hash = new PersistentStringHash(hashType);
+    //private static int GetPersistentHashCode2(StringBuilder sb, HashType hashType)
+    //{
+    //    var hash = new PersistentStringHash(hashType);
 
-        foreach (ReadOnlyMemory<char> memory in sb.GetChunks())
-        {
-            hash.Append(memory.Span);
-        }
+    //    foreach (ReadOnlyMemory<char> memory in sb.GetChunks())
+    //    {
+    //        hash.Append(memory.Span);
+    //    }
 
-        return hash.Hash;
-    }
+    //    return hash.Hash;
+    //}
 
     //[Benchmark]
     //public int SpanHashSplitted()

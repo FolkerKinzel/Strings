@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,44 @@ public class ReplaceWhiteSpaceWithBench
     [Benchmark]
     public string ReplaceWhiteSpaceStringArrayPool() => ReplaceWhiteSpaceWith(_s, REPLACEMENT, false);
 
+    [Benchmark]
+    public StringBuilder ReplaceWhiteSpaceStringBuilderLibrary() => new StringBuilder(_s).ReplaceWhiteSpaceWith(REPLACEMENT, false);
+
+    [Benchmark]
+    public StringBuilder ReplaceWhiteSpaceStringBuilderArrayPool() => ReplaceWhiteSpaceWith(new StringBuilder(_s), 0, _s.Length, REPLACEMENT, false);
+
+    private static StringBuilder ReplaceWhiteSpaceWith(StringBuilder input, int startIndex, int count, ReadOnlySpan<char> replacement, bool skipNewLines)
+    {
+        if(count == 0)
+        {
+            return input;
+        }
+
+        int capacity = ComputeMaxCapacity(count, replacement.Length);
+
+        using ArrayPoolHelper.SharedArray<char> source = ArrayPoolHelper.Rent<char>(count);
+        input.CopyTo(startIndex, source.Array, 0, count);
+
+        using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(capacity);
+        int outLength = ReplaceWhiteSpaceWith(source.Array.AsSpan(0, count), replacement, buf.Array, skipNewLines, out bool replaced);
+
+        if (replaced)
+        {
+            if (startIndex + count == input.Length)
+            {
+                input.Length = startIndex;
+                input.Append(buf.Array, 0, outLength);
+            }
+            else
+            {
+                input.Remove(startIndex, count);
+                input.Insert(startIndex, buf.Array, 0, outLength);
+            }
+        }
+
+        return input;
+    }
+
 
     private static string ReplaceWhiteSpaceWith(string input, ReadOnlySpan<char> replacement, bool skipNewLines)
     {
@@ -63,13 +102,13 @@ public class ReplaceWhiteSpaceWithBench
         int destIdx = 0;
         replaced = false;
 
-        for (int i = 0; i < source.Length; i++) 
+        for (int i = 0; i < source.Length; i++)
         {
             char c = source[i];
 
             if (char.IsWhiteSpace(c))
             {
-                if(skipNewLines && c.IsNewLine())
+                if (skipNewLines && c.IsNewLine())
                 {
                     wsFlag = false;
                     destination[destIdx++] = c;

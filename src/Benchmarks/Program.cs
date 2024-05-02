@@ -22,12 +22,14 @@ class Program
     //_ = BenchmarkRunner.Run<PersistentHashCodeBench>();
     //_ = BenchmarkRunner.Run<ContainsNewLineBench>();
     //_ = BenchmarkRunner.Run<ToUpperInvariantBench>();
-    _ = BenchmarkRunner.Run<ReplaceWhiteSpaceWithBench>();
+    //_ = BenchmarkRunner.Run<ReplaceWhiteSpaceWithBench>();
+    _ = BenchmarkRunner.Run<ReplaceLineEndingsBench>();
+
 
     //new IndexOfBench().IndexOfSpanBounds();
     // new LastIndexOfBench().LastIndexOfSpanBounds();
     // new PersistentHashCodeBench().StringBuilderHashChunks();
-    //new ReplaceWhiteSpaceWithBench().ReplaceWhiteSpaceStringArrayPool();
+    //new ReplaceWhiteSpaceWithBench().ReplaceWhiteSpaceStringBuilderArrayPool();
     //Base64Bench.Test2();
 
 
