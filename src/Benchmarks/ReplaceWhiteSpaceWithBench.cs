@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using FolkerKinzel.Strings;
 using FolkerKinzel.Strings.Intls;
@@ -41,7 +37,7 @@ public class ReplaceWhiteSpaceWithBench
 
     private static StringBuilder ReplaceWhiteSpaceWith(StringBuilder input, int startIndex, int count, ReadOnlySpan<char> replacement, bool skipNewLines)
     {
-        if(count == 0)
+        if (count == 0)
         {
             return input;
         }
