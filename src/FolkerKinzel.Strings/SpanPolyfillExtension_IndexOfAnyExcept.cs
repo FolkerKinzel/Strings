@@ -14,7 +14,7 @@ public static partial class SpanPolyfillExtension
     /// <remarks>The method performs an ordinal character comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAnyExcept(this Span<char> span, char value)
-     =>((ReadOnlySpan<char>)span).IndexOfAnyExcept(value);
+        =>((ReadOnlySpan<char>)span).IndexOfAnyExcept(value);
 }
 
 #endif

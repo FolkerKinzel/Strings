@@ -15,7 +15,7 @@
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
     <Version>8.0.0-beta.1</Version>
-    <FileVersion>8.0.0.39</FileVersion>
+    <FileVersion>8.0.0.42</FileVersion>
     <AssemblyVersion>8.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v8.0.0-beta.1</PackageReleaseNotes>
     <PackageTags>.NET String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode C#</PackageTags>

@@ -110,14 +110,19 @@ class Program
         //_ = roSpan.GetTrimmedStart();
         //_ = span.GetTrimmedStart();
 
+        _ = roSpan.IndexOfAnyExcept('a');
+        _ = span.IndexOfAnyExcept('a');
+        _ = roSpan.LastIndexOfAnyExcept('a');
+        _ = span.LastIndexOfAnyExcept('a');
+
         _ = roSpan.Trim('a');
-        //_ = span.Trim('a');
+        _ = span.Trim('a');
 
         _ = roSpan.TrimStart('a');
-        //_ = span.TrimStart('a');
+        _ = span.TrimStart('a');
 
         _ = roSpan.TrimEnd('a');
-        //_ = span.TrimEnd('a');
+        _ = span.TrimEnd('a');
 
         _ = roSpan.Trim("abc");
         //_ = span.Trim("abc");

@@ -208,6 +208,11 @@ namespace LibraryTesters
             _ = span.StartsWith('t');
             _ = span.EndsWith('t');
 
+            _ = roSpan.IndexOfAnyExcept('a');
+            _ = span.IndexOfAnyExcept('a');
+            _ = roSpan.LastIndexOfAnyExcept('a');
+            _ = span.LastIndexOfAnyExcept('a');
+
             _ = "c".StartsWith('t');
             _ = "c".EndsWith('t');
 
