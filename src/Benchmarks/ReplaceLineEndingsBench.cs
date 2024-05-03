@@ -85,7 +85,7 @@ public class ReplaceLineEndingsBench
         input.CopyTo(0, source.Array, 0, input.Length);
 
         using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(capacity);
-        Span<char> sourceSpan = source.Array.AsSpan(0, input.Length);
+        ReadOnlySpan<char> sourceSpan = source.Array.AsSpan(0, input.Length);
         int outLength = ReplaceLineEndings(sourceSpan, replacement, buf.Array);
 
         if (!sourceSpan.Equals(buf.Array.AsSpan(0, outLength), StringComparison.Ordinal))
