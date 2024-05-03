@@ -72,7 +72,6 @@ public class ReplaceWhiteSpaceWithBench
         return input;
     }
 
-
     private static string ReplaceWhiteSpaceWith(string input, ReadOnlySpan<char> replacement, bool skipNewLines)
     {
         int capacity = ComputeMaxCapacity(input.Length, replacement.Length);
