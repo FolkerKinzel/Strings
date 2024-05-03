@@ -37,7 +37,6 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <paramref name="value0"/> or <paramref name="value1"/>.
     /// If all of the characters are <paramref name="value0"/> or <paramref name="value1"/>,
     /// returns -1.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAnyExcept(this ReadOnlySpan<char> span, char value0, char value1)
      => span.IndexOfAnyExcept(stackalloc char[] { value0, value1});
 
@@ -53,7 +52,6 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <paramref name="value0"/>, <paramref name="value1"/>, and <paramref name="value2"/>.
     /// If all of the characters are <paramref name="value0"/>, <paramref name="value1"/>, and 
     /// <paramref name="value2"/>, returns -1.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAnyExcept(this ReadOnlySpan<char> span, char value0, char value1, char value2)
      => span.IndexOfAnyExcept(stackalloc char[] { value0, value1, value2 });
 

@@ -15,11 +15,75 @@ public class SpanPolyfillExtensionTests
 
     [DataTestMethod()]
     [DataRow("", -1)]
+    [DataRow("baababb", -1)]
+    [DataRow("xxba", 0)]
+    [DataRow("bxxxx", 1)]
+    public void IndexOfAnyExceptTest2(string input, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().IndexOfAnyExcept('a', 'b'));
+
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("cbaabccabbc", -1)]
+    [DataRow("xxbca", 0)]
+    [DataRow("bxxxx", 1)]
+    public void IndexOfAnyExceptTest3(string input, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().IndexOfAnyExcept('a', 'b', 'c'));
+
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("cbaaddbccadbbcd", -1)]
+    [DataRow("xxbcdda", 0)]
+    [DataRow("bxxxx", 1)]
+    public void IndexOfAnyExceptTest4(string input, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().IndexOfAnyExcept("abcd"));
+
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("cbaaddbccadbbcd", -1)]
+    [DataRow("xxbcdda", 0)]
+    [DataRow("bxxxx", 1)]
+    public void IndexOfAnyExceptTest5(string input, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().IndexOfAnyExcept("abcd".AsSpan()));
+
+    [DataTestMethod()]
+    [DataRow("", -1)]
     [DataRow("   ", -1)]
     [DataRow("a", 0)]
     [DataRow(" a ", 1)]
     public void LastIndexOfAnyExceptTest1(string input, int expected)
         => Assert.AreEqual(expected, input.ToCharArray().AsSpan().LastIndexOfAnyExcept(' '));
+
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("abbaaba", -1)]
+    [DataRow("xbbaba", 0)]
+    [DataRow("bxabbbababba", 1)]
+    public void LastIndexOfAnyExceptTest2(string input, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().LastIndexOfAnyExcept('a', 'b'));
+
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("cabbaccaabca", -1)]
+    [DataRow("xbbabcca", 0)]
+    [DataRow("bxabbbabcabba", 1)]
+    public void LastIndexOfAnyExceptTest3(string input, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().LastIndexOfAnyExcept('a', 'b', 'c'));
+
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("cabbadccaabcddad", -1)]
+    [DataRow("xbbabcdcadd", 0)]
+    [DataRow("bxabbbadbdcabba", 1)]
+    public void LastIndexOfAnyExceptTest4(string input, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().LastIndexOfAnyExcept("abcd"));
+
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("cabbadccaabcddad", -1)]
+    [DataRow("xbbabcdcadd", 0)]
+    [DataRow("bxabbbadbdcabba", 1)]
+    public void LastIndexOfAnyExceptTest5(string input, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().LastIndexOfAnyExcept("abcd".AsSpan()));
 
     [DataTestMethod]
     [DataRow("", 'x')]
