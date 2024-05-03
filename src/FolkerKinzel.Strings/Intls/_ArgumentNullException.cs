@@ -4,11 +4,13 @@
     Justification = "Show as polyfill")]
 internal static class _ArgumentNullException
 {
+#if NET6_0_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     internal static void ThrowIfNull([NotNull] object? argument, string paramName)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1  || NETCOREAPP3_1 || NET5_0
-    { if (argument is null) { throw new ArgumentNullException(paramName); } }
-#else
+#if NET6_0_OR_GREATER
         => ArgumentNullException.ThrowIfNull(argument, paramName);
+#else
+    { if (argument is null) { throw new ArgumentNullException(paramName); } }
 #endif
 }

@@ -59,6 +59,7 @@
     <Compile Remove="Base64Decoder.cs" />
     <Compile Remove="EncodingPolyfillExtension.cs" />
     <Compile Remove="Intls\Base64_OBSOLETE.cs" />
+    <Compile Remove="Intls\_ArgumentOutOfRangeException.cs" />
     <Compile Remove="Intls\_Array.cs" />
     <Compile Remove="PolyfillSpanAction.cs" />
     <Compile Remove="ReadOnlySpanExtensionPolyfillExtension.cs" />

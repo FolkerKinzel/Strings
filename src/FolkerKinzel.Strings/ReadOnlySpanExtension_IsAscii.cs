@@ -16,6 +16,7 @@ public static partial class ReadOnlySpanExtension
                 return false;
             }
         }
+
         return true;
     }
 }
