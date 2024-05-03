@@ -213,6 +213,21 @@ namespace LibraryTesters
             _ = roSpan.LastIndexOfAnyExcept('a');
             _ = span.LastIndexOfAnyExcept('a');
 
+            _ = roSpan.IndexOfAnyExcept('a', 'b');
+            _ = span.IndexOfAnyExcept('a', 'b');
+            _ = roSpan.LastIndexOfAnyExcept('a', 'b');
+            _ = span.LastIndexOfAnyExcept('a', 'b');
+
+            _ = roSpan.IndexOfAnyExcept('a', 'b', 'c');
+            _ = span.IndexOfAnyExcept('a', 'b', 'c');
+            _ = roSpan.LastIndexOfAnyExcept('a', 'b', 'c');
+            _ = span.LastIndexOfAnyExcept('a', 'b', 'c');
+
+            _ = roSpan.IndexOfAnyExcept("abcd");
+            _ = span.IndexOfAnyExcept("abcd");
+            _ = roSpan.LastIndexOfAnyExcept("abcd");
+            _ = span.LastIndexOfAnyExcept("abcd");
+
             _ = "c".StartsWith('t');
             _ = "c".EndsWith('t');
 

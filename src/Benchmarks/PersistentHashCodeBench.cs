@@ -25,7 +25,7 @@ public class PersistentHashCodeBench
     public int SpanHashStruct()
     {
         var hash = new PersistentStringHash(HashType.Ordinal);
-        hash.Append(_s);
+        hash.Add(_s);
         return hash.Hash;
     }
 
@@ -40,7 +40,7 @@ public class PersistentHashCodeBench
     public int StringBuilderHashChunks()
     {
         var hash = new PersistentStringHash(HashType.Ordinal);
-        hash.Append(_builder);
+        hash.Add(_builder);
         return hash.Hash;
     }
 

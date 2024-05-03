@@ -33,7 +33,7 @@ internal struct PersistentStringHash(HashType hashType)
 
     public override readonly int GetHashCode() => Hash;
 
-    public void Append(ReadOnlySpan<char> chars)
+    public void Add(ReadOnlySpan<char> chars)
     {
         switch (_hashType)
         {
@@ -47,26 +47,26 @@ internal struct PersistentStringHash(HashType hashType)
                 GetHashCodeAlphaNumericNoCase(chars);
                 break;
             default:
-                throw new InvalidOperationException("Don't instantiate this struct with the default constructor!");
+                throw new InvalidOperationException("Don't instantiate this struct using the default constructor!");
         }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(StringBuilder builder)
-        => DoAppend(builder, 0, builder?.Length ?? throw new ArgumentNullException(nameof(builder)));
+    public void Add(StringBuilder builder)
+        => DoAdd(builder, 0, builder?.Length ?? throw new ArgumentNullException(nameof(builder)));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(StringBuilder builder, int startIndex)
-        => DoAppend(builder, startIndex, builder?.Length - startIndex ?? throw new ArgumentNullException(nameof(builder)));
+    public void Add(StringBuilder builder, int startIndex)
+        => DoAdd(builder, startIndex, builder?.Length - startIndex ?? throw new ArgumentNullException(nameof(builder)));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(StringBuilder builder, int startIndex, int count)
+    public void Add(StringBuilder builder, int startIndex, int count)
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
-        DoAppend(builder, startIndex, count);
+        DoAdd(builder, startIndex, count);
     }
 
-    private void DoAppend(StringBuilder builder, int startIndex, int count)
+    private void DoAdd(StringBuilder builder, int startIndex, int count)
     { 
         if(startIndex < 0 || (startIndex + count) > builder.Length)
         {
@@ -84,13 +84,15 @@ internal struct PersistentStringHash(HashType hashType)
                 int spanStart = startIndex - pos;
                 ReadOnlySpan<char> span = chunk.Span.Slice(spanStart, Math.Min(chunk.Length - spanStart, count));
                 count -= span.Length;
-                Append(span);
+                Add(span);
 
                 if(count == 0)
                 {
                     return; 
                 }
             }
+
+            pos += chunk.Length;
         }
     }
 

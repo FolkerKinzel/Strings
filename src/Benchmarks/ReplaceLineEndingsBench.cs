@@ -107,16 +107,17 @@ public class ReplaceLineEndingsBench
         using ArrayPoolHelper.SharedArray<char> buf =
             ArrayPoolHelper.Rent<char>(ComputeMaxCapacity(input.Length, replacement.Length));
 
+        Span<char> outSpan = buf.Array.AsSpan();
         bool rFound = false;
         int outLength = 0;
 
         foreach (ReadOnlyMemory<char> chunk in input.GetChunks())
         {
-            ReplaceLineEndings(chunk.Span, replacement, buf.Array, ref rFound,  ref outLength);
+            ReplaceLineEndings(chunk.Span, replacement, outSpan, ref rFound,  ref outLength);
         }
 
         input.Length = 0;
-        input.Append(buf.Array.AsSpan(0, outLength));
+        input.Append(outSpan.Slice(0, outLength));
 
         return input;
     }

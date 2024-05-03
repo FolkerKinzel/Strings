@@ -32,13 +32,37 @@ int GetTrimmedLength(this Span<char>, char);
 - New Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 int IndexOfAnyExcept(this ReadOnlySpan<char>, char);
+int IndexOfAnyExcept(this ReadOnlySpan<char>, char, char);
+int IndexOfAnyExcept(this ReadOnlySpan<char>, char, char, char);
+int IndexOfAnyExcept(this ReadOnlySpan<char>, ReadOnlySpan<char>);
 int LastIndexOfAnyExcept(this ReadOnlySpan<char>, char);
+int LastIndexOfAnyExcept(this ReadOnlySpan<char>, char, char);
+int LastIndexOfAnyExcept(this ReadOnlySpan<char>, char, char, char);
+int LastIndexOfAnyExcept(this ReadOnlySpan<char>, ReadOnlySpan<char>);
+```
+&nbsp;
+- New Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET Standard 2.0, .NET Framework 4.6.1)
+```csharp
+int IndexOfAnyExcept(this ReadOnlySpan<char>, string?);
+int LastIndexOfAnyExcept(this ReadOnlySpan<char>, string?);
 ```
 &nbsp;
 - New Polyfills for the Span&lt;Char&gt; struct (.NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 int IndexOfAnyExcept(this Span<char>, char);
+int IndexOfAnyExcept(this Span<char>, char, char);
+int IndexOfAnyExcept(this Span<char>, char, char, char);
+int IndexOfAnyExcept(this Span<char>, ReadOnlySpan<char>);
 int LastIndexOfAnyExcept(this Span<char>, char);
+int LastIndexOfAnyExcept(this Span<char>, char, char);
+int LastIndexOfAnyExcept(this Span<char>, char, char, char);
+int LastIndexOfAnyExcept(this Span<char>, ReadOnlySpan<char>);
+```
+&nbsp;
+- New Polyfills for the Span&lt;Char&gt; struct (.NET Standard 2.0, .NET Framework 4.6.1)
+```csharp
+int IndexOfAnyExcept(this Span<char>, string?);
+int LastIndexOfAnyExcept(this Span<char>, string?);
 ```
 &nbsp;
 - New Polyfills for the Span&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1):
