@@ -57,6 +57,11 @@ bool ContainsAny(this ReadOnlySpan<char>, SearchValues<char>);
 int LastIndexOfAny(this ReadOnlySpan<char>, SearchValues<char>);
 int IndexOfAnyExcept(this ReadOnlySpan<char>, SearchValues<char>);
 int LastIndexOfAnyExcept(this ReadOnlySpan<char>, SearchValues<char>);
+bool ContainsAnyExcept(this ReadOnlySpan<char>, SearchValues<char>);
+bool ContainsAnyExcept(this ReadOnlySpan<char>, ReadOnlySpan<char>);
+bool ContainsAnyExcept(this ReadOnlySpan<char>, char);
+bool ContainsAnyExcept(this ReadOnlySpan<char>, char, char);
+bool ContainsAnyExcept(this ReadOnlySpan<char>, char, char, char);
 ```
 &nbsp;
 ### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
@@ -96,6 +101,7 @@ ReadOnlySpan<char> TrimStart(this ReadOnlySpan<char>, string?);
 ReadOnlySpan<char> TrimEnd(this ReadOnlySpan<char>, string?);
 int IndexOfAnyExcept(this ReadOnlySpan<char>, string?);
 int LastIndexOfAnyExcept(this ReadOnlySpan<char>, string?);
+bool ContainsAnyExcept(this ReadOnlySpan<char>, string?);
 ```
 &nbsp;
 ### Polyfills for the Span&lt;Char&gt; struct (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
@@ -108,6 +114,11 @@ bool ContainsAny(this Span<char>, SearchValues<char>);
 int LastIndexOfAny(this Span<char>, SearchValues<char>);
 int IndexOfAnyExcept(this Span<char>, SearchValues<char>);
 int LastIndexOfAnyExcept(this Span<char>, SearchValues<char>);
+bool ContainsAnyExcept(this Span<char>, SearchValues<char>);
+bool ContainsAnyExcept(this Span<char>, ReadOnlySpan<char>);
+bool ContainsAnyExcept(this Span<char>, char);
+bool ContainsAnyExcept(this Span<char>, char, char);
+bool ContainsAnyExcept(this Span<char>, char, char, char);
 ```
 &nbsp;
 ### Polyfills for the Span&lt;Char&gt; struct (.NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
@@ -150,6 +161,8 @@ int LastIndexOfAny(this Span<char>, string?, int, int);
 int IndexOf(this Span<char>, string?, StringComparison);
 int IndexOfAnyExcept(this Span<char>, string?);
 int LastIndexOfAnyExcept(this Span<char>, string?);
+bool ContainsAnyExcept(this Span<char>, string?);
+
 ```
 &nbsp;
 ### Polyfills for the ReadOnlyMemory&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)

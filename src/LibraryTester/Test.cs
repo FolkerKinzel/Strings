@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FolkerKinzel.Strings;
+using System.Buffers;
 
 namespace LibraryTesters
 {
@@ -241,6 +242,19 @@ namespace LibraryTesters
             _ = span.IndexOfAnyExcept(searchValues);
             _ = roSpan.LastIndexOfAnyExcept(searchValues);
             _ = span.LastIndexOfAnyExcept(searchValues);
+
+            _ = roSpan.ContainsAnyExcept('a');
+            _ = span.ContainsAnyExcept('a');
+            _ = roSpan.ContainsAnyExcept('a', 'b');
+            _ = span.ContainsAnyExcept('a', 'b');
+            _ = roSpan.ContainsAnyExcept('a', 'b', 'c');
+            _ = span.ContainsAnyExcept('a', 'b', 'c');
+            _ = roSpan.ContainsAnyExcept("abc");
+            _ = span.ContainsAnyExcept("abc");
+            _ = roSpan.ContainsAnyExcept("abc".AsSpan());
+            _ = span.ContainsAnyExcept("abc".AsSpan());
+            _ = roSpan.ContainsAnyExcept(searchValues);
+            _ = span.ContainsAnyExcept(searchValues);
 
             _ = "c".StartsWith('t');
             _ = "c".EndsWith('t');

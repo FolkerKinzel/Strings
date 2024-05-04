@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Baz;
 using FolkerKinzel.Strings;
+using System.Buffers;
 
 namespace LibraryTesters;
 
@@ -142,6 +143,19 @@ class Program
         _ = span.IndexOfAnyExcept(searchValues);
         _ = roSpan.LastIndexOfAnyExcept(searchValues);
         _ = span.LastIndexOfAnyExcept(searchValues);
+
+        _ = roSpan.ContainsAnyExcept('a');
+        _ = span.ContainsAnyExcept('a');
+        _ = roSpan.ContainsAnyExcept('a', 'b');
+        _ = span.ContainsAnyExcept('a', 'b');
+        _ = roSpan.ContainsAnyExcept('a', 'b', 'c');
+        _ = span.ContainsAnyExcept('a', 'b', 'c');
+        _ = roSpan.ContainsAnyExcept("abc");
+        _ = span.ContainsAnyExcept("abc");
+        _ = roSpan.ContainsAnyExcept("abc".AsSpan());
+        _ = span.ContainsAnyExcept("abc".AsSpan());
+        _ = roSpan.ContainsAnyExcept(searchValues);
+        _ = span.ContainsAnyExcept(searchValues);
 
         _ = roSpan.Trim('a');
         _ = span.Trim('a');
