@@ -27,13 +27,7 @@ public class SpanExtensionTests
     public void ToLowerInvariantTest1(string input, string expected)
         => Assert.AreEqual(expected, input.ToCharArray().AsSpan().ToLowerInvariant().ToString());
 
-    [TestMethod]
-    public void LastIndexOfAnyTest1()
-        => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny("1b2".AsSpan()));
-
-    [TestMethod]
-    public void LastIndexOfAnyTest2()
-       => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny("1b2".AsSpan(), 1, 1));
+    
 
 
     [DataTestMethod]

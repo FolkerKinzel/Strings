@@ -1,4 +1,6 @@
-﻿using FolkerKinzel.Strings;
+﻿using System.Buffers;
+using System;
+using FolkerKinzel.Strings;
 
 namespace FolkerKinzel.Strings.Tests;
 
@@ -86,12 +88,23 @@ public class SpanPolyfillExtensionTests
         => Assert.AreEqual(expected, input.ToCharArray().AsSpan().LastIndexOfAnyExcept("abcd".AsSpan()));
 
     [DataTestMethod]
+    [DataRow("", "abc")]
+    [DataRow("", "")]
+    [DataRow("xxxabc  ", "bc")]
+    [DataRow("xxxabc  ", "bcd")]
+    [DataRow("xxxabc  ", "")]
+    [DataRow("xxxabc   ", "BC")]
+    public void ContainsTest1a(string input, string needle)
+       => Assert.AreEqual(input.AsSpan().Contains(needle.AsSpan(), StringComparison.OrdinalIgnoreCase),
+                          input.ToCharArray().AsSpan().Contains(needle, StringComparison.OrdinalIgnoreCase));
+
+    [DataTestMethod]
     [DataRow("", 'x')]
     [DataRow("abc", 'x')]
     [DataRow("abc", 'B')]
     [DataRow("abc", 'b')]
     [DataRow("ABC", 'b')]
-    public void ContainsTest1(string input, char c)
+    public void ContainsTest1b(string input, char c)
         => Assert.AreEqual(input.AsSpan().Contains(c), input.ToArray().AsSpan().Contains(c));
 
     [DataTestMethod]
@@ -166,16 +179,7 @@ public class SpanPolyfillExtensionTests
     public void TrimEndTest2(string input, string expected)
         => Assert.AreEqual(expected, input.ToCharArray().AsSpan().TrimEnd('x').ToString());
 
-    [DataTestMethod]
-    [DataRow("", "abc")]
-    [DataRow("", "")]
-    [DataRow("xxxabc  ", "bc")]
-    [DataRow("xxxabc  ", "bcd")]
-    [DataRow("xxxabc  ", "")]
-    [DataRow("xxxabc   ", "BC")]
-    public void ContainsTest1(string input, string needle)
-       => Assert.AreEqual(input.AsSpan().Contains(needle.AsSpan(), StringComparison.OrdinalIgnoreCase),
-                          input.ToCharArray().AsSpan().Contains(needle, StringComparison.OrdinalIgnoreCase));
+    
 
 
     [DataTestMethod]
@@ -242,8 +246,12 @@ public class SpanPolyfillExtensionTests
 
 
     [TestMethod]
-    public void LastIndexOfAnyTest1()
+    public void LastIndexOfAnyTest1a()
         => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny("1b2"));
+
+    [TestMethod]
+    public void LastIndexOfAnyTest1b()
+        => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny("1b2".AsSpan()));
 
     [TestMethod]
     public void LastIndexOfAnyTest2()
@@ -300,7 +308,25 @@ public class SpanPolyfillExtensionTests
 
 
 
+    [DataTestMethod]
+    [DataRow("t", "abcdefghi", -1)]
+    [DataRow("t", "abcdefghit", 0)]
+    [DataRow("testtest", "abcdfghi", -1)]
+    [DataRow("testtest", "abcdfghit", 0)]
+    [DataRow("", "abcdefghit", -1)]
+    [DataRow("t", "", -1)]
+    [DataRow("t", null, -1)]
+    [DataRow("", null, -1)]
+    [DataRow("testtest", "", -1)]
+    public void IndexOfAnyTest3(string testStr, string? needles, int expectedIndex)
+        => Assert.AreEqual(expectedIndex, testStr.ToCharArray().AsSpan().IndexOfAny(SearchValues.Create(needles)));
 
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void IndexOfAnyTest4()
+        => "abc".ToCharArray().AsSpan().IndexOfAny((SearchValues<char>?)null!);
 
+    
 
+    
 }

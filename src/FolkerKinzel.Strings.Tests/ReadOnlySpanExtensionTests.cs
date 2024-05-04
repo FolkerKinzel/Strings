@@ -168,4 +168,8 @@ public class ReadOnlySpanExtensionTests
     [TestMethod()]
     [ExpectedException(typeof(ArgumentException))]
     public void LastIndexOfTest9() => _ = "test".AsSpan().LastIndexOf("bla", 3, 1, (StringComparison)4711);
+
+    [TestMethod]
+    public void LastIndexOfAnyTest2()
+       => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny("1b2".AsSpan(), 1, 1));
 }
