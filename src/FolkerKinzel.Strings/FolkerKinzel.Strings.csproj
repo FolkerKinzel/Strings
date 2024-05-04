@@ -54,6 +54,7 @@
     <Using Include="System.Runtime.CompilerServices" />
     <Using Include="System.Diagnostics.CodeAnalysis" />
     <Using Include="System.Diagnostics" />
+    <Using Include="System.Buffers" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Base64Decoder.cs" />

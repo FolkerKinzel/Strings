@@ -16,7 +16,8 @@
 		<Using Include="System.Text" />
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
     <Using Include="System.Diagnostics.CodeAnalysis" />
-	</ItemGroup>
+    <Using Include="System.Buffers" />
+  </ItemGroup>
 	<ItemGroup>
 		<Compile Remove="reports\**" />
 		<EmbeddedResource Remove="reports\**" />

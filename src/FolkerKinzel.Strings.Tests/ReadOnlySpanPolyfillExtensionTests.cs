@@ -161,6 +161,13 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [TestMethod]
     public void ContainsAnyTest1() => Assert.IsFalse("t".AsSpan().ContainsAny(""));
 
+    [TestMethod]
+    public void ContainsAnyTest2() => Assert.IsFalse("t".AsSpan().ContainsAny(SearchValues.Create("")));
+
+    [TestMethod]
+    [ExpectedException (typeof(ArgumentNullException))]
+    public void ContainsAnyTest3() => Assert.IsFalse("t".AsSpan().ContainsAny((SearchValues<char>?)null!));
+
     [DataTestMethod]
     [DataRow("ef", 4)]
     [DataRow("0123456789ef", 4)]

@@ -4,6 +4,18 @@ namespace FolkerKinzel.Strings;
 
 public static partial class SpanPolyfillExtension
 {
+    /// <summary>
+    /// Searches for an occurrence of any of the specified characters and returns <c>true</c> 
+    /// if found. If not found, returns <c>false</c>.
+    /// </summary>
+    /// <param name="span">The span to search.</param>
+    /// <param name="values">The set of characters to search for.</param>
+    /// <returns><c>true</c> 
+    /// if any of the specified characters have been found. If not, returns <c>false</c>.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
+    public static bool ContainsAny(this Span<char> span, SearchValues<char> values)
+        => span.IndexOfAny(values) != -1;
+
     /// <summary>Indicates whether a character span contains one of the Unicode characters
     /// that are passed to the method as a read-only character span.</summary>
     /// <param name="span">The span to examine.</param>

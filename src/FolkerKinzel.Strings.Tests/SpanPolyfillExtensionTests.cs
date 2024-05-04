@@ -244,6 +244,13 @@ public class SpanPolyfillExtensionTests
     public void ContainsAnyTest1(string input, string chars)
         => Assert.AreEqual(input.AsSpan().ContainsAny(chars.AsSpan()), input.ToCharArray().AsSpan().ContainsAny(chars));
 
+    [TestMethod]
+    public void ContainsAnyTest2() => Assert.IsFalse("t".ToCharArray().AsSpan().ContainsAny(SearchValues.Create("")));
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void ContainsAnyTest3() => Assert.IsFalse("t".ToCharArray().AsSpan().ContainsAny((SearchValues<char>?)null!));
+
 
     [TestMethod]
     public void LastIndexOfAnyTest1a()
