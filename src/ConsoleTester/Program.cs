@@ -17,6 +17,9 @@ class Program
 
         string test = "Test";
         char c = 'e';
+        var searchValues = SearchValues.Create("abc");
+
+        _ = SearchValues.Create("xyz".AsSpan());
 
         byte[] bytes = new byte[1];
 
@@ -130,6 +133,16 @@ class Program
         _ = roSpan.LastIndexOfAnyExcept("abcd");
         _ = span.LastIndexOfAnyExcept("abcd");
 
+        _ = roSpan.IndexOfAnyExcept("abcd".AsSpan());
+        _ = span.IndexOfAnyExcept("abcd".AsSpan());
+        _ = roSpan.LastIndexOfAnyExcept("abcd".AsSpan());
+        _ = span.LastIndexOfAnyExcept("abcd".AsSpan());
+
+        _ = roSpan.IndexOfAnyExcept(searchValues);
+        _ = span.IndexOfAnyExcept(searchValues);
+        _ = roSpan.LastIndexOfAnyExcept(searchValues);
+        _ = span.LastIndexOfAnyExcept(searchValues);
+
         _ = roSpan.Trim('a');
         _ = span.Trim('a');
 
@@ -238,9 +251,11 @@ class Program
 
         _ = roSpan.LastIndexOfAny(roSpan, roSpan.Length - 1, roSpan.Length);
         _ = roSpan.LastIndexOfAny("abc", roSpan.Length - 1, roSpan.Length);
+        _ = roSpan.LastIndexOfAny(searchValues, roSpan.Length - 1, roSpan.Length);
 
         _ = span.LastIndexOfAny(roSpan, roSpan.Length - 1, roSpan.Length);
         _ = span.LastIndexOfAny("abc", roSpan.Length - 1, roSpan.Length);
+        _ = span.LastIndexOfAny(searchValues, span.Length - 1, span.Length);
 
         _ = roSpan.IndexOf("bla", StringComparison.Ordinal);
         _ = roSpan.Contains("bla", StringComparison.Ordinal);

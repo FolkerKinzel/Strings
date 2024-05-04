@@ -49,6 +49,10 @@ namespace LibraryTesters
             var roSpan = test.AsSpan();
             var span = _array.AsSpan();
 
+            var searchValues = SearchValues.Create("abc");
+
+            _ = SearchValues.Create("xyz".AsSpan());
+
             char c = 'e';
             byte[] bytes = new byte[1];
 
@@ -228,6 +232,16 @@ namespace LibraryTesters
             _ = roSpan.LastIndexOfAnyExcept("abcd");
             _ = span.LastIndexOfAnyExcept("abcd");
 
+            _ = roSpan.IndexOfAnyExcept("abcd".AsSpan());
+            _ = span.IndexOfAnyExcept("abcd".AsSpan());
+            _ = roSpan.LastIndexOfAnyExcept("abcd".AsSpan());
+            _ = span.LastIndexOfAnyExcept("abcd".AsSpan());
+
+            _ = roSpan.IndexOfAnyExcept(searchValues);
+            _ = span.IndexOfAnyExcept(searchValues);
+            _ = roSpan.LastIndexOfAnyExcept(searchValues);
+            _ = span.LastIndexOfAnyExcept(searchValues);
+
             _ = "c".StartsWith('t');
             _ = "c".EndsWith('t');
 
@@ -241,6 +255,11 @@ namespace LibraryTesters
 
             _ = roSpan.LastIndexOfAny(roSpan, roSpan.Length - 1, roSpan.Length);
             _ = roSpan.LastIndexOfAny("abc", roSpan.Length - 1, roSpan.Length);
+            _ = roSpan.LastIndexOfAny(searchValues, roSpan.Length - 1, roSpan.Length);
+
+            _ = span.LastIndexOfAny(roSpan, span.Length - 1, span.Length);
+            _ = span.LastIndexOfAny("abc", span.Length - 1, span.Length);
+            _ = span.LastIndexOfAny(searchValues, span.Length - 1, span.Length);
 
             _ = c.IsAscii();
             _ = c.IsBinaryDigit();
