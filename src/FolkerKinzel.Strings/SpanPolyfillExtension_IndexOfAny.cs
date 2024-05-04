@@ -30,12 +30,8 @@ public static partial class SpanPolyfillExtension
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found. If <paramref name="values" /> is <c>null</c> or empty, the method returns
     /// -1.</returns>
-    /// <remarks>If the length of <paramref name="values" /> is less than 5, the method uses
-    /// <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T}, 
-    /// ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
-    /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
-    /// /> is greater, <see cref="string.IndexOfAny(char[])">String.IndexOfAny(char[])</see>
-    /// is used to avoid performance issues.</remarks>
+    /// <remarks><see cref="IndexOfAny(Span{char}, ReadOnlySpan{char})">
+    /// IndexOfAny(Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> is used for the comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this Span<char> span, string? values)
         => span.IndexOfAny(values.AsSpan());

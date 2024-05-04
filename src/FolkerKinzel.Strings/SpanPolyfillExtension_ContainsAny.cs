@@ -12,9 +12,6 @@ public static partial class SpanPolyfillExtension
     /// <returns> <c>true</c> if <paramref name="span" /> contains one of the characters
     /// passed with <paramref name="values" />. If <paramref
     /// name="values" /> is empty, <c>false</c> is returned.</returns>
-    /// <remarks><see cref="MemoryExtensions.IndexOfAny{T}(Span{T}, ReadOnlySpan{T})">
-    /// MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>
-    /// is used for the comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this Span<char> span, ReadOnlySpan<char> values)
         => span.IndexOfAny(values) != -1;
@@ -60,9 +57,6 @@ public static partial class SpanPolyfillExtension
     /// <returns> <c>true</c> if <paramref name="span" /> contains one of the characters
     /// passed with <paramref name="values" />. If <paramref
     /// name="values" /> is <c>null</c> or empty, <c>false</c> is returned.</returns>
-    /// <remarks><see cref="MemoryExtensions.IndexOfAny{T}(Span{T}, ReadOnlySpan{T})">
-    /// MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see>
-    /// is used for the comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this Span<char> span, string? values)
         => span.ContainsAny(values.AsSpan());
