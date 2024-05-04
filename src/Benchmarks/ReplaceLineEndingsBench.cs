@@ -74,6 +74,10 @@ public class ReplaceLineEndingsBench
 
     private static StringBuilder ReplaceLineEndings(StringBuilder input, ReadOnlySpan<char> replacement)
     {
+        // TODO: Get the index of the first line break char and process only from that
+        // If the index is -1, quit.
+        // Get also the index of the last line break char and process only the span between.
+
         if (input.Length == 0)
         {
             return input;
@@ -99,6 +103,10 @@ public class ReplaceLineEndingsBench
 
     private static StringBuilder ReplaceLineEndingsChunks(StringBuilder input, ReadOnlySpan<char> replacement)
     {
+        // TODO: Get the index of the first line break char and process only from that
+        // If the index is -1, quit.
+        // Get also the index of the last line break char and process only the span between.
+
         if (input.Length == 0)
         {
             return input;
@@ -125,6 +133,11 @@ public class ReplaceLineEndingsBench
 
     private static string ReplaceLineEndings(string input, ReadOnlySpan<char> replacement)
     {
+        // TODO: Get the index of the first line break char.
+        // If the index is -1, quit.
+        // Get also the index of the last line break char and process only the span between.
+        // Use string.Concat to concat the three parts
+
         int capacity = ComputeMaxCapacity(input.Length, replacement.Length);
 
         if (capacity > Const.StackallocCharThreshold)

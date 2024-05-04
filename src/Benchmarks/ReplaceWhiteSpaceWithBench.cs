@@ -42,6 +42,10 @@ public class ReplaceWhiteSpaceWithBench
 
     private static StringBuilder ReplaceWhiteSpaceWith(StringBuilder input, ReadOnlySpan<char> replacement, int startIndex, int count, bool skipNewLines)
     {
+        // TODO: Get the index of the first white space char and process only from that
+        // If the index is -1, quit.
+        // Get also the index of the last  white space char and process only the span between.
+
         if (count == 0)
         {
             return input;
@@ -75,6 +79,10 @@ public class ReplaceWhiteSpaceWithBench
 
     private static StringBuilder ReplaceWhiteSpaceWithChunks(StringBuilder input, ReadOnlySpan<char> replacement, int startIndex, int count, bool skipNewLines)
     {
+        // TODO: Get the index of the first white space char and process only from that
+        // If the index is -1, quit.
+        // Get also the index of the last white space char and process only the span between.
+
         if (count == 0)
         {
             return input;
@@ -132,6 +140,11 @@ public class ReplaceWhiteSpaceWithBench
 
     private static string ReplaceWhiteSpaceWith(string input, ReadOnlySpan<char> replacement, bool skipNewLines)
     {
+        // TODO: Get the index of the first white space char and process only from that
+        // If the index is -1, quit.
+        // Get also the index of the last white space char and process only the span between.
+        // Use string.Concat to concatenate the parts
+
         int capacity = ComputeMaxCapacity(input.Length, replacement.Length);
 
         if (capacity > Const.StackallocCharThreshold)
