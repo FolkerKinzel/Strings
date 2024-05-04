@@ -116,6 +116,19 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void LastIndexOfAnyExceptTest5(string input, int expected)
         => Assert.AreEqual(expected, input.AsSpan().LastIndexOfAnyExcept("abcd".AsSpan()));
 
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("cabbadccaabcddad", -1)]
+    [DataRow("xbbabcdcadd", 0)]
+    [DataRow("bxabbbadbdcabba", 1)]
+    public void LastIndexOfAnyExceptTest6(string input, int expected)
+        => Assert.AreEqual(expected, input.AsSpan().LastIndexOfAnyExcept(SearchValues.Create("abcd")));
+
+    [TestMethod()]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void LastIndexOfAnyExceptTest7()
+        => "xyz".AsSpan().LastIndexOfAnyExcept((SearchValues<char>?)null!);
+
     [DataTestMethod]
     [DataRow("", null, true)]
     [DataRow("", "", true)]

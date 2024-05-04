@@ -100,6 +100,19 @@ public class SpanPolyfillExtensionTests
     public void LastIndexOfAnyExceptTest5(string input, int expected)
         => Assert.AreEqual(expected, input.ToCharArray().AsSpan().LastIndexOfAnyExcept("abcd".AsSpan()));
 
+    [DataTestMethod()]
+    [DataRow("", -1)]
+    [DataRow("cabbadccaabcddad", -1)]
+    [DataRow("xbbabcdcadd", 0)]
+    [DataRow("bxabbbadbdcabba", 1)]
+    public void LastIndexOfAnyExceptTest6(string input, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().LastIndexOfAnyExcept(SearchValues.Create("abcd")));
+
+    [TestMethod()]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void LastIndexOfAnyExceptTest7()
+        => "xyz".ToCharArray().AsSpan().LastIndexOfAnyExcept((SearchValues<char>?)null!);
+
     [DataTestMethod]
     [DataRow("", "abc")]
     [DataRow("", "")]
