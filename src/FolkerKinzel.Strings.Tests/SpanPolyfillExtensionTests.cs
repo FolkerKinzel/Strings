@@ -253,20 +253,56 @@ public class SpanPolyfillExtensionTests
 
 
     [TestMethod]
-    public void LastIndexOfAnyTest1a()
+    public void LastIndexOfAnyTest1()
         => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny("1b2"));
 
     [TestMethod]
-    public void LastIndexOfAnyTest1b()
+    public void LastIndexOfAnyTest2()
         => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny("1b2".AsSpan()));
 
     [TestMethod]
-    public void LastIndexOfAnyTest2()
+    public void LastIndexOfAnyTest3()
        => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny("1b2", 1, 1));
+
+    [TestMethod]
+    public void LastIndexOfAnyTest4()
+        => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny(SearchValues.Create("1b2")));
+
+    [TestMethod]
+    [ExpectedException (typeof(ArgumentNullException))]
+    public void LastIndexOfAnyTest5()
+        => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny((SearchValues<char>?)null!));
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void LastIndexOfAnyTest6()
+        => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny((SearchValues<char>?)null!, 1, 1));
+
+    [TestMethod]
+    public void LastIndexOfAnyTest7()
+       => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny(SearchValues.Create("1b2"), 1, 1));
 
     [TestMethod]
     public void IndexOfAnyTest1()
         => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().IndexOfAny("1b2"));
+
+    [DataTestMethod]
+    [DataRow("t", "abcdefghi", -1)]
+    [DataRow("t", "abcdefghit", 0)]
+    [DataRow("testtest", "abcdfghi", -1)]
+    [DataRow("testtest", "abcdfghit", 0)]
+    [DataRow("", "abcdefghit", -1)]
+    [DataRow("t", "", -1)]
+    [DataRow("t", null, -1)]
+    [DataRow("", null, -1)]
+    [DataRow("testtest", "", -1)]
+    public void IndexOfAnyTest3(string testStr, string? needles, int expectedIndex)
+        => Assert.AreEqual(expectedIndex, testStr.ToCharArray().AsSpan().IndexOfAny(SearchValues.Create(needles)));
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void IndexOfAnyTest4()
+        => "abc".ToCharArray().AsSpan().IndexOfAny((SearchValues<char>?)null!);
 
 
     [DataTestMethod]
@@ -315,23 +351,7 @@ public class SpanPolyfillExtensionTests
 
 
 
-    [DataTestMethod]
-    [DataRow("t", "abcdefghi", -1)]
-    [DataRow("t", "abcdefghit", 0)]
-    [DataRow("testtest", "abcdfghi", -1)]
-    [DataRow("testtest", "abcdfghit", 0)]
-    [DataRow("", "abcdefghit", -1)]
-    [DataRow("t", "", -1)]
-    [DataRow("t", null, -1)]
-    [DataRow("", null, -1)]
-    [DataRow("testtest", "", -1)]
-    public void IndexOfAnyTest3(string testStr, string? needles, int expectedIndex)
-        => Assert.AreEqual(expectedIndex, testStr.ToCharArray().AsSpan().IndexOfAny(SearchValues.Create(needles)));
-
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void IndexOfAnyTest4()
-        => "abc".ToCharArray().AsSpan().IndexOfAny((SearchValues<char>?)null!);
+    
 
     
 

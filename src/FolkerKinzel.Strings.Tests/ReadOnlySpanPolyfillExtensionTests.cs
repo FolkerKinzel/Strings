@@ -190,15 +190,24 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("", -1)]
     [DataRow("xy", -1)]
     [DataRow("qwxyza0123456789", -1)]
-    public void LastIndexOfAnyTest1b(string needles, int expected) => Assert.AreEqual(expected, "testen".AsSpan().LastIndexOfAny(needles));
+    public void LastIndexOfAnyTest2(string needles, int expected) => Assert.AreEqual(expected, "testen".AsSpan().LastIndexOfAny(needles));
 
 
     [TestMethod]
-    public void LastIndexOfAnyTest2()
+    public void LastIndexOfAnyTest3()
     {
         const string test = "test";
         Assert.AreEqual(-1, ReadOnlySpan<char>.Empty.LastIndexOfAny(test.AsSpan()));
     }
+
+    [TestMethod]
+    public void LastIndexOfAnyTest4()
+        => Assert.AreEqual(1, "abc".AsSpan().LastIndexOfAny(SearchValues.Create("1b2")));
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void LastIndexOfAnyTest5()
+        => Assert.AreEqual(1, "abc".AsSpan().LastIndexOfAny((SearchValues<char>?)null!));
 
     [DataTestMethod]
     [DataRow("test", "TE", true)]

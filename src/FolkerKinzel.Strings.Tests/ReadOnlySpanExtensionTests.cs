@@ -87,18 +87,92 @@ public class ReadOnlySpanExtensionTests
         _ = "t".AsSpan().LastIndexOfAny(needles, index, count);
     }
 
-    //[TestMethod]
-    //public void MyTestMethod()
-    //{
-    //    int result = new char[] {'t'}.AsSpan().IndexOfAny("".AsSpan());
-    //}
+    [DataTestMethod]
+    [DataRow("ef", 4)]
+    [DataRow("0123456789ef", 4)]
+    [DataRow("", -1)]
+    [DataRow("xy", -1)]
+    [DataRow("qwxyza0123456789", -1)]
+    public void LastIndexOfAnyTest18(string needles, int expected)
+    {
+        const string test = "testen";
 
+        //int i = "".LastIndexOfAny(new char[0]);
+        //i = MemoryExtensions.LastIndexOfAny(test.AsSpan(), ReadOnlySpan<char>.Empty);
 
-    //[TestMethod]
-    //public void TestTest()
-    //{
-    //    var idx = ReadOnlySpanExtension.Test();
-    //}
+        Assert.AreEqual(expected, test.AsSpan().LastIndexOfAny(SearchValues.Create(needles), test.Length - 2, 3));
+    }
+
+    [TestMethod]
+    public void LastIndexOfAnyTest19()
+    {
+        const string test = "test";
+        Assert.AreEqual(-1, "".AsSpan().LastIndexOfAny(SearchValues.Create(test), 0, 0));
+    }
+
+    [DataTestMethod]
+    [DataRow(-1, 0)]
+    [DataRow(0, -1)]
+    [DataRow(0, 2)]
+    [DataRow(-2, 2)]
+    [DataRow(2, -2)]
+    public void LastIndexOfAnyTest20(int index, int count)
+    {
+        var needles = SearchValues.Create("testganzlang");
+        _ = "".AsSpan().LastIndexOfAny(needles, index, count);
+    }
+
+    [DataTestMethod]
+    [DataRow(-1, 0)]
+    [DataRow(0, -1)]
+    [DataRow(0, 2)]
+    [DataRow(-2, 2)]
+    [DataRow(2, -2)]
+    public void LastIndexOfAnyTest21(int index, int count)
+    {
+        var needles = SearchValues.Create("t");
+        _ = "".AsSpan().LastIndexOfAny(needles, index, count);
+    }
+
+    [DataTestMethod]
+    [DataRow(-1, 0)]
+    [DataRow(0, -1)]
+    [DataRow(0, 2)]
+    [DataRow(-2, 2)]
+    [DataRow(2, -2)]
+    public void LastIndexOfAnyTest22(int index, int count)
+        => _ = "".AsSpan().LastIndexOfAny(SearchValues.Create("t"), index, count);
+
+    [DataTestMethod]
+    //[DataRow(-1, 0)]
+    [DataRow(0, -1)]
+    [DataRow(0, 2)]
+    [DataRow(-2, 2)]
+    [DataRow(2, -2)]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void LastIndexOfAnyTest23(int index, int count)
+    {
+        var needles = SearchValues.Create("testganzlang");
+        _ = "t".AsSpan().LastIndexOfAny(needles, index, count);
+    }
+
+    [DataTestMethod]
+    //[DataRow(-1, 0)]
+    [DataRow(0, -1)]
+    [DataRow(0, 2)]
+    [DataRow(-2, 2)]
+    [DataRow(2, -2)]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void LastIndexOfAnyTest24(int index, int count)
+    {
+        var needles = SearchValues.Create("t");
+        _ = "t".AsSpan().LastIndexOfAny(needles, index, count);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void LastIndexOfAnyTest25()
+        => Assert.AreEqual(1, "abc".AsSpan().LastIndexOfAny((SearchValues<char>?)null!, 1, 1));
 
 
     //[DataTestMethod]

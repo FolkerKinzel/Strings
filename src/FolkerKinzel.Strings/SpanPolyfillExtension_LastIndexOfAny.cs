@@ -1,9 +1,24 @@
+using FolkerKinzel.Strings.Intls;
+
 namespace FolkerKinzel.Strings;
 
 #if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
 public static partial class SpanPolyfillExtension
 {
+    /// <summary>
+    /// Searches for the last index of any of the specified Unicode characters.
+    /// </summary>
+    /// <param name="span">The span to search.</param>
+    /// <param name="values">The set of characters to search for.</param>
+    /// <returns>The zero-based index of the last occurrence of one of the specified Unicode
+    /// characters in <paramref name="span" /> or -1 if none of these characters have been
+    /// found.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int LastIndexOfAny(this Span<char> span, SearchValues<char> values)
+        => ((ReadOnlySpan<char>)span).LastIndexOfAny(values);
+
 #if NET461 || NETSTANDARD2_0
 
     /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
