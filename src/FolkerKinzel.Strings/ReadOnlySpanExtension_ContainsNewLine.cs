@@ -1,3 +1,5 @@
+using FolkerKinzel.Strings.Intls;
+
 namespace FolkerKinzel.Strings;
 
 public static partial class ReadOnlySpanExtension
@@ -6,17 +8,18 @@ public static partial class ReadOnlySpanExtension
     /// <param name="span">The span to search.</param>
     /// <returns> <c>true</c> if <paramref name="span" /> contains a newline character, otherwise
     /// <c>false</c>.</returns>
-    /// <remarks> <see cref="CharExtension.IsNewLine(char)" /> is used for the comparison.</remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsNewLine(this ReadOnlySpan<char> span)
-    {
-        for (int i = 0; i < span.Length; i++)
-        {
-            if (span[i].IsNewLine())
-            {
-                return true;
-            }
-        }
+        => span.IndexOfAny(SearchValuesStorage.NewLineChars) != -1;
+    //{
+    //    for (int i = 0; i < span.Length; i++)
+    //    {
+    //        if (span[i].IsNewLine())
+    //        {
+    //            return true;
+    //        }
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 }

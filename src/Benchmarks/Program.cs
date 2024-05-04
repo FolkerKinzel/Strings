@@ -16,11 +16,11 @@ class Program
     //_ = BenchmarkRunner.Run<InsertBench>();
     //_ = BenchmarkRunner.Run<Base64Bench>();
     //_ = BenchmarkRunner.Run<StackAllockBench>();
-    _ = BenchmarkRunner.Run<SearchValuesBench>();
+    //_ = BenchmarkRunner.Run<SearchValuesBench>();
     //_ = BenchmarkRunner.Run<IndexOfBench>();
     //_ = BenchmarkRunner.Run<LastIndexOfBench>();
     //_ = BenchmarkRunner.Run<PersistentHashCodeBench>();
-    //_ = BenchmarkRunner.Run<ContainsNewLineBench>();
+    _ = BenchmarkRunner.Run<ContainsNewLineBench>();
     //_ = BenchmarkRunner.Run<ToUpperInvariantBench>();
     //_ = BenchmarkRunner.Run<ReplaceWhiteSpaceWithBench>();
     //_ = BenchmarkRunner.Run<ReplaceLineEndingsBench>();

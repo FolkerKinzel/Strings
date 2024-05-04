@@ -9,7 +9,7 @@ namespace Benchmarks;
 [MemoryDiagnoser]
 public class ContainsNewLineBench
 {
-    private readonly string _content = new string('a', 200);
+    private readonly string _content = new('a', 200);
     const string NEW_LINES = "\r\n\u000B\u000C\u0085\u2028\u2029";
     private readonly SearchValues<char> _searchValues = SearchValues.Create(NEW_LINES);
 

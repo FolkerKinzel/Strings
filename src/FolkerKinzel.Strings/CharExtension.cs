@@ -391,9 +391,6 @@ public static class CharExtension
     /// <item>
     /// LF: Line Feed (U+000A)
     /// </item>
-    ///// <item>
-    ///// VT: Vertical Tab (U+000B)
-    ///// </item>
     /// <item>
     /// FF: Form Feed (U+000C)
     /// </item>

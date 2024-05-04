@@ -2,7 +2,8 @@
 
 ## Roadmap
 ### 8.1.0
-- [ ] Refactor ReadOnlySpanExtension.ContainsNewLine to use ReadOnlySpan.ContainsAny or SearchValues
+- [x] Refactor ReadOnlySpanExtension.ContainsNewLine to use ReadOnlySpan.ContainsAny or SearchValues
+- [x] Refactor SpanExtension.ContainsNewLine to use ReadOnlySpan.ContainsAny or SearchValues
 - [ ] Refactor StringBuilderExtension.ContainsNewLine to use ReadOnlySpan.ContainsNewLine
 - [ ] Refactor StringBuilderExtension.IndexOf
 - [ ] Refactor StringBuilderExtension.LastIndexOf
