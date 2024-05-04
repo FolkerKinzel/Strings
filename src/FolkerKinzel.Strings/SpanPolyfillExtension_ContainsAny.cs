@@ -12,6 +12,13 @@ public static partial class SpanPolyfillExtension
     /// <param name="values">The set of characters to search for.</param>
     /// <returns><c>true</c> 
     /// if any of the specified characters have been found. If not, returns <c>false</c>.</returns>
+    /// 
+    /// <remarks>
+    /// <note type="caution">
+    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;.
+    /// </note>
+    /// </remarks>
+    /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     public static bool ContainsAny(this Span<char> span, SearchValues<char> values)
         => span.IndexOfAny(values) != -1;

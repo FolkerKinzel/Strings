@@ -15,6 +15,13 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <returns>The zero-based index of the first occurrence of one of the specified Unicode
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found.</returns>
+    /// 
+    /// <remarks>
+    /// <note type="caution">
+    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;.
+    /// </note>
+    /// </remarks>
+    /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     public static int IndexOfAny(this ReadOnlySpan<char> span, SearchValues<char> values)
     {

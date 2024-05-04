@@ -18,12 +18,10 @@ public static partial class ReadOnlySpanExtensionPolyfillExtension
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found.</returns>
     /// <remarks> 
-    /// If the length of <paramref name="values" /> is less than 5, the method uses
+    /// 
     /// <see cref="MemoryExtensions.LastIndexOfAny{T}(Span{T},
     /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
-    /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
-    /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
-    /// is used to avoid performance issues.</remarks>
+    /// ReadOnlySpan&lt;T&gt;)</see> is used for the comparison.</remarks>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
     /// <paramref name="span"/> is not <see cref="ReadOnlySpan{T}.Empty"/> and <paramref name="count"/>

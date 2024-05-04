@@ -67,6 +67,13 @@ public static partial class ReadOnlySpanExtension
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found.</returns>
     /// 
+    /// <remarks>
+    /// <note type="caution">
+    /// In frameworks older than .NET 8.0, the method does not benefit from the performance benefits 
+    /// of System.Buffers.SearchValues&lt;T&gt;.
+    /// </note>
+    /// </remarks>
+    /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>

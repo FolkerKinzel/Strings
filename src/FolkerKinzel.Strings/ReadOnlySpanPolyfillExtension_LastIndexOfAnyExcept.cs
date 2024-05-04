@@ -13,6 +13,13 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <param name="values">The characters to avoid.</param>
     /// <returns>The index in the span of the last occurrence of any character other than those in 
     /// <paramref name="values"/>. If all of the characters are in <paramref name="values"/>, returns -1.</returns>
+    /// 
+    /// <remarks>
+    /// <note type="caution">
+    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;.
+    /// </note>
+    /// </remarks>
+    /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     public static int LastIndexOfAnyExcept(this ReadOnlySpan<char> span, SearchValues<char> values)
     {
