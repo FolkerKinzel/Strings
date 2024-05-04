@@ -1,9 +1,23 @@
+using FolkerKinzel.Strings.Intls;
+
 namespace FolkerKinzel.Strings;
 
 #if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
 public static partial class SpanPolyfillExtension
 {
+    /// <summary>
+    /// Searches for the first index of any character other than the specified <paramref name="values"/>.
+    /// </summary>
+    /// <param name="span">The span to search.</param>
+    /// <param name="values">The characters to avoid.</param>
+    /// <returns>The index in the span of the first occurrence of any character other than those in 
+    /// <paramref name="values"/>. If all of the characters are in <paramref name="values"/>, returns -1.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int IndexOfAnyExcept(this Span<char> span, SearchValues<char> values)
+     => ((ReadOnlySpan<char>)span).IndexOfAnyExcept(values);
+
 #if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
     /// <summary>Returns the index of the first character in the 
