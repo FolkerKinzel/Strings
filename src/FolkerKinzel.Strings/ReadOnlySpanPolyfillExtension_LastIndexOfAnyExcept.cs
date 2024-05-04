@@ -1,9 +1,11 @@
 namespace FolkerKinzel.Strings;
 
-#if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
 public static partial class ReadOnlySpanPolyfillExtension
 {
+#if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+
     /// <summary>Returns the index of the last character in the 
     /// read-only span that is not equal to <paramref name="value"/>.</summary>
     /// <param name="span">The read-only span to search.</param>
@@ -93,6 +95,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     public static int LastIndexOfAnyExcept(this ReadOnlySpan<char> span, string? values)
         => span.LastIndexOfAnyExcept(values.AsSpan());
 
+#endif
 #endif
 }
 #endif

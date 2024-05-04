@@ -1,12 +1,37 @@
+using FolkerKinzel.Strings.Intls;
+
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
 public static partial class ReadOnlySpanPolyfillExtension
 {
+    /// <summary>
+    /// Searches for the zero-based index of the first occurrence of one of the
+    /// specified Unicode characters.
+    /// </summary>
+    /// <param name="span">The read-only span to search.</param>
+    /// <param name="values">The set of characters to search for.</param>
+    /// <returns>The zero-based index of the first occurrence of one of the specified Unicode
+    /// characters in <paramref name="span" /> or -1 if none of these characters have been
+    /// found.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
+    public static int IndexOfAny(this ReadOnlySpan<char> span, SearchValues<char> values)
+    {
+        // Don't address MemoryExtensions here directly because the library method
+        // polyfills a bug in the nuget package System.Memory for .NET Framework and
+        // .NET Standard 2.0
+
+        _ArgumentNullException.ThrowIfNull(values, nameof(values));
+        return span.IndexOfAny(values.Span);
+    }
+
+
+#if NET461 || NETSTANDARD2_0
+
     /// <summary>Searches for the zero-based index of the first occurrence of one of the
     /// specified Unicode characters.</summary>
-    /// <param name="span">The read-only span to examine.</param>
+    /// <param name="span">The read-only span to search.</param>
     /// <param name="values">A read-only character span that contains the characters to search
     /// for.</param>
     /// <returns>The zero-based index of the first occurrence of one of the specified Unicode
@@ -32,6 +57,8 @@ public static partial class ReadOnlySpanPolyfillExtension
         // polyfills a bug in the nuget package System.Memory for .NET Framework and
         // .NET Standard 2.0
         => span.IndexOfAny(values.AsSpan());
+#endif
+
 }
 
 #endif

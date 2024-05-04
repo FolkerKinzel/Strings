@@ -1,9 +1,11 @@
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
 public static partial class SpanPolyfillExtension
 {
+#if NET461 || NETSTANDARD2_0
+
     /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
     /// Unicode characters.</summary>
     /// <param name="span">The span to examine.</param>
@@ -79,6 +81,7 @@ public static partial class SpanPolyfillExtension
     public static int LastIndexOfAny(
         this Span<char> span, string? values, int startIndex, int count)
         => ((ReadOnlySpan<char>)span).LastIndexOfAny(values.AsSpan(), startIndex, count);
+#endif
 }
 
 #endif

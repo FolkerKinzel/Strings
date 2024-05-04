@@ -1,9 +1,11 @@
 namespace FolkerKinzel.Strings;
 
-#if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
 public static partial class SpanPolyfillExtension
 {
+#if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+
     /// <summary>Returns the index of the first character in the 
     /// span that is not equal to <paramref name="value"/>.</summary>
     /// <param name="span">The span to search.</param>
@@ -71,6 +73,7 @@ public static partial class SpanPolyfillExtension
     public static int IndexOfAnyExcept(this Span<char> span, string? values)
         => ((ReadOnlySpan<char>)span).IndexOfAnyExcept(values);
 
+#endif
 #endif
 }
 

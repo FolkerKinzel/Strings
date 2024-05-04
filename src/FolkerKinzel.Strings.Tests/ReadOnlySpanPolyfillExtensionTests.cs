@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Buffers;
+using System.Globalization;
 using FolkerKinzel.Strings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -115,6 +116,82 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
 
     [TestMethod]
     public void ContainsTest1() => Assert.IsTrue(Environment.NewLine.AsSpan().Contains(Environment.NewLine, StringComparison.Ordinal));
+
+    [DataTestMethod]
+    [DataRow("t", "abcdefghi", -1)]
+    [DataRow("t", "abcdefghit", 0)]
+    [DataRow("testtest", "abcdfghi", -1)]
+    [DataRow("testtest", "abcdfghit", 0)]
+    [DataRow("", "abcdefghit", -1)]
+    [DataRow("t", "", -1)]
+    [DataRow("testtest", "", -1)]
+    public void IndexOfAnyTest1(string testStr, string needles, int expectedIndex)
+        => Assert.AreEqual(expectedIndex, testStr.AsSpan().IndexOfAny(needles.AsSpan()));
+
+
+    [DataTestMethod]
+    [DataRow("t", "abcdefghi", -1)]
+    [DataRow("t", "abcdefghit", 0)]
+    [DataRow("testtest", "abcdfghi", -1)]
+    [DataRow("testtest", "abcdfghit", 0)]
+    [DataRow("", "abcdefghit", -1)]
+    [DataRow("t", "", -1)]
+    [DataRow("testtest", "", -1)]
+    public void IndexOfAnyTest2(string testStr, string needles, int expectedIndex)
+        => Assert.AreEqual(expectedIndex, testStr.AsSpan().IndexOfAny(needles));
+
+    [DataTestMethod]
+    [DataRow("t", "abcdefghi", -1)]
+    [DataRow("t", "abcdefghit", 0)]
+    [DataRow("testtest", "abcdfghi", -1)]
+    [DataRow("testtest", "abcdfghit", 0)]
+    [DataRow("", "abcdefghit", -1)]
+    [DataRow("t", "", -1)]
+    [DataRow("t", null, -1)]
+    [DataRow(null, null, -1)]
+    [DataRow("testtest", "", -1)]
+    public void IndexOfAnyTest3(string? testStr, string? needles, int expectedIndex)
+        => Assert.AreEqual(expectedIndex, testStr.AsSpan().IndexOfAny(SearchValues.Create(needles)));
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))] 
+    public void IndexOfAnyTest4()
+        => "abc".AsSpan().IndexOfAny((SearchValues<char>?)null!);
+
+    [TestMethod]
+    public void ContainsAnyTest1() => Assert.IsFalse("t".AsSpan().ContainsAny(""));
+
+    [DataTestMethod]
+    [DataRow("ef", 4)]
+    [DataRow("0123456789ef", 4)]
+    [DataRow("", -1)]
+    [DataRow("xy", -1)]
+    [DataRow("qwxyza0123456789", -1)]
+    public void LastIndexOfAnyTest1(string needles, int expected)
+    {
+        const string test = "testen";
+
+        //int i = "".LastIndexOfAny(new char[0]);
+        //i = MemoryExtensions.LastIndexOfAny(test.AsSpan(), ReadOnlySpan<char>.Empty);
+
+        Assert.AreEqual(expected, test.AsSpan().LastIndexOfAny(needles.AsSpan()));
+    }
+
+    [DataTestMethod]
+    [DataRow("ef", 4)]
+    [DataRow("0123456789ef", 4)]
+    [DataRow("", -1)]
+    [DataRow("xy", -1)]
+    [DataRow("qwxyza0123456789", -1)]
+    public void LastIndexOfAnyTest1b(string needles, int expected) => Assert.AreEqual(expected, "testen".AsSpan().LastIndexOfAny(needles));
+
+
+    [TestMethod]
+    public void LastIndexOfAnyTest2()
+    {
+        const string test = "test";
+        Assert.AreEqual(-1, ReadOnlySpan<char>.Empty.LastIndexOfAny(test.AsSpan()));
+    }
 
     [DataTestMethod]
     [DataRow("test", "TE", true)]

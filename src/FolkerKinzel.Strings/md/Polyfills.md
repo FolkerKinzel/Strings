@@ -41,11 +41,18 @@ static string StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>);
 static string StaticStringMethod.Create<TState>(int, TState, SpanAction<char, TState>);
 ```
 &nbsp;
+### Polyfills for the static System.Buffers.SearchValues class and the System.Buffers.SearchValues<char> class (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+```csharp
+static class FolkerKinzel.Strings.SearchValues;
+class FolkerKinzel.Strings.SearchValues<T>;
+```
+&nbsp;
 ### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 bool ContainsAny(this ReadOnlySpan<char>, ReadOnlySpan<char>);
 bool ContainsAny(this ReadOnlySpan<char>, char, char);
 bool ContainsAny(this ReadOnlySpan<char>, char, char, char);
+int IndexOfAny(this ReadOnlySpan<char>, SearchValues<char>);
 ```
 &nbsp;
 ### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
@@ -92,6 +99,7 @@ int LastIndexOfAnyExcept(this ReadOnlySpan<char>, string?);
 bool ContainsAny(this Span<char>, ReadOnlySpan<char>);
 bool ContainsAny(this Span<char>, char, char);
 bool ContainsAny(this Span<char>, char, char, char);
+int IndexOfAny(this Span<char>, SearchValues<char>);
 ```
 &nbsp;
 ### Polyfills for the Span&lt;Char&gt; struct (.NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)

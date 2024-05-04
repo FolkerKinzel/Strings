@@ -329,7 +329,7 @@ public class CharExtensionTests
     [DataRow('a', false)]
     [DataRow('\r', true)]
     [DataRow('\n', true)]
-    [DataRow('\u000B', true)]
+    //[DataRow('\u000B', true)]
     [DataRow('\u000C', true)]
     [DataRow('\u0085', true)]
     [DataRow('\u2028', true)]

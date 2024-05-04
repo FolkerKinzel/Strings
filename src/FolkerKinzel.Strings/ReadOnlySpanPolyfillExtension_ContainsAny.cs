@@ -1,6 +1,6 @@
 namespace FolkerKinzel.Strings;
 
-#if !NET8_0_OR_GREATER
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
 public static partial class ReadOnlySpanPolyfillExtension
 {

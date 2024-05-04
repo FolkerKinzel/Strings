@@ -391,9 +391,9 @@ public static class CharExtension
     /// <item>
     /// LF: Line Feed (U+000A)
     /// </item>
-    /// <item>
-    /// VT: Vertical Tab (U+000B)
-    /// </item>
+    ///// <item>
+    ///// VT: Vertical Tab (U+000B)
+    ///// </item>
     /// <item>
     /// FF: Form Feed (U+000C)
     /// </item>
@@ -416,8 +416,9 @@ public static class CharExtension
         {
             case '\r': // CR: Carriage Return
             case '\n': // LF: Line Feed
-            case '\u000B': // VT: Vertical Tab
-            case '\u000C': // FF: Form Feed
+            //case '\u000B': // VT: Vertical Tab
+            case '\f': // FF: Form Feed
+            //case '\u000C': // FF: Form Feed
             case '\u0085': // NEL: Next Line
             case '\u2028': // LS: Line Separator
             case '\u2029': // PS: Paragraph Separator
