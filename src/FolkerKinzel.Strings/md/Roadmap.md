@@ -5,7 +5,7 @@
 - [x] Refactor ReadOnlySpanExtension.ContainsNewLine to use ReadOnlySpan.ContainsAny or SearchValues
 - [x] Refactor SpanExtension.ContainsNewLine to use ReadOnlySpan.ContainsAny or SearchValues
 - [ ] Refactor StringBuilderExtension.ContainsNewLine to use ReadOnlySpan.ContainsNewLine
-- [ ] Refactor StringBuilderExtension.IndexOf
+- [x] Refactor StringBuilderExtension.IndexOf
 - [ ] Refactor StringBuilderExtension.LastIndexOf
 - [ ] Refactor StringBuilderExtension.GetPersistentHashCode to use the ReadOnlySpan method
 - [ ] Refactor StringBuilderExtension.ContainsWhiteSpace to use the ReadOnlySpan method

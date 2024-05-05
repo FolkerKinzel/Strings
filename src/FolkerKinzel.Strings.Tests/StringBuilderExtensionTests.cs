@@ -296,7 +296,7 @@ public class StringBuilderExtensionTests
         => Assert.AreEqual(1, new StringBuilder("testen").IndexOf('e', 0));
 
     [TestMethod]
-    public void IndexOfTest14()
+    public void IndexOfTest4()
     {
         const string test = "testen";
         Assert.AreEqual(1, new StringBuilder(test).IndexOf('e', 0));
@@ -307,18 +307,7 @@ public class StringBuilderExtensionTests
     }
 
     [TestMethod]
-    public void IndexOfTest14b()
-    {
-        const string test = "testenaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-        Assert.AreEqual(1, new StringBuilder(test).IndexOf('e', 0));
-        Assert.AreEqual(1, new StringBuilder(test).IndexOf('e', 1));
-        Assert.AreEqual(4, new StringBuilder(test).IndexOf('e', 2));
-        Assert.AreEqual(-1, new StringBuilder(test).IndexOf('e', 2, 2));
-        Assert.AreEqual(4, new StringBuilder(test).IndexOf('e', 2, 3));
-    }
-
-    [TestMethod]
-    public void IndexOfTest4()
+    public void IndexOfTest5()
     {
         const string input = "testen";
         Assert.AreEqual(1, new StringBuilder(input).IndexOf('e', 0, input.Length));
@@ -326,7 +315,7 @@ public class StringBuilderExtensionTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void IndexOfTest5()
+    public void IndexOfTest6()
     {
         StringBuilder? sb = null;
         _ = sb!.IndexOf('e', 0);
@@ -334,24 +323,67 @@ public class StringBuilderExtensionTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void IndexOfTest6()
+    public void IndexOfTest7()
     {
         StringBuilder? sb = null;
         _ = sb!.IndexOf('e', 0, 0);
     }
 
     [DataTestMethod]
-    [ExpectedException(typeof(ArgumentOutOfRangeException))]
     [DataRow(-1)]
     [DataRow(4711)]
-    public void IndexOfTest7(int startIndex) => _ = new StringBuilder().IndexOf('e', startIndex);
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void IndexOfTest8(int startIndex) => _ = new StringBuilder().IndexOf('e', startIndex);
 
     [DataTestMethod]
     [DataRow(-1, -1)]
     [DataRow(0, -1)]
     [DataRow(0, 4711)]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
-    public void IndexOfTest8(int startIndex, int count) => _ = new StringBuilder().IndexOf('e', startIndex, count);
+    public void IndexOfTest9(int startIndex, int count) => _ = new StringBuilder().IndexOf('e', startIndex, count);
+
+    [TestMethod]
+    public void IndexOfTest10()
+    {
+        const string test = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        Assert.AreEqual(-1, new StringBuilder(test).IndexOf('x'));
+        Assert.AreEqual(0, new StringBuilder(test).IndexOf('a'));
+    }
+
+    [TestMethod]
+    public void IndexOfTest11()
+    {
+        var builder = new StringBuilder("a");
+        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaax");
+        Assert.AreEqual(builder.Length - 1, builder.IndexOf('x', builder.Length - 1, 1));
+    }
+
+    [TestMethod]
+    public void IndexOfTest12()
+    {
+        var builder = new StringBuilder("a");
+        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaax");
+        Assert.AreEqual(builder.Length - 1, builder.IndexOf('x', 1, builder.Length - 1));
+    }
+
+    [TestMethod]
+    public void IndexOfTest14()
+    {
+        var builder = new StringBuilder("x");
+        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Assert.AreEqual(0, builder.IndexOf('x', 0, builder.Length));
+    }
+
+    [TestMethod]
+    public void IndexOfTest15()
+    {
+        var builder = new StringBuilder("a");
+        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Assert.AreEqual(-1, builder.IndexOf('x', 0, builder.Length));
+    }
+
+    [TestMethod]
+    public void IndexOfTest16() => Assert.AreEqual(-1, new StringBuilder().IndexOf('x', 0, 0));
 
     //[TestMethod()]
     //[ExpectedException(typeof(ArgumentOutOfRangeException))]
