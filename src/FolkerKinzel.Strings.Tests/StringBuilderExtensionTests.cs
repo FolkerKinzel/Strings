@@ -279,6 +279,68 @@ public class StringBuilderExtensionTests
         _ = sb.LastIndexOf('a', startIndex, count);
     }
 
+    [DataTestMethod]
+    [DataRow(-1)]
+    [DataRow(4711)]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void LastIndexOfTest9b(int startIndex)
+    {
+        var sb = new StringBuilder("t");
+        _ = sb.LastIndexOf('a', startIndex);
+    }
+
+    [TestMethod]
+    public void LastIndexOfTest10()
+    {
+        const string test = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        Assert.AreEqual(-1, new StringBuilder(test).LastIndexOf('x'));
+        Assert.AreEqual(test.Length - 1, new StringBuilder(test).LastIndexOf('a'));
+    }
+
+    [TestMethod]
+    public void LastIndexOfTest11()
+    {
+        var builder = new StringBuilder("a");
+        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaax");
+        Assert.AreEqual(builder.Length - 1, builder.LastIndexOf('x', builder.Length - 1, 1));
+    }
+
+    [TestMethod]
+    public void LastIndexOfTest12()
+    {
+        var builder = new StringBuilder("x");
+        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Assert.AreEqual(0, builder.LastIndexOf('x', builder.Length - 1, builder.Length));
+    }
+
+    [TestMethod]
+    public void LastIndexOfTest14()
+    {
+        var builder = new StringBuilder("x");
+        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Assert.AreEqual(0, builder.LastIndexOf('x', 0, 1));
+    }
+
+    [TestMethod]
+    public void LastIndexOfTest14b()
+    {
+        var builder = new StringBuilder("x");
+        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Assert.AreEqual(-1, builder.LastIndexOf('x', builder.Length - 1, builder.Length - 1));
+    }
+
+    [TestMethod]
+    public void LastIndexOfTest15()
+    {
+        var builder = new StringBuilder("a");
+        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Assert.AreEqual(-1, builder.LastIndexOf('x', builder.Length - 1, builder.Length));
+    }
+
+    [TestMethod]
+    public void LastIndexOfTest16() => Assert.AreEqual(-1, new StringBuilder().LastIndexOf('x', 0, 0));
+
+
     [TestMethod]
     public void IndexOfTest1() => Assert.AreEqual(1, new StringBuilder("testen").IndexOf('e'));
 

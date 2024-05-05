@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FolkerKinzel.Strings.Intls;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.Strings.Tests.Intls;
+﻿namespace FolkerKinzel.Strings.Intls.Tests;
 
 [TestClass]
 public class Utf8ValidatorTests

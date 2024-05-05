@@ -128,7 +128,7 @@ public static partial class StringBuilderExtension
     {
         int pos = builder.Length - 1;
 
-        while (TryGetChunk(builder, pos, out int chunkStart, out ReadOnlySpan<char> span))
+        while (ChunkProvider.TryGetChunk(builder, pos, out int chunkStart, out ReadOnlySpan<char> span))
         {
             int idx = span.LastIndexOf(value);
 
@@ -146,20 +146,21 @@ public static partial class StringBuilderExtension
 
     private static int LastIndexOfIntl(StringBuilder builder, char value, int startIndex, int count)
     {
-        while (TryGetChunk(builder, startIndex, out int chunkStart, out ReadOnlySpan<char> span))
+        while (ChunkProvider.TryGetChunk(builder, startIndex, out int chunkStart, out ReadOnlySpan<char> span))
         {
             int evaluatedLength = startIndex + 1 - chunkStart;
-            span = span.Slice(0, evaluatedLength);
-            int idx = span.LastIndexOf(value);
-
-            if (evaluatedLength >= count)
-            {
-                return idx == -1 ? -1 : chunkStart + idx;
-            }
+            evaluatedLength = Math.Min(evaluatedLength, count);
+            int spanStartIdx = startIndex - chunkStart - evaluatedLength + 1;
+            int idx = span.Slice(spanStartIdx, evaluatedLength).LastIndexOf(value);
 
             if (idx != -1)
             {
-                return chunkStart + idx;
+                return chunkStart + spanStartIdx + idx;
+            }
+
+            if (evaluatedLength == count)
+            {
+                break;
             }
 
             startIndex -= evaluatedLength;
@@ -167,32 +168,6 @@ public static partial class StringBuilderExtension
         }
 
         return -1;
-    }
-
-
-    private static bool TryGetChunk(StringBuilder builder, int index, out int chunkStartIndex, out ReadOnlySpan<char> span)
-    {
-        chunkStartIndex = 0;
-
-        if (index < 0)
-        {
-            span = default;
-            return false;
-        }
-
-        foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
-        {
-            if (index < chunkStartIndex + chunk.Length)
-            {
-                span = chunk.Span;
-                return true;
-            }
-
-            chunkStartIndex += chunk.Length;
-        }
-
-        span = default;
-        return false;
     }
 
 #endif
