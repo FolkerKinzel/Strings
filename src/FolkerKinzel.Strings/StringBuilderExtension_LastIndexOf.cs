@@ -103,8 +103,10 @@ public static partial class StringBuilderExtension
     private static int LastIndexOfCopy(StringBuilder builder, char value, int startIndex, int count)
     {
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
-        builder.CopyTo(startIndex + 1 - count, shared.Array, 0, count);
-        return shared.Array.AsSpan(0, count).LastIndexOf(value);
+        int spanStartIndex = startIndex + 1 - count;
+        builder.CopyTo(spanStartIndex, shared.Array, 0, count);
+        int idx = shared.Array.AsSpan(0, count).LastIndexOf(value);
+        return idx == -1 ? -1 : spanStartIndex + idx;
     }
 
     private static int LastIndexOfSimple(StringBuilder builder, char value, int startIndex, int count)
@@ -148,8 +150,7 @@ public static partial class StringBuilderExtension
     {
         while (ChunkProvider.TryGetChunk(builder, startIndex, out int chunkStart, out ReadOnlySpan<char> span))
         {
-            int evaluatedLength = startIndex + 1 - chunkStart;
-            evaluatedLength = Math.Min(evaluatedLength, count);
+            int evaluatedLength = Math.Min(startIndex + 1 - chunkStart, count);
             int spanStartIdx = startIndex - chunkStart - evaluatedLength + 1;
             int idx = span.Slice(spanStartIdx, evaluatedLength).LastIndexOf(value);
 

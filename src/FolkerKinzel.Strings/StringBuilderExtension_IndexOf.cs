@@ -149,24 +149,17 @@ public static partial class StringBuilderExtension
             }
 
             int spanStart = startIndex - chunkStart;
-            int evaluatedLength = chunk.Length - spanStart;
-            ReadOnlySpan<char> span = chunk.Span;
-            int idx;
-
-            if (evaluatedLength >= count)
-            {
-                span = span.Slice(spanStart, count);
-                idx = span.IndexOf(c);
-                return idx == -1 ? -1 : startIndex + idx;
-            }
-
-            span = span.Slice(spanStart);
-
-            idx = span.IndexOf(c);
+            int evaluatedLength = Math.Min(chunk.Length - spanStart, count);
+            int idx = chunk.Span.Slice(spanStart, evaluatedLength).IndexOf(c);
 
             if (idx != -1)
             {
                 return startIndex + idx;
+            }
+
+            if(evaluatedLength == count)
+            {
+                break;
             }
 
             chunkStart += chunk.Length;

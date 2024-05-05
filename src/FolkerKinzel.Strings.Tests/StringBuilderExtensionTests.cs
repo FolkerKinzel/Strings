@@ -325,8 +325,24 @@ public class StringBuilderExtensionTests
     public void LastIndexOfTest14b()
     {
         var builder = new StringBuilder("x");
-        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        Assert.AreEqual(-1, builder.LastIndexOf('x', builder.Length - 1, builder.Length - 1));
+        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaax");
+        Assert.AreEqual(-1, builder.LastIndexOf('x', builder.Length - 2, builder.Length - 2));
+    }
+
+    [TestMethod]
+    public void LastIndexOfTest14c()
+    {
+        var builder = new StringBuilder("x");
+        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaax");
+        Assert.AreEqual(0, builder.LastIndexOf('x', builder.Length - 2, builder.Length - 1));
+    }
+
+    [TestMethod]
+    public void LastIndexOfTest14d()
+    {
+        var builder = new StringBuilder("x");
+        builder.Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxa");
+        Assert.AreEqual(builder.Length - 2, builder.LastIndexOf('x', builder.Length - 1, 30));
     }
 
     [TestMethod]

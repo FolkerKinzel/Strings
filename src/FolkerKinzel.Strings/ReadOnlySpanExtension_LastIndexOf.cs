@@ -17,6 +17,7 @@ public static partial class ReadOnlySpanExtension
     /// <returns>The zero-based start index of the <paramref name="value" /> parameter if
     /// this character sequence was found, or -1 if it was not found or <paramref name="span"
     /// /> is empty.</returns>
+    /// 
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
     /// <paramref name="count" /> is a negative value
