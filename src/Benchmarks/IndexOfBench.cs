@@ -12,52 +12,88 @@ namespace Benchmarks;
 [MemoryDiagnoser]
 public class IndexOfBench
 {
-    private readonly StringBuilder _builder = new StringBuilder(new string('a', 100)).Append(new string('a', 100));
-
-    [Benchmark]
-    public int IndexOfLibrary() => _builder.IndexOf('z');
+    private readonly StringBuilder _builder200 = new StringBuilder(new string('a', 100)).Append(new string('a', 100));
 
     //[Benchmark]
-    //public int IndexOfChunks() => IndexOf(_builder, 'z');
+    //public int IndexOfLibrary200() => _builder200.IndexOf('z');
+
+    ////[Benchmark]
+    ////public int IndexOfChunks() => IndexOf(_builder, 'z');
+
+    ////[Benchmark]
+    ////public int IndexOfEnumerator() => IndexOfWithEnumerator(_builder, 'z');
 
     //[Benchmark]
-    //public int IndexOfEnumerator() => IndexOfWithEnumerator(_builder, 'z');
+    //public int IndexOfSpan200() => IndexOfSpan(_builder200, 'z');
 
     [Benchmark]
-    public int IndexOfSpan() => IndexOfSpan(_builder, 'z');
+    public int IndexOfSpan50() => IndexOfSpan(_builder50, 'z');
 
     [Benchmark]
-    public int IndexOfArray() => IndexOfPolyfill(_builder, 'z');
+    public int IndexOfSpanBounds50() => IndexOfSpanBounds(_builder50, 'z', 0, _builder50.Length);
 
-    [Benchmark]
-    public int IndexOfSpanBounds() => IndexOfSpanBounds(_builder, 'z', 0, _builder.Length);
+    ////[Benchmark]
+    ////public int IndexOfArray() => IndexOfPolyfill(_builder200, 'z');
 
-    [Benchmark]
-    public int IndexOfArrayBounds() => IndexOfPolyfillBounds(_builder, 'z', 0, _builder.Length);
+    //[Benchmark]
+    //public int IndexOfSpanBounds200() => IndexOfSpanBounds(_builder200, 'z', 0, _builder200.Length);
+
+    //[Benchmark]
+    //public int IndexOfArrayBounds200() => IndexOfPolyfillBounds(_builder200, 'z', 0, _builder200.Length);
+
+    ////private readonly StringBuilder _builder100 = new StringBuilder(new string('a', 50)).Append(new string('a', 50));
+    private readonly StringBuilder _builder50 = new StringBuilder(new string('a', 25)).Append(new string('a', 25));
+    private readonly StringBuilder _builder10 = new StringBuilder(new string('a', 8)).Append(new string('a', 8));
+    //private readonly StringBuilder _builder4 = new StringBuilder(new string('a', 5)).Append(new string('a', 5));
+
+    //[Benchmark]
+    //public int IndexOfArrayBounds50() => IndexOfPolyfillBounds(_builder50, 'z', 0, _builder50.Length);
+
+    //[Benchmark]
+    //public int IndexOfArrayBounds10() => IndexOfPolyfillBounds(_builder10, 'z', 0, _builder10.Length);
+
+    //[Benchmark]
+    //public int IndexOfArrayBounds4() => IndexOfPolyfillBounds(_builder4, 'z', 0, _builder4.Length);
+
+    //[Benchmark]
+    //public int IndexOfSimpleBounds50() => IndexOfSimpleBounds(_builder50, 'z', 0, _builder50.Length);
+
+    //[Benchmark]
+    //public int IndexOfSimpleBounds10() => IndexOfSimpleBounds(_builder10, 'z', 0, _builder10.Length);
+
+    //[Benchmark]
+    //public int IndexOfSimpleBounds4() => IndexOfSimpleBounds(_builder4, 'z', 0, _builder4.Length);
 
 
+    //private static int IndexOfPolyfill(StringBuilder sb, char c)
+    //{
+    //    if (sb.Length == 0)
+    //    {
+    //        return -1;
+    //    }
 
-    private static int IndexOfPolyfill(StringBuilder sb, char c)
+    //    using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(sb.Length);
+    //    sb.CopyTo(0, shared.Array, sb.Length);
+    //    return shared.Array.AsSpan(0, sb.Length).IndexOf(c);
+    //}
+
+    private static int IndexOfSimpleBounds(StringBuilder builder, char value, int startIndex, int count)
     {
-        if (sb.Length == 0)
+        for (int i = startIndex; i < count; ++i)
         {
-            return -1;
+            if (value == builder[i])
+            {
+                return i;
+            }
         }
 
-        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(sb.Length);
-        sb.CopyTo(0, shared.Array, sb.Length);
-        return shared.Array.AsSpan(0, sb.Length).IndexOf(c);
+        return -1;
     }
 
     private static int IndexOfPolyfillBounds(StringBuilder sb, char c, int startIndex, int count)
     {
-        if (count == 0)
-        {
-            return -1;
-        }
-
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
-        sb.CopyTo(startIndex, shared.Array, count);
+        sb.CopyTo(startIndex, shared.Array, 0, count);
         return shared.Array.AsSpan(0, count).IndexOf(c);
     }
 

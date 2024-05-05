@@ -77,6 +77,59 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
         => "xyz".AsSpan().IndexOfAnyExcept((SearchValues<char>?)null!);
 
     [DataTestMethod()]
+    [DataRow("", false)]
+    [DataRow("   ", false)]
+    [DataRow("a", true)]
+    [DataRow(" a ", true)]
+    public void ContainsAnyExceptTest1(string input, bool expected)
+        => Assert.AreEqual(expected, input.AsSpan().ContainsAnyExcept(' '));
+
+    [DataTestMethod()]
+    [DataRow("", false)]
+    [DataRow("baababb", false)]
+    [DataRow("xxba", true)]
+    [DataRow("bxxxx", true)]
+    public void ContainsAnyExceptTest2(string input, bool expected)
+       => Assert.AreEqual(expected, input.AsSpan().ContainsAnyExcept('a', 'b'));
+
+    [DataTestMethod()]
+    [DataRow("", false)]
+    [DataRow("cbaabccabbc", false)]
+    [DataRow("xxbca", true)]
+    [DataRow("bxxxx", true)]
+    public void ContainsAnyExceptTest3(string input, bool expected)
+        => Assert.AreEqual(expected, input.AsSpan().ContainsAnyExcept('a', 'b', 'c'));
+
+    [DataTestMethod()]
+    [DataRow("", false)]
+    [DataRow("cbaaddbccadbbcd", false)]
+    [DataRow("xxbcdda", true)]
+    [DataRow("bxxxx", true)]
+    public void ContainsAnyExceptTest4(string input, bool expected)
+        => Assert.AreEqual(expected, input.AsSpan().ContainsAnyExcept("abcd"));
+
+    [DataTestMethod()]
+    [DataRow("", false)]
+    [DataRow("cbaaddbccadbbcd", false)]
+    [DataRow("xxbcdda", true)]
+    [DataRow("bxxxx", true)]
+    public void ContainsAnyExceptTest5(string input, bool expected)
+        => Assert.AreEqual(expected, input.AsSpan().ContainsAnyExcept("abcd".AsSpan()));
+
+    [DataTestMethod()]
+    [DataRow("", false)]
+    [DataRow("cbaaddbccadbbcd", false)]
+    [DataRow("xxbcdda", true)]
+    [DataRow("bxxxx", true)]
+    public void ContainsAnyExceptTest6(string input, bool expected)
+        => Assert.AreEqual(expected, input.AsSpan().ContainsAnyExcept(SearchValues.Create("abcd")));
+
+    [TestMethod()]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void ContainsAnyExceptTest7()
+        => "xyz".AsSpan().ContainsAnyExcept((SearchValues<char>?)null!);
+
+    [DataTestMethod()]
     [DataRow("", -1)]
     [DataRow("   ", -1)]
     [DataRow("a", 0)]
