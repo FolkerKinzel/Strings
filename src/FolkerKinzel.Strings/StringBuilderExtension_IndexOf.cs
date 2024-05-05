@@ -66,17 +66,11 @@ public static partial class StringBuilderExtension
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-        if (startIndex < 0 || startIndex > builder.Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex));
-        }
-
-        if (count < 0 || (count += startIndex) > builder.Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(count));
-        }
-
-        return IndexOfIntl(builder, value, startIndex, builder.Length - startIndex);
+        return startIndex < 0 || startIndex > builder.Length
+            ? throw new ArgumentOutOfRangeException(nameof(startIndex))
+            : count < 0 || (count + startIndex) > builder.Length
+                ? throw new ArgumentOutOfRangeException(nameof(count))
+                : IndexOfIntl(builder, value, startIndex, count);
     }
 
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
@@ -98,12 +92,16 @@ public static partial class StringBuilderExtension
     {
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
         sb.CopyTo(startIndex, shared.Array, 0, count);
-        return shared.Array.AsSpan(0, count).IndexOf(c);
+        int idx = shared.Array.AsSpan(0, count).IndexOf(c);
+
+        return idx == -1 ? -1 : startIndex + idx;
     }
 
     private static int IndexOfSimple(StringBuilder builder, char value, int startIndex, int count)
     {
-        for (int i = startIndex; i < count; ++i)
+        int length = startIndex + count;
+
+        for (int i = startIndex; i < length; i++)
         {
             if (value == builder[i])
             {
@@ -120,19 +118,19 @@ public static partial class StringBuilderExtension
     {
         Debug.Assert(builder != null);
 
-        int pos = 0;
+        int chunkStart = 0;
 
         foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
         {
             ReadOnlySpan<char> span = chunk.Span;
-            int i = span.IndexOf(value);
+            int idx = span.IndexOf(value);
 
-            if (i != -1)
+            if (idx != -1)
             {
-                return pos + i;
+                return chunkStart + idx;
             }
 
-            pos += span.Length;
+            chunkStart += chunk.Length;
         }
 
         return -1;
@@ -140,17 +138,17 @@ public static partial class StringBuilderExtension
 
     private static int IndexOfIntl(StringBuilder sb, char c, int startIndex, int count)
     {
-        int pos = 0;
+        int chunkStart = 0;
 
         foreach (ReadOnlyMemory<char> chunk in sb.GetChunks())
         {
-            if (startIndex >= chunk.Length + pos)
+            if (startIndex >= chunk.Length + chunkStart)
             {
-                pos += chunk.Length;
+                chunkStart += chunk.Length;
                 continue;
             }
 
-            int spanStart = startIndex - pos;
+            int spanStart = startIndex - chunkStart;
             int evaluatedLength = chunk.Length - spanStart;
             ReadOnlySpan<char> span = chunk.Span;
             int idx;
@@ -159,7 +157,7 @@ public static partial class StringBuilderExtension
             {
                 span = span.Slice(spanStart, count);
                 idx = span.IndexOf(c);
-                return idx == -1 ? -1 : pos + idx;
+                return idx == -1 ? -1 : startIndex + idx;
             }
 
             span = span.Slice(spanStart);
@@ -168,12 +166,12 @@ public static partial class StringBuilderExtension
 
             if (idx != -1)
             {
-                return pos + idx;
+                return startIndex + idx;
             }
 
-            pos += chunk.Length;
+            chunkStart += chunk.Length;
             count -= evaluatedLength;
-            startIndex = pos;
+            startIndex = chunkStart;
         }
 
         return -1;

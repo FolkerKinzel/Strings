@@ -307,6 +307,17 @@ public class StringBuilderExtensionTests
     }
 
     [TestMethod]
+    public void IndexOfTest14b()
+    {
+        const string test = "testenaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        Assert.AreEqual(1, new StringBuilder(test).IndexOf('e', 0));
+        Assert.AreEqual(1, new StringBuilder(test).IndexOf('e', 1));
+        Assert.AreEqual(4, new StringBuilder(test).IndexOf('e', 2));
+        Assert.AreEqual(-1, new StringBuilder(test).IndexOf('e', 2, 2));
+        Assert.AreEqual(4, new StringBuilder(test).IndexOf('e', 2, 3));
+    }
+
+    [TestMethod]
     public void IndexOfTest4()
     {
         const string input = "testen";
