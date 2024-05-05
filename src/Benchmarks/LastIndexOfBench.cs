@@ -56,7 +56,7 @@ public class LastIndexOfBench
         }
 
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
-        sb.CopyTo(startIndex + 1 - count, shared.Array, count);
+        sb.CopyTo(startIndex + 1 - count, shared.Array, 0, count);
         return shared.Array.AsSpan(0, count).LastIndexOf(c);
     }
 

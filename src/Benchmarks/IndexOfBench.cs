@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 using FolkerKinzel.Strings;
 using FolkerKinzel.Strings.Intls;
 
 namespace Benchmarks;
 
 [MemoryDiagnoser]
+//[SimpleJob(runtimeMoniker: RuntimeMoniker.Net80)]
 public class IndexOfBench
 {
     private readonly StringBuilder _builder50 = new StringBuilder(new string('a', 25)).Append(new string('a', 25));

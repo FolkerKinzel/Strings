@@ -33,7 +33,7 @@ public static partial class StringBuilderExtension
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-        return startIndex < 0 || startIndex > builder.Length
+        return (uint)startIndex > (uint)builder.Length
             ? throw new ArgumentOutOfRangeException(nameof(startIndex))
             : IndexOfIntl(builder, value, startIndex, builder.Length - startIndex);
     }
@@ -66,9 +66,9 @@ public static partial class StringBuilderExtension
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-        return startIndex < 0 || startIndex > builder.Length
+        return (uint)startIndex > (uint)builder.Length
             ? throw new ArgumentOutOfRangeException(nameof(startIndex))
-            : count < 0 || (count + startIndex) > builder.Length
+            : (uint)count > (uint)(builder.Length - startIndex)
                 ? throw new ArgumentOutOfRangeException(nameof(count))
                 : IndexOfIntl(builder, value, startIndex, count);
     }

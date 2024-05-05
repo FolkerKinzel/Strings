@@ -16,7 +16,7 @@ public static partial class StringBuilderExtension
     public static int LastIndexOf(this StringBuilder builder, char value)
         => builder is null
                 ? throw new ArgumentNullException(nameof(builder))
-                : builder.LastIndexOf(value, builder.Length - 1, builder.Length);
+                : LastIndexOfIntl(builder, value);
 
     /// <summary>Returns the zero-based index of the last occurrence of the specified character
     /// in <paramref name="builder" />. The search begins at a specified character position
@@ -36,7 +36,11 @@ public static partial class StringBuilderExtension
     public static int LastIndexOf(this StringBuilder builder, char value, int startIndex)
         => builder is null
             ? throw new ArgumentNullException(nameof(builder))
-            : builder.LastIndexOf(value, startIndex, startIndex + 1);
+            : builder.Length == 0
+                ? -1
+                : (uint)startIndex >= (uint)builder.Length
+                    ? throw new ArgumentOutOfRangeException(nameof(startIndex))
+                    : LastIndexOfIntl(builder, value, startIndex, startIndex + 1);
 
     /// <summary>Specifies the zero-based index of the last occurrence of the specified character
     /// in <paramref name="builder" />. The search begins at a specified index and runs backwards
@@ -70,21 +74,42 @@ public static partial class StringBuilderExtension
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-        if (builder.Length == 0 || count == 0)
-        {
-            return -1;
-        }
+        return builder.Length == 0
+            ? -1
+            : (uint)startIndex >= (uint)builder.Length
+                ? throw new ArgumentOutOfRangeException(nameof(startIndex))
+                : (uint)count > (uint)startIndex + 1
+                    ? throw new ArgumentOutOfRangeException(nameof(count))
+                    : LastIndexOfIntl(builder, value, startIndex, count);
+    }
 
-        if (startIndex < 0 || startIndex >= builder.Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex));
-        }
+#if NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
-        int lastSearchIndex = startIndex - count + 1;
-        if (count < 0 || lastSearchIndex < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(count));
-        }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int LastIndexOfIntl(this StringBuilder builder, char value)
+      => builder.Length == 0 
+            ? -1 
+            : LastIndexOfIntl(builder, value, builder.Length - 1, builder.Length);
+
+    private static int LastIndexOfIntl(StringBuilder builder, char value, int startIndex, int count)
+    {
+        Debug.Assert(builder != null);
+
+        return count > SIMPLE_ALGORITHM_THRESHOLD
+            ? LastIndexOfCopy(builder, value, startIndex, count)
+            : LastIndexOfSimple(builder, value, startIndex, count);
+    }
+
+    private static int LastIndexOfCopy(StringBuilder builder, char value, int startIndex, int count)
+    {
+        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
+        builder.CopyTo(startIndex + 1 - count, shared.Array, 0, count);
+        return shared.Array.AsSpan(0, count).LastIndexOf(value);
+    }
+
+    private static int LastIndexOfSimple(StringBuilder builder, char value, int startIndex, int count)
+    {
+        int lastSearchIndex = startIndex + 1 - count;
 
         for (int i = startIndex; i >= lastSearchIndex; i--)
         {
@@ -96,4 +121,79 @@ public static partial class StringBuilderExtension
 
         return -1;
     }
+
+#else
+
+    private static int LastIndexOfIntl(StringBuilder builder, char value)
+    {
+        int pos = builder.Length - 1;
+
+        while (TryGetChunk(builder, pos, out int chunkStart, out ReadOnlySpan<char> span))
+        {
+            int idx = span.LastIndexOf(value);
+
+            if (idx != -1)
+            {
+                return chunkStart + idx;
+            }
+
+            pos = chunkStart - 1;
+        }
+
+        return -1;
+    }
+
+
+    private static int LastIndexOfIntl(StringBuilder builder, char value, int startIndex, int count)
+    {
+        while (TryGetChunk(builder, startIndex, out int chunkStart, out ReadOnlySpan<char> span))
+        {
+            int evaluatedLength = startIndex + 1 - chunkStart;
+            span = span.Slice(0, evaluatedLength);
+            int idx = span.LastIndexOf(value);
+
+            if (evaluatedLength >= count)
+            {
+                return idx == -1 ? -1 : chunkStart + idx;
+            }
+
+            if (idx != -1)
+            {
+                return chunkStart + idx;
+            }
+
+            startIndex -= evaluatedLength;
+            count -= evaluatedLength;
+        }
+
+        return -1;
+    }
+
+
+    private static bool TryGetChunk(StringBuilder builder, int index, out int chunkStartIndex, out ReadOnlySpan<char> span)
+    {
+        chunkStartIndex = 0;
+
+        if (index < 0)
+        {
+            span = default;
+            return false;
+        }
+
+        foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
+        {
+            if (index < chunkStartIndex + chunk.Length)
+            {
+                span = chunk.Span;
+                return true;
+            }
+
+            chunkStartIndex += chunk.Length;
+        }
+
+        span = default;
+        return false;
+    }
+
+#endif
 }
