@@ -35,40 +35,21 @@ public static partial class SpanPolyfillExtension
     /// <returns>The zero-based start index of the <paramref name="value" /> parameter if
     /// this character sequence was found, or -1 if it was not found or <paramref name="span"
     /// /> is empty.</returns>
+    /// 
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="count" /> is a negative value
+    /// <paramref name="span" /> is not <see cref="Span{T}.Empty" /> and <paramref name="startIndex" /> is less
+    /// than zero or greater than or equal to the length of <paramref name="span" />
     /// </para>
     /// <para>
     /// - or -
     /// </para>
     /// <para>
-    /// <paramref name="span" /> is not <see cref="Span{T}.Empty" />, and <paramref name="startIndex"
-    /// /> is a negative value.
-    /// </para>
-    /// <para>
-    /// - or -
-    /// </para>
-    /// <para>
-    /// <paramref name="span" /> is not <see cref="Span{T}.Empty" />, and <paramref name="startIndex"
-    /// /> is greater than the length of <paramref name="span" />.
-    /// </para>
-    /// <para>
-    /// - or -
-    /// </para>
-    /// <para>
-    /// <paramref name="span" /> is not <see cref="Span{T}.Empty" />, and <paramref name="startIndex"
-    /// /> + 1 - <paramref name="count" /> indicates a position that is not within <paramref
-    /// name="span" />.
-    /// </para>
-    /// <para>
-    /// - or -
-    /// </para>
-    /// <para>
-    /// <paramref name="span" /> is <see cref="Span{T}.Empty" />, and <paramref name="startIndex"
-    /// /> is less than -1 or greater than 0.
+    /// <paramref name="span" /> is not <see cref="Span{T}.Empty" /> and <paramref name="count"/> is negative or
+    /// <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
     /// </para>
     /// </exception>
+    /// 
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -21,8 +21,7 @@ public static partial class ReadOnlySpanExtension
     /// ReadOnlySpan&lt;T&gt;)</see> is used for the comparison.</remarks>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="span"/> is not <see cref="ReadOnlySpan{T}.Empty"/> and <paramref name="count"/>
-    /// is not <c>0</c> and
+    /// <paramref name="span"/> is not <see cref="ReadOnlySpan{T}.Empty"/> and
     /// </para>
     /// <list type="bullet">
     /// <item>
@@ -33,7 +32,7 @@ public static partial class ReadOnlySpanExtension
     /// - or -
     /// </item>
     /// <item>
-    /// <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
+    /// <paramref name="count"/> is negative or <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
     /// </item>
     /// </list>
     /// </exception>
@@ -42,7 +41,7 @@ public static partial class ReadOnlySpanExtension
                                      int startIndex,
                                      int count)
     {
-        if (count == 0 || span.Length == 0)
+        if (span.Length == 0)
         {
             return -1;
         }
@@ -77,8 +76,7 @@ public static partial class ReadOnlySpanExtension
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="span"/> is not <see cref="ReadOnlySpan{T}.Empty"/> and <paramref name="count"/>
-    /// is not <c>0</c> and
+    /// <paramref name="span"/> is not <see cref="ReadOnlySpan{T}.Empty"/> and
     /// </para>
     /// <list type="bullet">
     /// <item>
@@ -89,7 +87,7 @@ public static partial class ReadOnlySpanExtension
     /// - or -
     /// </item>
     /// <item>
-    /// <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
+    /// <paramref name="count"/> is negative or <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
     /// </item>
     /// </list>
     /// </exception>
@@ -98,7 +96,7 @@ public static partial class ReadOnlySpanExtension
                                      int startIndex,
                                      int count)
     {
-        if (count == 0 || span.Length == 0)
+        if (span.Length == 0)
         {
             return -1;
         }

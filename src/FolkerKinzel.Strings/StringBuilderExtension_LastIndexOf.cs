@@ -65,8 +65,8 @@ public static partial class StringBuilderExtension
     /// - or -
     /// </para>
     /// <para>
-    /// <paramref name="builder" /> is not empty and <paramref name="startIndex" /> - <paramref
-    /// name="count" /> + 1 is less than zero.
+    /// <paramref name="builder" /> is not empty and <paramref name="count"/> is negative or
+    /// <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
     /// </para>
     /// </exception>
     public static int LastIndexOf(

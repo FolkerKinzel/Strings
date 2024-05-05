@@ -19,13 +19,13 @@ public class ReadOnlySpanExtensionPolyfillExtensionTests
     public void LastIndexOfTest4()
         => Assert.AreEqual(-1, "".AsSpan().LastIndexOf("bla", 0, 2, StringComparison.Ordinal));
 
-    [TestMethod()]
-    [ExpectedException(typeof(ArgumentOutOfRangeException))]
-    public void LastIndexOfTest5() => _ = "".AsSpan().LastIndexOf("bla", -2, 0, StringComparison.Ordinal);
+    //[TestMethod()]
+    //[ExpectedException(typeof(ArgumentOutOfRangeException))]
+    //public void LastIndexOfTest5() => _ = "".AsSpan().LastIndexOf("bla", -2, 0, StringComparison.Ordinal);
 
-    [TestMethod()]
-    [ExpectedException(typeof(ArgumentOutOfRangeException))]
-    public void LastIndexOfTest6() => _ = "".AsSpan().LastIndexOf("bla", 1, 0, StringComparison.Ordinal);
+    //[TestMethod()]
+    //[ExpectedException(typeof(ArgumentOutOfRangeException))]
+    //public void LastIndexOfTest6() => _ = "".AsSpan().LastIndexOf("bla", 1, 0, StringComparison.Ordinal);
 
     [TestMethod()]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]

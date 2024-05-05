@@ -20,38 +20,19 @@ public static partial class ReadOnlySpanExtension
     /// 
     /// <exception cref="ArgumentOutOfRangeException">
     /// <para>
-    /// <paramref name="count" /> is a negative value
+    /// <paramref name="span" /> is not <see cref="ReadOnlySpan{T}.Empty" /> and <paramref name="startIndex" /> is less
+    /// than zero or greater than or equal to the length of <paramref name="span" />
     /// </para>
     /// <para>
     /// - or -
     /// </para>
     /// <para>
-    /// <paramref name="span" /> is not <see cref="ReadOnlySpan{T}.Empty" />, and <paramref
-    /// name="startIndex" /> is a negative value.
-    /// </para>
-    /// <para>
-    /// - or -
-    /// </para>
-    /// <para>
-    /// <paramref name="span" /> is not <see cref="ReadOnlySpan{T}.Empty" />, and <paramref
-    /// name="startIndex" /> is greater than the length of <paramref name="span" />.
-    /// </para>
-    /// <para>
-    /// - or -
-    /// </para>
-    /// <para>
-    /// <paramref name="span" /> is not <see cref="ReadOnlySpan{T}.Empty" />, and <paramref
-    /// name="startIndex" /> + 1 - <paramref name="count" /> indicates a position that is
-    /// not within <paramref name="span" />.
-    /// </para>
-    /// <para>
-    /// - or -
-    /// </para>
-    /// <para>
-    /// <paramref name="span" /> is <see cref="ReadOnlySpan{T}.Empty" />, and 
-    /// <paramref name="startIndex" /> is less than -1 or greater than 0.
+    /// <paramref name="span" /> is not <see cref="ReadOnlySpan{T}.Empty" /> and <paramref name="count"/> is negative or
+    /// <paramref name="startIndex" /> - <paramref name="count" /> + 1 is less than zero.
     /// </para>
     /// </exception>
+    /// 
+    /// 
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not 
     /// a defined value of the <see cref="StringComparison" /> enum.</exception>
     public static int LastIndexOf(this ReadOnlySpan<char> span,
@@ -60,33 +41,21 @@ public static partial class ReadOnlySpanExtension
                                   int count,
                                   StringComparison comparisonType)
     {
-TryAgain:
+        if(span.Length == 0)
+        {
+            return -1;
+        }
 
         if ((uint)startIndex >= (uint)span.Length)
         {
-            if (startIndex == -1 && span.Length == 0)
-            {
-                count = 0; // normalize
-            }
-            else if (startIndex == span.Length)
-            {
-                // The caller likely had an off-by-one error when invoking the API. The Framework has historically
-                // allowed for this and tried to fix up the parameters, so we'll continue to do so for compat.
-
-                startIndex--;
-
-                if (count > 0)
-                {
-                    count--;
-                }
-
-                goto TryAgain; // guaranteed never to loop more than once
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(nameof(startIndex));
-            }
+            throw new ArgumentOutOfRangeException(nameof(startIndex));
         }
+
+        if((uint)count > (uint)startIndex + 1) 
+        {
+            throw new ArgumentOutOfRangeException(nameof(startIndex));
+        }
+
 
         startIndex = startIndex - count + 1;
 
