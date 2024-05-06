@@ -19,7 +19,7 @@
 - [ ] Refactor StringBuilderExtension.TrimEnd
 - [ ] Refactor StringPolyfillExtension.ReplaceLineEndings
 - [ ] Refactor.StringExtension.ReplaceWhiteSpaceWith
-- [ ] Implement `PersistentStringHash` struct
+- [x] Implement `PersistentStringHash` struct
 
 ### 7.0.1
 - [x] Remove `IsAsciiLowerCaseLetter(this char)`

@@ -70,6 +70,15 @@ namespace FolkerKinzel.Strings.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t use the default constructor!.
+        /// </summary>
+        internal static string DefaultCtor {
+            get {
+                return ResourceManager.GetString("DefaultCtor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is not a binary digit..
         /// </summary>
         internal static string NoBinaryDigit {

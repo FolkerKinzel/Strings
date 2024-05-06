@@ -120,6 +120,9 @@
   <data name="ArgumentNullOrWhiteSpace" xml:space="preserve">
     <value>The argument is either null or empty or it consists only of white space characters.</value>
   </data>
+  <data name="DefaultCtor" xml:space="preserve">
+    <value>Don't use the default constructor!</value>
+  </data>
   <data name="NoBinaryDigit" xml:space="preserve">
     <value>{0} is not a binary digit.</value>
   </data>

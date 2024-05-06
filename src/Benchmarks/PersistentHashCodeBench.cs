@@ -26,7 +26,7 @@ public class PersistentHashCodeBench
     {
         var hash = new PersistentStringHash(HashType.Ordinal);
         hash.Add(_s);
-        return hash.Hash;
+        return hash.ToHashCode();
     }
 
     [Benchmark]
@@ -41,7 +41,7 @@ public class PersistentHashCodeBench
     {
         var hash = new PersistentStringHash(HashType.Ordinal);
         hash.Add(_builder);
-        return hash.Hash;
+        return hash.ToHashCode();
     }
 
 
