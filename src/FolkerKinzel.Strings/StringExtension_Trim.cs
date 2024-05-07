@@ -18,14 +18,7 @@ public static partial class StringExtension
     {
         _ArgumentNullException.ThrowIfNull(s, nameof(s));
 
-        if (trimChars.Length == 0)
-        {
-            return s.Trim();
-        }
-
-        ReadOnlySpan<char> span = s.AsSpan()
-                                   .DoTrimEnd(trimChars)
-                                   .DoTrimStart(trimChars);
+        ReadOnlySpan<char> span = s.AsSpan().Trim(trimChars);
 
         return span.Length == s.Length
             ? s

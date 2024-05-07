@@ -107,6 +107,10 @@ class Program
         _ = roSpan.ContainsAny([]);
         _ = roSpan.ContainsAny("xy");
 
+        _ = span.TrimStart(roSpan);
+        _ = span.TrimEnd(roSpan);
+        _ = span.Trim(roSpan);
+
 
         //_ = roSpan.GetTrimmedLength();
         //_ = span.GetTrimmedLength();
@@ -167,13 +171,13 @@ class Program
         _ = span.TrimEnd('a');
 
         _ = roSpan.Trim("abc");
-        //_ = span.Trim("abc");
+        _ = span.Trim("abc");
 
         _ = roSpan.TrimStart("abc");
-        //_ = span.TrimStart("abc");
+        _ = span.TrimStart("abc");
 
         _ = roSpan.TrimEnd("abc");
-        //_ = span.TrimEnd("abc");
+        _ = span.TrimEnd("abc");
 
         test.Foo();
 

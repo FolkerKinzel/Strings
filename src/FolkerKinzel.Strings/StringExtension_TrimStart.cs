@@ -18,37 +18,12 @@ public static partial class StringExtension
     {
         _ArgumentNullException.ThrowIfNull(s, nameof(s));
 
-        if (trimChars.Length == 0)
-        {
-            return s.TrimStart();
-        }
-
-        ReadOnlySpan<char> span = s.AsSpan().DoTrimStart(trimChars);
+        ReadOnlySpan<char> span = s.AsSpan().TrimStart(trimChars);
 
         return span.Length == s.Length
             ? s
             : span.Length == 0
                 ? string.Empty
                 : span.ToString();
-    }
-
-    private static ReadOnlySpan<char> DoTrimStart(
-        this ReadOnlySpan<char> span, ReadOnlySpan<char> trimChars)
-    {
-        int length = span.Length;
-
-        for (int j = 0; j < length; j++)
-        {
-            if (trimChars.Contains(span[j]))
-            {
-                continue;
-            }
-            else
-            {
-                return span.Slice(j);
-            }
-        }
-
-        return [];
     }
 }

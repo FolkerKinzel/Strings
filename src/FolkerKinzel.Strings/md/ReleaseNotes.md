@@ -44,9 +44,19 @@ bool ContainsAnyExcept(this Span<char>, char, char);
 bool ContainsAnyExcept(this Span<char>, char, char, char);
 ```
 &nbsp;
+- New polyfills for the Span&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1):
+```csharp
+Span<char> Trim(this Span<char>, ReadOnlySpan<char>);
+Span<char> TrimStart(this Span<char>, ReadOnlySpan<char>);
+Span<char> TrimEnd(this Span<char>, ReadOnlySpan<char>);
+```
+&nbsp;
 - New polyfills for the Span&lt;Char&gt; struct (.NET Standard 2.0, .NET Framework 4.6.1):
 ```csharp
 bool ContainsAnyExcept(this Span<char>, string?);
+Span<char> Trim(this Span<char>, string?);
+Span<char> TrimStart(this Span<char>, string?);
+Span<char> TrimEnd(this Span<char>, string?);
 ```
 &nbsp;
 > **Project reference:** On some systems, the content of the CHM file in the Assets is blocked. Before opening the file right click on the file icon, select Properties, and **check the "Allow" checkbox** - if it is present - in the lower right corner of the General tab in the Properties dialog.

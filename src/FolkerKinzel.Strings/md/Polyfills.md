@@ -142,6 +142,9 @@ Span<char> TrimEnd(this Span<char>);
 Span<char> Trim(this Span<char>, char);
 Span<char> TrimStart(this Span<char>, char);
 Span<char> TrimEnd(this Span<char>, char);
+Span<char> Trim(this Span<char>, ReadOnlySpan<char>);
+Span<char> TrimStart(this Span<char>, ReadOnlySpan<char>);
+Span<char> TrimEnd(this Span<char>, ReadOnlySpan<char>);
 ```
 &nbsp;
 ### Polyfills for the Span&lt;Char&gt; struct (.NET Standard 2.0, .NET Framework 4.6.1)
@@ -162,7 +165,9 @@ int IndexOf(this Span<char>, string?, StringComparison);
 int IndexOfAnyExcept(this Span<char>, string?);
 int LastIndexOfAnyExcept(this Span<char>, string?);
 bool ContainsAnyExcept(this Span<char>, string?);
-
+Span<char> Trim(this Span<char>, string?);
+Span<char> TrimStart(this Span<char>, string?);
+Span<char> TrimEnd(this Span<char>, string?);
 ```
 &nbsp;
 ### Polyfills for the ReadOnlyMemory&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)

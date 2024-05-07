@@ -198,6 +198,14 @@ namespace LibraryTesters
             _ = span.IndexOf("bla", StringComparison.Ordinal);
             _ = span.Contains("bla", StringComparison.Ordinal);
 
+            _ = span.TrimStart(roSpan);
+            _ = span.TrimEnd(roSpan);
+            _ = span.Trim(roSpan);
+
+            _ = span.TrimStart("");
+            _ = span.TrimEnd("");
+            _ = span.Trim("");
+
 
             _ = span.ContainsAny('e', 'f');
             _ = span.ContainsAny('e', 'f', 'g');
@@ -369,13 +377,13 @@ namespace LibraryTesters
             _ = span.TrimEnd('a');
 
             _ = roSpan.Trim("abc");
-            //_ = span.Trim("abc");
+            _ = span.Trim("abc");
 
             _ = roSpan.TrimStart("abc");
-            //_ = span.TrimStart("abc");
+            _ = span.TrimStart("abc");
 
             _ = roSpan.TrimEnd("abc");
-            //_ = span.TrimEnd("abc");
+            _ = span.TrimEnd("abc");
 
             const string Abc = "ABC";
             _ = StaticStringMethod.Create<string>(Abc.Length, Abc, (chars, str) => str.AsSpan().CopyTo(chars));
