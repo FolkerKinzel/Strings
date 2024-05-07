@@ -10,6 +10,8 @@ namespace FolkerKinzel.Strings;
 /// Combines the hash code for multiple character based values into a single persistent hash code.
 /// </summary>
 /// <param name="hashType">The type of hash code.</param>
+/// 
+/// 
 /// <remarks>
 /// <para>
 /// <note type="important">
@@ -46,8 +48,12 @@ namespace FolkerKinzel.Strings;
 /// (such as hashing passwords)!
 /// </para>
 /// </remarks>
+/// 
+/// <exception cref="ArgumentException"></exception>
+#if !(NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1)
 [SuppressMessage("Usage", "CA2231:Overload operator equals on overriding value type Equals", 
     Justification = "PersistentStringHash is a mutable struct and should not be compared with other instances.")]
+#endif
 [StructLayout(LayoutKind.Auto)]
 public struct PersistentStringHash(HashType hashType)
 {
@@ -160,8 +166,10 @@ public struct PersistentStringHash(HashType hashType)
     /// Adds a single character to the hash code.
     /// </summary>
     /// <param name="c">The <see cref="char"/> to hash.</param>
+#if !NET461
     [SuppressMessage("Style", "IDE0302:Simplify collection initialization",
         Justification = "Performance: Collection expression allocates a new array.")]
+#endif
     public void Add(char c)
      => Add(stackalloc char[] { c });
 
