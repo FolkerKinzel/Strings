@@ -101,11 +101,11 @@ public static partial class StringBuilderExtension
     {
         int length = startIndex + count;
 
-        for (int i = startIndex; i < length; i++)
+        for (; startIndex < length; startIndex++)
         {
-            if (value == builder[i])
+            if (value == builder[startIndex])
             {
-                return i;
+                return startIndex;
             }
         }
 

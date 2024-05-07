@@ -113,11 +113,11 @@ public static partial class StringBuilderExtension
     {
         int lastSearchIndex = startIndex + 1 - count;
 
-        for (int i = startIndex; i >= lastSearchIndex; i--)
+        for (; startIndex >= lastSearchIndex; startIndex--)
         {
-            if (value == builder[i])
+            if (value == builder[startIndex])
             {
-                return i;
+                return startIndex;
             }
         }
 
