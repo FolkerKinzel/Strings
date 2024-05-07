@@ -17,15 +17,4 @@ public static partial class ReadOnlySpanExtension
 #else
         => span.IndexOfAny(SearchValuesStorage.NewLineChars) != -1;
 #endif
-    //{
-    //    for (int i = 0; i < span.Length; i++)
-    //    {
-    //        if (span[i].IsNewLine())
-    //        {
-    //            return true;
-    //        }
-    //    }
-
-    //    return false;
-    //}
 }
