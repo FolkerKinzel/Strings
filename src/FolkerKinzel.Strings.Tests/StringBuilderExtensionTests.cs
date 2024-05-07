@@ -97,42 +97,6 @@ public class StringBuilderExtensionTests
         Assert.AreEqual("Hi", output);
     }
 
-//#pragma warning disable CS0618 // Typ oder Element ist veraltet
-
-//    [TestMethod]
-//    public void NormalizeNewLinesToTest1()
-//    {
-//        const string input = "1\r\n\n\r2\r3\n\n4\r\n5\u000B6\u000C7\u00858\u20289\u2029";
-//        const string expected = "1**2*3**4*5*6*7*8*9*";
-
-//        var sb = new StringBuilder(input);
-
-//        string output = sb.NormalizeNewLinesTo("*").ToString();
-//        Assert.AreEqual(expected, output);
-//    }
-
-//    [TestMethod]
-//    [ExpectedException(typeof(ArgumentNullException))]
-//    public void NormalizeNewLinesToTest2()
-//    {
-//        StringBuilder? sb = null;
-//        _ = sb!.NormalizeNewLinesTo("*");
-//    }
-
-//    [TestMethod]
-//    public void NormalizeNewLinesToTest3()
-//    {
-//        const string input = "\n1\r\n\n\r2\r3\u0085\n4\r\n";
-//        const string expected = "*1**2*3**4*";
-
-//        var sb = new StringBuilder(input);
-
-//        string output = sb.NormalizeNewLinesTo("*").ToString();
-//        Assert.AreEqual(expected, output);
-//    }
-
-//#pragma warning restore CS0618 // Typ oder Element ist veraltet
-
 
     [TestMethod]
     public void ReplaceWhiteSpaceWithTest1()
@@ -492,8 +456,6 @@ public class StringBuilderExtensionTests
         _ = sb!.Contains('e');
     }
 
-
-
     [TestMethod]
     public void ContainsTest5()
         => Assert.IsTrue(new StringBuilder("testen").Contains('e', 0));
@@ -815,7 +777,6 @@ public class StringBuilderExtensionTests
         _ = sb!.GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
     }
 
-
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void GetPersistentHashCodeTest2()
@@ -827,7 +788,19 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void GetPersistentHashCodeTest6()
     {
-        const string s = "Hallo, dies ist Text.";
+        const string s = "Hallo, Text.";
+        int hash1 = s.GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
+        int hash2 = s.AsSpan().GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
+        int hash3 = new StringBuilder().Append(s).GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
+
+        Assert.AreEqual(hash1, hash2);
+        Assert.AreEqual(hash1, hash3);
+    }
+
+    [TestMethod]
+    public void GetPersistentHashCodeTest6b()
+    {
+        const string s = "Hallo, Texte ";
         int hash1 = s.GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
         int hash2 = s.AsSpan().GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
         int hash3 = new StringBuilder().Append(s).GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
@@ -839,7 +812,19 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void GetPersistentHashCodeTest7()
     {
-        const string s = "Hallo, dies ist Text.";
+        const string s = "Hallo, Text.";
+        int hash1 = s.GetPersistentHashCode(HashType.OrdinalIgnoreCase);
+        int hash2 = s.AsSpan().GetPersistentHashCode(HashType.OrdinalIgnoreCase);
+        int hash3 = new StringBuilder().Append(s).GetPersistentHashCode(HashType.OrdinalIgnoreCase);
+
+        Assert.AreEqual(hash1, hash2);
+        Assert.AreEqual(hash1, hash3);
+    }
+
+    [TestMethod]
+    public void GetPersistentHashCodeTest7b()
+    {
+        const string s = "Hallo, Text .";
         int hash1 = s.GetPersistentHashCode(HashType.OrdinalIgnoreCase);
         int hash2 = s.AsSpan().GetPersistentHashCode(HashType.OrdinalIgnoreCase);
         int hash3 = new StringBuilder().Append(s).GetPersistentHashCode(HashType.OrdinalIgnoreCase);
@@ -851,7 +836,19 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void GetPersistentHashCodeTest8()
     {
-        const string s = "Hallo, dies ist Text.";
+        const string s = "Hallo, Text.";
+        int hash1 = s.GetPersistentHashCode(HashType.Ordinal);
+        int hash2 = s.AsSpan().GetPersistentHashCode(HashType.Ordinal);
+        int hash3 = new StringBuilder().Append(s).GetPersistentHashCode(HashType.Ordinal);
+
+        Assert.AreEqual(hash1, hash2);
+        Assert.AreEqual(hash1, hash3);
+    }
+
+    [TestMethod]
+    public void GetPersistentHashCodeTest8b()
+    {
+        const string s = "Hallo, Text .";
         int hash1 = s.GetPersistentHashCode(HashType.Ordinal);
         int hash2 = s.AsSpan().GetPersistentHashCode(HashType.Ordinal);
         int hash3 = new StringBuilder().Append(s).GetPersistentHashCode(HashType.Ordinal);
@@ -863,7 +860,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void GetPersistentHashCodeTest9()
     {
-        const string s = "ä";
+        const string s = "ääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääää";
         int hash1 = s.GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
         int hash2 = new StringBuilder(s).GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
 

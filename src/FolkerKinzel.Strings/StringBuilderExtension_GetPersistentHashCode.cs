@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using FolkerKinzel.Strings.Intls;
 using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings;
@@ -43,18 +44,38 @@ public static partial class StringBuilderExtension
     /// </example>
     public static int GetPersistentHashCode(this StringBuilder builder, HashType hashType)
     {
-        return builder is null
-            ? throw new ArgumentNullException(nameof(builder))
-            : (hashType switch
-            {
-                HashType.Ordinal => GetHashCodeOrdinal(builder),
-                HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(builder),
-                HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericIgnoreCase(builder),
-                _ => throw new ArgumentException(Res.UndefinedEnumValue, nameof(hashType))
-            });
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+        _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+
+        // Avoid to copy the content of very short StringBuilders:
+        if(builder.Length > SIMPLE_ALGORITHM_THRESHOLD)
+        {
+            var hasher = new PersistentStringHash(hashType);
+            hasher.Add(builder);
+            return hasher.ToHashCode();
+        }
+
+        return GetPersistentHashCodeSimple(builder, hashType);
+#else
+        var hasher = new PersistentStringHash(hashType);
+        hasher.Add(builder);
+        return hasher.ToHashCode();
+#endif
     }
 
     #region private Methods
+
+    private static int GetPersistentHashCodeSimple(StringBuilder builder, HashType hashType)
+    {
+
+        return hashType switch
+        {
+            HashType.Ordinal => GetHashCodeOrdinal(builder),
+            HashType.OrdinalIgnoreCase => GetHashCodeOrdinalIgnoreCase(builder),
+            HashType.AlphaNumericIgnoreCase => GetHashCodeAlphaNumericIgnoreCase(builder),
+            _ => throw new ArgumentException(Res.UndefinedEnumValue, nameof(hashType))
+        };
+    }
 
     #region GetHashCode
 
@@ -68,10 +89,12 @@ public static partial class StringBuilderExtension
             for (int i = 0; i < sb.Length; i += 2)
             {
                 hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ sb[i];
+
                 if (i == sb.Length - 1)
                 {
                     break;
                 }
+
                 hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ sb[i + 1];
             }
 
@@ -89,10 +112,12 @@ public static partial class StringBuilderExtension
             for (int i = 0; i < sb.Length; i += 2)
             {
                 hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(sb[i]);
+
                 if (i == sb.Length - 1)
                 {
                     break;
                 }
+
                 hash2 = ((hash2 << 5) + hash2 + (hash2 >> 27)) ^ char.ToUpperInvariant(sb[i + 1]);
             }
 
@@ -118,7 +143,7 @@ public static partial class StringBuilderExtension
                         hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(current);
                         i++;
 
-                        // Hashe nächstes Zeichen:
+                        // Hash next character:
                         for (; i < sb.Length; i++)
                         {
                             char next = sb[i];

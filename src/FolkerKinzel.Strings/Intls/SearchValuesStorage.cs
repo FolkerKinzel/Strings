@@ -17,6 +17,7 @@ internal static class SearchValuesStorage
     /// </summary>
     internal const string NEW_LINE_CHARS = "\n\r\f\u0085\u2028\u2029";
 
+#if NET8_0_OR_GREATER
     /// <summary>
     /// SearchValues for new line chars.
     /// </summary>
@@ -27,4 +28,5 @@ internal static class SearchValuesStorage
     /// it in the needle list.
     /// </remarks>
     internal static readonly SearchValues<char> NewLineChars = SearchValues.Create(NEW_LINE_CHARS);
+#endif
 }
