@@ -227,9 +227,9 @@ public class ReadOnlySpanExtensionTests
     //[ExpectedException(typeof(ArgumentOutOfRangeException))]
     //public void LastIndexOfTest5() => _ = "".AsSpan().LastIndexOf("bla", -2, 0, StringComparison.Ordinal);
 
-    //[TestMethod()]
-    //[ExpectedException(typeof(ArgumentOutOfRangeException))]
-    //public void LastIndexOfTest6() => _ = "".AsSpan().LastIndexOf("bla", 1, 0, StringComparison.Ordinal);
+    [TestMethod()]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void LastIndexOfTest6() => _ = "test".AsSpan().LastIndexOf("bla", 0, -1, StringComparison.Ordinal);
 
     [TestMethod()]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]

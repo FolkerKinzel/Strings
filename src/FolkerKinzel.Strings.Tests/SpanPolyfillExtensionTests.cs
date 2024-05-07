@@ -243,12 +243,30 @@ public class SpanPolyfillExtensionTests
         => Assert.AreEqual(expected, input.ToCharArray().AsSpan().Trim('x').ToString());
 
     [DataTestMethod]
+    [DataRow("", "abc", "")]
+    [DataRow(" x ", "", " x ")]
+    [DataRow(" x ", null, " x ")]
+    [DataRow("abc", "bac", "")]
+    [DataRow("cbxabc", "bac", "x")]
+    public void TrimTest3(string input, string? trimChars, string expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().Trim(trimChars).ToString());
+
+    [DataTestMethod]
     [DataRow("", "")]
     [DataRow("xxx", "")]
     [DataRow("abc", "abc")]
     [DataRow("xxx\r\na b cxxx", "\r\na b cxxx")]
     public void TrimStartTest2(string input, string expected)
         => Assert.AreEqual(expected, input.ToCharArray().AsSpan().TrimStart('x').ToString());
+
+    [DataTestMethod]
+    [DataRow("", "abc", "")]
+    [DataRow(" x ", "", " x ")]
+    [DataRow(" x ", null, " x ")]
+    [DataRow("abc", "bac", "")]
+    [DataRow("cbxabc", "bac", "xabc")]
+    public void TrimStartTest3(string input, string? trimChars, string expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().TrimStart(trimChars).ToString());
 
     [DataTestMethod]
     [DataRow("", "")]
@@ -258,8 +276,14 @@ public class SpanPolyfillExtensionTests
     public void TrimEndTest2(string input, string expected)
         => Assert.AreEqual(expected, input.ToCharArray().AsSpan().TrimEnd('x').ToString());
 
-    
-
+    [DataTestMethod]
+    [DataRow("", "abc", "")]
+    [DataRow(" x ",  "", " x ")]
+    [DataRow(" x ",  null, " x ")]
+    [DataRow("abc", "bac", "")]
+    [DataRow("bxabc", "bac", "bx")]
+    public void TrimEndTest3(string input, string? trimChars, string expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().TrimEnd(trimChars).ToString());
 
     [DataTestMethod]
     [DataRow("", "abc")]
