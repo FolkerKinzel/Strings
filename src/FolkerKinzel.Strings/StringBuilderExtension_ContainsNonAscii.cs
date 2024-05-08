@@ -68,7 +68,7 @@ public static partial class StringBuilderExtension
             throw new ArgumentOutOfRangeException(nameof(startIndex));
         }
 
-        if (count < 0 || (count += startIndex) > builder.Length)
+        if (count < 0 || (count = startIndex) > builder.Length)
         {
             throw new ArgumentOutOfRangeException(nameof(count));
         }
