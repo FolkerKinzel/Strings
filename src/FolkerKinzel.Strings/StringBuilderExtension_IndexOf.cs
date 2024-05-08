@@ -88,10 +88,10 @@ public static partial class StringBuilderExtension
             : IndexOfSimple(builder, value, startIndex, count);
     }
 
-    private static int IndexOfCopy(StringBuilder sb, char c, int startIndex, int count)
+    private static int IndexOfCopy(StringBuilder builder, char c, int startIndex, int count)
     {
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
-        sb.CopyTo(startIndex, shared.Array, 0, count);
+        builder.CopyTo(startIndex, shared.Array, 0, count);
         int idx = shared.Array.AsSpan(0, count).IndexOf(c);
 
         return idx == -1 ? -1 : startIndex + idx;
@@ -136,11 +136,11 @@ public static partial class StringBuilderExtension
         return -1;
     }
 
-    private static int IndexOfIntl(StringBuilder sb, char c, int startIndex, int count)
+    private static int IndexOfIntl(StringBuilder builder, char c, int startIndex, int count)
     {
         int chunkStart = 0;
 
-        foreach (ReadOnlyMemory<char> chunk in sb.GetChunks())
+        foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
         {
             if (startIndex >= chunk.Length + chunkStart)
             {
