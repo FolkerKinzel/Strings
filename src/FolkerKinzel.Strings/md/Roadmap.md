@@ -4,7 +4,7 @@
 ### 8.1.0
 - [x] Refactor ReadOnlySpanExtension.ContainsNewLine to use ReadOnlySpan.ContainsAny or SearchValues
 - [x] Refactor SpanExtension.ContainsNewLine to use ReadOnlySpan.ContainsAny or SearchValues
-- [ ] Refactor StringBuilderExtension.ContainsNewLine to use ReadOnlySpan.ContainsNewLine
+- [x] Refactor StringBuilderExtension.ContainsNewLine to use ReadOnlySpan.ContainsNewLine
 - [x] Refactor StringBuilderExtension.IndexOf
 - [x] Refactor StringBuilderExtension.LastIndexOf
 - [x] Refactor StringBuilderExtension.GetPersistentHashCode to use the `PersistentStringHash` struct

@@ -14,7 +14,7 @@ public static partial class StringBuilderExtension
     public static bool ContainsNewLine(this StringBuilder builder)
         => builder is null
                 ? throw new ArgumentNullException(nameof(builder))
-                : builder.ContainsNewLine(0, builder.Length);
+                : ContainsNewLineIntl(builder);
 
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> to see whether it contains a newline character.</summary>
@@ -30,9 +30,14 @@ public static partial class StringBuilderExtension
     /// less than zero or greater than the number of characters in <paramref name="builder"
     /// />.</exception>
     public static bool ContainsNewLine(this StringBuilder builder, int startIndex)
-        => builder is null
-            ? throw new ArgumentNullException(nameof(builder))
-            : builder.ContainsNewLine(startIndex, builder.Length - startIndex);
+    {
+        _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+
+        return (uint)startIndex > (uint)builder.Length
+            ? throw new ArgumentOutOfRangeException(nameof(startIndex))
+            : ContainsNewLineIntl(builder, startIndex, builder.Length - startIndex);
+    }
+
 
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> and includes <paramref name="count" /> characters to determine
@@ -63,23 +68,96 @@ public static partial class StringBuilderExtension
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-        if (startIndex < 0 || startIndex > builder.Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex));
-        }
+        return (uint)startIndex > (uint)builder.Length
+            ? throw new ArgumentOutOfRangeException(nameof(startIndex))
+            : (uint)count > (uint)(builder.Length - startIndex)
+                ? throw new ArgumentOutOfRangeException(nameof(count))
+                : ContainsNewLineIntl(builder, startIndex, count);
+    }
 
-        if (count < 0 || (count += startIndex) > builder.Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(count));
-        }
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
 
-        for (int i = startIndex; i < count; ++i)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static bool ContainsNewLineIntl(StringBuilder builder)
+      => ContainsNewLineIntl(builder, 0, builder.Length);
+
+    private static bool ContainsNewLineIntl(StringBuilder builder, int startIndex, int count)
+    {
+        return count > SIMPLE_ALGORITHM_THRESHOLD
+            ? ContainsNewLineCopy(builder, startIndex, count)
+            : ContainsNewLineSimple(builder, startIndex, count);
+    }
+
+    private static bool ContainsNewLineCopy(StringBuilder builder, int startIndex, int count)
+    {
+        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
+        builder.CopyTo(startIndex, shared.Array, 0, count);
+        return shared.Array.AsSpan(0, count).ContainsNewLine();
+    }
+
+    private static bool ContainsNewLineSimple(StringBuilder builder, int startIndex, int count)
+    {
+        int length = startIndex + count;
+
+        for (; startIndex < length; startIndex++)
         {
-            if (builder[i].IsNewLine())
+            if (builder[startIndex].IsNewLine())
             {
                 return true;
             }
         }
+
         return false;
     }
+
+#else
+
+    private static bool ContainsNewLineIntl(StringBuilder builder)
+    {
+        foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
+        {
+            if (chunk.Span.ContainsNewLine())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static bool ContainsNewLineIntl(StringBuilder builder, int startIndex, int count)
+    {
+        int chunkStart = 0;
+
+        foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
+        {
+            if (startIndex >= chunk.Length + chunkStart)
+            {
+                chunkStart += chunk.Length;
+                continue;
+            }
+
+            int spanStart = startIndex - chunkStart;
+            int evaluatedLength = Math.Min(chunk.Length - spanStart, count);
+            
+
+            if (chunk.Span.Slice(spanStart, evaluatedLength).ContainsNewLine())
+            {
+                return true;
+            }
+
+            if (evaluatedLength == count)
+            {
+                break;
+            }
+
+            chunkStart += chunk.Length;
+            count -= evaluatedLength;
+            startIndex = chunkStart;
+        }
+
+        return false;
+    }
+
+#endif
 }

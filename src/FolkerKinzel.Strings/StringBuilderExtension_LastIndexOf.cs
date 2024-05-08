@@ -86,7 +86,7 @@ public static partial class StringBuilderExtension
 #if NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static int LastIndexOfIntl(this StringBuilder builder, char value)
+    private static int LastIndexOfIntl(StringBuilder builder, char value)
       => builder.Length == 0 
             ? -1 
             : LastIndexOfIntl(builder, value, builder.Length - 1, builder.Length);

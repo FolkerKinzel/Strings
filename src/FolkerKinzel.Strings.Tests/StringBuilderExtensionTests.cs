@@ -1303,6 +1303,13 @@ public class StringBuilderExtensionTests
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void ContainsNewLineTest8(int startIndex, int count) => _ = new StringBuilder().ContainsNewLine(startIndex, count);
 
+    [TestMethod]
+    public void ContainsNewLineTest9()
+    {
+        StringBuilder sb = new StringBuilder("a").Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Assert.IsFalse(sb.ContainsNewLine(0, sb.Length));
+    }
+
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]

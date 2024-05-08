@@ -76,7 +76,7 @@ public static partial class StringBuilderExtension
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static int IndexOfIntl(this StringBuilder builder, char value)
+    private static int IndexOfIntl(StringBuilder builder, char value)
       => IndexOfIntl(builder, value, 0, builder.Length);
 
     private static int IndexOfIntl(StringBuilder builder, char value, int startIndex, int count)
