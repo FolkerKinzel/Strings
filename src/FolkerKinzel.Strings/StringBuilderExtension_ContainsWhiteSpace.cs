@@ -70,9 +70,11 @@ public static partial class StringBuilderExtension
             throw new ArgumentOutOfRangeException(nameof(count));
         }
 
-        for (int i = startIndex; i < count; ++i)
+        int length = startIndex + count;
+
+        for (; startIndex < length; startIndex++)
         {
-            if (char.IsWhiteSpace(builder[i]))
+            if (char.IsWhiteSpace(builder[startIndex]))
             {
                 return true;
             }

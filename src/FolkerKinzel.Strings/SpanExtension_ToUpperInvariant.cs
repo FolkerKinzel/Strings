@@ -12,6 +12,7 @@ public static partial class SpanExtension
         {
             span[i] = char.ToUpperInvariant(span[i]);
         }
+
         return span;
     }
 

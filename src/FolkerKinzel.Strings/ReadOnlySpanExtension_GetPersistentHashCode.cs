@@ -112,7 +112,7 @@ public static partial class ReadOnlySpanExtension
                         hash1 = ((hash1 << 5) + hash1 + (hash1 >> 27)) ^ char.ToUpperInvariant(current);
                         i++;
 
-                        // Hashe nächstes Zeichen:
+                        // Hash the next character:
                         for (; i < span.Length; i++)
                         {
                             char next = span[i];

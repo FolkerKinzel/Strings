@@ -13,6 +13,7 @@ public static partial class SpanExtension
         {
             span[i] = char.ToLowerInvariant(span[i]);
         }
+
         return span;
     }
 

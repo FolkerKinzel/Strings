@@ -63,9 +63,11 @@ public static partial class StringBuilderExtension
             throw new ArgumentOutOfRangeException(nameof(count));
         }
 
-        for (int i = startIndex; i < count; i++)
+        int length = startIndex + count;
+
+        for (; startIndex < length; startIndex++)
         {
-            builder[i] = char.ToLowerInvariant(builder[i]);
+            builder[startIndex] = char.ToLowerInvariant(builder[startIndex]);
         }
 
         return builder;

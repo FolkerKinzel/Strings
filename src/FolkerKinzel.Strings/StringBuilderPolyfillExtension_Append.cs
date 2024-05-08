@@ -48,9 +48,9 @@ public static partial class StringBuilderPolyfillExtension
 
         if (value is null)
         {
-            return startIndex == 0 &&
-                   count == 0 ? builder
-                              : throw new ArgumentNullException(nameof(value));
+            return startIndex == 0 && count == 0
+                ? builder
+                : throw new ArgumentNullException(nameof(value));
         }
 
         if (count == 0)
@@ -59,6 +59,7 @@ public static partial class StringBuilderPolyfillExtension
         }
 
         int length = startIndex + count;
+
         if (length > value.Length)
         {
             throw new ArgumentOutOfRangeException(nameof(count));
@@ -95,6 +96,7 @@ public static partial class StringBuilderPolyfillExtension
         {
             _ = builder.Append(value[i]);
         }
+
         return builder;
     }
 
