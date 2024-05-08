@@ -11,7 +11,7 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder ToLowerInvariant(this StringBuilder builder)
         => builder is null ? throw new ArgumentNullException(nameof(builder))
-                           : builder.ToLowerInvariant(0, builder.Length);
+                           : ToLowerInvariantIntl(builder, 0, builder.Length);
 
     /// <summary>Converts the content of a <see cref="StringBuilder" /> starting with <paramref
     /// name="startIndex" /> into lowercase letters and uses the rules of the invariant culture.</summary>
@@ -24,8 +24,13 @@ public static partial class StringBuilderExtension
     /// less than zero or greater than the number of characters in <paramref name="builder"
     /// />.</exception>
     public static StringBuilder ToLowerInvariant(this StringBuilder builder, int startIndex)
-        => builder is null ? throw new ArgumentNullException(nameof(builder))
-                           : builder.ToLowerInvariant(startIndex, builder.Length - startIndex);
+    {
+        _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+
+        return (uint)startIndex > (uint)builder.Length
+           ? throw new ArgumentOutOfRangeException(nameof(startIndex))
+           : ToLowerInvariantIntl(builder, startIndex, builder.Length - startIndex);
+    }
 
     /// <summary>Converts the content of a section in <see cref="StringBuilder" /> that begins
     /// at <paramref name="startIndex" /> and includes <paramref name="count" /> characters
@@ -53,16 +58,15 @@ public static partial class StringBuilderExtension
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-        if (startIndex < 0 || startIndex > builder.Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex));
-        }
+        return (uint)startIndex > (uint)builder.Length
+            ? throw new ArgumentOutOfRangeException(nameof(startIndex))
+            : (uint)count > (uint)(builder.Length - startIndex)
+                ? throw new ArgumentOutOfRangeException(nameof(count))
+                : ToLowerInvariantIntl(builder, startIndex, count);
+    }
 
-        if (count < 0 || (count = startIndex) > builder.Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(count));
-        }
-
+    private static StringBuilder ToLowerInvariantIntl(StringBuilder builder, int startIndex, int count)
+    {
         int length = startIndex + count;
 
         for (; startIndex < length; startIndex++)

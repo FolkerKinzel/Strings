@@ -24,7 +24,6 @@
 		<None Remove="reports\**" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Compile Remove="Intls\ArgumentOutOfRangeExceptionTests.cs" />
 	  <Compile Remove="UnitTestsInitialize.cs" />
 	  <Compile Remove="VcfPaths.cs" />
 	</ItemGroup>

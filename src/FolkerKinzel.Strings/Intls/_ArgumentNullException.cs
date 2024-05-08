@@ -13,4 +13,8 @@ internal static class _ArgumentNullException
 #else
     { if (argument is null) { throw new ArgumentNullException(paramName); } }
 #endif
+
+    //[DoesNotReturn]
+    //internal static void Throw(string paramName)
+    //    => throw new ArgumentNullException(paramName);
 }

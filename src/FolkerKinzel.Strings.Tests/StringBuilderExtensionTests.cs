@@ -526,6 +526,14 @@ public class StringBuilderExtensionTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void ToLowerInvariantTest2b()
+    {
+        var sb = new StringBuilder();
+        _ = sb.ToLowerInvariant(-15,0);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void ToLowerInvariantTest3()
     {
         var sb = new StringBuilder();
@@ -605,6 +613,14 @@ public class StringBuilderExtensionTests
     {
         var sb = new StringBuilder();
         _ = sb.ToUpperInvariant(-15);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void ToUpperInvariantTest2b()
+    {
+        var sb = new StringBuilder();
+        _ = sb.ToUpperInvariant(-15, 0);
     }
 
     [TestMethod]

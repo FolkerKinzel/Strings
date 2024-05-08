@@ -38,7 +38,6 @@ public static partial class StringBuilderExtension
             : ContainsNewLineIntl(builder, startIndex, builder.Length - startIndex);
     }
 
-
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> and includes <paramref name="count" /> characters to determine
     /// whether this section contains a newline character.</summary>

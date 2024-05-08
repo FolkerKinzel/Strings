@@ -60,12 +60,12 @@ public static partial class StringBuilderExtension
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-        if (startIndex < 0 || startIndex > builder.Length)
+        if ((uint)startIndex > (uint)builder.Length)
         {
             throw new ArgumentOutOfRangeException(nameof(startIndex));
         }
 
-        if (count < 0 || (count = startIndex) > builder.Length)
+        if ((uint)count > (uint)(builder.Length - startIndex))
         {
             throw new ArgumentOutOfRangeException(nameof(count));
         }
