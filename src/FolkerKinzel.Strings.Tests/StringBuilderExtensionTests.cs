@@ -736,19 +736,6 @@ public class StringBuilderExtensionTests
     public void ContainsNonAsciiTest4(string input, bool expected)
         => Assert.AreEqual(expected, new StringBuilder(input).ContainsNonAscii(0, input.Length));
 
-
-    [TestMethod]
-    public void ContainsNonAsciiTest14()
-    {
-        const string test = "Märchenbücher";
-        var sb = new StringBuilder(test);
-        Assert.IsTrue(sb.ContainsNonAscii(0));
-        Assert.IsFalse(sb.ContainsNonAscii(9));
-        Assert.IsFalse(sb.ContainsNonAscii(9, 4));
-        Assert.IsTrue(sb.ContainsNonAscii(8, 2));
-        Assert.IsFalse(sb.ContainsNonAscii(2, 5));
-    }
-
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void ContainsNonAsciiTest5()
@@ -775,15 +762,38 @@ public class StringBuilderExtensionTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
-    public void ContainsNonAsciiTest11() => _ = new StringBuilder().ContainsNonAscii(0, -1);
-
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void ContainsNonAsciiTest9() => _ = new StringBuilder().ContainsNonAscii(4711);
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void ContainsNonAsciiTest10() => _ = new StringBuilder().ContainsNonAscii(0, 4711);
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void ContainsNonAsciiTest11() => _ = new StringBuilder().ContainsNonAscii(0, -1);
+
+    [TestMethod]
+    public void ContainsNonAsciiTest12()
+    {
+        var sb = new StringBuilder("Ö").Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaÖ");
+        Assert.IsFalse(sb.ContainsNonAscii(0, 0));
+        Assert.IsTrue(sb.ContainsNonAscii(0, 1));
+        Assert.IsTrue(sb.ContainsNonAscii(0, sb.Length));
+        Assert.IsTrue(sb.ContainsNonAscii(1, sb.Length - 1));
+        Assert.IsFalse(sb.ContainsNonAscii(1, sb.Length - 2));
+    }
+
+    [TestMethod]
+    public void ContainsNonAsciiTest14()
+    {
+        const string test = "Märchenbücher";
+        var sb = new StringBuilder(test);
+        Assert.IsTrue(sb.ContainsNonAscii(0));
+        Assert.IsFalse(sb.ContainsNonAscii(9));
+        Assert.IsFalse(sb.ContainsNonAscii(9, 4));
+        Assert.IsTrue(sb.ContainsNonAscii(8, 2));
+        Assert.IsFalse(sb.ContainsNonAscii(2, 5));
+    }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]

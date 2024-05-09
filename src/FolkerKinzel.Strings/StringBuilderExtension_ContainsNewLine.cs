@@ -138,7 +138,6 @@ public static partial class StringBuilderExtension
 
             int spanStart = startIndex - chunkStart;
             int evaluatedLength = Math.Min(chunk.Length - spanStart, count);
-            
 
             if (chunk.Span.Slice(spanStart, evaluatedLength).ContainsNewLine())
             {

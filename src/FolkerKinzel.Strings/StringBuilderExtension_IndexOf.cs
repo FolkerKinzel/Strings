@@ -116,8 +116,6 @@ public static partial class StringBuilderExtension
 
     private static int IndexOfIntl(StringBuilder builder, char value)
     {
-        Debug.Assert(builder != null);
-
         int chunkStart = 0;
 
         foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())

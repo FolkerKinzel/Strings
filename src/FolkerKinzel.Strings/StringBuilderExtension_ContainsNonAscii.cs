@@ -13,7 +13,7 @@ public static partial class StringBuilderExtension
     public static bool ContainsNonAscii(this StringBuilder builder)
         => builder is null
                 ? throw new ArgumentNullException(nameof(builder))
-                : builder.ContainsNonAscii(0, builder.Length);
+                : ContainsNonAsciiIntl(builder);
 
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> to see whether it contains Unicode characters that do not belong
@@ -29,9 +29,13 @@ public static partial class StringBuilderExtension
     /// less than zero or greater than the number of characters in <paramref name="builder"
     /// />.</exception>
     public static bool ContainsNonAscii(this StringBuilder builder, int startIndex)
-        => builder is null
-            ? throw new ArgumentNullException(nameof(builder))
-            : builder.ContainsNonAscii(startIndex, builder.Length - startIndex);
+    {
+        _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+
+        return (uint)startIndex > (uint)builder.Length
+            ? throw new ArgumentOutOfRangeException(nameof(startIndex))
+            : ContainsNonAsciiIntl(builder, startIndex, builder.Length - startIndex);
+    }
 
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> and includes <paramref name="count" /> characters to determine
@@ -63,16 +67,36 @@ public static partial class StringBuilderExtension
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-        if ((uint)startIndex > (uint)builder.Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex));
-        }
+        return (uint)startIndex > (uint)builder.Length
+            ? throw new ArgumentOutOfRangeException(nameof(startIndex))
+            : (uint)count > (uint)(builder.Length - startIndex)
+                ? throw new ArgumentOutOfRangeException(nameof(count))
+                : ContainsNonAsciiIntl(builder, startIndex, count);
+    }
 
-        if ((uint)count > (uint)(builder.Length - startIndex))
-        {
-            throw new ArgumentOutOfRangeException(nameof(count));
-        }
+#if NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static bool ContainsNonAsciiIntl(StringBuilder builder)
+     => ContainsNonAsciiIntl(builder, 0, builder.Length);
+
+
+    private static bool ContainsNonAsciiIntl(StringBuilder builder, int startIndex, int count)
+    {
+        return count > SIMPLE_ALGORITHM_THRESHOLD
+            ? ContainsNonAsciiCopy(builder, startIndex, count)
+            : ContainsNonAsciiSimple(builder, ref startIndex, count);
+    }
+
+    private static bool ContainsNonAsciiCopy(StringBuilder builder, int startIndex, int count)
+    {
+        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
+        builder.CopyTo(startIndex, shared.Array, 0, count);
+        return !shared.Array.AsSpan(0, count).IsAscii();
+    }
+
+    private static bool ContainsNonAsciiSimple(StringBuilder builder, ref int startIndex, int count)
+    {
         int length = startIndex + count;
 
         for (; startIndex < length; startIndex++)
@@ -85,4 +109,54 @@ public static partial class StringBuilderExtension
 
         return false;
     }
+
+#else
+
+    private static bool ContainsNonAsciiIntl(StringBuilder builder)
+    {
+        foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
+        {
+            if (!chunk.Span.IsAscii())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static bool ContainsNonAsciiIntl(StringBuilder builder, int startIndex, int count)
+    {
+        int chunkStart = 0;
+
+        foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
+        {
+            if (startIndex >= chunk.Length + chunkStart)
+            {
+                chunkStart += chunk.Length;
+                continue;
+            }
+
+            int spanStart = startIndex - chunkStart;
+            int evaluatedLength = Math.Min(chunk.Length - spanStart, count);
+
+            if (!chunk.Span.Slice(spanStart, evaluatedLength).IsAscii())
+            {
+                return true;
+            }
+
+            if (evaluatedLength == count)
+            {
+                break;
+            }
+
+            chunkStart += chunk.Length;
+            count -= evaluatedLength;
+            startIndex = chunkStart;
+        }
+
+        return false;
+    }
+
+#endif
 }
