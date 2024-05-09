@@ -2,13 +2,17 @@ namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
 {
+    // Benchmarks show that accessing the StringBuilder directly using a simple algorithm
+    // is the most effective method here.
+
     /// <summary>Removes all the leading white-space characters from <paramref name="builder"/>.
     /// </summary>
     /// <param name="builder">The <see cref="StringBuilder" /> whose content is changed.</param>
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder TrimStart(this StringBuilder builder)
-        => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.DoTrimStart();
+        => builder is null ? throw new ArgumentNullException(nameof(builder)) 
+                           : builder.TrimStartIntl();
 
     /// <summary>Removes all the leading occurrences of a specified character from 
     /// <paramref name="builder"/>.</summary>
@@ -17,7 +21,8 @@ public static partial class StringBuilderExtension
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder TrimStart(this StringBuilder builder, char trimChar)
-       => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.DoTrimStart(trimChar);
+       => builder is null ? throw new ArgumentNullException(nameof(builder)) 
+                          : builder.TrimStartIntl(trimChar);
 
     /// <summary>Removes all the leading occurrences of a set of characters specified in
     /// an array from <paramref name="builder"/>.</summary>
@@ -27,12 +32,9 @@ public static partial class StringBuilderExtension
     /// characters are removed instead.</param>
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder TrimStart(this StringBuilder builder, params char[]? trimChars)
-       => builder is null
-            ? throw new ArgumentNullException(nameof(builder))
-            : trimChars is null || trimChars.Length == 0
-                ? builder.DoTrimStart()
-                : builder.DoTrimStart(trimChars);
+       => builder.TrimStart(trimChars.AsSpan());
 
     /// <summary>Removes all leading occurrences of a set of characters specified in a read-only
     /// span from <paramref name="builder"/>.</summary>
@@ -46,63 +48,63 @@ public static partial class StringBuilderExtension
        => builder is null
             ? throw new ArgumentNullException(nameof(builder))
             : trimChars.Length == 0
-                ? builder.DoTrimStart()
-                : builder.DoTrimStart(trimChars);
+                ? builder.TrimStartIntl()
+                : builder.TrimStartIntl(trimChars);
 
-    private static StringBuilder DoTrimStart(this StringBuilder stringBuilder)
+    private static StringBuilder TrimStartIntl(this StringBuilder builder)
     {
-        int length = stringBuilder.Length;
+        int length = builder.Length;
 
         for (int j = 0; j < length; j++)
         {
-            if (char.IsWhiteSpace(stringBuilder[j]))
+            if (char.IsWhiteSpace(builder[j]))
             {
                 continue;
             }
             else
             {
-                return stringBuilder.Remove(0, j);
+                return builder.Remove(0, j);
             }
         }
 
-        return stringBuilder.Clear();
+        return builder.Clear();
     }
 
-    private static StringBuilder DoTrimStart(this StringBuilder stringBuilder, char trimChar)
+    private static StringBuilder TrimStartIntl(this StringBuilder builder, char trimChar)
     {
-        int length = stringBuilder.Length;
+        int length = builder.Length;
 
         for (int j = 0; j < length; j++)
         {
-            if (trimChar == stringBuilder[j])
+            if (trimChar == builder[j])
             {
                 continue;
             }
             else
             {
-                return stringBuilder.Remove(0, j);
+                return builder.Remove(0, j);
             }
         }
 
-        return stringBuilder.Clear();
+        return builder.Clear();
     }
 
-    private static StringBuilder DoTrimStart(this StringBuilder stringBuilder, ReadOnlySpan<char> trimChars)
+    private static StringBuilder TrimStartIntl(this StringBuilder builder, ReadOnlySpan<char> trimChars)
     {
-        int length = stringBuilder.Length;
+        int length = builder.Length;
 
         for (int j = 0; j < length; j++)
         {
-            if (trimChars.Contains(stringBuilder[j]))
+            if (trimChars.Contains(builder[j]))
             {
                 continue;
             }
             else
             {
-                return stringBuilder.Remove(0, j);
+                return builder.Remove(0, j);
             }
         }
 
-        return stringBuilder.Clear();
+        return builder.Clear();
     }
 }

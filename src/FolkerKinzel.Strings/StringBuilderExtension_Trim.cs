@@ -9,7 +9,7 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder Trim(this StringBuilder builder)
         => builder is null ? throw new ArgumentNullException(nameof(builder)) 
-                           : builder.TrimEndIntl().DoTrimStart();
+                           : builder.TrimStartIntl().TrimEndIntl();
 
     /// <summary>Removes all leading and trailing instances of a character from 
     /// <paramref name="builder"/>.</summary>
@@ -19,7 +19,7 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder Trim(this StringBuilder builder, char trimChar)
         => builder is null ? throw new ArgumentNullException(nameof(builder)) 
-                           : builder.TrimEndIntl(trimChar).DoTrimStart(trimChar);
+                           : builder.TrimStartIntl(trimChar).TrimEndIntl(trimChar);
 
     /// <summary>Removes all leading and trailing occurrences of a set of characters specified
     /// in an array from <paramref name="builder"/>.</summary>
@@ -29,12 +29,9 @@ public static partial class StringBuilderExtension
     /// characters are removed instead.</param>
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder Trim(this StringBuilder builder, params char[]? trimChars)
-       => builder is null
-           ? throw new ArgumentNullException(nameof(builder))
-           : trimChars is null || trimChars.Length == 0
-               ? builder.TrimEndIntl().DoTrimStart()
-               : builder.TrimEndIntl(trimChars).DoTrimStart(trimChars);
+        => builder.Trim(trimChars.AsSpan());
 
     /// <summary>Removes all leading and trailing occurrences of a set of characters specified
     /// in a read-only span from <paramref name="builder"/>.</summary>
@@ -47,6 +44,6 @@ public static partial class StringBuilderExtension
        => builder is null
            ? throw new ArgumentNullException(nameof(builder))
            : trimChars.Length == 0
-               ? builder.TrimEndIntl().DoTrimStart()
-               : builder.TrimEndIntl(trimChars).DoTrimStart(trimChars);
+               ? builder.TrimStartIntl().TrimEndIntl()
+               : builder.TrimStartIntl(trimChars).TrimEndIntl(trimChars);
 }
