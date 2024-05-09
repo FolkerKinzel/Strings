@@ -548,13 +548,6 @@ public class StringBuilderExtensionTests
     }
 
     [TestMethod]
-    public void ToLowerInvariantTest12()
-    {
-        var sb = new StringBuilder("TEST");
-        Assert.AreEqual("Test", sb.ToLowerInvariant(1).ToString());
-    }
-
-    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void ToLowerInvariantTest5()
     {
@@ -600,6 +593,34 @@ public class StringBuilderExtensionTests
     }
 
     [TestMethod]
+    public void ToLowerInvariantTest11()
+    {
+        StringBuilder sb = new StringBuilder("AA").Append(new string('A', 30));
+        Assert.AreEqual(new string('A', sb.Length - 1) + "a", sb.ToLowerInvariant(sb.Length - 1).ToString());
+    }
+
+    [TestMethod]
+    public void ToLowerInvariantTest12()
+    {
+        StringBuilder sb = new StringBuilder("AA").Append(new string('A', 30));
+        Assert.AreEqual("A" + new string('a', sb.Length - 2) + "A", sb.ToLowerInvariant(1, sb.Length - 2).ToString());
+    }
+
+    [TestMethod]
+    public void ToLowerInvariantTest13()
+    {
+        var sb = new StringBuilder("TEST");
+        Assert.AreEqual("Test", sb.ToLowerInvariant(1).ToString());
+    }
+
+    [TestMethod]
+    public void ToLowerInvariantTest14()
+    {
+        StringBuilder sb = new StringBuilder("AA").Append(new string('A', 70));
+        Assert.AreEqual("A" + new string('a', sb.Length - 2) + "A", sb.ToLowerInvariant(1, sb.Length - 2).ToString());
+    }
+
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void ToUpperInvariantTest1()
     {
@@ -638,12 +659,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual("TEST", sb.ToUpperInvariant().ToString());
     }
 
-    [TestMethod]
-    public void ToUpperInvariantTest12()
-    {
-        var sb = new StringBuilder("test");
-        Assert.AreEqual("tEST", sb.ToUpperInvariant(1).ToString());
-    }
+    
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -688,6 +704,34 @@ public class StringBuilderExtensionTests
     {
         var sb = new StringBuilder();
         _ = sb.ToUpperInvariant();
+    }
+
+    [TestMethod]
+    public void ToUpperInvariantTest11()
+    {
+        StringBuilder sb = new StringBuilder("aa").Append(new string('a', 30));
+        Assert.AreEqual(new string('a', sb.Length - 1) + "A", sb.ToUpperInvariant(sb.Length - 1).ToString());
+    }
+
+    [TestMethod]
+    public void ToUpperInvariantTest12()
+    {
+        StringBuilder sb = new StringBuilder("aa").Append(new string('a', 30));
+        Assert.AreEqual("a" + new string('A', sb.Length - 2) + "a", sb.ToUpperInvariant(1, sb.Length - 2).ToString());
+    }
+
+    [TestMethod]
+    public void ToUpperInvariantTest13()
+    {
+        var sb = new StringBuilder("test");
+        Assert.AreEqual("tEST", sb.ToUpperInvariant(1).ToString());
+    }
+
+    [TestMethod]
+    public void ToUpperInvariantTest14()
+    {
+        StringBuilder sb = new StringBuilder("aa").Append(new string('a', 70));
+        Assert.AreEqual("a" + new string('A', sb.Length - 2) + "a", sb.ToUpperInvariant(1, sb.Length - 2).ToString());
     }
 
     //[DataTestMethod]

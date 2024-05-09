@@ -12,7 +12,7 @@
 - [x] Refactor StringBuilderExtension.ContainsNonAscii to use the ReadOnlySpan.IsAscii method
 - [ ] Refactor StringBuilderExtension.ReplaceLineEndings
 - [ ] Refactor StringBuilderExtension.ReplaceWhiteSpaceWith
-- [ ] Refactor StringBuilderExtension.ToLowerInvariant
+- [x] Refactor StringBuilderExtension.ToLowerInvariant
 - [x] Refactor StringBuilderExtension.ToUpperInvariant
 - [x] Refactor StringBuilderExtension.Trim
 - [x] Refactor StringBuilderExtension.TrimStart

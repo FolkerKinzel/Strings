@@ -70,11 +70,7 @@ public static partial class StringBuilderExtension
     {
         return count > SIMPLE_ALGORITHM_THRESHOLD
             ? ToUpperInvariantCopy(builder, startIndex, count)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
             : ToUpperInvariantSimple(builder, startIndex, count);
-#else
-            : ToUpperInvariantChunks(builder, startIndex, count);
-#endif
     }
 
     private static StringBuilder ToUpperInvariantCopy(StringBuilder builder, int startIndex, int count)
@@ -88,6 +84,8 @@ public static partial class StringBuilderExtension
         return builder.Append(shared.Array, 0, chunkLength);
     }
 
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+
     private static StringBuilder ToUpperInvariantSimple(StringBuilder builder, int startIndex, int count)
     {
         int length = startIndex + count;
@@ -100,9 +98,9 @@ public static partial class StringBuilderExtension
         return builder;
     }
 
-#if !(NET461 || NETSTANDARD2_0 || NETSTANDARD2_1)
+#else
 
-    private static StringBuilder ToUpperInvariantChunks(StringBuilder builder, int startIndex, int count)
+    private static StringBuilder ToUpperInvariantSimple(StringBuilder builder, int startIndex, int count)
     {
         if(count == 0)
         {
