@@ -13,7 +13,7 @@
 - [ ] Refactor StringBuilderExtension.ReplaceLineEndings
 - [ ] Refactor StringBuilderExtension.ReplaceWhiteSpaceWith
 - [ ] Refactor StringBuilderExtension.ToLowerInvariant
-- [ ] Refactor StringBuilderExtension.ToUpperInvariant
+- [x] Refactor StringBuilderExtension.ToUpperInvariant
 - [x] Refactor StringBuilderExtension.Trim
 - [x] Refactor StringBuilderExtension.TrimStart
 - [x] Refactor StringBuilderExtension.TrimEnd
