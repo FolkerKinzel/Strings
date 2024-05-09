@@ -14,9 +14,9 @@
 - [ ] Refactor StringBuilderExtension.ReplaceWhiteSpaceWith
 - [ ] Refactor StringBuilderExtension.ToLowerInvariant
 - [ ] Refactor StringBuilderExtension.ToUpperInvariant
-- [ ] Refactor StringBuilderExtension.Trim
-- [ ] Refactor StringBuilderExtension.TrimStart
-- [ ] Refactor StringBuilderExtension.TrimEnd
+- [x] Refactor StringBuilderExtension.Trim
+- [x] Refactor StringBuilderExtension.TrimStart
+- [x] Refactor StringBuilderExtension.TrimEnd
 - [ ] Refactor StringPolyfillExtension.ReplaceLineEndings
 - [ ] Refactor.StringExtension.ReplaceWhiteSpaceWith
 - [x] Implement `PersistentStringHash` struct
