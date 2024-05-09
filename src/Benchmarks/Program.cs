@@ -21,18 +21,19 @@ class Program
     //_ = BenchmarkRunner.Run<LastIndexOfBench>();
     //_ = BenchmarkRunner.Run<PersistentHashCodeBench>();
     //_ = BenchmarkRunner.Run<ContainsNewLineBench>();
-    //_ = BenchmarkRunner.Run<ToUpperInvariantBench>();
+    _ = BenchmarkRunner.Run<ToUpperInvariantBench>();
     //_ = BenchmarkRunner.Run<ReplaceWhiteSpaceWithBench>();
     //_ = BenchmarkRunner.Run<ReplaceLineEndingsBench>();
     //_ = BenchmarkRunner.Run<IndexOfAnyExceptBench>();
-    _ = BenchmarkRunner.Run<StringBuilderTrimEndBench>();
+    //_ = BenchmarkRunner.Run<StringBuilderTrimEndBench>();
 
-    //new StringBuilderTrimEndBench().Sb10Chunks();
+    //    new ToUpperInvariantBench().ToUpperInvariantChunks();
+    // new StringBuilderTrimEndBench().Sb10Chunks();
     // new IndexOfBench().IndexOfSpanBounds();
     // new LastIndexOfBench().LastIndexOfSpanBounds();
     // new PersistentHashCodeBench().StringBuilderHashChunks();
     // new ReplaceWhiteSpaceWithBench().ReplaceWhiteSpaceStringBuilderChunks();
-    //Base64Bench.Test2();
+    // Base64Bench.Test2();
 
 
     //BenchmarkDotNet.Reports.Summary summary = BenchmarkRunner.Run<IsUtf8Bench>();

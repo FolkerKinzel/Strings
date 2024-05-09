@@ -2,9 +2,12 @@
 
 public static partial class StringBuilderExtension
 {
-#if NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
-    private const int SIMPLE_ALGORITHM_THRESHOLD = 15;
-
+    private const int SIMPLE_ALGORITHM_THRESHOLD =
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+        15;
+#else
+        50;
 #endif
+
 }

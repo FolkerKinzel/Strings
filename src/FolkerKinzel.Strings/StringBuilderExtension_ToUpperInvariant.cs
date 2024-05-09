@@ -68,6 +68,28 @@ public static partial class StringBuilderExtension
 
     private static StringBuilder ToUpperInvariantIntl(StringBuilder builder, int startIndex, int count)
     {
+        return count > SIMPLE_ALGORITHM_THRESHOLD
+            ? ToUpperInvariantCopy(builder, startIndex, count)
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+            : ToUpperInvariantSimple(builder, startIndex, count);
+#else
+            : ToUpperInvariantChunks(builder, startIndex, count);
+#endif
+    }
+
+    private static StringBuilder ToUpperInvariantCopy(StringBuilder builder, int startIndex, int count)
+    {
+        int chunkLength = builder.Length - startIndex;
+        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(chunkLength);
+        builder.CopyTo(startIndex, shared.Array, 0, chunkLength);
+        _ = shared.Array.AsSpan(0, count).ToUpperInvariant();
+
+        builder.Length = startIndex;
+        return builder.Append(shared.Array, 0, chunkLength);
+    }
+
+    private static StringBuilder ToUpperInvariantSimple(StringBuilder builder, int startIndex, int count)
+    {
         int length = startIndex + count;
 
         for (; startIndex < length; startIndex++)
@@ -77,4 +99,46 @@ public static partial class StringBuilderExtension
 
         return builder;
     }
+
+#if !(NET461 || NETSTANDARD2_0 || NETSTANDARD2_1)
+
+    private static StringBuilder ToUpperInvariantChunks(StringBuilder builder, int startIndex, int count)
+    {
+        if(count == 0)
+        {
+            return builder;
+        }
+
+        int chunkStart = 0;
+
+        foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
+        {
+            if (startIndex >= chunk.Length + chunkStart)
+            {
+                chunkStart += chunk.Length;
+                continue;
+            }
+
+            int spanStart = startIndex - chunkStart;
+            int evaluatedLength = Math.Min(chunk.Length - spanStart, count);
+            ReadOnlySpan<char> span = chunk.Span.Slice(spanStart, evaluatedLength);
+
+            for (int i = 0; i < span.Length; i++)
+            {
+                builder[i + startIndex] = char.ToUpperInvariant(span[i]);
+            }
+
+            if (evaluatedLength == count)
+            {
+                break;
+            }
+
+            chunkStart += chunk.Length;
+            count -= evaluatedLength;
+            startIndex = chunkStart;
+        }
+
+        return builder;
+    }
+#endif
 }
