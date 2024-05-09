@@ -85,7 +85,7 @@ public static partial class StringBuilderExtension
     {
         return count > SIMPLE_ALGORITHM_THRESHOLD
             ? ContainsNonAsciiCopy(builder, startIndex, count)
-            : ContainsNonAsciiSimple(builder, ref startIndex, count);
+            : ContainsNonAsciiSimple(builder, startIndex, count);
     }
 
     private static bool ContainsNonAsciiCopy(StringBuilder builder, int startIndex, int count)
@@ -95,7 +95,7 @@ public static partial class StringBuilderExtension
         return !shared.Array.AsSpan(0, count).IsAscii();
     }
 
-    private static bool ContainsNonAsciiSimple(StringBuilder builder, ref int startIndex, int count)
+    private static bool ContainsNonAsciiSimple(StringBuilder builder, int startIndex, int count)
     {
         int length = startIndex + count;
 

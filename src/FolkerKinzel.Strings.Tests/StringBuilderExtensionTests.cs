@@ -1409,6 +1409,16 @@ public class StringBuilderExtensionTests
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void ContainsWhiteSpaceTest8(int startIndex, int count) => _ = new StringBuilder().ContainsWhiteSpace(startIndex, count);
 
+    [TestMethod]
+    public void ContainsWhiteSpaceTest9()
+    {
+        var sb = new StringBuilder(" ").Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ");
+        Assert.IsFalse(sb.ContainsWhiteSpace(0, 0));
+        Assert.IsTrue(sb.ContainsWhiteSpace(0, 1));
+        Assert.IsTrue(sb.ContainsWhiteSpace(0, sb.Length));
+        Assert.IsTrue(sb.ContainsWhiteSpace(1, sb.Length - 1));
+        Assert.IsFalse(sb.ContainsWhiteSpace(1, sb.Length - 2));
+    }
 
 
     [DataTestMethod]

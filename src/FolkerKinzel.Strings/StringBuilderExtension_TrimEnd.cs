@@ -8,7 +8,8 @@ public static partial class StringBuilderExtension
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder TrimEnd(this StringBuilder builder)
-        => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.DoTrimEnd();
+        => builder is null ? throw new ArgumentNullException(nameof(builder))
+                           : TrimEndIntl(builder);
 
     /// <summary>Removes all the trailing white-space characters from <paramref name="builder"/>.
     /// </summary>
@@ -17,7 +18,8 @@ public static partial class StringBuilderExtension
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder TrimEnd(this StringBuilder builder, char trimChar)
-        => builder is null ? throw new ArgumentNullException(nameof(builder)) : builder.DoTrimEnd(trimChar);
+        => builder is null ? throw new ArgumentNullException(nameof(builder))
+                           : TrimEndIntl(builder, trimChar);
 
     /// <summary>Removes all the trailing occurrences of a set of characters specified in
     /// an array from <paramref name="builder"/>.</summary>
@@ -32,8 +34,8 @@ public static partial class StringBuilderExtension
         return builder is null
             ? throw new ArgumentNullException(nameof(builder))
             : trimChars is null || trimChars.Length == 0
-                ? builder.DoTrimEnd()
-                : builder.DoTrimEnd(trimChars);
+                ? TrimEndIntl(builder)
+                : TrimEndIntl(builder, trimChars);
     }
 
     /// <summary>Removes all trailing occurrences of a set of characters specified in a read-only 
@@ -49,11 +51,11 @@ public static partial class StringBuilderExtension
         return builder is null
             ? throw new ArgumentNullException(nameof(builder))
             : trimChars.Length == 0
-                ? builder.DoTrimEnd()
-                : builder.DoTrimEnd(trimChars);
+                ? TrimEndIntl(builder)
+                : TrimEndIntl(builder, trimChars);
     }
 
-    private static StringBuilder DoTrimEnd(this StringBuilder stringBuilder)
+    private static StringBuilder TrimEndIntl(StringBuilder stringBuilder)
     {
         int length = stringBuilder.Length;
 
@@ -73,7 +75,7 @@ public static partial class StringBuilderExtension
         return stringBuilder;
     }
 
-    private static StringBuilder DoTrimEnd(this StringBuilder stringBuilder, char trimChar)
+    private static StringBuilder TrimEndIntl(StringBuilder stringBuilder, char trimChar)
     {
         int length = stringBuilder.Length;
 
@@ -93,8 +95,8 @@ public static partial class StringBuilderExtension
         return stringBuilder;
     }
 
-    private static StringBuilder DoTrimEnd(
-        this StringBuilder stringBuilder, ReadOnlySpan<char> trimChars)
+    private static StringBuilder TrimEndIntl(StringBuilder stringBuilder,
+                                             ReadOnlySpan<char> trimChars)
     {
         int length = stringBuilder.Length;
 

@@ -8,8 +8,8 @@
 - [x] Refactor StringBuilderExtension.IndexOf
 - [x] Refactor StringBuilderExtension.LastIndexOf
 - [x] Refactor StringBuilderExtension.GetPersistentHashCode to use the `PersistentStringHash` struct
-- [ ] Refactor StringBuilderExtension.ContainsWhiteSpace to use the ReadOnlySpan method
-- [ ] Refactor StringBuilderExtension.ContainsNonAscii to use the ReadOnlySpan.IsAscii method
+- [x] Refactor StringBuilderExtension.ContainsWhiteSpace to use the ReadOnlySpan method
+- [x] Refactor StringBuilderExtension.ContainsNonAscii to use the ReadOnlySpan.IsAscii method
 - [ ] Refactor StringBuilderExtension.ReplaceLineEndings
 - [ ] Refactor StringBuilderExtension.ReplaceWhiteSpaceWith
 - [ ] Refactor StringBuilderExtension.ToLowerInvariant

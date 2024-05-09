@@ -1,3 +1,4 @@
+using System.Drawing;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
@@ -13,7 +14,7 @@ public static partial class StringBuilderExtension
     public static bool ContainsWhiteSpace(this StringBuilder builder)
         => builder is null
                 ? throw new ArgumentNullException(nameof(builder))
-                : builder.ContainsWhiteSpace(0, builder.Length);
+                : ContainsWhiteSpaceIntl(builder);
 
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> to see whether it contains white space.</summary>
@@ -28,9 +29,13 @@ public static partial class StringBuilderExtension
     /// less than zero or greater than the number of characters in 
     /// <paramref name="builder" />.</exception>
     public static bool ContainsWhiteSpace(this StringBuilder builder, int startIndex)
-        => builder is null
-            ? throw new ArgumentNullException(nameof(builder))
+    {
+        _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+
+        return (uint)startIndex > (uint)builder.Length
+            ? throw new ArgumentOutOfRangeException(nameof(startIndex))
             : builder.ContainsWhiteSpace(startIndex, builder.Length - startIndex);
+    }
 
     /// <summary>Examines a section of the <see cref="StringBuilder" /> that begins at <paramref
     /// name="startIndex" /> and includes <paramref name="count" /> characters to determine
@@ -60,16 +65,35 @@ public static partial class StringBuilderExtension
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-        if ((uint)startIndex > (uint)builder.Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex));
-        }
+        return (uint)startIndex > (uint)builder.Length
+            ? throw new ArgumentOutOfRangeException(nameof(startIndex))
+            : (uint)count > (uint)(builder.Length - startIndex)
+                ? throw new ArgumentOutOfRangeException(nameof(count))
+                : ContainsWhiteSpaceIntl(builder, startIndex, count);
+    }
 
-        if ((uint)count > (uint)(builder.Length - startIndex))
-        {
-            throw new ArgumentOutOfRangeException(nameof(count));
-        }
+#if NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static bool ContainsWhiteSpaceIntl(StringBuilder builder)
+        => ContainsWhiteSpaceIntl(builder, 0, builder.Length);
+
+    private static bool ContainsWhiteSpaceIntl(StringBuilder builder, int startIndex, int count)
+    {
+        return count > SIMPLE_ALGORITHM_THRESHOLD
+            ? ContainsWhiteSpaceCopy(builder, startIndex, count)
+            : ContainsWhiteSpaceSimple(builder, startIndex, count);
+    }
+
+    private static bool ContainsWhiteSpaceCopy(StringBuilder builder, int startIndex, int count)
+    {
+        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
+        builder.CopyTo(startIndex, shared.Array, 0, count);
+        return shared.Array.AsSpan(0, count).ContainsWhiteSpace();
+    }
+
+    private static bool ContainsWhiteSpaceSimple(StringBuilder builder, int startIndex, int count)
+    {
         int length = startIndex + count;
 
         for (; startIndex < length; startIndex++)
@@ -82,4 +106,53 @@ public static partial class StringBuilderExtension
 
         return false;
     }
+#else
+    private static bool ContainsWhiteSpaceIntl(StringBuilder builder)
+    {
+        foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
+        {
+            if (chunk.Span.ContainsWhiteSpace())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static bool ContainsWhiteSpaceIntl(StringBuilder builder, int startIndex, int count)
+    {
+        int chunkStart = 0;
+
+        foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
+        {
+            if (startIndex >= chunk.Length + chunkStart)
+            {
+                chunkStart += chunk.Length;
+                continue;
+            }
+
+            int spanStart = startIndex - chunkStart;
+            int evaluatedLength = Math.Min(chunk.Length - spanStart, count);
+
+            if (chunk.Span.Slice(spanStart, evaluatedLength).ContainsWhiteSpace())
+            {
+                return true;
+            }
+
+            if (evaluatedLength == count)
+            {
+                break;
+            }
+
+            chunkStart += chunk.Length;
+            count -= evaluatedLength;
+            startIndex = chunkStart;
+        }
+
+        return false;
+    }
+
+#endif
+
 }
