@@ -17,7 +17,7 @@
 - [x] Refactor StringBuilderExtension.Trim
 - [x] Refactor StringBuilderExtension.TrimStart
 - [x] Refactor StringBuilderExtension.TrimEnd
-- [ ] Refactor StringPolyfillExtension.ReplaceLineEndings
+- [x] Refactor StringPolyfillExtension.ReplaceLineEndings
 - [ ] Refactor.StringExtension.ReplaceWhiteSpaceWith
 - [x] Implement `PersistentStringHash` struct
 

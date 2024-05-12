@@ -116,30 +116,48 @@ public static partial class StringPolyfillExtension
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="replacementText" /> is <c>null</c>.
     /// </exception>
-    public static string ReplaceLineEndings(this string s, string replacementText)
+    private static string ReplaceLineEndings(string s, string replacementText)
     {
         _NullReferenceException.ThrowIfNull(s, nameof(s));
         _ArgumentNullException.ThrowIfNull(replacementText, nameof(replacementText));
 
-        for (int i = 0; i < s.Length; i++)
+        ReadOnlySpan<char> lineEndings = SearchValuesStorage.NEW_LINE_CHARS.AsSpan();
+        ReadOnlySpan<char> inputSpan = s.AsSpan();
+
+        int firstIdx = inputSpan.IndexOfAny(lineEndings);
+
+        if (firstIdx == -1)
         {
-            switch (s[i])
-            {
-                case '\r': // CR: Carriage Return
-                case '\n': // LF: Line Feed
-                //case '\u000B': // VT: Vertical Tab
-                case '\u000C': // FF: Form Feed
-                case '\u0085': // NEL: Next Line
-                case '\u2028': // LS: Line Separator
-                case '\u2029': // PS: Paragraph Separator
-                    var sb = new StringBuilder(s.Length + s.Length / 2);
-                    return sb.Append(s).ReplaceLineEndings(replacementText, i).ToString();
-                default:
-                    break;
-            }
+            return s;
         }
 
-        return s;
+        int lastIdx = inputSpan.LastIndexOfAny(lineEndings);
+        ReadOnlySpan<char> processedSpan = inputSpan.Slice(firstIdx, lastIdx + 1 - firstIdx);
+
+        int capacity = ComputeMaxCapacity(processedSpan.Length, replacementText.Length);
+
+        if (capacity > Const.StackallocCharThreshold)
+        {
+            using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(capacity);
+            int outLength = processedSpan.ReplaceLineEndings(replacementText, buf.Array);
+            Span<char> outSpan = buf.Array.AsSpan(0, outLength);
+            return processedSpan.Equals(outSpan, StringComparison.Ordinal)
+                ? s
+                : StaticStringMethod.Concat(inputSpan.Slice(0, firstIdx), outSpan, inputSpan.Slice(lastIdx + 1));
+        }
+        else
+        {
+            Span<char> destination = stackalloc char[capacity];
+            int outLength = processedSpan.ReplaceLineEndings(replacementText, destination);
+            Span<char> outSpan = destination.Slice(0, outLength);
+            return processedSpan.Equals(outSpan, StringComparison.Ordinal)
+                ? s
+                : StaticStringMethod.Concat(inputSpan.Slice(0, firstIdx), outSpan, inputSpan.Slice(lastIdx + 1));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static int ComputeMaxCapacity(int sourceLength, int replacementLength)
+        => sourceLength * Math.Max(1, replacementLength);
     }
 }
 

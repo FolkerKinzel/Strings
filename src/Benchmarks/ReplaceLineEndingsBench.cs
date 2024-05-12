@@ -14,62 +14,60 @@ public class ReplaceLineEndingsBench
 
     public string TestString { get; }
 
-    [Benchmark]
-    public StringBuilder StringBuilderLibraryNoChanges()
-    {
-        var sb = new StringBuilder(TestString);
-        return sb.ReplaceLineEndings("\r\n");
-    }
+    //[Benchmark]
+    //public StringBuilder StringBuilderLibraryNoChanges()
+    //{
+    //    var sb = new StringBuilder(TestString);
+    //    return sb.ReplaceLineEndings("\r\n");
+    //}
 
-    [Benchmark]
-    public StringBuilder StringBuilderArrayPoolNoChanges()
-    {
-        var sb = new StringBuilder(TestString);
-        return ReplaceLineEndings(sb, "\r\n");
-    }
+    //[Benchmark]
+    //public StringBuilder StringBuilderArrayPoolNoChanges()
+    //{
+    //    var sb = new StringBuilder(TestString);
+    //    return ReplaceLineEndings(sb, "\r\n");
+    //}
 
-    [Benchmark]
-    public StringBuilder StringBuilderChunksNoChanges()
-    {
-        var sb = new StringBuilder(TestString);
-        return ReplaceLineEndingsChunks(sb, "\r\n");
-    }
+    //[Benchmark]
+    //public StringBuilder StringBuilderChunksNoChanges()
+    //{
+    //    var sb = new StringBuilder(TestString);
+    //    return ReplaceLineEndingsChunks(sb, "\r\n");
+    //}
 
-    [Benchmark]
-    public StringBuilder StringBuilderLibraryChanges()
-    {
-        var sb = new StringBuilder(TestString);
-        return sb.ReplaceLineEndings("\n");
-    }
+    //[Benchmark]
+    //public StringBuilder StringBuilderLibraryChanges()
+    //{
+    //    var sb = new StringBuilder(TestString);
+    //    return sb.ReplaceLineEndings("\n");
+    //}
 
-    [Benchmark]
-    public StringBuilder StringBuilderArrayPoolChanges()
-    {
-        var sb = new StringBuilder(TestString);
-        return ReplaceLineEndings(sb, "\n");
-    }
+    //[Benchmark]
+    //public StringBuilder StringBuilderArrayPoolChanges()
+    //{
+    //    var sb = new StringBuilder(TestString);
+    //    return ReplaceLineEndings(sb, "\n");
+    //}
 
-    [Benchmark]
-    public StringBuilder StringBuilderChunksChanges()
-    {
-        var sb = new StringBuilder(TestString);
-        return ReplaceLineEndingsChunks(sb, "\n");
-    }
+    //[Benchmark]
+    //public StringBuilder StringBuilderChunksChanges()
+    //{
+    //    var sb = new StringBuilder(TestString);
+    //    return ReplaceLineEndingsChunks(sb, "\n");
+    //}
 
 
-    [Benchmark]
-    public string StringLibraryNoChanges() => TestString.ReplaceLineEndings("\r\n");
+    //[Benchmark]
+    //public string StringLibraryNoChanges() => TestString.ReplaceLineEndings("\r\n");
 
-    [Benchmark]
-    public string StringArrayPoolNoChanges() => ReplaceLineEndings(TestString, "\r\n");
+    //[Benchmark]
+    //public string StringArrayPoolNoChanges() => ReplaceLineEndings(TestString, "\r\n");
 
     [Benchmark]
     public string StringLibraryChanges() => TestString.ReplaceLineEndings("\n");
 
     [Benchmark]
     public string StringArrayPoolChanges() => ReplaceLineEndings(TestString, "\n");
-
-
 
 
     private static StringBuilder ReplaceLineEndings(StringBuilder input, ReadOnlySpan<char> replacement)
@@ -90,7 +88,7 @@ public class ReplaceLineEndingsBench
 
         using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(capacity);
         ReadOnlySpan<char> sourceSpan = source.Array.AsSpan(0, input.Length);
-        int outLength = ReplaceLineEndings(sourceSpan, replacement, buf.Array);
+        int outLength = sourceSpan.ReplaceLineEndings(replacement, buf.Array);
 
         if (!sourceSpan.Equals(buf.Array.AsSpan(0, outLength), StringComparison.Ordinal))
         {
@@ -121,7 +119,7 @@ public class ReplaceLineEndingsBench
 
         foreach (ReadOnlyMemory<char> chunk in input.GetChunks())
         {
-            ReplaceLineEndings(chunk.Span, replacement, outSpan, ref rFound,  ref outLength);
+            chunk.Span.ReplaceLineEndings(replacement, outSpan, ref rFound, ref outLength);
         }
 
         input.Length = 0;
@@ -131,119 +129,11 @@ public class ReplaceLineEndingsBench
     }
 
 
-    private static string ReplaceLineEndings(string input, ReadOnlySpan<char> replacement)
-    {
-        // TODO: Get the index of the first line break char.
-        // If the index is -1, quit.
-        // Get also the index of the last line break char and process only the span between.
-        // Use string.Concat to concat the three parts
-
-        int capacity = ComputeMaxCapacity(input.Length, replacement.Length);
-
-        if (capacity > Const.StackallocCharThreshold)
-        {
-            using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(capacity);
-            int outLength = ReplaceLineEndings(input, replacement, buf.Array);
-            Span<char> outSpan = buf.Array.AsSpan(0, outLength);
-            return input.AsSpan().Equals(outSpan, StringComparison.Ordinal) ? input : outSpan.ToString();
-        }
-        else
-        {
-            Span<char> destination = stackalloc char[capacity];
-            int outLength = ReplaceLineEndings(input, replacement, destination);
-            Span<char> outSpan = destination.Slice(0, outLength);
-            return input.AsSpan().Equals(outSpan, StringComparison.Ordinal) ? input : outSpan.ToString();
-        }
-    }
+    
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int ComputeMaxCapacity(int sourceLength, int replacementLength)
         => sourceLength * Math.Max(1, replacementLength);
 
-    private static int ReplaceLineEndings(ReadOnlySpan<char> source, ReadOnlySpan<char> replacement, Span<char> destination)
-    {
-        bool rFound = false;
-        int outputLength = 0;
-
-        for (int i = 0; i < source.Length; i++)
-        {
-            char c = source[i];
-
-            switch (c)
-            {
-                case '\r': // CR: Carriage Return
-                    rFound = true;
-                    _ = replacement.TryCopyTo(destination.Slice(outputLength));
-                    outputLength += replacement.Length;
-                    break;
-                case '\n': // LF: Line Feed
-                    if (rFound)
-                    {
-                        rFound = false;
-                        continue;
-                    }
-                    _ = replacement.TryCopyTo(destination.Slice(outputLength));
-                    outputLength += replacement.Length;
-                    break;
-                //case '\u000B': // VT: Vertical Tab
-                case '\u000C': // FF: Form Feed
-                case '\u0085': // NEL: Next Line
-                case '\u2028': // LS: Line Separator
-                case '\u2029': // PS: Paragraph Separator
-                    rFound = false;
-                    _ = replacement.TryCopyTo(destination.Slice(outputLength));
-                    outputLength += replacement.Length;
-                    break;
-                default:
-                    rFound = false;
-                    destination[outputLength++] = c;
-                    break;
-            }
-        }
-
-        return outputLength;
-    }
-
-    private static void ReplaceLineEndings(ReadOnlySpan<char> source,
-                                           ReadOnlySpan<char> replacement,
-                                           Span<char> destination,
-                                           ref bool rFound,
-                                           ref int outputLength)
-    {
-        for (int i = 0; i < source.Length; i++)
-        {
-            char c = source[i];
-
-            switch (c)
-            {
-                case '\r': // CR: Carriage Return
-                    rFound = true;
-                    _ = replacement.TryCopyTo(destination.Slice(outputLength));
-                    outputLength += replacement.Length;
-                    break;
-                case '\n': // LF: Line Feed
-                    if (rFound)
-                    {
-                        rFound = false;
-                        continue;
-                    }
-                    _ = replacement.TryCopyTo(destination.Slice(outputLength));
-                    outputLength += replacement.Length;
-                    break;
-                //case '\u000B': // VT: Vertical Tab
-                case '\u000C': // FF: Form Feed
-                case '\u0085': // NEL: Next Line
-                case '\u2028': // LS: Line Separator
-                case '\u2029': // PS: Paragraph Separator
-                    rFound = false;
-                    _ = replacement.TryCopyTo(destination.Slice(outputLength));
-                    outputLength += replacement.Length;
-                    break;
-                default:
-                    rFound = false;
-                    destination[outputLength++] = c;
-                    break;
-            }
-        }
-    }
+    
 }
