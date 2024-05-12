@@ -1,3 +1,5 @@
+using FolkerKinzel.Strings.Intls;
+
 namespace FolkerKinzel.Strings;
 
 public static partial class StringBuilderExtension
@@ -44,60 +46,79 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder ReplaceLineEndings(this StringBuilder builder, string? replacementText)
         => builder is null ? throw new ArgumentNullException(nameof(builder))
-                           : ReplaceLineEndings(builder, replacementText, 0);
+                           : ReplaceLineEndings(builder, replacementText.AsSpan());
 
-    internal static StringBuilder ReplaceLineEndings(this StringBuilder builder,
-                                                     string? replacementText,
-                                                     int startIndex)
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+
+    private static StringBuilder ReplaceLineEndings(StringBuilder builder, ReadOnlySpan<char> replacement)
     {
-        bool nFound = false;
-
-        for (int i = builder.Length - 1; i >= startIndex; i--)
+        if (builder.Length == 0)
         {
-            switch (builder[i])
-            {
-                case '\r': // CR: Carriage Return
-                    _ = nFound ? builder.Remove(i, 2) : builder.Remove(i, 1);
-                    nFound = false;
-                    _ = builder.Insert(i, replacementText);
-                    break;
-                case '\n': // LF: Line Feed
-                    if (nFound)
-                    {
-                        int nextIdx = i + 1;
-                        _ = builder.Remove(nextIdx, 1).Insert(nextIdx, replacementText);
-                    }
-                    nFound = true;
-                    break;
-                //case '\u000B': // VT: Vertical Tab
-                case '\u000C': // FF: Form Feed
-                case '\u0085': // NEL: Next Line
-                case '\u2028': // LS: Line Separator
-                case '\u2029': // PS: Paragraph Separator
-                    if (nFound)
-                    {
-                        int nextIdx = i + 1;
-                        _ = builder.Remove(nextIdx, 1).Insert(nextIdx, replacementText);
-                    }
-                    nFound = false;
-                    _ = builder.Remove(i, 1).Insert(i, replacementText);
-                    break;
-                default:
-                    if (nFound)
-                    {
-                        _ = builder.Remove(i + 1, 1).Insert(i + 1, replacementText);
-
-                        nFound = false;
-                    }
-                    break;
-            }
+            return builder;
         }
 
-        if (nFound)
+        using ArrayPoolHelper.SharedArray<char> source = ArrayPoolHelper.Rent<char>(builder.Length);
+        builder.CopyTo(0, source.Array, 0, builder.Length);
+
+        ReadOnlySpan<char> lineEndings = SearchValuesStorage.NEW_LINE_CHARS.AsSpan();
+        ReadOnlySpan<char> inputSpan = source.Array.AsSpan(0, builder.Length);
+
+        int firstIdx = inputSpan.IndexOfAny(lineEndings);
+
+        if (firstIdx == -1)
         {
-            _ = builder.Remove(startIndex, 1).Insert(startIndex, replacementText);
+            return builder;
+        }
+
+        int lastIdx = inputSpan.LastIndexOfAny(lineEndings);
+        ReadOnlySpan<char> processedSpan = inputSpan.Slice(firstIdx, lastIdx + 1 - firstIdx);
+
+        int capacity = ComputeMaxReplaceLineEndingsCapacity(processedSpan.Length, replacement.Length);
+
+        using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(capacity);
+        int outLength = processedSpan.ReplaceLineEndings(replacement, buf.Array);
+
+        if (!processedSpan.Equals(buf.Array.AsSpan(0, outLength), StringComparison.Ordinal))
+        {
+            builder.Length = firstIdx;
+            builder.Append(buf.Array, 0, outLength);
+            int startIdxOfRemaining = lastIdx + 1;
+            builder.Append(source.Array, startIdxOfRemaining, inputSpan.Length - startIdxOfRemaining);
         }
 
         return builder;
     }
+
+#else
+
+    private static StringBuilder ReplaceLineEndings(StringBuilder input, ReadOnlySpan<char> replacement)
+    {
+        if (input.Length == 0)
+        {
+            return input;
+        }
+
+        using ArrayPoolHelper.SharedArray<char> buf =
+            ArrayPoolHelper.Rent<char>(ComputeMaxReplaceLineEndingsCapacity(input.Length, replacement.Length));
+
+        Span<char> outSpan = buf.Array.AsSpan();
+        bool rFound = false;
+        int outLength = 0;
+
+        foreach (ReadOnlyMemory<char> chunk in input.GetChunks())
+        {
+            chunk.Span.ReplaceLineEndings(replacement, outSpan, ref rFound, ref outLength);
+        }
+
+        input.Length = 0;
+        input.Append(outSpan.Slice(0, outLength));
+
+        return input;
+    }
+
+#endif
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int ComputeMaxReplaceLineEndingsCapacity(int sourceLength, int replacementLength)
+        => sourceLength * Math.Max(1, replacementLength);
 }

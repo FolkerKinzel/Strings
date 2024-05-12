@@ -10,7 +10,7 @@
 - [x] Refactor StringBuilderExtension.GetPersistentHashCode to use the `PersistentStringHash` struct
 - [x] Refactor StringBuilderExtension.ContainsWhiteSpace to use the ReadOnlySpan method
 - [x] Refactor StringBuilderExtension.ContainsNonAscii to use the ReadOnlySpan.IsAscii method
-- [ ] Refactor StringBuilderExtension.ReplaceLineEndings
+- [x] Refactor StringBuilderExtension.ReplaceLineEndings
 - [ ] Refactor StringBuilderExtension.ReplaceWhiteSpaceWith
 - [x] Refactor StringBuilderExtension.ToLowerInvariant
 - [x] Refactor StringBuilderExtension.ToUpperInvariant
@@ -18,7 +18,7 @@
 - [x] Refactor StringBuilderExtension.TrimStart
 - [x] Refactor StringBuilderExtension.TrimEnd
 - [x] Refactor StringPolyfillExtension.ReplaceLineEndings
-- [ ] Refactor.StringExtension.ReplaceWhiteSpaceWith
+- [x] Refactor.StringExtension.ReplaceWhiteSpaceWith
 - [x] Implement `PersistentStringHash` struct
 
 ### 7.0.1
