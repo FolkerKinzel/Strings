@@ -24,11 +24,11 @@ public class ReplaceWhiteSpaceWithBench
         _s = sb.ToString();
     }
 
-    [Benchmark]
-    public string ReplaceWhiteSpaceStringLibrary() => _s.ReplaceWhiteSpaceWith(REPLACEMENT, false);
+    //[Benchmark]
+    //public string ReplaceWhiteSpaceStringLibrary() => _s.ReplaceWhiteSpaceWith(REPLACEMENT, false);
 
-    [Benchmark]
-    public string ReplaceWhiteSpaceStringArrayPool() => ReplaceWhiteSpaceWith(_s, REPLACEMENT, false);
+    //[Benchmark]
+    //public string ReplaceWhiteSpaceStringArrayPool() => ReplaceWhiteSpaceWith(_s, REPLACEMENT, false);
 
     [Benchmark]
     public StringBuilder ReplaceWhiteSpaceStringBuilderLibrary() => new StringBuilder(_s).ReplaceWhiteSpaceWith(REPLACEMENT, false);
@@ -58,7 +58,7 @@ public class ReplaceWhiteSpaceWithBench
         ReadOnlySpan<char> sourceSpan = source.Array.AsSpan(0, count);
 
         using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(capacity);
-        int outLength = ReplaceWhiteSpaceWith(sourceSpan, replacement, buf.Array, skipNewLines);
+        int outLength = sourceSpan.ReplaceWhiteSpaceWith(replacement, buf.Array, skipNewLines);
 
         if (!sourceSpan.Equals(buf.Array.AsSpan(0, outLength), StringComparison.Ordinal))
         {
@@ -123,7 +123,7 @@ public class ReplaceWhiteSpaceWithBench
                     ReadOnlySpan<char> span = chunk.Span.Slice(spanStart, Math.Min(chunk.Length - spanStart, count));
                     count -= span.Length;
 
-                    ReplaceWhiteSpaceWith(span, replacement, outSpan, skipNewLines, ref wsFlag, ref outLength);
+                    span.ReplaceWhiteSpaceWith(replacement, outSpan, skipNewLines, ref wsFlag, ref outLength);
 
                     if (count == 0)
                     {
@@ -138,30 +138,7 @@ public class ReplaceWhiteSpaceWithBench
         }
     }
 
-    private static string ReplaceWhiteSpaceWith(string input, ReadOnlySpan<char> replacement, bool skipNewLines)
-    {
-        // TODO: Get the index of the first white space char and process only from that
-        // If the index is -1, quit.
-        // Get also the index of the last white space char and process only the span between.
-        // Use string.Concat to concatenate the parts
-
-        int capacity = ComputeMaxCapacity(input.Length, replacement.Length);
-
-        if (capacity > Const.StackallocCharThreshold)
-        {
-            using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(capacity);
-            int outLength = ReplaceWhiteSpaceWith(input, replacement, buf.Array, skipNewLines);
-            ReadOnlySpan<char> outSpan = buf.Array.AsSpan(0, outLength);
-            return input.AsSpan().Equals(outSpan, StringComparison.Ordinal) ? input : outSpan.ToString();
-        }
-        else
-        {
-            Span<char> destination = stackalloc char[capacity];
-            int outLength = ReplaceWhiteSpaceWith(input, replacement, destination, skipNewLines);
-            ReadOnlySpan<char> outSpan = destination.Slice(0, outLength);
-            return input.AsSpan().Equals(outSpan, StringComparison.Ordinal) ? input : outSpan.ToString();
-        }
-    }
+    
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int ComputeMaxCapacity(int sourceLength, int replacementLength)
@@ -170,72 +147,5 @@ public class ReplaceWhiteSpaceWithBench
         return halfEven * Math.Max(1, replacementLength) + halfEven;
     }
 
-    private static int ReplaceWhiteSpaceWith(ReadOnlySpan<char> source,
-                                             ReadOnlySpan<char> replacement,
-                                             Span<char> destination,
-                                             bool skipNewLines)
-    {
-        bool wsFlag = false;
-        int destLength = 0;
-
-        for (int i = 0; i < source.Length; i++)
-        {
-            char c = source[i];
-
-            if (char.IsWhiteSpace(c))
-            {
-                if (skipNewLines && c.IsNewLine())
-                {
-                    wsFlag = false;
-                    destination[destLength++] = c;
-                }
-                else if (!wsFlag)
-                {
-                    wsFlag = true;
-                    _ = replacement.TryCopyTo(destination.Slice(destLength));
-                    destLength += replacement.Length;
-                }
-
-                continue;
-            }
-
-            wsFlag = false;
-            destination[destLength++] = c;
-        }
-
-        return destLength;
-    }
-
-    private static void ReplaceWhiteSpaceWith(ReadOnlySpan<char> source,
-                                             ReadOnlySpan<char> replacement,
-                                             Span<char> destination,
-                                             bool skipNewLines,
-                                             ref bool wsFlag,
-                                             ref int destLength)
-    {
-        for (int i = 0; i < source.Length; i++)
-        {
-            char c = source[i];
-
-            if (char.IsWhiteSpace(c))
-            {
-                if (skipNewLines && c.IsNewLine())
-                {
-                    wsFlag = false;
-                    destination[destLength++] = c;
-                }
-                else if (!wsFlag)
-                {
-                    wsFlag = true;
-                    _ = replacement.TryCopyTo(destination.Slice(destLength));
-                    destLength += replacement.Length;
-                }
-
-                continue;
-            }
-
-            wsFlag = false;
-            destination[destLength++] = c;
-        }
-    }
+    
 }

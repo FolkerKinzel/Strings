@@ -20,6 +20,83 @@ public class StringPolyfillExtensionTests : IDisposable
         GC.SuppressFinalize(this);
     }
 
+    [TestMethod]
+    public void ReplaceLineEndingsTest1()
+    {
+        const string input = "\n1\r\n\n\r2\r3\n\n4\r\n5\u000B6\u000C\n7\u00858\u20289\u2029";
+        const string expected = "*1***2*3**4*5\u000B6**7*8*9*";
+
+        string output = input.ReplaceLineEndings("*");
+        Assert.AreEqual(expected, output);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void ReplaceLineEndingsTest2()
+    {
+        string s = "Hi\n";
+        _ = s.ReplaceLineEndings(null!);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(NullReferenceException))]
+    public void ReplaceLineEndingsTest3()
+    {
+        string? s = null;
+        _ = s!.ReplaceLineEndings("*");
+    }
+
+    [TestMethod]
+    public void ReplaceLineEndingsTest4()
+    {
+        const string test = "test";
+        Assert.AreSame(test, test.ReplaceLineEndings("blub"));
+    }
+
+    [TestMethod]
+    public void ReplaceLineEndingsTest5()
+    {
+        const string test = "\u0085";
+        Assert.AreEqual(Environment.NewLine, test.ReplaceLineEndings());
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(NullReferenceException))]
+    public void ReplaceLineEndingsTest6()
+    {
+        string? s = null;
+        _ = s!.ReplaceLineEndings();
+    }
+
+    [DataTestMethod]
+    [DataRow("Hi\rFolker")]
+    [DataRow("Hi\nFolker")]
+    [DataRow("Hi\u0085Folker")]
+    [DataRow("Hi\u000CFolker")]
+    [DataRow("Hi\u2028Folker")]
+    [DataRow("Hi\u2029Folker")]
+    public void ReplaceLineEndingsTest7(string input) => Assert.AreEqual("Hi*Folker", input.ReplaceLineEndings("*"));
+
+    [TestMethod]
+    public void ReplaceLineEndingsTest8()
+    {
+        const string test = "t\ne\ns\nt\n";
+        Assert.AreSame(test, test.ReplaceLineEndings("\n"));
+    }
+
+    [TestMethod]
+    public void ReplaceLineEndingsTest9()
+    {
+        const string test = "t\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\n";
+        Assert.AreSame(test, test.ReplaceLineEndings("\n"));
+    }
+
+    [TestMethod]
+    public void ReplaceLineEndingsTest10()
+    {
+        string test = "t\n" + new string('e', 260) + "\nt";
+        Assert.AreSame("t**" + new string('e', 260) + "**t", test.ReplaceLineEndings("**"));
+    }
 
     [DataTestMethod()]
     [DataRow("Test", 'e', StringComparison.Ordinal, true)]

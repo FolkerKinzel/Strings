@@ -27,21 +27,49 @@ public static partial class StringExtension
     /// </para>
     /// </remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
-    public static string ReplaceWhiteSpaceWith(
-        this string s,
-        ReadOnlySpan<char> replacement,
-        bool skipNewLines = false)
+    public static string ReplaceWhiteSpaceWith(this string s,
+                                               ReadOnlySpan<char> replacement,
+                                               bool skipNewLines = false)
     {
         _ArgumentNullException.ThrowIfNull(s, nameof(s));
 
-        if (!s.ContainsWhiteSpace())
+        ReadOnlySpan<char> inputSpan = s.AsSpan();
+        int firstIdx = inputSpan.IndexOfWhiteSpace();
+
+        if (firstIdx == -1)
         {
             return s;
         }
 
-        var sb = new StringBuilder(s.Length + s.Length / 2);
-        return sb.Append(s)
-                 .ReplaceWhiteSpaceWith(replacement, 0, sb.Length, skipNewLines)
-                 .ToString();
+        int lastIdx = inputSpan.LastIndexOfWhiteSpace();
+        ReadOnlySpan<char> processedSpan = inputSpan.Slice(firstIdx, lastIdx + 1 - firstIdx);
+
+        int capacity = ComputeMaxCapacity(processedSpan.Length, replacement.Length);
+
+        if (capacity > Const.StackallocCharThreshold)
+        {
+            using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(capacity);
+            int outLength = processedSpan.ReplaceWhiteSpaceWith(replacement, buf.Array, skipNewLines);
+            ReadOnlySpan<char> outSpan = buf.Array.AsSpan(0, outLength);
+            return processedSpan.Equals(outSpan, StringComparison.Ordinal)
+                ? s
+                : StaticStringMethod.Concat(inputSpan.Slice(0, firstIdx), outSpan, inputSpan.Slice(lastIdx + 1));
+        }
+        else
+        {
+            Span<char> destination = stackalloc char[capacity];
+            int outLength =  processedSpan.ReplaceWhiteSpaceWith(replacement, destination, skipNewLines);
+            ReadOnlySpan<char> outSpan = destination.Slice(0, outLength);
+            return processedSpan.Equals(outSpan, StringComparison.Ordinal)
+                ? s
+                : StaticStringMethod.Concat(inputSpan.Slice(0, firstIdx), outSpan, inputSpan.Slice(lastIdx + 1));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static int ComputeMaxCapacity(int sourceLength, int replacementLength)
+        {
+            int halfEven = (sourceLength + 1) >> 1;
+            return halfEven * Math.Max(1, replacementLength) + halfEven;
+        }
     }
 }

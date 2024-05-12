@@ -116,7 +116,11 @@ public static partial class StringPolyfillExtension
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="replacementText" /> is <c>null</c>.
     /// </exception>
-    private static string ReplaceLineEndings(string s, string replacementText)
+#if NET5_0
+    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters",
+        Justification = "New line chars are not localizeable.")]
+#endif
+    public static string ReplaceLineEndings(this string s, string replacementText)
     {
         _NullReferenceException.ThrowIfNull(s, nameof(s));
         _ArgumentNullException.ThrowIfNull(replacementText, nameof(replacementText));
@@ -139,7 +143,7 @@ public static partial class StringPolyfillExtension
         if (capacity > Const.StackallocCharThreshold)
         {
             using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(capacity);
-            int outLength = processedSpan.ReplaceLineEndings(replacementText, buf.Array);
+            int outLength = processedSpan.ReplaceLineEndings(replacementText.AsSpan(), buf.Array);
             Span<char> outSpan = buf.Array.AsSpan(0, outLength);
             return processedSpan.Equals(outSpan, StringComparison.Ordinal)
                 ? s
@@ -148,7 +152,7 @@ public static partial class StringPolyfillExtension
         else
         {
             Span<char> destination = stackalloc char[capacity];
-            int outLength = processedSpan.ReplaceLineEndings(replacementText, destination);
+            int outLength = processedSpan.ReplaceLineEndings(replacementText.AsSpan(), destination);
             Span<char> outSpan = destination.Slice(0, outLength);
             return processedSpan.Equals(outSpan, StringComparison.Ordinal)
                 ? s

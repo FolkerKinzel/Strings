@@ -63,11 +63,11 @@ public class ReplaceLineEndingsBench
     //[Benchmark]
     //public string StringArrayPoolNoChanges() => ReplaceLineEndings(TestString, "\r\n");
 
-    [Benchmark]
-    public string StringLibraryChanges() => TestString.ReplaceLineEndings("\n");
+    //[Benchmark]
+    //public string StringLibraryChanges() => TestString.ReplaceLineEndings("\n");
 
-    [Benchmark]
-    public string StringArrayPoolChanges() => ReplaceLineEndings(TestString, "\n");
+    //[Benchmark]
+    //public string StringArrayPoolChanges() => ReplaceLineEndings(TestString, "\n");
 
 
     private static StringBuilder ReplaceLineEndings(StringBuilder input, ReadOnlySpan<char> replacement)

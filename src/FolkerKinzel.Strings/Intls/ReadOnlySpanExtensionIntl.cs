@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FolkerKinzel.Strings.Intls;
+
 internal static class ReadOnlySpanExtensionIntl
 {
     internal static int ReplaceLineEndings(this ReadOnlySpan<char> source, ReadOnlySpan<char> replacement, Span<char> destination)
@@ -91,6 +92,103 @@ internal static class ReadOnlySpanExtensionIntl
                     destination[outputLength++] = c;
                     break;
             }
+        }
+    }
+
+    internal static int IndexOfWhiteSpace(this ReadOnlySpan<char> span)
+    {
+        for (int i = 0; i < span.Length; i++)
+        {
+            if (char.IsWhiteSpace(span[i]))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    internal static int LastIndexOfWhiteSpace(this ReadOnlySpan<char> span)
+    {
+        int i;
+
+        for (i = span.Length - 1; i >= 0; i--)
+        {
+            if (char.IsWhiteSpace(span[i]))
+            {
+                break;
+            }
+        }
+
+        return i;
+    }
+
+    internal static int ReplaceWhiteSpaceWith(this ReadOnlySpan<char> source,
+                                             ReadOnlySpan<char> replacement,
+                                             Span<char> destination,
+                                             bool skipNewLines)
+    {
+        bool wsFlag = false;
+        int destLength = 0;
+
+        for (int i = 0; i < source.Length; i++)
+        {
+            char c = source[i];
+
+            if (char.IsWhiteSpace(c))
+            {
+                if (skipNewLines && c.IsNewLine())
+                {
+                    wsFlag = false;
+                    destination[destLength++] = c;
+                }
+                else if (!wsFlag)
+                {
+                    wsFlag = true;
+                    _ = replacement.TryCopyTo(destination.Slice(destLength));
+                    destLength += replacement.Length;
+                }
+
+                continue;
+            }
+
+            wsFlag = false;
+            destination[destLength++] = c;
+        }
+
+        return destLength;
+    }
+
+    internal static void ReplaceWhiteSpaceWith(this ReadOnlySpan<char> source,
+                                             ReadOnlySpan<char> replacement,
+                                             Span<char> destination,
+                                             bool skipNewLines,
+                                             ref bool wsFlag,
+                                             ref int destLength)
+    {
+        for (int i = 0; i < source.Length; i++)
+        {
+            char c = source[i];
+
+            if (char.IsWhiteSpace(c))
+            {
+                if (skipNewLines && c.IsNewLine())
+                {
+                    wsFlag = false;
+                    destination[destLength++] = c;
+                }
+                else if (!wsFlag)
+                {
+                    wsFlag = true;
+                    _ = replacement.TryCopyTo(destination.Slice(destLength));
+                    destLength += replacement.Length;
+                }
+
+                continue;
+            }
+
+            wsFlag = false;
+            destination[destLength++] = c;
         }
     }
 }
