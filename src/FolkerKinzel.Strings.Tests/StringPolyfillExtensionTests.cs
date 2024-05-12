@@ -95,7 +95,7 @@ public class StringPolyfillExtensionTests : IDisposable
     public void ReplaceLineEndingsTest10()
     {
         string test = "t\n" + new string('e', 260) + "\nt";
-        Assert.AreSame("t**" + new string('e', 260) + "**t", test.ReplaceLineEndings("**"));
+        Assert.AreEqual("t**" + new string('e', 260) + "**t", test.ReplaceLineEndings("**"));
     }
 
     [DataTestMethod()]
