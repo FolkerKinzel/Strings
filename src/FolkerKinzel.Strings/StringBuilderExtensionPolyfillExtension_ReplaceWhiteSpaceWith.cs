@@ -25,15 +25,12 @@ public static partial class StringBuilderExtensionPolyfillExtension
     /// </para>
     /// </remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder ReplaceWhiteSpaceWith(
         this StringBuilder builder,
         string? replacement,
         bool skipNewLines = false)
-    => builder is null ? throw new ArgumentNullException(nameof(builder))
-                       : builder.ReplaceWhiteSpaceWith(replacement.AsSpan(),
-                                                       0,
-                                                       builder.Length,
-                                                       skipNewLines);
+        => builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), skipNewLines);
 
     /// <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref
     /// name="startIndex" /> and extends to the end of <paramref name="builder" />, all sequences
@@ -60,16 +57,13 @@ public static partial class StringBuilderExtensionPolyfillExtension
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="startIndex" /> is
     /// less than zero or greater than the number of characters in <paramref name="builder"
     /// />.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder ReplaceWhiteSpaceWith(
         this StringBuilder builder,
         string? replacement,
         int startIndex,
         bool skipNewLines = false)
-    => builder is null ? throw new ArgumentNullException(nameof(builder))
-                       : builder.ReplaceWhiteSpaceWith(replacement.AsSpan(),
-                                                       startIndex,
-                                                       builder.Length - startIndex,
-                                                       skipNewLines);
+    => builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), startIndex, skipNewLines);
 
     /// <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref
     /// name="startIndex" /> and which is <paramref name="count" /> characters long, all
