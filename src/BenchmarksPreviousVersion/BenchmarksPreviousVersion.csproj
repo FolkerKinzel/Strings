@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <Compile Include="..\BenchmarksCurrentVersion\ReplaceLineEndingsBench.cs" />
+    <Compile Include="..\BenchmarksCurrentVersion\ContainsNewLineBench.cs" />
+    <Compile Include="..\BenchmarksCurrentVersion\ReplaceWhiteSpaceWithBench.cs" />
   </ItemGroup>
 
 </Project>

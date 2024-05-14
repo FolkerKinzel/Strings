@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Text;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 using FolkerKinzel.Strings;
 using FolkerKinzel.Strings.Intls;
 
@@ -9,12 +10,17 @@ namespace Benchmarks;
 
 [MemoryDiagnoser]
 [MarkdownExporter]
+[SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net60)]
+[SimpleJob(RuntimeMoniker.Net48)]
 public class ReplaceWhiteSpaceWithBench
 {
     const string REPLACEMENT = "\r\n";
-    private readonly string _s;
 
-    public ReplaceWhiteSpaceWithBench()
+    private StringBuilder Builder { get; set; }
+
+    [GlobalSetup]
+    public void Setup()
     {
         var sb = new StringBuilder();
 
@@ -22,7 +28,8 @@ public class ReplaceWhiteSpaceWithBench
         {
             sb.Append("a\nb  ");
         }
-        _s = sb.ToString();
+        
+         Builder = sb;
     }
 
     //[Benchmark]
@@ -32,7 +39,7 @@ public class ReplaceWhiteSpaceWithBench
     //public string ReplaceWhiteSpaceStringArrayPool() => ReplaceWhiteSpaceWith(_s, REPLACEMENT, false);
 
     [Benchmark]
-    public StringBuilder ReplaceWhiteSpaceStringBuilderLibrary() => new StringBuilder(_s).ReplaceWhiteSpaceWith(REPLACEMENT, false);
+    public StringBuilder ReplaceWhiteSpaceStringBuilderLibrary() => Builder.ReplaceWhiteSpaceWith(REPLACEMENT, false);
 
     //[Benchmark]
     //public StringBuilder ReplaceWhiteSpaceStringBuilderArrayPool() => ReplaceWhiteSpaceWith(new StringBuilder(_s), REPLACEMENT, 0, _s.Length, false);
