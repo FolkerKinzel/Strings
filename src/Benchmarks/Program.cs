@@ -22,8 +22,8 @@ class Program
     //_ = BenchmarkRunner.Run<PersistentHashCodeBench>();
     //_ = BenchmarkRunner.Run<ContainsNewLineBench>();
     //_ = BenchmarkRunner.Run<ToUpperInvariantBench>();
-    //_ = BenchmarkRunner.Run<ReplaceWhiteSpaceWithBench>();
-    _ = BenchmarkRunner.Run<ReplaceLineEndingsBench>();
+    _ = BenchmarkRunner.Run<ReplaceWhiteSpaceWithBench>();
+    //_ = BenchmarkRunner.Run<ReplaceLineEndingsBench>();
     //_ = BenchmarkRunner.Run<IndexOfAnyExceptBench>();
     //_ = BenchmarkRunner.Run<StringBuilderTrimEndBench>();
 
@@ -32,7 +32,7 @@ class Program
     // new IndexOfBench().IndexOfSpanBounds();
     // new LastIndexOfBench().LastIndexOfSpanBounds();
     // new PersistentHashCodeBench().StringBuilderHashChunks();
-    // new ReplaceWhiteSpaceWithBench().ReplaceWhiteSpaceStringBuilderChunks();
+    //new ReplaceWhiteSpaceWithBench().ReplaceWhiteSpaceStringBuilderChunks();
     //new ReplaceLineEndingsBench().StringArrayPoolChanges();
     // Base64Bench.Test2();
 

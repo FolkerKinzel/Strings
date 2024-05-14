@@ -29,8 +29,8 @@ public static partial class StringBuilderExtension
         this StringBuilder builder,
         ReadOnlySpan<char> replacement,
         bool skipNewLines = false)
-    => builder is null ? throw new ArgumentNullException(nameof(builder))
-                       : builder.ReplaceWhiteSpaceWith(replacement, 0, builder.Length, skipNewLines);
+     => builder is null ? throw new ArgumentNullException(nameof(builder))
+                        : builder.ReplaceWhiteSpaceWith(replacement, 0, builder.Length, skipNewLines);
 
     /// <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref
     /// name="startIndex" /> and extends to the end of <paramref name="builder" />, all sequences
@@ -63,11 +63,11 @@ public static partial class StringBuilderExtension
         ReadOnlySpan<char> replacement,
         int startIndex,
         bool skipNewLines = false)
-    => builder is null ? throw new ArgumentNullException(nameof(builder))
-                       : builder.ReplaceWhiteSpaceWith(replacement,
-                                                       startIndex,
-                                                       builder.Length - startIndex,
-                                                       skipNewLines);
+        => builder is null ? throw new ArgumentNullException(nameof(builder))
+                           : builder.ReplaceWhiteSpaceWith(replacement,
+                                                           startIndex,
+                                                           builder.Length - startIndex,
+                                                           skipNewLines);
 
     /// <summary>Replaces in a section of <paramref name="builder" />, which starts at <paramref
     /// name="startIndex" /> and which is <paramref name="count" /> characters long, all
@@ -107,6 +107,7 @@ public static partial class StringBuilderExtension
     /// of characters in <paramref name="builder" />.
     /// </para>
     /// </exception>
+    /// 
     public static StringBuilder ReplaceWhiteSpaceWith(this StringBuilder builder,
                                                       ReadOnlySpan<char> replacement,
                                                       int startIndex,
@@ -125,29 +126,65 @@ public static partial class StringBuilderExtension
             throw new ArgumentOutOfRangeException(nameof(count));
         }
 
-        int wsLength = 0;
-
-        for (int i = startIndex + count - 1; i >= startIndex; i--)
+        if (count == 0)
         {
-            char current = builder[i];
-
-            if (char.IsWhiteSpace(current) && (!skipNewLines || !current.IsNewLine()))
-            {
-                wsLength++;
-            }
-            else if (wsLength != 0)
-            {
-                int replacementIdx = i + 1;
-                _ = builder.Remove(replacementIdx, wsLength).Insert(replacementIdx, replacement);
-                wsLength = 0;
-            }
+            return builder;
         }
 
-        if (wsLength != 0)
+        using ArrayPoolHelper.SharedArray<char> source = ArrayPoolHelper.Rent<char>(count);
+        builder.CopyTo(startIndex, source.Array, 0, count);
+        ReadOnlySpan<char> sourceSpan = source.Array.AsSpan(0, count);
+
+        int firstWhiteSpaceIdx = sourceSpan.IndexOfWhiteSpace();
+
+        if (firstWhiteSpaceIdx == -1)
         {
-            _ = builder.Remove(0, wsLength).Insert(0, replacement);
+            return builder;
+        }
+
+        int lastWhiteSpaceIdx = sourceSpan.LastIndexOfWhiteSpace();
+        ReadOnlySpan<char> processedSpan = sourceSpan.Slice(firstWhiteSpaceIdx, lastWhiteSpaceIdx + 1 - firstWhiteSpaceIdx);
+
+        int capacity = ComputeMaxCapacity(processedSpan.Length, replacement.Length);
+
+        using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(capacity);
+        int outLength = processedSpan.ReplaceWhiteSpaceWith(replacement, buf.Array, skipNewLines);
+
+        if (startIndex + count == builder.Length)
+        {
+            builder.Length = startIndex + firstWhiteSpaceIdx;
+            builder.Append(buf.Array, 0, outLength);
+            int startOfRemaining = lastWhiteSpaceIdx + 1;
+            builder.Append(source.Array, startOfRemaining, sourceSpan.Length - startOfRemaining);
+        }
+        else if (!processedSpan.Equals(buf.Array.AsSpan(0, outLength), StringComparison.Ordinal))
+        {
+            using ArrayPoolHelper.SharedArray<char> trailing = CopyTrailingChunk(builder, startIndex + count, out int trailingChunkLength);
+
+            builder.Length = startIndex + firstWhiteSpaceIdx;
+            builder.Append(buf.Array, 0, outLength);
+            int startOfRemaining = lastWhiteSpaceIdx + 1;
+            builder.Append(source.Array, startOfRemaining, sourceSpan.Length - startOfRemaining);
+            builder.Append(trailing.Array, 0, trailingChunkLength);
         }
 
         return builder;
+
+        //////////////////////////////////////////////////////////////////////////////
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static int ComputeMaxCapacity(int sourceLength, int replacementLength)
+        {
+            int halfEven = (sourceLength + 1) >> 1;
+            return halfEven * Math.Max(1, replacementLength) + halfEven;
+        }
+
+        static ArrayPoolHelper.SharedArray<char> CopyTrailingChunk(StringBuilder builder, int remainingStart, out int remainingLength)
+        {
+            remainingLength = builder.Length - remainingStart;
+            ArrayPoolHelper.SharedArray<char> copy = ArrayPoolHelper.Rent<char>(remainingLength);
+            builder.CopyTo(remainingStart, copy.Array, 0, remainingLength);
+            return copy;
+        }
     }
 }

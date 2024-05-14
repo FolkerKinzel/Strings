@@ -159,36 +159,36 @@ internal static class ReadOnlySpanExtensionIntl
         return destLength;
     }
 
-    internal static void ReplaceWhiteSpaceWith(this ReadOnlySpan<char> source,
-                                             ReadOnlySpan<char> replacement,
-                                             Span<char> destination,
-                                             bool skipNewLines,
-                                             ref bool wsFlag,
-                                             ref int destLength)
-    {
-        for (int i = 0; i < source.Length; i++)
-        {
-            char c = source[i];
+    //    internal static void ReplaceWhiteSpaceWith(this ReadOnlySpan<char> source,
+    //                                             ReadOnlySpan<char> replacement,
+    //                                             Span<char> destination,
+    //                                             bool skipNewLines,
+    //                                             ref bool wsFlag,
+    //                                             ref int destLength)
+    //    {
+    //        for (int i = 0; i < source.Length; i++)
+    //        {
+    //            char c = source[i];
 
-            if (char.IsWhiteSpace(c))
-            {
-                if (skipNewLines && c.IsNewLine())
-                {
-                    wsFlag = false;
-                    destination[destLength++] = c;
-                }
-                else if (!wsFlag)
-                {
-                    wsFlag = true;
-                    _ = replacement.TryCopyTo(destination.Slice(destLength));
-                    destLength += replacement.Length;
-                }
+    //            if (char.IsWhiteSpace(c))
+    //            {
+    //                if (skipNewLines && c.IsNewLine())
+    //                {
+    //                    wsFlag = false;
+    //                    destination[destLength++] = c;
+    //                }
+    //                else if (!wsFlag)
+    //                {
+    //                    wsFlag = true;
+    //                    _ = replacement.TryCopyTo(destination.Slice(destLength));
+    //                    destLength += replacement.Length;
+    //                }
 
-                continue;
-            }
+    //                continue;
+    //            }
 
-            wsFlag = false;
-            destination[destLength++] = c;
-        }
-    }
+    //            wsFlag = false;
+    //            destination[destLength++] = c;
+    //        }
+    //    }
 }

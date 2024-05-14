@@ -147,6 +147,26 @@ public class StringBuilderExtensionTests
         _ = sb!.ReplaceWhiteSpaceWith("".AsSpan(), 0);
     }
 
+    [TestMethod]
+    public void ReplaceWhiteSpaceWithTest9()
+    {
+        Assert.AreEqual(0, new StringBuilder().ReplaceWhiteSpaceWith("blub").Length);
+    }
+
+    [TestMethod]
+    public void ReplaceWhiteSpaceWithTest10()
+    {
+        const string aaa = "aaa";
+        Assert.AreEqual(aaa, new StringBuilder(aaa).ReplaceWhiteSpaceWith("blub").ToString());
+    }
+
+    [TestMethod]
+    public void ReplaceWhiteSpaceWithTest11()
+    {
+        const string s = "a            a";
+        Assert.AreEqual("a* a", new StringBuilder(s).ReplaceWhiteSpaceWith("*", 0, s.Length - 2).ToString());
+    }
+
     [DataTestMethod]
     [DataRow("abcabc", 'b', 4)]
     [DataRow("abcabc", 'y', -1)]
@@ -819,7 +839,7 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void ContainsNonAsciiTest12()
     {
-        var sb = new StringBuilder("Ö").Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaÖ");
+        StringBuilder sb = new StringBuilder("Ö").Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaÖ");
         Assert.IsFalse(sb.ContainsNonAscii(0, 0));
         Assert.IsTrue(sb.ContainsNonAscii(0, 1));
         Assert.IsTrue(sb.ContainsNonAscii(0, sb.Length));
@@ -1456,14 +1476,13 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void ContainsWhiteSpaceTest9()
     {
-        var sb = new StringBuilder(" ").Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ");
+        StringBuilder sb = new StringBuilder(" ").Append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ");
         Assert.IsFalse(sb.ContainsWhiteSpace(0, 0));
         Assert.IsTrue(sb.ContainsWhiteSpace(0, 1));
         Assert.IsTrue(sb.ContainsWhiteSpace(0, sb.Length));
         Assert.IsTrue(sb.ContainsWhiteSpace(1, sb.Length - 1));
         Assert.IsFalse(sb.ContainsWhiteSpace(1, sb.Length - 2));
     }
-
 
     [DataTestMethod]
     [DataRow("", "")]
