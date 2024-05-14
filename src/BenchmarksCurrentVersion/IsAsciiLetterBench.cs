@@ -14,7 +14,7 @@ public class IsAsciiLetterBench
     {
         for (int i = 0; i < _chars.Length; i++)
         {
-            _chars[i] = (char)Random.Shared.Next(128);
+            _chars[i] = (char)new Random().Next(128);
         }
     }
 

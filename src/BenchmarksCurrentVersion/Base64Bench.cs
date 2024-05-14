@@ -26,7 +26,7 @@ public class Base64Bench
     public Base64Bench()
     {
         this._arr = new byte[100000];
-        Random.Shared.NextBytes(_arr);
+        new Random().NextBytes(_arr);
 
         //this._coll = new ReadOnlyCollection<byte>(_arr);
         //this._base64 = Convert.ToBase64String(_arr, Base64FormattingOptions.None);

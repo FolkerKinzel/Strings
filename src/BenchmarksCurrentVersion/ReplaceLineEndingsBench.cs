@@ -1,20 +1,23 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System.Text;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Exporters;
+using BenchmarkDotNet.Jobs;
 using FolkerKinzel.Strings;
 using FolkerKinzel.Strings.Intls;
 
 namespace Benchmarks;
 
 [MemoryDiagnoser]
+[MarkdownExporter]
+[SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net60)]
+[SimpleJob(RuntimeMoniker.Net48)]
 public class ReplaceLineEndingsBench
 {
-    public ReplaceLineEndingsBench() => this.TestString = Properties.Resources.ReplaceLineEndingsTest;
 
-    public string TestString { get; }
+    public const string TestString = "abc\r\nabc\r\n\r\nabc";
 
-    
+    private StringBuilder Builder { get; set; }
 
 
     //[Benchmark]
@@ -24,16 +27,14 @@ public class ReplaceLineEndingsBench
     //    return sb.ReplaceLineEndings("\r\n");
     //}
 
-    
+    [GlobalSetup]
+    public void Setup() => Builder = new StringBuilder(TestString);
+
 
     [Benchmark]
-    public StringBuilder StringBuilderLibraryChanges()
-    {
-        var sb = new StringBuilder(TestString);
-        return sb.ReplaceLineEndings("\n");
-    }
+    public StringBuilder StringBuilderLibraryChanges() => Builder.ReplaceLineEndings("\n");
 
-    
+
 
 
     //[Benchmark]
@@ -49,12 +50,12 @@ public class ReplaceLineEndingsBench
     //public string StringArrayPoolChanges() => ReplaceLineEndings(TestString, "\n");
 
 
-   
 
 
 
 
-    
+
+
 
 
 }

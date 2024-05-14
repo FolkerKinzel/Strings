@@ -2,13 +2,20 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;net6.0;net48</TargetFrameworks>
     <LangVersion>12.0</LangVersion>
     <NeutralLanguage>en</NeutralLanguage>
+    <RootNamespace>Benchmarks</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ChunkProvider.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="System.Memory" Version="4.5.5" />
   </ItemGroup>
 
   <ItemGroup>

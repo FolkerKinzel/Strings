@@ -15,7 +15,7 @@ public class ToArrayVsToStringBench
 
         for (int i = 0; i < chars.Length; i++)
         {
-            chars[i] = (char)Random.Shared.Next(32,128);
+            chars[i] = (char)new Random().Next(32,128);
         }
         _s = new string(chars);
     }

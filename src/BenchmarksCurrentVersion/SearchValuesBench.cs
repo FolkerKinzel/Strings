@@ -9,6 +9,8 @@ using FolkerKinzel.Strings;
 
 namespace Benchmarks;
 
+#if NET8_0_OR_GREATER
+
 [MemoryDiagnoser]
 public class SearchValuesBench
 {
@@ -82,3 +84,5 @@ public class SearchValuesBench
         return -1;
     }
 }
+
+#endif

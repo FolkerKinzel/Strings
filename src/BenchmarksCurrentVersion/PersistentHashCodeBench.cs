@@ -25,7 +25,7 @@ public class PersistentHashCodeBench
     public int SpanHashStruct()
     {
         var hash = new PersistentStringHash(HashType.Ordinal);
-        hash.Add(_s);
+        hash.Add(_s.AsSpan());
         return hash.ToHashCode();
     }
 
