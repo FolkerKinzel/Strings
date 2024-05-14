@@ -17,10 +17,11 @@ public class ReplaceWhiteSpaceWithBench
 {
     const string REPLACEMENT = "\r\n";
 
+    readonly string _s;
+
     private StringBuilder Builder { get; set; }
 
-    [GlobalSetup]
-    public void Setup()
+    public ReplaceWhiteSpaceWithBench()
     {
         var sb = new StringBuilder();
 
@@ -28,12 +29,16 @@ public class ReplaceWhiteSpaceWithBench
         {
             sb.Append("a\nb  ");
         }
-        
-         Builder = sb;
+
+        Builder = sb;
+        _s = sb.ToString();
     }
 
-    //[Benchmark]
-    //public string ReplaceWhiteSpaceStringLibrary() => _s.ReplaceWhiteSpaceWith(REPLACEMENT, false);
+    [GlobalSetup]
+    public void Setup() => Builder = new StringBuilder(_s);
+
+    [Benchmark]
+    public string ReplaceWhiteSpaceStringLibrary() => _s.ReplaceWhiteSpaceWith(REPLACEMENT, false);
 
     //[Benchmark]
     //public string ReplaceWhiteSpaceStringArrayPool() => ReplaceWhiteSpaceWith(_s, REPLACEMENT, false);
