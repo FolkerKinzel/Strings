@@ -8,6 +8,7 @@ using FolkerKinzel.Strings.Intls;
 namespace Benchmarks;
 
 [MemoryDiagnoser]
+[MarkdownExporter]
 public class ReplaceWhiteSpaceWithBench
 {
     const string REPLACEMENT = "\r\n";
