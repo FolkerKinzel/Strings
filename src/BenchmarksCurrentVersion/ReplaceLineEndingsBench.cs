@@ -15,21 +15,24 @@ namespace Benchmarks;
 public class ReplaceLineEndingsBench
 {
 
-    public const string TestString = "abc\r\nabc\r\n\r\nabc";
+    public const string TestString = "abc def ghi jkl mno pqr uvw xyz 1234567890\r\nabc def ghi jkl mno pqr uvw xyz 1234567890\r\n\r\nabc def ghi jkl";
 
     private StringBuilder Builder { get; set; }
 
-
-    //[Benchmark]
-    //public StringBuilder StringBuilderLibraryNoChanges()
-    //{
-    //    var sb = new StringBuilder(TestString);
-    //    return sb.ReplaceLineEndings("\r\n");
-    //}
+    [Params(1, 2, 3)]
+    public int N { get; set; }
+    
 
     [GlobalSetup]
-    public void Setup() => Builder = new StringBuilder(TestString);
+    public void Setup()
+    {
+        Builder = new StringBuilder(N*TestString.Length);
 
+        for (int i = 0; i < N; i++)
+        {
+            Builder.Append(TestString);
+        }
+    }
 
     [Benchmark]
     public StringBuilder StringBuilderLibraryChanges() => Builder.ReplaceLineEndings("\n");

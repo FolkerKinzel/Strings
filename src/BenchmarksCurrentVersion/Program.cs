@@ -17,11 +17,13 @@ using Benchmarks;
 //_ = BenchmarkRunner.Run<LastIndexOfBench>();
 //_ = BenchmarkRunner.Run<PersistentHashCodeBench>();
 //_ = BenchmarkRunner.Run<ContainsNewLineBench>();
-//_ = BenchmarkRunner.Run<ToUpperInvariantBench>();
+_ = BenchmarkRunner.Run<ToUpperInvariantBench>();
 //_ = BenchmarkRunner.Run<ReplaceWhiteSpaceWithBench>();
-_ = BenchmarkRunner.Run<ReplaceLineEndingsBench>();
+//_ = BenchmarkRunner.Run<ReplaceLineEndingsBench>();
 //_ = BenchmarkRunner.Run<IndexOfAnyExceptBench>();
 //_ = BenchmarkRunner.Run<StringBuilderTrimEndBench>();
+//_ = BenchmarkRunner.Run<IsUtf8Bench>();
+
 
 //    new ToUpperInvariantBench().ToUpperInvariantChunks();
 // new StringBuilderTrimEndBench().Sb10Chunks();
@@ -31,6 +33,8 @@ _ = BenchmarkRunner.Run<ReplaceLineEndingsBench>();
 //new ReplaceWhiteSpaceWithBench().ReplaceWhiteSpaceStringBuilderChunks();
 //new ReplaceLineEndingsBench().StringArrayPoolChanges();
 // Base64Bench.Test2();
+
+//new IsUtf8Bench().IsUtf8Exception();
 
 
 //BenchmarkDotNet.Reports.Summary summary = BenchmarkRunner.Run<IsUtf8Bench>();

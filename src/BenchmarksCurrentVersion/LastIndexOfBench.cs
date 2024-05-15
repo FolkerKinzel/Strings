@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Toolchains.Roslyn;
 using FolkerKinzel.Strings;
 using FolkerKinzel.Strings.Intls;
@@ -11,12 +12,18 @@ using FolkerKinzel.Strings.Intls;
 namespace Benchmarks;
 
 [MemoryDiagnoser]
-//[SimpleJob(runtimeMoniker: RuntimeMoniker.Net80)]
+[MarkdownExporter]
+[SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net60)]
+[SimpleJob(RuntimeMoniker.Net48)]
 public class LastIndexOfBench
 {
-    [Benchmark]
-    public int IndexOf50() => StringBuilders._50.LastIndexOf('x');
+    private readonly StringBuilder _50 = new StringBuilder("a").Append(new string('a', 49));
+    private readonly StringBuilder _10 = new StringBuilder("a").Append(new string('a', 9));
 
     [Benchmark]
-    public int IndexOf10() => StringBuilders._10.LastIndexOf('x');
+    public int IndexOf50() => _50.LastIndexOf('x');
+
+    [Benchmark]
+    public int IndexOf10() => _10.LastIndexOf('x');
 }

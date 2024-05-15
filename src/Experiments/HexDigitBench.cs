@@ -14,6 +14,7 @@ public class HexDigitBench
     {
         ReadOnlySpan<char> span = TEST.AsSpan();
         bool result = false;
+
         for (int i = 0; i < span.Length; i++)
         {
             result = span[i].IsAsciiHexDigit();

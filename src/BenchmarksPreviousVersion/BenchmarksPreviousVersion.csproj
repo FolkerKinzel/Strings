@@ -19,6 +19,11 @@
     <Compile Include="..\BenchmarksCurrentVersion\ReplaceLineEndingsBench.cs" />
     <Compile Include="..\BenchmarksCurrentVersion\ContainsNewLineBench.cs" />
     <Compile Include="..\BenchmarksCurrentVersion\ReplaceWhiteSpaceWithBench.cs" />
+    <Compile Include="..\BenchmarksCurrentVersion\Base64Bench.cs" />
+    <Compile Include="..\BenchmarksCurrentVersion\IndexOfAnyExceptBench.cs" />
+    <Compile Include="..\BenchmarksCurrentVersion\IndexOfBench.cs" />
+    <Compile Include="..\BenchmarksCurrentVersion\IsUtf8Bench.cs" />
+
   </ItemGroup>
 
 </Project>
