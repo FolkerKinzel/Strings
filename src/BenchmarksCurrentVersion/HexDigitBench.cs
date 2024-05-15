@@ -10,7 +10,7 @@ public class HexDigitBench
     private const string TEST = "01234AaBbFfG";
 
     [Benchmark]
-    public bool IsAsciiHexDigitTest()
+    public bool IsAsciiHexDigitBench()
     {
         ReadOnlySpan<char> span = TEST.AsSpan();
         bool result = false;

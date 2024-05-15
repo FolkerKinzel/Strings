@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 [assembly: CLSCompliant(true)]
 [assembly: InternalsVisibleTo("FolkerKinzel.Strings.Tests")]
 [assembly: InternalsVisibleTo("BenchmarksCurrentVersion")]
+[assembly: InternalsVisibleTo("Experiments")]
 
 
 // In SDK-style projects such as this one, several assembly attributes that were historically

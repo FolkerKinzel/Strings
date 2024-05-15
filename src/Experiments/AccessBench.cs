@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 
 namespace Benchmarks;
@@ -18,7 +14,7 @@ public class AccessBench
         ReadOnlySpan<char> span = STR.AsSpan();
 
         char c = 'X';
-        for (int i = 0; i < LOOPS; i++) 
+        for (int i = 0; i < LOOPS; i++)
         {
             c = span[1];
         }
