@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Jobs;
@@ -17,7 +18,8 @@ public class ReplaceLineEndingsBench
 
     public const string TestString = "abc def ghi jkl mno pqr uvw xyz 1234567890\r\nabc def ghi jkl mno pqr uvw xyz 1234567890\r\n\r\nabc def ghi jkl";
 
-    private StringBuilder Builder { get; set; }
+    [NotNull]
+    private StringBuilder? Builder { get; set; }
 
     [Params(1, 2, 3)]
     public int N { get; set; }

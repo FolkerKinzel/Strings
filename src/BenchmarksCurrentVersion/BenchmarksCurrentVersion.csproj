@@ -5,6 +5,7 @@
     <TargetFrameworks>net8.0;net6.0;net48</TargetFrameworks>
     <LangVersion>12.0</LangVersion>
     <NeutralLanguage>en</NeutralLanguage>
+    <Nullable>enable</Nullable>
     <RootNamespace>Benchmarks</RootNamespace>
   </PropertyGroup>
 
