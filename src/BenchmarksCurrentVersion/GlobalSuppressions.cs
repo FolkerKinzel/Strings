@@ -6,3 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Performance", "CA1822:Member als statisch markieren", Justification = "<Ausstehend>", Scope = "module")]
+[assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~F:Benchmarks.TrimBench.SFull")]

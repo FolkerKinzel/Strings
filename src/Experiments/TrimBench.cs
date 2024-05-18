@@ -13,6 +13,8 @@ public class TrimBench
 {
     private const string TRIM_CHARS = " \"\'";
     private const string S = "   \"\"\'\' \"";
+    private const string S_FULL = S + "a" + S;
+
 
     private readonly SearchValues<char> _trimChars = SearchValues.Create(TRIM_CHARS);
 
@@ -30,10 +32,10 @@ public class TrimBench
 
 
     [Benchmark]
-    public int TrimBcl() => S.AsSpan().Trim(TRIM_CHARS.AsSpan()).Length;
+    public int TrimBcl() => S_FULL.AsSpan().Trim(TRIM_CHARS.AsSpan()).Length;
 
     [Benchmark]
-    public int TrimSearchValues() => S.AsSpan().Trim(_trimChars).Length;
+    public int TrimSearchValues() => S_FULL.AsSpan().Trim(_trimChars).Length;
 
 
 

@@ -7,3 +7,4 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Performance", "CA1870:Use a cached 'SearchValues' instance", Justification = "<Pending>", Scope = "member", Target = "~M:Benchmarks.SearchValuesBench.MemoryExtensionsTest~System.Int32")]
 [assembly: SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification = "<Pending>")]
+[assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~F:Experiments.TrimBench.S_FULL")]
