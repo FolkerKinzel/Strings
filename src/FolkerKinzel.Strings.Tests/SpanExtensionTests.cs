@@ -6,6 +6,152 @@ namespace FolkerKinzel.Strings.Tests;
 [TestClass]
 public class SpanExtensionTests
 {
+    [TestMethod]
+    public void TrimTest1()
+    {
+        const string trimChars = "\'\"";
+
+        string test = "\"\'Test\'\"";
+
+        Assert.AreEqual(test.Trim(trimChars), test.ToCharArray().AsSpan().Trim(SearchValues.Create(trimChars)).ToString());
+    }
+
+    [TestMethod]
+    public void TrimTest2()
+    {
+        string test = "  Test  ";
+
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().Trim(SearchValues.Create("")).ToString());
+    }
+
+    [TestMethod]
+    public void TrimTest3()
+    {
+        const string trimChars = "\'\"";
+
+        string test = "\"\'\'\"";
+        Assert.AreEqual("", test.ToCharArray().AsSpan().Trim(SearchValues.Create(trimChars)).ToString());
+    }
+
+
+    [TestMethod]
+    public void TrimTest4()
+    {
+        string test = "    ";
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().Trim(SearchValues.Create("")).ToString());
+    }
+
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TrimTest5() => ReadOnlySpan<char>.Empty.Trim((SearchValues<char>?)null!);
+
+
+    [TestMethod]
+    public void TrimTest6()
+    {
+        const string trimChars = "\'\"";
+
+        string test = "Test";
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().Trim(SearchValues.Create(trimChars)).ToString());
+    }
+
+    [TestMethod]
+    public void TrimStartTest1()
+    {
+        const string trimChars = "\'\"";
+
+        string test = "\"\'Test\'\"";
+
+        Assert.AreEqual(test.TrimStart(trimChars), test.ToCharArray().AsSpan().TrimStart(SearchValues.Create(trimChars)).ToString());
+    }
+
+    [TestMethod]
+    public void TrimStartTest2()
+    {
+        string test = "  Test  ";
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimStart(SearchValues.Create("")).ToString());
+    }
+
+    [TestMethod]
+    public void TrimStartTest3()
+    {
+        const string trimChars = "\'\"";
+        string test = "\"\'\'\"";
+        Assert.AreEqual("", test.ToCharArray().AsSpan().TrimStart(SearchValues.Create(trimChars)).ToString());
+    }
+
+
+    [TestMethod]
+    public void TrimStartTest4()
+    {
+        string test = "    ";
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimStart(SearchValues.Create("")).ToString());
+    }
+
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TrimStartTest5() => ReadOnlySpan<char>.Empty.TrimStart((SearchValues<char>?)null!);
+
+
+    [TestMethod]
+    public void TrimStartTest6()
+    {
+        const string trimChars = "\'\"";
+
+        string test = "Test";
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimStart(SearchValues.Create(trimChars)).ToString());
+    }
+
+    [TestMethod]
+    public void TrimEndTest1()
+    {
+        const string trimChars = "\'\"";
+
+        string test = "\"\'Test\'\"";
+
+        Assert.AreEqual(test.TrimEnd(trimChars), test.ToCharArray().AsSpan().TrimEnd(SearchValues.Create(trimChars)).ToString());
+    }
+
+    [TestMethod]
+    public void TrimEndTest2()
+    {
+        string test = "  Test  ";
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimEnd(SearchValues.Create("")).ToString());
+    }
+
+    [TestMethod]
+    public void TrimEndTest3()
+    {
+        const string trimChars = "\'\"";
+        string test = "\"\'\'\"";
+        Assert.AreEqual("", test.ToCharArray().AsSpan().TrimEnd(SearchValues.Create(trimChars)).ToString());
+    }
+
+
+    [TestMethod]
+    public void TrimEndTest4()
+    {
+        string test = "    ";
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimStart(SearchValues.Create("")).ToString());
+    }
+
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TrimEndTest5() => ReadOnlySpan<char>.Empty.TrimEnd((SearchValues<char>?)null!);
+
+    [TestMethod]
+    public void TrimEndTest6()
+    {
+
+        const string trimChars = "\'\"";
+
+        string test = "Test";
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimEnd(SearchValues.Create(trimChars)).ToString());
+    }
+
     [DataTestMethod]
     [DataRow("", "")]
     [DataRow("12", "12")]

@@ -97,6 +97,23 @@ public class StringBuilderExtensionTests
         Assert.AreEqual("Hi", output);
     }
 
+    [TestMethod]
+    public void ReplaceLineEndingsTest4()
+    {
+        var builder = new StringBuilder();
+
+        Assert.AreEqual(0, builder.ReplaceLineEndings("abcd").Length);
+    }
+
+    [TestMethod]
+    public void ReplaceLineEndingsTest5()
+    {
+        const string input = "abcd";
+        var builder = new StringBuilder(input);
+
+        Assert.AreEqual(input, builder.ReplaceLineEndings("xyz").ToString());
+    }
+
 
     [TestMethod]
     public void ReplaceWhiteSpaceWithTest1()

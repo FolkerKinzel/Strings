@@ -11,6 +11,12 @@ class FolkerKinzel.Strings.SearchValues<T>;
 ```csharp
 int LastIndexOfAny(this ReadOnlySpan<char>, SearchValues<char>, int, int);
 int LastIndexOfAny(this Span<char>, SearchValues<char>, int, int);
+ReadOnlySpan<char> Trim(this ReadOnlySpan<char>, SearchValues<char>);
+ReadOnlySpan<char> TrimStart(this ReadOnlySpan<char>, SearchValues<char>);
+ReadOnlySpan<char> TrimEnd(this ReadOnlySpan<char>, SearchValues<char>);
+Span<char> Trim(this Span<char>, SearchValues<char>);
+Span<char> TrimStart(this Span<char>, SearchValues<char>);
+Span<char> TrimEnd(this Span<char>, SearchValues<char>);
 ```
 &nbsp;
 - New polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1):

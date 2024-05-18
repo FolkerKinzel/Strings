@@ -22,7 +22,7 @@ public class TrimBench
 
     [Params("", " ", "   \"\"\'\' \"")]
     [NotNull]
-    private string? S { get; set; }
+    public string? S { get; set; }
 
     [GlobalSetup]
     public void GlobalSetup() => SFull = S + "a" + S;
