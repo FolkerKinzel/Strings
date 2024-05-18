@@ -10,6 +10,7 @@ public static partial class ReadOnlySpanExtension
     /// <param name="values">The <see cref="SearchValues{T}">SearchValues&lt;Char&gt;</see> instance, which 
     /// specifies the set of characters to remove.</param>
     /// <returns>The trimmed read-only character span.</returns>
+    /// <remarks>If <paramref name="values"/> is empty, the method returns <paramref name="span"/> unchanged.</remarks>
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static ReadOnlySpan<char> Trim(this ReadOnlySpan<char> span, SearchValues<char> values)
@@ -23,6 +24,8 @@ public static partial class ReadOnlySpanExtension
     /// <param name="values">The <see cref="SearchValues{T}">SearchValues&lt;Char&gt;</see> instance, which 
     /// specifies the set of characters to remove.</param>
     /// <returns>The trimmed read-only character span.</returns>
+    /// <remarks>If <paramref name="values"/> is empty, the method returns <paramref name="span"/> unchanged.</remarks>
+    /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     public static ReadOnlySpan<char> TrimStart(this ReadOnlySpan<char> span, SearchValues<char> values)
     {
@@ -38,6 +41,8 @@ public static partial class ReadOnlySpanExtension
     /// <param name="values">The <see cref="SearchValues{T}">SearchValues&lt;Char&gt;</see> instance, which 
     /// specifies the set of characters to remove.</param>
     /// <returns>The trimmed read-only character span.</returns>
+    /// <remarks>If <paramref name="values"/> is empty, the method returns <paramref name="span"/> unchanged.</remarks>
+    /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static ReadOnlySpan<char> TrimEnd(this ReadOnlySpan<char> span, SearchValues<char> values)

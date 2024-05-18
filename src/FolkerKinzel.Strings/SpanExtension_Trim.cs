@@ -16,6 +16,8 @@ public static partial class SpanExtension
     /// <param name="values">The <see cref="SearchValues{T}">SearchValues&lt;Char&gt;</see> instance, which 
     /// specifies the set of characters to remove.</param>
     /// <returns>The trimmed character span.</returns>
+    /// <remarks>If <paramref name="values"/> is empty, the method returns <paramref name="span"/> unchanged.</remarks>
+    /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Span<char> Trim(this Span<char> span, SearchValues<char> values)
@@ -29,6 +31,8 @@ public static partial class SpanExtension
     /// <param name="values">The <see cref="SearchValues{T}">SearchValues&lt;Char&gt;</see> instance, which 
     /// specifies the set of characters to remove.</param>
     /// <returns>The trimmed character span.</returns>
+    /// <remarks>If <paramref name="values"/> is empty, the method returns <paramref name="span"/> unchanged.</remarks>
+    /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     public static Span<char> TrimStart(this Span<char> span, SearchValues<char> values)
     {
         int idx = span.IndexOfAnyExcept(values);
@@ -43,6 +47,8 @@ public static partial class SpanExtension
     /// <param name="values">The <see cref="SearchValues{T}">SearchValues&lt;Char&gt;</see> instance, which 
     /// specifies the set of characters to remove.</param>
     /// <returns>The trimmed character span.</returns>
+    /// <remarks>If <paramref name="values"/> is empty, the method returns <paramref name="span"/> unchanged.</remarks>
+    /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Span<char> TrimEnd(this Span<char> span, SearchValues<char> values)
         => span.Slice(0, span.LastIndexOfAnyExcept(values) + 1);
