@@ -1,4 +1,3 @@
-using System.Buffers;
 using System.Runtime.InteropServices;
 using FolkerKinzel.Strings.Intls;
 using Base64Bcl = System.Buffers.Text.Base64;
@@ -16,11 +15,6 @@ public static class Base64
     private const string LINE_BREAK = "\r\n";
     private const int LINE_LENGTH = 76;
     private const int MAXIMUM_ENCODE_LENGTH = (int.MaxValue / 4) * 3;
-
-    //private const string IDX = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-    //private const int CHAR_MASK = 0b11_1111;
-    //private const int CHUNK_LENGTH = 3;
-    //private const int CHAR_WIDTH = 6;
     private const string URL_ENCODED_PADDING = "%3d";
 
     /// <summary>Calculates the exact output length of Base64-encoded data from the input
