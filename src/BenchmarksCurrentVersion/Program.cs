@@ -6,7 +6,7 @@ using Benchmarks;
 // new InsertBench().Test1();
 //var val = new IsAsciiLetterBench();
 //new IsUtf8Bench().IsUtf8Exception();
-//_ = BenchmarkRunner.Run<Base64Bench>();
+_ = BenchmarkRunner.Run<Base64Bench>();
 //_ = BenchmarkRunner.Run<IndexOfBench>();
 //_ = BenchmarkRunner.Run<LastIndexOfBench>();
 //_ = BenchmarkRunner.Run<PersistentHashCodeBench>();
@@ -17,7 +17,7 @@ using Benchmarks;
 //_ = BenchmarkRunner.Run<IndexOfAnyExceptBench>();
 //_ = BenchmarkRunner.Run<StringBuilderTrimEndBench>();
 //_ = BenchmarkRunner.Run<IsUtf8Bench>();
-_ = BenchmarkRunner.Run<TrimBench>();
+//_ = BenchmarkRunner.Run<TrimBench>();
 
 
 //    new ToUpperInvariantBench().ToUpperInvariantChunks();

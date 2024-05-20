@@ -14,8 +14,7 @@ public static partial class StringBuilderExtension
     /// should be automatically inserted into the Base64.</param>
     /// <returns>A reference to <paramref name="builder" /> after the append operation has
     /// completed.</returns>
-    /// <remarks>The method uses it's own Base64 implementation that is a little slower than
-    /// the BCL methods but allocates much less heap memory.</remarks>
+    /// 
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
@@ -35,8 +34,7 @@ public static partial class StringBuilderExtension
     /// should be automatically inserted into the Base64.</param>
     /// <returns>A reference to <paramref name="builder" /> after the append operation has
     /// completed.</returns>
-    /// <remarks>The method uses it's own Base64 implementation that is a little slower than
-    /// the BCL methods but allocates much less heap memory.</remarks>
+    /// 
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
@@ -55,8 +53,7 @@ public static partial class StringBuilderExtension
     /// should be automatically inserted into the Base64.</param>
     /// <returns>A reference to <paramref name="builder" /> after the append operation has
     /// completed.</returns>
-    /// <remarks>The method uses it's own Base64 implementation that is a little slower than
-    /// the BCL methods but allocates much less heap memory.</remarks>
+    /// 
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>

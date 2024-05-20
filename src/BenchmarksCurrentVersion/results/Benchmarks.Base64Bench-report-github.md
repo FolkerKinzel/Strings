@@ -10,20 +10,17 @@ Intel Core i7-8550U CPU 1.80GHz (Kaby Lake R), 1 CPU, 8 logical and 4 physical c
 
 
 ```
-| Method                  | Job                | Runtime            | Mean     | Error    | StdDev    | Median   | Gen0   | Gen1   | Allocated |
-|------------------------ |------------------- |------------------- |---------:|---------:|----------:|---------:|-------:|-------:|----------:|
-| ToBytesBench            | .NET 6.0           | .NET 6.0           | 16.29 μs | 0.040 μs |  0.033 μs | 16.29 μs | 2.3804 |      - |   9.79 KB |
-| AppendLibrary           | .NET 6.0           | .NET 6.0           | 21.79 μs | 0.160 μs |  0.149 μs | 21.72 μs | 6.3477 |      - |  26.17 KB |
-| AppendBcl               | .NET 6.0           | .NET 6.0           | 23.95 μs | 0.068 μs |  0.060 μs | 23.96 μs | 6.3477 |      - |  26.17 KB |
-| AppendLibraryLineBreaks | .NET 6.0           | .NET 6.0           | 22.57 μs | 0.176 μs |  0.147 μs | 22.59 μs | 6.5308 |      - |  26.86 KB |
-| AppendBclLineBreaks     | .NET 6.0           | .NET 6.0           | 24.10 μs | 0.056 μs |  0.052 μs | 24.08 μs | 6.5308 |      - |  26.86 KB |
-| ToBytesBench            | .NET 8.0           | .NET 8.0           | 17.00 μs | 0.073 μs |  0.065 μs | 16.98 μs | 2.3804 |      - |   9.79 KB |
-| AppendLibrary           | .NET 8.0           | .NET 8.0           | 18.65 μs | 0.190 μs |  0.169 μs | 18.57 μs | 6.3477 |      - |  26.17 KB |
-| AppendBcl               | .NET 8.0           | .NET 8.0           | 20.27 μs | 0.065 μs |  0.061 μs | 20.29 μs | 6.3477 |      - |  26.17 KB |
-| AppendLibraryLineBreaks | .NET 8.0           | .NET 8.0           | 19.38 μs | 0.056 μs |  0.044 μs | 19.38 μs | 6.5308 |      - |  26.86 KB |
-| AppendBclLineBreaks     | .NET 8.0           | .NET 8.0           | 21.38 μs | 0.238 μs |  0.198 μs | 21.33 μs | 6.5308 |      - |  26.86 KB |
-| ToBytesBench            | .NET Framework 4.8 | .NET Framework 4.8 | 92.68 μs | 0.593 μs |  0.555 μs | 92.63 μs | 2.3193 |      - |   9.81 KB |
-| AppendLibrary           | .NET Framework 4.8 | .NET Framework 4.8 | 67.48 μs | 3.621 μs | 10.271 μs | 68.75 μs | 6.3477 |      - |   26.2 KB |
-| AppendBcl               | .NET Framework 4.8 | .NET Framework 4.8 | 66.63 μs | 4.759 μs | 14.031 μs | 72.64 μs | 6.3477 |      - |   26.2 KB |
-| AppendLibraryLineBreaks | .NET Framework 4.8 | .NET Framework 4.8 | 46.25 μs | 0.174 μs |  0.154 μs | 46.22 μs | 6.5308 |      - |  26.89 KB |
-| AppendBclLineBreaks     | .NET Framework 4.8 | .NET Framework 4.8 | 45.41 μs | 0.246 μs |  0.218 μs | 45.40 μs | 6.5308 | 0.5493 |  26.89 KB |
+| Method                  | Job                | Runtime            | Mean      | Error    | StdDev   | Median    | Gen0    | Gen1    | Gen2    | Allocated |
+|------------------------ |------------------- |------------------- |----------:|---------:|---------:|----------:|--------:|--------:|--------:|----------:|
+| GetBytesBenchBcl        | .NET 6.0           | .NET 6.0           |  74.79 μs | 1.287 μs | 1.004 μs |  74.67 μs | 11.8408 |       - |       - |  48.85 KB |
+| GetBytesBenchLibrary    | .NET 6.0           | .NET 6.0           |  49.94 μs | 0.214 μs | 0.189 μs |  49.89 μs | 11.9019 |       - |       - |  48.85 KB |
+| AppendLibrary           | .NET 6.0           | .NET 6.0           |  75.79 μs | 1.477 μs | 2.467 μs |  75.57 μs | 41.6260 | 41.6260 | 41.6260 | 130.41 KB |
+| AppendLibraryLineBreaks | .NET 6.0           | .NET 6.0           |  79.71 μs | 1.566 μs | 2.941 μs |  81.01 μs | 43.4570 | 43.4570 | 43.4570 | 134.33 KB |
+| GetBytesBenchBcl        | .NET 8.0           | .NET 8.0           |  85.22 μs | 0.581 μs | 0.543 μs |  85.03 μs | 11.8408 |       - |       - |  48.85 KB |
+| GetBytesBenchLibrary    | .NET 8.0           | .NET 8.0           |  48.00 μs | 0.332 μs | 0.311 μs |  47.94 μs | 11.9019 |       - |       - |  48.85 KB |
+| AppendLibrary           | .NET 8.0           | .NET 8.0           |  72.89 μs | 1.382 μs | 3.005 μs |  73.13 μs | 41.7480 | 41.7480 | 41.7480 | 130.91 KB |
+| AppendLibraryLineBreaks | .NET 8.0           | .NET 8.0           |  81.61 μs | 2.341 μs | 6.902 μs |  82.63 μs | 43.4570 | 43.4570 | 43.4570 | 133.79 KB |
+| GetBytesBenchBcl        | .NET Framework 4.8 | .NET Framework 4.8 | 497.41 μs | 4.149 μs | 4.075 μs | 496.34 μs | 11.7188 |       - |       - |  48.88 KB |
+| GetBytesBenchLibrary    | .NET Framework 4.8 | .NET Framework 4.8 | 494.44 μs | 1.310 μs | 1.094 μs | 494.78 μs | 11.7188 |       - |       - |  48.98 KB |
+| AppendLibrary           | .NET Framework 4.8 | .NET Framework 4.8 | 149.26 μs | 0.624 μs | 0.584 μs | 149.09 μs | 41.5039 | 41.5039 | 41.5039 | 130.57 KB |
+| AppendLibraryLineBreaks | .NET Framework 4.8 | .NET Framework 4.8 | 158.74 μs | 0.930 μs | 0.870 μs | 158.65 μs | 43.4570 | 43.4570 | 43.4570 | 134.01 KB |

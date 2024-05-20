@@ -10,7 +10,8 @@ using Benchmarks;
 //_ = BenchmarkRunner.Run<StringBuilderTrimEndBench>();
 
 //_ = BenchmarkRunner.Run<ToUpperInvariantBench>();
-_ = BenchmarkRunner.Run<ContainsNewLineBench>();
+//_ = BenchmarkRunner.Run<ContainsNewLineBench>();
+_ = BenchmarkRunner.Run<Base64Bench>();
 
 
 

@@ -1,6 +1,7 @@
 using System.Buffers;
 using System.Runtime.InteropServices;
 using FolkerKinzel.Strings.Intls;
+using Base64Bcl = System.Buffers.Text.Base64;
 
 namespace FolkerKinzel.Strings;
 
@@ -16,10 +17,10 @@ public static class Base64
     private const int LINE_LENGTH = 76;
     private const int MAXIMUM_ENCODE_LENGTH = (int.MaxValue / 4) * 3;
 
-    private const string IDX = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-    private const int CHAR_MASK = 0b11_1111;
-    private const int CHUNK_LENGTH = 3;
-    private const int CHAR_WIDTH = 6;
+    //private const string IDX = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    //private const int CHAR_MASK = 0b11_1111;
+    //private const int CHUNK_LENGTH = 3;
+    //private const int CHAR_WIDTH = 6;
     private const string URL_ENCODED_PADDING = "%3d";
 
     /// <summary>Calculates the exact output length of Base64-encoded data from the input
@@ -415,132 +416,138 @@ public static class Base64
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-        // paddingLength may be 3, but finalPartLength is 0 then and no 
-        // padding will be added:
-        int paddingLength = CHUNK_LENGTH - bytes.Length % CHUNK_LENGTH;
-        int finalPartLength = CHUNK_LENGTH - paddingLength;
+        if (bytes.Length == 0)
+        {
+            return builder;
+        }
+
+        int base64CharsCount = GetEncodedLength(bytes.Length);
+
+        using ArrayPoolHelper.SharedArray<byte> byteBuf = ArrayPoolHelper.Rent<byte>(base64CharsCount);
+        _ = Base64Bcl.EncodeToUtf8(bytes, byteBuf.Array.AsSpan(), out _, out _);
+
+        using ArrayPoolHelper.SharedArray<char> charBuf = ArrayPoolHelper.Rent<char>(base64CharsCount);
+        _ = Encoding.UTF8.GetChars(byteBuf.Array, 0, base64CharsCount, charBuf.Array, 0);
 
         if (options == Base64FormattingOptions.InsertLineBreaks)
         {
             bool insertNewLineAtStart = builder.Length != 0 && !builder[builder.Length - 1].IsNewLine();
-            int capacity = Base64.GetEncodedLength(bytes.Length);
 
-            // The following is quite the same as:
-            // capacity += (capacity / LINE_LENGTH) * LINE_BREAK.Length + (insertNewLineAtStart ? Environment.NewLine.Length : 0);
-            // with the difference that it saves on one multiplication.
-            // As a result it allocates in some cases one more char than needed, but
-            // StringBuilder.EnsureCapacity allocates always more than requested:
-            capacity += capacity / 38 + (insertNewLineAtStart ? Environment.NewLine.Length : 0);
-            _ = builder.EnsureCapacity(builder.Length + capacity);
+            builder.EnsureCapacity(
+                builder.Length
+                + base64CharsCount + (base64CharsCount / LINE_LENGTH + 1) * LINE_BREAK.Length
+                + (insertNewLineAtStart ? LINE_BREAK.Length : 0));
 
             if (insertNewLineAtStart)
             {
                 _ = builder.AppendLine();
             }
 
-            AppendChunksWithLineBreaks(builder, bytes, finalPartLength);
+            int end = base64CharsCount - LINE_LENGTH;
+            int i = 0;
+
+            for (; i < end; i += LINE_LENGTH)
+            {
+                _ = builder.Append(charBuf.Array, i, LINE_LENGTH)
+                           .Append(LINE_BREAK);
+            }
+
+            return builder.Append(charBuf.Array, i, base64CharsCount - i);
         }
         else
         {
-            _ = builder.EnsureCapacity(builder.Length + Base64.GetEncodedLength(bytes.Length));
-            AppendChunks(builder, bytes, finalPartLength);
-        }
-
-        if (finalPartLength > 0)
-        {
-            AppendFinalBlock(builder, bytes, paddingLength, finalPartLength);
-        }
-
-        return builder;
-    }
-
-    private static void AppendChunksWithLineBreaks(StringBuilder sb, ReadOnlySpan<byte> data, int finalPartLength)
-    {
-        if (data.Length < CHUNK_LENGTH)
-        {
-            return;
-        }
-
-        int counter = 0;
-        ReadOnlySpan<char> idx = IDX.AsSpan();
-
-Repeat:
-
-        for (int k = 0; k < LINE_LENGTH / 4; k++)
-        {
-            if (counter >= data.Length - finalPartLength)
-            {
-                return;
-            }
-
-            int i = data[counter] << 16;
-            i |= data[counter + 1] << 8;
-            i |= data[counter + 2];
-
-            _ = sb.Append(idx[i >> 3 * CHAR_WIDTH & CHAR_MASK])
-                  .Append(idx[i >> 2 * CHAR_WIDTH & CHAR_MASK])
-                  .Append(idx[i >> CHAR_WIDTH & CHAR_MASK])
-                  .Append(idx[i & CHAR_MASK]);
-
-            counter += CHUNK_LENGTH;
-        }
-
-        if (counter < data.Length)
-        {
-            _ = sb.Append(LINE_BREAK);
-        }
-
-        goto Repeat;
-    }
-
-    private static void AppendChunks(StringBuilder sb, ReadOnlySpan<byte> data, int finalPartLength)
-    {
-        if (data.Length < CHUNK_LENGTH)
-        {
-            return;
-        }
-
-        int counter = 0;
-        ReadOnlySpan<char> idx = IDX.AsSpan();
-
-        while (counter < data.Length - finalPartLength)
-        {
-            int i = data[counter] << 16;
-            i |= data[counter + 1] << 8;
-            i |= data[counter + 2];
-
-            _ = sb.Append(idx[i >> 3 * CHAR_WIDTH & CHAR_MASK])
-                  .Append(idx[i >> 2 * CHAR_WIDTH & CHAR_MASK])
-                  .Append(idx[i >> CHAR_WIDTH & CHAR_MASK])
-                  .Append(idx[i & CHAR_MASK]);
-
-            counter += CHUNK_LENGTH;
+            builder.EnsureCapacity(builder.Length + base64CharsCount);
+            return builder.Append(charBuf.Array, 0, base64CharsCount);
         }
     }
 
-    private static void AppendFinalBlock(StringBuilder sb, ReadOnlySpan<byte> data, int paddingLength, int finalPartLength)
-    {
-        int dataHolder = 0;
+//    private static void AppendChunksWithLineBreaks(StringBuilder sb, ReadOnlySpan<byte> data, int finalPartLength)
+//    {
+//        if (data.Length < CHUNK_LENGTH)
+//        {
+//            return;
+//        }
 
-        for (int j = 0; j < finalPartLength; j++)
-        {
-            dataHolder <<= 8;
-            dataHolder |= data[data.Length - (finalPartLength - j)];
-        }
+//        int counter = 0;
+//        ReadOnlySpan<char> idx = IDX.AsSpan();
 
-        dataHolder <<= paddingLength << 1;
+//Repeat:
 
-        int remainingDataLength = 4 - paddingLength;
+//        for (int k = 0; k < LINE_LENGTH / 4; k++)
+//        {
+//            if (counter >= data.Length - finalPartLength)
+//            {
+//                return;
+//            }
 
-        for (int j = 1; j <= remainingDataLength; j++)
-        {
-            int shift = (remainingDataLength - j) * CHAR_WIDTH;
-            sb.Append(IDX[dataHolder >> shift & CHAR_MASK]);
-        }
+//            int i = data[counter] << 16;
+//            i |= data[counter + 1] << 8;
+//            i |= data[counter + 2];
 
-        for (int j = 0; j < paddingLength; j++)
-        {
-            sb.Append('=');
-        }
-    }
+//            _ = sb.Append(idx[i >> 3 * CHAR_WIDTH & CHAR_MASK])
+//                  .Append(idx[i >> 2 * CHAR_WIDTH & CHAR_MASK])
+//                  .Append(idx[i >> CHAR_WIDTH & CHAR_MASK])
+//                  .Append(idx[i & CHAR_MASK]);
+
+//            counter += CHUNK_LENGTH;
+//        }
+
+//        if (counter < data.Length)
+//        {
+//            _ = sb.Append(LINE_BREAK);
+//        }
+
+//        goto Repeat;
+//    }
+
+//    private static void AppendChunks(StringBuilder sb, ReadOnlySpan<byte> data, int finalPartLength)
+//    {
+//        if (data.Length < CHUNK_LENGTH)
+//        {
+//            return;
+//        }
+
+//        int counter = 0;
+//        ReadOnlySpan<char> idx = IDX.AsSpan();
+
+//        while (counter < data.Length - finalPartLength)
+//        {
+//            int i = data[counter] << 16;
+//            i |= data[counter + 1] << 8;
+//            i |= data[counter + 2];
+
+//            _ = sb.Append(idx[i >> 3 * CHAR_WIDTH & CHAR_MASK])
+//                  .Append(idx[i >> 2 * CHAR_WIDTH & CHAR_MASK])
+//                  .Append(idx[i >> CHAR_WIDTH & CHAR_MASK])
+//                  .Append(idx[i & CHAR_MASK]);
+
+//            counter += CHUNK_LENGTH;
+//        }
+//    }
+
+//    private static void AppendFinalBlock(StringBuilder sb, ReadOnlySpan<byte> data, int paddingLength, int finalPartLength)
+//    {
+//        int dataHolder = 0;
+
+//        for (int j = 0; j < finalPartLength; j++)
+//        {
+//            dataHolder <<= 8;
+//            dataHolder |= data[data.Length - (finalPartLength - j)];
+//        }
+
+//        dataHolder <<= paddingLength << 1;
+
+//        int remainingDataLength = 4 - paddingLength;
+
+//        for (int j = 1; j <= remainingDataLength; j++)
+//        {
+//            int shift = (remainingDataLength - j) * CHAR_WIDTH;
+//            sb.Append(IDX[dataHolder >> shift & CHAR_MASK]);
+//        }
+
+//        for (int j = 0; j < paddingLength; j++)
+//        {
+//            sb.Append('=');
+//        }
+//    }
 }
