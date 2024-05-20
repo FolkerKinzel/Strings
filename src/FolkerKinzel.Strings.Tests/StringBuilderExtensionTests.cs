@@ -165,10 +165,8 @@ public class StringBuilderExtensionTests
     }
 
     [TestMethod]
-    public void ReplaceWhiteSpaceWithTest9()
-    {
-        Assert.AreEqual(0, new StringBuilder().ReplaceWhiteSpaceWith("blub").Length);
-    }
+    public void ReplaceWhiteSpaceWithTest9() 
+        => Assert.AreEqual(0, new StringBuilder().ReplaceWhiteSpaceWith("blub").Length);
 
     [TestMethod]
     public void ReplaceWhiteSpaceWithTest10()
