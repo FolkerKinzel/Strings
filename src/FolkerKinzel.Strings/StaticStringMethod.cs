@@ -103,7 +103,17 @@ public static class StaticStringMethod
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2, ReadOnlySpan<char> str3)
     {
+        if (str0.Length == 0)
+        {
+            return Concat(str1, str2, str3);
+        }
+
         int length = str0.Length + str1.Length + str2.Length + str3.Length;
+
+        if (length == str0.Length)
+        {
+            return str0.ToString();
+        }
 
         if (length > Const.StackallocCharThreshold)
         {
@@ -138,7 +148,40 @@ public static class StaticStringMethod
     /// />, <paramref name="str1" /> and <paramref name="str2" />.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
-        => Concat(str0, str1, str2, []);
+    {
+        if (str0.Length == 0)
+        {
+            return Concat(str1, str2);
+        }
+
+        int length = str0.Length + str1.Length + str2.Length;
+
+        if (length == str0.Length)
+        {
+            return str0.ToString();
+        }
+
+        if (length > Const.StackallocCharThreshold)
+        {
+            using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
+            return DoConcat(shared.Array.AsSpan(0, length), str0, str1, str2);
+        }
+        else
+        {
+            return DoConcat(stackalloc char[length], str0, str1, str2);
+        }
+
+        static string DoConcat(Span<char> span, ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
+        {
+            str0.CopyTo(span);
+            Span<char> spanPart = span.Slice(str0.Length);
+            _ = str1.TryCopyTo(spanPart);
+            spanPart = spanPart.Slice(str1.Length);
+            _ = str2.TryCopyTo(spanPart);
+
+            return span.ToString();
+        }
+    }
 
     /// <summary>Concatenates the string representations of two specified read-only character
     /// spans.</summary>
@@ -148,7 +191,44 @@ public static class StaticStringMethod
     /// /> and <paramref name="str1" />.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
-        => Concat(str0, str1, [], []);
+    {
+        int length = str0.Length + str1.Length;
+
+        if (length > Const.StackallocCharThreshold)
+        {
+            if (length == str0.Length)
+            {
+                return str0.ToString();
+            }
+
+            if (length == str1.Length)
+            {
+                return str1.ToString();
+            }
+
+            using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
+            return DoConcat(shared.Array.AsSpan(0, length), str0, str1);
+        }
+        else
+        {
+            return length == 0
+                ? string.Empty
+                : length == str0.Length
+                    ? str0.ToString()
+                    : length == str1.Length
+                        ? str1.ToString()
+                        : DoConcat(stackalloc char[length], str0, str1);
+        }
+
+        static string DoConcat(Span<char> span, ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
+        {
+            str0.CopyTo(span);
+            Span<char> spanPart = span.Slice(str0.Length);
+            _ = str1.TryCopyTo(spanPart);
+
+            return span.ToString();
+        }
+    }
 
 #endif
 }
