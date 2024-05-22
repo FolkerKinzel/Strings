@@ -367,42 +367,19 @@ public static class Base64
         Debug.Assert(!base64.IsWhiteSpace());
 
 #if NET461 || NETSTANDARD2_0
-        return Convert.FromBase64String(base64.ToString());
-#else
-        int outputSize = ComputeMaxOutputSize(base64);
-        byte[] output = new byte[outputSize];
+        using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(base64.Length);
+        _ = base64.TryCopyTo(shared.Array);
 
-        return Convert.TryFromBase64Chars(base64, output, out outputSize)
-            ? output.Length == outputSize ? output : output[0..outputSize]
+        return Convert.FromBase64CharArray(shared.Array, 0, base64.Length);
+#else
+        using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>((base64.Length >> 2) * 3);
+        Span<byte> byteSpan = shared.Array.AsSpan();
+
+        return Convert.TryFromBase64Chars(base64, byteSpan, out int outputSize)
+            ? byteSpan.Slice(0, outputSize).ToArray()
             : throw new FormatException();
 #endif
     }
-
-#if !(NET461 || NETSTANDARD2_0)
-    private static int ComputeMaxOutputSize(ReadOnlySpan<char> base64)
-    {
-        int outLength = (base64.Length >> 2) * 3;
-
-        try
-        {
-            if (base64[base64.Length - 1] == '=')
-            {
-                --outLength;
-            }
-
-            if (base64[base64.Length - 2] == '=')
-            {
-                --outLength;
-            }
-        }
-        catch
-        {
-            throw new FormatException();
-        }
-
-        return outLength;
-    }
-#endif
 
     internal static StringBuilder AppendEncodedTo(StringBuilder builder,
                                                   ReadOnlySpan<byte> bytes,
