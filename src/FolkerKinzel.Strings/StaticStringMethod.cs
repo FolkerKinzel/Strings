@@ -59,12 +59,41 @@ public static class StaticStringMethod
         _ArgumentNullException.ThrowIfNull(values, nameof(values));
 
 #if NET5_0_OR_GREATER
-        if(values is List<ReadOnlyMemory<char>> list)
+        if (values is List<ReadOnlyMemory<char>> list)
         {
             return Concat(CollectionsMarshal.AsSpan(list));
         }
 #endif
 
+        int count = 0;
+        int length = 0;
+
+        foreach (ReadOnlyMemory<char> mem in values)
+        {
+            count++;
+            length += mem.Length;
+        }
+
+        if (length == 0)
+        {
+            return string.Empty;
+        }
+
+        if(count == 1)
+        {
+            return values.First().ToString();
+        }
+
+        return Create(length, values,
+            static (buf, vals) =>
+            {
+                foreach(ReadOnlyMemory<char> mem in vals)
+                {
+                    ReadOnlySpan<char> span = mem.Span;
+                    _ = span.TryCopyTo(buf);
+                    buf = buf.Slice(span.Length);
+                }
+            });
     }
 
     public static string Concat(ReadOnlyMemory<char>[] values)
@@ -76,7 +105,34 @@ public static class StaticStringMethod
 
     public static string Concat(ReadOnlySpan<ReadOnlyMemory<char>> values)
     {
+        if (values.Length == 1)
+        {
+            return values[0].ToString();
+        }
 
+        int length = 0;
+
+        for (int i = 0; i < values.Length; i++)
+        {
+            length += values[i].Length;
+        }
+
+        if (length == 0)
+        {
+            return string.Empty;
+        }
+
+        using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(length);
+        Span<char> bufSpan = buf.Array.AsSpan();
+
+        for (int i = 0; i < values.Length; i++)
+        {
+            ReadOnlySpan<char> span = values[i].Span;
+            span.TryCopyTo(bufSpan);
+            bufSpan = bufSpan.Slice(span.Length);
+        }
+
+        return buf.Array.AsSpan(0, length).ToString();
     }
 
 

@@ -30,12 +30,14 @@ public static partial class StringBuilderExtension
         }
 
 #if NET5_0_OR_GREATER
+
         if (bytes is List<byte> list)
         {
-            return builder.AppendBase64(CollectionsMarshal.AsSpan(list));
+            return Base64.AppendEncodedTo(builder, CollectionsMarshal.AsSpan(list), options);
         }
+
 #endif
-        return Base64.AppendEncodedTo(builder, bytes.ToArray(), options);
+        return Base64.AppendEncodedTo(builder, bytes.ToArray().AsSpan(), options);
     }
 
     /// <summary>Appends the content of a <see cref="byte" /> array as Base64-encoded character
