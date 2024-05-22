@@ -1624,4 +1624,6 @@ public class StringBuilderExtensionTests
 
         Assert.AreEqual(Uri.EscapeDataString(s), sb.ToString());
     }
+
+    
 }

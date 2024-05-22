@@ -3,4 +3,7 @@
 using BenchmarkDotNet.Running;
 using Experiments;
 
-_ = BenchmarkRunner.Run<TrimBench>();
+//_ = BenchmarkRunner.Run<TrimBench>();
+_ = BenchmarkRunner.Run<ConcatBench>();
+
+//new ConcatBench().ConcatSpanBench();

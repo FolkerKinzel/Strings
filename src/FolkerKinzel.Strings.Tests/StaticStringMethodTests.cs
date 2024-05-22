@@ -6,6 +6,9 @@ namespace FolkerKinzel.Strings.Tests;
 [TestClass()]
 public class StaticStringMethodTests
 {
+    
+
+
     [TestMethod()]
     [ExpectedException(typeof(ArgumentNullException))]
     public void CreateTest1() => _ = StaticStringMethod.Create(0, "", null!);
@@ -103,4 +106,13 @@ public class StaticStringMethodTests
     [DataRow("This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.", "This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.")]
     public void ConcatTest3(string one, string two) 
         => Assert.AreEqual(one + two, StaticStringMethod.Concat(one.AsSpan(), two.AsSpan()));
+
+    [TestMethod]
+    public void ConcatTest4() => Assert.AreEqual("", StaticStringMethod.Concat(ReadOnlySpan<ReadOnlyMemory<char>>.Empty));
+
+    [TestMethod]
+    public void ConcatTest5() => Assert.AreEqual("123", StaticStringMethod.Concat(["123".AsMemory()]));
+
+    [TestMethod]
+    public void ConcatTest6() => Assert.AreEqual("123456", StaticStringMethod.Concat(["123".AsMemory(), "456".AsMemory()]));
 }

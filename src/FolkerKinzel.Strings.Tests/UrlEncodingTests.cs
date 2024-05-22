@@ -52,6 +52,22 @@ public class UrlEncodingTests
         Assert.AreEqual(0, new StringBuilder().AppendUrlEncoded(input!).Length);
     }
 
+    [DataTestMethod]
+    [DataRow("ABC", "ABC")]
+    [DataRow("ä", "%C3%A4")]
+    public void AppendUrlEncodedTest6(string input, string expected)
+    { 
+        Assert.AreEqual(expected, new StringBuilder().AppendUrlEncoded(new List<byte>(Encoding.UTF8.GetBytes(input))).ToString());
+    }
+
+    [DataTestMethod]
+    [DataRow("ABC", "ABC")]
+    [DataRow("ä", "%C3%A4")]
+    public void AppendUrlEncodedTest7(string input, string expected)
+    {
+        Assert.AreEqual(expected, new StringBuilder().AppendUrlEncoded(Encoding.UTF8.GetBytes(input).AsSpan()).ToString());
+    }
+
     [TestMethod]
     public void TryDecodeTest1()
     {

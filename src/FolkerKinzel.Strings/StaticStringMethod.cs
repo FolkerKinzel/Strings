@@ -54,55 +54,15 @@ public static class StaticStringMethod
         => string.Create(length, state, action);
 #endif
 
-    public static string Concat(IEnumerable<ReadOnlyMemory<char>> values)
-    {
-        _ArgumentNullException.ThrowIfNull(values, nameof(values));
 
-#if NET5_0_OR_GREATER
-        if (values is List<ReadOnlyMemory<char>> list)
-        {
-            return Concat(CollectionsMarshal.AsSpan(list));
-        }
-#endif
-
-        int count = 0;
-        int length = 0;
-
-        foreach (ReadOnlyMemory<char> mem in values)
-        {
-            count++;
-            length += mem.Length;
-        }
-
-        if (length == 0)
-        {
-            return string.Empty;
-        }
-
-        if(count == 1)
-        {
-            return values.First().ToString();
-        }
-
-        return Create(length, values,
-            static (buf, vals) =>
-            {
-                foreach(ReadOnlyMemory<char> mem in vals)
-                {
-                    ReadOnlySpan<char> span = mem.Span;
-                    _ = span.TryCopyTo(buf);
-                    buf = buf.Slice(span.Length);
-                }
-            });
-    }
-
-    public static string Concat(ReadOnlyMemory<char>[] values)
-    {
-        _ArgumentNullException.ThrowIfNull(values, nameof(values));
-        return Concat(values.AsSpan());
-    }
-
-
+    /// <summary>
+    /// Concatenates the items of a read-only span of read-only character
+    /// memory regions to a <see cref="string"/>.
+    /// </summary>
+    /// <param name="values">The read-only character
+    /// memory regions to concatenate.</param>
+    /// <returns>The characters in <paramref name="values"/> concatenated to 
+    /// a <see cref="string"/>.</returns>
     public static string Concat(ReadOnlySpan<ReadOnlyMemory<char>> values)
     {
         if (values.Length == 1)
@@ -134,8 +94,6 @@ public static class StaticStringMethod
 
         return buf.Array.AsSpan(0, length).ToString();
     }
-
-
 
 #if NETCOREAPP3_1_OR_GREATER
 
