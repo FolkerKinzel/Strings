@@ -6,9 +6,6 @@ namespace FolkerKinzel.Strings.Tests;
 [TestClass()]
 public class StaticStringMethodTests
 {
-    
-
-
     [TestMethod()]
     [ExpectedException(typeof(ArgumentNullException))]
     public void CreateTest1() => _ = StaticStringMethod.Create(0, "", null!);
@@ -115,4 +112,21 @@ public class StaticStringMethodTests
 
     [TestMethod]
     public void ConcatTest6() => Assert.AreEqual("123456", StaticStringMethod.Concat(["123".AsMemory(), "456".AsMemory()]));
+
+    [TestMethod]
+    public void ConcatTest7()
+    {
+        const string chunk = "1234567890";
+
+        var memList = new List<ReadOnlyMemory<char>>();
+        var stringList = new List<string>();
+
+        for (int i = 0; i < 100; i++)
+        {
+            memList.Add(chunk.AsMemory());
+            stringList.Add(chunk);
+        }
+
+        Assert.AreEqual(string.Concat(stringList), StaticStringMethod.Concat(memList.ToArray().AsSpan()));
+    }
 }

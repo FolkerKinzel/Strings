@@ -82,17 +82,32 @@ public static class StaticStringMethod
             return string.Empty;
         }
 
-        using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(length);
-        Span<char> bufSpan = buf.Array.AsSpan();
-
-        for (int i = 0; i < values.Length; i++)
+        if (length > Const.StackallocCharThreshold)
         {
-            ReadOnlySpan<char> span = values[i].Span;
-            span.TryCopyTo(bufSpan);
-            bufSpan = bufSpan.Slice(span.Length);
+            using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(length);
+            Span<char> bufSpan = buf.Array.AsSpan();
+            FillBuf(values, bufSpan);
+
+            return buf.Array.AsSpan(0, length).ToString();
+        }
+        else
+        {
+            Span<char> bufSpan = stackalloc char[length];
+            FillBuf(values, bufSpan);
+            return bufSpan.ToString();
         }
 
-        return buf.Array.AsSpan(0, length).ToString();
+        /////////////////////////////////////////////////////////
+
+        static void FillBuf(ReadOnlySpan<ReadOnlyMemory<char>> values, Span<char> bufSpan)
+        {
+            for (int i = 0; i < values.Length; i++)
+            {
+                ReadOnlySpan<char> span = values[i].Span;
+                span.TryCopyTo(bufSpan);
+                bufSpan = bufSpan.Slice(span.Length);
+            }
+        }
     }
 
 #if NETCOREAPP3_1_OR_GREATER

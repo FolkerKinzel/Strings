@@ -34,50 +34,50 @@ public class ConcatBench
     [Benchmark]
     public string ConcatSpanBench() => StaticStringMethod.Concat(CollectionsMarshal.AsSpan(_list));
 
-    [Benchmark]
-    public string ConcatListBench() => Concat(_list);
+    //[Benchmark]
+    //public string ConcatListBench() => Concat(_list);
 
-    private static string Concat(List<ReadOnlyMemory<char>> values)
-    {
-        _ArgumentNullException.ThrowIfNull(values, nameof(values));
+    //private static string Concat(List<ReadOnlyMemory<char>> values)
+    //{
+    //    _ArgumentNullException.ThrowIfNull(values, nameof(values));
 
-        //#if NET5_0_OR_GREATER
-        //if (values is List<ReadOnlyMemory<char>> list)
-        //{
-        //return Concat(CollectionsMarshal.AsSpan(list));
-        //}
-        //#endif
+    //    //#if NET5_0_OR_GREATER
+    //    //if (values is List<ReadOnlyMemory<char>> list)
+    //    //{
+    //    //return Concat(CollectionsMarshal.AsSpan(list));
+    //    //}
+    //    //#endif
 
-        if (values.Count == 1)
-        {
-            return values[0].ToString();
-        }
+    //    if (values.Count == 1)
+    //    {
+    //        return values[0].ToString();
+    //    }
 
-        Span<ReadOnlyMemory<char>> span = CollectionsMarshal.AsSpan(values);
+    //    Span<ReadOnlyMemory<char>> span = CollectionsMarshal.AsSpan(values);
   
-        int length = 0;
+    //    int length = 0;
 
-        for (int i = 0; i < span.Length; i++)
-        {
-            length += span[i].Length;
-        }
+    //    for (int i = 0; i < span.Length; i++)
+    //    {
+    //        length += span[i].Length;
+    //    }
 
-        if (length == 0)
-        {
-            return string.Empty;
-        }
+    //    if (length == 0)
+    //    {
+    //        return string.Empty;
+    //    }
 
-        return string.Create(length, values,
-            static (buf, vals) =>
-            {
-                Span<ReadOnlyMemory<char>> source = CollectionsMarshal.AsSpan(vals);
+    //    return string.Create(length, values,
+    //        static (buf, vals) =>
+    //        {
+    //            Span<ReadOnlyMemory<char>> source = CollectionsMarshal.AsSpan(vals);
 
-                for(int i = 0; i < source.Length; i++)
-                {
-                    ReadOnlySpan<char> span = source[i].Span;
-                    _ = span.TryCopyTo(buf);
-                    buf = buf.Slice(span.Length);
-                }
-            });
-    }
+    //            for(int i = 0; i < source.Length; i++)
+    //            {
+    //                ReadOnlySpan<char> span = source[i].Span;
+    //                _ = span.TryCopyTo(buf);
+    //                buf = buf.Slice(span.Length);
+    //            }
+    //        });
+    //}
 }
