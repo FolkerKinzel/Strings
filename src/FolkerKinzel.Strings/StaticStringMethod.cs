@@ -1,4 +1,5 @@
 using System.Buffers;
+using System.Runtime.InteropServices;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
@@ -52,6 +53,33 @@ public static class StaticStringMethod
     public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
         => string.Create(length, state, action);
 #endif
+
+    public static string Concat(IEnumerable<ReadOnlyMemory<char>> values)
+    {
+        _ArgumentNullException.ThrowIfNull(values, nameof(values));
+
+#if NET5_0_OR_GREATER
+        if(values is List<ReadOnlyMemory<char>> list)
+        {
+            return Concat(CollectionsMarshal.AsSpan(list));
+        }
+#endif
+
+    }
+
+    public static string Concat(ReadOnlyMemory<char>[] values)
+    {
+        _ArgumentNullException.ThrowIfNull(values, nameof(values));
+        return Concat(values.AsSpan());
+    }
+
+
+    public static string Concat(ReadOnlySpan<ReadOnlyMemory<char>> values)
+    {
+
+    }
+
+
 
 #if NETCOREAPP3_1_OR_GREATER
 

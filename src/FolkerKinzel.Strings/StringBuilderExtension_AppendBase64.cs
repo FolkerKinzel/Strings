@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
@@ -22,8 +23,20 @@ public static partial class StringBuilderExtension
     public static StringBuilder AppendBase64(this StringBuilder builder,
                                              IEnumerable<byte>? bytes,
                                              Base64FormattingOptions options = Base64FormattingOptions.None)
-        => bytes is null ? builder
-                         : Base64.AppendEncodedTo(builder, CollectionConverter.AsReadOnlySpan(bytes), options);
+    {
+        if (bytes is null)
+        {
+            return builder;
+        }
+
+#if NET5_0_OR_GREATER
+        if (bytes is List<byte> list)
+        {
+            return builder.AppendBase64(CollectionsMarshal.AsSpan(list));
+        }
+#endif
+        return Base64.AppendEncodedTo(builder, bytes.ToArray(), options);
+    }
 
     /// <summary>Appends the content of a <see cref="byte" /> array as Base64-encoded character
     /// sequence to the end of a <see cref="StringBuilder" />.</summary>

@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
@@ -39,9 +40,20 @@ public static partial class StringBuilderExtension
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, IEnumerable<byte>? value)
-        => value is null
-               ? builder
-               : builder.AppendUrlEncoded(CollectionConverter.AsReadOnlySpan(value));
+    {
+        if (value is null)
+        {
+            return builder;
+        }
+
+#if NET5_0_OR_GREATER
+        if (value is List<byte> list)
+        {
+            return builder.AppendUrlEncoded(CollectionsMarshal.AsSpan(list));
+        }
+#endif
+        return builder.AppendUrlEncoded(value.ToArray());
+    }
 
     /// <summary>Appends the content of a <see cref="byte" /> array as URL-encoded character
     /// sequence to the end of a <see cref="StringBuilder" />.</summary>
