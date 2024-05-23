@@ -21,7 +21,7 @@ internal static class ReadOnlySpanExtensionIntl
             {
                 case '\r': // CR: Carriage Return
                     rFound = true;
-                    _ = replacement.TryCopyTo(destination.Slice(outputLength));
+                    replacement.CopyTo(destination.Slice(outputLength));
                     outputLength += replacement.Length;
                     break;
                 case '\n': // LF: Line Feed
@@ -30,7 +30,7 @@ internal static class ReadOnlySpanExtensionIntl
                         rFound = false;
                         continue;
                     }
-                    _ = replacement.TryCopyTo(destination.Slice(outputLength));
+                    replacement.CopyTo(destination.Slice(outputLength));
                     outputLength += replacement.Length;
                     break;
                 //case '\u000B': // VT: Vertical Tab
@@ -39,7 +39,7 @@ internal static class ReadOnlySpanExtensionIntl
                 case '\u2028': // LS: Line Separator
                 case '\u2029': // PS: Paragraph Separator
                     rFound = false;
-                    _ = replacement.TryCopyTo(destination.Slice(outputLength));
+                    replacement.CopyTo(destination.Slice(outputLength));
                     outputLength += replacement.Length;
                     break;
                 default:
@@ -66,7 +66,7 @@ internal static class ReadOnlySpanExtensionIntl
             {
                 case '\r': // CR: Carriage Return
                     rFound = true;
-                    _ = replacement.TryCopyTo(destination.Slice(outputLength));
+                    replacement.CopyTo(destination.Slice(outputLength));
                     outputLength += replacement.Length;
                     break;
                 case '\n': // LF: Line Feed
@@ -75,7 +75,7 @@ internal static class ReadOnlySpanExtensionIntl
                         rFound = false;
                         continue;
                     }
-                    _ = replacement.TryCopyTo(destination.Slice(outputLength));
+                    replacement.CopyTo(destination.Slice(outputLength));
                     outputLength += replacement.Length;
                     break;
                 //case '\u000B': // VT: Vertical Tab
@@ -84,7 +84,7 @@ internal static class ReadOnlySpanExtensionIntl
                 case '\u2028': // LS: Line Separator
                 case '\u2029': // PS: Paragraph Separator
                     rFound = false;
-                    _ = replacement.TryCopyTo(destination.Slice(outputLength));
+                    replacement.CopyTo(destination.Slice(outputLength));
                     outputLength += replacement.Length;
                     break;
                 default:
@@ -145,7 +145,7 @@ internal static class ReadOnlySpanExtensionIntl
                 else if (!wsFlag)
                 {
                     wsFlag = true;
-                    _ = replacement.TryCopyTo(destination.Slice(destLength));
+                    replacement.CopyTo(destination.Slice(destLength));
                     destLength += replacement.Length;
                 }
 
@@ -158,37 +158,4 @@ internal static class ReadOnlySpanExtensionIntl
 
         return destLength;
     }
-
-    //    internal static void ReplaceWhiteSpaceWith(this ReadOnlySpan<char> source,
-    //                                             ReadOnlySpan<char> replacement,
-    //                                             Span<char> destination,
-    //                                             bool skipNewLines,
-    //                                             ref bool wsFlag,
-    //                                             ref int destLength)
-    //    {
-    //        for (int i = 0; i < source.Length; i++)
-    //        {
-    //            char c = source[i];
-
-    //            if (char.IsWhiteSpace(c))
-    //            {
-    //                if (skipNewLines && c.IsNewLine())
-    //                {
-    //                    wsFlag = false;
-    //                    destination[destLength++] = c;
-    //                }
-    //                else if (!wsFlag)
-    //                {
-    //                    wsFlag = true;
-    //                    _ = replacement.TryCopyTo(destination.Slice(destLength));
-    //                    destLength += replacement.Length;
-    //                }
-
-    //                continue;
-    //            }
-
-    //            wsFlag = false;
-    //            destination[destLength++] = c;
-    //        }
-    //    }
 }

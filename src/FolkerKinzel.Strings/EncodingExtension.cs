@@ -21,7 +21,7 @@ public static class EncodingExtension
         int length = chars.Length;
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
         var arr = shared.Array;
-        _ = chars.TryCopyTo(arr);
+        chars.CopyTo(arr);
         return encoding.GetBytes(arr, 0, length);
 #else
         byte[] bytes = new byte[encoding.GetByteCount(chars)];
@@ -48,7 +48,7 @@ public static class EncodingExtension
         int length = bytes.Length;
         using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
         var arr = shared.Array;
-        _ = bytes.TryCopyTo(arr);
+        bytes.CopyTo(arr);
         return encoding.GetString(arr, 0, length);
     }
 

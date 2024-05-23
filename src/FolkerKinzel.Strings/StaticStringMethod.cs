@@ -103,7 +103,7 @@ public static class StaticStringMethod
             for (int i = 0; i < values.Length; i++)
             {
                 ReadOnlySpan<char> span = values[i].Span;
-                span.TryCopyTo(bufSpan);
+                span.CopyTo(bufSpan);
                 bufSpan = bufSpan.Slice(span.Length);
             }
         }
@@ -185,11 +185,11 @@ public static class StaticStringMethod
         {
             str0.CopyTo(span);
             Span<char> spanPart = span.Slice(str0.Length);
-            _ = str1.TryCopyTo(spanPart);
+            str1.CopyTo(spanPart);
             spanPart = spanPart.Slice(str1.Length);
-            _ = str2.TryCopyTo(spanPart);
+            str2.CopyTo(spanPart);
             spanPart = spanPart.Slice(str2.Length);
-            _ = str3.TryCopyTo(spanPart);
+            str3.CopyTo(spanPart);
 
             return span.ToString();
         }
@@ -231,9 +231,9 @@ public static class StaticStringMethod
         {
             str0.CopyTo(span);
             Span<char> spanPart = span.Slice(str0.Length);
-            _ = str1.TryCopyTo(spanPart);
+            str1.CopyTo(spanPart);
             spanPart = spanPart.Slice(str1.Length);
-            _ = str2.TryCopyTo(spanPart);
+            str2.CopyTo(spanPart);
 
             return span.ToString();
         }
@@ -280,7 +280,7 @@ public static class StaticStringMethod
         {
             str0.CopyTo(span);
             Span<char> spanPart = span.Slice(str0.Length);
-            _ = str1.TryCopyTo(spanPart);
+            str1.CopyTo(spanPart);
 
             return span.ToString();
         }

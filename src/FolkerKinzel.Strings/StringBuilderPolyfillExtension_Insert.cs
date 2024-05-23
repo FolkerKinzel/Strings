@@ -23,7 +23,7 @@ public static partial class StringBuilderPolyfillExtension
         this StringBuilder builder, int index, ReadOnlySpan<char> value)
     {
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(value.Length);
-        _ = value.TryCopyTo(shared.Array);
+        value.CopyTo(shared.Array);
         return builder.Insert(index, shared.Array, 0, value.Length);
     }
 

@@ -143,7 +143,7 @@ public static class Base64
        int length = bytes.Length;
        using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
        var arr = shared.Array;
-       _ = bytes.TryCopyTo(arr);
+       bytes.CopyTo(arr);
        return Convert.ToBase64String(arr, 0, length, options);
     }
 #else
@@ -216,7 +216,7 @@ public static class Base64
                 int length = base64.Length;
                 arr = ArrayPool<char>.Shared.Rent(length + paddingPlaceholder);
                 contentSpan = arr.AsSpan(0, length);
-                _ = base64.TryCopyTo(contentSpan);
+                base64.CopyTo(contentSpan);
 
                 int urlEncodedPaddingCount = ReplaceUrlEncodedPadding(ref contentSpan);
                 ReplaceBase64UrlChars(contentSpan.Slice(replacementStartIndex,
@@ -235,7 +235,7 @@ public static class Base64
                     int length = base64.Length + missingPaddingCount;
                     arr = ArrayPool<char>.Shared.Rent(length);
                     contentSpan = arr.AsSpan(0, length);
-                    _ = base64.TryCopyTo(contentSpan);
+                    base64.CopyTo(contentSpan);
                 }
                 else
                 {
@@ -368,7 +368,7 @@ public static class Base64
 
 #if NET461 || NETSTANDARD2_0
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(base64.Length);
-        _ = base64.TryCopyTo(shared.Array);
+        base64.CopyTo(shared.Array);
 
         return Convert.FromBase64CharArray(shared.Array, 0, base64.Length);
 #else
