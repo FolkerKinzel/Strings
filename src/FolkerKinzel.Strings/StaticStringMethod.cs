@@ -85,9 +85,9 @@ public static class StaticStringMethod
         if (length > Const.StackallocCharThreshold)
         {
             using ArrayPoolHelper.SharedArray<char> buf = ArrayPoolHelper.Rent<char>(length);
-            Span<char> bufSpan = buf.Array.AsSpan(0, length);
+            Span<char> bufSpan = buf.Array.AsSpan();
             FillBuf(values, bufSpan);
-            return bufSpan.ToString();
+            return new string(buf.Array, 0, length);
         }
         else
         {
