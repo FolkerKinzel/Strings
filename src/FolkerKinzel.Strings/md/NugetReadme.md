@@ -13,7 +13,7 @@ Very high code coverage of the unit tests (100% line and branch) and the consist
 - Useful helpers to work with character sets and encodings.
 
 ## Usage:
-- Simply install the nuget package, publish the namespace `FolkerKinzel.Strings` and enjoy a lot more functionality for character-based .NET types.
+- Simply install the nuget package, publish the `FolkerKinzel.Strings` namespace and enjoy a lot more functionality for character-based .NET types.
 
 &nbsp;
 

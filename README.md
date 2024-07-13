@@ -16,7 +16,7 @@ principles of this library.
 - Useful helpers to work with character sets and encodings.
 
 ## Usage:
-- Simply install the [nuget package](https://www.nuget.org/packages/FolkerKinzel.Strings), publish the namespace `FolkerKinzel.Strings` 
+- Simply install the [nuget package](https://www.nuget.org/packages/FolkerKinzel.Strings), publish the `FolkerKinzel.Strings` namespace
  and enjoy a lot more functionality for character-based .NET types.
 
 &nbsp;
