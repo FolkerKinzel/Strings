@@ -15,6 +15,10 @@ principles of this library.
 - Extension methods that return identical `Int32` hashcodes for identical `Char` sequences each time the program runs. These hashcodes are a slim alternative to larger hash algorithms, which is suitable for hashing short strings that are not used in a security-critical context.
 - Useful helpers to work with character sets and encodings.
 
+## Usage:
+- Simply install the [nuget package](https://www.nuget.org/packages/FolkerKinzel.Strings), publish the namespace `FolkerKinzel.Strings` 
+ and enjoy a lot more functionality for character-based .NET types.
+
 &nbsp;
 
 [Version History](https://github.com/FolkerKinzel/Strings/releases)
