@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
 
 public static partial class ReadOnlySpanPolyfillExtension
 {
@@ -13,9 +12,13 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// /> and <paramref name="other" /> are compared.</param>
     /// <returns> <c>true</c> if identical, <c>false</c> otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static bool Equals(
         this ReadOnlySpan<char> span, string? other, StringComparison comparisonType) 
+#else
+    public static bool Equals(
+        ReadOnlySpan<char> span, string? other, StringComparison comparisonType)
+#endif
         => span.Equals(other.AsSpan(), comparisonType);
 }
 
-#endif

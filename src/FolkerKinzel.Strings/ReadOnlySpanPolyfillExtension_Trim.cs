@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
 
 public static partial class ReadOnlySpanPolyfillExtension
 {
@@ -16,7 +15,11 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// If <paramref name="trimChars"/> is <c>null</c> or empty, whitespace characters are removed instead.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static ReadOnlySpan<char> Trim(this ReadOnlySpan<char> span, string? trimChars)
+#else
+    public static ReadOnlySpan<char> Trim(ReadOnlySpan<char> span, string? trimChars)
+#endif
         => span.Trim(trimChars.AsSpan());
 
     /// <summary>
@@ -31,7 +34,11 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// If <paramref name="trimChars"/> is <c>null</c> or empty, whitespace characters are removed instead.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static ReadOnlySpan<char> TrimStart(this ReadOnlySpan<char> span, string? trimChars)
+#else
+    public static ReadOnlySpan<char> TrimStart(ReadOnlySpan<char> span, string? trimChars)
+#endif
         => span.TrimStart(trimChars.AsSpan());
 
     /// <summary>
@@ -46,8 +53,11 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// If <paramref name="trimChars"/> is <c>null</c> or empty, whitespace characters are removed instead.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static ReadOnlySpan<char> TrimEnd(this ReadOnlySpan<char> span, string? trimChars)
+#else
+    public static ReadOnlySpan<char> TrimEnd(ReadOnlySpan<char> span, string? trimChars)
+#endif
         => span.TrimEnd(trimChars.AsSpan());
 }
 
-#endif

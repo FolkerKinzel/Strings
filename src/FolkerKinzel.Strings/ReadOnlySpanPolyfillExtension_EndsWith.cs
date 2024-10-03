@@ -1,7 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
-
 public static partial class ReadOnlySpanPolyfillExtension
 {
     /// <summary>Indicates whether <paramref name="span" /> ends with the specified <see cref="string"
@@ -14,7 +12,11 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <remarks>The method performs an ordinal character comparison. If <paramref name="value"
     /// /> is <c>null</c> or <see cref="string.Empty" /> the method returns <c>true</c>.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static bool EndsWith(this ReadOnlySpan<char> span, string? value)
+#else
+    public static bool EndsWith(ReadOnlySpan<char> span, string? value)
+#endif
         => span.EndsWith(value.AsSpan());
 
     /// <summary>Indicates whether a read-only character span ends with a specified <see
@@ -32,9 +34,12 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static bool EndsWith(
         this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
+#else
+    public static bool EndsWith(
+        ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
+#endif
         => span.EndsWith(value.AsSpan(), comparisonType);
 }
-
-#endif

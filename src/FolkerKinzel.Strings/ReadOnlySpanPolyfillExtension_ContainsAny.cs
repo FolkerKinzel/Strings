@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
 public static partial class ReadOnlySpanPolyfillExtension
 {
@@ -20,8 +19,15 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// </remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, SearchValues<char> values)
         => span.IndexOfAny(values) != -1;
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool ContainsAny(ReadOnlySpan<char> span, SearchValues<char> values)
+    => MemoryExtensions.ContainsAny(span, values);
+#endif
 
     /// <summary>Indicates whether a read-only span of Unicode characters contains one of
     /// the Unicode characters that are passed to the method in another span.</summary>
@@ -35,12 +41,18 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> 
     /// is used for the comparison.
     /// </remarks>
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
         // Don't address MemoryExtensions here explicitely because the library method
         // polyfills a bug in the nuget package System.Memory for .NET Framework and
         // .NET Standard 2.0
         => span.IndexOfAny(values) != -1;
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool ContainsAny(ReadOnlySpan<char> span, ReadOnlySpan<char> values)
+        => MemoryExtensions.ContainsAny(span, values);
+#endif
 
     /// <summary>Indicates whether a read-only character span contains one of the two characters
     /// that are passed to the method as arguments.</summary>
@@ -53,9 +65,15 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)</see> 
     /// is used for the comparison.
     /// </remarks>
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1)
         => span.IndexOfAny(value0, value1) != -1;
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool ContainsAny(ReadOnlySpan<char> span, char value0, char value1)
+        => MemoryExtensions.ContainsAny(span, value0, value1);
+#endif
 
     /// <summary>Indicates whether a character span contains one of the three characters
     /// that are passed to the method as arguments.</summary>
@@ -68,11 +86,16 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <remarks> <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T},
     /// T, T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T) </see>
     /// is used for the comparison.</remarks>
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1, char value2)
         => span.IndexOfAny(value0, value1, value2) != -1;
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool ContainsAny(ReadOnlySpan<char> span, char value0, char value1, char value2)
+        => MemoryExtensions.ContainsAny(span, value0, value1, value2);
+#endif
 
-#if NET461 || NETSTANDARD2_0
 
     /// <summary>Indicates whether a read-only character span contains one of the Unicode
     /// characters that are passed to the method as a string.</summary>
@@ -85,11 +108,14 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> 
     /// is used for the comparison.
     /// </remarks>
+#if NET461 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, string? values)
         => span.ContainsAny(values.AsSpan());
-
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool ContainsAny(ReadOnlySpan<char> span, string? values)
+        => span.ContainsAny(values.AsSpan());
 #endif
 }
 
-#endif

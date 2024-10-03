@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
 public static partial class ReadOnlySpanPolyfillExtension
 {
@@ -22,6 +21,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// </remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static int LastIndexOfAny(this ReadOnlySpan<char> span, SearchValues<char> values)
     {
         // Don't address MemoryExtensions here directly because the library method
@@ -31,8 +31,12 @@ public static partial class ReadOnlySpanPolyfillExtension
         _ArgumentNullException.ThrowIfNull(values, nameof(values));
         return span.LastIndexOfAny(values.Span);
     }
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int LastIndexOfAny(ReadOnlySpan<char> span, SearchValues<char> values)
+        => MemoryExtensions.LastIndexOfAny(span, values);
+#endif
 
-#if NET461 || NETSTANDARD2_0
 
     /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
     /// Unicode characters.</summary>
@@ -50,10 +54,16 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
     /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
     /// is used to avoid performance issues.</remarks>
+#if NET461 || NETSTANDARD2_0
     public static int LastIndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
         // The nuget package System.Memory has a bug: It returns 0 if the span with the characters
         // to search for is empty. The BCL returns -1 in this case. This makes it consistent:
         => values.IsEmpty ? -1 : MemoryExtensions.LastIndexOfAny(span, values);
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int LastIndexOfAny(ReadOnlySpan<char> span, ReadOnlySpan<char> values)
+        => MemoryExtensions.LastIndexOfAny<char>(span, values);
+#endif
 
     /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
     /// Unicode characters.</summary>
@@ -68,12 +78,15 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
     /// ReadOnlySpan&lt;T&gt;)</see> is used for the comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int LastIndexOfAny(this ReadOnlySpan<char> span, string? values)
         // Don't address MemoryExtensions here directly because the library method
         // polyfills a bug in the nuget package System.Memory for .NET Framework and
         // .NET Standard 2.0
         => span.LastIndexOfAny(values.AsSpan());
+#else
+    public static int LastIndexOfAny(ReadOnlySpan<char> span, string? values)
+     => MemoryExtensions.LastIndexOfAny(span, values);
 #endif
 }
 
-#endif

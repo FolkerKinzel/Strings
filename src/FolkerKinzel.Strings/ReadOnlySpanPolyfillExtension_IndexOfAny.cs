@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
 public static partial class ReadOnlySpanPolyfillExtension
 {
@@ -23,6 +22,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// </remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static int IndexOfAny(this ReadOnlySpan<char> span, SearchValues<char> values)
     {
         // Don't address MemoryExtensions here directly because the library method
@@ -32,9 +32,11 @@ public static partial class ReadOnlySpanPolyfillExtension
         _ArgumentNullException.ThrowIfNull(values, nameof(values));
         return span.IndexOfAny(values.Span);
     }
-
-
-#if NET461 || NETSTANDARD2_0
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int IndexOfAny(ReadOnlySpan<char> span, SearchValues<char> values)
+        => MemoryExtensions.IndexOfAny(span, values);
+#endif
 
     /// <summary>Searches for the zero-based index of the first occurrence of one of the
     /// specified Unicode characters.</summary>
@@ -44,11 +46,17 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <returns>The zero-based index of the first occurrence of one of the specified Unicode
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found. If <paramref name="values" /> is an empty span, the method returns <c>-1</c>.</returns>
+#if NET461 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
          // The nuget package System.Memory has a bug: It returns 0 if the span with the characters
          // to search for is empty. The BCL returns -1 in this case. This makes it consistent:
          => values.IsEmpty ? -1 : MemoryExtensions.IndexOfAny(span, values);
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int IndexOfAny(ReadOnlySpan<char> span, ReadOnlySpan<char> values)
+        => MemoryExtensions.IndexOfAny(span, values);
+#endif
 
     /// <summary>Searches for the zero-based index of the first occurrence of one of the
     /// specified Unicode characters.</summary>
@@ -58,14 +66,18 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found. If <paramref name="values" /> is <c>null</c> or empty, the method returns
     /// <c>0</c>.</returns>
+#if NET461 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this ReadOnlySpan<char> span, string? values)
         // Don't address MemoryExtensions here directly because the library method
         // polyfills a bug in the nuget package System.Memory for .NET Framework and
         // .NET Standard 2.0
         => span.IndexOfAny(values.AsSpan());
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int IndexOfAny(ReadOnlySpan<char> span, string? values)
+    => MemoryExtensions.IndexOfAny<char>(span, values);
 #endif
 
 }
 
-#endif
