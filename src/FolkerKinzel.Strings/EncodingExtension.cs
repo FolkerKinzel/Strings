@@ -31,7 +31,7 @@ public static class EncodingExtension
 #endif
     }
 
-#if NET461 || NETSTANDARD2_0
+
 
     /// <summary>Decodes all bytes in the specified read-only span into a <see cref="string"/>.</summary>
     /// <param name="encoding">The <see cref="Encoding" /> object on which the extension
@@ -41,6 +41,7 @@ public static class EncodingExtension
     /// <exception cref="NullReferenceException"> <paramref name="encoding" /> is <c>null</c>.</exception>
     /// <remarks>This method is a polyfill for the instance method of current .NET versions.
     /// Use this method in the extension method syntax only.</remarks>
+#if NET461 || NETSTANDARD2_0
     public static string GetString(this Encoding encoding, ReadOnlySpan<byte> bytes)
     {
         _NullReferenceException.ThrowIfNull(encoding, nameof(encoding));
@@ -51,6 +52,9 @@ public static class EncodingExtension
         bytes.CopyTo(arr);
         return encoding.GetString(arr, 0, length);
     }
-
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetString(Encoding encoding, ReadOnlySpan<byte> bytes)
+        => encoding.GetString(bytes);
 #endif
 }
