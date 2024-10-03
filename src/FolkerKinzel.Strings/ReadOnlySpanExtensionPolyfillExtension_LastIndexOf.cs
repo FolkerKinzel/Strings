@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
 
 public static partial class ReadOnlySpanExtensionPolyfillExtension
 {
@@ -36,6 +35,7 @@ public static partial class ReadOnlySpanExtensionPolyfillExtension
     /// 
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
+#if NET461 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOf(this ReadOnlySpan<char> span,
                                   string? value,
@@ -43,7 +43,16 @@ public static partial class ReadOnlySpanExtensionPolyfillExtension
                                   int count,
                                   StringComparison comparisonType)
         => span.LastIndexOf(value.AsSpan(), startIndex, count, comparisonType);
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int LastIndexOf(ReadOnlySpan<char> span,
+                                  string? value,
+                                  int startIndex,
+                                  int count,
+                                  StringComparison comparisonType)
+        => span.LastIndexOf(value.AsSpan(), startIndex, count, comparisonType);
+#endif
+
 }
 
-#endif
 
