@@ -171,7 +171,7 @@ public static class Base64
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] GetBytes(string? base64) => Convert.FromBase64String(base64 ?? "");
 
-#if NET461 || NETSTANDARD2_0
+//#if NET461 || NETSTANDARD2_0
     /// <summary>Converts a Base64-string into a corresponding <see cref="byte"/> array and 
     /// allows to pass options for the conversion.</summary>
     /// <param name="base64">The <see cref="string"/> to convert, or <c>null</c>.</param>
@@ -184,7 +184,7 @@ public static class Base64
     public static byte[] GetBytes(string? base64,
                                   Base64ParserOptions options)
         => GetBytes(base64.AsSpan(), options);
-#endif
+//#endif
 
     /// <summary>Converts a Base64-encoded read-only character span into a corresponding
     /// <see cref="byte"/> array and allows to pass options for the conversion.</summary>
