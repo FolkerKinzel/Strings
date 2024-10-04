@@ -107,7 +107,7 @@ public static class UrlEncoding
 
     #endregion
 
-#if NET461 || NETSTANDARD2_0
+//#if NET461 || NETSTANDARD2_0
 
     /// <summary>Tries to decode a URL-encoded <see cref="string" /> using a specified character
     /// set and allows to specify whether or not PLUS characters ('+', U+002B) should be
@@ -181,7 +181,7 @@ public static class UrlEncoding
                                         [NotNullWhen(true)] out byte[]? bytes)
         => TryDecodeToBytes(value.AsSpan(), decodePlusChars, out bytes);
 
-#endif
+//#endif
 
     /// <summary>Tries to decode a URL-encoded read-only character span using a specified
     /// character set and allows to specify whether or not PLUS characters ('+', U+002B)
