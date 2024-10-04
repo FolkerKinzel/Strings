@@ -2,8 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
-
 public static partial class StringBuilderPolyfillExtension
 {
     /// <summary>Appends a copy of a sequence of Unicode characters that comes from a <see
@@ -31,6 +29,7 @@ public static partial class StringBuilderPolyfillExtension
     /// <exception cref="ArgumentNullException"> <paramref name="value" /> is <c>null</c>
     /// and the values of <paramref name="startIndex" /> or <paramref name="count" /> are
     /// greater than zero.</exception>
+#if NET461 || NETSTANDARD2_0
     public static StringBuilder Append(
         this StringBuilder builder, StringBuilder? value, int startIndex, int count)
     {
@@ -71,6 +70,13 @@ public static partial class StringBuilderPolyfillExtension
 
         return builder;
     }
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static StringBuilder Append(
+        StringBuilder builder, StringBuilder? value, int startIndex, int count)
+        => builder.Append(value, startIndex, count);
+#endif
+
 
     /// <summary>Appends the string representation of a specified read-only character span
     /// to a <see cref="StringBuilder" />.</summary>
@@ -82,6 +88,7 @@ public static partial class StringBuilderPolyfillExtension
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
+#if NET461 || NETSTANDARD2_0
     public static StringBuilder Append(this StringBuilder builder, ReadOnlySpan<char> value)
     {
         _NullReferenceException.ThrowIfNull(builder, nameof(builder));
@@ -95,6 +102,12 @@ public static partial class StringBuilderPolyfillExtension
 
         return builder;
     }
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static StringBuilder Append(StringBuilder builder, ReadOnlySpan<char> value)
+        => builder.Append(value);
+#endif
+
 
     // This doesn't bind! StringBuilder.Append(object?) is called instead:
 
@@ -131,4 +144,3 @@ public static partial class StringBuilderPolyfillExtension
 
 }
 
-#endif

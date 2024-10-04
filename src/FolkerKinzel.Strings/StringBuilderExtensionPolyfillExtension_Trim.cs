@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-
 public static partial class StringBuilderExtensionPolyfillExtension
 {
     /// <summary>Removes all leading and trailing occurrences of a set of characters specified
@@ -51,4 +50,3 @@ public static partial class StringBuilderExtensionPolyfillExtension
 #endif
        => builder.TrimStart(trimChars.AsSpan());
 }
-
