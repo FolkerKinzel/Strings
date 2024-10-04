@@ -1,7 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
-
 public static partial class SpanPolyfillExtension
 {
     /// <summary>
@@ -20,8 +18,15 @@ public static partial class SpanPolyfillExtension
     /// </remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this Span<char> span, SearchValues<char> values)
-        => span.IndexOfAny(values) != -1;
+            => span.IndexOfAny(values) != -1;
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool ContainsAny(Span<char> span, SearchValues<char> values)
+        => MemoryExtensions.ContainsAny(span, values);
+#endif
 
     /// <summary>Indicates whether a character span contains one of the Unicode characters
     /// that are passed to the method as a read-only character span.</summary>
@@ -31,9 +36,15 @@ public static partial class SpanPolyfillExtension
     /// <returns> <c>true</c> if <paramref name="span" /> contains one of the characters
     /// passed with <paramref name="values" />. If <paramref
     /// name="values" /> is empty, <c>false</c> is returned.</returns>
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this Span<char> span, ReadOnlySpan<char> values)
         => span.IndexOfAny(values) != -1;
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool ContainsAny(Span<char> span, ReadOnlySpan<char> values)
+        => MemoryExtensions.ContainsAny(span, values);
+#endif
 
     /// <summary>Indicates whether a character span contains one of the two characters that
     /// are passed to the method as arguments.</summary>
@@ -46,9 +57,15 @@ public static partial class SpanPolyfillExtension
     /// T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, T, T)</see> is used
     /// for the comparison.
     /// </remarks>
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this Span<char> span, char value0, char value1)
         => span.IndexOfAny(value0, value1) != -1;
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool ContainsAny(Span<char> span, char value0, char value1)
+        => MemoryExtensions.ContainsAny(span, value0, value1);
+#endif
 
     /// <summary>Indicates whether a character span contains one of the three characters
     /// that are passed to the method as arguments.</summary>
@@ -62,12 +79,17 @@ public static partial class SpanPolyfillExtension
     /// T, T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, T, T, T)</see> is used
     /// for the comparison.
     /// </remarks>
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(
         this Span<char> span, char value0, char value1, char value2)
         => span.IndexOfAny(value0, value1, value2) != -1;
-
-#if NET461 || NETSTANDARD2_0
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool ContainsAny(
+        Span<char> span, char value0, char value1, char value2)
+        => MemoryExtensions.ContainsAny(span, value0, value1, value2);
+#endif
 
     /// <summary>Indicates whether a character span contains one of the Unicode characters
     /// that are passed to the method as a string.</summary>
@@ -77,10 +99,10 @@ public static partial class SpanPolyfillExtension
     /// passed with <paramref name="values" />. If <paramref
     /// name="values" /> is <c>null</c> or empty, <c>false</c> is returned.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static bool ContainsAny(this Span<char> span, string? values)
+#else
+    public static bool ContainsAny(Span<char> span, string? values)
+#endif
         => span.ContainsAny(values.AsSpan());
-
-#endif
 }
-
-#endif

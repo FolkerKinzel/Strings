@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
 public static partial class SpanPolyfillExtension
 {
@@ -22,11 +21,16 @@ public static partial class SpanPolyfillExtension
     /// </remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(this Span<char> span, SearchValues<char> values)
         => ((ReadOnlySpan<char>)span).LastIndexOfAny(values);
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int LastIndexOfAny(Span<char> span, SearchValues<char> values)
+       => MemoryExtensions.LastIndexOfAny(span, values);
+#endif
 
-#if NET461 || NETSTANDARD2_0
 
     /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
     /// Unicode characters.</summary>
@@ -44,9 +48,15 @@ public static partial class SpanPolyfillExtension
     /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
     /// is used to avoid performance issues. 
     /// </remarks>
+#if NET461 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(this Span<char> span, ReadOnlySpan<char> values)
         => ((ReadOnlySpan<char>)span).LastIndexOfAny(values);
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int LastIndexOfAny(Span<char> span, ReadOnlySpan<char> values)
+        => MemoryExtensions.LastIndexOfAny(span, values);
+#endif
 
     /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
     /// Unicode characters.</summary>
@@ -63,8 +73,13 @@ public static partial class SpanPolyfillExtension
     /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
     /// is used to avoid performance issues.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int LastIndexOfAny(this Span<char> span, string? values)
         => ((ReadOnlySpan<char>)span).LastIndexOfAny(values.AsSpan());
+#else
+    public static int LastIndexOfAny(Span<char> span, string? values)
+        => MemoryExtensions.LastIndexOfAny<char>(span, values);
+#endif
 
     /// <summary>Returns the zero-based index of the last occurrence of one of the specified
     /// characters in <paramref name="span" />. The search begins at a specified character
@@ -99,10 +114,13 @@ public static partial class SpanPolyfillExtension
     /// </item>
     /// </list>
     /// </exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int LastIndexOfAny(
-        this Span<char> span, string? values, int startIndex, int count)
-        => ((ReadOnlySpan<char>)span).LastIndexOfAny(values.AsSpan(), startIndex, count);
+            this Span<char> span, string? values, int startIndex, int count)
+#else
+    public static int LastIndexOfAny(
+                Span<char> span, string? values, int startIndex, int count)
 #endif
+            => ((ReadOnlySpan<char>)span).LastIndexOfAny(values.AsSpan(), startIndex, count);
 }
-
-#endif

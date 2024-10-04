@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
 
 public static partial class SpanPolyfillExtension
 {
@@ -15,9 +14,13 @@ public static partial class SpanPolyfillExtension
     /// <returns>The index of the first occurrence of <paramref name="value"/> in the 
     /// <paramref name="span"/>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int IndexOf(
         this Span<char> span, string? value, StringComparison comparisonType)
+#else
+    public static int IndexOf(
+        Span<char> span, string? value, StringComparison comparisonType)
+#endif
         => MemoryExtensions.IndexOf(span, value.AsSpan(), comparisonType);
 }
 
-#endif

@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
 
 public static partial class SpanPolyfillExtension
 {
@@ -16,8 +15,13 @@ public static partial class SpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int LastIndexOf(
         this Span<char> span, string? value, StringComparison comparisonType)
+#else
+    public static int LastIndexOf(
+        Span<char> span, string? value, StringComparison comparisonType)
+#endif
         => ((ReadOnlySpan<char>)span).LastIndexOf(value.AsSpan(), comparisonType);
 
     /// <summary>Specifies the zero based index position of the last occurrence of a specified
@@ -53,15 +57,20 @@ public static partial class SpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int LastIndexOf(this Span<char> span,
+#else
+    public static int LastIndexOf(Span<char> span,
+
+#endif
                                   string? value,
                                   int startIndex,
                                   int count,
                                   StringComparison comparisonType)
+   
         => ((ReadOnlySpan<char>)span).LastIndexOf(value.AsSpan(),
                                                   startIndex,
                                                   count,
                                                   comparisonType);
 }
 
-#endif

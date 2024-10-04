@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
 
 public static partial class SpanPolyfillExtension
 {
@@ -23,11 +22,16 @@ public static partial class SpanPolyfillExtension
     /// </remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this Span<char> span, SearchValues<char> values)
         => ((ReadOnlySpan<char>)span).IndexOfAny(values);
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int IndexOfAny(Span<char> span, SearchValues<char> values)
+        => MemoryExtensions.IndexOfAny(span, values);
+#endif
 
-#if NET461 || NETSTANDARD2_0
 
     /// <summary>Searches for the zero-based index of the first occurrence of one of the
     /// specified Unicode characters.</summary>
@@ -37,6 +41,7 @@ public static partial class SpanPolyfillExtension
     /// <returns>The zero-based index of the first occurrence of one of the specified Unicode
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found. If <paramref name="values" /> is an empty span, the method returns <c>-1</c>.</returns>
+#if NET461 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this Span<char> span, ReadOnlySpan<char> values)
     {
@@ -46,6 +51,11 @@ public static partial class SpanPolyfillExtension
             ? -1
             : MemoryExtensions.IndexOfAny(span, values);
     }
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int IndexOfAny(Span<char> span, ReadOnlySpan<char> values)
+        => MemoryExtensions.IndexOfAny(span, values);
+#endif
 
     /// <summary>Searches for the zero-based index of the first occurrence of one of the
     /// specified Unicode characters.</summary>
@@ -58,9 +68,11 @@ public static partial class SpanPolyfillExtension
     /// <remarks><see cref="IndexOfAny(Span{char}, ReadOnlySpan{char})">
     /// IndexOfAny(Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> is used for the comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int IndexOfAny(this Span<char> span, string? values)
-        => span.IndexOfAny(values.AsSpan());
+#else
+    public static int IndexOfAny(Span<char> span, string? values)
 #endif
+        => span.IndexOfAny(values.AsSpan());
 }
 
-#endif
