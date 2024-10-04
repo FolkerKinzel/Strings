@@ -27,6 +27,6 @@ internal static class SearchValuesStorage
     /// also specifically excludes VT from the list of newline functions, so we do not include
     /// it in the needle list.
     /// </remarks>
-    internal static readonly SearchValues<char> NewLineChars = SearchValues.Create(NEW_LINE_CHARS);
+    internal static readonly System.Buffers.SearchValues<char> NewLineChars = System.Buffers.SearchValues.Create(NEW_LINE_CHARS);
 #endif
 }

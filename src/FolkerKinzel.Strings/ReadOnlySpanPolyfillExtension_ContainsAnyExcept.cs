@@ -13,20 +13,15 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// 
     /// <remarks>
     /// <note type="caution">
-    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;.
+    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;
+    /// when used with framework versions lower than .NET 8.0.
     /// </note>
     /// </remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool ContainsAnyExcept(this ReadOnlySpan<char> span, SearchValues<char> values)
+    public static bool ContainsAnyExcept(this ReadOnlySpan<char> span, SearchValuesPolyfill<char> values)
         => span.IndexOfAnyExcept(values) != -1;
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool ContainsAnyExcept(ReadOnlySpan<char> span, SearchValues<char> values)
-        => MemoryExtensions.ContainsAnyExcept(span, values);
-#endif
 
     /// <summary>Searches for any character other than the specified <paramref name="values"/>.</summary>
     /// <param name="span">The span to search.</param>

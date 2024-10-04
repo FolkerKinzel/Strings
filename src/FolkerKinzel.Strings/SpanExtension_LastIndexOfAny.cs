@@ -86,6 +86,6 @@ public static partial class SpanExtension
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(
-        this Span<char> span, SearchValues<char> values, int startIndex, int count)
+        this Span<char> span, SearchValuesPolyfill<char> values, int startIndex, int count)
         => ((ReadOnlySpan<char>)span).LastIndexOfAny(values, startIndex, count);
 }

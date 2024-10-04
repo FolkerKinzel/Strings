@@ -18,9 +18,9 @@ class Program
 
         string test = "Test";
         char c = 'e';
-        var searchValues = SearchValues.Create("abc");
+        var searchValues = SearchValuesPolyfill.Create("abc");
 
-        _ = SearchValues.Create("xyz".AsSpan());
+        _ = SearchValuesPolyfill.Create("xyz".AsSpan());
 
         byte[] bytes = new byte[1];
 

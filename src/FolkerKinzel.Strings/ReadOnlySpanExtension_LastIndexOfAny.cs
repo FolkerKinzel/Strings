@@ -1,3 +1,5 @@
+using FolkerKinzel.Strings.Intls;
+
 namespace FolkerKinzel.Strings;
 
 public static partial class ReadOnlySpanExtension
@@ -92,16 +94,18 @@ public static partial class ReadOnlySpanExtension
     /// </list>
     /// </exception>
     public static int LastIndexOfAny(this ReadOnlySpan<char> span,
-                                     SearchValues<char> values,
+                                     SearchValuesPolyfill<char> values,
                                      int startIndex,
                                      int count)
     {
+        _ArgumentNullException.ThrowIfNull(values, nameof(values));
+
         if (span.Length == 0)
         {
             return -1;
         }
 
-        int matchIndex = span.Slice(startIndex - count + 1, count).LastIndexOfAny(values);
+        int matchIndex = span.Slice(startIndex - count + 1, count).LastIndexOfAny(values.Value);
         return matchIndex == -1 ? -1 : matchIndex + startIndex - count + 1;
     }
 }

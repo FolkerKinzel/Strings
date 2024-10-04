@@ -17,26 +17,21 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// 
     /// <remarks>
     /// <note type="caution">
-    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;.
+    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;
+    /// when used with framework versions lower than .NET 8.0.
     /// </note>
     /// </remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
-    public static int IndexOfAny(this ReadOnlySpan<char> span, SearchValues<char> values)
+    public static int IndexOfAny(this ReadOnlySpan<char> span, SearchValuesPolyfill<char> values)
     {
         // Don't address MemoryExtensions here directly because the library method
         // polyfills a bug in the nuget package System.Memory for .NET Framework and
         // .NET Standard 2.0
 
         _ArgumentNullException.ThrowIfNull(values, nameof(values));
-        return span.IndexOfAny(values.Span);
+        return span.IndexOfAny(values.Value);
     }
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int IndexOfAny(ReadOnlySpan<char> span, SearchValues<char> values)
-        => MemoryExtensions.IndexOfAny(span, values);
-#endif
 
     /// <summary>Searches for the zero-based index of the first occurrence of one of the
     /// specified Unicode characters.</summary>

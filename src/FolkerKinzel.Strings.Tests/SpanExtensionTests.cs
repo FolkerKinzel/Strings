@@ -13,7 +13,7 @@ public class SpanExtensionTests
 
         string test = "\"\'Test\'\"";
 
-        Assert.AreEqual(test.Trim(trimChars), test.ToCharArray().AsSpan().Trim(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual(test.Trim(trimChars), test.ToCharArray().AsSpan().Trim(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
     [TestMethod]
@@ -21,7 +21,7 @@ public class SpanExtensionTests
     {
         string test = "  Test  ";
 
-        Assert.AreEqual(test, test.ToCharArray().AsSpan().Trim(SearchValues.Create("")).ToString());
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().Trim(SearchValuesPolyfill.Create("")).ToString());
     }
 
     [TestMethod]
@@ -30,7 +30,7 @@ public class SpanExtensionTests
         const string trimChars = "\'\"";
 
         string test = "\"\'\'\"";
-        Assert.AreEqual("", test.ToCharArray().AsSpan().Trim(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual("", test.ToCharArray().AsSpan().Trim(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
 
@@ -38,13 +38,13 @@ public class SpanExtensionTests
     public void TrimTest4()
     {
         string test = "    ";
-        Assert.AreEqual(test, test.ToCharArray().AsSpan().Trim(SearchValues.Create("")).ToString());
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().Trim(SearchValuesPolyfill.Create("")).ToString());
     }
 
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void TrimTest5() => ReadOnlySpan<char>.Empty.Trim((SearchValues<char>?)null!);
+    public void TrimTest5() => ReadOnlySpan<char>.Empty.Trim((SearchValuesPolyfill<char>?)null!);
 
 
     [TestMethod]
@@ -53,7 +53,7 @@ public class SpanExtensionTests
         const string trimChars = "\'\"";
 
         string test = "Test";
-        Assert.AreEqual(test, test.ToCharArray().AsSpan().Trim(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().Trim(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
     [TestMethod]
@@ -63,14 +63,14 @@ public class SpanExtensionTests
 
         string test = "\"\'Test\'\"";
 
-        Assert.AreEqual(test.TrimStart(trimChars), test.ToCharArray().AsSpan().TrimStart(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual(test.TrimStart(trimChars), test.ToCharArray().AsSpan().TrimStart(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
     [TestMethod]
     public void TrimStartTest2()
     {
         string test = "  Test  ";
-        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimStart(SearchValues.Create("")).ToString());
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimStart(SearchValuesPolyfill.Create("")).ToString());
     }
 
     [TestMethod]
@@ -78,7 +78,7 @@ public class SpanExtensionTests
     {
         const string trimChars = "\'\"";
         string test = "\"\'\'\"";
-        Assert.AreEqual("", test.ToCharArray().AsSpan().TrimStart(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual("", test.ToCharArray().AsSpan().TrimStart(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
 
@@ -86,13 +86,13 @@ public class SpanExtensionTests
     public void TrimStartTest4()
     {
         string test = "    ";
-        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimStart(SearchValues.Create("")).ToString());
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimStart(SearchValuesPolyfill.Create("")).ToString());
     }
 
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void TrimStartTest5() => ReadOnlySpan<char>.Empty.TrimStart((SearchValues<char>?)null!);
+    public void TrimStartTest5() => ReadOnlySpan<char>.Empty.TrimStart((SearchValuesPolyfill<char>?)null!);
 
 
     [TestMethod]
@@ -101,7 +101,7 @@ public class SpanExtensionTests
         const string trimChars = "\'\"";
 
         string test = "Test";
-        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimStart(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimStart(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
     [TestMethod]
@@ -111,14 +111,14 @@ public class SpanExtensionTests
 
         string test = "\"\'Test\'\"";
 
-        Assert.AreEqual(test.TrimEnd(trimChars), test.ToCharArray().AsSpan().TrimEnd(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual(test.TrimEnd(trimChars), test.ToCharArray().AsSpan().TrimEnd(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
     [TestMethod]
     public void TrimEndTest2()
     {
         string test = "  Test  ";
-        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimEnd(SearchValues.Create("")).ToString());
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimEnd(SearchValuesPolyfill.Create("")).ToString());
     }
 
     [TestMethod]
@@ -126,7 +126,7 @@ public class SpanExtensionTests
     {
         const string trimChars = "\'\"";
         string test = "\"\'\'\"";
-        Assert.AreEqual("", test.ToCharArray().AsSpan().TrimEnd(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual("", test.ToCharArray().AsSpan().TrimEnd(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
 
@@ -134,13 +134,13 @@ public class SpanExtensionTests
     public void TrimEndTest4()
     {
         string test = "    ";
-        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimStart(SearchValues.Create("")).ToString());
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimStart(SearchValuesPolyfill.Create("")).ToString());
     }
 
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void TrimEndTest5() => ReadOnlySpan<char>.Empty.TrimEnd((SearchValues<char>?)null!);
+    public void TrimEndTest5() => ReadOnlySpan<char>.Empty.TrimEnd((SearchValuesPolyfill<char>?)null!);
 
     [TestMethod]
     public void TrimEndTest6()
@@ -149,7 +149,7 @@ public class SpanExtensionTests
         const string trimChars = "\'\"";
 
         string test = "Test";
-        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimEnd(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual(test, test.ToCharArray().AsSpan().TrimEnd(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
     [DataTestMethod]

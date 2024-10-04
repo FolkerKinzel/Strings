@@ -15,7 +15,7 @@ namespace Benchmarks;
 public class TrimBench
 {
     private const string TRIM_CHARS = " \"\'";
-    private readonly SearchValues<char> _trimChars = SearchValues.Create(TRIM_CHARS);
+    private readonly SearchValuesPolyfill<char> _trimChars = SearchValuesPolyfill.Create(TRIM_CHARS);
 
     [NotNull]
     private string? SFull { get; set; }

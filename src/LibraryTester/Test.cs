@@ -50,9 +50,9 @@ namespace LibraryTesters
             var roSpan = test.AsSpan();
             var span = _array.AsSpan();
 
-            var searchValues = SearchValues.Create("abc");
+            var searchValues = SearchValuesPolyfill.Create("abc");
 
-            _ = SearchValues.Create("xyz".AsSpan());
+            _ = SearchValuesPolyfill.Create("xyz".AsSpan());
 
             char c = 'e';
             byte[] bytes = new byte[1];

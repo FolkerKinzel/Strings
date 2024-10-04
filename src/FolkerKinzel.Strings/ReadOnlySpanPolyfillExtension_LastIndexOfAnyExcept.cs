@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-
 public static partial class ReadOnlySpanPolyfillExtension
 {
     /// <summary>
@@ -15,24 +14,17 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// 
     /// <remarks>
     /// <note type="caution">
-    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;.
+    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;
+    /// when used with framework versions lower than .NET 8.0.
     /// </note>
     /// </remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
-    public static int LastIndexOfAnyExcept(this ReadOnlySpan<char> span, SearchValues<char> values)
+    public static int LastIndexOfAnyExcept(this ReadOnlySpan<char> span, SearchValuesPolyfill<char> values)
     {
         _ArgumentNullException.ThrowIfNull(values, nameof(values));
-        return span.LastIndexOfAnyExcept(values.Span);
+        return span.LastIndexOfAnyExcept(values.Value);
     }
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOfAnyExcept(ReadOnlySpan<char> span, SearchValues<char> values)
-        => MemoryExtensions.LastIndexOfAnyExcept(span, values);
-#endif
-
-
 
     /// <summary>Returns the index of the last character in the 
     /// read-only span that is not equal to <paramref name="value"/>.</summary>

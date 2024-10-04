@@ -16,21 +16,15 @@ public static partial class SpanPolyfillExtension
     /// 
     /// <remarks>
     /// <note type="caution">
-    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;.
+    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;
+    /// when used with framework versions lower than .NET 8.0.
     /// </note>
     /// </remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOfAny(this Span<char> span, SearchValues<char> values)
+    public static int LastIndexOfAny(this Span<char> span, FolkerKinzel.Strings.SearchValuesPolyfill<char> values)
         => ((ReadOnlySpan<char>)span).LastIndexOfAny(values);
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOfAny(Span<char> span, SearchValues<char> values)
-       => MemoryExtensions.LastIndexOfAny(span, values);
-#endif
-
 
     /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
     /// Unicode characters.</summary>

@@ -9,7 +9,7 @@ public class SearchValuesTests
     [TestMethod]
     public void SearchValuesTest1()
     {
-        var vals = SearchValues.Create("t".AsSpan());
+        var vals = SearchValuesPolyfill.Create("t".AsSpan());
         Assert.IsFalse(vals.Contains('x'));
         Assert.IsTrue(vals.Contains('t'));
     }
@@ -17,7 +17,7 @@ public class SearchValuesTests
     [TestMethod]
     public void SearchValuesTest2()
     {
-        var vals = SearchValues.Create("".AsSpan());
+        var vals = SearchValuesPolyfill.Create("".AsSpan());
         Assert.IsFalse(vals.Contains('x'));
     }
 

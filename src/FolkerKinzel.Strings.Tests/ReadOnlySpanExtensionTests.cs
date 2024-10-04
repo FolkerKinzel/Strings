@@ -14,7 +14,7 @@ public class ReadOnlySpanExtensionTests
 
         string test = "\"\'Test\'\"";
 
-        Assert.AreEqual(test.Trim(trimChars), test.AsSpan().Trim(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual(test.Trim(trimChars), test.AsSpan().Trim(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
     [TestMethod]
@@ -22,7 +22,7 @@ public class ReadOnlySpanExtensionTests
     {
         string test = "  Test  ";
 
-        Assert.AreEqual(test, test.AsSpan().Trim(SearchValues.Create("")).ToString());
+        Assert.AreEqual(test, test.AsSpan().Trim(SearchValuesPolyfill.Create("")).ToString());
     }
 
     [TestMethod]
@@ -31,7 +31,7 @@ public class ReadOnlySpanExtensionTests
         const string trimChars = "\'\"";
 
         string test = "\"\'\'\"";
-        Assert.AreEqual("", test.AsSpan().Trim(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual("", test.AsSpan().Trim(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
 
@@ -39,13 +39,13 @@ public class ReadOnlySpanExtensionTests
     public void TrimTest4()
     {
         string test = "    ";
-        Assert.AreEqual(test, test.AsSpan().Trim(SearchValues.Create("")).ToString());
+        Assert.AreEqual(test, test.AsSpan().Trim(SearchValuesPolyfill.Create("")).ToString());
     }
 
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void TrimTest5() => ReadOnlySpan<char>.Empty.Trim((SearchValues<char>?)null!);
+    public void TrimTest5() => ReadOnlySpan<char>.Empty.Trim((SearchValuesPolyfill<char>?)null!);
     
 
     [TestMethod]
@@ -54,7 +54,7 @@ public class ReadOnlySpanExtensionTests
         const string trimChars = "\'\"";
 
         string test = "Test";
-        Assert.AreEqual(test, test.AsSpan().Trim(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual(test, test.AsSpan().Trim(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
     [TestMethod]
@@ -64,14 +64,14 @@ public class ReadOnlySpanExtensionTests
 
         string test = "\"\'Test\'\"";
 
-        Assert.AreEqual(test.TrimStart(trimChars), test.AsSpan().TrimStart(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual(test.TrimStart(trimChars), test.AsSpan().TrimStart(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
     [TestMethod]
     public void TrimStartTest2()
     {
         string test = "  Test  ";
-        Assert.AreEqual(test, test.AsSpan().TrimStart(SearchValues.Create("")).ToString());
+        Assert.AreEqual(test, test.AsSpan().TrimStart(SearchValuesPolyfill.Create("")).ToString());
     }
 
     [TestMethod]
@@ -79,7 +79,7 @@ public class ReadOnlySpanExtensionTests
     {
         const string trimChars = "\'\"";
         string test = "\"\'\'\"";
-        Assert.AreEqual("", test.AsSpan().TrimStart(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual("", test.AsSpan().TrimStart(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
 
@@ -87,13 +87,13 @@ public class ReadOnlySpanExtensionTests
     public void TrimStartTest4()
     {
         string test = "    ";
-        Assert.AreEqual(test, test.AsSpan().TrimStart(SearchValues.Create("")).ToString());
+        Assert.AreEqual(test, test.AsSpan().TrimStart(SearchValuesPolyfill.Create("")).ToString());
     }
 
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void TrimStartTest5() => ReadOnlySpan<char>.Empty.TrimStart((SearchValues<char>?)null!);
+    public void TrimStartTest5() => ReadOnlySpan<char>.Empty.TrimStart((SearchValuesPolyfill<char>?)null!);
     
 
     [TestMethod]
@@ -102,7 +102,7 @@ public class ReadOnlySpanExtensionTests
         const string trimChars = "\'\"";
 
         string test = "Test";
-        Assert.AreEqual(test, test.AsSpan().TrimStart(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual(test, test.AsSpan().TrimStart(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
     [TestMethod]
@@ -112,14 +112,14 @@ public class ReadOnlySpanExtensionTests
 
         string test = "\"\'Test\'\"";
 
-        Assert.AreEqual(test.TrimEnd(trimChars), test.AsSpan().TrimEnd(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual(test.TrimEnd(trimChars), test.AsSpan().TrimEnd(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
     [TestMethod]
     public void TrimEndTest2()
     {
         string test = "  Test  ";
-        Assert.AreEqual(test, test.AsSpan().TrimEnd(SearchValues.Create("")).ToString());
+        Assert.AreEqual(test, test.AsSpan().TrimEnd(SearchValuesPolyfill.Create("")).ToString());
     }
 
     [TestMethod]
@@ -127,7 +127,7 @@ public class ReadOnlySpanExtensionTests
     {
         const string trimChars = "\'\"";
         string test = "\"\'\'\"";
-        Assert.AreEqual("", test.AsSpan().TrimEnd(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual("", test.AsSpan().TrimEnd(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
 
@@ -135,13 +135,13 @@ public class ReadOnlySpanExtensionTests
     public void TrimEndTest4()
     {
         string test = "    ";
-        Assert.AreEqual(test, test.AsSpan().TrimStart(SearchValues.Create("")).ToString());
+        Assert.AreEqual(test, test.AsSpan().TrimStart(SearchValuesPolyfill.Create("")).ToString());
     }
 
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void TrimEndTest5() => ReadOnlySpan<char>.Empty.TrimEnd((SearchValues<char>?)null!);
+    public void TrimEndTest5() => ReadOnlySpan<char>.Empty.TrimEnd((SearchValuesPolyfill<char>?)null!);
 
     [TestMethod]
     public void TrimEndTest6()
@@ -150,7 +150,7 @@ public class ReadOnlySpanExtensionTests
         const string trimChars = "\'\"";
 
         string test = "Test";
-        Assert.AreEqual(test, test.AsSpan().TrimEnd(SearchValues.Create(trimChars)).ToString());
+        Assert.AreEqual(test, test.AsSpan().TrimEnd(SearchValuesPolyfill.Create(trimChars)).ToString());
     }
 
     [DataTestMethod]
@@ -247,14 +247,14 @@ public class ReadOnlySpanExtensionTests
         //int i = "".LastIndexOfAny(new char[0]);
         //i = MemoryExtensions.LastIndexOfAny(test.AsSpan(), ReadOnlySpan<char>.Empty);
 
-        Assert.AreEqual(expected, test.AsSpan().LastIndexOfAny(SearchValues.Create(needles), test.Length - 2, 3));
+        Assert.AreEqual(expected, test.AsSpan().LastIndexOfAny(SearchValuesPolyfill.Create(needles), test.Length - 2, 3));
     }
 
     [TestMethod]
     public void LastIndexOfAnyTest19()
     {
         const string test = "test";
-        Assert.AreEqual(-1, "".AsSpan().LastIndexOfAny(SearchValues.Create(test), 0, 0));
+        Assert.AreEqual(-1, "".AsSpan().LastIndexOfAny(SearchValuesPolyfill.Create(test), 0, 0));
     }
 
     [DataTestMethod]
@@ -265,7 +265,7 @@ public class ReadOnlySpanExtensionTests
     [DataRow(2, -2)]
     public void LastIndexOfAnyTest20(int index, int count)
     {
-        var needles = SearchValues.Create("testganzlang");
+        var needles = SearchValuesPolyfill.Create("testganzlang");
         _ = "".AsSpan().LastIndexOfAny(needles, index, count);
     }
 
@@ -277,7 +277,7 @@ public class ReadOnlySpanExtensionTests
     [DataRow(2, -2)]
     public void LastIndexOfAnyTest21(int index, int count)
     {
-        var needles = SearchValues.Create("t");
+        var needles = SearchValuesPolyfill.Create("t");
         _ = "".AsSpan().LastIndexOfAny(needles, index, count);
     }
 
@@ -288,7 +288,7 @@ public class ReadOnlySpanExtensionTests
     [DataRow(-2, 2)]
     [DataRow(2, -2)]
     public void LastIndexOfAnyTest22(int index, int count)
-        => _ = "".AsSpan().LastIndexOfAny(SearchValues.Create("t"), index, count);
+        => _ = "".AsSpan().LastIndexOfAny(SearchValuesPolyfill.Create("t"), index, count);
 
     [DataTestMethod]
     //[DataRow(-1, 0)]
@@ -299,7 +299,7 @@ public class ReadOnlySpanExtensionTests
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void LastIndexOfAnyTest23(int index, int count)
     {
-        var needles = SearchValues.Create("testganzlang");
+        var needles = SearchValuesPolyfill.Create("testganzlang");
         _ = "t".AsSpan().LastIndexOfAny(needles, index, count);
     }
 
@@ -312,14 +312,14 @@ public class ReadOnlySpanExtensionTests
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void LastIndexOfAnyTest24(int index, int count)
     {
-        var needles = SearchValues.Create("t");
+        var needles = SearchValuesPolyfill.Create("t");
         _ = "t".AsSpan().LastIndexOfAny(needles, index, count);
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LastIndexOfAnyTest25()
-        => Assert.AreEqual(1, "abc".AsSpan().LastIndexOfAny((SearchValues<char>?)null!, 1, 1));
+        => Assert.AreEqual(1, "abc".AsSpan().LastIndexOfAny((SearchValuesPolyfill<char>?)null!, 1, 1));
 
 
     //[DataTestMethod]

@@ -15,23 +15,17 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// 
     /// <remarks>
     /// <note type="caution">
-    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;.
+    /// This is a polyfill that does not have the excellent performance of System.Buffers.SearchValues&lt;T&gt;
+    /// when used with framework versions lower than .NET 8.0.
     /// </note>
     /// </remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
-    public static int IndexOfAnyExcept(this ReadOnlySpan<char> span, SearchValues<char> values)
+    public static int IndexOfAnyExcept(this ReadOnlySpan<char> span, SearchValuesPolyfill<char> values)
     {
         _ArgumentNullException.ThrowIfNull(values, nameof(values));
-        return span.IndexOfAnyExcept(values.Span);
+        return span.IndexOfAnyExcept(values.Value);
     }
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int IndexOfAnyExcept(ReadOnlySpan<char> span, SearchValues<char> values)
-    => MemoryExtensions.IndexOfAnyExcept(span, values);
-#endif
-
 
     /// <summary>Returns the index of the first character in the 
     /// read-only span that is not equal to <paramref name="value"/>.</summary>

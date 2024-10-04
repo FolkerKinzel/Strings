@@ -13,20 +13,15 @@ public static partial class SpanPolyfillExtension
     /// 
     /// <remarks>
     /// <note type="caution">
-    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;.
+    /// This is a polyfill that does not have the performance benefits of System.Buffers.SearchValues&lt;T&gt;
+    /// when used with framework versions lower than .NET 8.0.
     /// </note>
     /// </remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool ContainsAny(this Span<char> span, SearchValues<char> values)
+    public static bool ContainsAny(this Span<char> span, SearchValuesPolyfill<char> values)
             => span.IndexOfAny(values) != -1;
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool ContainsAny(Span<char> span, SearchValues<char> values)
-        => MemoryExtensions.ContainsAny(span, values);
-#endif
 
     /// <summary>Indicates whether a character span contains one of the Unicode characters
     /// that are passed to the method as a read-only character span.</summary>
