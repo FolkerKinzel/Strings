@@ -18,7 +18,6 @@ public static partial class ReadOnlySpanPolyfillExtension
 #endif
 
 
-#if NET461 || NETSTANDARD2_0
 
     /// <summary>Indicates whether a specified value occurs within a read-only character
     /// span.</summary>
@@ -28,6 +27,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <param name="comparisonType">An enumeration value that determines how <paramref name="span"
     /// /> and <paramref name="value" /> are compared.</param>
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
+#if NET461 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(
         this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
