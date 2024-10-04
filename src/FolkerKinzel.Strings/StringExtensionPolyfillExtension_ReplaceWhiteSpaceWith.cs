@@ -2,8 +2,6 @@ using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
-
 public static partial class StringExtensionPolyfillExtension
 {
     /// <summary>Generates a <see cref="string" /> in which all sequences of white space
@@ -29,10 +27,13 @@ public static partial class StringExtensionPolyfillExtension
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ReplaceWhiteSpaceWith(
+#if NET461 || NETSTANDARD2_0
         this string s,
+#else
+        string s,
+#endif
         string? replacement,
         bool skipNewLines = false)
         => s.ReplaceWhiteSpaceWith(replacement.AsSpan(), skipNewLines);
 }
 
-#endif

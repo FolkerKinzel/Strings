@@ -2,8 +2,6 @@ using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
-
 /// <summary> Extension methods, which act as Polyfills for the extension methods of the 
 /// <see cref="StringExtension" /> class.</summary>
 /// <remarks>The polyfills are available for .NET Framework 4.5 and .NET Standard 2.0.</remarks>
@@ -25,9 +23,10 @@ public static partial class StringExtensionPolyfillExtension
     /// is used.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static bool ContainsAny(this string s, string? anyOf)
+#else
+    public static bool ContainsAny(string s, string? anyOf)
+#endif
         => s.ContainsAny(anyOf.AsSpan());
 }
-
-#endif
-

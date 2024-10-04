@@ -2,8 +2,6 @@ using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
-
 public static partial class StringExtensionPolyfillExtension
 {
     /// <summary>Returns the zero-based index of the first occurrence of one of the the specified
@@ -40,7 +38,11 @@ public static partial class StringExtensionPolyfillExtension
     /// </para>
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int IndexOfAny(this string s, string? anyOf, int startIndex, int count)
+#else
+    public static int IndexOfAny(string s, string? anyOf, int startIndex, int count)
+#endif
         => s.IndexOfAny(anyOf.AsSpan(), startIndex, count);
 
     /// <summary>Returns the zero-based index of the first occurrence of one of the the specified
@@ -66,7 +68,11 @@ public static partial class StringExtensionPolyfillExtension
     /// <paramref name="startIndex" /> is not a valid index in <paramref name="s"/>.
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int IndexOfAny(this string s, string? anyOf, int startIndex)
+#else
+    public static int IndexOfAny(string s, string? anyOf, int startIndex)
+#endif
         => s.IndexOfAny(anyOf.AsSpan(), 
                         startIndex, 
                         s?.Length - startIndex ?? throw new ArgumentNullException(nameof(s)));
@@ -87,8 +93,11 @@ public static partial class StringExtensionPolyfillExtension
     /// is used.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int IndexOfAny(this string s, string? anyOf)
+#else
+    public static int IndexOfAny(string s, string? anyOf)
+#endif
         => s.IndexOfAny(anyOf.AsSpan(), 0, s?.Length ?? throw new ArgumentNullException(nameof(s)));
 }
 
-#endif

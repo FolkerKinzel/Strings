@@ -2,8 +2,6 @@ using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
-
 public static partial class StringExtensionPolyfillExtension
 {
     /// <summary>Returns the zero-based index position of the last occurrence of one of the
@@ -39,7 +37,11 @@ public static partial class StringExtensionPolyfillExtension
     /// </para>
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int LastIndexOfAny(this string s, string? anyOf, int startIndex, int count)
+#else
+    public static int LastIndexOfAny(string s, string? anyOf, int startIndex, int count)
+#endif
         => s.LastIndexOfAny(anyOf.AsSpan(), startIndex, count);
 
     /// <summary>Returns the zero-based index position of the last occurrence of one of the
@@ -66,7 +68,11 @@ public static partial class StringExtensionPolyfillExtension
     /// /> is less than zero or greater than or equal to the length of <paramref name="s" />
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int LastIndexOfAny(this string s, string? anyOf, int startIndex)
+#else
+    public static int LastIndexOfAny(string s, string? anyOf, int startIndex)
+#endif
         => s.LastIndexOfAny(anyOf.AsSpan(), startIndex, startIndex + 1);
 
     /// <summary>Returns the zero-based index position of the last occurrence of one of the
@@ -84,11 +90,14 @@ public static partial class StringExtensionPolyfillExtension
     /// cref="string.LastIndexOfAny(char[])" /> is used.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int LastIndexOfAny(this string s, string? anyOf)
+#else
+    public static int LastIndexOfAny(string s, string? anyOf)
+#endif
     {
         return s is null ? throw new ArgumentNullException(nameof(s))
                          : s.LastIndexOfAny(anyOf.AsSpan(), s.Length - 1, s.Length);
     }
 }
 
-#endif
