@@ -2,8 +2,6 @@ using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
-
 public static partial class StringBuilderExtensionPolyfillExtension
 {
     /// <summary>Replaces in <paramref name="builder" /> all sequences of white space with
@@ -27,7 +25,11 @@ public static partial class StringBuilderExtensionPolyfillExtension
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder ReplaceWhiteSpaceWith(
+#if NET461 || NETSTANDARD2_0
         this StringBuilder builder,
+#else
+        StringBuilder builder,
+#endif
         string? replacement,
         bool skipNewLines = false)
         => builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), skipNewLines);
@@ -59,7 +61,11 @@ public static partial class StringBuilderExtensionPolyfillExtension
     /// />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder ReplaceWhiteSpaceWith(
+#if NET461 || NETSTANDARD2_0
         this StringBuilder builder,
+#else
+        StringBuilder builder,
+#endif
         string? replacement,
         int startIndex,
         bool skipNewLines = false)
@@ -104,7 +110,11 @@ public static partial class StringBuilderExtensionPolyfillExtension
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder ReplaceWhiteSpaceWith(
+#if NET461 || NETSTANDARD2_0
         this StringBuilder builder,
+#else
+        StringBuilder builder,
+#endif
         string? replacement,
         int startIndex,
         int count,
@@ -112,4 +122,3 @@ public static partial class StringBuilderExtensionPolyfillExtension
     => builder.ReplaceWhiteSpaceWith(replacement.AsSpan(), startIndex, count, skipNewLines);
 }
 
-#endif
