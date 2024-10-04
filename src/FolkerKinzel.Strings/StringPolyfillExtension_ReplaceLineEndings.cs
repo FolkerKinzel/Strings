@@ -2,8 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 ||  NETCOREAPP3_1 || NET5_0 
-
 public static partial class StringPolyfillExtension
 {
     /// <summary>Replaces all newlines in <paramref name="s" /> with 
@@ -58,9 +56,15 @@ public static partial class StringPolyfillExtension
     /// </para>
     /// </remarks>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ReplaceLineEndings(this string s)
         => s.ReplaceLineEndings(Environment.NewLine);
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string ReplaceLineEndings(string s)
+            => s.ReplaceLineEndings();
+#endif
 
     /// <summary>Replaces all newlines in <paramref name="s" /> with 
     /// <paramref name="replacementText" />.</summary>
@@ -116,6 +120,7 @@ public static partial class StringPolyfillExtension
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="replacementText" /> is <c>null</c>.
     /// </exception>
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0
 #if NET5_0
     [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters",
         Justification = "New line chars are not localizeable.")]
@@ -163,8 +168,13 @@ public static partial class StringPolyfillExtension
         static int ComputeMaxCapacity(int sourceLength, int replacementLength)
         => sourceLength * Math.Max(1, replacementLength);
     }
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string ReplaceLineEndings(string s, string replacementText)
+        => s.ReplaceLineEndings(replacementText);
+#endif
+
 }
 
-#endif
 
 

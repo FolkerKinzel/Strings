@@ -2,8 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
-
 public static partial class StringPolyfillExtension
 {
     /// <summary>Splits a <see cref="string" /> into substrings based on a specified delimiting
@@ -16,10 +14,17 @@ public static partial class StringPolyfillExtension
     /// <returns>An array whose elements contain the substrings from <paramref name="s" />
     /// that are delimited by <paramref name="separator" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
+#if NET461 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string[] Split(
         this string s, char separator, StringSplitOptions options = StringSplitOptions.None)
         => s.Split(new char[] { separator }, options);
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string[] Split(
+        string s, char separator, StringSplitOptions options = StringSplitOptions.None)
+        => s.Split(separator, options);
+#endif
 
     /// <summary>Splits a <see cref="string" /> into a maximum number of substrings based
     /// on the provided character separator, optionally omitting empty substrings from the
@@ -34,11 +39,17 @@ public static partial class StringPolyfillExtension
     /// <paramref name="s" /> that are delimited by <paramref name="separator" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="count" /> is negative.</exception>
+#if NET461 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string[] Split(
         this string s, char separator, int count, StringSplitOptions options = StringSplitOptions.None)
         => s.Split(new char[] { separator }, count, options);
-
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string[] Split(
+        string s, char separator, int count, StringSplitOptions options = StringSplitOptions.None)
+        => s.Split(separator, count, options);
+#endif
 
     /// <summary>Splits a <see cref="string" /> into a maximum number of substrings based
     /// on the provided separator, optionally omitting empty substrings from the result.</summary>
@@ -52,7 +63,7 @@ public static partial class StringPolyfillExtension
     /// <paramref name="s" /> that are delimited by <paramref name="separator" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="count" /> is negative.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static string[] Split(
         this string s, string? separator, int count, StringSplitOptions options = System.StringSplitOptions.None)
         => s is null
@@ -64,7 +75,12 @@ public static partial class StringPolyfillExtension
                      : string.IsNullOrEmpty(separator)
                          ? [s]
                          : s.Split(new string[] { separator }, count, options);
-
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string[] Split(
+        string s, string? separator, int count, StringSplitOptions options = System.StringSplitOptions.None)
+        => s.Split(separator, count, options);
+#endif
 
     /// <summary>Splits a <see cref="string" /> into substrings based on the provided separator,
     /// optionally omitting empty substrings from the result.</summary>
@@ -76,7 +92,7 @@ public static partial class StringPolyfillExtension
     /// <returns>An array whose elements contain the substrings from <paramref name="s" />
     /// that are delimited by <paramref name="separator" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static string[] Split(
         this string s, string? separator, StringSplitOptions options = System.StringSplitOptions.None)
          => s is null
@@ -87,8 +103,12 @@ public static partial class StringPolyfillExtension
                         : string.IsNullOrEmpty(separator)
                             ? [s]
                             : s.Split(new string[] { separator }, options);
-
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string[] Split(
+        string s, string? separator, StringSplitOptions options = System.StringSplitOptions.None)
+        => s.Split(separator, options);
+#endif
 }
 
-#endif
 

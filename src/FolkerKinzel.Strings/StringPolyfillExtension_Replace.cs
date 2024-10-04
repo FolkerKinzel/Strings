@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-#if NET461 || NETSTANDARD2_0
 
 public static partial class StringPolyfillExtension
 {
@@ -33,6 +32,7 @@ public static partial class StringPolyfillExtension
     /// /> enumeration.
     /// </para>
     /// </exception>
+#if NET461 || NETSTANDARD2_0
     public static string Replace(
         this string s, string oldValue, string? newValue, StringComparison comparisonType)
     {
@@ -75,7 +75,13 @@ public static partial class StringPolyfillExtension
 
         return builder.ToString();
     }
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string Replace(
+        string s, string oldValue, string? newValue, StringComparison comparisonType)
+        => s.Replace(oldValue, newValue, comparisonType);
+#endif
+
 }
 
-#endif
 
