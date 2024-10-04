@@ -57,7 +57,6 @@ public static class StaticStringMethod
     }
 #endif
 
-
     /// <summary>
     /// Concatenates the items of a read-only span of read-only character
     /// memory regions to a <see cref="string"/>.
