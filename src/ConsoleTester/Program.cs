@@ -258,7 +258,6 @@ class Program
         _ = span.StartsWith('t');
         _ = span.EndsWith('t');
 
-
         _ = sb.StartsWith('t');
         _ = sb.EndsWith('t');
 

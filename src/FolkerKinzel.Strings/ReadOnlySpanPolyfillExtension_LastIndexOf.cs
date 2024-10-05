@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-
 public static partial class ReadOnlySpanPolyfillExtension
 {
     /// <summary>Specifies the zero-based index of the last occurrence of a specified string
@@ -36,8 +35,6 @@ public static partial class ReadOnlySpanPolyfillExtension
         ReadOnlySpan<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
         => MemoryExtensions.LastIndexOf(span, value, comparisonType);
 #endif
-
-
 
     /// <summary>Specifies the zero-based index of the last occurrence of a specified string
     /// in <paramref name="span" />. A parameter specifies the type of search for the specified

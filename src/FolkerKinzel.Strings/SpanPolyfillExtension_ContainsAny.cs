@@ -8,8 +8,8 @@ public static partial class SpanPolyfillExtension
     /// </summary>
     /// <param name="span">The span to search.</param>
     /// <param name="values">The set of characters to search for.</param>
-    /// <returns><c>true</c> 
-    /// if any of the specified characters have been found. If not, returns <c>false</c>.</returns>
+    /// <returns><c>true</c> if any of the specified characters have been found. 
+    /// If not, returns <c>false</c>.</returns>
     /// 
     /// <remarks>
     /// <note type="caution">

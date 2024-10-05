@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-
 public static partial class SpanPolyfillExtension
 {
     /// <summary>

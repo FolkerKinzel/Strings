@@ -122,7 +122,6 @@ public static partial class ReadOnlySpanPolyfillExtension
         => MemoryExtensions.IndexOfAnyExcept(span, values);
 #endif
 
-
     /// <summary>
     /// Searches for the first index of any character other than the specified <paramref name="values"/>.
     /// </summary>

@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-
 public static partial class ReadOnlySpanPolyfillExtension
 {
     /// <summary>
@@ -91,7 +90,6 @@ public static partial class ReadOnlySpanPolyfillExtension
         => MemoryExtensions.ContainsAny(span, value0, value1, value2);
 #endif
 
-
     /// <summary>Indicates whether a read-only character span contains one of the Unicode
     /// characters that are passed to the method as a string.</summary>
     /// <param name="span">The span to examine.</param>
@@ -103,14 +101,12 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> 
     /// is used for the comparison.
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET461 || NETSTANDARD2_0
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this ReadOnlySpan<char> span, string? values)
-        => span.ContainsAny(values.AsSpan());
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(ReadOnlySpan<char> span, string? values)
-        => span.ContainsAny(values.AsSpan());
 #endif
+        => span.ContainsAny(values.AsSpan());
 }
 

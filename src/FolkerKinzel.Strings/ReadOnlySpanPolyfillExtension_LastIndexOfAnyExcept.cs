@@ -126,7 +126,6 @@ public static partial class ReadOnlySpanPolyfillExtension
        => MemoryExtensions.LastIndexOfAnyExcept(span, values);
 #endif
 
-
     /// <summary>
     /// Searches for the last index of any character other than the specified <paramref name="values"/>.
     /// </summary>

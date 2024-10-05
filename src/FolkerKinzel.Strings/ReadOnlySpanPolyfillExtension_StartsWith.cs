@@ -1,8 +1,20 @@
 namespace FolkerKinzel.Strings;
 
-
 public static partial class ReadOnlySpanPolyfillExtension
 {
+    // CAUTION: With .NET 9 this will conflict with MemoryExtensions!
+
+    /// <summary>Indicates whether a read-only character span begins with the 
+    /// specified Unicode character.</summary>
+    /// <param name="span">The span to examine.</param>
+    /// <param name="value">The Unicode character to search for.</param>
+    /// <returns> <c>true</c> if <paramref name="span" /> starts with <paramref name="value"
+    /// />, otherwise <c>false</c>.</returns>
+    /// <remarks>The method performs an ordinal character comparison.</remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool StartsWith(this ReadOnlySpan<char> span, char value)
+     => !span.IsEmpty && span[0] == value;
+
     /// <summary>Indicates whether a read-only span of characters starts with the specified
     /// <see cref="string" />.</summary>
     /// <param name="span">The source span.</param>

@@ -17,8 +17,6 @@ public static partial class ReadOnlySpanPolyfillExtension
         => MemoryExtensions.Contains(span, value);
 #endif
 
-
-
     /// <summary>Indicates whether a specified value occurs within a read-only character
     /// span.</summary>
     /// <param name="span">The source span.</param>
@@ -27,16 +25,14 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <param name="comparisonType">An enumeration value that determines how <paramref name="span"
     /// /> and <paramref name="value" /> are compared.</param>
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
-#if NET461 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static bool Contains(
         this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
-        => span.Contains(value.AsSpan(), comparisonType);
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(
         ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
-        => span.Contains(value.AsSpan(), comparisonType);
 #endif
+        => span.Contains(value.AsSpan(), comparisonType);
 }
 

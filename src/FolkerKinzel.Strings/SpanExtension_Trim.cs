@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FolkerKinzel.Strings.Intls;
+﻿using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
@@ -14,7 +9,7 @@ public static partial class SpanExtension
     /// <see cref="SearchValuesPolyfill{T}">SearchValuesPolyfill&lt;Char&gt;</see> instance from a character span.
     /// </summary>
     /// <param name="span">The source span from which the characters are removed.</param>
-    /// <param name="values">The <see cref="FolkerKinzel.Strings.SearchValuesPolyfill{T}">SearchValuesPolyfill&lt;Char&gt;</see> instance, which 
+    /// <param name="values">The <see cref="SearchValuesPolyfill{T}">SearchValuesPolyfill&lt;Char&gt;</see> instance, which 
     /// specifies the set of characters to remove.</param>
     /// <returns>The trimmed character span.</returns>
     /// <remarks>If <paramref name="values"/> is empty, the method returns <paramref name="span"/> unchanged.</remarks>

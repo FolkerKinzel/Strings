@@ -1,7 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-
-
 /// <summary>Extension methods for the <see cref="Memory{T}">Memory&lt;Char&gt;</see>
 /// struct, which are used in .NET Framework 4.6.1, .NET Standard 2.0 and .NET Standard
 /// 2.1 as polyfills for methods from current .NET versions.</summary>

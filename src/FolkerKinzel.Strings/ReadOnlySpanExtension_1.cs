@@ -4,4 +4,3 @@
 /// struct.</summary>
 /// <threadsafety static="true" instance="true" />
 public static partial class ReadOnlySpanExtension { }
-

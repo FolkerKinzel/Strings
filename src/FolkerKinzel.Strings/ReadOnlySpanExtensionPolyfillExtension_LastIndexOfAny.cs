@@ -38,14 +38,12 @@ public static partial class ReadOnlySpanExtensionPolyfillExtension
     /// </item>
     /// </list>
     /// </exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET461 || NETSTANDARD2_0
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(this ReadOnlySpan<char> span, string? values, int startIndex, int count)
-        => span.LastIndexOfAny(values.AsSpan(), startIndex, count);
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(ReadOnlySpan<char> span, string? values, int startIndex, int count)
-        => span.LastIndexOfAny(values.AsSpan(), startIndex, count);
 #endif
+        => span.LastIndexOfAny(values.AsSpan(), startIndex, count);
 }
 

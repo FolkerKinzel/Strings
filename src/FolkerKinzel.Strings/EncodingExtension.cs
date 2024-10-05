@@ -31,8 +31,6 @@ public static class EncodingExtension
 #endif
     }
 
-
-
     /// <summary>Decodes all bytes in the specified read-only span into a <see cref="string"/>.</summary>
     /// <param name="encoding">The <see cref="Encoding" /> object on which the extension
     /// method is executed.</param>

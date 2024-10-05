@@ -91,21 +91,18 @@ public static partial class ReadOnlySpanPolyfillExtension
         => MemoryExtensions.ContainsAnyExcept(span, value0, value1, value2);
 #endif
 
-
     /// <summary>Searches for any character other than the specified <paramref name="values"/>.</summary>
     /// <param name="span">The span to search.</param>
     /// <param name="values">A <see cref="string"/> containing the characters to avoid, or <c>null</c>.</param>
     /// <returns><c>true</c> if any character other than those in <paramref name="values"/> is present in the span. 
     /// If all of the characters are in <paramref name="values"/>, returns <c>false</c>.
     /// </returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET461 || NETSTANDARD2_0
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAnyExcept(this ReadOnlySpan<char> span, string? values)
-        => span.ContainsAnyExcept(values.AsSpan());
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAnyExcept(ReadOnlySpan<char> span, string? values)
-        => span.ContainsAnyExcept(values.AsSpan());
 #endif
+        => span.ContainsAnyExcept(values.AsSpan());
 }
 

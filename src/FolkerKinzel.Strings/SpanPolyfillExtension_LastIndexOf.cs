@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-
 public static partial class SpanPolyfillExtension
 {
     /// <summary>Specifies the zero-based index of the last occurrence of a specified string

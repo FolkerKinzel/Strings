@@ -1,6 +1,14 @@
 ﻿# FolkerKinzel.Strings
 
 ## Roadmap
+### 9.0.1
+- Make a .NET 9.0 version of the package
+- [ ] Change `ReadOnlySpanPolyfillExtension.EndsWith(this ReadOnlySpan<char>, char)` to not conflict with .NET 9.0
+- [ ] Change `ReadOnlySpanPolyfillExtension.StartsWith(this ReadOnlySpan<char>, char)` to not conflict with .NET 9.0
+
+### 9.0.0
+-[x] Fix an issue
+
 ### 8.1.0
 - [x] Refactor ReadOnlySpanExtension.ContainsNewLine to use ReadOnlySpan.ContainsAny or SearchValues
 - [x] Refactor SpanExtension.ContainsNewLine to use ReadOnlySpan.ContainsAny or SearchValues

@@ -35,24 +35,18 @@ public static partial class ReadOnlySpanExtensionPolyfillExtension
     /// 
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int LastIndexOf(
 #if NET461 || NETSTANDARD2_0
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOf(this ReadOnlySpan<char> span,
-                                  string? value,
-                                  int startIndex,
-                                  int count,
-                                  StringComparison comparisonType)
-        => span.LastIndexOf(value.AsSpan(), startIndex, count, comparisonType);
+                                  this ReadOnlySpan<char> span,
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOf(ReadOnlySpan<char> span,
+                                  ReadOnlySpan<char> span,
+#endif
                                   string? value,
                                   int startIndex,
                                   int count,
                                   StringComparison comparisonType)
         => span.LastIndexOf(value.AsSpan(), startIndex, count, comparisonType);
-#endif
-
 }
 
 
