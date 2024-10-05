@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-
 public static partial class SpanPolyfillExtension
 {
     /// <summary>

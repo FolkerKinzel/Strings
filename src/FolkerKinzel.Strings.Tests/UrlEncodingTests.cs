@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
 
@@ -56,17 +57,24 @@ public class UrlEncodingTests
     [DataRow("ABC", "ABC")]
     [DataRow("ä", "%C3%A4")]
     public void AppendUrlEncodedTest6(string input, string expected)
-    { 
-        Assert.AreEqual(expected, new StringBuilder().AppendUrlEncoded(new List<byte>(Encoding.UTF8.GetBytes(input))).ToString());
-    }
+        => Assert.AreEqual(expected, new StringBuilder().AppendUrlEncoded(new List<byte>(Encoding.UTF8.GetBytes(input))).ToString());
+
+    [DataTestMethod]
+    [DataRow("ABC", "ABC")]
+    [DataRow("ä", "%C3%A4")]
+    public void AppendUrlEncodedTest6b(string input, string expected)
+        => Assert.AreEqual(expected, new StringBuilder().AppendUrlEncoded(Encoding.UTF8.GetBytes(input).AsEnumerable()).ToString());
+
+    [TestMethod]
+    public void AppendUrlEncodedTest6c()
+        => Assert.AreEqual("AAA", new StringBuilder().AppendUrlEncoded(Enumerable.Repeat<byte>(65, 3)).ToString());
+
 
     [DataTestMethod]
     [DataRow("ABC", "ABC")]
     [DataRow("ä", "%C3%A4")]
     public void AppendUrlEncodedTest7(string input, string expected)
-    {
-        Assert.AreEqual(expected, new StringBuilder().AppendUrlEncoded(Encoding.UTF8.GetBytes(input).AsSpan()).ToString());
-    }
+        => Assert.AreEqual(expected, new StringBuilder().AppendUrlEncoded(Encoding.UTF8.GetBytes(input).AsSpan()).ToString());
 
     [TestMethod]
     public void TryDecodeTest1()

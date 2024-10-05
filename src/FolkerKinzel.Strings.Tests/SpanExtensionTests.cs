@@ -192,10 +192,6 @@ public class SpanExtensionTests
        => Assert.AreEqual(input.AsSpan().IsAscii(), input.ToCharArray().AsSpan().IsAscii());
 
 
-    [TestMethod]
-    public void IndexOfAnyTest1()
-        => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().IndexOfAny("1b2".AsSpan()));
-
     //[DataTestMethod]
     //[DataRow("")]
     //[DataRow("abc")]
@@ -239,37 +235,12 @@ public class SpanExtensionTests
        => Assert.AreEqual(input.AsSpan().ContainsNewLine(), input.ToCharArray().AsSpan().ContainsNewLine());
 
     [DataTestMethod]
-    [DataRow("", "xyz")]
-    [DataRow("abc", "xyz")]
-    [DataRow("abc", "")]
-    [DataRow("abc", "xbz")]
-    public void ContainsAnyTest1(string input, string chars) 
-        => Assert.AreEqual(input.AsSpan().ContainsAny(chars.AsSpan()), input.ToCharArray().AsSpan().ContainsAny(chars.AsSpan()));
-
-    [DataTestMethod]
-    [DataRow("", "xyz")]
-    [DataRow("abc", "xyz")]
-    [DataRow("abc", "xbz")]
-    public void ContainsAnyTest2(string input, string chars)
-        => Assert.AreEqual(input.AsSpan().IndexOfAny(chars[0], chars[1]) != -1, input.ToCharArray().AsSpan().ContainsAny(chars[0], chars[1]));
-
-
-    [DataTestMethod]
-    [DataRow("", "xyz")]
-    [DataRow("abc", "xyz")]
-    [DataRow("abc", "xya")]
-    public void ContainsAnyTest3(string input, string chars)
-        => Assert.AreEqual(input.AsSpan().IndexOfAny(chars[0], chars[1], chars[2]) != -1, input.ToCharArray().AsSpan().ContainsAny(chars[0], chars[1], chars[2]));
-
-
-    [DataTestMethod]
     [DataRow("", "abc")]
     [DataRow("abc", "ab")]
     [DataRow("abc", "AB")]
     public void StartsWithTest1(string input, string starter)
        => Assert.AreEqual(input.AsSpan().StartsWith(starter.AsSpan(), StringComparison.OrdinalIgnoreCase),
                           input.ToCharArray().AsSpan().StartsWith(starter.AsSpan(), StringComparison.OrdinalIgnoreCase));
-
 
     [DataTestMethod]
     [DataRow("", 'a')]
