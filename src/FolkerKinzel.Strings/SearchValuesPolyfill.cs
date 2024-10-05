@@ -11,19 +11,30 @@ public static class SearchValuesPolyfill
     /// <param name="values">The set of values.</param>
     /// <returns>A <see cref="SearchValuesPolyfill{T}"/> instance for <paramref name="values"/>.</returns>
     /// <remarks>
-    /// <note type="caution">
-    /// This method allocates a new <see cref="string"/> from <paramref name="values"/>.
+    /// <note type="tip">
+    /// This method allocates a new <see cref="string"/> from <paramref name="values"/> when used with
+    /// framework versions lower than .NET 8.0.
     /// Whenever you can, use the method overload that takes a <see cref="string"/> as argument!
     /// </note>
     /// </remarks>
-    public static SearchValuesPolyfill<char> Create(ReadOnlySpan<char> values) => new(values.ToString());
+    public static SearchValuesPolyfill<char> Create(ReadOnlySpan<char> values)
+#if NET8_0_OR_GREATER
+        => new(SearchValues.Create(values));
+#else
+        => new(values.ToString());
+#endif
 
     /// <summary>
     /// Creates a <see cref="SearchValuesPolyfill{T}"/> instance for <paramref name="values"/>.
     /// </summary>
     /// <param name="values">A <see cref="string"/> containing the set of values.</param>
     /// <returns>A <see cref="SearchValuesPolyfill{T}"/> instance for <paramref name="values"/>.</returns>
-    public static SearchValuesPolyfill<char> Create(string? values) => new(values);
+    public static SearchValuesPolyfill<char> Create(string? values)
+#if NET8_0_OR_GREATER
+        => new(SearchValues.Create(values));
+#else
+        => new(values);
+#endif
 }
 
 /// <summary>
@@ -35,12 +46,13 @@ public static class SearchValuesPolyfill
 /// is currently supported.</typeparam>
 public class SearchValuesPolyfill<T> where T : IEquatable<T>
 {
-    internal SearchValuesPolyfill(string? values)
 #if NET8_0_OR_GREATER
-       => Value = System.Buffers.SearchValues.Create(values);
+    internal SearchValuesPolyfill(SearchValues<char> values)
+       => Value = values;
 
     internal readonly SearchValues<char> Value;
 #else
+    internal SearchValuesPolyfill(string? values)
         => _values = values;
 
     private readonly string? _values;
