@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FolkerKinzel.Strings;
-using System.Buffers;
 
 namespace LibraryTesters
 {
@@ -34,7 +33,7 @@ namespace LibraryTesters
             Console.WriteLine();
             Console.WriteLine(" ReadOnlySpan<Char>.ContainsAny(ReadOnlySpan<Char>)");
             Console.WriteLine(" Needles empty: {0}", s.AsSpan().ContainsAny(ReadOnlySpan<char>.Empty));
-            Console.WriteLine(" String empty: {0}", ReadOnlySpan<char>.Empty.ContainsAny( arr));
+            Console.WriteLine(" String empty: {0}", ReadOnlySpan<char>.Empty.ContainsAny(arr));
             Console.WriteLine(" Needles + String empty: {0}", ReadOnlySpan<char>.Empty.ContainsAny(ReadOnlySpan<char>.Empty));
             Console.WriteLine();
             Console.WriteLine(" ReadOnlySpan<Char>.LastIndexOfAny(ReadOnlySpan<Char>)");
