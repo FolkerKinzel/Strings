@@ -1,5 +1,3 @@
-using System.Buffers;
-using System.Runtime.InteropServices;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
@@ -50,7 +48,7 @@ public static class StaticStringMethod
     }
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string Create<TState>(int length, TState state, SpanAction<char, TState> action) 
+    public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
         => string.Create(length, state, action);
 #endif
 
@@ -155,7 +153,6 @@ public static class StaticStringMethod
     /// <returns>The concatenated string representations of the values of <paramref name="str0"
     /// />, <paramref name="str1" />, <paramref name="str2" /> and <paramref name="str3"
     /// />.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2, ReadOnlySpan<char> str3)
     {
         if (str0.Length == 0)
@@ -201,7 +198,6 @@ public static class StaticStringMethod
     /// <param name="str2">The third read-only character span to concatenate.</param>
     /// <returns>The concatenated string representations of the values of <paramref name="str0"
     /// />, <paramref name="str1" /> and <paramref name="str2" />.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1, ReadOnlySpan<char> str2)
     {
         if (str0.Length == 0)
@@ -244,7 +240,6 @@ public static class StaticStringMethod
     /// <param name="str1">The first read-only character span to concatenate.</param>
     /// <returns>The concatenated string representations of the values of <paramref name="str0"
     /// /> and <paramref name="str1" />.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat(ReadOnlySpan<char> str0, ReadOnlySpan<char> str1)
     {
         int length = str0.Length + str1.Length;

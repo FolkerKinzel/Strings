@@ -1,5 +1,4 @@
 using System.Runtime.InteropServices;
-using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
@@ -19,25 +18,19 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendBase64(this StringBuilder builder,
                                              IEnumerable<byte>? bytes,
                                              Base64FormattingOptions options = Base64FormattingOptions.None)
     {
-        if (bytes is null)
+        return bytes switch
         {
-            return builder;
-        }
-
 #if NET5_0_OR_GREATER
-
-        if (bytes is List<byte> list)
-        {
-            return Base64.AppendEncodedTo(builder, CollectionsMarshal.AsSpan(list), options);
-        }
-
+            List<byte> list => Base64.AppendEncodedTo(builder, CollectionsMarshal.AsSpan(list), options),
 #endif
-        return Base64.AppendEncodedTo(builder, bytes.ToArray().AsSpan(), options);
+            byte[] array => Base64.AppendEncodedTo(builder, array.AsSpan(), options),
+            IEnumerable<byte> => Base64.AppendEncodedTo(builder, bytes.ToArray().AsSpan(), options),
+            _ => builder
+        };
     }
 
     /// <summary>Appends the content of a <see cref="byte" /> array as Base64-encoded character

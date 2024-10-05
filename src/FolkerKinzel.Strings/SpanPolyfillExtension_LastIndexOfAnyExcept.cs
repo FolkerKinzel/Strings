@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-
 public static partial class SpanPolyfillExtension
 {
     /// <summary>
@@ -38,7 +37,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAnyExcept(Span<char> span, char value)
-            => MemoryExtensions.LastIndexOfAnyExcept(span, value);
+        => MemoryExtensions.LastIndexOfAnyExcept(span, value);
 #endif
 
     /// <summary>
