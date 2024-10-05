@@ -24,10 +24,10 @@ public static partial class StringBuilderExtension
     {
         return bytes switch
         {
+            byte[] array => Base64.AppendEncodedTo(builder, array.AsSpan(), options),
 #if NET5_0_OR_GREATER
             List<byte> list => Base64.AppendEncodedTo(builder, CollectionsMarshal.AsSpan(list), options),
 #endif
-            byte[] array => Base64.AppendEncodedTo(builder, array.AsSpan(), options),
             IEnumerable<byte> => Base64.AppendEncodedTo(builder, bytes.ToArray().AsSpan(), options),
             _ => builder
         };
