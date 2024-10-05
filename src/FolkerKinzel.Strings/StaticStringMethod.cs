@@ -25,7 +25,7 @@ public static class StaticStringMethod
     /// <exception cref="ArgumentNullException"> <paramref name="action" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="length" /> is negative.</exception>
 #if NET461 || NETSTANDARD2_0
-    public static string Create<TState>(int length, TState state, FolkerKinzel.Strings.SpanAction<char, TState> action)
+    public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
     {
         _ArgumentNullException.ThrowIfNull(action, nameof(action));
 
@@ -50,11 +50,8 @@ public static class StaticStringMethod
     }
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string Create<TState>(int length, TState state, FolkerKinzel.Strings.SpanAction<char, TState> action)
-    {
-        _ArgumentNullException.ThrowIfNull(action, nameof(action));
-        return string.Create(length, state, (span, arg) => action(span, arg));
-    }
+    public static string Create<TState>(int length, TState state, SpanAction<char, TState> action) 
+        => string.Create(length, state, action);
 #endif
 
     /// <summary>

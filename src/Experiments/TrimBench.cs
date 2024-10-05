@@ -9,6 +9,7 @@ using FolkerKinzel.Strings;
 
 namespace Experiments;
 
+[MemoryDiagnoser]
 public class TrimBench
 {
     private const string TRIM_CHARS = " \"\'";
@@ -16,7 +17,7 @@ public class TrimBench
     private const string S_FULL = S + "a" + S;
 
 
-    private readonly SearchValues<char> _trimChars = SearchValues.Create(TRIM_CHARS);
+    private readonly SearchValuesPolyfill<char> _trimChars = SearchValuesPolyfill.Create(TRIM_CHARS);
 
     [Benchmark]
     public int TrimEndBcl() => S.AsSpan().TrimEnd(TRIM_CHARS.AsSpan()).Length;
@@ -29,7 +30,6 @@ public class TrimBench
 
     [Benchmark]
     public int TrimStartSearchValues() => S.AsSpan().TrimStart(_trimChars).Length;
-
 
     [Benchmark]
     public int TrimBcl() => S_FULL.AsSpan().Trim(TRIM_CHARS.AsSpan()).Length;
