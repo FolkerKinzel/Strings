@@ -5,6 +5,9 @@
 - Make a .NET 9.0 version of the package
 - [ ] Change `ReadOnlySpanPolyfillExtension.EndsWith(this ReadOnlySpan<char>, char)` to not conflict with .NET 9.0
 - [ ] Change `ReadOnlySpanPolyfillExtension.StartsWith(this ReadOnlySpan<char>, char)` to not conflict with .NET 9.0
+- [ ] Let `StringPolyfillExtension.Trim(this string, ReadOnlySpan<char>)` not be an extension method in .NET 9.0
+- [ ] Let `StringPolyfillExtension.TrimEnd(this string, ReadOnlySpan<char>)` not be an extension method in .NET 9.0
+- [ ] Let `StringPolyfillExtension.TrimStart(this string, ReadOnlySpan<char>)` not be an extension method in .NET 9.0
 
 ### 9.0.0
 -[x] Fix an issue

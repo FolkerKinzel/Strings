@@ -2,10 +2,8 @@ using System.Text.RegularExpressions;
 
 namespace FolkerKinzel.Strings;
 
-
 public static partial class StringBuilderExtensionPolyfillExtension
 {
-
     /// <summary>Appends the content of a <see cref="string" /> as URL-encoded character
     /// sequence to the end of a <see cref="StringBuilder" />.</summary>
     /// <param name="builder">The <see cref="StringBuilder" /> to which the characters are

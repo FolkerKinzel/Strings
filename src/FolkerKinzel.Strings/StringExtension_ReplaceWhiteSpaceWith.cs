@@ -58,7 +58,7 @@ public static partial class StringExtension
         else
         {
             Span<char> destination = stackalloc char[capacity];
-            int outLength =  processedSpan.ReplaceWhiteSpaceWith(replacement, destination, skipNewLines);
+            int outLength = processedSpan.ReplaceWhiteSpaceWith(replacement, destination, skipNewLines);
             ReadOnlySpan<char> outSpan = destination.Slice(0, outLength);
             return processedSpan.Equals(outSpan, StringComparison.Ordinal)
                 ? s

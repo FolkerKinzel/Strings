@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-
 public static partial class StringBuilderPolyfillExtension
 {
     /// <summary>Inserts the content of a read-only character span at the specified index
