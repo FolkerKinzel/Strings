@@ -1,6 +1,6 @@
 [![GitHub](https://img.shields.io/github/license/FolkerKinzel/Strings)](https://github.com/FolkerKinzel/Strings/blob/master/LICENSE)
 
-[Project Reference and Release Notes](https://github.com/FolkerKinzel/Strings/releases/tag/v8.1.0)
+[Project Reference and Release Notes](https://github.com/FolkerKinzel/Strings/releases/tag/v9.0.0)
 
 ## .NET library that contains extension methods and helper classes for character-based data types.
 

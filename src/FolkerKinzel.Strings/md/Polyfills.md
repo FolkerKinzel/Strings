@@ -2,7 +2,13 @@
 
 ## List of Polyfill Extension Methods 
 (Refers to the latest nuget version)
-
+&nbsp;
+### Polyfills for the String class (.NET 8.0, .NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+```csharp
+string Trim(this string, ReadOnlySpan<char>);
+string TrimEnd(this string, ReadOnlySpan<char>);
+string TrimStart(this string, ReadOnlySpan<char>);
+```
 ### Polyfills for the String class (.NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 string ReplaceLineEndings(this string);
@@ -41,10 +47,16 @@ string StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>);
 string StaticStringMethod.Create<TState>(int, TState, SpanAction<char, TState>);
 ```
 &nbsp;
-### Polyfills for the static System.Buffers.SearchValues class and the System.Buffers.SearchValues<char> class (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the static System.Buffers.SearchValues class and the System.Buffers.SearchValues&lt;char&gt; class (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
 ```csharp
 static class FolkerKinzel.Strings.SearchValuesPolyfill;
 class FolkerKinzel.Strings.SearchValuesPolyfill<T>;
+```
+&nbsp;
+### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 8.0, .NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+```csharp
+bool EndsWith(this ReadOnlySpan<char>, char);
+bool StartsWith(this ReadOnlySpan<char>, char);
 ```
 &nbsp;
 ### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
@@ -55,9 +67,6 @@ bool ContainsAny(this ReadOnlySpan<char>, char, char, char);
 int IndexOfAny(this ReadOnlySpan<char>, SearchValues<char>);
 bool ContainsAny(this ReadOnlySpan<char>, SearchValues<char>);
 int LastIndexOfAny(this ReadOnlySpan<char>, SearchValuesPolyfill<char>);
-ReadOnlySpan<char> Trim(this ReadOnlySpan<char>, SearchValuesPolyfill<char>)
-ReadOnlySpan<char> TrimStart(this ReadOnlySpan<char>, SearchValuesPolyfill<char>);
-ReadOnlySpan<char> TrimEnd(this ReadOnlySpan<char>, SearchValuesPolyfill<char>);
 int IndexOfAnyExcept(this ReadOnlySpan<char>, SearchValuesPolyfill<char>);
 int LastIndexOfAnyExcept(this ReadOnlySpan<char>, SearchValues<char>);
 bool ContainsAnyExcept(this ReadOnlySpan<char>, SearchValues<char>);
