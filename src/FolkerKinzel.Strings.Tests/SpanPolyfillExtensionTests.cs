@@ -1,4 +1,5 @@
 ﻿using FolkerKinzel.Strings;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
 
@@ -43,7 +44,8 @@ public class SpanPolyfillExtensionTests
     [DataRow("xxbcdda", 0)]
     [DataRow("bxxxx", 1)]
     public void IndexOfAnyExceptTest5(string input, int expected)
-        => Assert.AreEqual(expected, SpanPolyfillExtension.IndexOfAnyExcept(input.ToCharArray().AsSpan(), "abcd".AsSpan()));
+        => Assert.AreEqual(expected, 
+                           SpanPolyfillExtension.IndexOfAnyExcept(input.ToCharArray().AsSpan(), "abcd".AsSpan()));
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -51,7 +53,8 @@ public class SpanPolyfillExtensionTests
     [DataRow("xxbcdda", 0)]
     [DataRow("bxxxx", 1)]
     public void IndexOfAnyExceptTest6(string input, int expected)
-        => Assert.AreEqual(expected, SpanPolyfillExtension.IndexOfAnyExcept(input.ToCharArray().AsSpan(), SearchValuesPolyfill.Create("abcd")));
+        => Assert.AreEqual(expected, 
+                           SpanPolyfillExtension.IndexOfAnyExcept(input.ToCharArray().AsSpan(), SearchValuesPolyfill.Create("abcd")));
 
     [TestMethod()]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -104,12 +107,13 @@ public class SpanPolyfillExtensionTests
     [DataRow("xxbcdda", true)]
     [DataRow("bxxxx", true)]
     public void ContainsAnyExceptTest6(string input, bool expected)
-        => Assert.AreEqual(expected, SpanPolyfillExtension.ContainsAnyExcept(input.ToCharArray().AsSpan(), SearchValuesPolyfill.Create("abcd")));
+        => Assert.AreEqual(expected, 
+                           SpanPolyfillExtension.ContainsAnyExcept(input.ToCharArray().AsSpan(), SearchValuesPolyfill.Create("abcd")));
 
     [TestMethod()]
     [ExpectedException(typeof(ArgumentNullException))]
     public void ContainsAnyExceptTest7()
-        => "xyz".AsSpan().ContainsAnyExcept((SearchValuesPolyfill<char>?)null!);
+        => SpanPolyfillExtension.ContainsAnyExcept("xyz".ToCharArray().AsSpan(), (SearchValuesPolyfill<char>?)null!);
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -157,7 +161,8 @@ public class SpanPolyfillExtensionTests
     [DataRow("xbbabcdcadd", 0)]
     [DataRow("bxabbbadbdcabba", 1)]
     public void LastIndexOfAnyExceptTest6(string input, int expected)
-        => Assert.AreEqual(expected, SpanPolyfillExtension.LastIndexOfAnyExcept(input.ToCharArray().AsSpan(), SearchValuesPolyfill.Create("abcd")));
+        => Assert.AreEqual(expected, 
+                           SpanPolyfillExtension.LastIndexOfAnyExcept(input.ToCharArray().AsSpan(), SearchValuesPolyfill.Create("abcd")));
 
     [TestMethod()]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -182,7 +187,7 @@ public class SpanPolyfillExtensionTests
     [DataRow("abc", 'b')]
     [DataRow("ABC", 'b')]
     public void ContainsTest1b(string input, char c)
-        => Assert.AreEqual(input.AsSpan().Contains(c), input.ToArray().AsSpan().Contains(c));
+        => Assert.AreEqual(input.AsSpan().Contains(c), SpanPolyfillExtension.Contains(input.ToArray().AsSpan(), c));
 
     [DataTestMethod]
     [DataRow("", "abc")]
@@ -212,25 +217,7 @@ public class SpanPolyfillExtensionTests
     [DataRow("abc")]
     [DataRow("  \r\na b c  ")]
     public void TrimTest1(string input)
-        => Assert.AreEqual(input.AsSpan().Trim().ToString(), input.ToCharArray().AsSpan().Trim().ToString());
-
-    [DataTestMethod]
-    [DataRow("")]
-    [DataRow("  ")]
-    [DataRow("abc")]
-    [DataRow("  \r\na b c  ")]
-    public void TrimStartTest1(string input)
-        => Assert.AreEqual(input.AsSpan().TrimStart().ToString(), input.ToArray().AsSpan().TrimStart().ToString());
-
-    [DataTestMethod]
-    [DataRow("")]
-    [DataRow("  ")]
-    [DataRow("abc")]
-    [DataRow("  \r\na b c  ")]
-    public void TrimEndTest1(string input)
-        => Assert.AreEqual(input.AsSpan().TrimEnd().ToString(), input.ToArray().AsSpan().TrimEnd().ToString());
-
-
+        => Assert.AreEqual(input.AsSpan().Trim().ToString(), SpanPolyfillExtension.Trim(input.ToCharArray().AsSpan()).ToString());
 
     [DataTestMethod]
     [DataRow("", "")]
@@ -250,6 +237,14 @@ public class SpanPolyfillExtensionTests
         => Assert.AreEqual(expected, SpanPolyfillExtension.Trim(input.ToCharArray().AsSpan(), trimChars).ToString());
 
     [DataTestMethod]
+    [DataRow("")]
+    [DataRow("  ")]
+    [DataRow("abc")]
+    [DataRow("  \r\na b c  ")]
+    public void TrimStartTest1(string input)
+        => Assert.AreEqual(input.AsSpan().TrimStart().ToString(), SpanPolyfillExtension.TrimStart(input.ToArray().AsSpan()).ToString());
+
+    [DataTestMethod]
     [DataRow("", "")]
     [DataRow("xxx", "")]
     [DataRow("abc", "abc")]
@@ -265,6 +260,18 @@ public class SpanPolyfillExtensionTests
     [DataRow("cbxabc", "bac", "xabc")]
     public void TrimStartTest3(string input, string? trimChars, string expected)
         => Assert.AreEqual(expected, SpanPolyfillExtension.TrimStart(input.ToCharArray().AsSpan(), trimChars).ToString());
+
+    [TestMethod]
+    public void TrimStartTest4()
+        => Assert.AreEqual("T  ", SpanPolyfillExtension.TrimStart("  T  ".ToCharArray().AsSpan()).ToString());
+
+    [DataTestMethod]
+    [DataRow("")]
+    [DataRow("  ")]
+    [DataRow("abc")]
+    [DataRow("  \r\na b c  ")]
+    public void TrimEndTest1(string input)
+        => Assert.AreEqual(input.AsSpan().TrimEnd().ToString(), SpanPolyfillExtension.TrimEnd(input.ToArray().AsSpan()).ToString());
 
     [DataTestMethod]
     [DataRow("", "")]
@@ -282,6 +289,10 @@ public class SpanPolyfillExtensionTests
     [DataRow("bxabc", "bac", "bx")]
     public void TrimEndTest3(string input, string? trimChars, string expected)
         => Assert.AreEqual(expected, SpanPolyfillExtension.TrimEnd(input.ToCharArray().AsSpan(), trimChars).ToString());
+
+    [TestMethod]
+    public void TrimEndTest4()
+        => Assert.AreEqual("  T", SpanPolyfillExtension.TrimEnd("  T  ".ToCharArray().AsSpan()).ToString());
 
     [DataTestMethod]
     [DataRow("", "abc")]
@@ -346,33 +357,35 @@ public class SpanPolyfillExtensionTests
         => Assert.AreEqual(input.AsSpan().ContainsAny(chars.AsSpan()), SpanPolyfillExtension.ContainsAny(input.ToCharArray().AsSpan(), chars));
 
     [TestMethod]
-    public void ContainsAnyTest2() => Assert.IsFalse("t".ToCharArray().AsSpan().ContainsAny(SearchValuesPolyfill.Create("")));
+    public void ContainsAnyTest2() 
+        => Assert.IsFalse(SpanPolyfillExtension.ContainsAny("t".ToCharArray().AsSpan(), SearchValuesPolyfill.Create("")));
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void ContainsAnyTest3() => Assert.IsFalse("t".ToCharArray().AsSpan().ContainsAny((SearchValuesPolyfill<char>?)null!));
+    public void ContainsAnyTest3()
+        => Assert.IsFalse(SpanPolyfillExtension.ContainsAny("t".ToCharArray().AsSpan(), (SearchValuesPolyfill<char>?)null!));
 
 
     [TestMethod]
     public void LastIndexOfAnyTest1()
-        => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny("1b2"));
+        => Assert.AreEqual(1, SpanPolyfillExtension.LastIndexOfAny("abc".ToCharArray().AsSpan(), "1b2"));
 
     [TestMethod]
     public void LastIndexOfAnyTest2()
-        => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny("1b2".AsSpan()));
+        => Assert.AreEqual(1, SpanPolyfillExtension.LastIndexOfAny("abc".ToCharArray().AsSpan(), "1b2".AsSpan()));
 
     [TestMethod]
     public void LastIndexOfAnyTest3()
-       => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny("1b2", 1, 1));
+       => Assert.AreEqual(1, SpanPolyfillExtension.LastIndexOfAny("abc".ToCharArray().AsSpan(), "1b2", 1, 1));
 
     [TestMethod]
     public void LastIndexOfAnyTest4()
-        => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny(SearchValuesPolyfill.Create("1b2")));
+        => Assert.AreEqual(1, SpanPolyfillExtension.LastIndexOfAny("abc".ToCharArray().AsSpan(), SearchValuesPolyfill.Create("1b2")));
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LastIndexOfAnyTest5()
-        => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().LastIndexOfAny((SearchValuesPolyfill<char>?)null!));
+        => Assert.AreEqual(1, SpanPolyfillExtension.LastIndexOfAny("abc".ToCharArray().AsSpan(), (SearchValuesPolyfill<char>?)null!));
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -385,7 +398,7 @@ public class SpanPolyfillExtensionTests
 
     [TestMethod]
     public void IndexOfAnyTest1()
-        => Assert.AreEqual(1, "abc".ToCharArray().AsSpan().IndexOfAny("1b2"));
+        => Assert.AreEqual(1, SpanPolyfillExtension.IndexOfAny("abc".ToCharArray().AsSpan(), "1b2"));
 
     [DataTestMethod]
     [DataRow("t", "abcdefghi", -1)]
@@ -398,12 +411,13 @@ public class SpanPolyfillExtensionTests
     [DataRow("", null, -1)]
     [DataRow("testtest", "", -1)]
     public void IndexOfAnyTest3(string testStr, string? needles, int expectedIndex)
-        => Assert.AreEqual(expectedIndex, testStr.ToCharArray().AsSpan().IndexOfAny(SearchValuesPolyfill.Create(needles)));
+        => Assert.AreEqual(expectedIndex, 
+                           SpanPolyfillExtension.IndexOfAny(testStr.ToCharArray().AsSpan(), SearchValuesPolyfill.Create(needles)));
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void IndexOfAnyTest4()
-        => "abc".ToCharArray().AsSpan().IndexOfAny((SearchValuesPolyfill<char>?)null!);
+        => SpanPolyfillExtension.IndexOfAny("abc".ToCharArray().AsSpan(), (SearchValuesPolyfill<char>?)null!);
 
     [DataTestMethod]
     [DataRow("", "abc")]
