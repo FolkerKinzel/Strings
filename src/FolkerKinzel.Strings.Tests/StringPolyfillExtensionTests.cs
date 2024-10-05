@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
 
@@ -21,12 +20,179 @@ public class StringPolyfillExtensionTests : IDisposable
     }
 
     [TestMethod]
+    public void TrimTest1()
+    {
+        char[] trimChars = ['\'', '\"'];
+
+        string test = "\"\'Test\'\"";
+
+        Assert.AreEqual(test.Trim(trimChars), StringPolyfillExtension.Trim(test, trimChars.AsSpan()));
+    }
+
+    [TestMethod]
+    public void TrimTest2()
+    {
+        string test = "  Test  ";
+
+        Assert.AreEqual(test.Trim(null), StringPolyfillExtension.Trim(test, ""));
+    }
+
+    [TestMethod]
+    public void TrimTest3()
+    {
+        char[] trimChars = ['\'', '\"'];
+        string test = "\"\'\'\"";
+        Assert.AreEqual(test.Trim(trimChars), StringPolyfillExtension.Trim(test, trimChars.AsSpan()));
+    }
+
+
+    [TestMethod]
+    public void TrimTest4()
+    {
+        string test = "    ";
+        Assert.AreEqual(test.Trim(null), StringPolyfillExtension.Trim(test, ""));
+    }
+
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TrimTest5()
+    {
+        string? test = null;
+        _ = StringPolyfillExtension.Trim(test!, "");
+    }
+
+    [TestMethod]
+    public void TrimTest6()
+    {
+        char[] trimChars = ['\'', '\"'];
+
+        string test = "Test";
+        Assert.AreEqual(test.Trim(trimChars), StringPolyfillExtension.Trim(test, trimChars.AsSpan()));
+    }
+
+    [TestMethod]
+    public void TrimStartTest1()
+    {
+        char[] trimChars = ['\'', '\"'];
+
+        string test = "\"\'Test\'\"";
+
+        Assert.AreEqual(test.TrimStart(trimChars), StringPolyfillExtension.TrimStart(test, trimChars.AsSpan()));
+    }
+
+    [TestMethod]
+    public void TrimStartTest2()
+    {
+        string test = "  Test  ";
+
+        Assert.AreEqual(test.TrimStart(null), StringPolyfillExtension.TrimStart(test, ""));
+    }
+
+    [TestMethod]
+    public void TrimStartTest3()
+    {
+        char[] trimChars = ['\'', '\"'];
+        string test = "\"\'\'\"";
+        Assert.AreEqual(test.TrimStart(trimChars), StringPolyfillExtension.TrimStart(test, trimChars.AsSpan()));
+    }
+
+
+    [TestMethod]
+    public void TrimStartTest4()
+    {
+        string test = "    ";
+        Assert.AreEqual(test.TrimStart(null), StringPolyfillExtension.TrimStart(test, ""));
+    }
+
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TrimStartTest5()
+    {
+        string? test = null;
+        _ = StringPolyfillExtension.TrimStart(test!, "");
+    }
+
+    [TestMethod]
+    public void TrimStartTest6()
+    {
+        char[] trimChars = ['\'', '\"'];
+
+        string test = "Test";
+        Assert.AreEqual(test.TrimStart(trimChars), 
+                        StringPolyfillExtension.TrimStart(test, trimChars.AsSpan()));
+    }
+
+    [TestMethod]
+    public void TrimEndTest1()
+    {
+        char[] trimChars = ['\'', '\"'];
+
+        string test = "\"\'Test\'\"";
+
+        Assert.AreEqual(test.TrimEnd(trimChars), StringPolyfillExtension.TrimEnd(test, trimChars.AsSpan()));
+    }
+
+    [TestMethod]
+    public void TrimEndTest2()
+    {
+        string test = "  Test  ";
+
+        Assert.AreEqual(test.TrimEnd(null), StringPolyfillExtension.TrimEnd(test, ""));
+    }
+
+    [TestMethod]
+    public void TrimEndTest3()
+    {
+        char[] trimChars = ['\'', '\"'];
+        string test = "\"\'\'\"";
+        Assert.AreEqual(test.TrimEnd(trimChars), StringPolyfillExtension.TrimEnd(test, trimChars.AsSpan()));
+    }
+
+
+    [TestMethod]
+    public void TrimEndTest4()
+    {
+        string test = "    ";
+        Assert.AreEqual(test.TrimEnd(null), StringPolyfillExtension.TrimEnd(test, ""));
+    }
+
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void TrimEndTest5()
+    {
+        string? test = null;
+        _ = StringPolyfillExtension.TrimEnd(test!, "");
+    }
+
+    [TestMethod]
+    public void TrimEndTest6()
+    {
+        char[] trimChars = ['\'', '\"'];
+
+        string test = "Test\"";
+        Assert.AreEqual(test.TrimEnd(trimChars),
+                        StringPolyfillExtension.TrimEnd(test, trimChars.AsSpan()));
+    }
+
+    [TestMethod]
+    public void TrimEndTest7()
+    {
+        const string test = "test";
+        char[] trimChars = ['\'', '\"'];
+
+        Assert.AreSame(test.TrimEnd(trimChars), StringPolyfillExtension.TrimEnd(test, trimChars.AsSpan()));
+    }
+
+    [TestMethod]
     public void ReplaceLineEndingsTest1()
     {
         const string input = "\n1\r\n\n\r2\r3\n\n4\r\n5\u000B6\u000C\n7\u00858\u20289\u2029";
         const string expected = "*1***2*3**4*5\u000B6**7*8*9*";
 
-        string output = input.ReplaceLineEndings("*");
+        string output = StringPolyfillExtension.ReplaceLineEndings(input, "*");
         Assert.AreEqual(expected, output);
     }
 
@@ -35,7 +201,7 @@ public class StringPolyfillExtensionTests : IDisposable
     public void ReplaceLineEndingsTest2()
     {
         string s = "Hi\n";
-        _ = s.ReplaceLineEndings(null!);
+        _ = StringPolyfillExtension.ReplaceLineEndings(s, null!);
     }
 
     [TestMethod]
@@ -43,21 +209,21 @@ public class StringPolyfillExtensionTests : IDisposable
     public void ReplaceLineEndingsTest3()
     {
         string? s = null;
-        _ = s!.ReplaceLineEndings("*");
+        _ = StringPolyfillExtension.ReplaceLineEndings(s!, "*");
     }
 
     [TestMethod]
     public void ReplaceLineEndingsTest4()
     {
         const string test = "test";
-        Assert.AreSame(test, test.ReplaceLineEndings("blub"));
+        Assert.AreSame(test, StringPolyfillExtension.ReplaceLineEndings(test, "blub"));
     }
 
     [TestMethod]
     public void ReplaceLineEndingsTest5()
     {
         const string test = "\u0085";
-        Assert.AreEqual(Environment.NewLine, test.ReplaceLineEndings());
+        Assert.AreEqual(Environment.NewLine, StringPolyfillExtension.ReplaceLineEndings(test));
     }
 
     [TestMethod]
@@ -65,7 +231,7 @@ public class StringPolyfillExtensionTests : IDisposable
     public void ReplaceLineEndingsTest6()
     {
         string? s = null;
-        _ = s!.ReplaceLineEndings();
+        _ = StringPolyfillExtension.ReplaceLineEndings(s!);
     }
 
     [DataTestMethod]
@@ -75,69 +241,75 @@ public class StringPolyfillExtensionTests : IDisposable
     [DataRow("Hi\u000CFolker")]
     [DataRow("Hi\u2028Folker")]
     [DataRow("Hi\u2029Folker")]
-    public void ReplaceLineEndingsTest7(string input) => Assert.AreEqual("Hi*Folker", input.ReplaceLineEndings("*"));
+    public void ReplaceLineEndingsTest7(string input) 
+        => Assert.AreEqual("Hi*Folker", StringPolyfillExtension.ReplaceLineEndings(input, "*"));
 
     [TestMethod]
     public void ReplaceLineEndingsTest8()
     {
         const string test = "t\ne\ns\nt\n";
-        Assert.AreSame(test, test.ReplaceLineEndings("\n"));
+        Assert.AreSame(test, StringPolyfillExtension.ReplaceLineEndings(test, "\n"));
     }
 
     [TestMethod]
     public void ReplaceLineEndingsTest9()
     {
         const string test = "t\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\nt\ne\ns\nt\n";
-        Assert.AreSame(test, test.ReplaceLineEndings("\n"));
+        Assert.AreSame(test, StringPolyfillExtension.ReplaceLineEndings(test, "\n"));
     }
 
     [TestMethod]
     public void ReplaceLineEndingsTest10()
     {
         string test = "t\n" + new string('e', 260) + "\nt";
-        Assert.AreEqual("t**" + new string('e', 260) + "**t", test.ReplaceLineEndings("**"));
+        Assert.AreEqual("t**" + new string('e', 260) + "**t", StringPolyfillExtension.ReplaceLineEndings(test, "**"));
     }
 
     [DataTestMethod()]
     [DataRow("Test", 'e', StringComparison.Ordinal, true)]
     public void ContainsTest1(string value, char c, StringComparison comparison, bool expected)
-     => Assert.AreEqual(expected, value.Contains(c, comparison));
+     => Assert.AreEqual(expected, StringPolyfillExtension.Contains(value, c, comparison));
 
     [DataTestMethod()]
     [DataRow("Test", 'e', true)]
-    public void ContainsTest2(string value, char c, bool expected) => Assert.AreEqual(expected, value.Contains(c));
+    public void ContainsTest2(string value, char c, bool expected)
+        => Assert.AreEqual(expected, StringPolyfillExtension.Contains(value, c));
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
-    public void ContainsTest3() => _ = "Test".Contains('e', (StringComparison)4711);
+    public void ContainsTest3()
+        => _ = StringPolyfillExtension.Contains("Test", 'e', (StringComparison)4711);
 
     [TestMethod]
     [ExpectedException(typeof(NullReferenceException))]
     public void ContainsTest4()
     {
         string? test = null;
-        _ = test!.Contains('e', StringComparison.Ordinal);
+        _ = StringPolyfillExtension.Contains(test!, 'e', StringComparison.Ordinal);
     }
 
     [DataTestMethod]
     [DataRow("Test", 'e', true)]
-    public void ContainsTest5(string input, char c, bool expected) => Assert.AreEqual(expected, input.Contains(c));
+    public void ContainsTest5(string input, char c, bool expected) 
+        => Assert.AreEqual(expected, StringPolyfillExtension.Contains(input, c));
 
     [TestMethod]
     [ExpectedException(typeof(NullReferenceException))]
     public void ContainsTest6()
     {
         string? test = null;
-        _ = test!.Contains('e');
+        _ = StringPolyfillExtension.Contains(test!, 'e');
     }
 
     [DataTestMethod]
     [DataRow("Test", "es", true)]
-    public void ContainsTest7(string input, string s, bool expected) => Assert.AreEqual(expected, input.Contains(s, StringComparison.Ordinal));
+    public void ContainsTest7(string input, string s, bool expected) 
+        => Assert.AreEqual(expected, StringPolyfillExtension.Contains(input, s, StringComparison.Ordinal));
 
     [DataTestMethod]
     [DataRow("Test", "as", false)]
-    public void ContainsTest8(string input, string s, bool expected) => Assert.AreEqual(expected, input.Contains(s, StringComparison.Ordinal));
+    public void ContainsTest8(string input, string s, bool expected)
+        => Assert.AreEqual(expected, StringPolyfillExtension.Contains(input, s, StringComparison.Ordinal));
 
 
     [TestMethod]
@@ -145,23 +317,24 @@ public class StringPolyfillExtensionTests : IDisposable
     public void ContainsTest9()
     {
         string? test = null;
-        _ = test!.Contains("es", StringComparison.Ordinal);
+        _ = StringPolyfillExtension.Contains(test!, "es", StringComparison.Ordinal);
     }
 
     [DataTestMethod()]
     [DataRow("Test", 'e', StringComparison.Ordinal, 1)]
-    public void IndexOfTest1(string value, char c, StringComparison comparison, int expected) => Assert.AreEqual(expected, value.IndexOf(c, comparison));
+    public void IndexOfTest1(string value, char c, StringComparison comparison, int expected) 
+        => Assert.AreEqual(expected, StringPolyfillExtension.IndexOf(value, c, comparison));
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
-    public void IndexOfTest2() => _ = "Test".IndexOf('e', (StringComparison)4711);
+    public void IndexOfTest2() => _ = StringPolyfillExtension.IndexOf("Test", 'e', (StringComparison)4711);
 
     [TestMethod]
     [ExpectedException(typeof(NullReferenceException))]
     public void IndexOfTest3()
     {
         string? test = null;
-        _ = test!.IndexOf('e', StringComparison.Ordinal);
+        _ = StringPolyfillExtension.IndexOf(test!, 'e', StringComparison.Ordinal);
     }
 
 
@@ -175,12 +348,13 @@ public class StringPolyfillExtensionTests : IDisposable
     public void SplitTest2()
     {
         string? test = null;
-        _ = test!.Split(',', StringSplitOptions.RemoveEmptyEntries);
+        _ = StringPolyfillExtension.Split(test!, ',', StringSplitOptions.RemoveEmptyEntries);
     }
 
     [DataTestMethod()]
     [DataRow("Test", 'e', StringSplitOptions.RemoveEmptyEntries, 2)]
-    public void SplitTest3(string value, char c, StringSplitOptions options, int expected) => Assert.AreEqual(expected, value.Split(c, 2, options).Length);
+    public void SplitTest3(string value, char c, StringSplitOptions options, int expected)
+        => Assert.AreEqual(expected, value.Split(c, 2, options).Length);
 
 
     [TestMethod]
@@ -188,7 +362,7 @@ public class StringPolyfillExtensionTests : IDisposable
     public void SplitTest4()
     {
         string? test = null;
-        _ = test!.Split(',', 2, StringSplitOptions.RemoveEmptyEntries);
+        _ = StringPolyfillExtension.Split(test!, ',', 2, StringSplitOptions.RemoveEmptyEntries);
     }
 
     [TestMethod]
@@ -196,21 +370,23 @@ public class StringPolyfillExtensionTests : IDisposable
     public void SplitTest5()
     {
         string? test = null;
-        _ = test!.Split(",", 2, StringSplitOptions.RemoveEmptyEntries);
+        _ = StringPolyfillExtension.Split(test!, ",", 2, StringSplitOptions.RemoveEmptyEntries);
     }
 
     [DataTestMethod]
     [DataRow("")]
     [DataRow(null)]
-    public void SplitTest6(string? separator) => Assert.AreEqual(1, "test".Split(separator, 4711).Length);
+    public void SplitTest6(string? separator)
+        => Assert.AreEqual(1, StringPolyfillExtension.Split("test", separator, 4711).Length);
 
     [DataTestMethod]
     [DataRow(StringSplitOptions.None, 1)]
     [DataRow(StringSplitOptions.RemoveEmptyEntries, 0)]
-    public void SplitTest7(StringSplitOptions options, int expected) => Assert.AreEqual(expected, "".Split("bla", 4711, options).Length);
+    public void SplitTest7(StringSplitOptions options, int expected)
+        => Assert.AreEqual(expected, StringPolyfillExtension.Split("", "bla", 4711, options).Length);
 
     [TestMethod]
-    public void SplitTest8() => Assert.AreEqual(0, "test".Split("e", 0).Length);
+    public void SplitTest8() => Assert.AreEqual(0, StringPolyfillExtension.Split("test", "e", 0).Length);
 
 
     [DataTestMethod]
@@ -223,7 +399,7 @@ public class StringPolyfillExtensionTests : IDisposable
     [DataRow("", "is", 2, StringSplitOptions.None, 1)]
     [DataRow("", "is", 2, StringSplitOptions.RemoveEmptyEntries, 0)]
     public void SplitTest9(string input, string? split, int parts, StringSplitOptions options, int expected)
-        => Assert.AreEqual(expected, input.Split(split, parts, options).Length);
+        => Assert.AreEqual(expected, StringPolyfillExtension.Split(input, split, parts, options).Length);
 
 
     [TestMethod]
@@ -231,7 +407,7 @@ public class StringPolyfillExtensionTests : IDisposable
     public void SplitTest10()
     {
         string test = "Test";
-        _ = test.Split("bla", -1);
+        _ = StringPolyfillExtension.Split(test, "bla", -1);
     }
 
     [TestMethod]
@@ -239,7 +415,7 @@ public class StringPolyfillExtensionTests : IDisposable
     public void SplitTest11()
     {
         string? test = null;
-        _ = test!.Split("bla", 100);
+        _ = StringPolyfillExtension.Split(test!, "bla", 100);
     }
 
 
@@ -250,7 +426,7 @@ public class StringPolyfillExtensionTests : IDisposable
     [DataRow("", "is", StringSplitOptions.None, 1)]
     [DataRow("", "is", StringSplitOptions.RemoveEmptyEntries, 0)]
     public void SplitTest12(string input, string? split, StringSplitOptions options, int expected)
-        => Assert.AreEqual(expected, input.Split(split, options).Length);
+        => Assert.AreEqual(expected, StringPolyfillExtension.Split(input, split, options).Length);
 
 
     [TestMethod]
@@ -258,36 +434,36 @@ public class StringPolyfillExtensionTests : IDisposable
     public void SplitTest13()
     {
         string? test = null;
-        _ = test!.Split("bla");
+        _ = StringPolyfillExtension.Split(test!, "bla");
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
-    public void SplitTest14() => _ = "test".Split("3", -1);
+    public void SplitTest14() => _ = StringPolyfillExtension.Split("test", "3", -1);
 
     [DataTestMethod()]
     [DataRow("Test", 'T', true)]
     //[DataRow("aeTest", 'ä', true)]
-    public void StartsWithTest1(string value, char c, bool expected) => Assert.AreEqual(expected, value.StartsWith(c));
+    public void StartsWithTest1(string value, char c, bool expected) => Assert.AreEqual(expected, StringPolyfillExtension.StartsWith(value, c));
 
     [TestMethod]
     [ExpectedException(typeof(NullReferenceException))]
     public void StartsWithTest2()
     {
         string? test = null;
-        _ = test!.StartsWith(',');
+        _ = StringPolyfillExtension.StartsWith(test!, ',');
     }
 
     [DataTestMethod()]
     [DataRow("Test", 't', true)]
-    public void EndsWithTest1(string value, char c, bool expected) => Assert.AreEqual(expected, value.EndsWith(c));
+    public void EndsWithTest1(string value, char c, bool expected) => Assert.AreEqual(expected, StringPolyfillExtension.EndsWith(value, c));
 
     [TestMethod]
     [ExpectedException(typeof(NullReferenceException))]
     public void EndsWithTest2()
     {
         string? test = null;
-        _ = test!.EndsWith(',');
+        _ = StringPolyfillExtension.EndsWith(test!, ',');
     }
 
     [DataTestMethod]
@@ -304,7 +480,7 @@ public class StringPolyfillExtensionTests : IDisposable
     [DataRow("Test", "EST", "ante", StringComparison.Ordinal, "Test")]
     [DataRow("Test", "EST", "ante", StringComparison.OrdinalIgnoreCase, "Tante")]
     public void ReplaceTest1(string input, string oldValue, string? replacement, StringComparison comparison, string expected)
-        => Assert.AreEqual(expected, input.Replace(oldValue, replacement, comparison));
+        => Assert.AreEqual(expected, StringPolyfillExtension.Replace(input, oldValue, replacement, comparison));
 
 
     [DataTestMethod]
@@ -314,7 +490,7 @@ public class StringPolyfillExtensionTests : IDisposable
     public void ReplaceTest2(StringComparison comparison)
     {
         string? s = null;
-        _ = s!.Replace("test", "bb", comparison);
+        _ = StringPolyfillExtension.Replace(s!, "test", "bb", comparison);
     }
 
     [DataTestMethod]
@@ -324,7 +500,7 @@ public class StringPolyfillExtensionTests : IDisposable
     public void ReplaceTest3(StringComparison comparison)
     {
         string s = "Test";
-        _ = s.Replace(null!, "bb", comparison);
+        _ = StringPolyfillExtension.Replace(s, null!, "bb", comparison);
     }
 
     [DataTestMethod]
@@ -334,8 +510,6 @@ public class StringPolyfillExtensionTests : IDisposable
     public void ReplaceTest4(StringComparison comparison)
     {
         string s = "Test";
-        _ = s.Replace("", "bb", comparison);
+        _ = StringPolyfillExtension.Replace(s, "", "bb", comparison);
     }
-
-
 }

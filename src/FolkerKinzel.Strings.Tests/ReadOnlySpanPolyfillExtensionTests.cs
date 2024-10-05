@@ -23,13 +23,25 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
         GC.SuppressFinalize(this);
     }
 
+    [DataTestMethod]
+    [DataRow("Test", 't', true)]
+    [DataRow("Test", 'T', false)]
+    [DataRow("", 'T', false)]
+    public void EndsWithTest(string input, char c, bool expected) => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.EndsWith(input.AsSpan(), c));
+
+    [DataTestMethod]
+    [DataRow("Test", 'T', true)]
+    [DataRow("Test", 't', false)]
+    [DataRow("", 't', false)]
+    public void StartsWithTest(string input, char c, bool expected) => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.StartsWith(input.AsSpan(), c));
+
     [DataTestMethod()]
     [DataRow("", -1)]
     [DataRow("   ", -1)]
     [DataRow("a", 0)]
     [DataRow(" a ", 1)]
     public void IndexOfAnyExceptTest1(string input, int expected)
-        => Assert.AreEqual(expected, input.AsSpan().IndexOfAnyExcept(' '));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.IndexOfAnyExcept(input.AsSpan(), ' '));
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -37,7 +49,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xxba", 0)]
     [DataRow("bxxxx", 1)]
     public void IndexOfAnyExceptTest2(string input, int expected)
-       => Assert.AreEqual(expected, input.AsSpan().IndexOfAnyExcept('a', 'b'));
+       => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.IndexOfAnyExcept(input.AsSpan(), 'a', 'b'));
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -45,7 +57,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xxbca", 0)]
     [DataRow("bxxxx", 1)]
     public void IndexOfAnyExceptTest3(string input, int expected)
-        => Assert.AreEqual(expected, input.AsSpan().IndexOfAnyExcept('a', 'b', 'c'));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.IndexOfAnyExcept(input.AsSpan(), 'a', 'b', 'c'));
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -53,7 +65,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xxbcdda", 0)]
     [DataRow("bxxxx", 1)]
     public void IndexOfAnyExceptTest4(string input, int expected)
-        => Assert.AreEqual(expected, input.AsSpan().IndexOfAnyExcept("abcd"));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.IndexOfAnyExcept(input.AsSpan(), "abcd"));
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -61,7 +73,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xxbcdda", 0)]
     [DataRow("bxxxx", 1)]
     public void IndexOfAnyExceptTest5(string input, int expected)
-        => Assert.AreEqual(expected, input.AsSpan().IndexOfAnyExcept("abcd".AsSpan()));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.IndexOfAnyExcept(input.AsSpan(), "abcd".AsSpan()));
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -69,12 +81,12 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xxbcdda", 0)]
     [DataRow("bxxxx", 1)]
     public void IndexOfAnyExceptTest6(string input, int expected)
-        => Assert.AreEqual(expected, input.AsSpan().IndexOfAnyExcept(SearchValuesPolyfill.Create("abcd")));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.IndexOfAnyExcept(input.AsSpan(), SearchValuesPolyfill.Create("abcd")));
 
     [TestMethod()]
     [ExpectedException(typeof(ArgumentNullException))]  
     public void IndexOfAnyExceptTest7()
-        => "xyz".AsSpan().IndexOfAnyExcept((SearchValuesPolyfill<char>?)null!);
+        => ReadOnlySpanPolyfillExtension.IndexOfAnyExcept("xyz".AsSpan(), (SearchValuesPolyfill<char>?)null!);
 
     [DataTestMethod()]
     [DataRow("", false)]
@@ -82,7 +94,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("a", true)]
     [DataRow(" a ", true)]
     public void ContainsAnyExceptTest1(string input, bool expected)
-        => Assert.AreEqual(expected, input.AsSpan().ContainsAnyExcept(' '));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.ContainsAnyExcept(input.AsSpan(), ' '));
 
     [DataTestMethod()]
     [DataRow("", false)]
@@ -90,7 +102,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xxba", true)]
     [DataRow("bxxxx", true)]
     public void ContainsAnyExceptTest2(string input, bool expected)
-       => Assert.AreEqual(expected, input.AsSpan().ContainsAnyExcept('a', 'b'));
+       => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.ContainsAnyExcept(input.AsSpan(), 'a', 'b'));
 
     [DataTestMethod()]
     [DataRow("", false)]
@@ -98,7 +110,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xxbca", true)]
     [DataRow("bxxxx", true)]
     public void ContainsAnyExceptTest3(string input, bool expected)
-        => Assert.AreEqual(expected, input.AsSpan().ContainsAnyExcept('a', 'b', 'c'));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.ContainsAnyExcept(input.AsSpan(), 'a', 'b', 'c'));
 
     [DataTestMethod()]
     [DataRow("", false)]
@@ -106,7 +118,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xxbcdda", true)]
     [DataRow("bxxxx", true)]
     public void ContainsAnyExceptTest4(string input, bool expected)
-        => Assert.AreEqual(expected, input.AsSpan().ContainsAnyExcept("abcd"));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.ContainsAnyExcept(input.AsSpan(), "abcd"));
 
     [DataTestMethod()]
     [DataRow("", false)]
@@ -114,7 +126,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xxbcdda", true)]
     [DataRow("bxxxx", true)]
     public void ContainsAnyExceptTest5(string input, bool expected)
-        => Assert.AreEqual(expected, input.AsSpan().ContainsAnyExcept("abcd".AsSpan()));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.ContainsAnyExcept(input.AsSpan(), "abcd".AsSpan()));
 
     [DataTestMethod()]
     [DataRow("", false)]
@@ -122,12 +134,12 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xxbcdda", true)]
     [DataRow("bxxxx", true)]
     public void ContainsAnyExceptTest6(string input, bool expected)
-        => Assert.AreEqual(expected, input.AsSpan().ContainsAnyExcept(SearchValuesPolyfill.Create("abcd")));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.ContainsAnyExcept(input.AsSpan(), SearchValuesPolyfill.Create("abcd")));
 
     [TestMethod()]
     [ExpectedException(typeof(ArgumentNullException))]
     public void ContainsAnyExceptTest7()
-        => "xyz".AsSpan().ContainsAnyExcept((SearchValuesPolyfill<char>?)null!);
+        => ReadOnlySpanPolyfillExtension.ContainsAnyExcept("xyz".AsSpan(), (SearchValuesPolyfill<char>?)null!);
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -135,7 +147,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("a", 0)]
     [DataRow(" a ", 1)]
     public void LastIndexOfAnyExceptTest1(string input, int expected)
-        => Assert.AreEqual(expected, input.AsSpan().LastIndexOfAnyExcept(' '));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.LastIndexOfAnyExcept(input.AsSpan(), ' '));
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -143,7 +155,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xbbaba", 0)]
     [DataRow("bxabbbababba", 1)]
     public void LastIndexOfAnyExceptTest2(string input, int expected)
-        => Assert.AreEqual(expected, input.AsSpan().LastIndexOfAnyExcept('a', 'b'));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.LastIndexOfAnyExcept(input.AsSpan(), 'a', 'b'));
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -151,7 +163,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xbbabcca", 0)]
     [DataRow("bxabbbabcabba", 1)]
     public void LastIndexOfAnyExceptTest3(string input, int expected)
-        => Assert.AreEqual(expected, input.AsSpan().LastIndexOfAnyExcept('a', 'b', 'c'));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.LastIndexOfAnyExcept(input.AsSpan(), 'a', 'b', 'c'));
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -159,7 +171,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xbbabcdcadd", 0)]
     [DataRow("bxabbbadbdcabba", 1)]
     public void LastIndexOfAnyExceptTest4(string input, int expected)
-        => Assert.AreEqual(expected, input.AsSpan().LastIndexOfAnyExcept("abcd"));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.LastIndexOfAnyExcept(input.AsSpan(), "abcd"));
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -167,7 +179,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xbbabcdcadd", 0)]
     [DataRow("bxabbbadbdcabba", 1)]
     public void LastIndexOfAnyExceptTest5(string input, int expected)
-        => Assert.AreEqual(expected, input.AsSpan().LastIndexOfAnyExcept("abcd".AsSpan()));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.LastIndexOfAnyExcept(input.AsSpan(), "abcd".AsSpan()));
 
     [DataTestMethod()]
     [DataRow("", -1)]
@@ -175,12 +187,12 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("xbbabcdcadd", 0)]
     [DataRow("bxabbbadbdcabba", 1)]
     public void LastIndexOfAnyExceptTest6(string input, int expected)
-        => Assert.AreEqual(expected, input.AsSpan().LastIndexOfAnyExcept(SearchValuesPolyfill.Create("abcd")));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.LastIndexOfAnyExcept(input.AsSpan(), SearchValuesPolyfill.Create("abcd")));
 
     [TestMethod()]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LastIndexOfAnyExceptTest7()
-        => "xyz".AsSpan().LastIndexOfAnyExcept((SearchValuesPolyfill<char>?)null!);
+        => ReadOnlySpanPolyfillExtension.LastIndexOfAnyExcept("xyz".AsSpan(), (SearchValuesPolyfill<char>?)null!);
 
     [DataTestMethod]
     [DataRow("", null, true)]
@@ -191,7 +203,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("ab", "ba", false)]
     [DataRow("ab", "AB", true)]
     public void EqualsTest(string input, string? other, bool expected) =>
-        Assert.AreEqual(expected, input.AsSpan().Equals(other, StringComparison.OrdinalIgnoreCase));
+        Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.Equals(input.AsSpan(), other, StringComparison.OrdinalIgnoreCase));
 
     [TestMethod]
     public void ContainsTest1() => Assert.IsTrue(Environment.NewLine.AsSpan().Contains(Environment.NewLine, StringComparison.Ordinal));
@@ -205,7 +217,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("t", "", -1)]
     [DataRow("testtest", "", -1)]
     public void IndexOfAnyTest1(string testStr, string needles, int expectedIndex)
-        => Assert.AreEqual(expectedIndex, testStr.AsSpan().IndexOfAny(needles.AsSpan()));
+        => Assert.AreEqual(expectedIndex, ReadOnlySpanPolyfillExtension.IndexOfAny(testStr.AsSpan(), needles.AsSpan()));
 
 
     [DataTestMethod]
@@ -217,7 +229,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("t", "", -1)]
     [DataRow("testtest", "", -1)]
     public void IndexOfAnyTest2(string testStr, string needles, int expectedIndex)
-        => Assert.AreEqual(expectedIndex, testStr.AsSpan().IndexOfAny(needles));
+        => Assert.AreEqual(expectedIndex, ReadOnlySpanPolyfillExtension.IndexOfAny(testStr.AsSpan(), needles));
 
     [DataTestMethod]
     [DataRow("t", "abcdefghi", -1)]
@@ -230,22 +242,22 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow(null, null, -1)]
     [DataRow("testtest", "", -1)]
     public void IndexOfAnyTest3(string? testStr, string? needles, int expectedIndex)
-        => Assert.AreEqual(expectedIndex, testStr.AsSpan().IndexOfAny(SearchValuesPolyfill.Create(needles)));
+        => Assert.AreEqual(expectedIndex, ReadOnlySpanPolyfillExtension.IndexOfAny(testStr.AsSpan(), SearchValuesPolyfill.Create(needles)));
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))] 
     public void IndexOfAnyTest4()
-        => "abc".AsSpan().IndexOfAny((SearchValuesPolyfill<char>?)null!);
+        => ReadOnlySpanPolyfillExtension.IndexOfAny("abc".AsSpan(), (SearchValuesPolyfill<char>?)null!);
 
     [TestMethod]
-    public void ContainsAnyTest1() => Assert.IsFalse("t".AsSpan().ContainsAny(""));
+    public void ContainsAnyTest1() => Assert.IsFalse(ReadOnlySpanPolyfillExtension.ContainsAny("t".AsSpan(), ""));
 
     [TestMethod]
-    public void ContainsAnyTest2() => Assert.IsFalse("t".AsSpan().ContainsAny(SearchValuesPolyfill.Create("")));
+    public void ContainsAnyTest2() => Assert.IsFalse(ReadOnlySpanPolyfillExtension.ContainsAny("t".AsSpan(), SearchValuesPolyfill.Create("")));
 
     [TestMethod]
     [ExpectedException (typeof(ArgumentNullException))]
-    public void ContainsAnyTest3() => Assert.IsFalse("t".AsSpan().ContainsAny((SearchValuesPolyfill<char>?)null!));
+    public void ContainsAnyTest3() => Assert.IsFalse(ReadOnlySpanPolyfillExtension.ContainsAny("t".AsSpan(), (SearchValuesPolyfill<char>?)null!));
 
     [DataTestMethod]
     [DataRow("ef", 4)]
@@ -260,7 +272,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
         //int i = "".LastIndexOfAny(new char[0]);
         //i = MemoryExtensions.LastIndexOfAny(test.AsSpan(), ReadOnlySpan<char>.Empty);
 
-        Assert.AreEqual(expected, test.AsSpan().LastIndexOfAny(needles.AsSpan()));
+        Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.LastIndexOfAny(test.AsSpan(), needles.AsSpan()));
     }
 
     [DataTestMethod]
@@ -269,7 +281,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("", -1)]
     [DataRow("xy", -1)]
     [DataRow("qwxyza0123456789", -1)]
-    public void LastIndexOfAnyTest2(string needles, int expected) => Assert.AreEqual(expected, "testen".AsSpan().LastIndexOfAny(needles));
+    public void LastIndexOfAnyTest2(string needles, int expected) => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.LastIndexOfAny("testen".AsSpan(), needles));
 
 
     [TestMethod]
@@ -281,12 +293,12 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
 
     [TestMethod]
     public void LastIndexOfAnyTest4()
-        => Assert.AreEqual(1, "abc".AsSpan().LastIndexOfAny(SearchValuesPolyfill.Create("1b2")));
+        => Assert.AreEqual(1, ReadOnlySpanPolyfillExtension.LastIndexOfAny("abc".AsSpan(), SearchValuesPolyfill.Create("1b2")));
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LastIndexOfAnyTest5()
-        => Assert.AreEqual(1, "abc".AsSpan().LastIndexOfAny((SearchValuesPolyfill<char>?)null!));
+        => Assert.AreEqual(1, ReadOnlySpanPolyfillExtension.LastIndexOfAny("abc".AsSpan(), (SearchValuesPolyfill<char>?)null!));
 
     [DataTestMethod]
     [DataRow("test", "TE", true)]
@@ -297,13 +309,13 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("", "", true)]
     [DataRow("", "TE", false)]
     public void StartsWithTest1(string input, string? test, bool expected)
-        => Assert.AreEqual(expected, input.AsSpan().StartsWith(test, StringComparison.OrdinalIgnoreCase));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.StartsWith(input.AsSpan(), test, StringComparison.OrdinalIgnoreCase));
 
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void StartsWithTest2()
-        => _ = "test".AsSpan().StartsWith("test", (StringComparison)4711);
+        => _ = ReadOnlySpanPolyfillExtension.StartsWith("test".AsSpan(), "test", (StringComparison)4711);
 
     [DataTestMethod]
     [DataRow("test", "TE", false)]
@@ -314,7 +326,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("", "", true)]
     [DataRow("", "TE", false)]
     public void StartsWithTest3(string input, string? test, bool expected)
-        => Assert.AreEqual(expected, input.AsSpan().StartsWith(test));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.StartsWith(input.AsSpan(), test));
 
 
     [DataTestMethod]
@@ -326,13 +338,13 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("", "", true)]
     [DataRow("", "st", false)]
     public void EndsWithTest1(string input, string? test, bool expected)
-       => Assert.AreEqual(expected, input.AsSpan().EndsWith(test, StringComparison.OrdinalIgnoreCase));
+       => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.EndsWith(input.AsSpan(), test, StringComparison.OrdinalIgnoreCase));
 
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void EndsWithTest2()
-        => _ = "test".AsSpan().EndsWith("test", (StringComparison)4711);
+        => _ = ReadOnlySpanPolyfillExtension.EndsWith("test".AsSpan(), "test", (StringComparison)4711);
 
     [DataTestMethod]
     [DataRow("test", "ST", false)]
@@ -343,7 +355,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("", "", true)]
     [DataRow("", "st", false)]
     public void EndsWithTest3(string input, string? test, bool expected)
-        => Assert.AreEqual(expected, input.AsSpan().EndsWith(test));
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.EndsWith(input.AsSpan(), test));
 
 
 
@@ -355,7 +367,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void LastIndexOfTest1(StringComparison comp)
     {
         const string test = "test";
-        Assert.AreEqual(test.LastIndexOf("", comp), test.AsSpan().LastIndexOf(ReadOnlySpan<char>.Empty, comp));
+        Assert.AreEqual(test.LastIndexOf("", comp), ReadOnlySpanPolyfillExtension.LastIndexOf(test.AsSpan(), ReadOnlySpan<char>.Empty, comp));
     }
 
 
@@ -365,7 +377,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void LastIndexOfTest2(StringComparison comp)
     {
         const string test = "test";
-        Assert.AreEqual(1, test.AsSpan().LastIndexOf("est".AsSpan(), comp));
+        Assert.AreEqual(1, ReadOnlySpanPolyfillExtension.LastIndexOf(test.AsSpan(), "est".AsSpan(), comp));
     }
 
 
@@ -375,7 +387,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void LastIndexOfTest3(StringComparison comp)
     {
         const string test = "test";
-        Assert.AreEqual(test.LastIndexOf("", comp), test.AsSpan().LastIndexOf("", comp));
+        Assert.AreEqual(test.LastIndexOf("", comp), ReadOnlySpanPolyfillExtension.LastIndexOf(test.AsSpan(), "", comp));
     }
 
 
@@ -385,7 +397,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void LastIndexOfTest4(StringComparison comp)
     {
         const string test = "test";
-        Assert.AreEqual(1, test.AsSpan().LastIndexOf("est", comp));
+        Assert.AreEqual(1, ReadOnlySpanPolyfillExtension.LastIndexOf(test.AsSpan(), "est", comp));
     }
 
 
@@ -396,7 +408,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void LastIndexOfTest5(StringComparison comp)
     {
         const string test = "test";
-        Assert.AreEqual(test.LastIndexOf("", comp), test.AsSpan().LastIndexOf((string?)null, comp));
+        Assert.AreEqual(test.LastIndexOf("", comp), ReadOnlySpanPolyfillExtension.LastIndexOf(test.AsSpan(), (string?)null, comp));
     }
 
     [DataTestMethod()]
@@ -406,7 +418,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void LastIndexOfTest6(StringComparison comp)
     {
         const string test = "test";
-        Assert.AreEqual(test.LastIndexOf("", comp), test.AsSpan().LastIndexOf("", comp));
+        Assert.AreEqual(test.LastIndexOf("", comp), ReadOnlySpanPolyfillExtension.LastIndexOf(test.AsSpan(), "", comp));
     }
 
     [DataTestMethod]
@@ -415,7 +427,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     [DataRow("abc", "BC", StringComparison.OrdinalIgnoreCase)]
     public void IndexOfTest1(string input, string end, StringComparison comp)
        => Assert.AreEqual(input.AsSpan().IndexOf(end.AsSpan(), comp),
-                          input.AsSpan().IndexOf(end, comp));
+                          ReadOnlySpanPolyfillExtension.IndexOf(input.AsSpan(), end, comp));
 
     [DataTestMethod]
     [DataRow("abc", "abcd")]
@@ -426,7 +438,8 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void TrimStartTest1(string? input, string? trimChars)
     {
         ReadOnlySpan<char> span = input.AsSpan();
-        Assert.AreEqual(span.TrimStart(trimChars.AsSpan()).ToString(), span.TrimStart(trimChars).ToString());
+        Assert.AreEqual(span.TrimStart(trimChars.AsSpan()).ToString(),
+                        ReadOnlySpanPolyfillExtension.TrimStart(span, trimChars).ToString());
     }
 
     [DataTestMethod]
@@ -438,7 +451,8 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void TrimEndTest1(string? input, string? trimChars)
     {
         ReadOnlySpan<char> span = input.AsSpan();
-        Assert.AreEqual(span.TrimEnd(trimChars.AsSpan()).ToString(), span.TrimEnd(trimChars).ToString());
+        Assert.AreEqual(span.TrimEnd(trimChars.AsSpan()).ToString(), 
+                        ReadOnlySpanPolyfillExtension.TrimEnd(span, trimChars).ToString());
     }
 
     [DataTestMethod]
@@ -451,6 +465,6 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void TrimTest1(string? input, string? trimChars)
     {
         ReadOnlySpan<char> span = input.AsSpan();
-        Assert.AreEqual(span.Trim(trimChars.AsSpan()).ToString(), span.Trim(trimChars).ToString());
+        Assert.AreEqual(span.Trim(trimChars.AsSpan()).ToString(), ReadOnlySpanPolyfillExtension.Trim(span, trimChars).ToString());
     }
 }

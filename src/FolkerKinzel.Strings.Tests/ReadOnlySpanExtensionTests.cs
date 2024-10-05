@@ -344,18 +344,6 @@ public class ReadOnlySpanExtensionTests
     [DataRow("Test 2", false)]
     public void ContainsNewLineTest(string input, bool expected) => Assert.AreEqual(expected, input.AsSpan().ContainsNewLine());
 
-    [DataTestMethod]
-    [DataRow("Test", 't', true)]
-    [DataRow("Test", 'T', false)]
-    [DataRow("", 'T', false)]
-    public void EndsWithTest(string input, char c, bool expected) => Assert.AreEqual(expected, input.AsSpan().EndsWith(c));
-
-    [DataTestMethod]
-    [DataRow("Test", 'T', true)]
-    [DataRow("Test", 't', false)]
-    [DataRow("", 't', false)]
-    public void StartsWithTest(string input, char c, bool expected) => Assert.AreEqual(expected, input.AsSpan().StartsWith(c));
-
     [TestMethod()]
     public void LastIndexOfTest1() => Assert.AreEqual(-1, "test".AsSpan().LastIndexOf("bla", 3, 4, StringComparison.Ordinal));
 

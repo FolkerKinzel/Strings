@@ -10,7 +10,7 @@ public class MemoryPolyfillExtensionTests
     {
         string test = "  Test ";
         Memory<char> memory = test.ToCharArray().AsMemory();
-        Assert.AreEqual(test.Trim(), memory.Trim().ToString());
+        Assert.AreEqual(test.Trim(), MemoryPolyfillExtension.Trim(memory).ToString());
     }
 
     [TestMethod()]
@@ -18,7 +18,7 @@ public class MemoryPolyfillExtensionTests
     {
         string test = "  Test ";
         Memory<char> memory = test.ToCharArray().AsMemory();
-        Assert.AreEqual(test.TrimStart(), memory.TrimStart().ToString());
+        Assert.AreEqual(test.TrimStart(), MemoryPolyfillExtension.TrimStart(memory).ToString());
     }
 
     [TestMethod()]
@@ -26,6 +26,6 @@ public class MemoryPolyfillExtensionTests
     {
         string test = "  Test ";
         Memory<char> memory = test.ToCharArray().AsMemory();
-        Assert.AreEqual(test.TrimEnd(), memory.TrimEnd().ToString());
+        Assert.AreEqual(test.TrimEnd(), MemoryPolyfillExtension.TrimEnd(memory).ToString());
     }
 }

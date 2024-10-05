@@ -10,7 +10,7 @@ public class ReadOnlyMemoryPolyfillExtensionTests
     {
         string test = "  Test ";
         ReadOnlyMemory<char> memory = test.AsMemory();
-        Assert.AreEqual(test.Trim(), memory.Trim().ToString());
+        Assert.AreEqual(test.Trim(), ReadOnlyMemoryPolyfillExtension.Trim(memory).ToString());
     }
 
     [TestMethod()]
@@ -18,7 +18,7 @@ public class ReadOnlyMemoryPolyfillExtensionTests
     {
         string test = "  Test ";
         ReadOnlyMemory<char> memory = test.AsMemory();
-        Assert.AreEqual(test.TrimStart(), memory.TrimStart().ToString());
+        Assert.AreEqual(test.TrimStart(), ReadOnlyMemoryPolyfillExtension.TrimStart(memory).ToString());
     }
 
     [TestMethod()]
@@ -26,6 +26,6 @@ public class ReadOnlyMemoryPolyfillExtensionTests
     {
         string test = "  Test ";
         ReadOnlyMemory<char> memory = test.AsMemory();
-        Assert.AreEqual(test.TrimEnd(), memory.TrimEnd().ToString());
+        Assert.AreEqual(test.TrimEnd(), ReadOnlyMemoryPolyfillExtension.TrimEnd(memory).ToString());
     }
 }

@@ -3,7 +3,7 @@ using FolkerKinzel.Strings;
 
 Console.WriteLine("Library Tester:");
 Console.WriteLine();
-LibraryTesters.Test.TestMethod();
+LibraryTester.Test.TestMethod();
 
 Console.WriteLine();
 Console.WriteLine("======================================");

@@ -13,6 +13,14 @@ public class EncodingExtensionTests
         _ = enc!.GetString(new byte[1].AsSpan());
     }
 
+    [TestMethod]
+    [ExpectedException(typeof(NullReferenceException))]
+    public void GetStringTest1b()
+    {
+        Encoding? enc = null;
+        _ = EncodingExtension.GetString(enc!, new byte[1].AsSpan());
+    }
+
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -29,7 +37,7 @@ public class EncodingExtensionTests
         Encoding enc = Encoding.UTF8;
 
         var bytes = enc.GetBytes(s.AsSpan());
-        string s2 = enc.GetString(bytes.AsSpan());
+        string s2 = EncodingExtension.GetString(enc, bytes.AsSpan());
 
         Assert.AreEqual(s, s2);
     }

@@ -49,7 +49,6 @@ public static partial class StringBuilderExtension
                            : ReplaceLineEndings(builder, replacementText.AsSpan());
 
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
-
     private static StringBuilder ReplaceLineEndings(StringBuilder builder, ReadOnlySpan<char> replacement)
     {
         if (builder.Length == 0)

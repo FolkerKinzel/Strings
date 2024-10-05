@@ -457,7 +457,6 @@ public class StringExtensionTests
         _ = s!.GetPersistentHashCode(HashType.Ordinal);
     }
 
-
     [TestMethod()]
     public void GetPersistentHashCodeTest3()
     {
@@ -466,7 +465,6 @@ public class StringExtensionTests
 
         Assert.AreEqual(hash1, hash2);
     }
-
 
     [TestMethod()]
     public void GetPersistentHashCodeTest4()
@@ -477,7 +475,6 @@ public class StringExtensionTests
         Assert.AreNotEqual(hash1, hash2);
     }
 
-
     [TestMethod()]
     public void GetPersistentHashCodeTest5()
     {
@@ -487,7 +484,6 @@ public class StringExtensionTests
         Assert.AreEqual(hash1, hash2);
     }
 
-
     [TestMethod()]
     [ExpectedException(typeof(ArgumentNullException))]
     public void GetPersistentHashCodeTest6()
@@ -496,177 +492,9 @@ public class StringExtensionTests
         _ = s!.GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
     }
 
-
     [TestMethod()]
     [ExpectedException(typeof(ArgumentException))]
     public void GetPersistentHashCodeTest7() => _ = string.Empty.GetPersistentHashCode((HashType)4711);
-
-
-
-    [TestMethod]
-    public void TrimTest1()
-    {
-        char[] trimChars = ['\'', '\"'];
-
-        string test = "\"\'Test\'\"";
-
-        Assert.AreEqual(test.Trim(trimChars), test.Trim(trimChars.AsSpan()));
-    }
-
-    [TestMethod]
-    public void TrimTest2()
-    {
-        string test = "  Test  ";
-
-        Assert.AreEqual(test.Trim(null), test.Trim(""));
-    }
-
-    [TestMethod]
-    public void TrimTest3()
-    {
-        char[] trimChars = ['\'', '\"'];
-        string test = "\"\'\'\"";
-        Assert.AreEqual(test.Trim(trimChars), test.Trim(trimChars.AsSpan()));
-    }
-
-
-    [TestMethod]
-    public void TrimTest4()
-    {
-        string test = "    ";
-        Assert.AreEqual(test.Trim(null), test.Trim(""));
-    }
-
-
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void TrimTest5()
-    {
-        string? test = null;
-        _ = test!.Trim("");
-    }
-
-    [TestMethod]
-    public void TrimTest6()
-    {
-        char[] trimChars = ['\'', '\"'];
-
-        string test = "Test";
-        Assert.AreEqual(test.Trim(trimChars), test.Trim(trimChars.AsSpan()));
-    }
-
-    [TestMethod]
-    public void TrimStartTest1()
-    {
-        char[] trimChars = ['\'', '\"'];
-
-        string test = "\"\'Test\'\"";
-
-        Assert.AreEqual(test.TrimStart(trimChars), test.TrimStart(trimChars.AsSpan()));
-    }
-
-    [TestMethod]
-    public void TrimStartTest2()
-    {
-        string test = "  Test  ";
-
-        Assert.AreEqual(test.TrimStart(null), test.TrimStart(""));
-    }
-
-    [TestMethod]
-    public void TrimStartTest3()
-    {
-        char[] trimChars = ['\'', '\"'];
-        string test = "\"\'\'\"";
-        Assert.AreEqual(test.TrimStart(trimChars), test.TrimStart(trimChars.AsSpan()));
-    }
-
-
-    [TestMethod]
-    public void TrimStartTest4()
-    {
-        string test = "    ";
-        Assert.AreEqual(test.TrimStart(null), test.TrimStart(""));
-    }
-
-
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void TrimStartTest5()
-    {
-        string? test = null;
-        _ = test!.TrimStart("");
-    }
-
-    [TestMethod]
-    public void TrimStartTest6()
-    {
-        char[] trimChars = ['\'', '\"'];
-
-        string test = "Test";
-        Assert.AreEqual(test.TrimStart(trimChars), test.TrimStart(trimChars.AsSpan()));
-    }
-
-    [TestMethod]
-    public void TrimEndTest1()
-    {
-        char[] trimChars = ['\'', '\"'];
-
-        string test = "\"\'Test\'\"";
-
-        Assert.AreEqual(test.TrimEnd(trimChars), test.TrimEnd(trimChars.AsSpan()));
-    }
-
-    [TestMethod]
-    public void TrimEndTest2()
-    {
-        string test = "  Test  ";
-
-        Assert.AreEqual(test.TrimEnd(null), test.TrimEnd(""));
-    }
-
-    [TestMethod]
-    public void TrimEndTest3()
-    {
-        char[] trimChars = ['\'', '\"'];
-        string test = "\"\'\'\"";
-        Assert.AreEqual(test.TrimEnd(trimChars), test.TrimEnd(trimChars.AsSpan()));
-    }
-
-
-    [TestMethod]
-    public void TrimEndTest4()
-    {
-        string test = "    ";
-        Assert.AreEqual(test.TrimEnd(null), test.TrimEnd(""));
-    }
-
-
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void TrimEndTest5()
-    {
-        string? test = null;
-        _ = test!.TrimEnd("");
-    }
-
-    [TestMethod]
-    public void TrimEndTest6()
-    {
-        char[] trimChars = ['\'', '\"'];
-
-        string test = "Test\"";
-        Assert.AreEqual(test.TrimEnd(trimChars), test.TrimEnd(trimChars.AsSpan()));
-    }
-
-    [TestMethod]
-    public void TrimEndTest7()
-    {
-        const string test = "test";
-        char[] trimChars = ['\'', '\"'];
-
-        Assert.AreSame(test.TrimEnd(trimChars), test.TrimEnd(trimChars.AsSpan()));
-    }
 
     [TestMethod]
     public void ReplaceWhitespaceWithTest1()
