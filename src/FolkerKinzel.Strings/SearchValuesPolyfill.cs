@@ -41,18 +41,15 @@ public static class SearchValuesPolyfill
 /// is currently supported.</typeparam>
 public class SearchValuesPolyfill<T> where T : IEquatable<T>
 {
-#if NET8_0_OR_GREATER
-
     internal SearchValuesPolyfill(string? values)
+#if NET8_0_OR_GREATER
        => Value = System.Buffers.SearchValues.Create(values);
 
     internal readonly SearchValues<char> Value;
 #else
-    private readonly string? _values;
-
-    internal SearchValuesPolyfill(string? values)
         => _values = values;
 
+    private readonly string? _values;
     internal ReadOnlySpan<char> Value => _values.AsSpan();
 #endif
 
