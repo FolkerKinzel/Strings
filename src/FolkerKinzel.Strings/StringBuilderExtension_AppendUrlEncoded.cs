@@ -1,5 +1,4 @@
 using System.Runtime.InteropServices;
-using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
@@ -38,21 +37,17 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, IEnumerable<byte>? bytes)
     {
-        if (bytes is null)
+        return bytes switch
         {
-            return builder;
-        }
-
+            byte[] array => UrlEncoding.AppendEncodedTo(builder, array),
 #if NET5_0_OR_GREATER
-        if (bytes is List<byte> list)
-        {
-            return UrlEncoding.AppendEncodedTo(builder, CollectionsMarshal.AsSpan(list));
-        }
+            List<byte> list => UrlEncoding.AppendEncodedTo(builder, CollectionsMarshal.AsSpan(list)),
 #endif
-        return UrlEncoding.AppendEncodedTo(builder, bytes.ToArray().AsSpan());
+            IEnumerable<byte> => UrlEncoding.AppendEncodedTo(builder, bytes.ToArray()),
+            _ => builder
+        };
     }
 
     /// <summary>Appends the content of a <see cref="byte" /> array as URL-encoded character
@@ -70,7 +65,7 @@ public static partial class StringBuilderExtension
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, byte[]? bytes)
-        => UrlEncoding.AppendEncodedTo(builder, bytes.AsSpan());
+        => UrlEncoding.AppendEncodedTo(builder, bytes);
 
     /// <summary>Appends the content of a read-only <see cref="byte" /> span as URL-encoded
     /// character sequence to the end of a <see cref="StringBuilder" />.</summary>

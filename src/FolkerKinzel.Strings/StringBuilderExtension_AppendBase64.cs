@@ -24,11 +24,11 @@ public static partial class StringBuilderExtension
     {
         return bytes switch
         {
-            byte[] array => Base64.AppendEncodedTo(builder, array.AsSpan(), options),
+            byte[] array => Base64.AppendEncodedTo(builder, array, options),
 #if NET5_0_OR_GREATER
             List<byte> list => Base64.AppendEncodedTo(builder, CollectionsMarshal.AsSpan(list), options),
 #endif
-            IEnumerable<byte> => Base64.AppendEncodedTo(builder, bytes.ToArray().AsSpan(), options),
+            IEnumerable<byte> => Base64.AppendEncodedTo(builder, bytes.ToArray(), options),
             _ => builder
         };
     }
@@ -50,7 +50,7 @@ public static partial class StringBuilderExtension
     public static StringBuilder AppendBase64(this StringBuilder builder,
                                              byte[]? bytes,
                                              Base64FormattingOptions options = Base64FormattingOptions.None)
-        => Base64.AppendEncodedTo(builder, bytes.AsSpan(), options);
+        => Base64.AppendEncodedTo(builder, bytes, options);
 
     /// <summary>Appends the content of a read-only <see cref="byte" /> span as Base64-encoded
     /// character sequence to the end of a <see cref="StringBuilder" />.</summary>
