@@ -48,7 +48,7 @@ public static partial class StringBuilderExtension
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
         // Avoid to copy the content of very short StringBuilders:
-        if(builder.Length > SIMPLE_ALGORITHM_THRESHOLD)
+        if (builder.Length > SIMPLE_ALGORITHM_THRESHOLD)
         {
             var hasher = new PersistentStringHash(hashType);
             hasher.Add(builder);

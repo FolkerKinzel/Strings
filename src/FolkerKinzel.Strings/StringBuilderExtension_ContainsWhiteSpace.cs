@@ -1,4 +1,3 @@
-using System.Drawing;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
