@@ -44,7 +44,6 @@ public static class UrlEncoding
         return builder;
     }
 
-
     internal static StringBuilder AppendEncodedTo(StringBuilder builder, ReadOnlySpan<char> value)
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
@@ -72,7 +71,6 @@ public static class UrlEncoding
         return builder;
     }
 
-
     private static void AppendData(StringBuilder builder, ReadOnlySpan<byte> encoded)
     {
         _ = builder.EnsureCapacity((int)(builder.Length + encoded.Length * EncodedLengthFactor));
@@ -82,7 +80,6 @@ public static class UrlEncoding
             builder.AppendCharacter((char)encoded[i]);
         }
     }
-
 
     private static void AppendCharacter(this StringBuilder sb, char c)
     {
@@ -107,8 +104,6 @@ public static class UrlEncoding
 
     #endregion
 
-//#if NET461 || NETSTANDARD2_0
-
     /// <summary>Tries to decode a URL-encoded <see cref="string" /> using a specified character
     /// set and allows to specify whether or not PLUS characters ('+', U+002B) should be
     /// decoded as SPACE characters (' ', U+0020).</summary>
@@ -128,7 +123,6 @@ public static class UrlEncoding
                                  [NotNullWhen(true)] out string? decoded)
         => TryDecode(value.AsSpan(), encodingWebName, decodePlusChars, out decoded);
 
-
     /// <summary>Tries to decode a URL-encoded <see cref="string" /> using a specified code
     /// page and allows to specify whether or not PLUS characters ('+', U+002B) should be
     /// decoded as SPACE characters (' ', U+0020).</summary>
@@ -147,7 +141,6 @@ public static class UrlEncoding
                                  [NotNullWhen(true)] out string? decoded)
         => TryDecode(value.AsSpan(), codePage, decodePlusChars, out decoded);
 
-
     /// <summary>Tries to decode a URL-encoded <see cref="string" /> using the UTF-8 character
     /// set and allows to specify whether or not PLUS characters ('+', U+002B) should be
     /// decoded as SPACE characters (' ', U+0020).</summary>
@@ -164,7 +157,6 @@ public static class UrlEncoding
                                  [NotNullWhen(true)] out string? decoded)
         => TryDecode(value.AsSpan(), decodePlusChars, out decoded);
 
-
     /// <summary>Tries to decode a URL-encoded <see cref="string" /> to a <see cref="byte"
     /// /> array and allows to specify whether or not PLUS characters ('+', U+002B) should
     /// be decoded to <c>0x20</c> (SPACE ' ').</summary>
@@ -180,8 +172,6 @@ public static class UrlEncoding
                                         bool decodePlusChars,
                                         [NotNullWhen(true)] out byte[]? bytes)
         => TryDecodeToBytes(value.AsSpan(), decodePlusChars, out bytes);
-
-//#endif
 
     /// <summary>Tries to decode a URL-encoded read-only character span using a specified
     /// character set and allows to specify whether or not PLUS characters ('+', U+002B)

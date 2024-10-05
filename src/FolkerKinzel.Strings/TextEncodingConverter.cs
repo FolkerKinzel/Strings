@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using FolkerKinzel.Strings.Intls;
 using FolkerKinzel.Strings.Properties;
 
@@ -217,7 +216,7 @@ public static class TextEncodingConverter
     public static bool TryGetEncoding(string? encodingWebName, [NotNullWhen(true)] out Encoding? encoding)
     {
         encoding = null;
-        return !IsWebNameEmpty(encodingWebName) && 
+        return !IsWebNameEmpty(encodingWebName) &&
                 BuildEncoding(encodingWebName, null, null, ref encoding, out _);
     }
 
@@ -436,13 +435,13 @@ public static class TextEncodingConverter
     private static void ThrowOnEncoderAndDecoderFallbackNull(EncoderFallback encoderFallback,
                                                              DecoderFallback decoderFallback)
     {
-            _ArgumentNullException.ThrowIfNull(encoderFallback, nameof(encoderFallback));
-            _ArgumentNullException.ThrowIfNull(decoderFallback, nameof(decoderFallback));
+        _ArgumentNullException.ThrowIfNull(encoderFallback, nameof(encoderFallback));
+        _ArgumentNullException.ThrowIfNull(decoderFallback, nameof(decoderFallback));
     }
 
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static bool IsWebNameEmpty([NotNullWhen(false)] string? encodingWebName) 
+    private static bool IsWebNameEmpty([NotNullWhen(false)] string? encodingWebName)
         => string.IsNullOrWhiteSpace(encodingWebName);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -455,7 +454,7 @@ public static class TextEncodingConverter
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Encoding CreateFallBack(EncoderFallback encoderFallback,
-                                           DecoderFallback decoderFallback) 
+                                           DecoderFallback decoderFallback)
         => Encoding.GetEncoding(UTF_8, encoderFallback, decoderFallback);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -483,7 +482,7 @@ public static class TextEncodingConverter
     [ExcludeFromCodeCoverage]
     private static void AssertEncoderAndDecoderFallbackBothNullOrBothNotNull(EncoderFallback? encoderFallback,
                                                                              DecoderFallback? decoderFallback)
-        => Debug.Assert((encoderFallback is null && decoderFallback is null) || 
+        => Debug.Assert((encoderFallback is null && decoderFallback is null) ||
                      (encoderFallback is not null && decoderFallback is not null));
 
     #endregion
@@ -556,7 +555,7 @@ public static class TextEncodingConverter
                 return GB18030;
             }
 
-            if (data[0] == 0x2B && data[1] == 0x2F && data[2] == 0x76 && 
+            if (data[0] == 0x2B && data[1] == 0x2F && data[2] == 0x76 &&
                (data[3] == 0x38 || data[3] == 0x39 || data[3] == 0x2B || data[3] == 0x2F))
             {
                 bomLength = 4;

@@ -8,6 +8,7 @@
 - [ ] Let `StringPolyfillExtension.Trim(this string, ReadOnlySpan<char>)` not be an extension method in .NET 9.0
 - [ ] Let `StringPolyfillExtension.TrimEnd(this string, ReadOnlySpan<char>)` not be an extension method in .NET 9.0
 - [ ] Let `StringPolyfillExtension.TrimStart(this string, ReadOnlySpan<char>)` not be an extension method in .NET 9.0
+- [ ] Write `UrlEncoding.Encode` methods that return a string.
 
 ### 9.0.0
 -[x] Fix an issue

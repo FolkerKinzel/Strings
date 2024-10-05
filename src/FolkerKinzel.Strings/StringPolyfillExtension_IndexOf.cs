@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-
 public static partial class StringPolyfillExtension
 {
     /// <summary>Returns the zero-based index of the first occurrence of the specified Unicode

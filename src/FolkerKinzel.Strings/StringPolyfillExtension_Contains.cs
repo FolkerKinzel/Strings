@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-
 public static partial class StringPolyfillExtension
 {
     /// <summary>Returns a value indicating whether a specified character occurs within this

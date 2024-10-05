@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-
 public static partial class StringPolyfillExtension
 {
     /// <summary>Returns a new <see cref="string" /> in which all occurrences of a specified

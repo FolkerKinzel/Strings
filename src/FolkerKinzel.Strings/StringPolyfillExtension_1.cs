@@ -7,4 +7,3 @@ namespace FolkerKinzel.Strings;
 /// <remarks>To match the behavior of the original methods, these extension methods throw
 /// a <see cref="NullReferenceException" /> when called on a <c>null</c> string.</remarks>
 public static partial class StringPolyfillExtension { }
-

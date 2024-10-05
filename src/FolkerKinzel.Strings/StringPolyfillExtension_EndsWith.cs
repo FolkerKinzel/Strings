@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-
 public static partial class StringPolyfillExtension
 {
     /// <summary>Indicates whether the end of <paramref name="s" /> matches the specified
