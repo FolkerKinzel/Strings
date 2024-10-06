@@ -42,8 +42,8 @@
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="FolkerKinzel.Strings" isDocumented="True">Contains classes that provide extension methods for String, Char, StringBuilder and ReadOnlySpan&amp;lt;Char&amp;gt;.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="FolkerKinzel (Group)" isGroup="True" isDocumented="True">Root namespace for software from Folker Kinzel.</NamespaceSummaryItem>
-    </NamespaceSummaries>
+<NamespaceSummaryItem name="FolkerKinzel (Group)" isGroup="True" isDocumented="True">Root namespace for software from Folker Kinzel.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="System.Buffers" isDocumented="False" /></NamespaceSummaries>
     <CopyrightText>Copyright &amp;#169%3b 2020 Folker Kinzel</CopyrightText>
     <HelpFileFormat>Website</HelpFileFormat>
     <SyntaxFilters>Standard</SyntaxFilters>
