@@ -39,7 +39,7 @@ string TrimEnd(this string, string?);
 string TrimStart(this string, string?);
 ```
 &nbsp;
-### Polyfills for Static Methods of the String class
+### Polyfills for static methods of the String class
 ```csharp
 string StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>);
 string StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>, ReadOnlySpan<char>);
