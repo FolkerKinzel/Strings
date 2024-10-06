@@ -23,9 +23,7 @@ public class StringPolyfillExtensionTests : IDisposable
     public void TrimTest1()
     {
         char[] trimChars = ['\'', '\"'];
-
         string test = "\"\'Test\'\"";
-
         Assert.AreEqual(test.Trim(trimChars), StringPolyfillExtension.Trim(test, trimChars.AsSpan()));
     }
 
@@ -33,7 +31,6 @@ public class StringPolyfillExtensionTests : IDisposable
     public void TrimTest2()
     {
         string test = "  Test  ";
-
         Assert.AreEqual(test.Trim(null), StringPolyfillExtension.Trim(test, ""));
     }
 
@@ -45,7 +42,6 @@ public class StringPolyfillExtensionTests : IDisposable
         Assert.AreEqual(test.Trim(trimChars), StringPolyfillExtension.Trim(test, trimChars.AsSpan()));
     }
 
-
     [TestMethod]
     public void TrimTest4()
     {
@@ -53,9 +49,8 @@ public class StringPolyfillExtensionTests : IDisposable
         Assert.AreEqual(test.Trim(null), StringPolyfillExtension.Trim(test, ""));
     }
 
-
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void TrimTest5()
     {
         string? test = null;
@@ -66,7 +61,6 @@ public class StringPolyfillExtensionTests : IDisposable
     public void TrimTest6()
     {
         char[] trimChars = ['\'', '\"'];
-
         string test = "Test";
         Assert.AreEqual(test.Trim(trimChars), StringPolyfillExtension.Trim(test, trimChars.AsSpan()));
     }
@@ -75,9 +69,7 @@ public class StringPolyfillExtensionTests : IDisposable
     public void TrimStartTest1()
     {
         char[] trimChars = ['\'', '\"'];
-
         string test = "\"\'Test\'\"";
-
         Assert.AreEqual(test.TrimStart(trimChars), StringPolyfillExtension.TrimStart(test, trimChars.AsSpan()));
     }
 
@@ -85,7 +77,6 @@ public class StringPolyfillExtensionTests : IDisposable
     public void TrimStartTest2()
     {
         string test = "  Test  ";
-
         Assert.AreEqual(test.TrimStart(null), StringPolyfillExtension.TrimStart(test, ""));
     }
 
@@ -107,7 +98,7 @@ public class StringPolyfillExtensionTests : IDisposable
 
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void TrimStartTest5()
     {
         string? test = null;
@@ -118,7 +109,6 @@ public class StringPolyfillExtensionTests : IDisposable
     public void TrimStartTest6()
     {
         char[] trimChars = ['\'', '\"'];
-
         string test = "Test";
         Assert.AreEqual(test.TrimStart(trimChars), 
                         StringPolyfillExtension.TrimStart(test, trimChars.AsSpan()));
@@ -128,9 +118,7 @@ public class StringPolyfillExtensionTests : IDisposable
     public void TrimEndTest1()
     {
         char[] trimChars = ['\'', '\"'];
-
         string test = "\"\'Test\'\"";
-
         Assert.AreEqual(test.TrimEnd(trimChars), StringPolyfillExtension.TrimEnd(test, trimChars.AsSpan()));
     }
 
@@ -138,7 +126,6 @@ public class StringPolyfillExtensionTests : IDisposable
     public void TrimEndTest2()
     {
         string test = "  Test  ";
-
         Assert.AreEqual(test.TrimEnd(null), StringPolyfillExtension.TrimEnd(test, ""));
     }
 
@@ -160,7 +147,7 @@ public class StringPolyfillExtensionTests : IDisposable
 
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void TrimEndTest5()
     {
         string? test = null;
@@ -171,7 +158,6 @@ public class StringPolyfillExtensionTests : IDisposable
     public void TrimEndTest6()
     {
         char[] trimChars = ['\'', '\"'];
-
         string test = "Test\"";
         Assert.AreEqual(test.TrimEnd(trimChars),
                         StringPolyfillExtension.TrimEnd(test, trimChars.AsSpan()));
@@ -182,7 +168,6 @@ public class StringPolyfillExtensionTests : IDisposable
     {
         const string test = "test";
         char[] trimChars = ['\'', '\"'];
-
         Assert.AreSame(test.TrimEnd(trimChars), StringPolyfillExtension.TrimEnd(test, trimChars.AsSpan()));
     }
 
@@ -191,7 +176,6 @@ public class StringPolyfillExtensionTests : IDisposable
     {
         const string input = "\n1\r\n\n\r2\r3\n\n4\r\n5\u000B6\u000C\n7\u00858\u20289\u2029";
         const string expected = "*1***2*3**4*5\u000B6**7*8*9*";
-
         string output = StringPolyfillExtension.ReplaceLineEndings(input, "*");
         Assert.AreEqual(expected, output);
     }
@@ -356,7 +340,6 @@ public class StringPolyfillExtensionTests : IDisposable
     public void SplitTest3(string value, char c, StringSplitOptions options, int expected)
         => Assert.AreEqual(expected, value.Split(c, 2, options).Length);
 
-
     [TestMethod]
     [ExpectedException(typeof(NullReferenceException))]
     public void SplitTest4()
@@ -388,7 +371,6 @@ public class StringPolyfillExtensionTests : IDisposable
     [TestMethod]
     public void SplitTest8() => Assert.AreEqual(0, StringPolyfillExtension.Split("test", "e", 0).Length);
 
-
     [DataTestMethod]
     [DataRow("This is a test.", null, 100, StringSplitOptions.None, 1)]
     [DataRow("This is a test.", null, 0, StringSplitOptions.None, 0)]
@@ -400,7 +382,6 @@ public class StringPolyfillExtensionTests : IDisposable
     [DataRow("", "is", 2, StringSplitOptions.RemoveEmptyEntries, 0)]
     public void SplitTest9(string input, string? split, int parts, StringSplitOptions options, int expected)
         => Assert.AreEqual(expected, StringPolyfillExtension.Split(input, split, parts, options).Length);
-
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
@@ -418,7 +399,6 @@ public class StringPolyfillExtensionTests : IDisposable
         _ = StringPolyfillExtension.Split(test!, "bla", 100);
     }
 
-
     [DataTestMethod]
     [DataRow("This is a test.", null, StringSplitOptions.None, 1)]
     [DataRow("This is a test.", "", StringSplitOptions.None, 1)]
@@ -427,7 +407,6 @@ public class StringPolyfillExtensionTests : IDisposable
     [DataRow("", "is", StringSplitOptions.RemoveEmptyEntries, 0)]
     public void SplitTest12(string input, string? split, StringSplitOptions options, int expected)
         => Assert.AreEqual(expected, StringPolyfillExtension.Split(input, split, options).Length);
-
 
     [TestMethod]
     [ExpectedException(typeof(NullReferenceException))]
@@ -481,7 +460,6 @@ public class StringPolyfillExtensionTests : IDisposable
     [DataRow("Test", "EST", "ante", StringComparison.OrdinalIgnoreCase, "Tante")]
     public void ReplaceTest1(string input, string oldValue, string? replacement, StringComparison comparison, string expected)
         => Assert.AreEqual(expected, StringPolyfillExtension.Replace(input, oldValue, replacement, comparison));
-
 
     [DataTestMethod]
     [DataRow(StringComparison.Ordinal)]

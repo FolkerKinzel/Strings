@@ -4,8 +4,6 @@ namespace FolkerKinzel.Strings;
 
 public static partial class StringPolyfillExtension
 {
-    // TODO: Let this not be an extension method in .NET 9.0
-
     /// <summary>Generates a <see cref="string" /> from which all leading and trailing 
     /// occurrences of the characters in the specified read-only span are removed.</summary>
     /// <param name="s">The <see cref="string" /> to change.</param>
@@ -15,10 +13,11 @@ public static partial class StringPolyfillExtension
     /// <returns>The resulting <see cref="string" /> after removing all characters passed
     /// in the <paramref name="trimChars" /> parameter from the beginning and end of the
     /// <see cref="string" />.</returns>
-    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
+    /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
+#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static string Trim(this string s, ReadOnlySpan<char> trimChars)
     {
-        _ArgumentNullException.ThrowIfNull(s, nameof(s));
+        _NullReferenceException.ThrowIfNull(s, nameof(s));
 
         ReadOnlySpan<char> span = s.AsSpan().Trim(trimChars);
 
@@ -28,8 +27,11 @@ public static partial class StringPolyfillExtension
                 ? string.Empty
                 : span.ToString();
     }
-
-    // TODO: Let this not be an extension method in .NET 9.0
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string Trim(string s, ReadOnlySpan<char> trimChars)
+        => s.Trim(trimChars);
+#endif
 
     /// <summary>Generates a <see cref="string" /> from which all trailing occurrences of
     /// the characters in the specified read-only span are removed.</summary>
@@ -40,10 +42,11 @@ public static partial class StringPolyfillExtension
     /// <returns>The resulting <see cref="string" /> after removing all characters passed
     /// in the <paramref name="trimChars" /> parameter from the end of the 
     /// <see cref="string" />.</returns>
-    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
+    /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
+#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static string TrimEnd(this string s, ReadOnlySpan<char> trimChars)
     {
-        _ArgumentNullException.ThrowIfNull(s, nameof(s));
+        _NullReferenceException.ThrowIfNull(s, nameof(s));
 
         ReadOnlySpan<char> span = s.AsSpan().TrimEnd(trimChars);
 
@@ -53,8 +56,11 @@ public static partial class StringPolyfillExtension
                 ? string.Empty
                 : span.ToString();
     }
-
-    // TODO: Let this not be an extension method in .NET 9.0
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string TrimEnd(string s, ReadOnlySpan<char> trimChars)
+     => s.TrimEnd(trimChars);
+#endif
 
     /// <summary>Generates a <see cref="string" /> from which all leading occurrences of
     /// the characters in the specified read-only span are removed.</summary>
@@ -65,10 +71,11 @@ public static partial class StringPolyfillExtension
     /// <returns>The resulting <see cref="string" /> after removing all characters passed
     /// in the <paramref name="trimChars" /> parameter from the beginning of the 
     /// <see cref="string" />.</returns>
-    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
+    /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
+#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static string TrimStart(this string s, ReadOnlySpan<char> trimChars)
     {
-        _ArgumentNullException.ThrowIfNull(s, nameof(s));
+        _NullReferenceException.ThrowIfNull(s, nameof(s));
 
         ReadOnlySpan<char> span = s.AsSpan().TrimStart(trimChars);
 
@@ -78,6 +85,10 @@ public static partial class StringPolyfillExtension
                 ? string.Empty
                 : span.ToString();
     }
+#else
+    public static string TrimStart(string s, ReadOnlySpan<char> trimChars)
+        => s.TrimStart(trimChars);
+#endif
 
     /// <summary>Generates a <see cref="string" /> from which all leading and trailing 
     /// occurrences of the characters in the specified read-only span are removed.</summary>
@@ -88,7 +99,7 @@ public static partial class StringPolyfillExtension
     /// <returns>The resulting <see cref="string" /> after removing all characters passed
     /// in the <paramref name="trimChars" /> parameter from the beginning and end of the
     /// <see cref="string" />.</returns>
-    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
+    /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET461 || NETSTANDARD2_0
     public static string Trim(this string s, string? trimChars)
@@ -106,7 +117,7 @@ public static partial class StringPolyfillExtension
     /// <returns>The resulting <see cref="string" /> after removing all characters passed
     /// in the <paramref name="trimChars" /> parameter from the end of the 
     /// <see cref="string" />.</returns>
-    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
+    /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET461 || NETSTANDARD2_0
     public static string TrimEnd(this string s, string? trimChars)
@@ -124,7 +135,7 @@ public static partial class StringPolyfillExtension
     /// <returns>The resulting <see cref="string" /> after removing all characters passed
     /// in the <paramref name="trimChars" /> parameter from the beginning of the 
     /// <see cref="string" />.</returns>
-    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
+    /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET461 || NETSTANDARD2_0
     public static string TrimStart(this string s, string? trimChars)
