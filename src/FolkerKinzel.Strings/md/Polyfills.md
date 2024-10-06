@@ -47,7 +47,7 @@ string StaticStringMethod.Concat(ReadOnlySpan<char>, ReadOnlySpan<char>);
 string StaticStringMethod.Create<TState>(int, TState, SpanAction<char, TState>);
 ```
 &nbsp;
-### Polyfills for the static System.Buffers.SearchValues class and the System.Buffers.SearchValues&lt;char&gt; class (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the static System.Buffers.SearchValues class and the System.Buffers.SearchValues&lt;char&gt; class
 ```csharp
 static class FolkerKinzel.Strings.SearchValuesPolyfill;
 class FolkerKinzel.Strings.SearchValuesPolyfill<T>;
