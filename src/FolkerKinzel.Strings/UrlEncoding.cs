@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Reflection;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
@@ -35,6 +36,100 @@ public static class UrlEncoding
 
     #region Encode
 
+    /// <summary>
+    /// Converts a <see cref="string"/> to its escaped representation.
+    /// </summary>
+    /// <param name="stringToEscape">The <see cref="string"/> to escape.</param>
+    /// <returns>The escaped representation of <paramref name="stringToEscape"/>.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="stringToEscape"/> is <c>null</c>.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string Encode(string stringToEscape) => Uri.EscapeDataString(stringToEscape);
+
+    /// <summary>
+    /// Converts a read-only character span to its escaped representation.
+    /// </summary>
+    /// <param name="charsToEscape">The span to escape.</param>
+    /// <returns>The escaped representation of <paramref name="charsToEscape"/>.</returns>
+    /// <remarks>
+    /// <note type="tip">
+    /// Performance: Use the overload that takes a <see cref="string"/> as argument whenever you can.
+    /// </note>
+    /// </remarks>
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 || NET7_0 || NET8_0
+    public static string Encode(ReadOnlySpan<char> charsToEscape)
+    {
+#if NET461 || NETSTANDARD2_0
+        return Encode(Encoding.UTF8.GetBytes(charsToEscape));
+#else
+        if (charsToEscape.Length == 0)
+        {
+            return string.Empty;
+        }
+
+        // Don't use stackalloc here because Encode(ReadOnlySpan<byte>) uses
+        // stackalloc too.
+        int length = Encoding.UTF8.GetByteCount(charsToEscape);
+
+        using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
+        Span<byte> encoded = shared.Array.AsSpan(0, length);
+        _ = Encoding.UTF8.GetBytes(charsToEscape, encoded);
+        return Encode(encoded);
+#endif
+    }
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string Encode(ReadOnlySpan<char> charsToEscape) => Uri.EscapeDataString(charsToEscape);
+#endif
+
+    /// <summary>
+    /// Converts a read-only span of <see cref="byte"/>s to its url-encoded representation.
+    /// </summary>
+    /// <param name="bytesToEncode">The span to encode.</param>
+    /// <returns>The url-encoded representation of <paramref name="bytesToEncode"/>.</returns>
+    public static string Encode(ReadOnlySpan<byte> bytesToEncode)
+    {
+        if (bytesToEncode.Length == 0)
+        {
+            return string.Empty;
+        }
+
+        int length = bytesToEncode.Length * 3;
+
+        if (length > Const.StackallocCharThreshold)
+        {
+            using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
+            return DoEncode(bytesToEncode, shared.Array);
+        }
+        else
+        {
+            Span<char> encoded = stackalloc char[length];
+            return DoEncode(bytesToEncode, encoded);
+        }
+
+        static string DoEncode(ReadOnlySpan<byte> bytes, Span<char> chars)
+        {
+            int charLength = 0;
+
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                char c = (char)bytes[i];
+
+                if (MustEncode(c))
+                {
+                    chars[charLength++] = '%';
+                    chars[charLength++] = ToHexDigit(c >> 4);
+                    chars[charLength++] = ToHexDigit(c & 0x0F);
+                }
+                else
+                {
+                    chars[charLength++] = c;
+                }
+            }
+
+            return chars.Slice(0, charLength).ToString();
+        }
+    }
+
     internal static StringBuilder AppendEncodedTo(StringBuilder builder,
                                                   ReadOnlySpan<byte> value)
     {
@@ -49,8 +144,7 @@ public static class UrlEncoding
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
 #if NET461 || NETSTANDARD2_0
-        byte[] encoded = Encoding.UTF8.GetBytes(value);
-        AppendData(builder, encoded);
+        AppendData(builder, Encoding.UTF8.GetBytes(value));
 #else
         int length = Encoding.UTF8.GetByteCount(value);
 

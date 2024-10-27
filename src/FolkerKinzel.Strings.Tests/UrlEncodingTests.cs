@@ -23,6 +23,62 @@ public class UrlEncodingTests
         Assert.AreEqual(Uri.EscapeDataString(input), new StringBuilder().AppendUrlEncoded(input).ToString());
     }
 
+    [DataTestMethod]
+    [DataRow(0)]
+    [DataRow(128)]
+    [DataRow(256)]
+    public void EncodeTest1(int length)
+    {
+        var chars = new char[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            chars[i] = (char)i;
+        }
+
+        string input = new(chars);
+        Assert.AreEqual(Uri.EscapeDataString(input), UrlEncoding.Encode(input));
+    }
+
+    [DataTestMethod]
+    [DataRow(0)]
+    [DataRow(128)]
+    [DataRow(256)]
+    public void EncodeTest2(int length)
+    {
+        var chars = new char[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            chars[i] = (char)i;
+        }
+
+        string input = new(chars);
+        Assert.AreEqual(Uri.EscapeDataString(input), UrlEncoding.Encode(input.AsSpan()));
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void EncodeTest3() => _ = UrlEncoding.Encode((string?)null!);
+
+    [DataTestMethod]
+    [DataRow("ABC", "ABC")]
+    [DataRow("ä", "%C3%A4")]
+    public void EncodeTest4(string input, string expected)
+        => Assert.AreEqual(expected, UrlEncoding.Encode(input));
+
+    [DataTestMethod]
+    [DataRow("ABC", "ABC")]
+    [DataRow("ä", "%C3%A4")]
+    public void EncodeTest5(string input, string expected)
+        => Assert.AreEqual(expected, UrlEncoding.Encode(input.AsSpan()));
+
+    [DataTestMethod]
+    [DataRow("ABC", "ABC")]
+    [DataRow("ä", "%C3%A4")]
+    public void EncodeTest6(string input, string expected)
+        => Assert.AreEqual(expected, UrlEncoding.Encode(Encoding.UTF8.GetBytes(input).AsSpan()));
+
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void AppendUrlEncodedTest2()

@@ -2,15 +2,16 @@
 
 ## Roadmap
 ### 9.1.0
-- [ ] Write `UrlEncoding.Encode` methods that return a string.
 
-### 9.0.1
 - [ ] Make a .NET 9.0 version of the package
 - [x] Change `ReadOnlySpanPolyfillExtension.EndsWith(this ReadOnlySpan<char>, char)` to not conflict with .NET 9.0
 - [x] Change `ReadOnlySpanPolyfillExtension.StartsWith(this ReadOnlySpan<char>, char)` to not conflict with .NET 9.0
 - [x] Let `StringPolyfillExtension.Trim(this string, ReadOnlySpan<char>)` not be an extension method in .NET 9.0
 - [x] Let `StringPolyfillExtension.TrimEnd(this string, ReadOnlySpan<char>)` not be an extension method in .NET 9.0
 - [x] Let `StringPolyfillExtension.TrimStart(this string, ReadOnlySpan<char>)` not be an extension method in .NET 9.0
+- [x] Implement `string UrlEncoding.Encode(ReadOnlySpan<byte>)`
+- [x] Implement `string UrlEncoding.Encode(ReadOnlySpan<char>)`
+- [x] Implement `string UrlEncoding.Encode(string)`
 
 ### 9.0.0
 -[x] Fix an issue
