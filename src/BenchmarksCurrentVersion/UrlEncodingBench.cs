@@ -10,7 +10,7 @@ namespace Benchmarks;
 [MarkdownExporter]
 [BaselineColumn]
 [SimpleJob(RuntimeMoniker.Net80)]
-[SimpleJob(RuntimeMoniker.Net60)]
+//[SimpleJob(RuntimeMoniker.Net60)]
 [SimpleJob(RuntimeMoniker.Net48)]
 public class UrlEncodingBench
 {
@@ -27,6 +27,9 @@ public class UrlEncodingBench
 
     [Benchmark]
     public string EncodeSpan() => UrlEncoding.Encode(TO_ESCAPE.AsSpan());
+
+    [Benchmark]
+    public string EncodeSpanToString() => UrlEncoding.Encode(TO_ESCAPE.AsSpan().ToString());
 
     [Benchmark]
     public string EncodeArrayStringBuilder() => new StringBuilder().AppendUrlEncoded(_arr).ToString();
