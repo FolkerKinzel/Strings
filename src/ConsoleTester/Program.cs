@@ -179,6 +179,11 @@ class Program
         _ = roSpan.TrimEnd("abc");
         _ = span.TrimEnd("abc");
 
+        _ = roSpan.CommonPrefixLength("abc");
+        _ = span.CommonPrefixLength("abc");
+        _ = roSpan.CommonPrefixLength("abc", null);
+        _ = span.CommonPrefixLength("abc", null);
+
         test.Foo();
 
         _ = test.ContainsWhiteSpace();

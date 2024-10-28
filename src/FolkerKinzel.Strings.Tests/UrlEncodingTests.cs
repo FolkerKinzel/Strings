@@ -80,6 +80,18 @@ public class UrlEncodingTests
         => Assert.AreEqual(expected, UrlEncoding.Encode(Encoding.UTF8.GetBytes(input).AsSpan()));
 
     [TestMethod]
+    public void EncodeTest7()
+      => Assert.AreEqual("", UrlEncoding.Encode(Array.Empty<byte>()));
+
+    [TestMethod]
+    public void EncodeTest8()
+    {
+        string expected = Uri.EscapeDataString(new string('?', 300));
+        Assert.IsTrue(UrlEncoding.TryDecodeToBytes(expected, true, out var bytes));
+        Assert.AreEqual(expected, UrlEncoding.Encode(bytes));
+    }
+
+    [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void AppendUrlEncodedTest2()
     {

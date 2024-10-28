@@ -513,4 +513,70 @@ public class SpanPolyfillExtensionTests
     public void IndexOfTest1(string input, string end, StringComparison comp)
        => Assert.AreEqual(input.AsSpan().IndexOf(end.AsSpan(), comp),
                           SpanPolyfillExtension.IndexOf(input.ToCharArray().AsSpan(), end, comp));
+
+    [DataTestMethod]
+    [DataRow("", "", 0)]
+    [DataRow("", "abc", 0)]
+    [DataRow("abc", "", 0)]
+    [DataRow("abc", "abc", 3)]
+    [DataRow("abc", "abC", 2)]
+    [DataRow("abC", "abc", 2)]
+    public void CommonPrefixLengthTest1(string input, string? other, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().CommonPrefixLength(other));
+
+    [DataTestMethod]
+    [DataRow("", "", 0)]
+    [DataRow("", "abc", 0)]
+    [DataRow("abc", "", 0)]
+    [DataRow("abc", "abc", 3)]
+    [DataRow("abc", "abC", 2)]
+    [DataRow("abC", "abc", 2)]
+    public void CommonPrefixLengthTest2(string input, string? other, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().CommonPrefixLength(other, null));
+
+    [DataTestMethod]
+    [DataRow("", "", 0)]
+    [DataRow("", "abc", 0)]
+    [DataRow("abc", "", 0)]
+    [DataRow("abc", "abc", 3)]
+    [DataRow("abc", "abC", 2)]
+    [DataRow("abC", "abc", 2)]
+    public void CommonPrefixLengthTest3(string input, string? other, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().CommonPrefixLength(other, EqualityComparer<char>.Default));
+
+    [DataTestMethod]
+    [DataRow("", "", 0)]
+    [DataRow("", "abc", 0)]
+    [DataRow("abc", "", 0)]
+    [DataRow("abc", "abc", 3)]
+    [DataRow("abc", "abC", 3)]
+    [DataRow("abC", "abc", 3)]
+    public void CommonPrefixLengthTest4(string input, string? other, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().CommonPrefixLength(other, new CharComparer()));
+
+    [DataTestMethod]
+    [DataRow("", "", 0)]
+    [DataRow("", "abc", 0)]
+    [DataRow("abc", "", 0)]
+    [DataRow("abc", "abc", 3)]
+    [DataRow("abc", "abC", 2)]
+    [DataRow("abC", "abc", 2)]
+    public void CommonPrefixLengthTest5(string input, string? other, int expected)
+        => Assert.AreEqual(expected, SpanPolyfillExtension.CommonPrefixLength(input.ToCharArray().AsSpan(), other.AsSpan()));
+
+    [DataTestMethod]
+    [DataRow("", "", 0)]
+    [DataRow("", "abc", 0)]
+    [DataRow("abc", "", 0)]
+    [DataRow("abc", "abc", 3)]
+    [DataRow("abc", "abC", 2)]
+    [DataRow("abC", "abc", 2)]
+    public void CommonPrefixLengthTest6(string input, string? other, int expected)
+        => Assert.AreEqual(expected, SpanPolyfillExtension.CommonPrefixLength(input.ToCharArray().AsSpan(), other.AsSpan(), null));
+
+    public class CharComparer : IEqualityComparer<char>
+    {
+        public bool Equals(char x, char y) => x.ToUpperInvariant() == y.ToUpperInvariant();
+        public int GetHashCode(char obj) => obj.ToUpperInvariant().GetHashCode();
+    }
 }

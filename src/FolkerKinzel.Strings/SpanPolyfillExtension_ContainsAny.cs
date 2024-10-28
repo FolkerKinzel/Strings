@@ -99,5 +99,5 @@ public static partial class SpanPolyfillExtension
 #else
     public static bool ContainsAny(Span<char> span, string? values)
 #endif
-        => span.ContainsAny(values.AsSpan());
+        => ((ReadOnlySpan<char>)span).ContainsAny(values.AsSpan());
 }

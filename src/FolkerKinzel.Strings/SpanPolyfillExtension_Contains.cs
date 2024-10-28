@@ -34,6 +34,6 @@ public static partial class SpanPolyfillExtension
     public static bool Contains(
         Span<char> span, string? value, StringComparison comparisonType)
 #endif
-        => ((ReadOnlySpan<char>)span).Contains(value.AsSpan(), comparisonType);
+        => MemoryExtensions.Contains((ReadOnlySpan<char>)span, value.AsSpan(), comparisonType);
 
 }
