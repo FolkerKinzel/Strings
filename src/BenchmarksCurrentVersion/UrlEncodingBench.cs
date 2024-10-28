@@ -28,8 +28,8 @@ public class UrlEncodingBench
     [Benchmark]
     public string EncodeSpan() => UrlEncoding.Encode(TO_ESCAPE.AsSpan());
 
-    [Benchmark]
-    public string EncodeSpanToString() => UrlEncoding.Encode(TO_ESCAPE.AsSpan().ToString());
+    //[Benchmark]
+    //public string EncodeSpanToString() => UrlEncoding.Encode(TO_ESCAPE.AsSpan().ToString());
 
     [Benchmark]
     public string EncodeArrayStringBuilder() => new StringBuilder().AppendUrlEncoded(_arr).ToString();

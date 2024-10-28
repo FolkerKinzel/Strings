@@ -55,30 +55,12 @@ public static class UrlEncoding
     /// Performance: Use the overload that takes a <see cref="string"/> as argument whenever you can.
     /// </note>
     /// </remarks>
+    public static string Encode(ReadOnlySpan<char> charsToEscape)
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 || NET7_0 || NET8_0
-    public static string Encode(ReadOnlySpan<char> charsToEscape) => Uri.EscapeDataString(charsToEscape.ToString());
-//    {
-//#if NET461 || NETSTANDARD2_0
-//        return Encode(Encoding.UTF8.GetBytes(charsToEscape));
-//#else
-//        if (charsToEscape.Length == 0)
-//        {
-//            return string.Empty;
-//        }
-
-//        // Don't use stackalloc here because Encode(ReadOnlySpan<byte>) uses
-//        // stackalloc too.
-//        int length = Encoding.UTF8.GetByteCount(charsToEscape);
-
-//        using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
-//        Span<byte> encoded = shared.Array.AsSpan(0, length);
-//        _ = Encoding.UTF8.GetBytes(charsToEscape, encoded);
-//        return Encode(encoded);
-//#endif
-//    }
+        // For performance reasons an own implementation is not provided.
+        => Uri.EscapeDataString(charsToEscape.ToString());
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string Encode(ReadOnlySpan<char> charsToEscape) => Uri.EscapeDataString(charsToEscape);
+        => Uri.EscapeDataString(charsToEscape);
 #endif
 
     /// <summary>

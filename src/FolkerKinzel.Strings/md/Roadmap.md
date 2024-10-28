@@ -12,6 +12,13 @@
 - [x] Implement `string UrlEncoding.Encode(ReadOnlySpan<byte>)`
 - [x] Implement `string UrlEncoding.Encode(ReadOnlySpan<char>)`
 - [x] Implement `string UrlEncoding.Encode(string)`
+- [x] Implement polyfills for .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1:
+```csharp
+    int CommonPrefixLength(this ReadOnlySpan<char>, ReadOnlySpan<char>);
+    int CommonPrefixLength(this ReadOnlySpan<char>, ReadOnlySpan<char>, IEqualityComparer<char>?);
+    int CommonPrefixLength(this Span<char>, ReadOnlySpan<char>);
+    int CommonPrefixLength(this Span<char>, ReadOnlySpan<char>, IEqualityComparer<char>?);
+```
 
 ### 9.0.0
 -[x] Fix an issue
