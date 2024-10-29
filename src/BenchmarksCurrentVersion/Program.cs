@@ -9,7 +9,8 @@ BenchmarkDotNet.Reports.Summary report;
 //new IsUtf8Bench().IsUtf8Exception();
 //_ = BenchmarkRunner.Run<Base64Bench>();
 //
-report = BenchmarkRunner.Run<UrlEncodingBench>();
+//report = BenchmarkRunner.Run<UrlEncodingBench>();
+report = BenchmarkRunner.Run<CommonPrefixBench>();
 
 //_ = BenchmarkRunner.Run<IndexOfBench>();
 //_ = BenchmarkRunner.Run<LastIndexOfBench>();
