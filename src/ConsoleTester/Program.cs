@@ -187,6 +187,9 @@ class Program
         _ = roSpan.IndexOfAnyInRange('a', 'c');
         _ = span.IndexOfAnyInRange('a', 'c');
 
+        _ = roSpan.ContainsAnyInRange('a', 'c');
+        _ = span.ContainsAnyInRange('a', 'c');
+
         test.Foo();
 
         _ = test.ContainsWhiteSpace();

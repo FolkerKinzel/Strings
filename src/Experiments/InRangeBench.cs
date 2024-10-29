@@ -4,18 +4,20 @@ using System;
 namespace Experiments;
 
 [MemoryDiagnoser]
+[BaselineColumn]
 public class InRangeBench
 {
+    private readonly string _str = new('a', 300);
+
+    [Benchmark(Baseline = true)]
+    public int IndexInRange() => _str.AsSpan().IndexOfAnyInRange('b', 'x');
+
 
     [Benchmark]
-    public int IndexInRange() => "abc".AsSpan().IndexOfAnyInRange('C', 'A');
-
-
-    [Benchmark]
-    public int IndexInRangeOwn() => OwnIndexOfAnyInRange("abcd", 'c', 'b');
+    public int IndexInRangeOwn() => OwnIndexOfAnyInRange(_str, 'b', 'x');
     
 
-    private int OwnIndexOfAnyInRange(ReadOnlySpan<char> span, char lowInclusive, char highInclusive)
+    private static int OwnIndexOfAnyInRange(ReadOnlySpan<char> span, char lowInclusive, char highInclusive)
     {
         if (span.Length == 0) { return -1; }
 

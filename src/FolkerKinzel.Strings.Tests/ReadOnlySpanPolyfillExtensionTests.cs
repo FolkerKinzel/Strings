@@ -586,6 +586,22 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void IndexOfAnyInRangeTest1(string input, char lower, char upper, int expected)
         => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.IndexOfAnyInRange(input.AsSpan(), lower, upper));
 
+    [DataTestMethod]
+    [DataRow("", 'a', 'b', false)]
+    [DataRow("", 'b', 'a', false)]
+    [DataRow("", 'a', 'a', false)]
+    [DataRow("z", 'a', 'b', false)]
+    [DataRow("z", 'b', 'a', true)]
+    [DataRow("z", 'a', 'a', false)]
+    [DataRow("zax", 'a', 'b', true)]
+    [DataRow("zax", 'b', 'a', true)]
+    [DataRow("zax", 'a', 'a', true)]
+    [DataRow("zbx", 'a', 'b', true)]
+    [DataRow("zbx", 'a', 'c', true)]
+    [DataRow("zabx", 'b', 'c', true)]
+    public void ContainsAnyInRangeTest1(string input, char lower, char upper, bool expected)
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.ContainsAnyInRange(input.AsSpan(), lower, upper));
+
     public class CharComparer : IEqualityComparer<char>
     {
         public bool Equals(char x, char y) => x.ToUpperInvariant() == y.ToUpperInvariant();

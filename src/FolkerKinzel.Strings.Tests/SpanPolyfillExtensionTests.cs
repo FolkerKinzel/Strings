@@ -187,7 +187,7 @@ public class SpanPolyfillExtensionTests
     [DataRow("abc", 'b')]
     [DataRow("ABC", 'b')]
     public void ContainsTest1b(string input, char c)
-        => Assert.AreEqual(input.AsSpan().Contains(c), SpanPolyfillExtension.Contains(input.ToArray().AsSpan(), c));
+        => Assert.AreEqual(input.AsSpan().Contains(c), SpanPolyfillExtension.Contains(input.ToCharArray().AsSpan(), c));
 
     [DataTestMethod]
     [DataRow("", "abc")]
@@ -606,6 +606,38 @@ public class SpanPolyfillExtensionTests
     public void IndexOfAnyInRangeTest2(string input, char lower, char upper, int expected)
         => Assert.AreEqual(expected, SpanPolyfillExtension.IndexOfAnyInRange(input.ToCharArray().AsSpan(), lower, upper));
 
+
+    [DataTestMethod]
+    [DataRow("", 'a', 'b', false)]
+    [DataRow("", 'b', 'a', false)]
+    [DataRow("", 'a', 'a', false)]
+    [DataRow("z", 'a', 'b', false)]
+    [DataRow("z", 'b', 'a', true)]
+    [DataRow("z", 'a', 'a', false)]
+    [DataRow("zax", 'a', 'b', true)]
+    [DataRow("zax", 'b', 'a', true)]
+    [DataRow("zax", 'a', 'a', true)]
+    [DataRow("zbx", 'a', 'b', true)]
+    [DataRow("zbx", 'a', 'c', true)]
+    [DataRow("zabx", 'b', 'c', true)]
+    public void ContainsAnyInRangeTest1(string input, char lower, char upper, bool expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().ContainsAnyInRange(lower, upper));
+
+    [DataTestMethod]
+    [DataRow("", 'a', 'b', false)]
+    [DataRow("", 'b', 'a', false)]
+    [DataRow("", 'a', 'a', false)]
+    [DataRow("z", 'a', 'b', false)]
+    [DataRow("z", 'b', 'a', true)]
+    [DataRow("z", 'a', 'a', false)]
+    [DataRow("zax", 'a', 'b', true)]
+    [DataRow("zax", 'b', 'a', true)]
+    [DataRow("zax", 'a', 'a', true)]
+    [DataRow("zbx", 'a', 'b', true)]
+    [DataRow("zbx", 'a', 'c', true)]
+    [DataRow("zabx", 'b', 'c', true)]
+    public void ContainsAnyInRangeTest2(string input, char lower, char upper, bool expected)
+        => Assert.AreEqual(expected, SpanPolyfillExtension.ContainsAnyInRange(input.ToCharArray().AsSpan(), lower, upper));
 
     public class CharComparer : IEqualityComparer<char>
     {

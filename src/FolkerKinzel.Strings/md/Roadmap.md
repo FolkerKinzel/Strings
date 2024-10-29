@@ -23,6 +23,8 @@
 ```csharp
     int IndexOfAnyInRange(this ReadOnlySpan<char>, char, char);
     int IndexOfAnyInRange(this Span<char>, char, char);
+    bool ContainsAnyInRange(this ReadOnlySpan<char>, char, char);
+    bool ContainsAnyInRange(this Span<char>, char, char);
 ```
 
 - [x] Implement polyfills for .NET Standard 2.0, .NET Framework 4.6.1:
