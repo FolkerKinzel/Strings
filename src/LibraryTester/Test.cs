@@ -384,6 +384,15 @@ public static class Test
         _ = roSpan.TrimEnd("abc");
         _ = span.TrimEnd("abc");
 
+        _ = roSpan.CommonPrefixLength("abc");
+        _ = span.CommonPrefixLength("abc");
+        _ = roSpan.CommonPrefixLength("abc", null);
+        _ = span.CommonPrefixLength("abc", null);
+
+        _ = roSpan.IndexOfAnyInRange('a', 'c');
+        _ = span.IndexOfAnyInRange('a', 'c');
+
+
         const string Abc = "ABC";
         _ = StaticStringMethod.Create(Abc.Length, Abc, (chars, str) => str.AsSpan().CopyTo(chars));
 

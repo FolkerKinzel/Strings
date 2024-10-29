@@ -184,6 +184,9 @@ class Program
         _ = roSpan.CommonPrefixLength("abc", null);
         _ = span.CommonPrefixLength("abc", null);
 
+        _ = roSpan.IndexOfAnyInRange('a', 'c');
+        _ = span.IndexOfAnyInRange('a', 'c');
+
         test.Foo();
 
         _ = test.ContainsWhiteSpace();

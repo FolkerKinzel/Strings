@@ -570,6 +570,22 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void CommonPrefixLengthTest6(string input, string? other, int expected)
         => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.CommonPrefixLength(input.AsSpan(), other.AsSpan(), null));
 
+    [DataTestMethod]
+    [DataRow("", 'a', 'b', -1)]
+    [DataRow("", 'b', 'a', -1)]
+    [DataRow("", 'a', 'a', -1)]
+    [DataRow("z", 'a', 'b', -1)]
+    [DataRow("z", 'b', 'a', 0)]
+    [DataRow("z", 'a', 'a', -1)]
+    [DataRow("zax", 'a', 'b', 1)]
+    [DataRow("zax", 'b', 'a', 0)]
+    [DataRow("zax", 'a', 'a', 1)]
+    [DataRow("zbx", 'a', 'b', 1)]
+    [DataRow("zbx", 'a', 'c', 1)]
+    [DataRow("zabx", 'b', 'c', 2)]
+    public void IndexOfAnyInRangeTest1(string input, char lower, char upper, int expected)
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.IndexOfAnyInRange(input.AsSpan(), lower, upper));
+
     public class CharComparer : IEqualityComparer<char>
     {
         public bool Equals(char x, char y) => x.ToUpperInvariant() == y.ToUpperInvariant();
