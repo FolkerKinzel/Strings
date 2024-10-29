@@ -1,7 +1,7 @@
 ﻿using System;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks;
+namespace Experiments;
 
 public class AccessBench
 {
@@ -66,6 +66,6 @@ public class AccessBench
 
     private static bool TryGetSth(out char c) { c = 'a'; return true; }
 
-    private static (char C, bool B) GetSth() { return ('a', true); }
+    private static (char C, bool B) GetSth() => ('a', true);
 
 }

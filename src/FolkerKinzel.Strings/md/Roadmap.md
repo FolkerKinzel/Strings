@@ -20,6 +20,14 @@
     int CommonPrefixLength(this Span<char>, ReadOnlySpan<char>, IEqualityComparer<char>?);
 ```
 
+- [x] Implement polyfills for .NET Standard 2.0, .NET Framework 4.6.1:
+```csharp
+    int CommonPrefixLength(this ReadOnlySpan<char>, string?);
+    int CommonPrefixLength(this ReadOnlySpan<char>, string?, IEqualityComparer<char>?);
+    int CommonPrefixLength(this Span<char>, string?);
+    int CommonPrefixLength(this Span<char>, string?, IEqualityComparer<char>?);
+```
+
 ### 9.0.0
 -[x] Fix an issue
 

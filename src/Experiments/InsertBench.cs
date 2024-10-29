@@ -2,7 +2,7 @@
 using System;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks;
+namespace Experiments;
 
 [MemoryDiagnoser]
 public class InsertBench

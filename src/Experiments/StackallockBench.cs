@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using FolkerKinzel.Strings.Intls;
 
-namespace Benchmarks;
+namespace Experiments;
 
 [MemoryDiagnoser]
 public class StackAllockBench
@@ -19,7 +19,7 @@ public class StackAllockBench
     }
 
     [Benchmark]
-    public int RentChar256() 
+    public int RentChar256()
     {
         const int length = 256;
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using BenchmarkDotNet.Attributes;
 using FolkerKinzel.Strings;
 
-namespace Benchmarks;
+namespace Experiments;
 
 [MemoryDiagnoser]
 public class IsAsciiLetterBench
@@ -22,7 +22,7 @@ public class IsAsciiLetterBench
     public bool IsAsciiLetterBenchMark()
     {
         bool result = false;
-        for (int i = 0;i < _chars.Length; i++)
+        for (int i = 0; i < _chars.Length; i++)
         {
             result = _chars[i].IsAsciiLetter();
         }

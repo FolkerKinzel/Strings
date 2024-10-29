@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using FolkerKinzel.Strings;
 
-namespace Benchmarks;
+namespace Experiments;
 
 #if NET8_0_OR_GREATER
 
@@ -27,10 +27,10 @@ public class SearchValuesBench
     }
 
     [Benchmark]
-    public int MemoryExtensionsTest() => System.MemoryExtensions.IndexOfAny(_string.AsSpan(), SEARCH_CHARS);
+    public int MemoryExtensionsTest() => _string.AsSpan().IndexOfAny(SEARCH_CHARS);
 
     [Benchmark]
-    public int SearchValuesTest() => System.MemoryExtensions.IndexOfAny(_string.AsSpan(), _searchValues);
+    public int SearchValuesTest() => _string.AsSpan().IndexOfAny(_searchValues);
 
     [Benchmark]
     public int StringTest() => _string.IndexOfAny(_arr);

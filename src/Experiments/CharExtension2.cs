@@ -1,6 +1,6 @@
 ﻿using FolkerKinzel.Strings;
 
-namespace Benchmarks;
+namespace Experiments;
 
 public static class CharExtension2
 {
