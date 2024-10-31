@@ -25,6 +25,10 @@
     int IndexOfAnyInRange(this Span<char>, char, char);
     int IndexOfAnyExceptInRange(this ReadOnlySpan<char>, char, char);
     int IndexOfAnyExceptInRange(this Span<char>, char, char);
+    int LastIndexOfAnyInRange(this ReadOnlySpan<char>, char, char);
+    int LastIndexOfAnyInRange(this Span<char>, char, char);
+    int LastIndexOfAnyExceptInRange(this ReadOnlySpan<char>, char, char);
+    int LastIndexOfAnyExceptInRange(this Span<char>, char, char);
     bool ContainsAnyInRange(this ReadOnlySpan<char>, char, char);
     bool ContainsAnyInRange(this Span<char>, char, char);
 ```

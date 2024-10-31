@@ -251,7 +251,7 @@ public class SpanPolyfillExtensionTests
     [DataRow("abc")]
     [DataRow("  \r\na b c  ")]
     public void TrimStartTest1(string input)
-        => Assert.AreEqual(input.AsSpan().TrimStart().ToString(), SpanPolyfillExtension.TrimStart(input.ToArray().AsSpan()).ToString());
+        => Assert.AreEqual(input.AsSpan().TrimStart().ToString(), SpanPolyfillExtension.TrimStart([.. input]).ToString());
 
     [DataTestMethod]
     [DataRow("", "")]
@@ -289,7 +289,7 @@ public class SpanPolyfillExtensionTests
     [DataRow("abc")]
     [DataRow("  \r\na b c  ")]
     public void TrimEndTest1(string input)
-        => Assert.AreEqual(input.AsSpan().TrimEnd().ToString(), SpanPolyfillExtension.TrimEnd(input.ToArray().AsSpan()).ToString());
+        => Assert.AreEqual(input.AsSpan().TrimEnd().ToString(), SpanPolyfillExtension.TrimEnd([.. input]).ToString());
 
     [DataTestMethod]
     [DataRow("", "")]
@@ -672,6 +672,55 @@ public class SpanPolyfillExtensionTests
     [DataRow("abc", 'b', 'c', 0)]
     public void IndexOfAnyExceptInRangeTest2(string input, char lower, char upper, int expected)
         => Assert.AreEqual(expected, input.ToCharArray().AsSpan().IndexOfAnyExceptInRange(lower, upper));
+
+    [DataTestMethod]
+    [DataRow("", 'a', 'b', -1)]
+    [DataRow("", 'b', 'a', -1)]
+    [DataRow("", 'a', 'a', -1)]
+    [DataRow("z", 'a', 'b', -1)]
+    [DataRow("z", 'b', 'a', 0)]
+    [DataRow("z", 'a', 'a', -1)]
+    [DataRow("zbax", 'a', 'b', 2)]
+    [DataRow("zax", 'b', 'a', 2)]
+    [DataRow("zaax", 'a', 'a', 2)]
+    [DataRow("zabx", 'a', 'b', 2)]
+    [DataRow("zabx", 'a', 'c', 2)]
+    [DataRow("zbax", 'b', 'c', 1)]
+    public void LastIndexOfAnyInRangeTest1(string input, char lower, char upper, int expected)
+        => Assert.AreEqual(expected, input.ToCharArray().AsSpan().LastIndexOfAnyInRange(lower, upper));
+
+    [DataTestMethod]
+    [DataRow("", 'a', 'b', -1)]
+    [DataRow("", 'b', 'a', -1)]
+    [DataRow("", 'a', 'a', -1)]
+    [DataRow("z", 'a', 'b', -1)]
+    [DataRow("z", 'b', 'a', 0)]
+    [DataRow("z", 'a', 'a', -1)]
+    [DataRow("zbax", 'a', 'b', 2)]
+    [DataRow("zax", 'b', 'a', 2)]
+    [DataRow("zaax", 'a', 'a', 2)]
+    [DataRow("zabx", 'a', 'b', 2)]
+    [DataRow("zabx", 'a', 'c', 2)]
+    [DataRow("zbax", 'b', 'c', 1)]
+    public void LastIndexOfAnyInRangeTest2(string input, char lower, char upper, int expected)
+        => Assert.AreEqual(expected, SpanPolyfillExtension.LastIndexOfAnyInRange(input.ToCharArray().AsSpan(), lower, upper));
+
+    [DataTestMethod]
+    [DataRow("", 'a', 'b', -1)]
+    [DataRow("", 'b', 'a', -1)]
+    [DataRow("", 'a', 'a', -1)]
+    [DataRow("z", 'a', 'b', 0)]
+    [DataRow("z", 'b', 'a', -1)]
+    [DataRow("a", 'a', 'a', -1)]
+    [DataRow("ayzb", 'a', 'b', 2)]
+    [DataRow("ayzb", 'b', 'a', -1)]
+    [DataRow("xazb", 'a', 'a', 3)]
+    [DataRow("bza", 'a', 'b', 1)]
+    [DataRow("bza", 'a', 'c', 1)]
+    [DataRow("bbc", 'b', 'c', -1)]
+    [DataRow("cba", 'b', 'c', 2)]
+    public void LastIndexOfAnyExceptInRangeTest1(string input, char lower, char upper, int expected)
+        => Assert.AreEqual(expected, SpanPolyfillExtension.LastIndexOfAnyExceptInRange(input.ToCharArray().AsSpan(), lower, upper));
 
     public class CharComparer : IEqualityComparer<char>
     {

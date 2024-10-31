@@ -619,6 +619,39 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void IndexOfAnyExceptInRangeTest1(string input, char lower, char upper, int expected)
         => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.IndexOfAnyExceptInRange(input.AsSpan(), lower, upper));
 
+    [DataTestMethod]
+    [DataRow("", 'a', 'b', -1)]
+    [DataRow("", 'b', 'a', -1)]
+    [DataRow("", 'a', 'a', -1)]
+    [DataRow("z", 'a', 'b', -1)]
+    [DataRow("z", 'b', 'a', 0)]
+    [DataRow("z", 'a', 'a', -1)]
+    [DataRow("zbax", 'a', 'b', 2)]
+    [DataRow("zax", 'b', 'a', 2)]
+    [DataRow("zaax", 'a', 'a', 2)]
+    [DataRow("zabx", 'a', 'b', 2)]
+    [DataRow("zabx", 'a', 'c', 2)]
+    [DataRow("zbax", 'b', 'c', 1)]
+    public void LastIndexOfAnyInRangeTest1(string input, char lower, char upper, int expected)
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.LastIndexOfAnyInRange(input.AsSpan(), lower, upper));
+
+    [DataTestMethod]
+    [DataRow("", 'a', 'b', -1)]
+    [DataRow("", 'b', 'a', -1)]
+    [DataRow("", 'a', 'a', -1)]
+    [DataRow("z", 'a', 'b', 0)]
+    [DataRow("z", 'b', 'a', -1)]
+    [DataRow("a", 'a', 'a', -1)]
+    [DataRow("ayzb", 'a', 'b', 2)]
+    [DataRow("ayzb", 'b', 'a', -1)]
+    [DataRow("xazb", 'a', 'a', 3)]
+    [DataRow("bza", 'a', 'b', 1)]
+    [DataRow("bza", 'a', 'c', 1)]
+    [DataRow("bbc", 'b', 'c', -1)]
+    [DataRow("cba", 'b', 'c', 2)]
+    public void LastIndexOfAnyExceptInRangeTest1(string input, char lower, char upper, int expected)
+        => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.LastIndexOfAnyExceptInRange(input.ToCharArray().AsSpan(), lower, upper));
+
     public class CharComparer : IEqualityComparer<char>
     {
         public bool Equals(char x, char y) => x.ToUpperInvariant() == y.ToUpperInvariant();
