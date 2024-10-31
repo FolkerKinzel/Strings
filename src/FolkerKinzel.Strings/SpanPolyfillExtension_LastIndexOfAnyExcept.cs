@@ -37,7 +37,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAnyExcept(Span<char> span, char value)
-        => MemoryExtensions.LastIndexOfAnyExcept(span, value);
+        => MemoryExtensions.LastIndexOfAnyExcept((ReadOnlySpan<char>)span, value);
 #endif
 
     /// <summary>
@@ -58,7 +58,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAnyExcept(Span<char> span, char value0, char value1)
-     => MemoryExtensions.LastIndexOfAnyExcept(span, value0, value1);
+     => MemoryExtensions.LastIndexOfAnyExcept((ReadOnlySpan<char>)span, value0, value1);
 #endif
 
     /// <summary>
@@ -80,7 +80,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAnyExcept(Span<char> span, char value0, char value1, char value2)
-     => MemoryExtensions.LastIndexOfAnyExcept(span, value0, value1, value2);
+     => MemoryExtensions.LastIndexOfAnyExcept((ReadOnlySpan<char>)span, value0, value1, value2);
 #endif
 
     /// <summary>
@@ -97,7 +97,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAnyExcept(Span<char> span, ReadOnlySpan<char> values)
-    => MemoryExtensions.LastIndexOfAnyExcept(span, values);
+    => MemoryExtensions.LastIndexOfAnyExcept((ReadOnlySpan<char>)span, values);
 #endif
 
     /// <summary>

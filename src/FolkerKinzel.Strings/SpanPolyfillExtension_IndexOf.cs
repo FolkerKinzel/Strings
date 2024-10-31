@@ -20,6 +20,6 @@ public static partial class SpanPolyfillExtension
     public static int IndexOf(
         Span<char> span, string? value, StringComparison comparisonType)
 #endif
-        => MemoryExtensions.IndexOf(span, value.AsSpan(), comparisonType);
+        => MemoryExtensions.IndexOf((ReadOnlySpan<char>)span, value.AsSpan(), comparisonType);
 }
 

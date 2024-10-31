@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Running;
 using Experiments;
 
-//new InRangeBench().IndexInRangeOwn();
+//new InRangeBench().IndexExceptInRange();
 _ = BenchmarkRunner.Run<InRangeBench>();
 //_ = BenchmarkRunner.Run<TrimBench>();
 //_ = BenchmarkRunner.Run<ConcatBench>();

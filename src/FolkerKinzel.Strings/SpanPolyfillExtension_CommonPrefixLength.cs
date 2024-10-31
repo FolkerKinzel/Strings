@@ -42,7 +42,7 @@ public static partial class SpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET7_0_OR_GREATER
     public static int CommonPrefixLength(Span<char> span, ReadOnlySpan<char> other)
-        => MemoryExtensions.CommonPrefixLength(span, other);
+        => MemoryExtensions.CommonPrefixLength((ReadOnlySpan<char>)span, other);
 #else
     public static int CommonPrefixLength(this Span<char> span, ReadOnlySpan<char> other)
         => ReadOnlySpanPolyfillExtension.CommonPrefixLength(span, other);
@@ -57,7 +57,7 @@ public static partial class SpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET7_0_OR_GREATER
     public static int CommonPrefixLength(Span<char> span, ReadOnlySpan<char> other, IEqualityComparer<char>? comparer)
-        => MemoryExtensions.CommonPrefixLength(span, other, comparer);
+        => MemoryExtensions.CommonPrefixLength((ReadOnlySpan<char>)span, other, comparer);
 #else
     public static int CommonPrefixLength(this Span<char> span, ReadOnlySpan<char> other, IEqualityComparer<char>? comparer)
         => ReadOnlySpanPolyfillExtension.CommonPrefixLength(span, other, comparer);

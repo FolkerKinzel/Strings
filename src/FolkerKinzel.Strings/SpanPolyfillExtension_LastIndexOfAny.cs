@@ -48,7 +48,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(Span<char> span, ReadOnlySpan<char> values)
-        => MemoryExtensions.LastIndexOfAny(span, values);
+        => MemoryExtensions.LastIndexOfAny((ReadOnlySpan<char>)span, values);
 #endif
 
     /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
@@ -71,7 +71,7 @@ public static partial class SpanPolyfillExtension
         => ((ReadOnlySpan<char>)span).LastIndexOfAny(values.AsSpan());
 #else
     public static int LastIndexOfAny(Span<char> span, string? values)
-        => MemoryExtensions.LastIndexOfAny<char>(span, values);
+        => MemoryExtensions.LastIndexOfAny<char>((ReadOnlySpan<char>)span, values);
 #endif
 
     /// <summary>Returns the zero-based index of the last occurrence of one of the specified

@@ -42,12 +42,12 @@ public static partial class SpanPolyfillExtension
         // to search for is empty. The BCL returns -1 in this case. This makes it consistent:
         return values.IsEmpty
             ? -1
-            : MemoryExtensions.IndexOfAny(span, values);
+            : MemoryExtensions.IndexOfAny((ReadOnlySpan<char>)span, values);
     }
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(Span<char> span, ReadOnlySpan<char> values)
-        => MemoryExtensions.IndexOfAny(span, values);
+        => MemoryExtensions.IndexOfAny((ReadOnlySpan<char>)span, values);
 #endif
 
     /// <summary>Searches for the zero-based index of the first occurrence of one of the

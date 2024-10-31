@@ -36,7 +36,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAnyExcept(Span<char> span, ReadOnlySpan<char> values)
-        => MemoryExtensions.ContainsAnyExcept(span, values);
+        => MemoryExtensions.ContainsAnyExcept((ReadOnlySpan<char>)span, values);
 #endif
 
     /// <summary>Searches for any character other than <paramref name="value"/>.</summary>
@@ -51,7 +51,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAnyExcept(Span<char> span, char value)
-        => MemoryExtensions.ContainsAnyExcept(span, value);
+        => MemoryExtensions.ContainsAnyExcept((ReadOnlySpan<char>)span, value);
 #endif
 
     /// <summary>Searches for any character other than <paramref name="value0"/> or <paramref name="value1"/>.</summary>
@@ -68,7 +68,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAnyExcept(Span<char> span, char value0, char value1)
-        => MemoryExtensions.ContainsAnyExcept(span, value0, value1);
+        => MemoryExtensions.ContainsAnyExcept((ReadOnlySpan<char>)span, value0, value1);
 #endif
 
     /// <summary>Indicates whether a character span contains one of the three characters
@@ -88,7 +88,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAnyExcept(Span<char> span, char value0, char value1, char value2)
-        => MemoryExtensions.ContainsAnyExcept(span, value0, value1, value2);
+        => MemoryExtensions.ContainsAnyExcept((ReadOnlySpan<char>)span, value0, value1, value2);
 #endif
 
     /// <summary>Searches for any character other than the specified <paramref name="values"/>.</summary>

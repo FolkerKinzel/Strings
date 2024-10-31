@@ -34,7 +34,7 @@ public static partial class ReadOnlySpanPolyfillExtension
         {
             char c = span[i];
 
-            if (c >= lowInclusive && c <= highInclusive)
+            if ((c >= lowInclusive) && (c <= highInclusive))
             {
                 return i;
             }

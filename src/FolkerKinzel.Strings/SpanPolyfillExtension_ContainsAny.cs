@@ -38,7 +38,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(Span<char> span, ReadOnlySpan<char> values)
-        => MemoryExtensions.ContainsAny(span, values);
+        => MemoryExtensions.ContainsAny((ReadOnlySpan<char>)span, values);
 #endif
 
     /// <summary>Indicates whether a character span contains one of the two characters that
@@ -59,7 +59,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(Span<char> span, char value0, char value1)
-        => MemoryExtensions.ContainsAny(span, value0, value1);
+        => MemoryExtensions.ContainsAny((ReadOnlySpan<char>)span, value0, value1);
 #endif
 
     /// <summary>Indicates whether a character span contains one of the three characters
@@ -83,7 +83,7 @@ public static partial class SpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(
         Span<char> span, char value0, char value1, char value2)
-        => MemoryExtensions.ContainsAny(span, value0, value1, value2);
+        => MemoryExtensions.ContainsAny((ReadOnlySpan<char>)span, value0, value1, value2);
 #endif
 
     /// <summary>Indicates whether a character span contains one of the Unicode characters

@@ -15,7 +15,7 @@ public static partial class SpanPolyfillExtension
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(Span<char> span, char value)
-        => MemoryExtensions.Contains(span, value);
+        => MemoryExtensions.Contains((ReadOnlySpan<char>)span, value);
 #endif
 
     /// <summary>Indicates whether a specified value occurs within a character span when

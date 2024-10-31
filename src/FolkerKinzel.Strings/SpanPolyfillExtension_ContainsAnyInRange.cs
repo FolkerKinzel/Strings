@@ -13,7 +13,7 @@ public static partial class SpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET8_0_OR_GREATER
     public static bool ContainsAnyInRange(Span<char> span, char lowInclusive, char highInclusive)
-        => MemoryExtensions.ContainsAnyInRange(span, lowInclusive, highInclusive);
+        => MemoryExtensions.ContainsAnyInRange((ReadOnlySpan<char>)span, lowInclusive, highInclusive);
 #else
     public static bool ContainsAnyInRange(this Span<char> span, char lowInclusive, char highInclusive)
         => ReadOnlySpanPolyfillExtension.ContainsAnyInRange(span, lowInclusive, highInclusive);

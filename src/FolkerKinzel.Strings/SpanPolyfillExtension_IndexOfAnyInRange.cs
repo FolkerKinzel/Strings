@@ -14,7 +14,7 @@ public static partial class SpanPolyfillExtension
 #if NET8_0_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAnyInRange(Span<char> span, char lowInclusive, char highInclusive)
-        => MemoryExtensions.IndexOfAnyInRange(span, lowInclusive, highInclusive);
+        => MemoryExtensions.IndexOfAnyInRange((ReadOnlySpan<char>)span, lowInclusive, highInclusive);
 #else
     public static int IndexOfAnyInRange(this Span<char> span, char lowInclusive, char highInclusive)
      => ReadOnlySpanPolyfillExtension.IndexOfAnyInRange(span, lowInclusive, highInclusive);
