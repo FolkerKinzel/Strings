@@ -10,5 +10,5 @@ public static partial class ReadOnlySpanExtension
     /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsNewLine(this ReadOnlySpan<char> span)
-        => span.IndexOfAny(SearchValuesStorage.NewLineChars) != -1;
+        => ReadOnlySpanPolyfillExtension.IndexOfAny(span, SearchValuesStorage.NewLineChars) != -1;
 }

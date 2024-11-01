@@ -21,7 +21,7 @@ public static partial class SpanPolyfillExtension
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this Span<char> span, SearchValuesPolyfill<char> values)
-            => span.IndexOfAny(values) != -1;
+            => ReadOnlySpanPolyfillExtension.IndexOfAny(span, values) != -1;
 
     /// <summary>Indicates whether a character span contains one of the Unicode characters
     /// that are passed to the method as a read-only character span.</summary>
@@ -34,7 +34,9 @@ public static partial class SpanPolyfillExtension
 #if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this Span<char> span, ReadOnlySpan<char> values)
-        => span.IndexOfAny(values) != -1;
+        // Don't use MemoryExtensions here directly because this method polyfills
+        // a bug in the System.Memory package for NET461 and NETSTANDARD2_0 
+        => ReadOnlySpanPolyfillExtension.IndexOfAny(span, values) != -1;
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(Span<char> span, ReadOnlySpan<char> values)
@@ -55,7 +57,7 @@ public static partial class SpanPolyfillExtension
 #if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this Span<char> span, char value0, char value1)
-        => span.IndexOfAny(value0, value1) != -1;
+        => MemoryExtensions.IndexOfAny(span, value0, value1) != -1;
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(Span<char> span, char value0, char value1)
@@ -78,7 +80,7 @@ public static partial class SpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(
         this Span<char> span, char value0, char value1, char value2)
-        => span.IndexOfAny(value0, value1, value2) != -1;
+        => MemoryExtensions.IndexOfAny(span, value0, value1, value2) != -1;
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(

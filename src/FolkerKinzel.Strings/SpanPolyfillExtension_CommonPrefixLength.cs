@@ -31,7 +31,6 @@ public static partial class SpanPolyfillExtension
 #endif
         => ReadOnlySpanPolyfillExtension.CommonPrefixLength(span, other.AsSpan(), comparer);
 
-
     /// <summary>Determines the length of any common prefix shared between <paramref name="span"/> and <paramref name="other"/>.</summary>
     /// <param name="span">The first sequence to compare.</param>
     /// <param name="other">The second sequence to compare.</param>

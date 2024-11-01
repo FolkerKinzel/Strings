@@ -70,7 +70,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// returns -1.</returns>
 #if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static int LastIndexOfAnyExcept(this ReadOnlySpan<char> span, char value0, char value1)
-     => span.LastIndexOfAnyExcept(stackalloc char[] { value0, value1 });
+     => LastIndexOfAnyExcept(span, stackalloc char[] { value0, value1 });
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAnyExcept(ReadOnlySpan<char> span, char value0, char value1)
@@ -91,7 +91,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <paramref name="value2"/>, returns -1.</returns>
 #if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static int LastIndexOfAnyExcept(this ReadOnlySpan<char> span, char value0, char value1, char value2)
-     => span.LastIndexOfAnyExcept(stackalloc char[] { value0, value1, value2 });
+     => LastIndexOfAnyExcept(span, stackalloc char[] { value0, value1, value2 });
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAnyExcept(ReadOnlySpan<char> span, char value0, char value1, char value2)

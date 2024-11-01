@@ -1,6 +1,5 @@
 namespace FolkerKinzel.Strings;
 
-
 public static partial class ReadOnlySpanExtensionPolyfillExtension
 {
     /// <summary>Returns the zero-based index of the last occurrence of one of the specified
@@ -44,6 +43,6 @@ public static partial class ReadOnlySpanExtensionPolyfillExtension
 #else
     public static int LastIndexOfAny(ReadOnlySpan<char> span, string? values, int startIndex, int count)
 #endif
-        => span.LastIndexOfAny(values.AsSpan(), startIndex, count);
+        => ReadOnlySpanExtension.LastIndexOfAny(span, values.AsSpan(), startIndex, count);
 }
 

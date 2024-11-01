@@ -21,7 +21,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAnyExcept(this ReadOnlySpan<char> span, SearchValuesPolyfill<char> values)
-        => span.IndexOfAnyExcept(values) != -1;
+        => IndexOfAnyExcept(span, values) != -1;
 
     /// <summary>Searches for any character other than the specified <paramref name="values"/>.</summary>
     /// <param name="span">The span to search.</param>

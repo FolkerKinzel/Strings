@@ -8,6 +8,5 @@ public static partial class SpanExtension
     /// <c>false</c>.</returns>
     /// <remarks> <see cref="char.IsWhiteSpace(char)" /> is used for the comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool ContainsWhiteSpace(this Span<char> span)
-    => ((ReadOnlySpan<char>)span).ContainsWhiteSpace();
+    public static bool ContainsWhiteSpace(this Span<char> span) => ReadOnlySpanExtension.ContainsWhiteSpace(span);
 }

@@ -11,7 +11,7 @@ public static partial class SpanPolyfillExtension
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(this Span<char> span, char value)
-        => span.IndexOf(value) != -1;
+        => MemoryExtensions.IndexOf((ReadOnlySpan<char>)span, value) != -1;
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(Span<char> span, char value)

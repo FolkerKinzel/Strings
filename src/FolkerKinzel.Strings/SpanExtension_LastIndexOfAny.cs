@@ -41,7 +41,7 @@ public static partial class SpanExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(
         this Span<char> span, ReadOnlySpan<char> values, int startIndex, int count)
-        => ((ReadOnlySpan<char>)span).LastIndexOfAny(values, startIndex, count);
+        => ReadOnlySpanExtension.LastIndexOfAny(span, values, startIndex, count);
 
     /// <summary>Returns the zero-based index of the last occurrence of one of the specified
     /// characters in <paramref name="span" />. The search begins at a specified character
@@ -87,5 +87,5 @@ public static partial class SpanExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(
         this Span<char> span, SearchValuesPolyfill<char> values, int startIndex, int count)
-        => ((ReadOnlySpan<char>)span).LastIndexOfAny(values, startIndex, count);
+        => ReadOnlySpanExtension.LastIndexOfAny(span, values, startIndex, count);
 }

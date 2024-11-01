@@ -7,5 +7,5 @@ public static partial class SpanExtension
     /// <returns> <c>true</c> if <paramref name="span" /> consists only of white space, otherwise
     /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsWhiteSpace(this Span<char> span) => ((ReadOnlySpan<char>)span).IsWhiteSpace();
+    public static bool IsWhiteSpace(this Span<char> span) => MemoryExtensions.IsWhiteSpace(span);
 }

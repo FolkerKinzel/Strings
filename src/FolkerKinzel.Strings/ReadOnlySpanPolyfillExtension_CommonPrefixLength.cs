@@ -71,8 +71,6 @@ public static partial class ReadOnlySpanPolyfillExtension
     public static int CommonPrefixLength(ReadOnlySpan<char> span, ReadOnlySpan<char> other, IEqualityComparer<char>? comparer)
         => MemoryExtensions.CommonPrefixLength(span, other, comparer);
 #else
-
-
     public static int CommonPrefixLength(this ReadOnlySpan<char> span, ReadOnlySpan<char> other, IEqualityComparer<char>? comparer)
     {
         if (comparer is null || comparer == EqualityComparer<char>.Default)

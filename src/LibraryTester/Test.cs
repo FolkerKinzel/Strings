@@ -179,6 +179,7 @@ public static class Test
         _ = roSpan.ContainsAny('e', 'f');
         _ = roSpan.ContainsAny('e', 'f', 'g');
         _ = roSpan.IndexOfAny(roSpan);
+        //MemoryExtensions.IndexOfAny(roSpan, roSpan);
         _ = roSpan.IndexOfAny("abc");
         _ = roSpan.LastIndexOfAny(roSpan);
         _ = roSpan.LastIndexOfAny("abc");

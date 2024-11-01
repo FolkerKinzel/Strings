@@ -43,5 +43,5 @@ public static partial class SpanExtension
     /// </example>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int GetPersistentHashCode(this Span<char> span, HashType hashType)
-    => ((ReadOnlySpan<char>)span).GetPersistentHashCode(hashType);
+        => ReadOnlySpanExtension.GetPersistentHashCode(span, hashType);
 }

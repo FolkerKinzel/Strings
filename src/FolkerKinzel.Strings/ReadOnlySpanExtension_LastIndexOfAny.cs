@@ -52,7 +52,6 @@ public static partial class ReadOnlySpanExtension
         return matchIndex == -1 ? -1 : matchIndex + startIndex - count + 1;
     }
 
-
     /// <summary>Returns the zero-based index of the last occurrence of one of the specified
     /// characters in <paramref name="span" />. The search begins at a specified character
     /// position and runs a specified number of character positions backwards to the beginning

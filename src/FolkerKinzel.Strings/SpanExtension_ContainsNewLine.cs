@@ -8,6 +8,5 @@ public static partial class SpanExtension
     /// <c>false</c>.</returns>
     /// <remarks> <see cref="CharExtension.IsNewLine(char)" /> is used for the comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool ContainsNewLine(this Span<char> span)
-    => ((ReadOnlySpan<char>)span).ContainsNewLine();
+    public static bool ContainsNewLine(this Span<char> span) => ReadOnlySpanExtension.ContainsNewLine(span);
 }

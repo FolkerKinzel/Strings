@@ -12,5 +12,5 @@ public static partial class SpanExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(
         this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
-        => MemoryExtensions.Contains(span, value, comparisonType);
+        => MemoryExtensions.Contains((ReadOnlySpan<char>)span, value, comparisonType);
 }
