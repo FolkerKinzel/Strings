@@ -17,7 +17,7 @@ public static partial class SpanPolyfillExtension
 #else
     public static bool StartsWith(Span<char> span, string? value)
 #endif
-        => ((ReadOnlySpan<char>)span).StartsWith(value.AsSpan());
+        => MemoryExtensions.StartsWith((ReadOnlySpan<char>)span, value.AsSpan());
 
     /// <summary>Indicates whether a character span begins with a specified <see cref="string"
     /// /> when compared using a specified <see cref="StringComparison" /> value.</summary>
@@ -40,5 +40,5 @@ public static partial class SpanPolyfillExtension
     public static bool StartsWith(
         Span<char> span, string? value, StringComparison comparisonType)
 #endif
-        => ((ReadOnlySpan<char>)span).StartsWith(value.AsSpan(), comparisonType);
+        => MemoryExtensions.StartsWith((ReadOnlySpan<char>)span, value.AsSpan(), comparisonType);
 }

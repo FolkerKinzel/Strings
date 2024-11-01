@@ -29,12 +29,11 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <returns><c>true</c> if any character other than those in <paramref name="values"/> is present in the span. 
     /// If all of the characters are in <paramref name="values"/>, returns <c>false</c>.
     /// </returns>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static bool ContainsAnyExcept(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
         => span.IndexOfAnyExcept(values) != -1;
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAnyExcept(ReadOnlySpan<char> span, ReadOnlySpan<char> values)
         => MemoryExtensions.ContainsAnyExcept(span, values);
 #endif
@@ -44,12 +43,11 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <param name="value">The character to avoid.</param>
     /// <returns> <c>true</c> if any character other than <paramref name="value"/> is present in the span.
     /// If all of the characters are <paramref name="value"/>, returns <c>false</c>.</returns>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static bool ContainsAnyExcept(this ReadOnlySpan<char> span, char value)
         => span.IndexOfAnyExcept(value) != -1;
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAnyExcept(ReadOnlySpan<char> span, char value)
         => MemoryExtensions.ContainsAnyExcept(span, value);
 #endif
@@ -61,12 +59,11 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <returns> <c>true</c> if any character other than <paramref name="value0"/> or <paramref name="value1"/>
     /// is present in the span.
     /// If all of the characters are <paramref name="value0"/> or <paramref name="value1"/>, returns <c>false</c>.</returns>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static bool ContainsAnyExcept(this ReadOnlySpan<char> span, char value0, char value1)
         => span.IndexOfAnyExcept(value0, value1) != -1;
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAnyExcept(ReadOnlySpan<char> span, char value0, char value1)
         => MemoryExtensions.ContainsAnyExcept(span, value0, value1);
 #endif
@@ -81,12 +78,11 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// and <paramref name="value2"/> is present in the span.
     /// If all of the characters are <paramref name="value0"/>, <paramref name="value1"/>,
     /// and <paramref name="value2"/>, returns <c>false</c>.</returns>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static bool ContainsAnyExcept(this ReadOnlySpan<char> span, char value0, char value1, char value2)
         => span.IndexOfAnyExcept(value0, value1, value2) != -1;
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAnyExcept(ReadOnlySpan<char> span, char value0, char value1, char value2)
         => MemoryExtensions.ContainsAnyExcept(span, value0, value1, value2);
 #endif

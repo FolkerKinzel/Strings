@@ -11,8 +11,8 @@ public static partial class SpanPolyfillExtension
     /// <param name="highInclusive">The upper bound, inclusive, of the range for which to search.</param>
     /// <returns>The index in the span of the last occurrence of any value in the specified range. If all 
     /// of the values are outside of the specified range, returns -1.</returns>
-#if NET8_0_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET8_0_OR_GREATER
     public static int LastIndexOfAnyInRange(Span<char> span, char lowInclusive, char highInclusive)
         => MemoryExtensions.LastIndexOfAnyInRange((ReadOnlySpan<char>)span, lowInclusive, highInclusive);
 #else

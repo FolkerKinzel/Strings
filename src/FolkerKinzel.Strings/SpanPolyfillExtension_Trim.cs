@@ -122,7 +122,7 @@ public static partial class SpanPolyfillExtension
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
     public static Span<char> TrimStart(this Span<char> span, ReadOnlySpan<char> trimElements)
     {
-        int idx = span.IndexOfAnyExcept(trimElements);
+        int idx = ReadOnlySpanPolyfillExtension.IndexOfAnyExcept(span, trimElements);
         return idx == -1 ? [] : span.Slice(idx);
     }
 #else
@@ -146,7 +146,7 @@ public static partial class SpanPolyfillExtension
     /// </remarks>
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
     public static Span<char> TrimEnd(this Span<char> span, ReadOnlySpan<char> trimElements)
-        => span.Slice(0, span.LastIndexOfAnyExcept(trimElements) + 1);
+        => span.Slice(0, ReadOnlySpanPolyfillExtension.LastIndexOfAnyExcept(span, trimElements) + 1);
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Span<char> TrimEnd(Span<char> span, ReadOnlySpan<char> trimElements)

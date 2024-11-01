@@ -22,8 +22,8 @@ public static partial class SpanPolyfillExtension
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int LastIndexOfAny(this Span<char> span, FolkerKinzel.Strings.SearchValuesPolyfill<char> values)
-        => ((ReadOnlySpan<char>)span).LastIndexOfAny(values);
+    public static int LastIndexOfAny(this Span<char> span, SearchValuesPolyfill<char> values)
+        => ReadOnlySpanPolyfillExtension.LastIndexOfAny(span, values);
 
     /// <summary>Searches for the zero-based index of the last occurrence of one of the specified
     /// Unicode characters.</summary>
@@ -41,12 +41,14 @@ public static partial class SpanPolyfillExtension
     /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
     /// is used to avoid performance issues. 
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET461 || NETSTANDARD2_0
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(this Span<char> span, ReadOnlySpan<char> values)
-        => ((ReadOnlySpan<char>)span).LastIndexOfAny(values);
+        // Don't address MemoryExtensions here directly because the library method
+        // polyfills a bug in the nuget package System.Memory for .NET Framework and
+        // .NET Standard 2.0
+        => ReadOnlySpanPolyfillExtension.LastIndexOfAny(span, values);
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(Span<char> span, ReadOnlySpan<char> values)
         => MemoryExtensions.LastIndexOfAny((ReadOnlySpan<char>)span, values);
 #endif
@@ -68,7 +70,10 @@ public static partial class SpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET461 || NETSTANDARD2_0
     public static int LastIndexOfAny(this Span<char> span, string? values)
-        => ((ReadOnlySpan<char>)span).LastIndexOfAny(values.AsSpan());
+        // Don't address MemoryExtensions here directly because the library method
+        // polyfills a bug in the nuget package System.Memory for .NET Framework and
+        // .NET Standard 2.0
+        => ReadOnlySpanPolyfillExtension.LastIndexOfAny(span, values.AsSpan());
 #else
     public static int LastIndexOfAny(Span<char> span, string? values)
         => MemoryExtensions.LastIndexOfAny<char>((ReadOnlySpan<char>)span, values);
@@ -115,5 +120,5 @@ public static partial class SpanPolyfillExtension
     public static int LastIndexOfAny(
                 Span<char> span, string? values, int startIndex, int count)
 #endif
-            => ((ReadOnlySpan<char>)span).LastIndexOfAny(values.AsSpan(), startIndex, count);
+            => ReadOnlySpanExtension.LastIndexOfAny(span, values.AsSpan(), startIndex, count);
 }

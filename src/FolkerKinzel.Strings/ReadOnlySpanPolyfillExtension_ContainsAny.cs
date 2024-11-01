@@ -35,15 +35,14 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// ReadOnlySpan{T})">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> 
     /// is used for the comparison.
     /// </remarks>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static bool ContainsAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
         // Don't address MemoryExtensions here explicitely because the library method
         // polyfills a bug in the nuget package System.Memory for .NET Framework and
         // .NET Standard 2.0
         => IndexOfAny(span, values) != -1;
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(ReadOnlySpan<char> span, ReadOnlySpan<char> values)
         => MemoryExtensions.ContainsAny(span, values);
 #endif
@@ -59,12 +58,11 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T)</see> 
     /// is used for the comparison.
     /// </remarks>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1)
         => MemoryExtensions.IndexOfAny(span, value0, value1) != -1;
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(ReadOnlySpan<char> span, char value0, char value1)
         => MemoryExtensions.ContainsAny(span, value0, value1);
 #endif
@@ -80,12 +78,11 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <remarks> <see cref="MemoryExtensions.IndexOfAny{T}(ReadOnlySpan{T},
     /// T, T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T) </see>
     /// is used for the comparison.</remarks>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1, char value2)
         => MemoryExtensions.IndexOfAny(span, value0, value1, value2) != -1;
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(ReadOnlySpan<char> span, char value0, char value1, char value2)
         => MemoryExtensions.ContainsAny(span, value0, value1, value2);
 #endif

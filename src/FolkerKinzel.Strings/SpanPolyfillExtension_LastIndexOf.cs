@@ -60,16 +60,16 @@ public static partial class SpanPolyfillExtension
     public static int LastIndexOf(this Span<char> span,
 #else
     public static int LastIndexOf(Span<char> span,
-
 #endif
                                   string? value,
                                   int startIndex,
                                   int count,
                                   StringComparison comparisonType)
    
-        => ((ReadOnlySpan<char>)span).LastIndexOf(value.AsSpan(),
-                                                  startIndex,
-                                                  count,
-                                                  comparisonType);
+        => ReadOnlySpanExtension.LastIndexOf(span,
+                                             value.AsSpan(),
+                                             startIndex,
+                                             count,
+                                             comparisonType);
 }
 

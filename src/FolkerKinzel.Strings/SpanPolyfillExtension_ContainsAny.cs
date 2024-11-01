@@ -31,14 +31,13 @@ public static partial class SpanPolyfillExtension
     /// <returns> <c>true</c> if <paramref name="span" /> contains one of the characters
     /// passed with <paramref name="values" />. If <paramref
     /// name="values" /> is empty, <c>false</c> is returned.</returns>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static bool ContainsAny(this Span<char> span, ReadOnlySpan<char> values)
         // Don't use MemoryExtensions here directly because this method polyfills
         // a bug in the System.Memory package for NET461 and NETSTANDARD2_0 
         => ReadOnlySpanPolyfillExtension.IndexOfAny(span, values) != -1;
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(Span<char> span, ReadOnlySpan<char> values)
         => MemoryExtensions.ContainsAny((ReadOnlySpan<char>)span, values);
 #endif
@@ -54,12 +53,11 @@ public static partial class SpanPolyfillExtension
     /// T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, T, T)</see> is used
     /// for the comparison.
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this Span<char> span, char value0, char value1)
-        => MemoryExtensions.IndexOfAny(span, value0, value1) != -1;
+        => MemoryExtensions.IndexOfAny((ReadOnlySpan<char>)span, value0, value1) != -1;
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(Span<char> span, char value0, char value1)
         => MemoryExtensions.ContainsAny((ReadOnlySpan<char>)span, value0, value1);
 #endif
@@ -76,13 +74,12 @@ public static partial class SpanPolyfillExtension
     /// T, T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(Span&lt;T&gt;, T, T, T)</see> is used
     /// for the comparison.
     /// </remarks>
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
     public static bool ContainsAny(
         this Span<char> span, char value0, char value1, char value2)
-        => MemoryExtensions.IndexOfAny(span, value0, value1, value2) != -1;
+        => MemoryExtensions.IndexOfAny((ReadOnlySpan<char>)span, value0, value1, value2) != -1;
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(
         Span<char> span, char value0, char value1, char value2)
         => MemoryExtensions.ContainsAny((ReadOnlySpan<char>)span, value0, value1, value2);

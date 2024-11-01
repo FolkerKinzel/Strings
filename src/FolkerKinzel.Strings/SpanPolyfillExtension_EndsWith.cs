@@ -17,7 +17,7 @@ public static partial class SpanPolyfillExtension
 #else
     public static bool EndsWith(Span<char> span, string? value)
 #endif
-        => ((ReadOnlySpan<char>)span).EndsWith(value.AsSpan());
+        => MemoryExtensions.EndsWith((ReadOnlySpan<char>)span, value.AsSpan());
 
     /// <summary>Indicates whether a character span ends with a specified <see cref="string"
     /// /> when compared using a specified <see cref="StringComparison" /> value.</summary>
@@ -40,6 +40,6 @@ public static partial class SpanPolyfillExtension
     public static bool EndsWith(
         Span<char> span, string? value, StringComparison comparisonType)
 #endif
-        => ((ReadOnlySpan<char>)span).EndsWith(value.AsSpan(), comparisonType);
+        => MemoryExtensions.EndsWith((ReadOnlySpan<char>)span, value.AsSpan(), comparisonType);
 }
 

@@ -1,3 +1,4 @@
+using System.Security.Policy;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
@@ -59,9 +60,12 @@ public static partial class SpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET461 || NETSTANDARD2_0
     public static int IndexOfAny(this Span<char> span, string? values)
+        // The nuget package System.Memory has a bug: It returns 0 if the span with the characters
+        // to search for is empty. The BCL returns -1 in this case. This makes it consistent:
+        => ReadOnlySpanPolyfillExtension.IndexOfAny(span, values.AsSpan());
 #else
     public static int IndexOfAny(Span<char> span, string? values)
+        => MemoryExtensions.IndexOfAny((ReadOnlySpan<char>)span, values);
 #endif
-        => ReadOnlySpanPolyfillExtension.IndexOfAny(span, values.AsSpan());
 }
 
