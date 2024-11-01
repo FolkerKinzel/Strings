@@ -1,4 +1,3 @@
-using System.Security.Policy;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;

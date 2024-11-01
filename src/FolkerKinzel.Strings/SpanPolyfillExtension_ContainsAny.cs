@@ -21,7 +21,7 @@ public static partial class SpanPolyfillExtension
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool ContainsAny(this Span<char> span, SearchValuesPolyfill<char> values)
-            => ReadOnlySpanPolyfillExtension.IndexOfAny(span, values) != -1;
+        => ReadOnlySpanPolyfillExtension.IndexOfAny(span, values) != -1;
 
     /// <summary>Indicates whether a character span contains one of the Unicode characters
     /// that are passed to the method as a read-only character span.</summary>

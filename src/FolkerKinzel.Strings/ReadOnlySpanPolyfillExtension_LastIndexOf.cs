@@ -27,7 +27,7 @@ public static partial class ReadOnlySpanPolyfillExtension
         => value.IsEmpty
             ? span.IsEmpty ? 0 : span.Length - 1
             : comparisonType == StringComparison.Ordinal
-                ? span.LastIndexOf(value)
+                ? MemoryExtensions.LastIndexOf(span, value)
                 : span.ToString().LastIndexOf(value.ToString(), comparisonType);
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

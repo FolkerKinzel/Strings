@@ -12,12 +12,11 @@ public static class MemoryPolyfillExtension
     /// character memory region.</summary>
     /// <param name="memory">The source memory from which the characters are removed.</param>
     /// <returns>The trimmed character memory region.</returns>
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
     public static Memory<char> Trim(this Memory<char> memory)
         => memory.TrimStart().TrimEnd();
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Memory<char> Trim(Memory<char> memory)
         => MemoryExtensions.Trim(memory);
 #endif

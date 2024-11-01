@@ -40,6 +40,6 @@ public static partial class SpanPolyfillExtension
     public static bool EndsWith(
         Span<char> span, string? value, StringComparison comparisonType)
 #endif
-        => MemoryExtensions.EndsWith((ReadOnlySpan<char>)span, value.AsSpan(), comparisonType);
+        => MemoryExtensions.EndsWith(span, value.AsSpan(), comparisonType);
 }
 

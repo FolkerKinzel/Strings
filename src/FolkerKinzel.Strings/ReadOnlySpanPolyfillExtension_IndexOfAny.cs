@@ -2,7 +2,6 @@ using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;
 
-
 public static partial class ReadOnlySpanPolyfillExtension
 {
     /// <summary>
@@ -41,14 +40,13 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <returns>The zero-based index of the first occurrence of one of the specified Unicode
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found. If <paramref name="values" /> is an empty span, the method returns <c>-1</c>.</returns>
-#if NET461 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0
     public static int IndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
          // The nuget package System.Memory has a bug: It returns 0 if the span with the characters
          // to search for is empty. The BCL returns -1 in this case. This makes it consistent:
          => values.IsEmpty ? -1 : MemoryExtensions.IndexOfAny(span, values);
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(ReadOnlySpan<char> span, ReadOnlySpan<char> values)
         => MemoryExtensions.IndexOfAny(span, values);
 #endif
@@ -73,6 +71,5 @@ public static partial class ReadOnlySpanPolyfillExtension
     public static int IndexOfAny(ReadOnlySpan<char> span, string? values)
     => MemoryExtensions.IndexOfAny<char>(span, values);
 #endif
-
 }
 

@@ -18,6 +18,6 @@ public static partial class ReadOnlySpanPolyfillExtension
     public static bool Equals(
         ReadOnlySpan<char> span, string? other, StringComparison comparisonType)
 #endif
-        => span.Equals(other.AsSpan(), comparisonType);
+        => MemoryExtensions.Equals(span, other.AsSpan(), comparisonType);
 }
 

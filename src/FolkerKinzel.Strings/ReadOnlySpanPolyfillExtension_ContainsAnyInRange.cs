@@ -16,6 +16,6 @@ public static partial class ReadOnlySpanPolyfillExtension
         => MemoryExtensions.ContainsAnyInRange(span, lowInclusive, highInclusive);
 #else
     public static bool ContainsAnyInRange(this ReadOnlySpan<char> span, char lowInclusive, char highInclusive)
-        => IndexOfAnyInRange(span, lowInclusive, highInclusive) != -1;
+        => ReadOnlySpanPolyfillExtension.IndexOfAnyInRange(span, lowInclusive, highInclusive) != -1;
 #endif
 }

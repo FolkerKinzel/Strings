@@ -41,7 +41,7 @@ public static partial class ReadOnlySpanPolyfillExtension
         // Don't address MemoryExtensions here explicitely because the library method
         // polyfills a bug in the nuget package System.Memory for .NET Framework and
         // .NET Standard 2.0
-        => IndexOfAny(span, values) != -1;
+        => ReadOnlySpanPolyfillExtension.IndexOfAny(span, values) != -1;
 #else
     public static bool ContainsAny(ReadOnlySpan<char> span, ReadOnlySpan<char> values)
         => MemoryExtensions.ContainsAny(span, values);

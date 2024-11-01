@@ -32,7 +32,7 @@ public static partial class SpanExtension
     public static Span<char> TrimStart(this Span<char> span, SearchValuesPolyfill<char> values)
     {
         _ArgumentNullException.ThrowIfNull(values, nameof(values));
-        int idx = span.IndexOfAnyExcept(values.Value);
+        int idx = ((ReadOnlySpan<char>)span).IndexOfAnyExcept(values.Value);
         return idx == -1 ? [] : span.Slice(idx);
     }
 
@@ -50,7 +50,7 @@ public static partial class SpanExtension
     public static Span<char> TrimEnd(this Span<char> span, SearchValuesPolyfill<char> values)
     {
         _ArgumentNullException.ThrowIfNull(values, nameof(values));
-        return span.Slice(0, span.LastIndexOfAnyExcept(values.Value) + 1);
+        return span.Slice(0, ((ReadOnlySpan<char>)span).LastIndexOfAnyExcept(values.Value) + 1);
     }
 }
 

@@ -6,13 +6,11 @@ public static partial class SpanPolyfillExtension
     /// span.</summary>
     /// <param name="span">The source span from which the characters are removed.</param>
     /// <returns>The sliced span.</returns>
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
     public static Span<char> Trim(this Span<char> span) => span.TrimStart().TrimEnd();
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Span<char> Trim(Span<char> span)
-        => MemoryExtensions.Trim(span);
+    public static Span<char> Trim(Span<char> span) => MemoryExtensions.Trim(span);
 #endif
 
     /// <summary>Removes all leading white space characters from a character span.</summary>
@@ -23,8 +21,7 @@ public static partial class SpanPolyfillExtension
         => span.Slice(span.Length - ((ReadOnlySpan<char>)span).TrimStart().Length);
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Span<char> TrimStart(Span<char> span)
-    => MemoryExtensions.TrimStart(span);
+    public static Span<char> TrimStart(Span<char> span) => MemoryExtensions.TrimStart(span);
 #endif
 
     /// <summary>Removes all trailing white space characters from a character span.</summary>
@@ -35,8 +32,7 @@ public static partial class SpanPolyfillExtension
         => span.Slice(0, ((ReadOnlySpan<char>)span).TrimEnd().Length);
 #else
     [MethodImpl (MethodImplOptions.AggressiveInlining)]
-    public static Span<char> TrimEnd(Span<char> span)
-        => MemoryExtensions.TrimEnd(span);
+    public static Span<char> TrimEnd(Span<char> span) => MemoryExtensions.TrimEnd(span);
 #endif
 
     /// <summary>Removes all leading and trailing occurrences of <paramref name="trimElement"/> from a character
@@ -51,8 +47,7 @@ public static partial class SpanPolyfillExtension
         => span.TrimStart(trimElement).TrimEnd(trimElement);
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Span<char> Trim(Span<char> span, char trimElement)
-        => MemoryExtensions.Trim(span, trimElement);
+    public static Span<char> Trim(Span<char> span, char trimElement) => MemoryExtensions.Trim(span, trimElement);
 #endif
 
     /// <summary>Removes all leading occurrences of <paramref name="trimElement"/> from a character span.</summary>
@@ -65,8 +60,7 @@ public static partial class SpanPolyfillExtension
         => span.Slice(span.Length - ((ReadOnlySpan<char>)span).TrimStart(trimElement).Length);
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Span<char> TrimStart(Span<char> span, char trimElement)
-        => MemoryExtensions.TrimStart(span, trimElement);
+    public static Span<char> TrimStart(Span<char> span, char trimElement) => MemoryExtensions.TrimStart(span, trimElement);
 #endif
 
     /// <summary>Removes all trailing occurrences of <paramref name="trimElement"/> from a character span.</summary>
@@ -79,8 +73,7 @@ public static partial class SpanPolyfillExtension
         => span.Slice(0, ((ReadOnlySpan<char>)span).TrimEnd(trimElement).Length);
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Span<char> TrimEnd(Span<char> span, char trimElement)
-        => MemoryExtensions.TrimEnd(span, trimElement);
+    public static Span<char> TrimEnd(Span<char> span, char trimElement) => MemoryExtensions.TrimEnd(span, trimElement);
 #endif
 
     /// <summary>Removes all leading and trailing occurrences of a set of characters specified in a 
@@ -96,12 +89,11 @@ public static partial class SpanPolyfillExtension
     /// The method performs an ordinal character comparison.
     /// </para>
     /// </remarks>
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
     public static Span<char> Trim(this Span<char> span, ReadOnlySpan<char> trimElements)
         => span.TrimStart(trimElements).TrimEnd(trimElements);
 #else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Span<char> Trim(Span<char> span, ReadOnlySpan<char> trimElements)
         => MemoryExtensions.Trim(span, trimElements);
 #endif
@@ -188,6 +180,7 @@ public static partial class SpanPolyfillExtension
     /// The method performs an ordinal character comparison.
     /// </para>
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET461 || NETSTANDARD2_0
     public static Span<char> TrimStart(this Span<char> span, string? trimElements)
 #else
@@ -208,6 +201,7 @@ public static partial class SpanPolyfillExtension
     /// The method performs an ordinal character comparison.
     /// </para>
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET461 || NETSTANDARD2_0
     public static Span<char> TrimEnd(this Span<char> span, string? trimElements)
 #else

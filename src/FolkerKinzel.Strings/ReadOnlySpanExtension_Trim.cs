@@ -47,7 +47,6 @@ public static partial class ReadOnlySpanExtension
     /// <remarks>If <paramref name="values"/> is empty, the method returns <paramref name="span"/> unchanged.</remarks>
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="values"/> is <c>null</c>.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static ReadOnlySpan<char> TrimEnd(this ReadOnlySpan<char> span, SearchValuesPolyfill<char> values)
     {
         _ArgumentNullException.ThrowIfNull(values, nameof(values));

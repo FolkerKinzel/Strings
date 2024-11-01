@@ -40,5 +40,5 @@ public static partial class SpanPolyfillExtension
     public static bool StartsWith(
         Span<char> span, string? value, StringComparison comparisonType)
 #endif
-        => MemoryExtensions.StartsWith((ReadOnlySpan<char>)span, value.AsSpan(), comparisonType);
+        => MemoryExtensions.StartsWith(span, value.AsSpan(), comparisonType);
 }

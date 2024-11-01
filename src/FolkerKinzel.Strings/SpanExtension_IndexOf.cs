@@ -15,5 +15,5 @@ public static partial class SpanExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOf(
         this Span<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
-        => MemoryExtensions.IndexOf((ReadOnlySpan<char>)span, value, comparisonType);
+        => MemoryExtensions.IndexOf(span, value, comparisonType);
 }
