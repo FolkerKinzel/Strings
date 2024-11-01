@@ -363,6 +363,16 @@ class Program
         _ = sb.TrimStart("ab");
         _ = sb.TrimEnd("ab");
 
+        foreach (ReadOnlySpan<char> item in roSpan.EnumerateLines())
+        {
+
+        }
+
+        foreach (ReadOnlySpan<char> item in span.EnumerateLines())
+        {
+
+        }
+
         //_ = sb.AppendLine(test.AsMemory());
         //_ = sb.AppendLine(test.AsSpan());
 

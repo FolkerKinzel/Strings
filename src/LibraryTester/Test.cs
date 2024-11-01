@@ -396,6 +396,16 @@ public static class Test
         _ = roSpan.ContainsAnyInRange('a', 'c');
         _ = span.ContainsAnyInRange('a', 'c');
 
+        foreach (var item in roSpan.EnumerateLines())
+        {
+
+        }
+
+        foreach (var item in span.EnumerateLines())
+        {
+
+        }
+
         const string Abc = "ABC";
         _ = StaticStringMethod.Create(Abc.Length, Abc, (chars, str) => str.AsSpan().CopyTo(chars));
 
