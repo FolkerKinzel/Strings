@@ -1,8 +1,6 @@
-#pragma warning disable IDE0130 // Namespace does not match folder structure
-namespace System.Buffers;
-#pragma warning restore IDE0130 // Namespace does not match folder structure
-
 #if NET461 || NETSTANDARD2_0
+
+namespace System.Buffers;
 
 /// <summary>Encapsulates a method that receives a span of objects of type <typeparamref name="T"/>
 /// and a state object of type <typeparamref name="TArg"/>.</summary>

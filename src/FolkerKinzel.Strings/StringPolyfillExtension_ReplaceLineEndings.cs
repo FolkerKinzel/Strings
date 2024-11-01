@@ -121,26 +121,21 @@ public static partial class StringPolyfillExtension
     /// <exception cref="ArgumentNullException"> <paramref name="replacementText" /> is <c>null</c>.
     /// </exception>
 #if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0
-#if NET5_0
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters",
-        Justification = "New line chars are not localizeable.")]
-#endif
     public static string ReplaceLineEndings(this string s, string replacementText)
     {
         _NullReferenceException.ThrowIfNull(s, nameof(s));
         _ArgumentNullException.ThrowIfNull(replacementText, nameof(replacementText));
 
-        ReadOnlySpan<char> lineEndings = SearchValuesStorage.NEW_LINE_CHARS.AsSpan();
         ReadOnlySpan<char> inputSpan = s.AsSpan();
 
-        int firstIdx = inputSpan.IndexOfAny(lineEndings);
+        int firstIdx = inputSpan.IndexOfAny(SearchValuesStorage.NewLineChars);
 
         if (firstIdx == -1)
         {
             return s;
         }
 
-        int lastIdx = inputSpan.LastIndexOfAny(lineEndings);
+        int lastIdx = inputSpan.LastIndexOfAny(SearchValuesStorage.NewLineChars);
         ReadOnlySpan<char> processedSpan = inputSpan.Slice(firstIdx, lastIdx + 1 - firstIdx);
 
         int capacity = ComputeMaxCapacity(processedSpan.Length, replacementText.Length);

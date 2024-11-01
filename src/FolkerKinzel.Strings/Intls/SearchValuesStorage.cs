@@ -1,11 +1,4 @@
-﻿using System;
-using System.Buffers;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FolkerKinzel.Strings.Intls;
+﻿namespace FolkerKinzel.Strings.Intls;
 
 internal static class SearchValuesStorage
 {
@@ -15,9 +8,8 @@ internal static class SearchValuesStorage
     /// also specifically excludes VT from the list of newline functions, so we do not include
     /// it in the needle list.
     /// </summary>
-    internal const string NEW_LINE_CHARS = "\n\r\f\u0085\u2028\u2029";
+    private const string NEW_LINE_CHARS = "\r\n\f\u0085\u2028\u2029";
 
-#if NET8_0_OR_GREATER
     /// <summary>
     /// SearchValues for new line chars.
     /// </summary>
@@ -27,6 +19,5 @@ internal static class SearchValuesStorage
     /// also specifically excludes VT from the list of newline functions, so we do not include
     /// it in the needle list.
     /// </remarks>
-    internal static readonly System.Buffers.SearchValues<char> NewLineChars = System.Buffers.SearchValues.Create(NEW_LINE_CHARS);
-#endif
+    internal static readonly SearchValuesPolyfill<char> NewLineChars = SearchValuesPolyfill.Create(NEW_LINE_CHARS);
 }

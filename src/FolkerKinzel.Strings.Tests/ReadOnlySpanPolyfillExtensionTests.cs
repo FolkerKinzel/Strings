@@ -652,6 +652,26 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void LastIndexOfAnyExceptInRangeTest1(string input, char lower, char upper, int expected)
         => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.LastIndexOfAnyExceptInRange(input.ToCharArray().AsSpan(), lower, upper));
 
+    [TestMethod]
+    public void EnumerateLinesTest1()
+    {
+        string input = """
+            1
+            2
+            3
+
+            """;
+
+        int counter = 0;
+        foreach (ReadOnlySpan<char> line in input.AsSpan().EnumerateLines())
+        {
+            Assert.IsFalse(line.ContainsNewLine());
+            counter++;
+        }
+
+        Assert.AreEqual(4, counter);
+    }
+
     public class CharComparer : IEqualityComparer<char>
     {
         public bool Equals(char x, char y) => x.ToUpperInvariant() == y.ToUpperInvariant();

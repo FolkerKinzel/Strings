@@ -4,4 +4,6 @@
 // a specific target and scoped to a namespace, type, member, etc.
 
 
+
 [assembly: SuppressMessage("Style", "IDE0130:Namespace does not match folder structure", Justification = "<Pending>", Scope = "namespace", Target = "~N:System.Text")]
+[assembly: SuppressMessage("Style", "IDE0130:Namespace does not match folder structure", Justification = "<Pending>", Scope = "namespace", Target = "~N:System.Buffers")]

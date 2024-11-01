@@ -59,17 +59,16 @@ public static partial class StringBuilderExtension
         using ArrayPoolHelper.SharedArray<char> source = ArrayPoolHelper.Rent<char>(builder.Length);
         builder.CopyTo(0, source.Array, 0, builder.Length);
 
-        ReadOnlySpan<char> lineEndings = SearchValuesStorage.NEW_LINE_CHARS.AsSpan();
         ReadOnlySpan<char> inputSpan = source.Array.AsSpan(0, builder.Length);
 
-        int firstIdx = inputSpan.IndexOfAny(lineEndings);
+        int firstIdx = inputSpan.IndexOfAny(SearchValuesStorage.NewLineChars);
 
         if (firstIdx == -1)
         {
             return builder;
         }
 
-        int lastIdx = inputSpan.LastIndexOfAny(lineEndings);
+        int lastIdx = inputSpan.LastIndexOfAny(SearchValuesStorage.NewLineChars);
         ReadOnlySpan<char> processedSpan = inputSpan.Slice(firstIdx, lastIdx + 1 - firstIdx);
 
         int capacity = ComputeMaxReplaceLineEndingsCapacity(processedSpan.Length, replacement.Length);
