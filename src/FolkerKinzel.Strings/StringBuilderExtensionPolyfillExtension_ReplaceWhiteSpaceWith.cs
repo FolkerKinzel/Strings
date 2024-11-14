@@ -25,7 +25,7 @@ public static partial class StringBuilderExtensionPolyfillExtension
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder ReplaceWhiteSpaceWith(
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
         this StringBuilder builder,
 #else
         StringBuilder builder,
@@ -61,7 +61,7 @@ public static partial class StringBuilderExtensionPolyfillExtension
     /// />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder ReplaceWhiteSpaceWith(
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
         this StringBuilder builder,
 #else
         StringBuilder builder,
@@ -110,7 +110,7 @@ public static partial class StringBuilderExtensionPolyfillExtension
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder ReplaceWhiteSpaceWith(
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
         this StringBuilder builder,
 #else
         StringBuilder builder,

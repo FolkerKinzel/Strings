@@ -1,6 +1,6 @@
 ﻿namespace FolkerKinzel.Strings.Intls;
 
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
 
 [SuppressMessage("Style", "IDE1006:Naming Styles",
     Justification = "Show as polyfill")]

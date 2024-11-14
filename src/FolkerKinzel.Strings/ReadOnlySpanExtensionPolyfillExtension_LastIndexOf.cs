@@ -36,7 +36,7 @@ public static partial class ReadOnlySpanExtensionPolyfillExtension
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOf(
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
                                   this ReadOnlySpan<char> span,
 #else
                                   ReadOnlySpan<char> span,

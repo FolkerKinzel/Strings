@@ -73,7 +73,7 @@ public static partial class StringBuilderExtension
                 : IndexOfIntl(builder, value, startIndex, count);
     }
 
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int IndexOfIntl(StringBuilder builder, char value)

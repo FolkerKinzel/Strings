@@ -14,7 +14,7 @@ public static partial class SpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int LastIndexOf(
         this Span<char> span, string? value, StringComparison comparisonType)
 #else
@@ -56,7 +56,7 @@ public static partial class SpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int LastIndexOf(this Span<char> span,
 #else
     public static int LastIndexOf(Span<char> span,

@@ -74,7 +74,7 @@ public static partial class StringBuilderExtension
                 : ContainsNonAsciiIntl(builder, startIndex, count);
     }
 
-#if NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool ContainsNonAsciiIntl(StringBuilder builder)

@@ -12,7 +12,7 @@ public static partial class SpanPolyfillExtension
     /// <remarks>The method performs an ordinal character comparison. If <paramref name="value"
     /// /> is <c>null</c> or <see cref="string.Empty" /> the method returns <c>true</c>.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool EndsWith(this Span<char> span, string? value)
 #else
     public static bool EndsWith(Span<char> span, string? value)
@@ -33,7 +33,7 @@ public static partial class SpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool EndsWith(
         this Span<char> span, string? value, StringComparison comparisonType)
 #else

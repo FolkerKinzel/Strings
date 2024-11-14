@@ -10,7 +10,7 @@ public static partial class SpanPolyfillExtension
     /// The method performs an ordinal character comparison.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int CommonPrefixLength(this Span<char> span, string? other)
 #else
     public static int CommonPrefixLength(Span<char> span, string? other)
@@ -24,7 +24,7 @@ public static partial class SpanPolyfillExtension
     /// to use the default <see cref="IEqualityComparer{T}"/> for the type of <see cref="char"/>.</param>
     /// <returns>The length of the common prefix shared by the two spans. If there's no shared prefix, 0 is returned.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int CommonPrefixLength(this Span<char> span, string? other, IEqualityComparer<char>? comparer)
 #else
     public static int CommonPrefixLength(Span<char> span, string? other, IEqualityComparer<char>? comparer)

@@ -22,7 +22,7 @@ public static class StaticStringMethod
     /// cref="string" />s, to have only one heap allocation.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="action" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="length" /> is negative.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static string Create<TState>(int length, TState state, SpanAction<char, TState> action)
     {
         _ArgumentNullException.ThrowIfNull(action, nameof(action));

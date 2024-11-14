@@ -13,7 +13,7 @@ public static class ReadOnlyMemoryPolyfillExtension
     /// <param name="memory">The source memory from which the characters are removed.</param>
     /// <returns>The trimmed character memory region.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1
     public static ReadOnlyMemory<char> Trim(this ReadOnlyMemory<char> memory)
         => memory.TrimStart().TrimEnd();
 #else
@@ -25,7 +25,7 @@ public static class ReadOnlyMemoryPolyfillExtension
     /// region.</summary>
     /// <param name="memory">The source memory from which the characters are removed.</param>
     /// <returns>The trimmed character memory region.</returns>
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1
     public static ReadOnlyMemory<char> TrimStart(this ReadOnlyMemory<char> memory)
         => memory.Slice(memory.Length - memory.Span.TrimStart().Length);
 #else
@@ -38,7 +38,7 @@ public static class ReadOnlyMemoryPolyfillExtension
     /// region.</summary>
     /// <param name="memory">The source memory from which the characters are removed.</param>
     /// <returns>The trimmed character memory region.</returns>
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1
     public static ReadOnlyMemory<char> TrimEnd(this ReadOnlyMemory<char> memory)
         => memory.Slice(0, memory.Span.TrimEnd().Length);
 #else

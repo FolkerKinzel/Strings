@@ -14,7 +14,7 @@ public static partial class StringPolyfillExtension
     /// in the <paramref name="trimChars" /> parameter from the beginning and end of the
     /// <see cref="string" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static string Trim(this string s, ReadOnlySpan<char> trimChars)
     {
         _NullReferenceException.ThrowIfNull(s, nameof(s));
@@ -43,7 +43,7 @@ public static partial class StringPolyfillExtension
     /// in the <paramref name="trimChars" /> parameter from the end of the 
     /// <see cref="string" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static string TrimEnd(this string s, ReadOnlySpan<char> trimChars)
     {
         _NullReferenceException.ThrowIfNull(s, nameof(s));
@@ -72,7 +72,7 @@ public static partial class StringPolyfillExtension
     /// in the <paramref name="trimChars" /> parameter from the beginning of the 
     /// <see cref="string" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static string TrimStart(this string s, ReadOnlySpan<char> trimChars)
     {
         _NullReferenceException.ThrowIfNull(s, nameof(s));
@@ -101,7 +101,7 @@ public static partial class StringPolyfillExtension
     /// <see cref="string" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static string Trim(this string s, string? trimChars)
 #else
     public static string Trim(string s, string? trimChars)
@@ -119,7 +119,7 @@ public static partial class StringPolyfillExtension
     /// <see cref="string" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static string TrimEnd(this string s, string? trimChars)
 #else
     public static string TrimEnd(string s, string? trimChars)
@@ -137,7 +137,7 @@ public static partial class StringPolyfillExtension
     /// <see cref="string" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static string TrimStart(this string s, string? trimChars)
 #else
     public static string TrimStart(string s, string? trimChars)

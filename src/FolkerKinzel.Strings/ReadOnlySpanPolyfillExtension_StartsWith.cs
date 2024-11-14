@@ -10,7 +10,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// />, otherwise <c>false</c>.</returns>
     /// <remarks>The method performs an ordinal character comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static bool StartsWith(this ReadOnlySpan<char> span, char value)
      => !span.IsEmpty && span[0] == value;
 #else
@@ -28,7 +28,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <remarks>The method performs an ordinal character comparison. If <paramref name="value"
     /// /> is <c>null</c> or <see cref="string.Empty" /> the method returns <c>true</c>.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool StartsWith(this ReadOnlySpan<char> span, string? value)
 #else
     public static bool StartsWith(ReadOnlySpan<char> span, string? value)
@@ -50,7 +50,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool StartsWith(
         this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
 #else

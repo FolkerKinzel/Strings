@@ -9,7 +9,7 @@ public static partial class SpanPolyfillExtension
     /// <remarks><see cref="MemoryExtensions.IndexOf{T}(Span{T}, T)">
     /// MemoryExtensions.IndexOf(this Span&lt;T&gt;, T)</see> is used for the comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1
     public static bool Contains(this Span<char> span, char value)
         => MemoryExtensions.IndexOf((ReadOnlySpan<char>)span, value) != -1;
 #else
@@ -26,7 +26,7 @@ public static partial class SpanPolyfillExtension
     /// /> and <paramref name="value" /> are compared.</param>
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool Contains(
         this Span<char> span, string? value, StringComparison comparisonType)
 #else

@@ -36,7 +36,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// is used for the comparison.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static bool ContainsAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
         // Don't address MemoryExtensions here explicitely because the library method
         // polyfills a bug in the nuget package System.Memory for .NET Framework and
@@ -59,7 +59,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// is used for the comparison.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1)
         => MemoryExtensions.IndexOfAny(span, value0, value1) != -1;
 #else
@@ -79,7 +79,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// T, T, T)">MemoryExtensions.IndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;, T, T, T) </see>
     /// is used for the comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static bool ContainsAny(this ReadOnlySpan<char> span, char value0, char value1, char value2)
         => MemoryExtensions.IndexOfAny(span, value0, value1, value2) != -1;
 #else
@@ -99,7 +99,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// is used for the comparison.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool ContainsAny(this ReadOnlySpan<char> span, string? values)
 #else
     public static bool ContainsAny(ReadOnlySpan<char> span, string? values)

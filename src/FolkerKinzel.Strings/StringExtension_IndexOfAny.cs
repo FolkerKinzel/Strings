@@ -40,7 +40,7 @@ public static partial class StringExtension
         _ArgumentNullException.ThrowIfNull(s, nameof(s));
 
         // Don't address System.MemoryExtensions here directly: The nuget package System.MemoryExtensions
-        // used for NETSTANDARD2_0 and NET461 has a bug. The library polyfills the bug:
+        // used for NETSTANDARD2_0 and NET462 has a bug. The library polyfills the bug:
         int matchIndex = s.AsSpan(startIndex, count).IndexOfAny(anyOf);
         return matchIndex == -1 ? -1 : matchIndex + startIndex;
     }

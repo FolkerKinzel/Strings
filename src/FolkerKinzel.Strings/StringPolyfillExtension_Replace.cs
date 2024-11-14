@@ -31,7 +31,7 @@ public static partial class StringPolyfillExtension
     /// /> enumeration.
     /// </para>
     /// </exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static string Replace(
         this string s, string oldValue, string? newValue, StringComparison comparisonType)
     {

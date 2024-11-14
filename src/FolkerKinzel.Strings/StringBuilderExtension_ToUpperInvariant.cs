@@ -84,7 +84,7 @@ public static partial class StringBuilderExtension
         return builder.Append(shared.Array, 0, chunkLength);
     }
 
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1
 
     private static StringBuilder ToUpperInvariantSimple(StringBuilder builder, int startIndex, int count)
     {

@@ -18,7 +18,7 @@ public static partial class StringBuilderPolyfillExtension
     /// completed.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin(
         this StringBuilder builder, char separator, params string?[] values)
@@ -44,7 +44,7 @@ public static partial class StringBuilderPolyfillExtension
     /// completed.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin(
         this StringBuilder builder, char separator, params object?[] values)
@@ -71,7 +71,7 @@ public static partial class StringBuilderPolyfillExtension
     /// completed.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin<T>(
         this StringBuilder builder, char separator, IEnumerable<T> values)
@@ -97,7 +97,7 @@ public static partial class StringBuilderPolyfillExtension
     /// completed.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin(
         this StringBuilder builder, string? separator, params string?[] values)
@@ -123,7 +123,7 @@ public static partial class StringBuilderPolyfillExtension
     /// completed.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin(
         this StringBuilder builder, string? separator, params object?[] values)
@@ -150,7 +150,7 @@ public static partial class StringBuilderPolyfillExtension
     /// completed.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="values" /> is <c>null</c>.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder AppendJoin<T>(
         this StringBuilder builder, string? separator, IEnumerable<T> values)
@@ -162,7 +162,7 @@ public static partial class StringBuilderPolyfillExtension
         => builder.AppendJoin<T>(separator, values);
 #endif
 
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     private static StringBuilder AppendJoin<T>(
         this StringBuilder builder, ReadOnlySpan<char> separator, IEnumerable<T> values)
     {

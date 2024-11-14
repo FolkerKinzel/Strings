@@ -1,6 +1,6 @@
 ﻿namespace FolkerKinzel.Strings.Intls;
 
-#if !(NET461 || NETSTANDARD2_0 || NETSTANDARD2_1)
+#if !(NET462 || NETSTANDARD2_0 || NETSTANDARD2_1)
 internal static class ChunkProvider
 {
     internal static bool TryGetChunk(StringBuilder builder, int index, out int chunkStartIndex, out ReadOnlySpan<char> span)

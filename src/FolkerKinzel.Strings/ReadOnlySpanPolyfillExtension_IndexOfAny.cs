@@ -41,7 +41,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found. If <paramref name="values" /> is an empty span, the method returns <c>-1</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int IndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
          // The nuget package System.Memory has a bug: It returns 0 if the span with the characters
          // to search for is empty. The BCL returns -1 in this case. This makes it consistent:
@@ -59,7 +59,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found. If <paramref name="values" /> is <c>null</c> or empty, the method returns
     /// <c>0</c>.</returns>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this ReadOnlySpan<char> span, string? values)
         // Don't address MemoryExtensions here directly because the library method

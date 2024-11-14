@@ -17,7 +17,7 @@ public static class EncodingExtension
     {
         _ArgumentNullException.ThrowIfNull(encoding, nameof(encoding));
 
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
         int length = chars.Length;
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(length);
         var arr = shared.Array;
@@ -39,7 +39,7 @@ public static class EncodingExtension
     /// <exception cref="NullReferenceException"> <paramref name="encoding" /> is <c>null</c>.</exception>
     /// <remarks>This method is a polyfill for the instance method of current .NET versions.
     /// Use this method in the extension method syntax only.</remarks>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static string GetString(this Encoding encoding, ReadOnlySpan<byte> bytes)
     {
         _NullReferenceException.ThrowIfNull(encoding, nameof(encoding));

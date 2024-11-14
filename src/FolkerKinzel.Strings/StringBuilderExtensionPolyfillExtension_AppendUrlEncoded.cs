@@ -20,7 +20,7 @@ public static partial class StringBuilderExtensionPolyfillExtension
     /// <exception cref="ArgumentOutOfRangeException">Increasing the capacity of <paramref
     /// name="builder" /> would exceed <see cref="StringBuilder.MaxCapacity" />.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static StringBuilder AppendUrlEncoded(this StringBuilder builder, string? value)
 #else
     public static StringBuilder AppendUrlEncoded(StringBuilder builder, string? value)

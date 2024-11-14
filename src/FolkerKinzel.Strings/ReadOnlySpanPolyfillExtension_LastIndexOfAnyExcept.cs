@@ -34,7 +34,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// than <paramref name="value"/>. If all of the characters are <paramref name="value"/>, 
     /// returns -1.</returns>
     /// <remarks>The method performs an ordinal character comparison.</remarks>
-#if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static int LastIndexOfAnyExcept(this ReadOnlySpan<char> span, char value)
     {
         // For performance reasons this has to be a separate method.
@@ -68,7 +68,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <paramref name="value0"/> or <paramref name="value1"/>.
     /// If all of the characters are <paramref name="value0"/> or <paramref name="value1"/>,
     /// returns -1.</returns>
-#if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static int LastIndexOfAnyExcept(this ReadOnlySpan<char> span, char value0, char value1)
      => LastIndexOfAnyExcept(span, stackalloc char[] { value0, value1 });
 #else
@@ -89,7 +89,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <paramref name="value0"/>, <paramref name="value1"/>, and <paramref name="value2"/>.
     /// If all of the characters are <paramref name="value0"/>, <paramref name="value1"/>, and 
     /// <paramref name="value2"/>, returns -1.</returns>
-#if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static int LastIndexOfAnyExcept(this ReadOnlySpan<char> span, char value0, char value1, char value2)
      => LastIndexOfAnyExcept(span, stackalloc char[] { value0, value1, value2 });
 #else
@@ -105,7 +105,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <param name="values">The characters to avoid.</param>
     /// <returns>The index in the span of the last occurrence of any character other than those in 
     /// <paramref name="values"/>. If all of the characters are in <paramref name="values"/>, returns -1.</returns>
-#if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static int LastIndexOfAnyExcept(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
     {
         int i;
@@ -134,7 +134,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <returns>The index in the span of the last occurrence of any character other than those in 
     /// <paramref name="values"/>. If all of the characters are in <paramref name="values"/>, returns -1.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NETSTANDARD2_0 || NET461
+#if NETSTANDARD2_0 || NET462
     public static int LastIndexOfAnyExcept(this ReadOnlySpan<char> span, string? values)
 #else
     public static int LastIndexOfAnyExcept(ReadOnlySpan<char> span, string? values)

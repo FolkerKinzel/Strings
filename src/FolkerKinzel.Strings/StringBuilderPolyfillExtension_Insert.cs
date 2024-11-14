@@ -16,7 +16,7 @@ public static partial class StringBuilderPolyfillExtension
     /// <exception cref="NullReferenceException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="index" /> is less
     /// than zero or greater than the number of characters in <paramref name="builder" />.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StringBuilder Insert(
         this StringBuilder builder, int index, ReadOnlySpan<char> value)

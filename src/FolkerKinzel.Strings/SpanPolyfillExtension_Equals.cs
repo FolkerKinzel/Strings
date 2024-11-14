@@ -11,7 +11,7 @@ public static partial class SpanPolyfillExtension
     /// /> and <paramref name="other" /> are compared.</param>
     /// <returns> <c>true</c> if identical, <c>false</c> otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool Equals(
         this Span<char> span, string? other, StringComparison comparisonType)
 #else

@@ -50,7 +50,7 @@ namespace FolkerKinzel.Strings;
 /// </remarks>
 /// 
 /// <exception cref="ArgumentException"></exception>
-#if !(NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1)
+#if !(NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1)
 [SuppressMessage("Usage", "CA2231:Overload operator equals on overriding value type Equals", 
     Justification = "PersistentStringHash is a mutable struct and should not be compared with other instances.")]
 #endif
@@ -166,7 +166,7 @@ public struct PersistentStringHash(HashType hashType)
     /// Adds a single character to the hash code.
     /// </summary>
     /// <param name="c">The <see cref="char"/> to hash.</param>
-#if !NET461
+#if !NET462
     [SuppressMessage("Style", "IDE0302:Simplify collection initialization",
         Justification = "Performance: Collection expression allocates a new array.")]
 #endif
@@ -188,7 +188,7 @@ public struct PersistentStringHash(HashType hashType)
     public void Add(StringBuilder builder)
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
-#if NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
         DoAdd(builder, 0, builder.Length);
 #else
         foreach (ReadOnlyMemory<char> chunk in builder.GetChunks())
@@ -274,7 +274,7 @@ public struct PersistentStringHash(HashType hashType)
         DoAdd(builder, startIndex, count);
     }
 
-#if NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
 
     private void DoAdd(StringBuilder builder, int startIndex, int count)
     {

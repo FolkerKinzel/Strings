@@ -83,7 +83,7 @@ public static partial class StringBuilderExtension
                     : LastIndexOfIntl(builder, value, startIndex, count);
     }
 
-#if NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int LastIndexOfIntl(StringBuilder builder, char value)

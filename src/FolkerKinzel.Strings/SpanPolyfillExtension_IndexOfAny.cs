@@ -34,7 +34,7 @@ public static partial class SpanPolyfillExtension
     /// <returns>The zero-based index of the first occurrence of one of the specified Unicode
     /// characters in <paramref name="span" /> or -1 if none of these characters have been
     /// found. If <paramref name="values" /> is an empty span, the method returns <c>-1</c>.</returns>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAny(this Span<char> span, ReadOnlySpan<char> values)
         // The nuget package System.Memory has a bug: It returns 0 if the span with the characters
@@ -57,7 +57,7 @@ public static partial class SpanPolyfillExtension
     /// <remarks><see cref="IndexOfAny(Span{char}, ReadOnlySpan{char})">
     /// IndexOfAny(Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;)</see> is used for the comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int IndexOfAny(this Span<char> span, string? values)
         // The nuget package System.Memory has a bug: It returns 0 if the span with the characters
         // to search for is empty. The BCL returns -1 in this case. This makes it consistent:

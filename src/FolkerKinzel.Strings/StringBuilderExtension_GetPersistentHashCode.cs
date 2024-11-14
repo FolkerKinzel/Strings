@@ -44,7 +44,7 @@ public static partial class StringBuilderExtension
     /// </example>
     public static int GetPersistentHashCode(this StringBuilder builder, HashType hashType)
     {
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
         // Avoid to copy the content of very short StringBuilders:

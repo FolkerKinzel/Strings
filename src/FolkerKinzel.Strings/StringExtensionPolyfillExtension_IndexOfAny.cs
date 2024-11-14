@@ -38,7 +38,7 @@ public static partial class StringExtensionPolyfillExtension
     /// </para>
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int IndexOfAny(this string s, string? anyOf, int startIndex, int count)
 #else
     public static int IndexOfAny(string s, string? anyOf, int startIndex, int count)
@@ -68,7 +68,7 @@ public static partial class StringExtensionPolyfillExtension
     /// <paramref name="startIndex" /> is not a valid index in <paramref name="s"/>.
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int IndexOfAny(this string s, string? anyOf, int startIndex)
 #else
     public static int IndexOfAny(string s, string? anyOf, int startIndex)
@@ -93,7 +93,7 @@ public static partial class StringExtensionPolyfillExtension
     /// is used.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int IndexOfAny(this string s, string? anyOf)
 #else
     public static int IndexOfAny(string s, string? anyOf)

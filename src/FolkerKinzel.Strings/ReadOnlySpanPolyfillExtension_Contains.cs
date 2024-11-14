@@ -7,7 +7,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <param name="span">The span to search.</param>
     /// <param name="value">The Unicode character to search for.</param>
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(this ReadOnlySpan<char> span, char value)
         => MemoryExtensions.IndexOf(span, value) != -1;
@@ -26,7 +26,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// /> and <paramref name="value" /> are compared.</param>
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool Contains(
         this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
 #else

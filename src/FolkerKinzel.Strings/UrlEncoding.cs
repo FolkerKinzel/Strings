@@ -56,7 +56,7 @@ public static class UrlEncoding
     /// </note>
     /// </remarks>
     public static string Encode(ReadOnlySpan<char> charsToEscape)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 || NET7_0 || NET8_0
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 || NET7_0 || NET8_0
         // For performance reasons an own implementation is not provided.
         => Uri.EscapeDataString(charsToEscape.ToString());
 #else
@@ -125,7 +125,7 @@ public static class UrlEncoding
     {
         _ArgumentNullException.ThrowIfNull(builder, nameof(builder));
 
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
         AppendData(builder, Encoding.UTF8.GetBytes(value));
 #else
         int length = Encoding.UTF8.GetByteCount(value);
@@ -416,7 +416,7 @@ public static class UrlEncoding
                     bytes[byteIndex++] = decodePlusSigns ? spaceChar : plusChar;
                     continue;
                 case '%':
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
                     bytes[byteIndex++] = _Byte.ParseHex(value.Slice(i + 1, 2));
 #else
                     bytes[byteIndex++] = byte.Parse(value.Slice(i + 1, 2),

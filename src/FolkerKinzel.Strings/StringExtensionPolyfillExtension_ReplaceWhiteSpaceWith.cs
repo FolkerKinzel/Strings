@@ -27,7 +27,7 @@ public static partial class StringExtensionPolyfillExtension
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ReplaceWhiteSpaceWith(
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
         this string s,
 #else
         string s,

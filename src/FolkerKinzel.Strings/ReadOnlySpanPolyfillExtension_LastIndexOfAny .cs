@@ -47,7 +47,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// ReadOnlySpan&lt;T&gt;)</see> for the comparison. If the length of <paramref name="values"
     /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
     /// is used to avoid performance issues.</remarks>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int LastIndexOfAny(this ReadOnlySpan<char> span, ReadOnlySpan<char> values)
         // The nuget package System.Memory has a bug: It returns 0 if the span with the characters
         // to search for is empty. The BCL returns -1 in this case. This makes it consistent:
@@ -71,7 +71,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// ReadOnlySpan{T})">MemoryExtensions.LastIndexOfAny&lt;T&gt;(ReadOnlySpan&lt;T&gt;,
     /// ReadOnlySpan&lt;T&gt;)</see> is used for the comparison.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int LastIndexOfAny(this ReadOnlySpan<char> span, string? values)
         // Don't address MemoryExtensions here directly because the library method
         // polyfills a bug in the nuget package System.Memory for .NET Framework and

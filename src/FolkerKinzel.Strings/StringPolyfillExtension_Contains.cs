@@ -14,7 +14,7 @@ public static partial class StringPolyfillExtension
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool Contains(this string s, char value, StringComparison comparisonType)
         => s is null ? throw new NullReferenceException()
                      : s.AsSpan().Contains(stackalloc[] { value }, comparisonType);
@@ -31,7 +31,7 @@ public static partial class StringPolyfillExtension
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <remarks>The method performs an ordinal character comparison.</remarks>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool Contains(this string s, char value)
         => s is null ? throw new NullReferenceException()
                      : s.AsSpan().Contains(value);
@@ -49,7 +49,7 @@ public static partial class StringPolyfillExtension
     /// comparison.</param>
     /// <returns> <c>true</c> if <paramref name="value" /> has been found, <c>false</c> otherwise.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Contains(
         this string s, string value, StringComparison comparisonType)

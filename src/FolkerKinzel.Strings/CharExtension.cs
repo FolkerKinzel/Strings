@@ -17,7 +17,7 @@ public static class CharExtension
     /// /> is less than <paramref name="minInclusive" />, the behavior is undefined.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsBetween(this char c, char minInclusive, char maxInclusive)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => (c >= minInclusive) && (c <= maxInclusive);
 #else
         => char.IsBetween(c, minInclusive, maxInclusive);
@@ -29,7 +29,7 @@ public static class CharExtension
     /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetterLower(this char c)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => c.IsBetween('a', 'z');
 #else
         => char.IsAsciiLetterLower(c);
@@ -41,7 +41,7 @@ public static class CharExtension
     /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetterUpper(this char c)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => c.IsBetween('A', 'Z');
 #else
         => char.IsAsciiLetterUpper(c);
@@ -52,7 +52,7 @@ public static class CharExtension
     /// <returns> <c>true</c> if <paramref name="c" /> is an ASCII letter, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetter(this char c)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => ((char)(c | 32)).IsAsciiLetterLower();
 #else
         => char.IsAsciiLetter(c);
@@ -65,7 +65,7 @@ public static class CharExtension
     /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiLetterOrDigit(this char c)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => c.IsAsciiLetter() || c.IsAsciiDigit();
 #else
         => char.IsAsciiLetterOrDigit(c);
@@ -171,7 +171,7 @@ public static class CharExtension
     /// otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAscii(this char c)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 
         => 128u > c;
 #else
         => char.IsAscii(c);
@@ -182,7 +182,7 @@ public static class CharExtension
     /// <returns> <c>true</c> if <paramref name="c" /> is an ASCII digit, otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiDigit(this char c)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => c.IsBetween('0', '9');
 #else
         => char.IsAsciiDigit(c);
@@ -195,7 +195,7 @@ public static class CharExtension
     /// <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiHexDigit(this char c)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => Uri.IsHexDigit(c);
 #else
         => char.IsAsciiHexDigit(c);
@@ -208,7 +208,7 @@ public static class CharExtension
     /// otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiHexDigitLower(this char c)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => c.IsAsciiHexDigit() && !c.IsAsciiLetterUpper();
 #else
         => char.IsAsciiHexDigitLower(c);
@@ -221,7 +221,7 @@ public static class CharExtension
     /// otherwise <c>false</c>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsAsciiHexDigitUpper(this char c)
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0 || NET6_0 
         => c.IsAsciiHexDigit() && !c.IsAsciiLetterLower();
 #else
         => char.IsAsciiHexDigitUpper(c);

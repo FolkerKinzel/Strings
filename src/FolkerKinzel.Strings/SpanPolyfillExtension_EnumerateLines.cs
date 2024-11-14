@@ -44,7 +44,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// </para>
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0
     public static SpanLineEnumeratorPolyfill EnumerateLines(this Span<char> span)
 #else
     public static SpanLineEnumeratorPolyfill EnumerateLines(Span<char> span)

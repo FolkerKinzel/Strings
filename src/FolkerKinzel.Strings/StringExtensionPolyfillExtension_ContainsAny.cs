@@ -23,7 +23,7 @@ public static partial class StringExtensionPolyfillExtension
     /// is used.</remarks>
     /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool ContainsAny(this string s, string? anyOf)
 #else
     public static bool ContainsAny(string s, string? anyOf)

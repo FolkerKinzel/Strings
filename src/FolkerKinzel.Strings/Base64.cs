@@ -6,7 +6,7 @@ namespace FolkerKinzel.Strings;
 
 /// <summary>Static class that provides methods to encode and decode strings in Base64
 /// format.</summary>
-#if !(NET461 || NETSTANDARD2_0  || NETSTANDARD2_1 || NETCOREAPP3_1)
+#if !(NET462 || NETSTANDARD2_0  || NETSTANDARD2_1 || NETCOREAPP3_1)
 [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters",
     Justification = "Base64 characters are not localizable.")]
 #endif
@@ -138,7 +138,7 @@ public static class Base64
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Encode(ReadOnlySpan<byte> bytes,
                                 Base64FormattingOptions options = Base64FormattingOptions.None)
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     { 
        int length = bytes.Length;
        using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
@@ -364,7 +364,7 @@ public static class Base64
     {
         Debug.Assert(!base64.IsWhiteSpace());
 
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(base64.Length);
         base64.CopyTo(shared.Array);
 

@@ -14,7 +14,7 @@ public static partial class StringPolyfillExtension
     /// <returns>An array whose elements contain the substrings from <paramref name="s" />
     /// that are delimited by <paramref name="separator" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string[] Split(
         this string s, char separator, StringSplitOptions options = StringSplitOptions.None)
@@ -39,7 +39,7 @@ public static partial class StringPolyfillExtension
     /// <paramref name="s" /> that are delimited by <paramref name="separator" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="count" /> is negative.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string[] Split(
         this string s, char separator, int count, StringSplitOptions options = StringSplitOptions.None)
@@ -63,7 +63,7 @@ public static partial class StringPolyfillExtension
     /// <paramref name="s" /> that are delimited by <paramref name="separator" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"> <paramref name="count" /> is negative.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static string[] Split(
         this string s, string? separator, int count, StringSplitOptions options = System.StringSplitOptions.None)
         => s is null
@@ -92,7 +92,7 @@ public static partial class StringPolyfillExtension
     /// <returns>An array whose elements contain the substrings from <paramref name="s" />
     /// that are delimited by <paramref name="separator" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static string[] Split(
         this string s, string? separator, StringSplitOptions options = System.StringSplitOptions.None)
          => s is null

@@ -13,7 +13,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <returns>The index of the first occurrence of <paramref name="value"/> in the 
     /// <paramref name="span"/>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int IndexOf(
         this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
 #else

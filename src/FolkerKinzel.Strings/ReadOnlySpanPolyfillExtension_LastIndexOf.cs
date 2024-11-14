@@ -21,7 +21,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// </remarks>
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1
     public static int LastIndexOf(
         this ReadOnlySpan<char> span, ReadOnlySpan<char> value, StringComparison comparisonType)
         => value.IsEmpty
@@ -56,7 +56,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int LastIndexOf(
         this ReadOnlySpan<char> span, string? value, StringComparison comparisonType)
 #else

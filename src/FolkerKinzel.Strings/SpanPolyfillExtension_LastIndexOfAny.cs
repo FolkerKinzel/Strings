@@ -42,7 +42,7 @@ public static partial class SpanPolyfillExtension
     /// is used to avoid performance issues. 
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int LastIndexOfAny(this Span<char> span, ReadOnlySpan<char> values)
         // Don't address MemoryExtensions here directly because the library method
         // polyfills a bug in the nuget package System.Memory for .NET Framework and
@@ -68,7 +68,7 @@ public static partial class SpanPolyfillExtension
     /// /> is greater, <see cref="string.LastIndexOfAny(char[])">String.LastIndexOfAny(char[])</see>
     /// is used to avoid performance issues.</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int LastIndexOfAny(this Span<char> span, string? values)
         // Don't address MemoryExtensions here directly because the library method
         // polyfills a bug in the nuget package System.Memory for .NET Framework and
@@ -113,7 +113,7 @@ public static partial class SpanPolyfillExtension
     /// </list>
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int LastIndexOfAny(
             this Span<char> span, string? values, int startIndex, int count)
 #else

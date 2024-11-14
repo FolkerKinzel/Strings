@@ -38,7 +38,7 @@ public static partial class ReadOnlySpanExtensionPolyfillExtension
     /// </list>
     /// </exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int LastIndexOfAny(this ReadOnlySpan<char> span, string? values, int startIndex, int count)
 #else
     public static int LastIndexOfAny(ReadOnlySpan<char> span, string? values, int startIndex, int count)

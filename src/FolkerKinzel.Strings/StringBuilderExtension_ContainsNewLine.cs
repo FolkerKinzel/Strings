@@ -74,7 +74,7 @@ public static partial class StringBuilderExtension
                 : ContainsNewLineIntl(builder, startIndex, count);
     }
 
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool ContainsNewLineIntl(StringBuilder builder)

@@ -16,7 +16,7 @@ public static partial class StringPolyfillExtension
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentException"> <paramref name="comparisonType" /> is not a
     /// defined value of the <see cref="StringComparison" /> enum.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static int IndexOf(this string s, char value, StringComparison comparisonType)
         => s is null ? throw new NullReferenceException()
                      : s.AsSpan().IndexOf(stackalloc[] { value }, comparisonType);

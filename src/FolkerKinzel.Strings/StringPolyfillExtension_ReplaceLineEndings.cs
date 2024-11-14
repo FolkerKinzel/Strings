@@ -56,7 +56,7 @@ public static partial class StringPolyfillExtension
     /// </para>
     /// </remarks>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ReplaceLineEndings(this string s)
         => s.ReplaceLineEndings(Environment.NewLine);
@@ -120,7 +120,7 @@ public static partial class StringPolyfillExtension
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentNullException"> <paramref name="replacementText" /> is <c>null</c>.
     /// </exception>
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1 || NET5_0
     public static string ReplaceLineEndings(this string s, string replacementText)
     {
         _NullReferenceException.ThrowIfNull(s, nameof(s));

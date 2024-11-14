@@ -48,7 +48,7 @@ public static partial class StringBuilderExtension
         => builder is null ? throw new ArgumentNullException(nameof(builder))
                            : ReplaceLineEndings(builder, replacementText.AsSpan());
 
-#if NET461 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1
     private static StringBuilder ReplaceLineEndings(StringBuilder builder, ReadOnlySpan<char> replacement)
     {
         if (builder.Length == 0)

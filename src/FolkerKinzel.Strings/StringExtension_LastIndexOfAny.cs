@@ -46,7 +46,7 @@ public static partial class StringExtension
         }
 
         // Don't address System.MemoryExtensions here directly: The nuget package System.MemoryExtensions
-        // used for NETSTANDARD2_0 and NET461 has a bug. The library polyfills the bug:
+        // used for NETSTANDARD2_0 and NET462 has a bug. The library polyfills the bug:
         int matchIndex = s.AsSpan(startIndex - count + 1, count).LastIndexOfAny(anyOf);
 
         return matchIndex == -1 ? -1 : matchIndex + startIndex - count + 1;
@@ -95,6 +95,6 @@ public static partial class StringExtension
     public static int LastIndexOfAny(this string s, ReadOnlySpan<char> anyOf)
         => s is null ? throw new ArgumentNullException(nameof(s))
            // Don't address System.MemoryExtensions here directly: The nuget package System.MemoryExtensions
-           // used for NETSTANDARD2_0 and NET461 has a bug. The library polyfills the bug:
+           // used for NETSTANDARD2_0 and NET462 has a bug. The library polyfills the bug:
                      : s.AsSpan().LastIndexOfAny(anyOf);
 }

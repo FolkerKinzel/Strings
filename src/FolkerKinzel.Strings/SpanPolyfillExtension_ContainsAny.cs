@@ -32,10 +32,10 @@ public static partial class SpanPolyfillExtension
     /// passed with <paramref name="values" />. If <paramref
     /// name="values" /> is empty, <c>false</c> is returned.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static bool ContainsAny(this Span<char> span, ReadOnlySpan<char> values)
         // Don't use MemoryExtensions here directly because this method polyfills
-        // a bug in the System.Memory package for NET461 and NETSTANDARD2_0 
+        // a bug in the System.Memory package for NET462 and NETSTANDARD2_0 
         => ReadOnlySpanPolyfillExtension.IndexOfAny(span, values) != -1;
 #else
     public static bool ContainsAny(Span<char> span, ReadOnlySpan<char> values)
@@ -54,7 +54,7 @@ public static partial class SpanPolyfillExtension
     /// for the comparison.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static bool ContainsAny(this Span<char> span, char value0, char value1)
         => MemoryExtensions.IndexOfAny((ReadOnlySpan<char>)span, value0, value1) != -1;
 #else
@@ -75,7 +75,7 @@ public static partial class SpanPolyfillExtension
     /// for the comparison.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET461
+#if NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static bool ContainsAny(
         this Span<char> span, char value0, char value1, char value2)
         => MemoryExtensions.IndexOfAny((ReadOnlySpan<char>)span, value0, value1, value2) != -1;
@@ -93,7 +93,7 @@ public static partial class SpanPolyfillExtension
     /// passed with <paramref name="values" />. If <paramref
     /// name="values" /> is <c>null</c> or empty, <c>false</c> is returned.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool ContainsAny(this Span<char> span, string? values)
 #else
     public static bool ContainsAny(Span<char> span, string? values)

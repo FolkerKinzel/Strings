@@ -14,7 +14,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// If <paramref name="trimChars"/> is <c>null</c> or empty, whitespace characters are removed instead.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static ReadOnlySpan<char> Trim(this ReadOnlySpan<char> span, string? trimChars)
 #else
     public static ReadOnlySpan<char> Trim(ReadOnlySpan<char> span, string? trimChars)
@@ -33,7 +33,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// If <paramref name="trimChars"/> is <c>null</c> or empty, whitespace characters are removed instead.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static ReadOnlySpan<char> TrimStart(this ReadOnlySpan<char> span, string? trimChars)
 #else
     public static ReadOnlySpan<char> TrimStart(ReadOnlySpan<char> span, string? trimChars)
@@ -52,7 +52,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// If <paramref name="trimChars"/> is <c>null</c> or empty, whitespace characters are removed instead.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static ReadOnlySpan<char> TrimEnd(this ReadOnlySpan<char> span, string? trimChars)
 #else
     public static ReadOnlySpan<char> TrimEnd(ReadOnlySpan<char> span, string? trimChars)

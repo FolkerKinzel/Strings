@@ -12,7 +12,7 @@ public static partial class StringPolyfillExtension
     /// <remarks>This method performs a word (case-sensitive and culture-sensitive) comparison
     /// using the current culture.</remarks>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-#if NET461 || NETSTANDARD2_0
+#if NET462 || NETSTANDARD2_0
     public static bool StartsWith(this string s, char value)
         => s is null ? throw new NullReferenceException()
                      : s.AsSpan().StartsWith(stackalloc char[] { value }, StringComparison.CurrentCulture);
