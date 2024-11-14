@@ -1,7 +1,7 @@
 ﻿# FolkerKinzel.Strings
 
 ## Roadmap
-### 9.1.1
+### 9.2.1
 
 - [ ] Make a .NET 9.0 version of the package
 - [x] Change `ReadOnlySpanPolyfillExtension.EndsWith(this ReadOnlySpan<char>, char)` to not conflict with .NET 9.0
@@ -9,6 +9,11 @@
 - [x] Let `StringPolyfillExtension.Trim(this string, ReadOnlySpan<char>)` not be an extension method in .NET 9.0
 - [x] Let `StringPolyfillExtension.TrimEnd(this string, ReadOnlySpan<char>)` not be an extension method in .NET 9.0
 - [x] Let `StringPolyfillExtension.TrimStart(this string, ReadOnlySpan<char>)` not be an extension method in .NET 9.0
+
+
+### 9.2.0
+- [x] Replace .NET Framework 4.6.1 support with .NET Framework 4.6.2 support
+- [x] Dependency updates
 
 ### 9.1.0
 - [x] Implement `string UrlEncoding.Encode(ReadOnlySpan<byte>)`

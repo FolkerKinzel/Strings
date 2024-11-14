@@ -3,7 +3,7 @@
 ## List of Polyfill Extension Methods 
 (Refers to the latest nuget version)
 
-### Polyfills for the String class (.NET 8.0, .NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the String class (.NET 8.0, .NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 string Trim(this string, ReadOnlySpan<char>);
 string TrimEnd(this string, ReadOnlySpan<char>);
@@ -11,14 +11,14 @@ string TrimStart(this string, ReadOnlySpan<char>);
 ```
 
 &nbsp;
-### Polyfills for the String class (.NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the String class (.NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 string ReplaceLineEndings(this string);
 string ReplaceLineEndings(this string, string);
 ```
 
 &nbsp;
-### Polyfills for the String class (.NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the String class (.NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 bool Contains(this string, char);
 bool Contains(this string, char, StringComparison );
@@ -59,14 +59,14 @@ class FolkerKinzel.Strings.SearchValuesPolyfill<T>;
 ```
 
 &nbsp;
-### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 8.0, .NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 8.0, .NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 bool EndsWith(this ReadOnlySpan<char>, char);
 bool StartsWith(this ReadOnlySpan<char>, char);
 ```
 
 &nbsp;
-### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 bool ContainsAny(this ReadOnlySpan<char>, ReadOnlySpan<char>);
 bool ContainsAny(this ReadOnlySpan<char>, char, char);
@@ -89,7 +89,7 @@ bool ContainsAnyInRange(this ReadOnlySpan<char>, char, char);
 ```
 
 &nbsp;
-### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 int IndexOfAnyExcept(this ReadOnlySpan<char>, char);
 int IndexOfAnyExcept(this ReadOnlySpan<char>, char, char);
@@ -104,19 +104,19 @@ int CommonPrefixLength(this ReadOnlySpan<char>, ReadOnlySpan<char>, IEqualityCom
 ```
 
 &nbsp;
-### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 SpanLineEnumeratorPolyfill EnumerateLines(this ReadOnlySpan<char>);
 ```
 
 &nbsp;
-### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 bool Contains(this ReadOnlySpan<char>, char);
 ```
 
 &nbsp;
-### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the ReadOnlySpan&lt;Char&gt; struct (.NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 bool Contains(this ReadOnlySpan<char>, string?, StringComparison);
 bool EndsWith(this ReadOnlySpan<char>, string?);
@@ -142,7 +142,7 @@ int CommonPrefixLength(this ReadOnlySpan<char>, string?, IEqualityComparer<char>
 ```
 
 &nbsp;
-### Polyfills for the Span&lt;Char&gt; struct (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the Span&lt;Char&gt; struct (.NET 7.0, .NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 bool ContainsAny(this Span<char>, ReadOnlySpan<char>);
 bool ContainsAny(this Span<char>, char, char);
@@ -165,7 +165,7 @@ bool ContainsAnyInRange(this Span<char>, char, char);
 ```
 
 &nbsp;
-### Polyfills for the Span&lt;Char&gt; struct (.NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the Span&lt;Char&gt; struct (.NET 6.0, .NET 5.0, .NET Core 3.1, .NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 int IndexOfAnyExcept(this Span<char>, char);
 int IndexOfAnyExcept(this Span<char>, char, char);
@@ -180,7 +180,7 @@ int CommonPrefixLength(this Span<char>, ReadOnlySpan<char>, IEqualityComparer<ch
 ```
 
 &nbsp;
-### Polyfills for the Span&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the Span&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 bool Contains(this ReadOnlySpan<char>, char);
 Span<char> Trim(this Span<char>);
@@ -195,7 +195,7 @@ Span<char> TrimEnd(this Span<char>, ReadOnlySpan<char>);
 ```
 
 &nbsp;
-### Polyfills for the Span&lt;Char&gt; struct (.NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the Span&lt;Char&gt; struct (.NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 bool Equals(this Span<char>, string?, StringComparison);
 bool Contains(this Span<char>, string?, StringComparison);
@@ -221,7 +221,7 @@ int CommonPrefixLength(this Span<char>, string?, IEqualityComparer<char>?);
 ```
 
 &nbsp;
-### Polyfills for the ReadOnlyMemory&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the ReadOnlyMemory&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 ReadOnlyMemory<char> Trim(this ReadOnlyMemory<char>);
 ReadOnlyMemory<char> TrimEnd(this ReadOnlyMemory<char>);
@@ -229,7 +229,7 @@ ReadOnlyMemory<char> TrimStart(this ReadOnlyMemory<char>);
 ```
 
 &nbsp;
-### Polyfills for the Memory&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the Memory&lt;Char&gt; struct (.NET Standard 2.1, .NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 Memory<char> Trim(this Memory<char>);
 Memory<char> TrimEnd(this Memory<char>);
@@ -237,7 +237,7 @@ Memory<char> TrimStart(this Memory<char>);
 ```
 
 &nbsp;
-### Polyfills for the StringBuilder class (.NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the StringBuilder class (.NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 StringBuilder Append(this StringBuilder, ReadOnlySpan<char>);
 StringBuilder Append(this StringBuilder, StringBuilder?, int, int);
@@ -258,7 +258,7 @@ StringBuilder TrimStart(this StringBuilder, string?);
 ```
 
 &nbsp;
-### Polyfills for the Encoding class (.NET Standard 2.0, .NET Framework 4.6.1)
+### Polyfills for the Encoding class (.NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
 string GetString(this Encoding encoding, ReadOnlySpan<byte> bytes);
 ```
