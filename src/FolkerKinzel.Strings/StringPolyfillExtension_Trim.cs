@@ -14,7 +14,6 @@ public static partial class StringPolyfillExtension
     /// in the <paramref name="trimChars" /> parameter from the beginning and end of the
     /// <see cref="string" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static string Trim(this string s, ReadOnlySpan<char> trimChars)
     {
         _NullReferenceException.ThrowIfNull(s, nameof(s));
@@ -27,11 +26,6 @@ public static partial class StringPolyfillExtension
                 ? string.Empty
                 : span.ToString();
     }
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string Trim(string s, ReadOnlySpan<char> trimChars)
-        => s.Trim(trimChars);
-#endif
 
     /// <summary>Generates a <see cref="string" /> from which all trailing occurrences of
     /// the characters in the specified read-only span are removed.</summary>
@@ -43,7 +37,6 @@ public static partial class StringPolyfillExtension
     /// in the <paramref name="trimChars" /> parameter from the end of the 
     /// <see cref="string" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static string TrimEnd(this string s, ReadOnlySpan<char> trimChars)
     {
         _NullReferenceException.ThrowIfNull(s, nameof(s));
@@ -56,11 +49,6 @@ public static partial class StringPolyfillExtension
                 ? string.Empty
                 : span.ToString();
     }
-#else
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string TrimEnd(string s, ReadOnlySpan<char> trimChars)
-     => s.TrimEnd(trimChars);
-#endif
 
     /// <summary>Generates a <see cref="string" /> from which all leading occurrences of
     /// the characters in the specified read-only span are removed.</summary>
@@ -72,7 +60,6 @@ public static partial class StringPolyfillExtension
     /// in the <paramref name="trimChars" /> parameter from the beginning of the 
     /// <see cref="string" />.</returns>
     /// <exception cref="NullReferenceException"> <paramref name="s" /> is <c>null</c>.</exception>
-#if NET8_0 || NET7_0 || NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static string TrimStart(this string s, ReadOnlySpan<char> trimChars)
     {
         _NullReferenceException.ThrowIfNull(s, nameof(s));
@@ -85,10 +72,6 @@ public static partial class StringPolyfillExtension
                 ? string.Empty
                 : span.ToString();
     }
-#else
-    public static string TrimStart(string s, ReadOnlySpan<char> trimChars)
-        => s.TrimStart(trimChars);
-#endif
 
     /// <summary>Generates a <see cref="string" /> from which all leading and trailing 
     /// occurrences of the characters in the specified read-only span are removed.</summary>
