@@ -491,7 +491,7 @@ public static class TextEncodingConverter
     /// <summary>Examines a read-only <see cref="byte" /> span, that represents the contents
     /// of a text file, to see if it starts with a Byte Order Mark (BOM), and returns an
     /// appropriate code page. (The fallback value is 65001 for UTF-8.)</summary>
-    /// <param name="data">The span to examine.</param>
+    /// <param name="data">The span to examine. It should be at least 4 <see cref="byte"/>s long.</param>
     /// <param name="bomLength">When the method returns, it contains the length of the BOM
     /// found or zero if no BOM was found. The parameter is passed uninitialized.</param>
     /// <returns>An appropriate code page for <paramref name="data" /> or the code page for
