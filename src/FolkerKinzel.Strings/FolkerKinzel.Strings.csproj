@@ -14,10 +14,10 @@
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>9.2.1</Version>
-    <FileVersion>9.2.1.1</FileVersion>
+    <Version>9.2.2</Version>
+    <FileVersion>9.2.2.2</FileVersion>
     <AssemblyVersion>9.0.0.0</AssemblyVersion>
-    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v9.2.1</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v9.2.2</PackageReleaseNotes>
     <PackageTags>.NET String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode C#</PackageTags>
     <Description>
       .NET library that contains extension methods and helper classes for character-based data types.
@@ -112,10 +112,10 @@
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Memory" Version="4.6.0" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.1" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Res.Designer.cs">
