@@ -18,7 +18,7 @@
     <FileVersion>9.2.2.2</FileVersion>
     <AssemblyVersion>9.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v9.2.2</PackageReleaseNotes>
-    <PackageTags>.NET String Polyfill StringBuilder ReadOnlySpan ReadOnlyMemory Char Hashcode C#</PackageTags>
+    <PackageTags>String Polyfill</PackageTags>
     <Description>
       .NET library that contains extension methods and helper classes for character-based data types.
     </Description>
