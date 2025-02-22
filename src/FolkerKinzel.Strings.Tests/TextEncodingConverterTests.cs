@@ -5,6 +5,9 @@ namespace FolkerKinzel.Strings.Tests;
 [TestClass()]
 public class TextEncodingConverterTests
 {
+    [NotNull]
+    public TestContext? TestContext { get; set; }
+
     [DataTestMethod]
     [DataRow(null, 65001)]
     [DataRow("iso-8859-1", 28591)]
@@ -451,5 +454,16 @@ public class TextEncodingConverterTests
 
         Assert.AreEqual(codePage, TextEncodingConverter.GetCodePage(bytes.AsSpan(), out int bomLength));
         Assert.AreEqual(0, bomLength);
+    }
+
+    [TestMethod]
+    public void GetCodePageTest9()
+    {
+        string path = Path.Combine(TestContext.TestRunResultsDirectory!, "GetCodePageTest9.txt");
+        File.WriteAllText(path, "äöü", Encoding.Unicode);
+
+        int codePage = TextEncodingConverter.GetCodePage(path, out int bomLength);
+        Assert.AreEqual(Encoding.Unicode.CodePage, codePage);
+        Assert.AreEqual(2, bomLength);
     }
 }

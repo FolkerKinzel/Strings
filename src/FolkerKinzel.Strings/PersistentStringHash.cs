@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using FolkerKinzel.Helpers.Polyfills;
 using FolkerKinzel.Strings.Intls;
 using FolkerKinzel.Strings.Properties;
 

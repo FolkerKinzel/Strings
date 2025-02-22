@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using FolkerKinzel.Helpers.Polyfills;
 using FolkerKinzel.Strings.Intls;
 using Base64Bcl = System.Buffers.Text.Base64;
 
@@ -57,7 +58,7 @@ public static class Base64
 #if NET5_0_OR_GREATER
             List<byte> list => Convert.ToBase64String(CollectionsMarshal.AsSpan(list), options),
 #endif
-            _ => Convert.ToBase64String(bytes.ToArray(), options),
+            _ => Convert.ToBase64String([.. bytes], options),
         };
     }
 

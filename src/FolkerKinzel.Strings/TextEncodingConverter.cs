@@ -1,3 +1,5 @@
+using FolkerKinzel.Helpers;
+using FolkerKinzel.Helpers.Polyfills;
 using FolkerKinzel.Strings.Intls;
 using FolkerKinzel.Strings.Properties;
 
@@ -488,6 +490,66 @@ public static class TextEncodingConverter
     #endregion
     #endregion
 
+    /// <summary>Examines a text file, to see if it starts with a Byte Order Mark (BOM), and 
+    /// returns an appropriate code page. (The fallback value is 65001 for UTF-8.)</summary>
+    /// <param name="filePath">Path to the file to examine.</param>
+    /// <param name="bomLength">When the method returns, it contains the length of the BOM
+    /// found or zero if no BOM was found. The parameter is passed uninitialized.</param>
+    /// <returns>An appropriate code page for the text file or the code page for
+    /// UTF-8 (65001) if the code page could not be determined from the byte order mark.</returns>
+    /// <remarks>The method recognizes the byte order marks for the following character sets:
+    /// <list type="bullet">
+    /// <item>
+    /// UTF-8
+    /// </item>
+    /// <item>
+    /// UTF-16LE
+    /// </item>
+    /// <item>
+    /// UTF-16BE
+    /// </item>
+    /// <item>
+    /// UTF-32LE
+    /// </item>
+    /// <item>
+    /// UTF-32BE
+    /// </item>
+    /// <item>
+    /// UTF-7
+    /// </item>
+    /// <item>
+    /// GB18030
+    /// </item>
+    /// </list>
+    /// <para>
+    /// UTF-16LE, UTF-16BE, UTF-32LE and UTF-32BE can also be recognized by the method from
+    /// the data if there is no Byte Order Mark.
+    /// </para>
+    /// </remarks>
+    /// <exception cref="ArgumentNullException"><paramref name="filePath"/> is <c>null</c>.
+    /// </exception>
+    /// <exception cref="ArgumentException"><paramref name="filePath"/> is not a valid file path.
+    /// </exception>
+    /// <exception cref="IOException">I/O error.</exception>
+    public static int GetCodePage(string filePath, out int bomLength)
+    {
+        const int BUF_LENGTH = 4;
+
+        using FileStream fs = 
+            BinaryFile.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+#if NET462 || NETSTANDARD2_0
+        using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(BUF_LENGTH);
+        byte[] buf = shared.Array;
+        int bytesRead = fs.Read(buf, 0, BUF_LENGTH);
+        ReadOnlySpan<byte> span = buf;
+#else
+        Span<byte> span = stackalloc byte[BUF_LENGTH];
+        int bytesRead = fs.Read(span);
+#endif
+
+        return TextEncodingConverter.GetCodePage(span.Slice(0, bytesRead), out bomLength);
+    }
+
     /// <summary>Examines a read-only <see cref="byte" /> span, that represents the contents
     /// of a text file, to see if it starts with a Byte Order Mark (BOM), and returns an
     /// appropriate code page. (The fallback value is 65001 for UTF-8.)</summary>
@@ -497,7 +559,7 @@ public static class TextEncodingConverter
     /// <returns>An appropriate code page for <paramref name="data" /> or the code page for
     /// UTF-8 (65001) if the code page could not be determined from <paramref name="data"
     /// />.</returns>
-    /// <remarks>The method recognizes the Byte Order Marks for the following character sets:
+    /// <remarks>The method recognizes the byte order marks for the following character sets:
     /// <list type="bullet">
     /// <item>
     /// UTF-8
