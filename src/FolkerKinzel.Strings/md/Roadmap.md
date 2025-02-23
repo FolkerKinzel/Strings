@@ -7,6 +7,7 @@
     static void TextWriterPolyfillExtension.Write(this TextWriter, ReadOnlySpan<char>);
     static void TextWriterPolyfillExtension.WriteLine(this TextWriter, ReadOnlySpan<char>);
 ```
+AND use it in `FolkerKinzel.CsvTools`
 ### 9.2.1
 
 - [x] Make a .NET 9.0 version of the package
