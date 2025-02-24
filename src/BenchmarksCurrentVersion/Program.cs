@@ -4,13 +4,18 @@ using Benchmarks;
 
 BenchmarkDotNet.Reports.Summary report;
 
+//var bench  = new StreamWriterBench();
+//bench.Length = 10;
+//bench.GlobalSetup();
+//bench.TempArray();
+
 // new InsertBench().Test1();
 //var val = new IsAsciiLetterBench();
 //new IsUtf8Bench().IsUtf8Exception();
 //_ = BenchmarkRunner.Run<Base64Bench>();
 //
 //report = BenchmarkRunner.Run<UrlEncodingBench>();
-report = BenchmarkRunner.Run<CommonPrefixBench>();
+//report = BenchmarkRunner.Run<CommonPrefixBench>();
 
 //_ = BenchmarkRunner.Run<IndexOfBench>();
 //_ = BenchmarkRunner.Run<LastIndexOfBench>();
@@ -40,5 +45,6 @@ report = BenchmarkRunner.Run<CommonPrefixBench>();
 //BenchmarkDotNet.Reports.Summary summary = BenchmarkRunner.Run<IsUtf8Bench>();
 //var summary = BenchmarkRunner.Run<ReplaceLineEndingsBench>();//Console.Write("Total Time:");//Console.WriteLine(summary.TotalTime);
 
+report = BenchmarkRunner.Run<StreamWriterBench>();
 Console.WriteLine(report);
 
