@@ -13,18 +13,18 @@ namespace Benchmarks;
 [SimpleJob(RuntimeMoniker.Net48)]
 public class StreamWriterBench
 {
-    private const string PATH = "C:\\Users\\fkinz\\source\\repos\\FolkerKinzel.Strings\\src\\BenchmarksCurrentVersion\\bin\\Release\\";
+    private const string PATH = "..\\Release\\";
     private string? _input;
     private string? _filePath;
 
-    [Params(10, 50, 100, 500)]
+    [Params(10, 50, 100, 5000)]
     public int Length { get; set; }
 
     [GlobalSetup]
     public void GlobalSetup()
     {
         _input = new string('a', Length);
-        _filePath = Path.Combine(PATH,"test.txt");
+        _filePath = Path.Combine(Path.GetFullPath(PATH),"test.txt");
     }
 
     [Benchmark]

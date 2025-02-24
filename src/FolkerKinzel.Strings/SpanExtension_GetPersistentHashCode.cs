@@ -2,8 +2,6 @@ using System.Security.Cryptography;
 
 namespace FolkerKinzel.Strings;
 
-/// <summary>Extension methods for the <see cref="Span{T}">Span&lt;Char&gt;</see> struct</summary>
-/// <threadsafety static="true" instance="false" />
 public static partial class SpanExtension
 {
     /// <summary>Generates the same <see cref="int" /> hash code for an identical string
@@ -13,9 +11,10 @@ public static partial class SpanExtension
     /// <returns>The hashcode.</returns>
     /// <remarks>
     /// <para>
-    /// The method <see cref="string.GetHashCode()">String.GetHashCode()</see> returns a different
-    /// hash code for an identical string with each program run for security reasons. Apart
-    /// from the fact that the hash algorithm of <see cref="string.GetHashCode()">String.GetHashCode()</see>
+    /// The method <see cref="string.GetHashCode()">String.GetHashCode()</see> returns a 
+    /// different hash code for an identical string with each program run for security 
+    /// reasons. Apart from the fact that the hash algorithm of
+    /// <see cref="string.GetHashCode()">String.GetHashCode()</see>
     /// could be different in different framework versions, it makes no sense to use the
     /// return value of <see cref="string.GetHashCode()" /> for reuse. The alternatives, e.g.
     /// <see cref="MD5" /> or <see cref="SHA256" />, use more storage space and are slower.

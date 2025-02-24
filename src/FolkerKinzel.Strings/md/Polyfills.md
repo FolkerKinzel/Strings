@@ -260,5 +260,12 @@ StringBuilder TrimStart(this StringBuilder, string?);
 &nbsp;
 ### Polyfills for the Encoding class (.NET Standard 2.0, .NET Framework 4.6.2)
 ```csharp
-string GetString(this Encoding encoding, ReadOnlySpan<byte> bytes);
+string GetString(this Encoding, ReadOnlySpan<byte>);
+```
+
+&nbsp;
+### Polyfills for the TextWriter class (.NET Standard 2.0, .NET Framework 4.6.2)
+```csharp
+void Write(this TextWriter, ReadOnlySpan<char>);
+void WriteLine(this TextWriter, ReadOnlySpan<char>);
 ```

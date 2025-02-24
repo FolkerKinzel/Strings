@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <Compile Remove="ChunkProvider.cs" />
+    <Compile Remove="StreamWriterBench.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -14,7 +14,7 @@ BenchmarkDotNet.Reports.Summary report;
 //new IsUtf8Bench().IsUtf8Exception();
 //_ = BenchmarkRunner.Run<Base64Bench>();
 //
-//report = BenchmarkRunner.Run<UrlEncodingBench>();
+report = BenchmarkRunner.Run<UrlEncodingBench>();
 //report = BenchmarkRunner.Run<CommonPrefixBench>();
 
 //_ = BenchmarkRunner.Run<IndexOfBench>();
@@ -45,6 +45,6 @@ BenchmarkDotNet.Reports.Summary report;
 //BenchmarkDotNet.Reports.Summary summary = BenchmarkRunner.Run<IsUtf8Bench>();
 //var summary = BenchmarkRunner.Run<ReplaceLineEndingsBench>();//Console.Write("Total Time:");//Console.WriteLine(summary.TotalTime);
 
-report = BenchmarkRunner.Run<StreamWriterBench>();
+//report = BenchmarkRunner.Run<StreamWriterBench>();
 Console.WriteLine(report);
 
