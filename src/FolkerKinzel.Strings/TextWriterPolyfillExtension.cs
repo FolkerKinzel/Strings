@@ -37,6 +37,7 @@ public static class TextWriterPolyfillExtension
         }
     }
 #else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Write(TextWriter writer,
                              ReadOnlySpan<char> buffer) => writer.Write(buffer);
 #endif
@@ -56,6 +57,7 @@ public static class TextWriterPolyfillExtension
         writer.WriteLine();
     }
 #else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void WriteLine(TextWriter writer,
                                  ReadOnlySpan<char> span) => writer.WriteLine(span);
 #endif
