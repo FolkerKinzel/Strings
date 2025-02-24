@@ -2,7 +2,7 @@
 
 ## Roadmap
 ### 9.4.0
-- [ ] Implement as polyfill for NET461 and NETSTANDARD2_0:
+- [x] Implement as polyfill for NET461 and NETSTANDARD2_0:
 ```csharp
     static void TextWriterPolyfillExtension.Write(this TextWriter, ReadOnlySpan<char>);
     static void TextWriterPolyfillExtension.WriteLine(this TextWriter, ReadOnlySpan<char>);
