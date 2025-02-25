@@ -1,5 +1,4 @@
 using System.Runtime.InteropServices;
-using FolkerKinzel.Helpers.Polyfills;
 using FolkerKinzel.Strings.Intls;
 using Base64Bcl = System.Buffers.Text.Base64;
 

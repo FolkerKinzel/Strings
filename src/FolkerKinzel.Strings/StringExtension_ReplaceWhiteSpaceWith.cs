@@ -1,5 +1,4 @@
 using System.Text.RegularExpressions;
-using FolkerKinzel.Helpers.Polyfills;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;

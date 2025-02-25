@@ -1,5 +1,4 @@
 using System.Security.Cryptography;
-using FolkerKinzel.Helpers.Polyfills;
 using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings;

@@ -1,4 +1,3 @@
-using FolkerKinzel.Helpers.Polyfills;
 using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings.Intls;

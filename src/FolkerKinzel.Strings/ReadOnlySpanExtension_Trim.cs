@@ -1,6 +1,4 @@
-﻿using FolkerKinzel.Helpers.Polyfills;
-
-namespace FolkerKinzel.Strings;
+﻿namespace FolkerKinzel.Strings;
 
 public static partial class ReadOnlySpanExtension
 {

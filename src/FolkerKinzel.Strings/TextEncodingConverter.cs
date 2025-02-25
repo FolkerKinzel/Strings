@@ -1,4 +1,4 @@
-using FolkerKinzel.Helpers.Polyfills;
+using FolkerKinzel.Helpers;
 using FolkerKinzel.Strings.Intls;
 using FolkerKinzel.Strings.Properties;
 
