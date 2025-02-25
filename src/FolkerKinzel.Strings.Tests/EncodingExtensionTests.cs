@@ -1,12 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.Strings.Tests;
+﻿namespace FolkerKinzel.Strings.Tests;
 
 [TestClass]
 public class EncodingExtensionTests
 {
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))] 
+    [ExpectedException(typeof(NullReferenceException))]
     public void GetStringTest1()
     {
         Encoding? enc = null;

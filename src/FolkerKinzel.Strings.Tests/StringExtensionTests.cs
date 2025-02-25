@@ -1,10 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.Strings.Tests;
+﻿namespace FolkerKinzel.Strings.Tests;
 
 [TestClass()]
 public class StringExtensionTests
-{ 
+{
     [DataTestMethod]
     [DataRow('e', 's', 't', true)]
     [DataRow('e', 'y', 't', true)]

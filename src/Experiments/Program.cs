@@ -1,5 +1,4 @@
-﻿using BenchmarkDotNet.Running;
-using Experiments;
+﻿using Experiments;
 
 EnumerateLinesBench.Test();
 //new InRangeBench().IndexExceptInRange();

@@ -1,9 +1,7 @@
-﻿using System.Text;
-using System;
+﻿using System;
 using BenchmarkDotNet.Attributes;
-using System.Buffers;
-using FolkerKinzel.Strings;
 using BenchmarkDotNet.Jobs;
+using FolkerKinzel.Strings;
 
 namespace Benchmarks;
 

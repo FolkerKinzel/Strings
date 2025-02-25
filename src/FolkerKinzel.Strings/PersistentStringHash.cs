@@ -52,7 +52,7 @@ namespace FolkerKinzel.Strings;
 /// 
 /// <exception cref="ArgumentException"></exception>
 #if !(NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1)
-[SuppressMessage("Usage", "CA2231:Overload operator equals on overriding value type Equals", 
+[SuppressMessage("Usage", "CA2231:Overload operator equals on overriding value type Equals",
     Justification = "PersistentStringHash is a mutable struct and should not be compared with other instances.")]
 #endif
 [StructLayout(LayoutKind.Auto)]
@@ -142,7 +142,7 @@ public struct PersistentStringHash(HashType hashType)
     /// </exception>
     public void Add(ReadOnlySpan<char> chars)
     {
-        if(chars.Length == 0)
+        if (chars.Length == 0)
         {
             return;
         }
@@ -281,7 +281,7 @@ public struct PersistentStringHash(HashType hashType)
     {
         if (count == 0)
         {
-            return; 
+            return;
         }
 
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(count);
@@ -333,7 +333,7 @@ public struct PersistentStringHash(HashType hashType)
             //int hash1 = (5381 << 16) + 5381;
             //int hash2 = hash1;
 
-            if(_odd)
+            if (_odd)
             {
                 _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ span[0];
                 _odd = false;
@@ -399,7 +399,7 @@ public struct PersistentStringHash(HashType hashType)
             //int hash1 = (5381 << 16) + 5381;
             //int hash2 = hash1;
 
-            if (_odd) 
+            if (_odd)
             {
                 for (int i = 0; i < span.Length; i++)
                 {

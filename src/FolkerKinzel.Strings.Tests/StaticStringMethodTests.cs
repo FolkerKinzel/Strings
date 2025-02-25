@@ -1,5 +1,4 @@
 ﻿using FolkerKinzel.Strings.Intls;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
 
@@ -101,7 +100,7 @@ public class StaticStringMethodTests
     [DataRow("Veryyyyyyy veryyyyyyyyyyyyyy loooooooooooooooooooooooooooooong striiiiiiiiiiiiiiiiiiiiiing.", "")]
     [DataRow("", "")]
     [DataRow("This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.", "This is 64 chars looooooooooooooooooooooooooooooooooooooooooong.")]
-    public void ConcatTest3(string one, string two) 
+    public void ConcatTest3(string one, string two)
         => Assert.AreEqual(one + two, StaticStringMethod.Concat(one.AsSpan(), two.AsSpan()));
 
     [TestMethod]

@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.Strings.Tests;
+﻿namespace FolkerKinzel.Strings.Tests;
 
 [TestClass()]
 public class TextEncodingConverterTests
@@ -211,7 +209,7 @@ public class TextEncodingConverterTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void GetEncodingTest16() => 
+    public void GetEncodingTest16() =>
         _ = TextEncodingConverter.GetEncoding("utf-8", null!, DecoderFallback.ExceptionFallback, true);
 
     [TestMethod]
@@ -274,9 +272,9 @@ public class TextEncodingConverterTests
     [DataRow(28591)]
     public void TryGetEncodingTest7(int codePage)
     {
-        Assert.IsTrue(TextEncodingConverter.TryGetEncoding(codePage, 
+        Assert.IsTrue(TextEncodingConverter.TryGetEncoding(codePage,
             EncoderFallback.ExceptionFallback, DecoderFallback.ExceptionFallback, out Encoding? enc));
-        Assert.IsNotNull(enc);  
+        Assert.IsNotNull(enc);
         Assert.AreEqual(codePage, enc!.CodePage);
         Assert.IsInstanceOfType(enc.EncoderFallback, EncoderFallback.ExceptionFallback.GetType());
         Assert.IsInstanceOfType(enc.DecoderFallback, DecoderFallback.ExceptionFallback.GetType());

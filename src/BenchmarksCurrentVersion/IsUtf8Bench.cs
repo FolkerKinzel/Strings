@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using FolkerKinzel.Strings;
@@ -33,9 +29,9 @@ public class IsUtf8Bench
             using var reader = new StreamReader(_fi.FullName, _enc, detectEncodingFromByteOrderMarks: false);
             _ = reader.ReadToEnd();
         }
-        catch(DecoderFallbackException)
-        { 
-            return false; 
+        catch (DecoderFallbackException)
+        {
+            return false;
         }
         return true;
     }

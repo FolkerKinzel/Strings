@@ -1,7 +1,4 @@
-﻿using System.Dynamic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.Strings.Tests;
+﻿namespace FolkerKinzel.Strings.Tests;
 
 
 [TestClass]
@@ -46,7 +43,7 @@ public class ReadOnlySpanExtensionTests
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimTest5() => ReadOnlySpan<char>.Empty.Trim((SearchValuesPolyfill<char>?)null!);
-    
+
 
     [TestMethod]
     public void TrimTest6()
@@ -94,7 +91,7 @@ public class ReadOnlySpanExtensionTests
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TrimStartTest5() => ReadOnlySpan<char>.Empty.TrimStart((SearchValuesPolyfill<char>?)null!);
-    
+
 
     [TestMethod]
     public void TrimStartTest6()
@@ -146,7 +143,7 @@ public class ReadOnlySpanExtensionTests
     [TestMethod]
     public void TrimEndTest6()
     {
-        
+
         const string trimChars = "\'\"";
 
         string test = "Test";

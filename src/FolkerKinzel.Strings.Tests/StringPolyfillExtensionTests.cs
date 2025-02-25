@@ -110,7 +110,7 @@ public class StringPolyfillExtensionTests : IDisposable
     {
         char[] trimChars = ['\'', '\"'];
         string test = "Test";
-        Assert.AreEqual(test.TrimStart(trimChars), 
+        Assert.AreEqual(test.TrimStart(trimChars),
                         StringPolyfillExtension.TrimStart(test, trimChars.AsSpan()));
     }
 
@@ -225,7 +225,7 @@ public class StringPolyfillExtensionTests : IDisposable
     [DataRow("Hi\u000CFolker")]
     [DataRow("Hi\u2028Folker")]
     [DataRow("Hi\u2029Folker")]
-    public void ReplaceLineEndingsTest7(string input) 
+    public void ReplaceLineEndingsTest7(string input)
         => Assert.AreEqual("Hi*Folker", StringPolyfillExtension.ReplaceLineEndings(input, "*"));
 
     [TestMethod]
@@ -274,7 +274,7 @@ public class StringPolyfillExtensionTests : IDisposable
 
     [DataTestMethod]
     [DataRow("Test", 'e', true)]
-    public void ContainsTest5(string input, char c, bool expected) 
+    public void ContainsTest5(string input, char c, bool expected)
         => Assert.AreEqual(expected, StringPolyfillExtension.Contains(input, c));
 
     [TestMethod]
@@ -287,7 +287,7 @@ public class StringPolyfillExtensionTests : IDisposable
 
     [DataTestMethod]
     [DataRow("Test", "es", true)]
-    public void ContainsTest7(string input, string s, bool expected) 
+    public void ContainsTest7(string input, string s, bool expected)
         => Assert.AreEqual(expected, StringPolyfillExtension.Contains(input, s, StringComparison.Ordinal));
 
     [DataTestMethod]
@@ -306,7 +306,7 @@ public class StringPolyfillExtensionTests : IDisposable
 
     [DataTestMethod()]
     [DataRow("Test", 'e', StringComparison.Ordinal, 1)]
-    public void IndexOfTest1(string value, char c, StringComparison comparison, int expected) 
+    public void IndexOfTest1(string value, char c, StringComparison comparison, int expected)
         => Assert.AreEqual(expected, StringPolyfillExtension.IndexOf(value, c, comparison));
 
     [TestMethod]

@@ -1,5 +1,3 @@
-using System.Text.RegularExpressions;
-
 namespace FolkerKinzel.Strings;
 
 public static partial class StringExtensionPolyfillExtension
@@ -73,8 +71,8 @@ public static partial class StringExtensionPolyfillExtension
 #else
     public static int IndexOfAny(string s, string? anyOf, int startIndex)
 #endif
-        => s.IndexOfAny(anyOf.AsSpan(), 
-                        startIndex, 
+        => s.IndexOfAny(anyOf.AsSpan(),
+                        startIndex,
                         s?.Length - startIndex ?? throw new ArgumentNullException(nameof(s)));
 
     /// <summary>Returns the zero-based index of the first occurrence of one of the the specified

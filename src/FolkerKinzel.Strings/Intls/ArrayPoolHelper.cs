@@ -1,6 +1,4 @@
-﻿using System.Buffers;
-
-namespace FolkerKinzel.Strings.Intls;
+﻿namespace FolkerKinzel.Strings.Intls;
 
 internal static class ArrayPoolHelper
 {

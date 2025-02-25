@@ -45,7 +45,7 @@ public static partial class StringBuilderExtension
                                         string oldValue,
                                         string? newValue,
                                         int startIndex)
-        => builder?.Replace(oldValue, newValue, startIndex, builder.Length - startIndex) 
+        => builder?.Replace(oldValue, newValue, startIndex, builder.Length - startIndex)
                   ?? throw new ArgumentNullException(nameof(builder));
 
     /// <summary>Replaces, within a substring of <paramref name="builder" />, all occurrences
@@ -79,6 +79,6 @@ public static partial class StringBuilderExtension
                                         char oldChar,
                                         char newChar,
                                         int startIndex)
-        => builder?.Replace(oldChar, newChar, startIndex, builder.Length - startIndex) 
+        => builder?.Replace(oldChar, newChar, startIndex, builder.Length - startIndex)
                   ?? throw new ArgumentNullException(nameof(builder));
 }

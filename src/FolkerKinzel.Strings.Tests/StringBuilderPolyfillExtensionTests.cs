@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.Strings.Tests;
+﻿namespace FolkerKinzel.Strings.Tests;
 
 [TestClass()]
 public class StringBuilderPolyfillExtensionTests
@@ -47,7 +44,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new string?[] { s1, s2 };
         char separator = ',';
 
-        Assert.AreEqual(s1 + separator + s2, 
+        Assert.AreEqual(s1 + separator + s2,
                         StringBuilderPolyfillExtension.AppendJoin(new StringBuilder(), separator, input).ToString());
     }
 
@@ -107,7 +104,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new List<string?>() { s1, s2 };
         char separator = ',';
 
-        Assert.AreEqual(s1 + separator + s2, 
+        Assert.AreEqual(s1 + separator + s2,
                         StringBuilderPolyfillExtension.AppendJoin(new StringBuilder(), separator, input).ToString());
     }
 
@@ -166,7 +163,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new string?[] { s1, s2 };
         string separator = "::";
 
-        Assert.AreEqual(s1 + separator + s2, 
+        Assert.AreEqual(s1 + separator + s2,
                         StringBuilderPolyfillExtension.AppendJoin(new StringBuilder(), separator, input).ToString());
     }
 
@@ -242,7 +239,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new List<string?>() { s1, s2 };
         string separator = "::";
 
-        Assert.AreEqual(s1 + separator + s2, 
+        Assert.AreEqual(s1 + separator + s2,
                         StringBuilderPolyfillExtension.AppendJoin(new StringBuilder(), separator, input).ToString());
     }
 
@@ -380,7 +377,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new object?[] { s1, s2 };
         string separator = "::";
 
-        Assert.AreEqual(s1?.ToString() + separator + s2?.ToString(), 
+        Assert.AreEqual(s1?.ToString() + separator + s2?.ToString(),
                         StringBuilderPolyfillExtension.AppendJoin(new StringBuilder(), separator, input).ToString());
     }
 
@@ -413,7 +410,7 @@ public class StringBuilderPolyfillExtensionTests
         var input = new object?[] { s1, s2 };
         string? separator = null;
 
-        Assert.AreEqual(s1?.ToString() + s2?.ToString(), 
+        Assert.AreEqual(s1?.ToString() + s2?.ToString(),
                         StringBuilderPolyfillExtension.AppendJoin(new StringBuilder(), separator, input).ToString());
     }
 
@@ -456,7 +453,7 @@ public class StringBuilderPolyfillExtensionTests
     public void InsertTest3()
     {
         var sb = new StringBuilder();
-        _ = StringBuilderPolyfillExtension.Insert(sb, - 1, ReadOnlySpan<char>.Empty);
+        _ = StringBuilderPolyfillExtension.Insert(sb, -1, ReadOnlySpan<char>.Empty);
     }
 
     [TestMethod]

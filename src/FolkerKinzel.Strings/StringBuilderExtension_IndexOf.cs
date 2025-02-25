@@ -156,7 +156,7 @@ public static partial class StringBuilderExtension
                 return startIndex + idx;
             }
 
-            if(evaluatedLength == count)
+            if (evaluatedLength == count)
             {
                 break;
             }

@@ -22,7 +22,7 @@ public static partial class ReadOnlySpanPolyfillExtension
 
         if (lowInclusive > highInclusive)
         {
-            return - 1;
+            return -1;
         }
 
         if (lowInclusive == highInclusive)

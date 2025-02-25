@@ -21,8 +21,8 @@ public static partial class StringBuilderPolyfillExtension
     public static StringBuilder Insert(
         this StringBuilder builder, int index, ReadOnlySpan<char> value)
     {
-       // Don't call StringBuilder.Insert(int, char) multiple times here because StringBuilder will 
-       // allocate new memory with each call.
+        // Don't call StringBuilder.Insert(int, char) multiple times here because StringBuilder will 
+        // allocate new memory with each call.
 
         using ArrayPoolHelper.SharedArray<char> shared = ArrayPoolHelper.Rent<char>(value.Length);
         value.CopyTo(shared.Array);

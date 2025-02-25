@@ -31,7 +31,7 @@ public static partial class SpanPolyfillExtension
     public static Span<char> TrimEnd(this Span<char> span)
         => span.Slice(0, ((ReadOnlySpan<char>)span).TrimEnd().Length);
 #else
-    [MethodImpl (MethodImplOptions.AggressiveInlining)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Span<char> TrimEnd(Span<char> span) => MemoryExtensions.TrimEnd(span);
 #endif
 

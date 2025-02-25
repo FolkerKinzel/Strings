@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace FolkerKinzel.Strings;
+﻿namespace FolkerKinzel.Strings;
 
 public static partial class ReadOnlySpanPolyfillExtension
 {

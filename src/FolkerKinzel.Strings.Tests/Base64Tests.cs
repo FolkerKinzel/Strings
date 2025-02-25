@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
 
@@ -28,7 +27,7 @@ public class Base64Tests
     //            capacities.Add((capacity1, capacity2));
     //        }
     //    }
-        
+
     //}
 
     [DataTestMethod()]
@@ -103,7 +102,7 @@ public class Base64Tests
     [DataRow("foobar", " Zm\r\n9v  YmFy  ")]
     public void GetBytesTest7(string expected, string input)
         => Assert.AreEqual(expected,
-                           Encoding.UTF8.GetString(Base64.GetBytes(input, 
+                           Encoding.UTF8.GetString(Base64.GetBytes(input,
                                                    Base64ParserOptions.AcceptMissingPadding)));
 
     [TestMethod]

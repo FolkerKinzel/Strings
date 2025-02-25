@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
 
@@ -165,7 +164,7 @@ public class StringBuilderExtensionTests
     }
 
     [TestMethod]
-    public void ReplaceWhiteSpaceWithTest9() 
+    public void ReplaceWhiteSpaceWithTest9()
         => Assert.AreEqual(0, new StringBuilder().ReplaceWhiteSpaceWith("blub").Length);
 
     [TestMethod]
@@ -564,7 +563,7 @@ public class StringBuilderExtensionTests
     public void ToLowerInvariantTest2b()
     {
         var sb = new StringBuilder();
-        _ = sb.ToLowerInvariant(-15,0);
+        _ = sb.ToLowerInvariant(-15, 0);
     }
 
     [TestMethod]
@@ -694,7 +693,7 @@ public class StringBuilderExtensionTests
         Assert.AreEqual("TEST", sb.ToUpperInvariant().ToString());
     }
 
-    
+
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -1625,5 +1624,5 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(Uri.EscapeDataString(s), sb.ToString());
     }
 
-    
+
 }

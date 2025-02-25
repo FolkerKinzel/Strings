@@ -95,7 +95,7 @@ public static partial class StringExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int LastIndexOfAny(this string s, ReadOnlySpan<char> anyOf)
         => s is null ? throw new ArgumentNullException(nameof(s))
-           // Don't address System.MemoryExtensions here directly: The nuget package System.MemoryExtensions
-           // used for NETSTANDARD2_0 and NET462 has a bug. The library polyfills the bug:
+                     // Don't address System.MemoryExtensions here directly: The nuget package System.MemoryExtensions
+                     // used for NETSTANDARD2_0 and NET462 has a bug. The library polyfills the bug:
                      : s.AsSpan().LastIndexOfAny(anyOf);
 }

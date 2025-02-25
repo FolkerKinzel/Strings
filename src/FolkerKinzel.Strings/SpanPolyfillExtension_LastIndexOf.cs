@@ -65,7 +65,7 @@ public static partial class SpanPolyfillExtension
                                   int startIndex,
                                   int count,
                                   StringComparison comparisonType)
-   
+
         => ReadOnlySpanExtension.LastIndexOf(span,
                                              value.AsSpan(),
                                              startIndex,

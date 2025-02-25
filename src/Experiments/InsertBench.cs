@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using System;
 using BenchmarkDotNet.Attributes;
 
 namespace Experiments;

@@ -12,7 +12,7 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is 
     /// <c>null</c>.</exception>
     public static bool Contains(this StringBuilder builder, char value)
-        => builder is null ? throw new ArgumentNullException(nameof(builder)) 
+        => builder is null ? throw new ArgumentNullException(nameof(builder))
                            : StringBuilderExtension.IndexOf(builder, value) != -1;
 
     /// <summary>Indicates whether a specified Unicode character is found in a 
@@ -28,7 +28,7 @@ public static partial class StringBuilderExtension
     /// less than zero or greater than the number of characters in 
     /// <paramref name="builder" />.</exception>
     public static bool Contains(this StringBuilder builder, char value, int startIndex)
-        => builder is null ? throw new ArgumentNullException(nameof(builder)) 
+        => builder is null ? throw new ArgumentNullException(nameof(builder))
                            : StringBuilderExtension.IndexOf(builder, value, startIndex) != -1;
 
     /// <summary>Indicates whether a specified Unicode character is found in a <see cref="StringBuilder"
@@ -56,6 +56,6 @@ public static partial class StringBuilderExtension
     /// </para>
     /// </exception>
     public static bool Contains(this StringBuilder builder, char value, int startIndex, int count)
-       => builder is null ? throw new ArgumentNullException(nameof(builder)) 
+       => builder is null ? throw new ArgumentNullException(nameof(builder))
                           : StringBuilderExtension.IndexOf(builder, value, startIndex, count) != -1;
 }

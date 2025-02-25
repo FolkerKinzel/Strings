@@ -1,7 +1,5 @@
-﻿using System.Buffers;
-using System.Globalization;
+﻿using System.Globalization;
 using FolkerKinzel.Strings;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FolkerKinzel.Strings.Tests;
 
@@ -83,7 +81,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
         => Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.IndexOfAnyExcept(input.AsSpan(), SearchValuesPolyfill.Create("abcd")));
 
     [TestMethod()]
-    [ExpectedException(typeof(ArgumentNullException))]  
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IndexOfAnyExceptTest7()
         => ReadOnlySpanPolyfillExtension.IndexOfAnyExcept("xyz".AsSpan(), (SearchValuesPolyfill<char>?)null!);
 
@@ -205,7 +203,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
         Assert.AreEqual(expected, ReadOnlySpanPolyfillExtension.Equals(input.AsSpan(), other, StringComparison.OrdinalIgnoreCase));
 
     [TestMethod]
-    public void ContainsTest1() 
+    public void ContainsTest1()
         => Assert.IsTrue(ReadOnlySpanPolyfillExtension.Contains(Environment.NewLine.AsSpan(), Environment.NewLine, StringComparison.Ordinal));
 
     [DataTestMethod]
@@ -253,7 +251,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
         => Assert.AreEqual(expectedIndex, ReadOnlySpanPolyfillExtension.IndexOfAny(testStr.AsSpan(), SearchValuesPolyfill.Create(needles)));
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))] 
+    [ExpectedException(typeof(ArgumentNullException))]
     public void IndexOfAnyTest4()
         => ReadOnlySpanPolyfillExtension.IndexOfAny("abc".AsSpan(), (SearchValuesPolyfill<char>?)null!);
 
@@ -264,7 +262,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void ContainsAnyTest2() => Assert.IsFalse(ReadOnlySpanPolyfillExtension.ContainsAny("t".AsSpan(), SearchValuesPolyfill.Create("")));
 
     [TestMethod]
-    [ExpectedException (typeof(ArgumentNullException))]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void ContainsAnyTest3() => Assert.IsFalse(ReadOnlySpanPolyfillExtension.ContainsAny("t".AsSpan(), (SearchValuesPolyfill<char>?)null!));
 
     [DataTestMethod]
@@ -492,7 +490,7 @@ public class ReadOnlySpanPolyfillExtensionTests : IDisposable
     public void TrimEndTest1(string? input, string? trimChars)
     {
         ReadOnlySpan<char> span = input.AsSpan();
-        Assert.AreEqual(span.TrimEnd(trimChars.AsSpan()).ToString(), 
+        Assert.AreEqual(span.TrimEnd(trimChars.AsSpan()).ToString(),
                         ReadOnlySpanPolyfillExtension.TrimEnd(span, trimChars).ToString());
     }
 

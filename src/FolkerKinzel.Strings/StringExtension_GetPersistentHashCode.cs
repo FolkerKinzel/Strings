@@ -41,6 +41,6 @@ public static partial class StringExtension
     /// <code language="cs" source="..\Examples\Example.cs" />
     /// </example>
     public static int GetPersistentHashCode(this string s, HashType hashType)
-        => s is null ? throw new ArgumentNullException(nameof(s)) 
+        => s is null ? throw new ArgumentNullException(nameof(s))
                      : s.AsSpan().GetPersistentHashCode(hashType);
 }

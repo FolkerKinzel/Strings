@@ -30,7 +30,7 @@ public static class TextWriterPolyfillExtension
         }
         else
         {
-            using ArrayPoolHelper.SharedArray<char> 
+            using ArrayPoolHelper.SharedArray<char>
                             shared = ArrayPoolHelper.Rent<char>(buffer.Length);
             buffer.CopyTo(shared.Array);
             writer.Write(shared.Array, 0, buffer.Length);

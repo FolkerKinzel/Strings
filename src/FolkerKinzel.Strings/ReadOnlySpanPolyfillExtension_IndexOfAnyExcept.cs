@@ -68,7 +68,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     /// returns -1.</returns>
 #if NET6_0 || NET5_0 || NETCOREAPP3_1 || NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
     public static int IndexOfAnyExcept(this ReadOnlySpan<char> span, char value0, char value1)
-     => span.IndexOfAnyExcept(stackalloc char[] { value0, value1});
+     => span.IndexOfAnyExcept(stackalloc char[] { value0, value1 });
 #else
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int IndexOfAnyExcept(ReadOnlySpan<char> span, char value0, char value1)

@@ -1,5 +1,3 @@
-using FolkerKinzel.Strings.Intls;
-
 namespace FolkerKinzel.Strings;
 
 /// <summary>Extension methods for the <see cref="string" /> class, which are used

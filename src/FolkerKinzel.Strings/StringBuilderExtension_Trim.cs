@@ -8,7 +8,7 @@ public static partial class StringBuilderExtension
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder Trim(this StringBuilder builder)
-        => builder is null ? throw new ArgumentNullException(nameof(builder)) 
+        => builder is null ? throw new ArgumentNullException(nameof(builder))
                            : builder.TrimStartIntl().TrimEndIntl();
 
     /// <summary>Removes all leading and trailing instances of a character from 
@@ -18,7 +18,7 @@ public static partial class StringBuilderExtension
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder Trim(this StringBuilder builder, char trimChar)
-        => builder is null ? throw new ArgumentNullException(nameof(builder)) 
+        => builder is null ? throw new ArgumentNullException(nameof(builder))
                            : builder.TrimStartIntl(trimChar).TrimEndIntl(trimChar);
 
     /// <summary>Removes all leading and trailing occurrences of a set of characters specified

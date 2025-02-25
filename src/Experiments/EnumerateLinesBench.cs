@@ -1,6 +1,6 @@
 ﻿namespace Experiments;
 
-public class EnumerateLinesBench 
+public class EnumerateLinesBench
 {
     public static void Test()
     {
@@ -12,7 +12,7 @@ public class EnumerateLinesBench
             """;
 
         int counter = 0;
-        foreach(ReadOnlySpan<char> line in input.AsSpan().EnumerateLines())
+        foreach (ReadOnlySpan<char> line in input.AsSpan().EnumerateLines())
         {
             counter++;
         }

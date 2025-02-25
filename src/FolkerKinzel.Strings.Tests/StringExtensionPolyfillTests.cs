@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.Strings.Tests;
+﻿namespace FolkerKinzel.Strings.Tests;
 
 [TestClass()]
 public class StringExtensionPolyfillTests
@@ -22,27 +20,27 @@ public class StringExtensionPolyfillTests
         _ = s!.ReplaceWhiteSpaceWith("*");
     }
 
-//#pragma warning disable CS0618 // Type or member is obsolete
+    //#pragma warning disable CS0618 // Type or member is obsolete
 
-//    [TestMethod]
-//    public void NormalizeNewLinesToTest1()
-//       => Assert.AreEqual("\t Test   * text  ", "\t Test   \r\n text  ".NormalizeNewLinesTo("*"));
-
-
-//    [TestMethod]
-//    public void NormalizeNewLinesToTest2()
-//        => Assert.AreEqual("\t Test   * text  ", "\t Test   \r\n text  ".NormalizeNewLinesTo("*"));
+    //    [TestMethod]
+    //    public void NormalizeNewLinesToTest1()
+    //       => Assert.AreEqual("\t Test   * text  ", "\t Test   \r\n text  ".NormalizeNewLinesTo("*"));
 
 
-//    [TestMethod]
-//    [ExpectedException(typeof(ArgumentNullException))]
-//    public void NormalizeNewLinesToTest3()
-//    {
-//        string? s = null;
-//        _ = s!.NormalizeNewLinesTo("*");
-//    }
+    //    [TestMethod]
+    //    public void NormalizeNewLinesToTest2()
+    //        => Assert.AreEqual("\t Test   * text  ", "\t Test   \r\n text  ".NormalizeNewLinesTo("*"));
 
-//#pragma warning restore CS0618 // Type or member is obsolete
+
+    //    [TestMethod]
+    //    [ExpectedException(typeof(ArgumentNullException))]
+    //    public void NormalizeNewLinesToTest3()
+    //    {
+    //        string? s = null;
+    //        _ = s!.NormalizeNewLinesTo("*");
+    //    }
+
+    //#pragma warning restore CS0618 // Type or member is obsolete
 
     [DataTestMethod]
     [DataRow("ts", 2)]

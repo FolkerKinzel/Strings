@@ -1,4 +1,3 @@
-using FolkerKinzel.Helpers;
 using FolkerKinzel.Helpers.Polyfills;
 using FolkerKinzel.Strings.Intls;
 using FolkerKinzel.Strings.Properties;
@@ -535,7 +534,7 @@ public static class TextEncodingConverter
     {
         const int BUF_LENGTH = 4;
 
-        using FileStream fs = 
+        using FileStream fs =
             BinaryFile.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 #if NET462 || NETSTANDARD2_0
         using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(BUF_LENGTH);

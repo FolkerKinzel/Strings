@@ -41,7 +41,7 @@ public static partial class ReadOnlySpanExtension
                                   int count,
                                   StringComparison comparisonType)
     {
-        if(span.Length == 0)
+        if (span.Length == 0)
         {
             return -1;
         }
@@ -51,7 +51,7 @@ public static partial class ReadOnlySpanExtension
             throw new ArgumentOutOfRangeException(nameof(startIndex));
         }
 
-        if((uint)count > (uint)startIndex + 1) 
+        if ((uint)count > (uint)startIndex + 1)
         {
             throw new ArgumentOutOfRangeException(nameof(startIndex));
         }

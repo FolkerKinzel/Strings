@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.Strings.Tests;
+﻿namespace FolkerKinzel.Strings.Tests;
 
 [TestClass]
 public class SpanExtensionTests
@@ -173,7 +170,7 @@ public class SpanExtensionTests
     public void ToLowerInvariantTest1(string input, string expected)
         => Assert.AreEqual(expected, input.ToCharArray().AsSpan().ToLowerInvariant().ToString());
 
-    
+
 
 
     [DataTestMethod]
@@ -215,7 +212,7 @@ public class SpanExtensionTests
     [DataRow("  abc")]
     [DataRow("  abc   ")]
     public void GetPersistentHashCodeTest1(string input)
-       => Assert.AreEqual(input.AsSpan().GetPersistentHashCode(HashType.AlphaNumericIgnoreCase), 
+       => Assert.AreEqual(input.AsSpan().GetPersistentHashCode(HashType.AlphaNumericIgnoreCase),
                           input.ToCharArray().AsSpan().GetPersistentHashCode(HashType.AlphaNumericIgnoreCase));
 
     [DataTestMethod]

@@ -1,7 +1,4 @@
-﻿using System.Buffers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.Strings.Tests;
+﻿namespace FolkerKinzel.Strings.Tests;
 
 [TestClass]
 public class SearchValuesTests

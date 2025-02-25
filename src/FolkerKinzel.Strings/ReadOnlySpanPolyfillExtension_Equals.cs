@@ -13,7 +13,7 @@ public static partial class ReadOnlySpanPolyfillExtension
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #if NET462 || NETSTANDARD2_0
     public static bool Equals(
-        this ReadOnlySpan<char> span, string? other, StringComparison comparisonType) 
+        this ReadOnlySpan<char> span, string? other, StringComparison comparisonType)
 #else
     public static bool Equals(
         ReadOnlySpan<char> span, string? other, StringComparison comparisonType)

@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace FolkerKinzel.Strings.Tests;
+﻿namespace FolkerKinzel.Strings.Tests;
 
 internal static class TestFiles
 {

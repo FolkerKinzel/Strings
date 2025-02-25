@@ -102,7 +102,7 @@ public static partial class StringBuilderExtension
 
     private static StringBuilder ToLowerInvariantSimple(StringBuilder builder, int startIndex, int count)
     {
-        if(count == 0)
+        if (count == 0)
         {
             return builder;
         }

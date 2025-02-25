@@ -140,12 +140,12 @@ public static class Base64
     public static string Encode(ReadOnlySpan<byte> bytes,
                                 Base64FormattingOptions options = Base64FormattingOptions.None)
 #if NET462 || NETSTANDARD2_0
-    { 
-       int length = bytes.Length;
-       using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
-       var arr = shared.Array;
-       bytes.CopyTo(arr);
-       return Convert.ToBase64String(arr, 0, length, options);
+    {
+        int length = bytes.Length;
+        using ArrayPoolHelper.SharedArray<byte> shared = ArrayPoolHelper.Rent<byte>(length);
+        var arr = shared.Array;
+        bytes.CopyTo(arr);
+        return Convert.ToBase64String(arr, 0, length, options);
     }
 #else
        => Convert.ToBase64String(bytes, options);

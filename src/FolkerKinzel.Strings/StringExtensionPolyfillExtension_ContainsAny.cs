@@ -1,5 +1,3 @@
-using System.Text.RegularExpressions;
-
 namespace FolkerKinzel.Strings;
 
 /// <summary> Extension methods, which act as Polyfills for the extension methods of the 

@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings;
@@ -405,7 +404,7 @@ public static class CharExtension
     /// </item>
     /// </list>
     /// </remarks>
-    [SuppressMessage("Style", "IDE0066:Convert switch statement to expression", 
+    [SuppressMessage("Style", "IDE0066:Convert switch statement to expression",
         Justification = "More readable")]
     public static bool IsNewLine(this char c)
     {

@@ -23,12 +23,12 @@ public class ReplaceLineEndingsBench
 
     [Params(1, 2, 3)]
     public int N { get; set; }
-    
+
 
     [GlobalSetup]
     public void Setup()
     {
-        Builder = new StringBuilder(N*TestString.Length);
+        Builder = new StringBuilder(N * TestString.Length);
 
         for (int i = 0; i < N; i++)
         {

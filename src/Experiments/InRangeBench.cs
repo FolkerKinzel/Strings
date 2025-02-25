@@ -1,7 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
 using FolkerKinzel.Strings;
-using System;
-using System.Runtime.Serialization;
 
 namespace Experiments;
 
@@ -73,7 +71,7 @@ public class InRangeBench
         {
             char c = span[i];
 
-            if((c >= lowInclusive) && (c <= highInclusive))
+            if ((c >= lowInclusive) && (c <= highInclusive))
             {
                 return i;
             }

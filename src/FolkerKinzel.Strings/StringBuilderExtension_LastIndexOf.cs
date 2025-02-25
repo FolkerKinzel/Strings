@@ -88,8 +88,8 @@ public static partial class StringBuilderExtension
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int LastIndexOfIntl(StringBuilder builder, char value)
-      => builder.Length == 0 
-            ? -1 
+      => builder.Length == 0
+            ? -1
             : LastIndexOfIntl(builder, value, builder.Length - 1, builder.Length);
 
     private static int LastIndexOfIntl(StringBuilder builder, char value, int startIndex, int count)

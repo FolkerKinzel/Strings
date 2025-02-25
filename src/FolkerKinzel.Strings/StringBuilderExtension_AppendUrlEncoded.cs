@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using FolkerKinzel.Strings.Intls;
 
 namespace FolkerKinzel.Strings;

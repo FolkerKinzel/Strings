@@ -1,12 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FolkerKinzel.Strings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FolkerKinzel.Strings.Tests;
+﻿namespace FolkerKinzel.Strings.Tests;
 
 [TestClass()]
 public class DecoderValidationFallbackTests
@@ -16,7 +8,7 @@ public class DecoderValidationFallbackTests
     {
         var fb = new DecoderValidationFallback();
         Assert.IsFalse(fb.HasError);
-        
+
         var enc = Encoding.GetEncoding("UTF-8", EncoderFallback.ReplacementFallback, fb);
         using var stream = new MemoryStream([129, 142, 210, 184]);
         using var reader = new StreamReader(stream, enc, false);

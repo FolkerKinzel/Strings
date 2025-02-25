@@ -1,11 +1,4 @@
-﻿using System;
-using System.Buffers;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FolkerKinzel.Strings;
+﻿namespace FolkerKinzel.Strings;
 
 /// <summary>
 /// Static class that allows customizing the library's behavior when highly 

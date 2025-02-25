@@ -11,7 +11,7 @@ public static partial class StringBuilderExtension
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder TrimStart(this StringBuilder builder)
-        => builder is null ? throw new ArgumentNullException(nameof(builder)) 
+        => builder is null ? throw new ArgumentNullException(nameof(builder))
                            : builder.TrimStartIntl();
 
     /// <summary>Removes all the leading occurrences of a specified character from 
@@ -21,7 +21,7 @@ public static partial class StringBuilderExtension
     /// <returns>A reference to <paramref name="builder" />.</returns>
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     public static StringBuilder TrimStart(this StringBuilder builder, char trimChar)
-       => builder is null ? throw new ArgumentNullException(nameof(builder)) 
+       => builder is null ? throw new ArgumentNullException(nameof(builder))
                           : builder.TrimStartIntl(trimChar);
 
     /// <summary>Removes all the leading occurrences of a set of characters specified in

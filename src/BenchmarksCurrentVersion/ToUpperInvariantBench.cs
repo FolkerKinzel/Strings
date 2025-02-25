@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using FolkerKinzel.Strings;
-using FolkerKinzel.Strings.Intls;
 
 namespace Benchmarks;
 
@@ -32,5 +28,5 @@ public class ToUpperInvariantBench
     [Benchmark]
     public StringBuilder ToUpperInvariantLibrary() => _builder.ToUpperInvariant();
 
-    
+
 }

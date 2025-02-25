@@ -1,6 +1,4 @@
-﻿using FolkerKinzel.Strings;
-
-namespace FolkerKinzel.Strings.Tests;
+﻿namespace FolkerKinzel.Strings.Tests;
 
 [TestClass()]
 public class ReadOnlyMemoryPolyfillExtensionTests

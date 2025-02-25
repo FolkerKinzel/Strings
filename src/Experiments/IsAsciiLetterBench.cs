@@ -1,6 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using FolkerKinzel.Strings;
 
 namespace Experiments;
