@@ -14,10 +14,10 @@
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>9.4.0</Version>
-    <FileVersion>9.4.0.16</FileVersion>
+    <Version>9.4.1</Version>
+    <FileVersion>9.4.1.2</FileVersion>
     <AssemblyVersion>9.0.0.0</AssemblyVersion>
-    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v9.4.0</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v9.4.1</PackageReleaseNotes>
     <PackageTags>String Polyfill</PackageTags>
     <Description>
       .NET library that contains extension methods and helper classes for character-based data types.
@@ -112,14 +112,14 @@
     </None>
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
-    <PackageReference Include="System.Memory" Version="4.6.0" />
+    <PackageReference Include="System.Memory" Version="4.6.3" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="System.Memory" Version="4.6.0" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.2" />
+    <PackageReference Include="System.Memory" Version="4.6.3" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.4" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.2" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Res.Designer.cs">
