@@ -4,8 +4,8 @@
     with the polyfills for netstandard2.1. That's why at least netcoreapp3.1 has to be part of the package if
     newer .NET versions bind rather to netcoreapp3.1 than to netstandard2.1. (Better be sure and support all
     .NET versions.)-->
-    <TargetFrameworks>net462;netstandard2.0;netstandard2.1;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
-    <LangVersion>13.0</LangVersion>
+    <TargetFrameworks>net462;netstandard2.0;netstandard2.1;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
+    <LangVersion>14.0</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <NeutralLanguage>en</NeutralLanguage>
@@ -14,10 +14,10 @@
     <!-- nuget-Package: -->
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
-    <Version>9.4.1</Version>
-    <FileVersion>9.4.1.2</FileVersion>
+    <Version>9.4.2</Version>
+    <FileVersion>9.4.2.1</FileVersion>
     <AssemblyVersion>9.0.0.0</AssemblyVersion>
-    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v9.4.1</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v9.4.2</PackageReleaseNotes>
     <PackageTags>String Polyfill</PackageTags>
     <Description>
       .NET library that contains extension methods and helper classes for character-based data types.
