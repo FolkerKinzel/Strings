@@ -2,7 +2,9 @@
 
 internal static class ReadOnlySpanExtensionIntl
 {
-    internal static int ReplaceLineEndings(this ReadOnlySpan<char> source, ReadOnlySpan<char> replacement, Span<char> destination)
+    internal static int ReplaceLineEndings(this ReadOnlySpan<char> source,
+                                           ReadOnlySpan<char> replacement,
+                                           Span<char> destination)
     {
         bool rFound = false;
         int outputLength = 0;
