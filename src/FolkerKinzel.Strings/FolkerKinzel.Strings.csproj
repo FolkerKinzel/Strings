@@ -15,7 +15,7 @@
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
     <Version>9.4.3</Version>
-    <FileVersion>9.4.3.4</FileVersion>
+    <FileVersion>9.4.3.5</FileVersion>
     <AssemblyVersion>9.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v9.4.3</PackageReleaseNotes>
     <PackageTags>String Polyfill</PackageTags>
@@ -102,7 +102,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Logo.png">
+    <None Include="Logo.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
