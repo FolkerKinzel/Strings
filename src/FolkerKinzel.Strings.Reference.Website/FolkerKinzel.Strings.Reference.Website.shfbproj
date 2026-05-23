@@ -28,8 +28,6 @@
     </TransformComponentArguments>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\FolkerKinzel.Strings\FolkerKinzel.Strings.csproj" />
-      <DocumentationSource sourceFile="..\FolkerKinzel.Strings\bin\Release\netstandard2.0\FolkerKinzel.Strings.dll" />
-      <DocumentationSource sourceFile="..\FolkerKinzel.Strings\bin\Release\netstandard2.0\FolkerKinzel.Strings.xml" />
     </DocumentationSources>
     <HelpTitle>FolkerKinzel.Strings</HelpTitle>
     <HelpFileVersion>1.0.0.0</HelpFileVersion>
@@ -42,8 +40,9 @@
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="FolkerKinzel.Strings" isDocumented="True">Contains classes that provide extension methods for String, Char, StringBuilder and ReadOnlySpan&amp;lt;Char&amp;gt;.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="FolkerKinzel (Group)" isGroup="True" isDocumented="True">Root namespace for software from Folker Kinzel.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="System.Buffers" isDocumented="False" /></NamespaceSummaries>
+      <NamespaceSummaryItem name="FolkerKinzel (Group)" isGroup="True" isDocumented="True">Root namespace for software from Folker Kinzel.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="System.Buffers" isDocumented="False" />
+    </NamespaceSummaries>
     <CopyrightText>Copyright &amp;#169%3b 2020 Folker Kinzel</CopyrightText>
     <HelpFileFormat>Website</HelpFileFormat>
     <SyntaxFilters>Standard</SyntaxFilters>
@@ -55,6 +54,8 @@
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
     <WarnOnMissingSourceContext>False</WarnOnMissingSourceContext>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->
