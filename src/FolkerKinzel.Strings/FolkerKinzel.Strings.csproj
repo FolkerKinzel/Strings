@@ -15,7 +15,7 @@
     <PackageId>FolkerKinzel.Strings</PackageId>
     <Product>FolkerKinzel.Strings</Product>
     <Version>9.4.3</Version>
-    <FileVersion>9.4.3.5</FileVersion>
+    <FileVersion>9.4.3.10</FileVersion>
     <AssemblyVersion>9.0.0.0</AssemblyVersion>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/Strings/releases/tag/v9.4.3</PackageReleaseNotes>
     <PackageTags>String Polyfill</PackageTags>
@@ -91,8 +91,8 @@
     <None Remove="tmp.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FolkerKinzel.Helpers" Version="1.1.1" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.200">
+    <PackageReference Include="FolkerKinzel.Helpers" Version="1.1.2" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.300">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -116,10 +116,10 @@
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Memory" Version="4.6.3" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="10.0.4" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="10.0.9" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="10.0.4" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="10.0.9" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Res.Designer.cs">
