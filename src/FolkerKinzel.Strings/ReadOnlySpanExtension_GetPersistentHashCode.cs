@@ -5,9 +5,9 @@ namespace FolkerKinzel.Strings;
 
 public static partial class ReadOnlySpanExtension
 {
-    /// <summary>Generates the same <see cref="int" /> hash code for an identical string
-    /// of characters each time the program is run.</summary>
-    /// <param name="span">The <see cref="char"/> sequence to be hashed.</param>
+    /// <summary>Generates the same <see cref="int" /> hash code for an identical
+    /// <see cref="char"/>-sequence each time the program is run.</summary>
+    /// <param name="span">The <see cref="char"/>-sequence that is being hashed.</param>
     /// <param name="hashType">The kind of hashcode to be generated.</param>
     /// <returns>The hashcode.</returns>
     /// <remarks>

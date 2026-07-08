@@ -49,7 +49,8 @@ namespace FolkerKinzel.Strings;
 /// </para>
 /// </remarks>
 /// 
-/// <exception cref="ArgumentException"></exception>
+/// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
+/// value of the <see cref="HashType" /> enum.</exception>
 #if !(NET462 || NETSTANDARD2_0 || NETSTANDARD2_1 || NETCOREAPP3_1)
 [SuppressMessage("Usage", "CA2231:Overload operator equals on overriding value type Equals",
     Justification = "PersistentStringHash is a mutable struct and should not be compared with other instances.")]
@@ -132,6 +133,18 @@ public struct PersistentStringHash(HashType hashType)
     public override readonly int GetHashCode() => throw new NotSupportedException();
 #pragma warning restore CS0809 // Obsolete member overrides non-obsolete member
 
+#if NETSTANDARD2_0 || NET462
+    /// <summary>
+    /// Adds the <see cref="char"/>-sequence of a <see cref="string"/> to the hash code.
+    /// </summary>
+    /// <param name="s">The <see cref="string"/>, or <c>null</c>.</param>
+    /// <exception cref="InvalidOperationException">
+    /// The instance had been initialized using the default constructor.
+    /// </exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Add(string? s) => Add(s.AsSpan());
+#endif
+
     /// <summary>
     /// Adds the content of a read-only character span to the hash code.
     /// </summary>
@@ -205,7 +218,7 @@ public struct PersistentStringHash(HashType hashType)
     /// </summary>
     /// <param name="builder">The <see cref="StringBuilder"/> whose content is 
     /// hashed.</param>
-    /// <param name="startIndex"></param>
+    /// <param name="startIndex">The start index in <paramref name="builder"/>.</param>
     /// 
     /// <exception cref="ArgumentNullException">
     /// <paramref name="builder"/> is <c>null</c>.
@@ -235,7 +248,7 @@ public struct PersistentStringHash(HashType hashType)
     /// </summary>
     /// <param name="builder">The <see cref="StringBuilder"/> whose content is 
     /// hashed.</param>
-    /// <param name="startIndex">The start index in builder.</param>
+    /// <param name="startIndex">The start index in <paramref name="builder"/>.</param>
     /// <param name="count">The number of characters to hash.</param>
     /// 
     /// <exception cref="ArgumentNullException">
@@ -273,6 +286,108 @@ public struct PersistentStringHash(HashType hashType)
 
         DoAdd(builder, startIndex, count);
     }
+
+#if NETSTANDARD2_0 || NET462
+    /// <summary>
+    /// Generates a persistent hash code for the characters of the specified <see cref="string"/> 
+    /// using the specified <paramref name="hashType"/>.
+    /// </summary>
+    /// <param name="s">The <see cref="string"/> whose <see cref="char"/>-sequence is being hashed,
+    /// or <c>null</c>.</param>
+    /// <param name="hashType">The kind of hashcode to be generated.</param>
+    /// <returns>The hashcode.</returns>
+    /// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
+    /// value of the <see cref="HashType" /> enum.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int From(string? s, HashType hashType)
+        => s.AsSpan().GetPersistentHashCode(hashType);
+#endif
+
+    /// <summary>
+    /// Generates a persistent hash code for the characters in the specified read-only span
+    /// using the specified <paramref name="hashType"/>.
+    /// </summary>
+    /// <param name="span">The <see cref="char"/>-sequence that is being hashed.</param>
+    /// <param name="hashType">The kind of hashcode to be generated.</param>
+    /// <returns>The hashcode.</returns>
+    /// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
+    /// value of the <see cref="HashType" /> enum.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int From(ReadOnlySpan<char> span, HashType hashType)
+        => span.GetPersistentHashCode(hashType);
+
+    /// <summary>
+    /// Generates a persistent hash code for the characters in the specified 
+    /// <see cref="StringBuilder"/> using the specified <paramref name="hashType"/>.
+    /// </summary>
+    /// <param name="builder">The <see cref="StringBuilder"/> whose <see cref="char"/>-sequence
+    /// is being hashed.</param>
+    /// <param name="hashType">The kind of hashcode to be generated.</param>
+    /// <returns>The hashcode.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
+    /// value of the <see cref="HashType" /> enum.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int From(StringBuilder builder, HashType hashType)
+        => builder.GetPersistentHashCode(hashType);
+
+    /// <summary>
+    /// Generates a persistent hash code for the <see cref="char"/>-sequence in the specified 
+    /// <see cref="StringBuilder"/> that begins with <paramref name="startIndex"/> and reaches to 
+    /// the end of <paramref name="builder"/>, using the specified <paramref name="hashType"/>.
+    /// </summary>
+    /// <param name="builder">The <see cref="StringBuilder"/> whose <see cref="char"/>-sequence
+    /// is being hashed.</param>
+    /// <param name="startIndex">The start index in <paramref name="builder"/>.</param>
+    /// <param name="hashType">The kind of hashcode to be generated.</param>
+    /// <returns>The hashcode.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException"> <paramref name="startIndex" /> is
+    /// less than zero or greater than the number of characters in <paramref name="builder"
+    /// />.</exception>
+    /// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
+    /// value of the <see cref="HashType" /> enum.</exception>
+    public static int From(StringBuilder builder, int startIndex, HashType hashType)
+    {
+        var hasher = new PersistentStringHash(hashType);
+        hasher.Add(builder, startIndex);
+        return hasher.ToHashCode();
+    }
+
+    /// <summary>
+    /// Generates a persistent hash code for the <see cref="char"/>-sequence in the specified 
+    /// <see cref="StringBuilder"/> that begins with <paramref name="startIndex"/> and contains 
+    /// <paramref name="count"/> characters, using the specified <paramref name="hashType"/>.
+    /// </summary>
+    /// <param name="builder">The <see cref="StringBuilder"/> whose <see cref="char"/>-sequence
+    /// is being hashed.</param>
+    /// <param name="startIndex">The start index in <paramref name="builder"/>.</param>
+    /// <param name="count">The number of characters to hash.</param>
+    /// <param name="hashType">The kind of hashcode to be generated.</param>
+    /// <returns>The hashcode.</returns>
+    /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <para>
+    /// <paramref name="startIndex" /> or <paramref name="count" /> are smaller than zero
+    /// or larger than the number of characters in <paramref name="builder" />
+    /// </para>
+    /// <para>
+    /// - or -
+    /// </para>
+    /// <para>
+    /// <paramref name="startIndex" /> + <paramref name="count" /> is larger than the number
+    /// of characters in <paramref name="builder" />.
+    /// </para>
+    /// </exception>
+    /// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
+    /// value of the <see cref="HashType" /> enum.</exception>
+    public static int From(StringBuilder builder, int startIndex, int count, HashType hashType)
+    {
+        var hasher = new PersistentStringHash(hashType);
+        hasher.Add(builder, startIndex, count);
+        return hasher.ToHashCode();
+    }
+
 
 #if NETSTANDARD2_1 || NETSTANDARD2_0 || NET462
 
