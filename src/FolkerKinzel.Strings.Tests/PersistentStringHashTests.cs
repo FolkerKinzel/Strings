@@ -79,6 +79,18 @@ public class PersistentStringHashTests
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void AddTest14() => new PersistentStringHash().Add(new StringBuilder("a"), 0, 50);
 
+
+    [TestMethod]
+    public void AddTest15()
+    {
+        var hasher = new PersistentStringHash(HashType.Ordinal);
+        string? s = null;
+        hasher.Add(s);
+        int hash1 = hasher.ToHashCode();
+        int hash2 = s.GetPersistentHashCode(HashType.Ordinal);
+        Assert.AreEqual(hash1, hash2);
+    }
+
     [DataTestMethod]
     [DataRow(HashType.Ordinal)]
     [DataRow(HashType.OrdinalIgnoreCase)]
@@ -186,4 +198,116 @@ public class PersistentStringHashTests
 
         Assert.AreEqual(hasher1.ToHashCode(), hasher2.ToHashCode());
     }
+
+    [TestMethod()]
+    public void FromTest1()
+    {
+        int hash1 = PersistentStringHash.From(string.Empty.AsSpan(), HashType.Ordinal);
+        int hash2 = "".GetPersistentHashCode(HashType.Ordinal);
+
+        Assert.AreEqual(hash1, hash2);
+    }
+
+    [TestMethod()]
+    public void FromTest2()
+    {
+        string? s1 = null;
+        const HashType hashType = HashType.Ordinal;
+        Assert.AreEqual("".GetPersistentHashCode(hashType), PersistentStringHash.From(s1.AsSpan(), hashType));
+    }
+
+    [TestMethod()]
+    public void FromTest3()
+    {
+        int hash1 = PersistentStringHash.From("Hallo".AsSpan(), HashType.OrdinalIgnoreCase);
+        int hash2 = PersistentStringHash.From("hallo".AsSpan(), HashType.OrdinalIgnoreCase);
+
+        Assert.AreEqual(hash1, hash2);
+    }
+
+    [TestMethod()]
+    public void FromTest4()
+    {
+        int hash1 = PersistentStringHash.From("Hallo".AsSpan(), HashType.Ordinal);
+        int hash2 = PersistentStringHash.From("hallo".AsSpan(), HashType.Ordinal);
+
+        Assert.AreNotEqual(hash1, hash2);
+    }
+
+    [TestMethod()]
+    public void FromTest5()
+    {
+        int hash1 = PersistentStringHash.From("Hallo, dies ist Text.".AsSpan(), HashType.AlphaNumericIgnoreCase);
+        int hash2 = PersistentStringHash.From("hallodiesisttext".AsSpan(), HashType.OrdinalIgnoreCase);
+
+        Assert.AreEqual(hash1, hash2);
+    }
+
+    [TestMethod()]
+    public void FromTest6()
+    {
+        string? s1 = null;
+        const HashType hashType = HashType.AlphaNumericIgnoreCase;
+        Assert.AreEqual("".GetPersistentHashCode(hashType), PersistentStringHash.From(s1, hashType));
+    }
+
+    [TestMethod()]
+    [ExpectedException(typeof(ArgumentException))]
+    public void FromTest7() => _ = PersistentStringHash.From(string.Empty.AsSpan(), (HashType)4711);
+
+    [TestMethod()]
+    public void FromTest11()
+    {
+        int hash1 = PersistentStringHash.From(string.Empty.AsSpan(), HashType.Ordinal);
+        int hash2 = "".GetPersistentHashCode(HashType.Ordinal);
+
+        Assert.AreEqual(hash1, hash2);
+    }
+
+    [TestMethod()]
+    public void FromTest12()
+    {
+        string? s1 = null;
+        const HashType hashType = HashType.Ordinal;
+        Assert.AreEqual("".GetPersistentHashCode(hashType), PersistentStringHash.From(s1.AsSpan(), hashType));
+    }
+
+    [TestMethod()]
+    public void FromTest13()
+    {
+        int hash1 = PersistentStringHash.From("Hallo".AsSpan(), HashType.OrdinalIgnoreCase);
+        int hash2 = PersistentStringHash.From("hallo".AsSpan(), HashType.OrdinalIgnoreCase);
+
+        Assert.AreEqual(hash1, hash2);
+    }
+
+    [TestMethod()]
+    public void FromTest14()
+    {
+        int hash1 = PersistentStringHash.From("Hallo".AsSpan(), HashType.Ordinal);
+        int hash2 = PersistentStringHash.From("hallo".AsSpan(), HashType.Ordinal);
+
+        Assert.AreNotEqual(hash1, hash2);
+    }
+
+    [TestMethod()]
+    public void FromTest15()
+    {
+        int hash1 = PersistentStringHash.From("Hallo, dies ist Text.".AsSpan(), HashType.AlphaNumericIgnoreCase);
+        int hash2 = PersistentStringHash.From("hallodiesisttext".AsSpan(), HashType.OrdinalIgnoreCase);
+
+        Assert.AreEqual(hash1, hash2);
+    }
+
+    [TestMethod()]
+    public void FromTest16()
+    {
+        string? s1 = null;
+        const HashType hashType = HashType.AlphaNumericIgnoreCase;
+        Assert.AreEqual("".GetPersistentHashCode(hashType), PersistentStringHash.From(s1.AsSpan(), hashType));
+    }
+
+    [TestMethod()]
+    [ExpectedException(typeof(ArgumentException))]
+    public void FromTest17() => _ = PersistentStringHash.From(string.Empty.AsSpan(), (HashType)4711);
 }

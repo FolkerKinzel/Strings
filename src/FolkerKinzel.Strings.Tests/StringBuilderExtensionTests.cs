@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics.Eventing.Reader;
+using System.Security.Policy;
 
 namespace FolkerKinzel.Strings.Tests;
 
@@ -892,13 +894,17 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void GetPersistentHashCodeTest6()
     {
+        HashType hashType = HashType.AlphaNumericIgnoreCase;
         const string s = "Hallo, Text.";
-        int hash1 = s.GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
-        int hash2 = s.AsSpan().GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
-        int hash3 = new StringBuilder().Append(s).GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
+        int hash1 = s.GetPersistentHashCode(hashType);
+        int hash2 = s.AsSpan().GetPersistentHashCode(hashType);
+        StringBuilder builder = new StringBuilder().Append(s);
+        int hash3 = builder.GetPersistentHashCode(hashType);
+        int hash4 = PersistentStringHash.From(builder, hashType);
 
         Assert.AreEqual(hash1, hash2);
         Assert.AreEqual(hash1, hash3);
+        Assert.AreEqual(hash1, hash4);
     }
 
     [TestMethod]
@@ -916,13 +922,18 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void GetPersistentHashCodeTest7()
     {
+        HashType hashType = HashType.OrdinalIgnoreCase;
         const string s = "Hallo, Text.";
-        int hash1 = s.GetPersistentHashCode(HashType.OrdinalIgnoreCase);
-        int hash2 = s.AsSpan().GetPersistentHashCode(HashType.OrdinalIgnoreCase);
-        int hash3 = new StringBuilder().Append(s).GetPersistentHashCode(HashType.OrdinalIgnoreCase);
+        int hash1 = s.GetPersistentHashCode(hashType);
+        int hash2 = s.AsSpan().GetPersistentHashCode(hashType);
+
+        StringBuilder builder = new StringBuilder().Append(s);
+        int hash3 = builder.GetPersistentHashCode(hashType);
+        int hash4 = PersistentStringHash.From(builder, hashType);
 
         Assert.AreEqual(hash1, hash2);
         Assert.AreEqual(hash1, hash3);
+        Assert.AreEqual(hash1, hash4);
     }
 
     [TestMethod]
@@ -940,10 +951,14 @@ public class StringBuilderExtensionTests
     [TestMethod]
     public void GetPersistentHashCodeTest8()
     {
+        HashType hashType = HashType.Ordinal;
         const string s = "Hallo, Text.";
-        int hash1 = s.GetPersistentHashCode(HashType.Ordinal);
-        int hash2 = s.AsSpan().GetPersistentHashCode(HashType.Ordinal);
-        int hash3 = new StringBuilder().Append(s).GetPersistentHashCode(HashType.Ordinal);
+        int hash1 = s.GetPersistentHashCode(hashType);
+        int hash2 = s.AsSpan().GetPersistentHashCode(hashType);
+
+        StringBuilder builder = new StringBuilder().Append(s);
+        int hash3 = builder.GetPersistentHashCode(hashType);
+        int hash4 = PersistentStringHash.From(builder, hashType);
 
         Assert.AreEqual(hash1, hash2);
         Assert.AreEqual(hash1, hash3);
@@ -971,6 +986,57 @@ public class StringBuilderExtensionTests
         Assert.AreEqual(hash1, hash2);
     }
 
+
+    [DataTestMethod]
+    [DataRow(HashType.Ordinal)]
+    [DataRow(HashType.OrdinalIgnoreCase)]
+    [DataRow(HashType.AlphaNumericIgnoreCase)]
+    public void GetPersistentHashCodeTest10(HashType hashType)
+    {
+        int hash1 = new PersistentStringHash(hashType).ToHashCode();
+        int hash2 = new StringBuilder().GetPersistentHashCode(hashType);
+
+        var spanHash = new PersistentStringHash(hashType);
+        spanHash.Add("".AsSpan());
+        int hash3 = spanHash.ToHashCode();
+
+        Assert.AreEqual(hash1, hash2);
+        Assert.AreEqual(hash1, hash3);
+    }
+
+
+    [DataTestMethod]
+    [DataRow(HashType.Ordinal)]
+    [DataRow(HashType.OrdinalIgnoreCase)]
+    [DataRow(HashType.AlphaNumericIgnoreCase)]
+    public void ToHashCodeTest2(HashType hashType)
+    {
+        const string test = " XüÖ$§@kT22*";
+
+        var charHash = new PersistentStringHash(hashType);
+
+        foreach (char c in test.AsSpan())
+        {
+            charHash.Add(c);
+        }
+
+        int hash1 = charHash.ToHashCode();
+
+        int hash2 = new StringBuilder(test).GetPersistentHashCode(hashType);
+
+        var spanHash = new PersistentStringHash(hashType);
+        spanHash.Add(test.AsSpan());
+        int hash3 = spanHash.ToHashCode();
+
+        
+        int hash4 = new StringBuilder(test).GetPersistentHashCode(0, hashType);
+        int hash5 = new StringBuilder(test).GetPersistentHashCode(0, test.Length, hashType);
+
+        Assert.AreEqual(hash1, hash2);
+        Assert.AreEqual(hash1, hash3);
+        Assert.AreEqual(hash1, hash4);
+        Assert.AreEqual(hash1, hash5);
+    }
 
     [DataTestMethod]
     [DataRow("    Test    ")]

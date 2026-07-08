@@ -329,7 +329,11 @@ public struct PersistentStringHash(HashType hashType)
     /// value of the <see cref="HashType" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int From(StringBuilder builder, HashType hashType)
-        => builder.GetPersistentHashCode(hashType);
+    {
+        var hasher = new PersistentStringHash(hashType);
+        hasher.Add(builder);
+        return hasher.ToHashCode();
+    }
 
     /// <summary>
     /// Generates a persistent hash code for the <see cref="char"/>-sequence in the specified 
@@ -393,8 +397,10 @@ public struct PersistentStringHash(HashType hashType)
 
     private void DoAdd(StringBuilder builder, int startIndex, int count)
     {
-        if (count == 0)
+        // Avoid copying of very short StringBuilder content: 
+        if ((count - startIndex) <= StringBuilderExtension.SIMPLE_ALGORITHM_THRESHOLD)
         {
+            DoAddSimple(builder, startIndex, count);
             return;
         }
 
@@ -402,6 +408,118 @@ public struct PersistentStringHash(HashType hashType)
         builder.CopyTo(startIndex, shared.Array, 0, count);
         Add(shared.Array.AsSpan(0, count));
     }
+
+    private void DoAddSimple(StringBuilder builder, int startIndex, int count)
+    {
+        switch(_hashType)
+        {
+            case HashType.Ordinal:
+                AddHashCodeOrdinalSimple(builder, startIndex, count);
+                break;
+            case HashType.OrdinalIgnoreCase:
+                AddHashCodeOrdinalIgnoreCaseSimple(builder, startIndex, count);
+                break;
+            case HashType.AlphaNumericIgnoreCase:
+                AddHashCodeAlphaNumericIgnoreCaseSimple(builder, startIndex, count);
+                break;
+            default:
+                throw new InvalidOperationException(Res.DefaultCtor);
+        }
+        ;
+    }
+
+    private void AddHashCodeOrdinalSimple(StringBuilder sb, int startIndex, int count)
+    {
+        unchecked
+        {
+            //int hash1 = (5381 << 16) + 5381;
+            //int hash2 = hash1;
+
+            int end = startIndex + count;
+
+            for (int i = startIndex; i < end; i += 2)
+            {
+                _hash1 = ((_hash1 << 5) + _hash1 + (_hash1 >> 27)) ^ sb[i];
+
+                if (i == end - 1)
+                {
+                    break;
+                }
+
+                _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ sb[i + 1];
+            }
+
+            //return hash1 + (hash2 * 1566083941);
+        }
+    }
+
+    private void AddHashCodeOrdinalIgnoreCaseSimple(StringBuilder sb, int startIndex, int count)
+    {
+        unchecked
+        {
+            //int hash1 = (5381 << 16) + 5381;
+            //int hash2 = hash1;
+
+            int end = startIndex + count;
+
+            for (int i = startIndex; i < end; i += 2)
+            {
+                _hash1 = ((_hash1 << 5) + _hash1 + (_hash1 >> 27)) ^ char.ToUpperInvariant(sb[i]);
+
+                if (i == end - 1)
+                {
+                    break;
+                }
+
+                _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ char.ToUpperInvariant(sb[i + 1]);
+            }
+
+            //return hash1 + (hash2 * 1566083941);
+        }
+    }
+
+    private void AddHashCodeAlphaNumericIgnoreCaseSimple(StringBuilder sb, int startIndex, int count)
+    {
+        unchecked
+        {
+            //int hash1 = (5381 << 16) + 5381;
+            //int hash2 = hash1;
+
+            int end = startIndex + count;
+
+            for (int i = startIndex; i < end;)
+            {
+                for (; i < end; i++)
+                {
+                    char current = sb[i];
+
+                    if (char.IsLetterOrDigit(current))
+                    {
+                        _hash1 = ((_hash1 << 5) + _hash1 + (_hash1 >> 27)) ^ char.ToUpperInvariant(current);
+                        i++;
+
+                        // Hash next character:
+                        for (; i < end; i++)
+                        {
+                            char next = sb[i];
+
+                            if (char.IsLetterOrDigit(next))
+                            {
+                                _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ char.ToUpperInvariant(next);
+                                i++;
+                                break;
+                            }
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            //return hash1 + (hash2 * 1566083941);
+        }
+    }
+
 #else
 
     private void DoAdd(StringBuilder builder, int startIndex, int count)
@@ -427,7 +545,7 @@ public struct PersistentStringHash(HashType hashType)
 
             if (count == span.Length)
             {
-                return;
+                break;
             }
 
             count -= span.Length;
