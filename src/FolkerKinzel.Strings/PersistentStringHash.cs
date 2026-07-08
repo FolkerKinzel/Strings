@@ -494,6 +494,8 @@ public struct PersistentStringHash(HashType hashType)
 
     private void AddHashCodeAlphaNumericIgnoreCaseSimple(StringBuilder sb, int startIndex, int count)
     {
+        Debug.Assert(count > 0);
+
         unchecked
         {
             int end = startIndex + count;
