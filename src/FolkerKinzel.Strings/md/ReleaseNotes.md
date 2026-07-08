@@ -7,6 +7,11 @@ int PersistentStringHash.From(StringBuilder, int, HashType);
 int PersistentStringHash.From(StringBuilder, int, int, HashType);
 ```
 - `StringExtension.GetPersistentHashCode(this string?, HashType)` is less restrictive now and accepts `null` as input.
+- `StringBuilderExtension.GetPersistentHashCode()` has two new overloads:
+```csharp
+int GetPersistentHashCode(this StringBuilder, int, HashType);
+int GetPersistentHashCode(this StringBuilder, int, int, HashType);
+```
 - Dependency updates
 
 &nbsp;

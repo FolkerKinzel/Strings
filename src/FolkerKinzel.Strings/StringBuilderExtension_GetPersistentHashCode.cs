@@ -1,5 +1,4 @@
 using System.Security.Cryptography;
-using FolkerKinzel.Strings.Properties;
 
 namespace FolkerKinzel.Strings;
 
@@ -80,7 +79,9 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
     /// value of the <see cref="HashType" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int GetPersistentHashCode(this StringBuilder builder, int startIndex, HashType hashType)
+    public static int GetPersistentHashCode(this StringBuilder builder,
+                                            int startIndex,
+                                            HashType hashType)
         => PersistentStringHash.From(builder, startIndex, hashType);
 
     /// <summary>Generates the same <see cref="int" /> hash code for an identical string
@@ -119,6 +120,9 @@ public static partial class StringBuilderExtension
     /// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
     /// value of the <see cref="HashType" /> enum.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int GetPersistentHashCode(this StringBuilder builder, int startIndex, int count, HashType hashType)
+    public static int GetPersistentHashCode(this StringBuilder builder,
+                                            int startIndex,
+                                            int count,
+                                            HashType hashType)
         => PersistentStringHash.From(builder, startIndex, count, hashType);
 }
