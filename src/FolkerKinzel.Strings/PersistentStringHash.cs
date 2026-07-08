@@ -432,9 +432,6 @@ public struct PersistentStringHash(HashType hashType)
     {
         unchecked
         {
-            //int hash1 = (5381 << 16) + 5381;
-            //int hash2 = hash1;
-
             int end = startIndex + count;
 
             for (int i = startIndex; i < end; i += 2)
@@ -448,8 +445,6 @@ public struct PersistentStringHash(HashType hashType)
 
                 _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ sb[i + 1];
             }
-
-            //return hash1 + (hash2 * 1566083941);
         }
     }
 
@@ -457,9 +452,6 @@ public struct PersistentStringHash(HashType hashType)
     {
         unchecked
         {
-            //int hash1 = (5381 << 16) + 5381;
-            //int hash2 = hash1;
-
             int end = startIndex + count;
 
             for (int i = startIndex; i < end; i += 2)
@@ -473,8 +465,6 @@ public struct PersistentStringHash(HashType hashType)
 
                 _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ char.ToUpperInvariant(sb[i + 1]);
             }
-
-            //return hash1 + (hash2 * 1566083941);
         }
     }
 
@@ -482,9 +472,6 @@ public struct PersistentStringHash(HashType hashType)
     {
         unchecked
         {
-            //int hash1 = (5381 << 16) + 5381;
-            //int hash2 = hash1;
-
             int end = startIndex + count;
 
             for (int i = startIndex; i < end;)
@@ -515,8 +502,6 @@ public struct PersistentStringHash(HashType hashType)
                     }
                 }
             }
-
-            //return hash1 + (hash2 * 1566083941);
         }
     }
 
@@ -562,9 +547,6 @@ public struct PersistentStringHash(HashType hashType)
 
         unchecked
         {
-            //int hash1 = (5381 << 16) + 5381;
-            //int hash2 = hash1;
-
             if (_odd)
             {
                 _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ span[0];
@@ -584,8 +566,6 @@ public struct PersistentStringHash(HashType hashType)
 
                 _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ span[i + 1];
             }
-
-            //return hash1 + (hash2 * 1566083941);
         }
     }
 
@@ -595,9 +575,6 @@ public struct PersistentStringHash(HashType hashType)
 
         unchecked
         {
-            //int hash1 = (5381 << 16) + 5381;
-            //int hash2 = hash1;
-
             if (_odd)
             {
                 _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ char.ToUpperInvariant(span[0]);
@@ -617,8 +594,6 @@ public struct PersistentStringHash(HashType hashType)
 
                 _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ char.ToUpperInvariant(span[i + 1]);
             }
-
-            //return hash1 + (hash2 * 1566083941);
         }
     }
 
@@ -628,9 +603,6 @@ public struct PersistentStringHash(HashType hashType)
 
         unchecked
         {
-            //int hash1 = (5381 << 16) + 5381;
-            //int hash2 = hash1;
-
             if (_odd)
             {
                 for (int i = 0; i < span.Length; i++)
@@ -677,8 +649,6 @@ public struct PersistentStringHash(HashType hashType)
                     }
                 }
             }
-
-            //return hash1 + (hash2 * 1566083941);
         }
     }
 }
