@@ -6,7 +6,7 @@ public static partial class StringExtension
 {
     /// <summary>Generates the same <see cref="int" /> hash code for an identical 
     /// <see cref="char"/>-sequence each time the program is run.</summary>
-    /// <param name="s">The string whose <see cref="char"/>-sequence is being hashed.</param>
+    /// <param name="s">The string whose <see cref="char"/>-sequence is being hashed, or <c>null</c>.</param>
     /// <param name="hashType">The kind of hashcode to be generated.</param>
     /// <returns>The hashcode.</returns>
     /// <remarks>
@@ -34,13 +34,12 @@ public static partial class StringExtension
     /// (such as hashing passwords)!
     /// </para>
     /// </remarks>
-    /// <exception cref="ArgumentNullException"> <paramref name="s" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
     /// value of the <see cref="HashType" /> enum.</exception>
     /// <example>
     /// <code language="cs" source="..\Examples\Example.cs" />
     /// </example>
-    public static int GetPersistentHashCode(this string s, HashType hashType)
-        => s is null ? throw new ArgumentNullException(nameof(s))
-                     : s.AsSpan().GetPersistentHashCode(hashType);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int GetPersistentHashCode(this string? s, HashType hashType)
+        => s.AsSpan().GetPersistentHashCode(hashType);
 }

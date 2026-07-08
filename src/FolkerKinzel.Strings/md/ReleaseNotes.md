@@ -1,10 +1,12 @@
 ﻿- Static methods for the `PersistentStringHash` structure:
 ```csharp
-public static int From(ReadOnlySpan<char>, HashType);
-public static int From(StringBuilder, HashType);
-public static int From(StringBuilder, int, HashType);
-public static int From(StringBuilder, int, int, HashType);
+int PersistentStringHash.From(string? s, HashType hashType); //.NET Standard 2.0 and .NET Framework only
+int PersistentStringHash.From(ReadOnlySpan<char>, HashType);
+int PersistentStringHash.From(StringBuilder, HashType);
+int PersistentStringHash.From(StringBuilder, int, HashType);
+int PersistentStringHash.From(StringBuilder, int, int, HashType);
 ```
+- `StringExtension.GetPersistentHashCode(this string?, HashType)` is less restrictive now and accepts `null` as input.
 - Dependency updates
 
 &nbsp;

@@ -447,12 +447,11 @@ public class StringExtensionTests
     }
 
     [TestMethod()]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void GetPersistentHashCodeTest2()
     {
-        string? s = null;
-
-        _ = s!.GetPersistentHashCode(HashType.Ordinal);
+        string? s1 = null;
+        const HashType hashType = HashType.Ordinal;
+        Assert.AreEqual("".GetPersistentHashCode(hashType), s1.GetPersistentHashCode(hashType));
     }
 
     [TestMethod()]
@@ -483,11 +482,11 @@ public class StringExtensionTests
     }
 
     [TestMethod()]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void GetPersistentHashCodeTest6()
     {
-        string? s = null;
-        _ = s!.GetPersistentHashCode(HashType.AlphaNumericIgnoreCase);
+        string? s1 = null;
+        const HashType hashType = HashType.AlphaNumericIgnoreCase;
+        Assert.AreEqual("".GetPersistentHashCode(hashType), s1.GetPersistentHashCode(hashType));
     }
 
     [TestMethod()]
