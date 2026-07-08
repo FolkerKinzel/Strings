@@ -95,6 +95,29 @@ public class PersistentStringHashTests
     [DataRow(HashType.Ordinal)]
     [DataRow(HashType.OrdinalIgnoreCase)]
     [DataRow(HashType.AlphaNumericIgnoreCase)]
+    public void AddTest16(HashType hashType)
+    {
+        const string str1 = "aBc";
+        const string str2 = "+ Gg";
+
+        var hasher = new PersistentStringHash(hashType);
+        hasher.Add(new StringBuilder(str1));
+        hasher.Add(new StringBuilder(str2));
+        int hash1 = hasher.ToHashCode();
+
+        string combined = str1 + str2;
+        int hash2 = PersistentStringHash.From(new StringBuilder(combined), hashType);
+        int hash3 = PersistentStringHash.From(combined, hashType);
+
+        Assert.AreEqual(hash1, hash2);
+        Assert.AreEqual(hash1, hash3);
+    }
+
+
+    [DataTestMethod]
+    [DataRow(HashType.Ordinal)]
+    [DataRow(HashType.OrdinalIgnoreCase)]
+    [DataRow(HashType.AlphaNumericIgnoreCase)]
     public void ToHashCodeTest1(HashType hashType)
     {
         int hash1 = new PersistentStringHash(hashType).ToHashCode();

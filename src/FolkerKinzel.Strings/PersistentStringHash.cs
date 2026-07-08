@@ -397,6 +397,11 @@ public struct PersistentStringHash(HashType hashType)
 
     private void DoAdd(StringBuilder builder, int startIndex, int count)
     {
+        if (count == 0)
+        {
+            return;
+        }
+
         // Avoid copying of very short StringBuilder content: 
         if ((count - startIndex) <= StringBuilderExtension.SIMPLE_ALGORITHM_THRESHOLD)
         {
@@ -425,13 +430,21 @@ public struct PersistentStringHash(HashType hashType)
             default:
                 throw new InvalidOperationException(Res.DefaultCtor);
         }
-        ;
     }
 
     private void AddHashCodeOrdinalSimple(StringBuilder sb, int startIndex, int count)
     {
+        Debug.Assert(count > 0);
+
         unchecked
         {
+            if (_odd)
+            {
+                _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ sb[startIndex++];
+                _odd = false;
+                count--;
+            }
+
             int end = startIndex + count;
 
             for (int i = startIndex; i < end; i += 2)
@@ -440,6 +453,7 @@ public struct PersistentStringHash(HashType hashType)
 
                 if (i == end - 1)
                 {
+                    _odd = true;
                     break;
                 }
 
@@ -450,8 +464,17 @@ public struct PersistentStringHash(HashType hashType)
 
     private void AddHashCodeOrdinalIgnoreCaseSimple(StringBuilder sb, int startIndex, int count)
     {
+        Debug.Assert(count > 0);
+
         unchecked
         {
+            if (_odd)
+            {
+                _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ char.ToUpperInvariant(sb[startIndex++]);
+                _odd = false;
+                count--;
+            }
+
             int end = startIndex + count;
 
             for (int i = startIndex; i < end; i += 2)
@@ -460,6 +483,7 @@ public struct PersistentStringHash(HashType hashType)
 
                 if (i == end - 1)
                 {
+                    _odd = true;
                     break;
                 }
 
@@ -474,6 +498,22 @@ public struct PersistentStringHash(HashType hashType)
         {
             int end = startIndex + count;
 
+            if (_odd)
+            {
+                for (int i = startIndex; i < end; i++)
+                {
+                    char c = sb[i];
+
+                    if (char.IsLetterOrDigit(c))
+                    {
+                        _odd = false;
+                        _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ char.ToUpperInvariant(c);
+                        startIndex = i + 1;
+                        break;
+                    }
+                }
+            }
+
             for (int i = startIndex; i < end;)
             {
                 for (; i < end; i++)
@@ -482,6 +522,7 @@ public struct PersistentStringHash(HashType hashType)
 
                     if (char.IsLetterOrDigit(current))
                     {
+                        _odd = true;
                         _hash1 = ((_hash1 << 5) + _hash1 + (_hash1 >> 27)) ^ char.ToUpperInvariant(current);
                         i++;
 
@@ -492,6 +533,7 @@ public struct PersistentStringHash(HashType hashType)
 
                             if (char.IsLetterOrDigit(next))
                             {
+                                _odd = false;
                                 _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ char.ToUpperInvariant(next);
                                 i++;
                                 break;
@@ -613,7 +655,7 @@ public struct PersistentStringHash(HashType hashType)
                     {
                         _odd = false;
                         _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ char.ToUpperInvariant(c);
-                        span = span.Slice(++i);
+                        span = span.Slice(i + 1);
                         break;
                     }
                 }
