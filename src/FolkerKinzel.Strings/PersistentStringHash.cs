@@ -405,7 +405,7 @@ public struct PersistentStringHash(HashType hashType)
         // Avoid copying of very short StringBuilder content: 
         if ((count - startIndex) <= StringBuilderExtension.SIMPLE_ALGORITHM_THRESHOLD)
         {
-            DoAddSimple(builder, startIndex, count);
+            DoAddSimple(builder, startIndex, startIndex + count);
             return;
         }
 
@@ -414,38 +414,33 @@ public struct PersistentStringHash(HashType hashType)
         Add(shared.Array.AsSpan(0, count));
     }
 
-    private void DoAddSimple(StringBuilder builder, int startIndex, int count)
+    private void DoAddSimple(StringBuilder builder, int startIndex, int end)
     {
         switch(_hashType)
         {
             case HashType.Ordinal:
-                AddHashCodeOrdinalSimple(builder, startIndex, count);
+                AddHashCodeOrdinalSimple(builder, startIndex, end);
                 break;
             case HashType.OrdinalIgnoreCase:
-                AddHashCodeOrdinalIgnoreCaseSimple(builder, startIndex, count);
+                AddHashCodeOrdinalIgnoreCaseSimple(builder, startIndex, end);
                 break;
             case HashType.AlphaNumericIgnoreCase:
-                AddHashCodeAlphaNumericIgnoreCaseSimple(builder, startIndex, count);
+                AddHashCodeAlphaNumericIgnoreCaseSimple(builder, startIndex, end);
                 break;
             default:
                 throw new InvalidOperationException(Res.DefaultCtor);
         }
     }
 
-    private void AddHashCodeOrdinalSimple(StringBuilder sb, int startIndex, int count)
+    private void AddHashCodeOrdinalSimple(StringBuilder sb, int startIndex, int end)
     {
-        Debug.Assert(count > 0);
-
         unchecked
         {
             if (_odd)
             {
                 _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ sb[startIndex++];
                 _odd = false;
-                count--;
             }
-
-            int end = startIndex + count;
 
             for (int i = startIndex; i < end; i += 2)
             {
@@ -462,20 +457,15 @@ public struct PersistentStringHash(HashType hashType)
         }
     }
 
-    private void AddHashCodeOrdinalIgnoreCaseSimple(StringBuilder sb, int startIndex, int count)
+    private void AddHashCodeOrdinalIgnoreCaseSimple(StringBuilder sb, int startIndex, int end)
     {
-        Debug.Assert(count > 0);
-
         unchecked
         {
             if (_odd)
             {
                 _hash2 = ((_hash2 << 5) + _hash2 + (_hash2 >> 27)) ^ char.ToUpperInvariant(sb[startIndex++]);
                 _odd = false;
-                count--;
             }
-
-            int end = startIndex + count;
 
             for (int i = startIndex; i < end; i += 2)
             {
@@ -492,14 +482,10 @@ public struct PersistentStringHash(HashType hashType)
         }
     }
 
-    private void AddHashCodeAlphaNumericIgnoreCaseSimple(StringBuilder sb, int startIndex, int count)
+    private void AddHashCodeAlphaNumericIgnoreCaseSimple(StringBuilder sb, int startIndex, int end)
     {
-        Debug.Assert(count > 0);
-
         unchecked
         {
-            int end = startIndex + count;
-
             if (_odd)
             {
                 for (int i = startIndex; i < end; i++)
