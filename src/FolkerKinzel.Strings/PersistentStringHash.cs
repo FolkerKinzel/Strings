@@ -327,7 +327,6 @@ public struct PersistentStringHash(HashType hashType)
     /// <exception cref="ArgumentNullException"> <paramref name="builder" /> is <c>null</c>.</exception>
     /// <exception cref="ArgumentException"> <paramref name="hashType" /> is not a defined 
     /// value of the <see cref="HashType" /> enum.</exception>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int From(StringBuilder builder, HashType hashType)
     {
         var hasher = new PersistentStringHash(hashType);
