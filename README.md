@@ -7,7 +7,7 @@
 
 .NET library that contains extension methods and helper classes for character-based data types.
 
-Very high code coverage of the unit tests (100% line and branch) and the consistent avoidance of unsafe code blocks are main design 
+Very high code coverage of the unit tests and the consistent avoidance of unsafe code blocks are main design 
 principles of this library.
 
 ## Content:
